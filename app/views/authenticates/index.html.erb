@@ -1,0 +1,44 @@
+<script>
+function validateForm() {
+	var err = 0;
+
+	var userinput = $('#email').val();
+	var domain = 'kunalinfotech.net';
+	var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+
+	if($('#email').val() == ''){
+        $('#email').parent().parent().find('.form-error').html("Please enter email address.");
+        err++;
+    }
+
+	if(!pattern.test(userinput) || userinput.split('@').pop() != domain)
+	{
+	 	$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+        err++;
+	}
+
+	if(err == 0){
+            //$(".rhino-active-bullet").removeClass("step-error").addClass("step-success");
+             return true;      
+    }else{
+            //$(".rhino-active-bullet").removeClass("step-success").addClass("step-error");
+            return false;
+    }
+
+}
+</script>
+
+<div class="dragonContent">
+ 	<div class="dialog-content">
+
+    <%= form_tag url_for(:controller => 'authenticates', :action => 'create'), :method => 'post', :onsubmit => "return validateForm()" do |f| %>
+	    <%= label_tag :email %>
+      <%= text_field_tag :email %>
+      <div class="form-error"></div>
+      <br/><br/>
+	    
+	    <div><%= submit_tag "Save", :class=>"btn btn-primary" %> </div>
+    <% end %>
+  
+    </div>
+</div>
