@@ -1,9 +1,17 @@
  ActionMailer::Base.smtp_settings = {
- 	:domain               => "gmail.com",
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    :user_name            => "testmailkipl0@gmail.com",
-    :password             => 'kipl123456789',
-    :authentication       => "plain",
-    :enable_starttls_auto => true
+ 	  :enable_starttls_auto => true,
+	  :address => "smtp.gmail.com",
+	  :port => 587,
+	  :domain => "imap.gmail.com",
+	  :authentication => :login,
+	  :user_name => "rubyrails9@gmail.com",
+	  :password => "kunalinfotechkipl"
   }
+
+
+  	if Rails.env == "development"
+		ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+	else
+		ActionMailer::Base.default_url_options[:host] = ""
+	end
+

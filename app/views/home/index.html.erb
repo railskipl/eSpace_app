@@ -1,1 +1,25 @@
-Amol
+<% if signed_in? && current_user.admin? %>
+  <table class="table table-bordered">
+
+ <tr>
+ 
+ <th>Email </th>
+ <th>Edit</th>
+ <th>Delete</th>
+ <th>Activate/Deactivate</th>
+ </tr>
+	<% @adminusers.each do |adminuser|%>
+	<tr>
+	 <td><%= adminuser.email %>
+	 	<%= adminuser.id %></td>
+
+	 <td><%#= link_to "Edit",{:controller => '/users/edit', :action => 'edit', :id => adminuser.id}%></td>
+	 <td><%= link_to "Destroy",{:controller => 'users', :action => 'destroy', :id => adminuser.id}%></td>
+	 <td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>
+	 </tr>
+	<%end%>	
+
+<%end%>
+
+ </table>
+

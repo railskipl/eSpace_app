@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
 
-  get 'users/dashboard'
+  
 
-  devise_for :users
+  devise_for :users, controllers: {sessions: 'users/sessions',registrations: 'users/registrations'}
+   # as :user do
+       # get 'users/:id/edit' => 'users#edit', :as => 'edit_user'    
+       get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'       
+   #  end
   root :to => 'home#index'
 
   resources :authenticates
-  
+  # resources :users, :only => [:index,:destroy]
+  get '/users/:id/status', :to => "users#toggled_status"
+  get 'admin_dashboard' =>'home#admin_dashboard' 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
