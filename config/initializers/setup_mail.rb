@@ -10,7 +10,7 @@
 
 
   	if Rails.env == "development"
-		ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+		ActionMailer::Base.default_url_options[:host] = "http://localhost:3000"
 	else
 		ActionMailer::Base.default_url_options[:host] = ""
 	end

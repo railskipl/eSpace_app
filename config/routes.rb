@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
-  
 
-  devise_for :users, controllers: {sessions: 'users/sessions',registrations: 'users/registrations'}
    # as :user do
        # get 'users/:id/edit' => 'users#edit', :as => 'edit_user'    
        get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'       
    #  end
+
+  devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",sessions: 'users/sessions',registrations: 'users/registrations'}
+
   root :to => 'home#index'
+
+  resources :omniauth_callbacks 
 
   resources :authenticates
   # resources :users, :only => [:index,:destroy]

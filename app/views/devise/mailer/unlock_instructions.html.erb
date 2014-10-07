@@ -1,7 +1,33 @@
-<p>Hello <%= @resource.email %>!</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>eSpace</title>
+   
+  
+  <style type="text/css">
+  
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+  body{ font-size:16px; margin:0; line-height:20px }
+  .left{ margin:50px 0 0 0; font-family:logo; font-size:40px; color:#0055a2; line-height:normal}
+  .right{ margin:0 0 20px 0; width:auto; float:right; text-align:right; font-family:"Times New Roman", Times, serif; font-size:14px; color:#000000}
+  
 
-<p>Click the link below to unlock your account:</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+  </style>
+
+   
+  </head>
+
+  <body>
+
+	<p>Hello <%= @resource.email %>!</p>
+
+	<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+
+	<p>Click the link below to unlock your account:</p>
+
+	<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+
+  </body>
+</html>
