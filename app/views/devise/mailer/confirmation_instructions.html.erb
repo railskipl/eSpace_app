@@ -1,5 +1,31 @@
-<p>Welcome <%= @email %>!</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>eSpace</title>
+   
+  
+  <style type="text/css">
+  
 
-<p>You can confirm your account email through the link below:</p>
+  body{ font-size:16px; margin:0; line-height:20px }
+  .left{ margin:50px 0 0 0; font-family:logo; font-size:40px; color:#0055a2; line-height:normal}
+  .right{ margin:0 0 20px 0; width:auto; float:right; text-align:right; font-family:"Times New Roman", Times, serif; font-size:14px; color:#000000}
+  
 
-<p><%= link_to 'Confirm my account', user_confirmation_path(@resource, confirmation_token: @token) %></p>
+
+  </style>
+
+   
+  </head>
+
+  <body>
+
+	<p>Welcome <%= @email %>!</p>
+
+	<p>You can confirm your account email through the link below:</p>
+
+	<p><%= link_to 'Confirm my account', user_confirmation_url(confirmation_token: @token) %></p>
+
+   </body>
+</html>
