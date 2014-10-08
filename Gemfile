@@ -8,6 +8,9 @@ gem 'rails', '4.1.0'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+#Postgresql for database adapter - Heroku
+gem 'pg'
+
 gem 'devise', '3.2.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
