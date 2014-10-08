@@ -3,4 +3,8 @@ class HomeController < ApplicationController
 	def index
     @adminusers = User.where("admin =?",false)
 	end
+
+     # def page1
+     	
+     # end
 end
