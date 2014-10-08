@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007101656) do
+ActiveRecord::Schema.define(version: 20141008073823) do
+
+  create_table "posts", force: true do |t|
+    t.string   "name"
+    t.float    "store_area"
+    t.text     "store_details"
+    t.float    "price_sq_ft"
+    t.float    "total_store_space_price"
+    t.float    "price_include_pick_up"
+    t.float    "price_include_drop_off"
+    t.boolean  "pick_up",                        default: false
+    t.boolean  "drop_off",                       default: false
+    t.date     "store_available_start_date"
+    t.date     "store_available_end_date"
+    t.date     "pick_up_avaibilty_start_date"
+    t.date     "pick_up_avaibility_end_date"
+    t.date     "drop_off_avaibility_start_date"
+    t.date     "drop_off_avaibility_end_date"
+    t.integer  "transportation_range"
+    t.boolean  "status",                         default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
