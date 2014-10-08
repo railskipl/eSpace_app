@@ -1,0 +1,22 @@
+<%= form_for(@user) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+    <div class="field">
+    <%= f.label :lastname %><br />
+    <%= f.text_field :last_name %>
+  </div>
+      <div class="field">
+    <%= f.label :personal_email %><br />
+    <%= f.text_field :personal_email %>
+  </div>
+   <div class="field">
+    <%= f.label :mobile_no %><br />
+    <%= f.text_field :mobile_no %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<%end%>

@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     @adminusers = User.where("admin =?",false)
 	end
 
-     # def page1
-     	
-     # end
+     def personal_information
+       @users = User.all
+     end
 end

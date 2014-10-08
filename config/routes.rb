@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :authenticates
   # resources :users, :only => [:index,:destroy]
   get '/users/:id/status', :to => "users#toggled_status"
-  get 'admin_dashboard' =>'home#admin_dashboard' 
+  get 'personal_information' =>'home#personal_information' , :as => 'personal_information'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
