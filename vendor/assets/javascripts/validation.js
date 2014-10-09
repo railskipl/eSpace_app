@@ -181,4 +181,37 @@ required: "Please Card Number"
 }
 });
 
+jQuery("#contactus").validate({
+errorElement:'div',
+rules: {
+  
+"contactus[name]":{
+required:true
+},
+"contactus[email]":{
+required:true
+},
+"contactus[subject]":{
+required:true
+},
+"contactus[message]":{
+required:true
+}
+},
+messages: {
+
+"contactus[name]":{
+required: "Please enter Name"
+},
+"contactus[email]":{
+required: "Please enter Email"
+},
+"contactus[subject]":{
+required: "Please enter Subject"
+},
+"contactus[message]":{
+required: "Please enter Message"
+}
+}
+});
 });
