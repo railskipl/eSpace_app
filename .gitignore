@@ -8,6 +8,8 @@
 /.bundle
 
 # Ignore the default SQLite database.
+.DS_Store
+app/.DS_Store
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
