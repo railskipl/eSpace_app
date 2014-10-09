@@ -19,15 +19,15 @@ Rails.application.routes.draw do
    get '/users/:id/status', :to => "users#toggled_status"
  
    get "users/check_email", :controller => "users", :action => "check_email"
-
-  
+   resources :contactus
+   
+   get 'home/contactus',:to => "home#contactus"
 
   resources :posts do
     member do
         get 'toggle'
     end
   end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

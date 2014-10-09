@@ -155,4 +155,28 @@ messages: {
 });
 
 
+jQuery("#new_bank_detail").validate({
+errorElement:'div',
+rules: {
+  
+"bank_detail[full_name]":{
+required:true
+},
+"bank_detail[card_number]":{
+required:true,
+number:true,
+max: 8
+}
+},
+messages: {
+
+"bank_detail[full_name]":{
+required: "Please enter Area"
+},
+"bank_detail[card_number]":{
+required: "Please Card Number"
+}
+}
+});
+
 });
