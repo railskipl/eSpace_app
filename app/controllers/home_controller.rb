@@ -4,5 +4,6 @@ class HomeController < ApplicationController
     @adminusers = User.where("admin =?",false)
 	end
 
-
+   def contactus
+   end
 end

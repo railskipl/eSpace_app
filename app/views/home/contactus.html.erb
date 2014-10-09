@@ -1,0 +1,19 @@
+<%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'create'} do |f| %>
+<div>
+<%= f.label :Name %><br />	
+<%= f.text_field :name%>
+</div>
+<div>
+<%= f.label :Email %><br />	
+<%= f.text_field :email%>
+</div>
+<div>
+<%= f.label :Subject %><br />	
+<%= f.text_field :subject%>
+</div>
+<div>
+<%= f.label :Message %><br />	
+<%= f.text_area :message,:cols => "30", :rows => "5"%>
+</div></br>
+<%= f.submit "submit", :class => "btn btn-primary contact-form"%>
+<% end %>
