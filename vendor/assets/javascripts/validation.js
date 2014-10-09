@@ -167,16 +167,16 @@ required:true
 "bank_detail[card_number]":{
 required:true,
 number:true,
-max: 8
+minlength: 8
 }
 },
 messages: {
 
 "bank_detail[full_name]":{
-required: "Please enter Area"
+required: "Please enter name"
 },
 "bank_detail[card_number]":{
-required: "Please Card Number"
+required: "Please card number"
 }
 }
 });
