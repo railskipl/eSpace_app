@@ -22,6 +22,7 @@ Rails.application.routes.draw do
    resources :contactus
    
    get 'home/contactus',:to => "home#contactus"
+   get 'terms',:to => "home#terms"
 
   resources :posts do
     member do

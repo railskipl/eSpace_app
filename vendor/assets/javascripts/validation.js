@@ -28,7 +28,8 @@ jQuery("#user").validate({
 		},
 		"user[mobile_number]":{
 			number:true
-		}
+		},
+		"termsConditions":{ required:true }
 	},
 	messages: {
 
@@ -54,7 +55,8 @@ jQuery("#user").validate({
 		},
 		"user[mobile_number]":{
 			number: "Please enter valid mobile number"
-		}
+		},
+		"termsConditions":{ required:"Please accept term and condition" }
 	}
 });
 
