@@ -1,4 +1,5 @@
-<%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'create'} do |f| %>
+ <%= javascript_include_tag "jquery-1.5.2.min","jquery.validate.min","validation" %>
+<%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'create'},:html => {:id => "contactus"} do |f| %>
 <div>
 <%= f.label :Name %><br />	
 <%= f.text_field :name%>
