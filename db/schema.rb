@@ -11,28 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008073823) do
+ActiveRecord::Schema.define(version: 20141008133109) do
 
   create_table "posts", force: true do |t|
-    t.string   "name"
-    t.float    "store_area"
-    t.text     "store_details"
+    t.float    "area"
     t.float    "price_sq_ft"
-    t.float    "total_store_space_price"
-    t.float    "price_include_pick_up"
-    t.float    "price_include_drop_off"
     t.boolean  "pick_up",                        default: false
     t.boolean  "drop_off",                       default: false
-    t.date     "store_available_start_date"
-    t.date     "store_available_end_date"
+    t.float    "price_include_pick_up"
+    t.float    "price_include_drop_off"
     t.date     "pick_up_avaibilty_start_date"
     t.date     "pick_up_avaibility_end_date"
     t.date     "drop_off_avaibility_start_date"
     t.date     "drop_off_avaibility_end_date"
-    t.integer  "transportation_range"
     t.boolean  "status",                         default: true
+    t.text     "additional_comments"
+    t.text     "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "users", force: true do |t|
