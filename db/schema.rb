@@ -11,16 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008114541) do
+ActiveRecord::Schema.define(version: 20141008133109) do
 
-  create_table "personal_infos", force: true do |t|
+  create_table "posts", force: true do |t|
+    t.float    "area"
+    t.float    "price_sq_ft"
+    t.boolean  "pick_up",                        default: false
+    t.boolean  "drop_off",                       default: false
+    t.float    "price_include_pick_up"
+    t.float    "price_include_drop_off"
+    t.date     "pick_up_avaibilty_start_date"
+    t.date     "pick_up_avaibility_end_date"
+    t.date     "drop_off_avaibility_start_date"
+    t.date     "drop_off_avaibility_end_date"
+    t.boolean  "status",                         default: true
+    t.text     "additional_comments"
+    t.text     "address"
+    t.float    "latitude"
+    t.float    "longitude"
     t.integer  "user_id"
-    t.string   "name"
-    t.string   "last_name"
-    t.string   "personal_email"
-    t.integer  "mobile_no"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+
   end
 
   create_table "users", force: true do |t|

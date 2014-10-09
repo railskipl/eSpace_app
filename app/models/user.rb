@@ -8,8 +8,11 @@ class User < ActiveRecord::Base
 
   
   has_many :authentications
-  has_one :personal_info
- 
+
+  has_many :posts
+
+  
+
 
   def self.find_for_facebook_oauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|

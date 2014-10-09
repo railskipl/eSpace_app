@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   root :to => 'home#index'
 
+<<<<<<< HEAD
    resources :omniauth_callbacks 
    resources :authenticates
    resources :users, :only => [:index,:edit,:update]
@@ -16,6 +17,12 @@ Rails.application.routes.draw do
    get '/users/:id/status', :to => "users#toggled_status"
  
    get "users/check_email", :controller => "users", :action => "check_email"
+=======
+  resources :authenticates
+
+  resources :posts
+  
+>>>>>>> f769ae9c6b649f1521eefc4362f1d1d8f57b54f8
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

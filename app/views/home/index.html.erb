@@ -1,3 +1,4 @@
+
 <% if signed_in? && current_user.admin? %>
   <table class="table table-bordered">
 
@@ -16,7 +17,14 @@
 	 </tr>
 	<%end%>	
 
+	</table>
+
+<% else %>
+<h1>Home Page</h1>
+
 <%end%>
 
- </table>
+ 
+
+
 

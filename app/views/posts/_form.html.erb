@@ -1,0 +1,82 @@
+  <script type="text/javascript">
+    jQuery(function($){
+      $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'dd/mm/yy'})
+    });
+    jQuery(function($){
+      $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'dd/mm/yy'})
+    });
+    jQuery(function($){
+      $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'dd/mm/yy'})
+    });
+    jQuery(function($){
+      $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'dd/mm/yy'})
+    });
+    
+  </script>
+
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :area %>
+    <%= f.text_field :area %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price_sq_ft %>
+    <%= f.text_field :price_sq_ft %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price_include_pick_up %>
+    <%= f.text_field :price_include_pick_up %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price_include_drop_off %>
+    <%= f.text_field :price_include_drop_off %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pick_up_avaibilty_start_date %>
+    <%= f.date_field :pick_up_avaibilty_start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pick_up_avaibility_end_date %>
+    <%= f.date_field :pick_up_avaibility_end_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :drop_off_avaibility_start_date %>
+    <%= f.date_field :drop_off_avaibility_start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :drop_off_avaibility_end_date %>
+    <%= f.date_field :drop_off_avaibility_end_date %>
+  </div>
+
+   <div class="field">
+    <%= f.label :additional_comments %>
+    <%= f.text_area :additional_comments %>
+    <%= f.hidden_field :user_id, :value=> current_user.id %>
+  </div>
+
+   <div class="field">
+    <%= f.label :address %>
+    <%= f.text_area :address %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :class=>"btn btn-primary" %>
+  </div>
+<% end %>
