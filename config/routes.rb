@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :bank_details
+
    # as :user do
        # get 'users/:id/edit' => 'users#edit', :as => 'edit_user'    
      
