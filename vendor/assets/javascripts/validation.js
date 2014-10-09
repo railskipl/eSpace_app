@@ -24,11 +24,10 @@ rules: {
 		required:true
 	},
 	"user[personal_email]":{
-		required:true,
         email: true
 	},
-	"user[mobile_no]":{
-		required:true
+	"user[mobile_number]":{
+		number:true
 	}
 },
 messages: {
@@ -45,16 +44,16 @@ messages: {
 		minlength:"do not enter less than 6 characters"
 	},
 	"user[name]":{
-		required: "Please enter Name"
+		required: "Please enter First Name"
 	},
 	"user[last_name]":{
 		required: "Please enter Last Name"
 	},
 	"user[personal_email]":{
-		required: "Please enter Personal Email"
+		
 	},
-	"user[mobile_no]":{
-		required: "Please enter Mobile no"
+	"user[mobile_number]":{
+		number: "Please enter valid mobile number"
 	}
 }
 });
