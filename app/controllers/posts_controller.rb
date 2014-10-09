@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @posts = Post.all
+    @posts = current_user.posts
   end
 
   # GET /products/1
@@ -25,6 +25,7 @@ class PostsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+
     @post = Post.new(post_params)
 
     respond_to do |format|
@@ -70,6 +71,11 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
+      params[:post][:pick_up_avaibilty_start_date].to_date
+      params[:post][:pick_up_avaibility_end_date].to_date
+      params[:post][:drop_off_avaibility_start_date].to_date
+      params[:post][:drop_off_avaibility_end_date].to_date
+
       params.require(:post).permit(:area, :price_sq_ft, :pick_up, :drop_off, :price_include_pick_up, :price_include_drop_off, :pick_up_avaibilty_start_date, :pick_up_avaibility_end_date, :drop_off_avaibility_start_date, :drop_off_avaibility_end_date, :status, :additional_comments, :address, :latitude, :longitude, :user_id)
     end
 

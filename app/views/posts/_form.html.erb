@@ -1,7 +1,17 @@
   <script type="text/javascript">
     jQuery(function($){
-      $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'mm/dd/yy',changeMonth: false,changeYear: false, minDate: 1, maxDate: '+2M +1D'})
+      $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'dd/mm/yy'})
     });
+    jQuery(function($){
+      $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'dd/mm/yy'})
+    });
+    jQuery(function($){
+      $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'dd/mm/yy'})
+    });
+    jQuery(function($){
+      $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'dd/mm/yy'})
+    });
+    
   </script>
 
 <%= form_for(@post) do |f| %>
@@ -58,6 +68,7 @@
    <div class="field">
     <%= f.label :additional_comments %>
     <%= f.text_area :additional_comments %>
+    <%= f.hidden_field :user_id, :value=> current_user.id %>
   </div>
 
    <div class="field">
@@ -66,6 +77,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class=>"btn btn-primary" %>
   </div>
 <% end %>
