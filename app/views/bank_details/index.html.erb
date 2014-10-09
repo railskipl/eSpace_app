@@ -1,0 +1,27 @@
+<h4>Bank Details</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Full name</th>
+      <th>Card number</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bank_details.each do |bank_detail| %>
+      <tr>
+        <td><%= bank_detail.full_name %></td>
+        <td><%= bank_detail.card_number %></td>
+        <td><%= link_to 'Show', bank_detail %></td>
+        <td><%= link_to 'Edit', edit_bank_detail_path(bank_detail) %></td>
+        <td><%= link_to 'Destroy', bank_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bank detail', new_bank_detail_path %>
