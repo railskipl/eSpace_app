@@ -20,15 +20,6 @@ ActiveRecord::Schema.define(version: 20141009085853) do
     t.datetime "updated_at"
   end
 
-  create_table "personal_infos", force: true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "last_name"
-    t.string   "personal_email"
-    t.integer  "mobile_no"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "posts", force: true do |t|
     t.float    "area"
