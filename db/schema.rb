@@ -13,6 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20141008133109) do
 
+  create_table "personal_infos", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "personal_email"
+    t.integer  "mobile_no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", force: true do |t|
     t.float    "area"
     t.float    "price_sq_ft"
@@ -36,7 +46,6 @@ ActiveRecord::Schema.define(version: 20141008133109) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-
   end
 
   create_table "users", force: true do |t|
