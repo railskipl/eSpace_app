@@ -3,7 +3,7 @@ class BankDetailsController < ApplicationController
 
   def index
     @bank_details = BankDetail.all
-    respond_with(@bank_details)
+    
   end
 
   def show
@@ -12,7 +12,7 @@ class BankDetailsController < ApplicationController
 
   def new
     @bank_detail = BankDetail.new
-    respond_with(@bank_detail)
+    
   end
 
   def edit
