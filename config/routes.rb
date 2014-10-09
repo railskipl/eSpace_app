@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :pages
+
   resources :bank_details
 
    # as :user do
