@@ -12,6 +12,6 @@
   	if Rails.env == "development"
 		ActionMailer::Base.default_url_options[:host] = "http://localhost:3000"
 	else
-		ActionMailer::Base.default_url_options[:host] = ""
+		ActionMailer::Base.default_url_options[:host] = "http://store-finding-system.herokuapp.com"
 	end
 
