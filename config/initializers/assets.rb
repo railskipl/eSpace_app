@@ -3,6 +3,9 @@
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
 
+Rails.application.config.assets.precompile += %w(jquery-1.5.2.min.js )
+Rails.application.config.assets.precompile += %w( jquery.validate.min.js )
+Rails.application.config.assets.precompile += %w( validation.js )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )

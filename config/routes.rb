@@ -1,21 +1,21 @@
 Rails.application.routes.draw do
 
-
    # as :user do
        # get 'users/:id/edit' => 'users#edit', :as => 'edit_user'    
-       get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'       
+     
    #  end
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",sessions: 'users/sessions',registrations: 'users/registrations'}
 
   root :to => 'home#index'
 
-  resources :omniauth_callbacks 
-
-  resources :authenticates
-  # resources :users, :only => [:index,:destroy]
-  get '/users/:id/status', :to => "users#toggled_status"
-  get 'personal_information' =>'home#personal_information' , :as => 'personal_information'
+   resources :omniauth_callbacks 
+   resources :authenticates
+   resources :users, :only => [:index,:edit,:update]
+   get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
+   get '/users/:id/status', :to => "users#toggled_status"
+ 
+   get "users/check_email", :controller => "users", :action => "check_email"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

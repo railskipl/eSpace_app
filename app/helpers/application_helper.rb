@@ -18,4 +18,6 @@ end
 def build_image_tag(image_file, alt_text)
 image_tag(image_file, :alt => alt_text)
 end
+
+
 end
