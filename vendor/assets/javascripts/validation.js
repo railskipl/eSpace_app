@@ -81,53 +81,51 @@ errorElement:'div',
 rules: {
   
 "post[area]":{
-required:true,
-number:true
+	required:true,
+	number:true
 },
 "post[price_sq_ft]":{
-required:true
+	required:true
 },
 "post[pick_up_avaibilty_start_date]":{
-required:true
+	required:true
 },
 "post[pick_up_avaibility_end_date]":{
-required:true
+	required:true
 },
 "post[drop_off_avaibility_start_date]":{
-required:true
+	required:true
 },
 "post[drop_off_avaibility_end_date]":{
-required:true
+	required:true
 },
 "post[address]":{
-required:true,
-number:true
+	required:true
 }
 },
 messages: {
 
 "post[area]":{
-required: "Please enter Area",
-number:"Please enter integer value"
+	required: "Please enter Area",
+	number:"Please enter integer value"
 },
 "post[price_sq_ft]":{
-required: "Please enter Price sq ft"
+	required: "Please enter Price sq ft"
 },
 "post[pick_up_avaibilty_start_date]":{
-required: "Please enter Pick up avaibilty start date"
+	required: "Please enter Pick up avaibilty start date"
 },
 "post[pick_up_avaibility_end_date]":{
-required: "Please enter Pick up avaibility end date"
+	required: "Please enter Pick up avaibility end date"
 },
 "post[drop_off_avaibility_start_date]":{
-required: "Please enter Drop off avaibility start date"
+	required: "Please enter Drop off avaibility start date"
 },
 "post[address]":{
-required: "Please enter Address",
-number:"Please enter integer value"
+	required: "Please enter Address"
 },
 "post[drop_off_avaibility_end_date]":{
-required: "Please enter Drop off avaibility end date"
+	required: "Please enter Drop off avaibility end date"
 }
 }
 });
