@@ -2,60 +2,102 @@ jQuery(document).ready(function() {
 
 
 jQuery("#user").validate({
-errorElement:'div',
-rules: {
-	"user[email]":{
-		required:true,
-        email: true
-		// remote:"/users/check_email"
+	errorElement:'div',
+	rules: {
+		"user[email]":{
+			required:true,
+	        email: true
+			// remote:"/users/check_email"
+		},
+		"user[password]":{
+			required:true,
+			minlength:6
+		},
+		"user[password_confirmation]":{
+			required:true,
+			minlength:6
+		},
+		"user[name]":{
+			required:true
+		},
+		"user[last_name]":{
+			required:true
+		},
+		"user[personal_email]":{
+	        email: true
+		},
+		"user[mobile_number]":{
+			number:true
+		}
 	},
-	"user[password]":{
-		required:true,
-		minlength:6
-	},
-	"user[password_confirmation]":{
-		required:true,
-		minlength:6
-	},
-	"user[name]":{
-		required:true
-	},
-	"user[last_name]":{
-		required:true
-	},
-	"user[personal_email]":{
-        email: true
-	},
-	"user[mobile_number]":{
-		number:true
-	}
-},
-messages: {
+	messages: {
 
-	"user[email]":{
-		required: "Please enter email address"
-	},
-	"user[password]":{
-		required: "Please enter password",
-		minlength:"do not enter less than 6 characters"
-	},
-	"user[password_confirmation]":{
-		required: "Password Confirmation cannot be blank",
-		minlength:"do not enter less than 6 characters"
-	},
-	"user[name]":{
-		required: "Please enter First Name"
-	},
-	"user[last_name]":{
-		required: "Please enter Last Name"
-	},
-	"user[personal_email]":{
-		
-	},
-	"user[mobile_number]":{
-		number: "Please enter valid mobile number"
+		"user[email]":{
+			required: "Please enter email address"
+		},
+		"user[password]":{
+			required: "Please enter password",
+			minlength:"do not enter less than 6 characters"
+		},
+		"user[password_confirmation]":{
+			required: "Password Confirmation cannot be blank",
+			minlength:"do not enter less than 6 characters"
+		},
+		"user[name]":{
+			required: "Please enter First Name"
+		},
+		"user[last_name]":{
+			required: "Please enter Last Name"
+		},
+		"user[personal_email]":{
+			
+		},
+		"user[mobile_number]":{
+			number: "Please enter valid mobile number"
+		}
 	}
-}
+});
+
+
+jQuery("#edit_user").validate({
+	errorElement:'div',
+	rules: {
+		"user[email]":{
+			required:true,
+	        email: true
+			// remote:"/users/check_email"
+		},
+		"user[name]":{
+			required:true
+		},
+		"user[last_name]":{
+			required:true
+		},
+		"user[personal_email]":{
+	        email: true
+		},
+		"user[mobile_number]":{
+			number:true
+		}
+	},
+	messages: {
+
+		"user[email]":{
+			required: "Please enter email address"
+		},
+		"user[name]":{
+			required: "Please enter First Name"
+		},
+		"user[last_name]":{
+			required: "Please enter Last Name"
+		},
+		"user[personal_email]":{
+			
+		},
+		"user[mobile_number]":{
+			number: "Please enter valid mobile number"
+		}
+	}
 });
 
 jQuery("#new_post").validate({

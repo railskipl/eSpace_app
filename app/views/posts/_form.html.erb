@@ -97,5 +97,11 @@
 
   <div class="actions">
     <%= f.submit :class=>"btn btn-primary" %>
+
+    <% if @post.id %>
+      &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Deactive Post', toggle_post_path(@post.id), :class=>"btn btn-primary" %>
+      &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-primary" %>
+      
+    <% end %>
   </div>
 <% end %>
