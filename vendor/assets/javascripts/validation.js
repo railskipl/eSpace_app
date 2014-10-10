@@ -48,7 +48,7 @@ jQuery("#user").validate({
 	        email: true
 		},
 		"user[mobile_number]": 'customphone',
-		
+
 		"termsConditions":{ required:true }
 	},
 	messages: {
@@ -120,17 +120,25 @@ rules: {
   
 	"post[area]":{
 		required:true,
-		number:true
+		number:true,
+		min:4,
+		max:100
 	},
 	"post[price_sq_ft]":{
 		required:true,
-		number:true
+		number:true,
+		min:0.50,
+		max:100
 	},
 	"post[price_include_pick_up]":{
-		number:true
+		number:true,
+		min:0,
+		max:100
 	},
 	"post[price_include_drop_off]":{
-		number:true
+		number:true,
+		min:0,
+		max:100
 	},
 	"post[pick_up_avaibilty_start_date]":{
 		required:true
@@ -143,6 +151,9 @@ rules: {
 	},
 	"post[drop_off_avaibility_end_date]":{
 		required:true
+	},
+	"post[additional_comments]":{
+		maxlength:1000
 	},
 	"post[address]":{
 		required:true
