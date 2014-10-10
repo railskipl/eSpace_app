@@ -4,11 +4,6 @@ Rails.application.routes.draw do
 
   resources :bank_details
 
-   # as :user do
-       # get 'users/:id/edit' => 'users#edit', :as => 'edit_user'    
-     
-   #  end
-
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",sessions: 'users/sessions',registrations: 'users/registrations'}
 
   root :to => 'home#index'
@@ -16,12 +11,19 @@ Rails.application.routes.draw do
 
    resources :omniauth_callbacks 
    get 'auth/failure' => redirect('/')
-   resources :authenticates
-   resources :users, :only => [:index,:edit,:update]
+   
+   resources :authenticates do
+      collection do
+        get 'check_email'
+      end
+   end
+
+   resources :users, :only => [:index,:edit,:update] 
+
    get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
    get '/users/:id/status', :to => "users#toggled_status"
  
-   get "users/check_email", :controller => "users", :action => "check_email"
+   
    resources :contactus
    
    get 'home/contactus',:to => "home#contactus"

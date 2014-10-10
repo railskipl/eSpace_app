@@ -1,5 +1,18 @@
 jQuery(document).ready(function() {
 
+jQuery("#userSignup").validate({
+	errorElement:'div',
+	rules: {
+
+	  "email":{ remote:"/authenticates/check_email" }
+		},
+	messages: {
+		
+	 	"email":{ remote:"Email already exists" }
+																
+		}
+	});
+
 
 jQuery("#user").validate({
 	errorElement:'div',
@@ -7,7 +20,7 @@ jQuery("#user").validate({
 		"user[email]":{
 			required:true,
 	        email: true
-			// remote:"/users/check_email"
+			
 		},
 		"user[password]":{
 			required:true,

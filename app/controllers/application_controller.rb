@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   before_filter :configure_devise_params, if: :devise_controller?
   def configure_devise_params
     devise_parameter_sanitizer.for(:sign_up) {|u|
-      u.permit(:name, :last_name, :personal_email, :mobile_no,:email, :password, :password_confirmation)}
+      u.permit(:name, :last_name, :personal_email, :mobile_number,:email, :password, :password_confirmation)}
 
       devise_parameter_sanitizer.for(:account_update) { |u| 
-      u.permit(:name, :last_name, :personal_email, :mobile_no,:email, :password, :password_confirmation,:current_password) }
+      u.permit(:name, :last_name, :personal_email, :mobile_number,:email, :password, :password_confirmation,:current_password) }
   end
 end
