@@ -51,7 +51,7 @@
   </div>
 
   <div class="field">
-    <%= f.check_box :pick_up %> Pick Up <%= f.check_box :drop_off %> Drop Off <br/><br/>
+     <%= f.check_box :drop_off %> Drop Off  <%= f.check_box :pick_up %> Pick Up <br/><br/>
   </div>
 
   <div class="field post_pick_up" <% if @post.pick_up == true %> <% else %> style="display: none;" <% end %>>
