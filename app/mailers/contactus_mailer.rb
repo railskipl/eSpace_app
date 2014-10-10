@@ -6,10 +6,10 @@ class ContactusMailer < ActionMailer::Base
   #
   #   en.contactus_mailer.contactus.subject
   #
-  def contactus(contactus)
-    @greeting = "Hi"
 
-     @contactus = contactus
-    mail(:to => contactus.email, :subject => "Thank you for contacting us!.")
-  end
+def contactus(contactus)
+@contactus = contactus
+subject = "Contactus"
+mail(:subject => 'Contactus', :to => "testkipl0@gmail.com")
+end
 end

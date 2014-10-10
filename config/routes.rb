@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
 
    resources :omniauth_callbacks 
+   get 'auth/failure' => redirect('/')
    resources :authenticates
    resources :users, :only => [:index,:edit,:update]
    get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
