@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20141010101651) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
-    t.integer  "card_number"
+    t.string   "card_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
