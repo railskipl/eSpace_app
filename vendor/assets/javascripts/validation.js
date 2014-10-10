@@ -126,6 +126,12 @@ rules: {
 	"post[price_sq_ft]":{
 		required:true
 	},
+	"post[price_include_pick_up]":{
+		number:true
+	},
+	"post[price_include_drop_off]":{
+		number:true
+	},
 	"post[pick_up_avaibilty_start_date]":{
 		required:true
 	},
@@ -150,6 +156,12 @@ messages: {
 	},
 	"post[price_sq_ft]":{
 		required: "Please enter Price sq ft"
+	},
+	"post[price_include_pick_up]":{
+		number:"Please enter integer value"
+	},
+	"post[price_include_drop_off]":{
+		number:"Please enter integer value"
 	},
 	"post[pick_up_avaibilty_start_date]":{
 		required: "Please enter Pick up avaibilty start date"
