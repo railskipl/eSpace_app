@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
    resources :omniauth_callbacks 
    get 'auth/failure' => redirect('/')
-   
+
    resources :authenticates do
       collection do
         get 'check_email'
@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   resources :posts do
     member do
         get 'toggle'
+    end
+    collection do
+        get 'archive'
     end
   end
 

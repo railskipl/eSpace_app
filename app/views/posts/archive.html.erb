@@ -1,6 +1,7 @@
+
 <p><%= link_to "My Post", posts_path %> | <%= link_to "Archive Post", archive_posts_path %></p><br/>
 
-<h4>My Post</h4>
+<h4>Archive Posts</h4>
 
 <table class="table table-striped">
   <thead>
@@ -11,7 +12,7 @@
       <th>Area (Sq ft)</th>
       <th>Price (Sq ft)</th>
       <th>Address</th>
-      <th colspan="3">Action</th>
+      <th>Action</th>
     </tr>
   </thead>
 
@@ -24,9 +25,8 @@
         <td><%= post.area %></td>
         <td>$<%= post.price_sq_ft %></td>
         <td><%= post.address %></td>
-        <td><%= link_to format_boolean(post.status?), toggle_post_path(post) %></td>
         <td><%= link_to 'View Details', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+

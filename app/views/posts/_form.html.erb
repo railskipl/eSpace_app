@@ -1,15 +1,15 @@
   <script type="text/javascript">
     jQuery(function($){
-      $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'dd/mm/yy'})
+      $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'dd/mm/yy',changeMonth: false,changeYear: false, minDate: 0})
     });
     jQuery(function($){
-      $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'dd/mm/yy'})
+      $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'dd/mm/yy',changeMonth: false,changeYear: false, minDate: 0})
     });
     jQuery(function($){
-      $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'dd/mm/yy'})
+      $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'dd/mm/yy',changeMonth: false,changeYear: false, minDate: 0})
     });
     jQuery(function($){
-      $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'dd/mm/yy'})
+      $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'dd/mm/yy',changeMonth: false,changeYear: false, minDate: 0})
     });
     
     $(document).ready(function(){
@@ -28,7 +28,7 @@
 
 
 
-<%= javascript_include_tag "jquery-1.5.2.min","jquery.validate.min","validation" %>
+<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 <%= form_for(@post, :html=>{ id: "new_post"}) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -66,15 +66,6 @@
 
 
   <div class="field">
-    <%= f.label :pick_up_avaibilty_start_date %>
-    <%= f.date_field :pick_up_avaibilty_start_date %>
-
-    <%= f.label :pick_up_avaibility_end_date %>
-    <%= f.date_field :pick_up_avaibility_end_date %>
-  </div>
-
-
-  <div class="field">
     <%= f.label :drop_off_avaibility_start_date %>
     <%= f.date_field :drop_off_avaibility_start_date %>
   </div>
@@ -82,6 +73,14 @@
   <div class="field">
     <%= f.label :drop_off_avaibility_end_date %>
     <%= f.date_field :drop_off_avaibility_end_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pick_up_avaibilty_start_date %>
+    <%= f.date_field :pick_up_avaibilty_start_date %>
+
+    <%= f.label :pick_up_avaibility_end_date %>
+    <%= f.date_field :pick_up_avaibility_end_date %>
   </div>
 
    <div class="field">
@@ -106,7 +105,9 @@
     <%= f.submit :class=>"btn btn-primary" %>
 
     <% if @post.id %>
+      <% if @post.status == true %>
       &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Deactive Post', toggle_post_path(@post.id), :class=>"btn btn-primary" %>
+      <% end %>
       &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-primary" %>
       
     <% end %>

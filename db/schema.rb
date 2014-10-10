@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009122443) do
+ActiveRecord::Schema.define(version: 20141010101651) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20141009122443) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.boolean  "archive",                        default: false
   end
 
   create_table "users", force: true do |t|

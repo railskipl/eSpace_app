@@ -1,4 +1,4 @@
-<%= javascript_include_tag "jquery-1.5.2.min","jquery.validate.min","validation" %>
+<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 
 <%= form_for @user, :url => user_path(@user), html: { method: :put, id: "edit_user" } do |f|%>
   <div><%= f.label :email %>
@@ -14,7 +14,7 @@
     <%= f.text_field :personal_email %> </div>
 
   <div> <%= f.label :mobile_number %>
-    <%= f.text_field :mobile_number %> </div>
+    <%= f.text_field :mobile_number, placeholder:"xxx xxx-xxxx" %> </div>
   
   <div><%= f.submit "Update", :class=>"btn btn-primary" %></div>
 <% end %>

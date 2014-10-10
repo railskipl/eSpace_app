@@ -1,3 +1,11 @@
+//Custome Validation - Mobile number
+jQuery.validator.addMethod('customphone', function (value, element) {
+    return this.optional(element) || /^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/.test(value);
+}, "Please enter a valid phone number");
+
+
+
+// All Jquery Validation
 jQuery(document).ready(function() {
 
 jQuery("#userSignup").validate({
@@ -39,9 +47,8 @@ jQuery("#user").validate({
 		"user[personal_email]":{
 	        email: true
 		},
-		"user[mobile_number]":{
-			number:true
-		},
+		"user[mobile_number]": 'customphone',
+		
 		"termsConditions":{ required:true }
 	},
 	messages: {
@@ -66,9 +73,6 @@ jQuery("#user").validate({
 		"user[personal_email]":{
 			
 		},
-		"user[mobile_number]":{
-			number: "Please enter valid mobile number"
-		},
 		"termsConditions":{ required:"Please accept term and condition" }
 	}
 });
@@ -91,9 +95,7 @@ jQuery("#edit_user").validate({
 		"user[personal_email]":{
 	        email: true
 		},
-		"user[mobile_number]":{
-			number:true
-		}
+		"user[mobile_number]": 'customphone'
 	},
 	messages: {
 
@@ -108,9 +110,6 @@ jQuery("#edit_user").validate({
 		},
 		"user[personal_email]":{
 			
-		},
-		"user[mobile_number]":{
-			number: "Please enter valid mobile number"
 		}
 	}
 });
@@ -124,7 +123,8 @@ rules: {
 		number:true
 	},
 	"post[price_sq_ft]":{
-		required:true
+		required:true,
+		number:true
 	},
 	"post[price_include_pick_up]":{
 		number:true
@@ -155,7 +155,8 @@ messages: {
 		number:"Please enter integer value"
 	},
 	"post[price_sq_ft]":{
-		required: "Please enter Price sq ft"
+		required: "Please enter Price sq ft",
+		number:"Please enter integer value"
 	},
 	"post[price_include_pick_up]":{
 		number:"Please enter integer value"
