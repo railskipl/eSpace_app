@@ -18,7 +18,7 @@ def index
   def create
     @contactus = Contactus.new(contactus_params)
     @contactus.save
-
+    ContactusMailer.contactus(@contactus).deliver
     flash[:notice] = "Thank You for Contacting Us." 
     redirect_to root_path
   end
