@@ -211,10 +211,11 @@ errorElement:'div',
 rules: {
   
 "contactus[name]":{
-required:true
+	required:true
 },
 "contactus[email]":{
-required:true
+	required:true,
+	email: true
 },
 "contactus[subject]":{
 required:true
@@ -226,10 +227,10 @@ required:true
 messages: {
 
 "contactus[name]":{
-required: "Please enter Name"
+	required: "Please enter Name"
 },
 "contactus[email]":{
-required: "Please enter Email"
+	required: "Please enter Email"
 },
 "contactus[subject]":{
 required: "Please enter Subject"
