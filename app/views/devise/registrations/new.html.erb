@@ -5,7 +5,7 @@
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %>
-  <%= f.email_field :email, :value=>session[:email] %></div>
+  <%= f.email_field :email, :value=>session[:email], :readonly => true %></div>
 
   <div><%= f.label :password %>
     <%= f.password_field :password, autocomplete: "off" %></div>
@@ -14,7 +14,7 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
   <div>
-    <%= f.label :name %>
+    <%= f.label :name, "First Name" %>
     <%= f.text_field :name %>
   </div>
   <div>
@@ -26,9 +26,16 @@
     <%= f.text_field :personal_email %>
   </div>
   <div>
-    <%= f.label :mobile_no %>
-    <%= f.text_field :mobile_no %>
+    <%= f.label :mobile_number %>
+    <%= f.text_field :mobile_number %>
   </div>
+
+  <div>
+    <input type="checkbox" id="termsConditions" name="termsConditions"/> I agree to the <a href="/terms" target="_blank">terms and conditions</a>
+<label style="float: none;" for="termsConditions" class="error" generated="true"></label> <br/><br/>
+  </div>
+
+
   <div><%= f.submit "Sign up", :class=>"btn btn-primary" %></div>
 <% end %>
 

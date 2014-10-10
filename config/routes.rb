@@ -25,8 +25,13 @@ Rails.application.routes.draw do
    resources :contactus
    
    get 'home/contactus',:to => "home#contactus"
+   get 'terms',:to => "home#terms"
 
-   resources :posts
+  resources :posts do
+    member do
+        get 'toggle'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

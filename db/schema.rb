@@ -20,15 +20,6 @@ ActiveRecord::Schema.define(version: 20141009122443) do
     t.datetime "updated_at"
   end
 
-  create_table "contact_us", force: true do |t|
-    t.string   "email"
-    t.string   "subject"
-    t.text     "message"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "contactus", force: true do |t|
     t.string   "email"
     t.string   "subject"
@@ -43,16 +34,6 @@ ActiveRecord::Schema.define(version: 20141009122443) do
     t.text     "body"
     t.string   "meta_title"
     t.text     "meta_description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "personal_infos", force: true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "last_name"
-    t.string   "personal_email"
-    t.integer  "mobile_no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -99,17 +80,18 @@ ActiveRecord::Schema.define(version: 20141009122443) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.boolean  "admin",                  default: false
-    t.boolean  "status"
     t.string   "provider"
     t.string   "uid"
+    t.boolean  "status"
     t.string   "name"
     t.string   "last_name"
     t.string   "personal_email"
     t.integer  "mobile_no"
+    t.string   "mobile_number"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

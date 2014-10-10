@@ -1,24 +1,27 @@
 <h4>My Post</h4>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Area</th>
-      <th>Price Sq feet</th>
+      <th>Sr No.</th>
+      <th>Post ID</th>
+      <th>Post Date</th>
+      <th>Area (Sq ft)</th>
+      <th>Booking Area (Sq ft)</th>
       <th>Address</th>
-      <th colspan="3"></th>
+      <th colspan="3">Action</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @posts.each do |post| %>
+    <% @posts.each_with_index do |post, index| %>
       <tr>
-        <td><%= current_user.name %></td>
+        <td><%= index + 1 %></td>
+        <td><%= post.id %></td>
+        <td><%= post.created_at.strftime("%d-%m-%Y") %></td>
         <td><%= post.area %></td>
-        <td><%= post.price_sq_ft %></td>
+        <td></td>
         <td><%= post.address %></td>
-        <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -28,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Product', new_post_path %>
+<%= link_to 'New Post', new_post_path %>

@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
-  
 
 
   def self.find_for_facebook_oauth(auth)

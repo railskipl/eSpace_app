@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
 	has_attached_file :photo, :styles => { :thumb => "350x350>" },
   
     :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml",
-                    :path => ":rails_root/public/attachments/posts/:id/:style/:basename.:extension",
+                    :path => "/estore_management/posts/:id/:style/:basename.:extension",
                     
                     :convert_options => {
                           :thumb => "-compose Copy -gravity center -extent 100x100",

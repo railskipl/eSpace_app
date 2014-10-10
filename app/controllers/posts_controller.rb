@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
 
   # GET /products
   # GET /products.json
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        
+
         format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
@@ -62,6 +62,17 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_path, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def toggle
+    @post.status = !@post.status?
+    @post.save!
+
+    respond_to do |format|
+      format.html { redirect_to posts_path, notice: 'Post status updated.' }
+      format.json { head :no_content }
+    end
+    
   end
 
   private

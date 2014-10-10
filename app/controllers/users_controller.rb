@@ -23,7 +23,7 @@ def update
   @user.update_column(:name,"#{params[:user][:name]}")
   @user.update_column(:last_name,"#{params[:user][:last_name]}")
   @user.update_column(:personal_email,"#{params[:user][:personal_email]}")
-  @user.update_column(:mobile_no,"#{params[:user][:mobile_no]}")
+  @user.update_column(:mobile_number,"#{params[:user][:mobile_number]}")
   flash[:notice] = "Profile Updated Successfully "
   redirect_to root_path
 

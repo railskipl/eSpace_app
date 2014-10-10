@@ -7,7 +7,7 @@ class BankDetailsController < ApplicationController
   end
 
   def show
-    respond_with(@bank_detail)
+    
   end
 
   def new
@@ -20,18 +20,39 @@ class BankDetailsController < ApplicationController
 
   def create
     @bank_detail = BankDetail.new(bank_detail_params)
-    @bank_detail.save
-    respond_with(@bank_detail)
+
+    respond_to do |format|
+      if @bank_detail.save
+        format.html { redirect_to bank_details_path, notice: 'Bank info was successfully created.' }
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { render :new }
+        format.json { render json: @bank_detail.errors, status: :unprocessable_entity }
+      end
+    end
+    
   end
 
   def update
-    @bank_detail.update(bank_detail_params)
-    respond_with(@bank_detail)
+    respond_to do |format|
+      if @bank_detail.update(bank_detail_params)
+        format.html { redirect_to bank_details_path, notice: 'Bank info was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      else
+        format.html { render :edit }
+        format.json { render json: @bank_detail.errors, status: :unprocessable_entity }
+      end
+    end
+    
   end
 
   def destroy
     @bank_detail.destroy
-    respond_with(@bank_detail)
+    respond_to do |format|
+      format.html { redirect_to bank_details_path, notice: 'Bank info was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+    
   end
 
   private
