@@ -107,6 +107,8 @@
     <% if @post.id %>
       <% if @post.status == true %>
       &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Deactive Post', toggle_post_path(@post.id), :class=>"btn btn-primary" %>
+      <% else %>
+      &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Activate Post', toggle_post_path(@post.id), :class=>"btn btn-primary" %>
       <% end %>
       &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-primary" %>
       
