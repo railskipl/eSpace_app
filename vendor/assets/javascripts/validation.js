@@ -19,7 +19,7 @@ function(value, element, params) {
 
     return isNaN(value) && isNaN($(params).val()) 
         || (Number(value) > Number($(params).val())); 
-},'Must be greater than drop off date.');
+},'Must be greater than drop off end date.');
 
 
 //Custome Validation - Mobile number
