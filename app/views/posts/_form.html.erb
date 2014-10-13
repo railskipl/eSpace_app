@@ -66,21 +66,42 @@
 
 
   <div class="field">
-    <%= f.label :drop_off_avaibility_start_date %>
-    <%= f.date_field :drop_off_avaibility_start_date %>
+    <% if @post.drop_off_avaibility_start_date.present? %>
+      <%= f.label :drop_off_avaibility_start_date %>
+      <%= f.date_field :drop_off_avaibility_start_date, :value=> @post.drop_off_avaibility_start_date.strftime("%d/%m/%Y") %>
+    <% else %>
+       <%= f.label :drop_off_avaibility_start_date %>
+       <%= f.date_field :drop_off_avaibility_start_date %>
+    <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :drop_off_avaibility_end_date %>
-    <%= f.date_field :drop_off_avaibility_end_date %>
+    <% if @post.drop_off_avaibility_end_date.present? %>
+      <%= f.label :drop_off_avaibility_end_date %>
+      <%= f.date_field :drop_off_avaibility_end_date, :value=> @post.drop_off_avaibility_end_date.strftime("%d/%m/%Y") %>
+    <% else %>
+      <%= f.label :drop_off_avaibility_end_date %>
+      <%= f.date_field :drop_off_avaibility_end_date %>
+    <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :pick_up_avaibilty_start_date %>
-    <%= f.date_field :pick_up_avaibilty_start_date %>
+    <% if @post.pick_up_avaibilty_start_date.present? %>
+      <%= f.label :pick_up_avaibilty_start_date %>
+      <%= f.date_field :pick_up_avaibilty_start_date, :value=> @post.pick_up_avaibilty_start_date.strftime("%d/%m/%Y") %>
+    <% else %>
+      <%= f.label :pick_up_avaibilty_start_date %>
+      <%= f.date_field :pick_up_avaibilty_start_date %>
+    <% end %>
 
-    <%= f.label :pick_up_avaibility_end_date %>
-    <%= f.date_field :pick_up_avaibility_end_date %>
+    <% if @post.pick_up_avaibility_end_date.present? %>
+      <%= f.label :pick_up_avaibility_end_date %>
+      <%= f.date_field :pick_up_avaibility_end_date, :value=> @post.pick_up_avaibility_end_date.strftime("%d/%m/%Y") %>
+    <% else %>
+      <%= f.label :pick_up_avaibility_end_date %>
+      <%= f.date_field :pick_up_avaibility_end_date %>
+    <% end %>
+
   </div>
 
    <div class="field">
