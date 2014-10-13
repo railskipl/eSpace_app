@@ -26,11 +26,13 @@ Rails.application.routes.draw do
    
    get 'home/contactus',:to => "home#contactus"
    get 'terms',:to => "home#terms"
-
+   get  'search'  => "posts#search"
   resources :posts do
     member do
         get 'toggle'
+        
     end
+    # collection { post :search, to: 'posts#index' }
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

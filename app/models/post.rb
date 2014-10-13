@@ -17,4 +17,7 @@ class Post < ActiveRecord::Base
                       }
 
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+
+
+  
 end

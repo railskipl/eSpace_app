@@ -8,7 +8,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   
 end
 
-
 # # For heroku server keys
 # OmniAuth.config.logger = Rails.logger
 # OmniAuth.config.full_host = "http://store-finding-system.herokuapp.com"
