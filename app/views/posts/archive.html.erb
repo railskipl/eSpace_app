@@ -1,0 +1,37 @@
+
+<p><%= link_to "My Post", posts_path %> | <%= link_to "Archive Post", archive_posts_path %></p><br/>
+
+<h4>Archive Posts</h4>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Sr No.</th>
+      <th>Post ID</th>
+      <th>Post Date</th>
+      <th>Area (Sq ft)</th>
+      <th>Price (Sq ft)</th>
+      <th>Address</th>
+      <!-- <th>Action</th> -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each_with_index do |post, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= post.id %></td>
+        <td><%= post.created_at.strftime("%d-%m-%Y") %></td>
+        <td><%= post.area %></td>
+        <td>$<%= post.price_sq_ft %></td>
+        <td><%= post.address %></td>
+        <!-- <td><%= link_to 'View Details', edit_post_path(post) %></td> -->
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

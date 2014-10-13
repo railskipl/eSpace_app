@@ -1,4 +1,37 @@
+jQuery.validator.addMethod("greaterThan", 
+function(value, element, params) {
+
+    if (!/Invalid|NaN/.test(new Date(value))) {
+        return new Date(value) > new Date($(params).val());
+    }
+
+    return isNaN(value) && isNaN($(params).val()) 
+        || (Number(value) > Number($(params).val())); 
+},'Must be greater than Start date.');
+
+
+//Custome Validation - Mobile number
+jQuery.validator.addMethod('customphone', function (value, element) {
+    return this.optional(element) || /^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/.test(value);
+}, "Please enter a valid phone number");
+
+
+
+// All Jquery Validation
 jQuery(document).ready(function() {
+
+jQuery("#userSignup").validate({
+	errorElement:'div',
+	rules: {
+
+	  "email":{ remote:"/authenticates/check_email" }
+		},
+	messages: {
+		
+	 	"email":{ remote:"Email already exists" }
+																
+		}
+	});
 
 
 jQuery("#user").validate({
@@ -7,7 +40,7 @@ jQuery("#user").validate({
 		"user[email]":{
 			required:true,
 	        email: true
-			// remote:"/users/check_email"
+			
 		},
 		"user[password]":{
 			required:true,
@@ -26,9 +59,8 @@ jQuery("#user").validate({
 		"user[personal_email]":{
 	        email: true
 		},
-		"user[mobile_number]":{
-			number:true
-		},
+		"user[mobile_number]": 'customphone',
+
 		"termsConditions":{ required:true }
 	},
 	messages: {
@@ -53,9 +85,6 @@ jQuery("#user").validate({
 		"user[personal_email]":{
 			
 		},
-		"user[mobile_number]":{
-			number: "Please enter valid mobile number"
-		},
 		"termsConditions":{ required:"Please accept term and condition" }
 	}
 });
@@ -78,9 +107,7 @@ jQuery("#edit_user").validate({
 		"user[personal_email]":{
 	        email: true
 		},
-		"user[mobile_number]":{
-			number:true
-		}
+		"user[mobile_number]": 'customphone'
 	},
 	messages: {
 
@@ -95,9 +122,6 @@ jQuery("#edit_user").validate({
 		},
 		"user[personal_email]":{
 			
-		},
-		"user[mobile_number]":{
-			number: "Please enter valid mobile number"
 		}
 	}
 });
@@ -108,22 +132,42 @@ rules: {
   
 	"post[area]":{
 		required:true,
-		number:true
+		number:true,
+		min:4,
+		max:100
 	},
 	"post[price_sq_ft]":{
-		required:true
+		required:true,
+		number:true,
+		min:0.50,
+		max:100
+	},
+	"post[price_include_pick_up]":{
+		number:true,
+		min:0,
+		max:100
+	},
+	"post[price_include_drop_off]":{
+		number:true,
+		min:0,
+		max:100
 	},
 	"post[pick_up_avaibilty_start_date]":{
 		required:true
 	},
 	"post[pick_up_avaibility_end_date]":{
-		required:true
+		required:true,
+		greaterThan: "#post_pick_up_avaibilty_start_date"
 	},
 	"post[drop_off_avaibility_start_date]":{
 		required:true
 	},
 	"post[drop_off_avaibility_end_date]":{
-		required:true
+		required:true,
+		greaterThan: "#post_drop_off_avaibility_start_date"
+	},
+	"post[additional_comments]":{
+		maxlength:1000
 	},
 	"post[address]":{
 		required:true
@@ -136,7 +180,14 @@ messages: {
 		number:"Please enter integer value"
 	},
 	"post[price_sq_ft]":{
-		required: "Please enter Price sq ft"
+		required: "Please enter Price sq ft",
+		number:"Please enter integer value"
+	},
+	"post[price_include_pick_up]":{
+		number:"Please enter integer value"
+	},
+	"post[price_include_drop_off]":{
+		number:"Please enter integer value"
 	},
 	"post[pick_up_avaibilty_start_date]":{
 		required: "Please enter Pick up avaibilty start date"
@@ -167,16 +218,16 @@ required:true
 "bank_detail[card_number]":{
 required:true,
 number:true,
-max: 8
+minlength: 8
 }
 },
 messages: {
 
 "bank_detail[full_name]":{
-required: "Please enter Area"
+required: "Please enter name"
 },
 "bank_detail[card_number]":{
-required: "Please Card Number"
+required: "Please card number"
 }
 }
 });
@@ -186,10 +237,11 @@ errorElement:'div',
 rules: {
   
 "contactus[name]":{
-required:true
+	required:true
 },
 "contactus[email]":{
-required:true
+	required:true,
+	email: true
 },
 "contactus[subject]":{
 required:true
@@ -201,10 +253,10 @@ required:true
 messages: {
 
 "contactus[name]":{
-required: "Please enter Name"
+	required: "Please enter Name"
 },
 "contactus[email]":{
-required: "Please enter Email"
+	required: "Please enter Email"
 },
 "contactus[subject]":{
 required: "Please enter Subject"

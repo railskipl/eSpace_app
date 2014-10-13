@@ -33,6 +33,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
    super
   end
+
+
+protected
+  # account that is registered is confirmable and not active yet
+   def after_inactive_sign_up_path_for(resource)
+      new_user_session_path
+   end
+
+
 private
 
   # check if we need password to update user data
@@ -44,6 +53,4 @@ private
       params[:user][:password_confirmation].present?
   end
 
-
-  
 end

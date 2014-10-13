@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 	# sbefore_filter :authenticate_user!, :only => [ :show]
  # helper_method :resource, :resource_name, :devise_mapping
+ #respond_to :html, :js, :json
+
 def index
  @users = User.all
 end
@@ -39,26 +41,22 @@ end
 
  def show
 	@user = User.find(params[:id])
+ end
 
-end
 
 def toggled_status
-@users = User.find(params[:id])
-@users.status = !@users.status?
-@users.update_column(:status,@users.status)
-redirect_to :back
-# UserMailer.user_status_mail(@users).deliver
+	@users = User.find(params[:id])
+	@users.status = !@users.status?
+	@users.update_column(:status,@users.status)
+	redirect_to :back
+	# UserMailer.user_status_mail(@users).deliver
 end
+
 private
 
-	def check_email
-	@user = User.find_by_email(params[:user][:email])
-	respond_to do |format|
-	format.json { render :json => !@user }
-	end
-	end
+	
 def person_params
-  params.require(:person).permit(:name, :last_name,:personal_email,:mobile_no)
+  params.require(:person).permit(:name, :last_name,:personal_email,:mobile_number)
 end
 
 end

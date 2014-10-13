@@ -1,6 +1,9 @@
 class BankDetailsController < ApplicationController
-  before_action :set_bank_detail, only: [:show, :edit, :update, :destroy]
+
+ before_filter :authenticate_user!, :except => []
+ before_action :set_bank_detail, only: [:show, :edit, :update, :destroy]
  respond_to :html, :xml, :json
+
   def index
     @bank_details = BankDetail.all
     

@@ -1,36 +1,37 @@
 class PostsController < ApplicationController
 
+  before_filter :authenticate_user!, :except => []
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
 
-  # GET /products
-  # GET /products.json
+  # GET /posts
+  # GET /posts.json
   def index
-    @posts = current_user.posts
-    # @search = Post.search(@posts)
-    # @q = Post.search(params[:q])
-    # @post = @q.result.includes(:post)
-    # @search.build_condition if @search.conditions.empty?
-    # @post = @search.result
-      
+
+    @posts = Post.where(archive: false, user_id: current_user.id)
+
   end
 
-  # GET /products/1
-  # GET /products/1.json
+  def archive
+    @posts = Post.where(archive: true, user_id: current_user.id)
+  end
+
+  # GET /posts/1
+  # GET /posts/1.json
   def show
     @post = Post.new(post_params)
   end
 
-  # GET /products/new
+  # GET /posts/new
   def new
     @post = Post.new
   end
 
-  # GET /products/1/edit
+  # GET /posts/1/edit
   def edit
   end
 
-  # POST /products
-  # POST /products.json
+  # POST /posts
+  # POST /posts.json
   def create
 
     @post = Post.new(post_params)
@@ -47,8 +48,8 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
+  # PATCH/PUT /posts/1
+  # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -61,12 +62,13 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
+  # DELETE /posts/1
+  # DELETE /posts/1.json
   def destroy
-    @post.destroy
+    @post.archive = true
+    @post.save
     respond_to do |format|
-      format.html { redirect_to posts_path, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_path, notice: 'Post was successfully archived.' }
       format.json { head :no_content }
     end
   end
