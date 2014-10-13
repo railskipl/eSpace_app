@@ -10,6 +10,18 @@ function(value, element, params) {
 },'Must be greater than Start date.');
 
 
+jQuery.validator.addMethod("greaterThanPickUp", 
+function(value, element, params) {
+
+    if (!/Invalid|NaN/.test(new Date(value))) {
+        return new Date(value) > new Date($(params).val());
+    }
+
+    return isNaN(value) && isNaN($(params).val()) 
+        || (Number(value) > Number($(params).val())); 
+},'Must be greater than drop off date.');
+
+
 //Custome Validation - Mobile number
 jQuery.validator.addMethod('customphone', function (value, element) {
     return this.optional(element) || /^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/.test(value);
@@ -152,19 +164,20 @@ rules: {
 		min:0,
 		max:100
 	},
-	"post[pick_up_avaibilty_start_date]":{
-		required:true
-	},
-	"post[pick_up_avaibility_end_date]":{
-		required:true,
-		greaterThan: "#post_pick_up_avaibilty_start_date"
-	},
 	"post[drop_off_avaibility_start_date]":{
 		required:true
 	},
 	"post[drop_off_avaibility_end_date]":{
 		required:true,
 		greaterThan: "#post_drop_off_avaibility_start_date"
+	},
+	"post[pick_up_avaibilty_start_date]":{
+		required:true,
+		greaterThanPickUp: "#post_drop_off_avaibility_end_date"
+	},
+	"post[pick_up_avaibility_end_date]":{
+		required:true,
+		greaterThan: "#post_pick_up_avaibilty_start_date"
 	},
 	"post[additional_comments]":{
 		maxlength:1000
