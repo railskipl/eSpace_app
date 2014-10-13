@@ -193,7 +193,7 @@ messages: {
 		number:"Please enter integer value"
 	},
 	"post[price_sq_ft]":{
-		required: "Please enter Price sq ft",
+		required: "Please enter Price per square feet",
 		number:"Please enter integer value"
 	},
 	"post[price_include_pick_up]":{
