@@ -75,8 +75,8 @@ class PostsController < ApplicationController
 
      if params[:search].nil? || params[:search].present? 
       @post = Post.where("price_sq_ft like ? OR area like ? OR address like ?","%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%")
-      elsif params[:search].present? || params[:search].nil?
-      @post = Post.where("price_sq_ft like ? OR area like ? OR address like ?","%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%")
+      # elsif params[:search].present? || params[:search].nil?
+      # @post = Post.where("price_sq_ft like ? OR area like ? OR address like ?","%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%")
 
       elsif params[:search].nil? || params[:search].empty?
       redirect_to posts_url ,:alert => "Search field cannot be empty"
