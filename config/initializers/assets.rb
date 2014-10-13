@@ -4,8 +4,7 @@
 Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w(jquery-1.5.2.min.js jquery-1.4.2.min.js )
-Rails.application.config.assets.precompile += %w( jquery.validate.min.js )
-Rails.application.config.assets.precompile += %w( validation.js )
+Rails.application.config.assets.precompile += %w( jquery.validate.min.js validation.js)
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )

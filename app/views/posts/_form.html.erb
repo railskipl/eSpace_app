@@ -1,3 +1,6 @@
+
+
+
   <script type="text/javascript">
     jQuery(function($){
       $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'dd/mm/yy',changeMonth: false,changeYear: false, minDate: 0})
@@ -27,8 +30,8 @@
   </script>
 
 
-
 <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
+
 <%= form_for(@post, :html=>{ id: "new_post"}) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -68,38 +71,38 @@
   <div class="field">
     <% if @post.drop_off_avaibility_start_date.present? %>
       <%= f.label :drop_off_avaibility_start_date %>
-      <%= f.date_field :drop_off_avaibility_start_date, :value=> @post.drop_off_avaibility_start_date.strftime("%d/%m/%Y") %>
+      <%= f.text_field :drop_off_avaibility_start_date, :value=> @post.drop_off_avaibility_start_date.strftime("%d/%m/%Y") %>
     <% else %>
        <%= f.label :drop_off_avaibility_start_date %>
-       <%= f.date_field :drop_off_avaibility_start_date %>
+       <%= f.text_field :drop_off_avaibility_start_date %>
     <% end %>
   </div>
 
   <div class="field">
     <% if @post.drop_off_avaibility_end_date.present? %>
       <%= f.label :drop_off_avaibility_end_date %>
-      <%= f.date_field :drop_off_avaibility_end_date, :value=> @post.drop_off_avaibility_end_date.strftime("%d/%m/%Y") %>
+      <%= f.text_field :drop_off_avaibility_end_date, :value=> @post.drop_off_avaibility_end_date.strftime("%d/%m/%Y") %>
     <% else %>
       <%= f.label :drop_off_avaibility_end_date %>
-      <%= f.date_field :drop_off_avaibility_end_date %>
+      <%= f.text_field :drop_off_avaibility_end_date %>
     <% end %>
   </div>
 
   <div class="field">
     <% if @post.pick_up_avaibilty_start_date.present? %>
       <%= f.label :pick_up_avaibilty_start_date %>
-      <%= f.date_field :pick_up_avaibilty_start_date, :value=> @post.pick_up_avaibilty_start_date.strftime("%d/%m/%Y") %>
+      <%= f.text_field :pick_up_avaibilty_start_date, :value=> @post.pick_up_avaibilty_start_date.strftime("%d/%m/%Y") %>
     <% else %>
       <%= f.label :pick_up_avaibilty_start_date %>
-      <%= f.date_field :pick_up_avaibilty_start_date %>
+      <%= f.text_field :pick_up_avaibilty_start_date %>
     <% end %>
 
     <% if @post.pick_up_avaibility_end_date.present? %>
       <%= f.label :pick_up_avaibility_end_date %>
-      <%= f.date_field :pick_up_avaibility_end_date, :value=> @post.pick_up_avaibility_end_date.strftime("%d/%m/%Y") %>
+      <%= f.text_field :pick_up_avaibility_end_date, :value=> @post.pick_up_avaibility_end_date.strftime("%d/%m/%Y") %>
     <% else %>
       <%= f.label :pick_up_avaibility_end_date %>
-      <%= f.date_field :pick_up_avaibility_end_date %>
+      <%= f.text_field :pick_up_avaibility_end_date %>
     <% end %>
 
   </div>
