@@ -1,17 +1,19 @@
 
 
   <script type="text/javascript">
+
     jQuery(function($){
-      $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0})
+      $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true,})
+
     });
     jQuery(function($){
-      $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0})
+      $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true,})
     });
     jQuery(function($){
-      $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0})
+      $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true,})
     });
     jQuery(function($){
-      $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0})
+      $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true,})
     });
     
     $(document).ready(function(){
@@ -28,6 +30,7 @@
 
   </script>
 
+  
 
 <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 
