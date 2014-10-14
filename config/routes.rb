@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+ 
+
   resources :pages
 
   resources :bank_details
@@ -28,15 +30,39 @@ Rails.application.routes.draw do
    
    get 'home/contactus',:to => "home#contactus"
    get 'terms',:to => "home#terms"
-
+   get  'search'  => "posts#search"
+    get 'all_posts' => "posts#all_posts"
   resources :posts do
     member do
         get 'toggle'
+        
     end
+
     collection do
         get 'archive'
+
+    end
+
+
+
+  end
+
+  resources :messages do
+    collection do
+      get :trash_messages
+      get :sent_messages
+      put :move_all_to_trash_recipient
+      put :delete_all_by_sender
+    end
+    
+    member do
+     post :trash
+     post :destroy_recipient
+     post :destroy_sender
+     get :reply
     end
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

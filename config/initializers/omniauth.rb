@@ -15,3 +15,4 @@ OmniAuth.config.full_host = "http://store-finding-system.herokuapp.com"
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, "717648718312199", "50e27447366c3566a33f6d7832c0b418"
 end
+

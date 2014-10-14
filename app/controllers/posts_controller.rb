@@ -6,16 +6,24 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+
     @posts = Post.where(archive: false, user_id: current_user.id)
+ 
   end
 
   def archive
     @posts = Post.where(archive: true, user_id: current_user.id)
   end
 
+  def all_posts
+    @posts = Post.where("user_id != ?",current_user.id)
+    @message = Message.all
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post = Post.new(post_params)
   end
 
   # GET /posts/new
@@ -70,6 +78,32 @@ class PostsController < ApplicationController
     end
   end
 
+  def search
+
+     if params[:search].nil? || params[:search].present? 
+      @post = Post.where("price_sq_ft like ? OR area like ? OR address like ?","%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%")
+      # elsif params[:search].present? || params[:search].nil?
+      # @post = Post.where("price_sq_ft like ? OR area like ? OR address like ?","%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%")
+
+      elsif params[:search].nil? || params[:search].empty?
+      redirect_to posts_url ,:alert => "Search field cannot be empty"
+      else
+      @post = Post.where("price_sq_ft like ? OR area like ? OR address like ?","%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%")
+    end
+  end
+
+
+# #   def search
+# #   q = params[:q]
+# #   if q.nil? || q.present? 
+# #     @post =Post.ransack(price_sq_ft_or_area_or_address_cont: q).result 
+# #   elsif q.nil? || q.empty? 
+# #     redirect_to posts_url ,:alert => "Search field cannot be empty"
+# #   else
+# #   @post =Post.ransack(price_sq_ft_or_area_or_address_cont: q).result 
+# #   # @city_photos = CityPhoto.ransack(title_cont: q).result
+# # end
+# end
   def toggle
     @post.status = !@post.status?
     @post.save!

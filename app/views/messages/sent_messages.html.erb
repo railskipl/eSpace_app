@@ -1,0 +1,93 @@
+
+    
+    
+        <div class="container_20">
+        
+        
+
+  <div style="width:40%; float:left"><h4>Mail</h4></div>
+
+    <div class="grid_4">
+
+      <ul class="message_menu">
+    <li><%= link_to "Inbox" ,messages_path %></li>
+    <li><%= link_to "Trash", trash_messages_messages_path %></li>
+      </ul>
+      </div>
+    
+    <div class="grid_16">
+    
+    <!-- <div><input name="" type="text" class="pe_tf message_search"></div> -->
+<%= form_tag delete_all_by_sender_messages_path, :method => :put do %>
+
+    <%# @a = @sent_messages.reject {|i| i.is_deleted_by_sender == true } %>
+
+<%  @sent_messages.each do |message| %>
+    <div class="message"> 
+    
+    <div class="tf">
+       <%#= check_box_tag "message_ids[]", message.id %>
+    
+    
+    </div>
+    
+    
+    <div class="mail_content">
+    <div><%= message.recipient.email  rescue nil%></div>
+    <div style="margin:0 0 5px 0">Subject: 
+      <%= link_to message.subject , message , :class => "bluelink" %>
+    </div>
+    <div><%= message.body.html_safe rescue nil%></div>
+    </div>
+    
+    
+    
+    <ul class="action">
+   
+    <li><%= link_to image_tag("delete.png"), destroy_sender_message_path(message),method: :post, data: { confirm: 'Are you sure?' } %></li>
+    </ul>
+    
+    
+    
+    </div>
+    
+
+<% end %>
+
+
+
+    
+    <div class="message">
+
+    <div style="float:right"><%= submit_tag "Delete All", :class=> "submit_btn"  %> </div>
+    
+    </div>
+<!--      <div class="digg_pagination">
+    <%#= will_paginate @sent_messages, :container => false %>
+  </div> -->
+    <% end %>
+    
+    <!-- <ul class="tsc_pagination tsc_paginationA tsc_paginationA01">
+ 
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#" class="current">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#" class="next">Previous</a></li>
+  <li><a href="#" class="last">Next</a></li>
+</ul>
+    
+     -->
+    
+    </div>
+        
+    
+        
+    
+    </div>
+    
+
+
+
+
+

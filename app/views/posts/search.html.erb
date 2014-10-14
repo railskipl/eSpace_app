@@ -1,0 +1,32 @@
+<% if @post.blank? %>
+
+No Results found!!
+<%else%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Sr No.</th>
+      <th>Post ID</th>
+      <th>Post Date</th>
+      <th>Area (Sq ft)</th>
+      <th>Booking Area (Sq ft)</th>
+      <th>Address</th>
+    
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @post.each_with_index do |post, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= post.id %></td>
+        <td><%= post.created_at.strftime("%d-%m-%Y") %></td>
+        <td><%= post.area %></td>
+        <td></td>
+        <td><%= post.address %></td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%end%>
