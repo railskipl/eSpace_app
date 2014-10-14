@@ -11,20 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010101651) do
+ActiveRecord::Schema.define(version: 20141013130005) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
-    t.integer  "card_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "contact_us", force: true do |t|
-    t.string   "email"
-    t.string   "subject"
-    t.text     "message"
-    t.string   "name"
+    t.string   "card_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,21 +29,25 @@ ActiveRecord::Schema.define(version: 20141010101651) do
     t.datetime "updated_at"
   end
 
+  create_table "messages", force: true do |t|
+    t.string   "subject"
+    t.text     "body"
+    t.boolean  "is_read",                 default: false
+    t.boolean  "is_deleted_by_sender",    default: false
+    t.boolean  "is_deleted_by_recipient", default: false
+    t.boolean  "is_trashed_by_recipient", default: false
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "post_id"
+  end
+
   create_table "pages", force: true do |t|
     t.string   "title"
     t.text     "body"
     t.string   "meta_title"
     t.text     "meta_description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "personal_infos", force: true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "last_name"
-    t.string   "personal_email"
-    t.integer  "mobile_no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

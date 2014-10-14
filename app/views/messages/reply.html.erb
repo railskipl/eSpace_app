@@ -1,0 +1,82 @@
+
+
+    
+        <div class="container_20">
+        
+        
+        <div class="grid_20 title">
+    
+  <div style="width:40%; float:left"><h4>Message</h4></div>
+  <div style="width:40%; float:right; text-align:right; margin-top:5px"><%= link_to 'Compose+', new_message_path ,:class => "compose" %></div>
+  
+
+    
+    </div>
+    
+    <div class="grid_4">
+    
+    
+    
+      <ul class="message_menu">
+    <li><%= link_to "Inbox", messages_path %></li>
+    <li><%= link_to "Sent Messages", sent_messages_messages_path %></li>
+    <li><%= link_to "Trash", trash_messages_messages_path %></li>
+    </ul>
+    
+    
+      </div>
+    
+    <div class="grid_16" style="margin-bottom:10px;">
+  
+
+Subject :<%= @messagee.subject %> <br/>
+Body :<%= @messagee.body %> <br/>
+Reply : <%= @messagee.sender.email %>
+
+<%= form_for(@message) do |f| %>
+
+    <%= f.hidden_field :subject, :value =>  @messagee.subject_name(@messagee.subject) %>
+
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body,:onblur =>"checkTextField(this);" %>
+  </div>
+    <%= hidden_field_tag :message_id,  @messagee.id  %>
+<%# raise @messagee.sender.id.inspect %>
+  <%= hidden_field_tag :recipient_id, @messagee.sender.id  %>
+
+  <%= hidden_field_tag :reply,  "reply"  %>
+  <div class="actions">
+    <%= f.submit "Reply"  %>
+  </div>
+<% end %>
+
+<script>
+window.onload = function() {
+  document.getElementById("message_body").focus();
+};
+
+function checkTextField(field)
+{
+var n = document.getElementById("message_body").value
+  if (n.length < 1){
+confirm("Send message without body");
+}
+
+}
+</script>
+
+    
+
+    </div>
+        
+    
+        
+    
+ </div>
+    
+
+
+
+
+

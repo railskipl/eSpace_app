@@ -8,11 +8,16 @@ class PostsController < ApplicationController
   def index
 
     @posts = Post.where(archive: false, user_id: current_user.id)
-
+ 
   end
 
   def archive
     @posts = Post.where(archive: true, user_id: current_user.id)
+  end
+
+  def all_posts
+    @posts = Post.where("user_id != ?",current_user.id)
+    @message = Message.all
   end
 
   # GET /posts/1

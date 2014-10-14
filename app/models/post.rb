@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
 	after_validation :geocode, :if => :address_changed?
 
 	belongs_to :user
-
+  has_many :messages
 	has_attached_file :photo, :styles => { :thumb => "350x350>" },
   
     :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml",

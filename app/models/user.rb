@@ -8,10 +8,17 @@ class User < ActiveRecord::Base
 
   
   has_many :authentications
-
   has_many :posts
+  has_many :sent_messages, :class_name => 'Message', :foreign_key => 'sender_id', :dependent => :destroy
+  has_many :recipient_messages, :class_name => 'Message', :foreign_key => 'recipient_id', :dependent => :destroy
 
-
+  def self.json_tokens(query)
+    users = where("email like ?", "%#{query}%")
+    if users.empty?
+    else
+     users
+    end
+  end
 
   def self.find_for_facebook_oauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
