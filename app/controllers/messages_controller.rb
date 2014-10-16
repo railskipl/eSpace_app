@@ -4,9 +4,11 @@ class MessagesController < ApplicationController
   
   def index
     @messages = current_user.recipient_messages
-   
+
+    # @messages = @messages.reject {|i| (i.message_id.nil?)} 
+     
     if @messages == 0
-    @messages = @messages.delete_if {|i| (i.is_deleted_by_recipient == true || i.is_trashed_by_recipient == true)}
+     @messages = @messages.delete_if {|i| (i.is_deleted_by_recipient == true || i.is_trashed_by_recipient == true)}
     end
     # @messages = @messages.paginate(page: params[:page], per_page: 10)
     respond_with(@messages)
@@ -14,6 +16,14 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id])
+ 
+    @original_msg =  @message.message
+    @message2 = Message.maximum(:id)
+    if @original_msg.nil?
+    @msgs = Message.where("post_id = ?",@message.post_id)
+    else
+    @msgs = Message.where("post_id = ? OR id = ? and message_id = ?",@original_msg.id,@message2,@message.id)
+    end
     if @message.sender == current_user
     respond_with(@message)
   
@@ -37,18 +47,21 @@ end
   end
 
   def create
+    @post = Post.find_by_id(params[:message][:post_id])
+
     @msg = Message.new(message_params)
     user = User.find_by_email(params[:message][:recipient_id])
        if params["reply"] == "reply"
 
         @message = Message.new(message_params)
-        Message.create(:subject => @message.subject , :body => @message.body,:sender_id => current_user.id, :recipient_id => params[:recipient_id].to_i)
+        Message.create(:subject => @message.subject , :body => @message.body,:sender_id => current_user.id, :recipient_id => params[:recipient_id].to_i, :message_id =>params[:message_id].to_i ,:post_id=>params[:post_id].to_i )
         redirect_to messages_url
         else
           if user.nil?
           redirect_to new_message_url ,:notice => "Please enter recipient"
           else
             @message = Message.create(:subject => @msg.subject, :body => @msg.body, :recipient_id => user.id, :sender_id => current_user.id)
+              @message.post_id = @message.id
              if @message.save
              redirect_to messages_path
            end
@@ -149,7 +162,9 @@ end
 
 
  def reply
-   @messagee = Message.find(params[:id])
+ 
+  @messagee = Message.find(params[:id])
+   
    @message = Message.new
 
  end

@@ -15,7 +15,7 @@
     <li><%= link_to "Personal Information", edit_user_path(current_user)%></li>
      <li><%= link_to "Change Password", edit_user_registration_path%></li>
      <li><%= link_to "Bank Details", bank_details_path%></li>
- 
+     <li><%= link_to "Messages", messages_path%></li>
  
      <li> <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %> </li>
   <% else %>

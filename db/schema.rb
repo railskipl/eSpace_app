@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013060049) do
+ActiveRecord::Schema.define(version: 20141016054512) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 20141013060049) do
     t.integer  "recipient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "message_id"
+    t.integer  "post_id"
+
   end
 
   create_table "pages", force: true do |t|

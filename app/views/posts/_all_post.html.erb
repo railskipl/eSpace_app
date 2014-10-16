@@ -12,7 +12,7 @@
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
         <td><%= link_to 'View Details', post_path(post) %>
         </td>
-        <td><%= link_to "Send Message ", new_message_path(:user_id => post.user_id ), :remote=>true %></td>
+        <td><%= link_to "Send Message ", new_message_path(:user_id => post.user_id,:post_id => post.id ), :remote=>true %></td>
         
       </tr>
     <% end %>
