@@ -1,3 +1,34 @@
+<%= stylesheet_link_tag "facebox.css" %>
+<%= javascript_include_tag "facebox.js", "endless_page.js" %>
+
+          <%= form_for :search, :url=>{:controller=>'posts', :action=>'all_posts'},:html => {:method => "post"} do |f| %>
+                  <div class="field">
+                    Price
+                  &nbsp; &nbsp; &nbsp;&nbsp;<%= f.text_field :price, :value=> "#{params[:search][:price] if request.post?}" %>
+                
+                  </div>
+                  <div class="field">
+                    Area
+                   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<%= f.text_field :area, :value=> "#{params[:search][:area] if request.post?}" %>
+                  </div>
+                  <div class="field">
+                    Distance
+                    <%= f.text_field :distance, :value=> "#{params[:search][:distance] if request.post?}" %>
+                  </div>
+                  <div class="field">
+                    Address
+                    &nbsp;<%= f.text_field :address, :value=> "#{params[:search][:address] if request.post?}" %>
+                  </div>
+                   
+                  <div class ="field">
+                 
+                  </div>
+
+             <div class="actions"><%= f.submit "Search" ,:class => "btn btn-secondary" %></div>
+                 
+              <%end%>
+
+
 <h4> Posts</h4>
 <table class="table table-striped">
   <thead>
@@ -14,28 +45,15 @@
       <th>Action</th>
     
       <th>Send Message</th>
-       <th colspan="2"></th>
+       
     </tr>
   </thead>
 
-  <tbody>
-    <% @posts.each_with_index do |post, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= post.id %></td>
-        <td><%= post.price_sq_ft %></td>
-        <td><%= post.created_at.strftime("%d-%m-%Y") %></td>
-
-        <td><%= post.area %></td>
-        <td>$<%= post.price_sq_ft %></td>
-
-        <td><%= post.address %></td>
-        <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
-        <td><%= link_to 'View Details', edit_post_path(post) %>&nbsp;&nbsp;
-        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to "Send Message ", new_message_path(:user_id => post.user_id ) %></td>
-        
-      </tr>
-    <% end %>
+  <tbody id="all_posts">
+    <%= render(:partial => 'posts/all_post') %>
+    
   </tbody>
 </table>
+
+
+<%= will_paginate @posts %>

@@ -1,0 +1,18 @@
+    <% @posts.each_with_index do |post, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= post.id %></td>
+        <td><%= post.price_sq_ft %></td>
+        <td><%= post.created_at.strftime("%d-%m-%Y") %></td>
+
+        <td><%= post.area %></td>
+        <td>$<%= post.price_sq_ft %></td>
+
+        <td><%= post.address %></td>
+        <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
+        <td><%= link_to 'View Details', post_path(post) %>
+        </td>
+        <td><%= link_to "Send Message ", new_message_path(:user_id => post.user_id ), :remote=>true %></td>
+        
+      </tr>
+    <% end %>

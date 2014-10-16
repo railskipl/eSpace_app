@@ -1,0 +1,13 @@
+<table width="100%">
+<tr>
+	<td><%= image_tag(@post.photo.url(:medium)) %> <br/>
+		<strong>Area : </strong> <%= @post.area %> <br/>
+		<strong>Pick-Up Avaibilty Date : </strong> <%= @post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= @post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
+		<strong>Drop-Off Avaibilty Date : </strong><%= @post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
+		<strong>Pick-Up : </strong> <%= @post.price_include_pick_up %> <br/>
+		<strong>Drop-Off : </strong> <%= @post.price_include_drop_off %> <br/>
+
+	</td>
+	<td></td>
+</tr>
+</table>
