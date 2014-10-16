@@ -7,7 +7,8 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
 
-    @posts = Post.where(archive: false, user_id: current_user.id)
+    @posts = Post.search_post(params[:search], current_user.id)
+
  
   end
 
@@ -16,14 +17,19 @@ class PostsController < ApplicationController
   end
 
   def all_posts
-    @posts = Post.where("user_id != ?",current_user.id)
-    @message = Message.all
+
+    if request.post? || params[:search]
+      @posts = Post.search(params[:search], params[:page])
+    else
+      @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(10)
+    end
+
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.new(post_params)
+    
   end
 
   # GET /posts/new
@@ -80,16 +86,11 @@ class PostsController < ApplicationController
 
   def search
 
-     if params[:search].nil? || params[:search].present? 
-      @post = Post.where("price_sq_ft like ? OR area like ? OR address like ?","%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%")
-      # elsif params[:search].present? || params[:search].nil?
-      # @post = Post.where("price_sq_ft like ? OR area like ? OR address like ?","%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%")
 
-      elsif params[:search].nil? || params[:search].empty?
-      redirect_to posts_url ,:alert => "Search field cannot be empty"
-      else
-      @post = Post.where("price_sq_ft like ? OR area like ? OR address like ?","%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%")
-    end
+    @posts = Post.search(params[:search], params[:page])
+
+    #raise @posts.inspect
+  
   end
 
 

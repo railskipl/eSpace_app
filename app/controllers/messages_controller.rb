@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :xml, :json
+  respond_to :html, :xml, :json, :js
+  
   def index
     @messages = current_user.recipient_messages
 

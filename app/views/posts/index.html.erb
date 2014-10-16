@@ -1,43 +1,18 @@
 
-               <%= form_tag search_path, :method => 'get'  do %>
-                   <%#@posts.each do |f|%>
-                  <div class="field">
-                    Price
-                  &nbsp; &nbsp; &nbsp;&nbsp;<%= text_field_tag :search, params[:price_sq_ft] %>
-                
-                  </div>
-                  <div class="field">
-                    Area
-                   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<%= text_field_tag :search, params[:area] %>
-                  </div>
-                  <div class="field">
-                    Distance
-                    <%= text_field_tag :search, params[:address] %>
-                  </div>
-                  <div class="field">
-                    Address
-                    &nbsp;<%= text_field_tag :search, params[:address] %>
-                  </div>
-                   
-                  <div class ="field">
-                  <!-- <%#= check_box_tag :pick_up %> Pick Up <%#= check_box_tag :drop_off %> Drop Off <br/><br/> -->
-                  </div>
-
-             <div class="actions"><%= submit_tag "Search" ,:class => "btn btn-secondary"%></div>
-                  <%#= submit_tag "Search by date" ,:class => "btn btn-secondary",:style=>"margin-left: 254px;margin-top:-88px;" %>
-              <%#end%>
-              <%end%>
-
-    <!--                         <%#= form_tag search_path,:id=>"searchform1", :class=>"searchform", :method=> :get do %>
-                        <%#= text_field_tag :q, nil,:class=>"s",:id=>"s1" %>
-                        <%#= text_field_tag :q, nil,:class=>"s",:id=>"s1" %>
-                        <%#= text_field_tag :q, nil,:class=>"s",:id=>"s1" %>
-                        <%#= text_field_tag :q, nil,:class=>"s",:id=>"s1" %>
-                        <%#= submit_tag "Search" ,:class => "btn btn-secondary"%>
-                        <%#=  image_submit_tag ("/assets/search.png"),:class=>"searchsubmit" ,:id=>"searchsubmit1"%> 
-              <%#end%> -->
+               
+               
+   
 
 <p><%= link_to "My Post", posts_path %> | <%= link_to "Archive Post", archive_posts_path %></p><br/>
+
+
+<%= form_for :search, :url=> {:controller=>'posts', :action=>'index'}, :html => {:method => 'get'} do |f| %>
+  <p>
+    <%= f.select :status, options_for_select(%w[Active Inactive]) %>
+    <%= f.submit "Search",:class => "btn btn-secondary" %>
+  </p>
+<% end %>
+
 
 <h4>My Post</h4>
 

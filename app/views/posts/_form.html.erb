@@ -1,15 +1,19 @@
+
+
   <script type="text/javascript">
+
     jQuery(function($){
-      $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'dd/mm/yy',changeMonth: false,changeYear: false, minDate: 0})
+      $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true,})
+
     });
     jQuery(function($){
-      $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'dd/mm/yy',changeMonth: false,changeYear: false, minDate: 0})
+      $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true,})
     });
     jQuery(function($){
-      $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'dd/mm/yy',changeMonth: false,changeYear: false, minDate: 0})
+      $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true,})
     });
     jQuery(function($){
-      $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'dd/mm/yy',changeMonth: false,changeYear: false, minDate: 0})
+      $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true,})
     });
     
     $(document).ready(function(){
@@ -26,9 +30,10 @@
 
   </script>
 
-
+  
 
 <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
+
 <%= form_for(@post, :html=>{ id: "new_post"}) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -46,7 +51,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :price_sq_ft %>
+    <%= f.label :price_sq_ft, "Price per square feet" %>
     <%= f.text_field :price_sq_ft %>
   </div>
 
@@ -66,21 +71,27 @@
 
 
   <div class="field">
-    <%= f.label :drop_off_avaibility_start_date %>
-    <%= f.date_field :drop_off_avaibility_start_date %>
+   
+       <%= f.label :drop_off_avaibility_start_date %>
+       <%= f.text_field :drop_off_avaibility_start_date %>
+
   </div>
 
   <div class="field">
-    <%= f.label :drop_off_avaibility_end_date %>
-    <%= f.date_field :drop_off_avaibility_end_date %>
+ 
+      <%= f.label :drop_off_avaibility_end_date %>
+      <%= f.text_field :drop_off_avaibility_end_date %>
+
   </div>
 
   <div class="field">
-    <%= f.label :pick_up_avaibilty_start_date %>
-    <%= f.date_field :pick_up_avaibilty_start_date %>
+   
+      <%= f.label :pick_up_avaibilty_start_date %>
+      <%= f.text_field :pick_up_avaibilty_start_date %>
 
-    <%= f.label :pick_up_avaibility_end_date %>
-    <%= f.date_field :pick_up_avaibility_end_date %>
+      <%= f.label :pick_up_avaibility_end_date %>
+      <%= f.text_field :pick_up_avaibility_end_date %>
+
   </div>
 
    <div class="field">
