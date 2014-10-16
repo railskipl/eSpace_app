@@ -30,35 +30,41 @@
 
 <p id="notice"><%= notice %></p>
 <br>
-<p>
-  <b>To:</b>
-  <%= @message.recipient.email %>
-</p>
-<p>
-  <b>Subject:</b>
-  <%= @message.subject %>
-</p>
 
 <p>
-  <b>Body:</b>
-  <%= @message.body.html_safe %>
+  <b>Subject</b>: <%= @message.subject %><br/><br/>
+   <% unless @original_msg.nil? %>
+     <b> <%= @message.recipient.name %></b>: <%= @original_msg.body%><br/> 
+    <% end %>
+    <% msg1 = [] %>
+     <%#raise @msgs.inspect%>
+  <b> <%= @message.sender.name %></b>:
+      <%= @message.body.html_safe %><br/>
+       <%# raise @message.inspect%>
+      <% @msgs.each do |i| %>
+      <b> <%= i.sender.name %> </b>:
+          <%= i.body %>
+          <%= i.id %><br/>
+          <% msg1 <<  i.id%>
+      <% end %>
+
 </p>
 
-
-   <% if current_user == @message.sender && current_user == @message.recipient %>
+<% if current_user == @message.sender && current_user == @message.recipient %>
+<% if !msg1.blank? %>
+<a class="submit_btn" style="margin:0" href="<%= reply_message_path(msg1.max)%>">Reply *</a>
+<% else %>
 <a class="submit_btn" style="margin:0" href="<%= reply_message_path(@message)%>">Reply *</a>
+<% end %>
 <% elsif  current_user == @message.recipient  %>
+<% if !msg1.blank? %>
+<a class="submit_btn" style="margin:0" href="<%= reply_message_path(msg1.max)%>">Reply *</a>
+<% else %>
 <a class="submit_btn" style="margin:0" href="<%= reply_message_path(@message)%>">Reply *</a>
-
+<% end %>
 <% else %>
 <% end %> 
-
-    
-
     </div>
-        
-    
-        
-    
+
  </div>
-    
+

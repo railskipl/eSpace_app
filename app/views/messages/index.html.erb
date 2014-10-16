@@ -1,42 +1,38 @@
 <h4>Messages</h4>
 
       <%= form_tag move_all_to_trash_recipient_messages_path, :method => :put do %>
-
-    
-
 <% @messages.each do |message| %>
-       
+   <%# raise message.message_id.inspect%>
     
     <%#= check_box_tag "message_ids[]", message.id %>
     
 
-    <div><%= message.sender.email %></div>
-    <div style="margin:0 0 5px 0">Subject: 
+
+    <%if (message.message_id == nil) || (message.message_id == message.post_id)%>
+    <!-- <div><%#= message.sender.email %></div> -->
+    <div><br>
+    <img src="assets/thumb_profile.jpg" alt="">
+     <%= message.sender.name %><p>
+    Subject: 
       <% if message.is_read %>
       <%= link_to message.subject , message , :class => "bluelink" %>
       <% else %>
       <b><%= link_to message.subject , message , :class => "bluelink" %></b>
       <% end %>
-    </div>
-    <div>Message:<%= message.body.html_safe %></div>
+   </div>
+   <!--  <div>Message:<%#= message.body.html_safe %></div> -->
+   <% end %>
 
-    
-    
-    
-    <ul class="action">
+
+   <!--  <ul class="action"> -->
 <!-- s -->
-    <% if message.is_read %>
- <!--    <li><a href="#"><img src="mail_read.png" alt="" border="0"></a></li> -->
-    <% end %>
-    <li><%= link_to image_tag("delete.png"), trash_message_path(message),method: :post, data: { confirm: 'Move To Trash?' } %></li>
+    <%# if message.is_read %>
+ <!--    <li><a href=""><img src="mail_read.png" alt="" border="0"></a></li> -->
+    <%# end %>
+    <!-- <li><%#= link_to image_tag("delete.png"), trash_message_path(message),method: :post, data: { confirm: 'Move To Trash?' } %></li> -->
     
-    </ul>
+  <!--   </ul> -->
     
-    
-    
-   
-    
-
 <% end %>
 
   
@@ -48,7 +44,4 @@
     
     </div> -->
     <% end %>
-
-
-        
-    
+  

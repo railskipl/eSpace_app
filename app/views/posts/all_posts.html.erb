@@ -33,7 +33,7 @@
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
         <td><%= link_to 'View Details', edit_post_path(post) %>&nbsp;&nbsp;
         <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to "Send Message ", new_message_path(:user_id => post.user_id ) %></td>
+        <td><%= link_to "Send Message ", new_message_path(:user_id => post.user_id,:post_id => post.id ) %></td>
         
       </tr>
     <% end %>
