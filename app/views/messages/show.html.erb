@@ -33,14 +33,8 @@
 
 <p>
   <b>Subject</b>: <%= @message.subject %><br/><br/>
-   <% unless @original_msg.nil? %>
-     <b> <%= @message.recipient.name %></b>: <%= @original_msg.body%><br/> 
-    <% end %>
+
     <% msg1 = [] %>
-     <%#raise @msgs.inspect%>
-  <b> <%= @message.sender.name %></b>:
-      <%= @message.body.html_safe %><br/>
-       <%# raise @message.inspect%>
       <% @msgs.each do |i| %>
       <b> <%= i.sender.name %> </b>:
           <%= i.body %>

@@ -14,6 +14,8 @@ class MessagesController < ApplicationController
   end
 
   def show
+
+    # @message = Message.new
     @message = Message.find(params[:id])
  
     @original_msg =  @message.message
