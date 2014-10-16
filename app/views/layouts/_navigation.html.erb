@@ -10,12 +10,13 @@
     <li> <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %> </li>
   <%# end %>
   <% elsif user_signed_in? %>
+  
   	<li> <%= link_to 'My Post', posts_path %> </li>
     <li><%= link_to "All Posts", all_posts_path %></li>
     <li><%= link_to "Personal Information", edit_user_path(current_user)%></li>
      <li><%= link_to "Change Password", edit_user_registration_path%></li>
      <li><%= link_to "Bank Details", bank_details_path%></li>
-     <li><%= link_to "Messages", messages_path%></li>
+     <li><%= link_to "Messages (#{render  :partial => 'layouts/message_count'})", messages_path%> </li>
  
      <li> <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %> </li>
   <% else %>
@@ -26,3 +27,6 @@
      <li> <%= link_to 'Contact us', home_contactus_path %> </li>
   <% end %>
 </ul>
+
+
+

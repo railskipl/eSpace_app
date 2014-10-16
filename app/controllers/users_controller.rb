@@ -32,7 +32,7 @@ def update
 
 end
 
- def destroy
+def destroy
 	@user = User.find(params[:id])
 	@user.destroy
 	flash[:notice] = "User deleted successfully."
