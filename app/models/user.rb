@@ -31,5 +31,19 @@ class User < ActiveRecord::Base
    end
   end
 
+  #Message count
+  def check_message
+    reminders =[]
+    
+    reminders = Message.where("recipient_id = ?",self.id)
+    count = 0
+    reminders.each do |r|
+      unless r.is_read
+        count += 1
+      end
+    end
+    return count
+  end
+
 
 end

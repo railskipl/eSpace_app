@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20141016054512) do
     t.datetime "updated_at"
     t.integer  "message_id"
     t.integer  "post_id"
-
   end
 
   create_table "pages", force: true do |t|

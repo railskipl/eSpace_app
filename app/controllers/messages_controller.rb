@@ -3,17 +3,14 @@ class MessagesController < ApplicationController
   respond_to :html, :xml, :json, :js
   
   def index
-    
-    @messages = current_user.recipient_messages 
- 
-    # @messages = @messages.reject {|i| (i.message_id.nil?)} 
-     
+
+    @messages = current_user.recipient_messages
     if @messages == 0
      @messages = @messages.delete_if {|i| (i.is_deleted_by_recipient == true || i.is_trashed_by_recipient == true)}
     end
-    # @messages = @messages.paginate(page: params[:page], per_page: 10)
-    respond_with(@messages)
-  end
+      # @messages = @messages.paginate(page: params[:page], per_page: 10)
+      respond_with(@messages)
+    end
 
   def show
 
@@ -23,19 +20,19 @@ class MessagesController < ApplicationController
     @original_msg =  @message.message
     @message2 = Message.maximum(:id)
     if @original_msg.nil?
-    @msgs = Message.where("post_id = ?",@message.post_id)
+      @msgs = Message.where("post_id = ?",@message.post_id)
     else
-    @msgs = Message.where("post_id = ? OR id = ? and message_id = ?",@original_msg.id,@message2,@message.id)
+      @msgs = Message.where("post_id = ? OR id = ? and message_id = ?",@original_msg.id,@message2,@message.id)
     end
+
     if @message.sender == current_user
-    respond_with(@message)
-  
+      respond_with(@message)
     else
       if @message.is_deleted_by_recipient == true 
          redirect_to messages_url
       else
-      Message.update(@message.id, :is_read => true)  
-      respond_with(@message)
+        Message.update(@message.id, :is_read => true)  
+        respond_with(@message)
       end
     end
 end
