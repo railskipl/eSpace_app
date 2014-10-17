@@ -21,8 +21,7 @@
     <li><%#= link_to "Sent Messages", sent_messages_messages_path %></li>
     <li><%#= link_to "Trash", trash_messages_messages_path %></li>
     </ul> -->
-    
-    
+  
       </div>
     
     <div class="grid_16" style="margin-bottom:10px;">
@@ -33,18 +32,17 @@
 
 <p>
   <b>Subject</b>: <%= @message.subject %><br/><br/>
-
     <% msg1 = [] %>
       <% @msgs.each do |i| %>
       <b> <%= i.sender.name %> </b>:
           <%= i.body %>
           <%= i.id %><br/>
-          <% msg1 <<  i.id%>
+          <% msg1 << i.id%>
       <% end %>
 
 </p>
 
-<% if current_user == @message.sender && current_user == @message.recipient %>
+    </div><% if current_user == @message.sender && current_user == @message.recipient %>
 <% if !msg1.blank? %>
 <a class="submit_btn" style="margin:0" href="<%= reply_message_path(msg1.max)%>">Reply *</a>
 <% else %>
@@ -58,7 +56,6 @@
 <% end %>
 <% else %>
 <% end %> 
-    </div>
-
  </div>
+
 
