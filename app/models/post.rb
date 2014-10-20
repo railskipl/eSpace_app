@@ -44,8 +44,7 @@ class Post < ActiveRecord::Base
 
 
 
-def average_stars
-  comments.average(:stars)
-end
+
+
 
 end
