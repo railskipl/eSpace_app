@@ -56,7 +56,7 @@ private
 
 	
 def person_params
-  params.require(:person).permit(:name, :last_name,:personal_email,:mobile_number)
+  params.require(:user).permit(:name, :last_name,:personal_email,:mobile_number)
 end
 
 end

@@ -3,8 +3,8 @@ class MessagesController < ApplicationController
   respond_to :html, :xml, :json, :js
   
   def index
+
     @messages = current_user.recipient_messages
-     
     if @messages == 0
      @messages = @messages.delete_if {|i| (i.is_deleted_by_recipient == true || i.is_trashed_by_recipient == true)}
     end
@@ -55,7 +55,7 @@ end
 
         @message = Message.new(message_params)
         Message.create(:subject => @message.subject , :body => @message.body,:sender_id => current_user.id, :recipient_id => params[:recipient_id].to_i, :message_id =>params[:message_id].to_i ,:post_id=>params[:post_id].to_i )
-        redirect_to messages_url
+        redirect_to :back
         else
           if user.nil?
           redirect_to new_message_url ,:notice => "Please enter recipient"
@@ -162,10 +162,28 @@ end
 
 
  def reply
- 
-  @messagee = Message.find(params[:id])
-   
+   @messagee = Message.find(params[:id])
    @message = Message.new
+   @messageee = Message.find(params[:id])
+ 
+    @original_msg =  @messageee.message
+    @message2 = Message.maximum(:id)
+    if @original_msg.nil?
+    @msgs = Message.where("post_id = ?",@messageee.post_id)
+    else
+    @msgs = Message.where("post_id = ? OR id = ? and message_id = ?",@original_msg.id,@message2,@messageee.id)
+    end
+    if @messageee.sender == current_user
+    respond_with(@messageee)
+  
+    else
+      if @messageee.is_deleted_by_recipient == true 
+         redirect_to messages_url
+      else
+      Message.update(@messageee.id, :is_read => true)  
+      respond_with(@messageee)
+      end
+    end
 
  end
 
