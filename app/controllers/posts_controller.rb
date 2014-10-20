@@ -29,7 +29,10 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    
+    @post = Post.find(params[:id])
+
+    @comments = Comment.where(:post_id => @post)
+  
   end
 
   # GET /posts/new

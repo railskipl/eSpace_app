@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016054512) do
+ActiveRecord::Schema.define(version: 20141017124814) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
     t.string   "card_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.string   "name"
+    t.text     "comments"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "stars",      default: 0
   end
 
   create_table "contactus", force: true do |t|
@@ -78,6 +87,17 @@ ActiveRecord::Schema.define(version: 20141016054512) do
     t.datetime "photo_updated_at"
     t.boolean  "archive",                        default: false
   end
+
+  create_table "reviews", force: true do |t|
+    t.string   "name"
+    t.integer  "stars"
+    t.string   "comments"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["post_id"], name: "index_reviews_on_post_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
- 
-
   resources :pages
 
   resources :bank_details
@@ -34,6 +32,7 @@ Rails.application.routes.draw do
    match 'all_posts' => "posts#all_posts", via: [:get, :post]
    
   resources :posts do
+resources :comments, :only => [:create, :show]
     member do
         get 'toggle'
     end
@@ -42,6 +41,8 @@ Rails.application.routes.draw do
         get 'archive'
     end
   end
+
+
 
   resources :messages do
     collection do

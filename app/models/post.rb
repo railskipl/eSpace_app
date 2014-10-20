@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
 
 	geocoded_by :address
 	after_validation :geocode, :if => :address_changed?
-
+  has_many :comments
 	belongs_to :user
   has_many :messages
 	has_attached_file :photo, :styles => { :thumb => "100x100", :medium => "350x350" },
@@ -41,5 +41,11 @@ class Post < ActiveRecord::Base
     end 
   end
 
+
+
+
+def average_stars
+  comments.average(:stars)
+end
 
 end
