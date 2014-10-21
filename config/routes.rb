@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'ratings/update'
+
   resources :pages
 
   resources :bank_details
@@ -40,9 +42,10 @@ resources :comments, :only => [:create, :show]
     collection do
         get 'archive'
     end
+ 
   end
 
-
+resources :ratings, only: :update
 
   resources :messages do
     collection do

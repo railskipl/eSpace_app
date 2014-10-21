@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017124814) do
+ActiveRecord::Schema.define(version: 20141020074550) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20141017124814) do
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "stars",      default: 0
   end
 
   create_table "contactus", force: true do |t|
@@ -87,6 +86,17 @@ ActiveRecord::Schema.define(version: 20141017124814) do
     t.datetime "photo_updated_at"
     t.boolean  "archive",                        default: false
   end
+
+  create_table "ratings", force: true do |t|
+    t.integer  "comment_id"
+    t.integer  "user_id"
+    t.integer  "score",      default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ratings", ["comment_id"], name: "index_ratings_on_comment_id"
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "reviews", force: true do |t|
     t.string   "name"

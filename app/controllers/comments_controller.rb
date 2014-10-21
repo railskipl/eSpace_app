@@ -7,9 +7,11 @@ class CommentsController < ApplicationController
     end
 
   def create
+    
        @post = Post.find(params[:post_id])
-       @comment = @post.comments.new(comment_params)
-       @comment.save!
+
+       @comment = @post.comments.new(comment_params) 
+       @comment.save! 
 
        redirect_to @post
      

@@ -1,35 +1,78 @@
+<script type='text/javascript'>//<![CDATA[ 
+$(window).load(function(){
+$(function(){
+    $('body').on({
+        mousemove: function(e){
+            var $this = $(this);
+            // Calculate number of stars
+            var currentMousePosition = e.pageX - $this.offset().left;
+            var width = $this.width();
+            var rounded = Math.round((currentMousePosition/width)*10);
 
+            var starNumber = rounded/2;
+
+            // Remove + add Classes + Store current rating
+            $this.removeClass().addClass('stars s-' + starNumber).attr('data-rating', starNumber);
+        },
+        mouseleave:function(){
+            var $this = $(this); 
+            $this.removeClass().addClass('stars s-' + $this.attr('data-rating'));
+        },
+        click: function(){
+            var $this = $(this);
+            //Hide the current rating selector
+            
+            //$this.replaceWith($('<div>', {
+             //'class': 'loading'
+            //}));
+
+            $("#comment_rate").val($this.attr('data-rating'));
+           
+            
+        }
+    }, '.stars');
+});
+
+
+
+});//]]>  
+
+
+
+</script>
 <table width="100%">
 <tr>
+   <%= form_for [@post, Comment.new] do |f| %>
+     <p><strong>Rating : </strong> <span class="stars s-1" data-default='1'> 0 stars</span></p>
+ <%= f.hidden_field :rate, :value=>"1" %>
+ <%end%>
 	<td><%= image_tag(@post.photo.url(:medium)) %> <br/>
 		<strong>Area : </strong> <%= @post.area %> <br/>
 		<strong>Pick-Up Avaibilty Date : </strong> <%= @post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= @post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
 		<strong>Drop-Off Avaibilty Date : </strong><%= @post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
 		<strong>Pick-Up : </strong> <%= @post.price_include_pick_up %> <br/>
 		<strong>Drop-Off : </strong> <%= @post.price_include_drop_off %> <br/>
-  
+
+
 	</td>
 	<td></td>
 </tr>
 </table>
-
+<%if current_user.present?%>
       <h3>Post your comment</h3>
    <%= form_for [@post, Comment.new] do |f| %>
-<p>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.text_field :name %><br>
    Comment:<%= f.text_area :comments ,:cols=>"30", :rows=>"4" %>
 
  <p ><%= f.submit "Add comment", :class => 'btn btn-info' %></p>
   <% end %>
 
 
+  <% end %>
+
   <b><%= @comments.count %></b> Comments<br>
+
 <% @comments.each do |comment| %>
-<strong><%= comment.name rescue nil %></strong> <%= comment.created_at.strftime("%b %m,%Y") %><br>
-
+   <strong><%= current_user.name rescue nil %></strong>&nbsp;<%= comment.created_at.strftime("%b %m,%Y") %><br>
+<p><strong>Rating : </strong> <span class="stars s-1" data-default='1'> 0 stars</span></p>
 <%= comment.comments %><br><br>
-
-
-<%end%>
-
-
-
+  <% end %>

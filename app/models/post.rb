@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   has_many :comments
 	belongs_to :user
   has_many :messages
+   has_many :ratings
 	has_attached_file :photo, :styles => { :thumb => "100x100", :medium => "350x350" },
   
     :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml",
@@ -40,6 +41,7 @@ class Post < ActiveRecord::Base
       where(archive: false, user_id: userID)
     end 
   end
+
 
 
 
