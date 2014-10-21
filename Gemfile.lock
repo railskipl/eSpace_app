@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/edgarjs/ajaxful-rating.git
-  revision: f22e2c38d601f8279e959fbe9a578b2314235505
-  branch: rails3
-  specs:
-    ajaxful_rating (3.0.0.beta8)
-
-GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: 3ec2599d13c1c4d6ab7c5bd291b8ff31e625915e
   specs:
@@ -210,7 +203,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ajaxful_rating!
   aws-s3
   aws-sdk
   bootstrap-sass

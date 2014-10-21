@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020074550) do
+ActiveRecord::Schema.define(version: 20141021151241) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20141020074550) do
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rating"
+    t.integer  "user_id"
   end
 
   create_table "contactus", force: true do |t|
@@ -88,15 +90,18 @@ ActiveRecord::Schema.define(version: 20141020074550) do
   end
 
   create_table "ratings", force: true do |t|
-    t.integer  "comment_id"
-    t.integer  "user_id"
-    t.integer  "score",      default: 0
+    t.decimal  "value"
+    t.integer  "vote_count"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.integer  "rater_id"
+    t.string   "rater_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "ratings", ["comment_id"], name: "index_ratings_on_comment_id"
-  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+  add_index "ratings", ["item_id", "item_type"], name: "index_ratings_on_item_id_and_item_type"
+  add_index "ratings", ["rater_id", "rater_type"], name: "index_ratings_on_rater_id_and_rater_type"
 
   create_table "reviews", force: true do |t|
     t.string   "name"

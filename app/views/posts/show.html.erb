@@ -1,51 +1,27 @@
-<script type='text/javascript'>//<![CDATA[ 
-$(window).load(function(){
-$(function(){
-    $('body').on({
-        mousemove: function(e){
-            var $this = $(this);
-            // Calculate number of stars
-            var currentMousePosition = e.pageX - $this.offset().left;
-            var width = $this.width();
-            var rounded = Math.round((currentMousePosition/width)*10);
-
-            var starNumber = rounded/2;
-
-            // Remove + add Classes + Store current rating
-            $this.removeClass().addClass('stars s-' + starNumber).attr('data-rating', starNumber);
-        },
-        mouseleave:function(){
-            var $this = $(this); 
-            $this.removeClass().addClass('stars s-' + $this.attr('data-rating'));
-        },
-        click: function(){
-            var $this = $(this);
-            //Hide the current rating selector
-            
-            //$this.replaceWith($('<div>', {
-             //'class': 'loading'
-            //}));
-
-            $("#comment_rate").val($this.attr('data-rating'));
-           
-            
-        }
-    }, '.stars');
-});
-
-
-
-});//]]>  
-
-
-
-</script>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <%= stylesheet_link_tag 'bookreviews.css'%>
 <table width="100%">
 <tr>
-   <%= form_for [@post, Comment.new] do |f| %>
-     <p><strong>Rating : </strong> <span class="stars s-1" data-default='1'> 0 stars</span></p>
- <%= f.hidden_field :rate, :value=>"1" %>
- <%end%>
+   <%#= form_for [@post, Comment.new] do |f| %>
+     <!-- <p><strong>Rating : </strong> <span class="stars s-1" data-default='1'> 0 stars</span></p> -->
+ <%#= f.hidden_field :rate, :value=>"1" %>
+ <%#end%>
+<% if @post.overall_rating > 0 %>
+    <p>
+   
+        <% num_stars(@post.overall_rating)[:full].times do %>
+          <i class="fa fa-star"></i>
+        <% end %>
+        <% num_stars(@post.overall_rating)[:half].times do %>
+          <i class="fa fa-star-half-o"></i>
+        <% end %>
+        <% num_stars(@post.overall_rating)[:empty].times do %>
+          <i class="fa fa-star-o"></i>
+        <% end %>
+
+        <%= "(" + pluralize(@post.comments.count.to_s, "customer review") + ")" if @post.comments.count > 0 %>
+    </p>
+<% end %>
 	<td><%= image_tag(@post.photo.url(:medium)) %> <br/>
 		<strong>Area : </strong> <%= @post.area %> <br/>
 		<strong>Pick-Up Avaibilty Date : </strong> <%= @post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= @post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
@@ -59,20 +35,33 @@ $(function(){
 </tr>
 </table>
 <%if current_user.present?%>
-      <h3>Post your comment</h3>
-   <%= form_for [@post, Comment.new] do |f| %>
+    <h3>Post your comment</h3>
+    <%= form_for [@post, Comment.new] do |f| %>
+    <%= f.hidden_field :user_id, :value=> current_user.id %>
+        <fieldset class="rating">
+        <%= f.radio_button(:rating, "5") %><%= f.label(:rating.to_s + "_5") %>
+        <%= f.radio_button(:rating, "4") %><%= f.label(:rating.to_s + "_4") %>
+        <%= f.radio_button(:rating, "3") %><%= f.label(:rating.to_s + "_3") %>
+        <%= f.radio_button(:rating, "2") %><%= f.label(:rating.to_s + "_2") %>
+        <%= f.radio_button(:rating, "1") %><%= f.label(:rating.to_s + "_1") %>
+       </fieldset><br><br><br>
    Comment:<%= f.text_area :comments ,:cols=>"30", :rows=>"4" %>
-
- <p ><%= f.submit "Add comment", :class => 'btn btn-info' %></p>
-  <% end %>
-
-
-  <% end %>
+   <p ><%= f.submit "Add comment", :class => 'btn btn-info' %></p>
+   <% end %>
+<% end %>
 
   <b><%= @comments.count %></b> Comments<br>
 
-<% @comments.each do |comment| %>
-   <strong><%= current_user.name rescue nil %></strong>&nbsp;<%= comment.created_at.strftime("%b %m,%Y") %><br>
-<p><strong>Rating : </strong> <span class="stars s-1" data-default='1'> 0 stars</span></p>
-<%= comment.comments %><br><br>
-  <% end %>
+    <% @comments.each do |comment| %>
+    <% num_stars(comment.rating)[:full].times do %>
+      <i class="fa fa-star"></i>
+    <% end %>
+    <% num_stars(comment.rating)[:half].times do %>
+      <i class="fa fa-star-half-o"></i>
+    <% end %>
+    <% num_stars(comment.rating)[:empty].times do %>
+      <i class="fa fa-star-o"></i>
+    <% end %>
+    <strong><%= comment.user.name %>&nbsp;<%= comment.user.last_name %></strong>&nbsp;<%= comment.created_at.strftime("%b %m,%Y") %><br><br>
+    <%= comment.comments %><br><br>
+    <%end%>

@@ -3,16 +3,20 @@ class CommentsController < ApplicationController
 
     def show
     @posts = Post.where("user_id != ?",current_user.id)
+     @user = User.find_by_id(current_user)
     redirect_to :back
     end
 
   def create
-    
+
        @post = Post.find(params[:post_id])
 
        @comment = @post.comments.new(comment_params) 
+   
        @comment.save! 
-
+       # @comment.user = current_user
+      # @comment.user = current_user
+        # raise @comment.name.inspect
        redirect_to @post
      
      end
@@ -40,6 +44,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:name, :comments,:post_id)
+      params.require(:comment).permit(:name, :comments,:post_id,:rating,:user_id)
     end
 end
