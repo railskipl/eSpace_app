@@ -1,0 +1,17 @@
+<% if signed_in? && current_user.admin? %>
+   <% @users.each do |user|%>
+
+	 <div>Email :<%= user.email %></div>
+	 <div>Name :<%= user.name %>&nbsp;<%= user.last_name %></div>
+	 <div>Personal Email :<%= user.personal_email %></div>
+	 <%if user.mobile_number.present?%>
+	 <div>Mobile Number :<%= user.mobile_number %></div>
+	 <%else%>
+	 <%end%>
+
+   <%end%>	
+
+<% else %>
+     <h1>Home Page</h1>
+
+<%end%>

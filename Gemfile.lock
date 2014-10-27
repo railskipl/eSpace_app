@@ -176,6 +176,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    sqlite3 (1.3.9)
     stripe (1.16.0)
       json (~> 1.8.1)
       mime-types (>= 1.25, < 3.0)
@@ -195,7 +196,10 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    wicked_pdf (0.11.0)
+      rails
     will_paginate (3.0.7)
+    wkhtmltopdf-binary (0.9.9.3)
     xml-simple (1.1.4)
 
 PLATFORMS
@@ -222,7 +226,10 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
+  sqlite3
   stripe
   turbolinks
   uglifier (>= 1.3.0)
+  wicked_pdf
   will_paginate
+  wkhtmltopdf-binary

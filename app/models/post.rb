@@ -5,6 +5,9 @@ class Post < ActiveRecord::Base
   has_many :comments
 	belongs_to :user
   has_many :messages
+   has_many :ratings
+
+
 	has_attached_file :photo, :styles => { :thumb => "100x100", :medium => "350x350" },
   
     :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml",
@@ -18,7 +21,9 @@ class Post < ActiveRecord::Base
 
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-
+  def overall_rating
+    comments.sum(:rating).to_f / comments.size
+  end
 
 
   def self.search(search, page)
@@ -44,8 +49,8 @@ class Post < ActiveRecord::Base
 
 
 
-def average_stars
-  comments.average(:stars)
-end
+
+
+
 
 end
