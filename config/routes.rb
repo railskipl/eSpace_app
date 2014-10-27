@@ -20,15 +20,18 @@ Rails.application.routes.draw do
       end
    end
 
-   resources :users, :only => [:index,:edit,:update] 
+   resources :users, :only => [:index,:edit,:update,:show] 
 
    get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
    get '/users/:id/status', :to => "users#toggled_status"
  
    
    resources :contactus
-   
+   get 'search' => 'home#search'
    get 'home/contactus',:to => "home#contactus"
+   get '/home/customer_daily_report', :to => "home#customer_daily_report"
+   get '/home/customer_weekly_report', :to => "home#customer_weekly_report"
+   get '/home/customer_monthly_report', :to => "home#customer_monthly_report"
    get 'terms',:to => "home#terms"
    get  'search'  => "posts#search"
    match 'all_posts' => "posts#all_posts", via: [:get, :post]

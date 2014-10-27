@@ -1,14 +1,9 @@
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= stylesheet_link_tag 'bookreviews.css'%>
 <table width="100%">
 <tr>
-   <%#= form_for [@post, Comment.new] do |f| %>
-     <!-- <p><strong>Rating : </strong> <span class="stars s-1" data-default='1'> 0 stars</span></p> -->
- <%#= f.hidden_field :rate, :value=>"1" %>
- <%#end%>
 <% if @post.overall_rating > 0 %>
     <p>
-   
         <% num_stars(@post.overall_rating)[:full].times do %>
           <i class="fa fa-star"></i>
         <% end %>
@@ -18,21 +13,20 @@
         <% num_stars(@post.overall_rating)[:empty].times do %>
           <i class="fa fa-star-o"></i>
         <% end %>
-
         <%= "(" + pluralize(@post.comments.count.to_s, "customer review") + ")" if @post.comments.count > 0 %>
     </p>
 <% end %>
+
 	<td><%= image_tag(@post.photo.url(:medium)) %> <br/>
 		<strong>Area : </strong> <%= @post.area %> <br/>
 		<strong>Pick-Up Avaibilty Date : </strong> <%= @post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= @post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
 		<strong>Drop-Off Avaibilty Date : </strong><%= @post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
 		<strong>Pick-Up : </strong> <%= @post.price_include_pick_up %> <br/>
 		<strong>Drop-Off : </strong> <%= @post.price_include_drop_off %> <br/>
-
-
 	</td>
 	<td></td>
 </tr>
+
 </table>
 <%if current_user.present?%>
     <h3>Post your comment</h3>

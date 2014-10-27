@@ -41,6 +41,7 @@ end
 
  def show
 	@user = User.find(params[:id])
+	@users=User.where("id =?",@user.id)
  end
 
 
@@ -51,6 +52,7 @@ def toggled_status
 	redirect_to :back
 	# UserMailer.user_status_mail(@users).deliver
 end
+
 
 private
 

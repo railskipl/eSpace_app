@@ -49,6 +49,8 @@ gem 'spring',        group: :development
 
 gem 'geocoder'
 
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 # Paperclip gem for managing file uploads
 gem 'paperclip', github: 'thoughtbot/paperclip'
 
