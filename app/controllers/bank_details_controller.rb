@@ -22,17 +22,58 @@ class BankDetailsController < ApplicationController
   end
 
   def create
-    @bank_detail = BankDetail.new(bank_detail_params)
+    
+    # @bank_detail = BankDetail.new(bank_detail_params)
 
-    respond_to do |format|
-      if @bank_detail.save
-        format.html { redirect_to bank_details_path, notice: 'Bank info was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @bank_detail.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @bank_detail.save
+    #     format.html { redirect_to bank_details_path, notice: 'Bank info was successfully created.' }
+    #     format.json { render :show, status: :created, location: @post }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @bank_detail.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+
+   
+        @bank_detail = BankDetail.new(bank_detail_params)
+
+        if params[:stripe_card_token]
+   
+          begin
+            recipient = Stripe::Recipient.create(
+              :name => params[:bank_detail][:full_name],
+              :type => "individual",
+              :email => "payee@example.com",
+              :card => params[:stripe_card_token]
+            )
+          
+          rescue Stripe::InvalidRequestError => e
+            redirect_to :back, :notice => "Stripe error while creating Recipient: #{e.message}" 
+            return false
+          end
+
+          stripe_response = JSON.parse("#{recipient}")
+
+          if stripe_response["cards"]["data"][0]["id"].present?
+            @bank_detail.stripe_recipient_token = stripe_response["id"]
+            @bank_detail.full_name = stripe_response["cards"]["data"][0]["name"]
+            @bank_detail.stripe_card_id_token = stripe_response["cards"]["data"][0]["id"]
+            @bank_detail.card_number = stripe_response["cards"]["data"][0]["last4"]
+            @bank_detail.save
+
+            # https://stripe.com/docs/api/ruby#update_transfer
+            redirect_to bank_details_path, :notice => "Bank info was successfully created." 
+            return false
+            
+          end
+           
+           
+        else
+          render :new
+          flash[:notice] = "Something went wrong,please try again. "
+        end
     
   end
 
