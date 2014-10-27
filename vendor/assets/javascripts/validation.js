@@ -279,4 +279,29 @@ required: "Please enter Message"
 }
 }
 });
+
+jQuery("#new_comment").validate({
+	ignore:'', // initialize the plugin
+	errorElement:'div',
+
+	rules: {
+		"comment[comments]":{
+			required:true
+		},
+        "comment[rating]":{
+	        required:true
+        }
+	},
+	messages: {
+
+		"comment[comments]":{
+			required: "Please enter comment"
+		},
+        "comment[rating]":{
+        required: "Please Rate"
+        }
+	}
+});
+
+
 });

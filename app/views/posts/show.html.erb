@@ -1,5 +1,7 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= stylesheet_link_tag 'bookreviews.css'%>
+
+<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 <table width="100%">
 <tr>
 <% if @post.overall_rating > 0 %>
@@ -30,7 +32,7 @@
 </table>
 <%if current_user.present?%>
     <h3>Post your comment</h3>
-    <%= form_for [@post, Comment.new] do |f| %>
+    <%= form_for [@post, Comment.new] ,:html=>{ id: "new_comment"} do |f| %>
     <%= f.hidden_field :user_id, :value=> current_user.id %>
         <fieldset class="rating">
         <%= f.radio_button(:rating, "5") %><%= f.label(:rating.to_s + "_5") %>
@@ -56,6 +58,6 @@
     <% num_stars(comment.rating)[:empty].times do %>
       <i class="fa fa-star-o"></i>
     <% end %>
-    <strong><%= comment.user.name %>&nbsp;<%= comment.user.last_name %></strong>&nbsp;<%= comment.created_at.strftime("%b %m,%Y") %><br><br>
+    <strong><%= comment.user.name %>&nbsp;<%= comment.user.last_name %></strong>&nbsp;<%= comment.created_at.strftime("%b %d,%Y") %><br><br>
     <%= comment.comments %><br><br>
     <%end%>
