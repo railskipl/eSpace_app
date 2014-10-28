@@ -139,7 +139,15 @@ jQuery("#edit_user").validate({
 });
 
 jQuery("#new_post").validate({
-errorElement:'div',
+
+
+	errorElement: "div",
+    
+    errorPlacement: function(error, element) {
+        var trigger = element.next('.ui-datepicker-trigger');
+        error.insertAfter(trigger.length > 0 ? trigger : element);
+    },
+
 rules: {
   
 	"post[area]":{

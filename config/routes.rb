@@ -27,7 +27,7 @@ Rails.application.routes.draw do
  
    
    resources :contactus
-   get 'search' => 'home#search'
+   
    get 'home/contactus',:to => "home#contactus"
    get '/home/customer_daily_report', :to => "home#customer_daily_report"
    get '/home/customer_weekly_report', :to => "home#customer_weekly_report"

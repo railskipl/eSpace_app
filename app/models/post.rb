@@ -26,14 +26,15 @@ class Post < ActiveRecord::Base
   end
 
 
-  def self.search(search, page)
+  def self.search(search, page, userID)
  
     posts = Post.order(:id)
+    posts = posts.where("user_id != ?", "#{userID}")
     posts = posts.where("area <= ?", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
     posts = posts.where("address like ?", "%#{search[:address]}%") if search[:address].present?
     posts.page(page).per_page(10)
-    
+   
   end
 
 

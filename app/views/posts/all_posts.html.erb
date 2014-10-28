@@ -1,6 +1,9 @@
 <%= stylesheet_link_tag "facebox.css" %>
 <%= javascript_include_tag "facebox.js", "endless_page.js" %>
 
+
+
+
           <%= form_for :search, :url=>{:controller=>'posts', :action=>'all_posts'},:html => {:method => "post"} do |f| %>
                   <div class="field">
                     Price
@@ -30,7 +33,11 @@
 
 
 <h4> Posts</h4>
+
+  
+  
 <table class="table table-striped">
+
   <thead>
     <tr>
       <th>Sr No.</th>
@@ -49,11 +56,107 @@
     </tr>
   </thead>
 
-  <tbody id="all_posts">
+  <tbody id="all_posts" >
+
     <%= render(:partial => 'posts/all_post') %>
     
   </tbody>
 </table>
 
 <%= will_paginate @posts %>
+
+
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+//     // Define your locations: HTML content for the info window, latitude, longitude
+//     var locations = [
+      
+   
+//       <% @posts.each do |post| %>
+//         <% post_map = Post.where("latitude != (?) and longitude != (?) and id = (?)", 0.0, 0.0, post.id) %>
+//         <% if post_map[0].present? %>
+
+//         ['<h4 style=\"color:#000000 !important; font-size: 12px;\"><% post_map[0].area rescue nil %></h4>', <%= post_map[0].latitude rescue nil %>, <%= post_map[0].longitude rescue nil %>],
+//         <% end %>
+//       <% end %>
+//     ];
+    
+//     // Setup the different icons and shadows
+//     var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
+    
+//     var icons = [
+//       iconURLPrefix + 'red-dot.png'
+//     ]
+//     var icons_length = icons.length;
+    
+    
+//     var shadow = {
+//       anchor: new google.maps.Point(15,33),
+//       url: iconURLPrefix + 'msmarker.shadow.png'
+//     };
+
+//     var map = new google.maps.Map(document.getElementById('postermapView'), {
+//       zoom: 5,
+//       center: new google.maps.LatLng(21.1500, 79.0900),
+      
+//     mapTypeControl: false,
+    
+//     scaleControl: false,
+//     streetViewControl: false,
+//     streetViewControlOptions: {
+//         position: google.maps.ControlPosition.LEFT_TOP
+//     }
+
+//     });
+
+//     var infowindow = new google.maps.InfoWindow({
+      
+//     });
+
+//     var marker;
+//     var markers = new Array();
+    
+//     var iconCounter = 0;
+    
+//     // Add the markers and infowindows to the map
+//     for (var i = 0; i < locations.length; i++) {  
+//       marker = new google.maps.Marker({
+//         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+//         map: map,
+//         icon : icons[iconCounter],
+//         shadow: shadow
+//       });
+
+//       markers.push(marker);
+
+//       google.maps.event.addListener(marker, 'click', (function(marker, i) {
+//         return function() {
+//           infowindow.setContent(locations[i][0]);
+//           infowindow.open(map, marker);
+//         }
+//       })(marker, i));
+      
+//       iconCounter++;
+//       // We only have a limited number of possible icon colors, so we may have to restart the counter
+//       if(iconCounter >= icons_length){
+//         iconCounter = 0;
+//       }
+//     }
+
+//     function AutoCenter() {
+//       //  Create a new viewpoint bound
+//       var bounds = new google.maps.LatLngBounds();
+//       //  Go through each...
+//       $.each(markers, function (index, marker) {
+//         bounds.extend(marker.position);
+//       });
+//       //  Fit these bounds to the map
+//       map.fitBounds(bounds);
+//     }
+
+  
+
+//     AutoCenter();
+   </script>
 

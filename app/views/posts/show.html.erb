@@ -1,5 +1,51 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= stylesheet_link_tag 'bookreviews.css'%>
+
+<script type='text/javascript'>//<![CDATA[ 
+
+jQuery(document).ready(function(){
+
+    jQuery('#area').on('input',function() {
+        update_amounts();
+    });
+
+
+    function update_amounts()
+    {
+        // update the total to sum    
+        var qty = parseInt($('#area').val());
+        var price = parseFloat($('#price').val());
+        $('#total').val((qty * price ? qty * price : 0).toFixed(2));
+    }
+
+
+    //set initial state.
+    
+    $('#textbox1').val($(this).is(':checked'));
+    
+    $('#checkbox1').change(function() {
+
+       var qty = parseInt($('#area').val());
+       var price = parseFloat($('#price').val());
+       var drop_off = parseFloat($('#dropoff').val());
+
+       var total = parseFloat((qty * price ? qty * price : 0).toFixed(2));
+
+        if($(this).is(":checked")) {
+         
+          $('#total').val((total + drop_off));
+        }
+        else
+        {
+          $('#total').val(total);
+        }       
+    });
+
+
+});//]]>  
+
+</script>
+
 <table width="100%">
 <tr>
 <% if @post.overall_rating > 0 %>
@@ -18,13 +64,36 @@
 <% end %>
 
 	<td><%= image_tag(@post.photo.url(:medium)) %> <br/>
-		<strong>Area : </strong> <%= @post.area %> <br/>
-		<strong>Pick-Up Avaibilty Date : </strong> <%= @post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= @post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
-		<strong>Drop-Off Avaibilty Date : </strong><%= @post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
-		<strong>Pick-Up : </strong> <%= @post.price_include_pick_up %> <br/>
-		<strong>Drop-Off : </strong> <%= @post.price_include_drop_off %> <br/>
+		<strong>Price : </strong> $ <%= @post.price_sq_ft %> /Sq.ft <br/>
+
+    <% if @post.drop_off %>
+      <strong>Drop-Off : </strong> <%= @post.price_include_drop_off %> <br/>
+      <strong>Drop-Off Avaibilty Date : </strong><%= @post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
+    <% end %>
+
+    <% if @post.pick_up == true %> 
+      <strong>Pick-Up Avaibilty Date : </strong> <%= @post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= @post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
+      <strong>Pick-Up : </strong> <%= @post.price_include_pick_up %> <br/>
+    <% end %>
+		
+		
 	</td>
 	<td></td>
+</tr>
+
+<tr>
+  <td>
+    <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' /> <input type='text' name='area' id='area' value='' /><br />
+
+    <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off %>' />
+    <input type="checkbox" id="checkbox1" /> Drop Off <br />
+    <input type='text' name='total' id='total' value='' />
+
+    
+<input type="text" id="textbox1" />
+
+  </td>
+
 </tr>
 
 </table>

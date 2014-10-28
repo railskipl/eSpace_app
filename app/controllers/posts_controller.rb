@@ -19,7 +19,8 @@ class PostsController < ApplicationController
   def all_posts
 
     if request.post? || params[:search]
-      @posts = Post.search(params[:search], params[:page])
+      
+      @posts = Post.search(params[:search], params[:page], current_user.id)
     else
       @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(10)
     end
