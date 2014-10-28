@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
    get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
    get '/users/:id/status', :to => "users#toggled_status"
- 
+   # get '/posts/:id/featured', :to => "posts#toggled_feature"
    
    resources :contactus
    
@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 resources :comments, :only => [:create, :show]
     member do
         get 'toggle'
+        get 'toggled_feature'
     end
 
     collection do

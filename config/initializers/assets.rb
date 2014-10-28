@@ -6,6 +6,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(jquery-1.5.2.min.js jquery-1.4.2.min.js facebox.js facebox.css endless_page.js)
 Rails.application.config.assets.precompile += %w( jquery.validate.min.js validation.js)
 Rails.application.config.assets.precompile += %w( bookreviews.css )
+Rails.application.config.assets.precompile += %w( font-awesome.css )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )

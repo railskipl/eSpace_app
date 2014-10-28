@@ -13,8 +13,6 @@ class MessagesController < ApplicationController
     end
 
   def show
-
-    # @message = Message.new
     @message = Message.find(params[:id])
  
     @original_msg =  @message.message
@@ -111,8 +109,6 @@ end
       @message.is_deleted_by_sender = true
       @message.save
     end
-    # @message.destroy
-
     respond_to do |format|
       format.html { redirect_to sent_messages_messages_url }
       format.json { head :no_content }
