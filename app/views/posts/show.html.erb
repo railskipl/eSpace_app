@@ -1,11 +1,9 @@
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-  <%= stylesheet_link_tag 'bookreviews.css'%>
-
+<%= stylesheet_link_tag 'bookreviews.css','font-awesome.css'%>
 <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 <table width="100%">
 <tr>
 <% if @post.overall_rating > 0 %>
-    <p>
+     <p>
         <% num_stars(@post.overall_rating)[:full].times do %>
           <i class="fa fa-star"></i>
         <% end %>
@@ -16,7 +14,7 @@
           <i class="fa fa-star-o"></i>
         <% end %>
         <%= "(" + pluralize(@post.comments.count.to_s, "customer review") + ")" if @post.comments.count > 0 %>
-    </p>
+     </p>
 <% end %>
 
 	<td><%= image_tag(@post.photo.url(:medium)) %> <br/>

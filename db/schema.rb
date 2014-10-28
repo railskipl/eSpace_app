@@ -11,13 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20141020095305) do
+ActiveRecord::Schema.define(version: 20141028065918) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
-    t.string   "stripe_card_id_token"
-    t.string   "stripe_recipient_token"
     t.string   "card_number"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -90,6 +87,7 @@ ActiveRecord::Schema.define(version: 20141020095305) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.boolean  "archive",                        default: false
+    t.boolean  "featured",                       default: false
   end
 
   create_table "ratings", force: true do |t|

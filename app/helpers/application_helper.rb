@@ -7,6 +7,10 @@ def format_boolean(status)
 	 end
 end
 
+ def yes_no(featured)
+    featured ? "Active" : "Inactive"
+  end
+
 def icon_tick(alt_text='Tick')
 build_image_tag("deactivate.png", alt_text)
 end

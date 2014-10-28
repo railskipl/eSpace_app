@@ -2,23 +2,16 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
     def show
-    @posts = Post.where("user_id != ?",current_user.id)
+     @posts = Post.where("user_id != ?",current_user.id)
      @user = User.find_by_id(current_user)
-    redirect_to :back
+     redirect_to :back
     end
 
-  def create
-
-       @post = Post.find(params[:post_id])
-
-       @comment = @post.comments.new(comment_params) 
-   
-       @comment.save! 
-       # @comment.user = current_user
-      # @comment.user = current_user
-        # raise @comment.name.inspect
-       redirect_to @post
-     
+    def create
+      @post = Post.find(params[:post_id])
+      @comment = @post.comments.new(comment_params) 
+      @comment.save! 
+      redirect_to @post
      end
 
      def destroy
@@ -26,17 +19,7 @@ class CommentsController < ApplicationController
       @comment.destroy
 
       redirect_to :back
-  end
-     
-
-  #      def rate
-  #   @comments = Comment.find(params[:id])
-  #   @comments.rate(params[:stars], current_user, params[:dimension])
-  #   render :update do |page|
-  #     page.replace_html @comments.wrapper_dom_id(params), ratings_for(@comments, params.merge(:wrap => false))
-  #     page.visual_effect :highlight, @comments.wrapper_dom_id(params)
-  #   end
-  # end
+     end
 
   private
     def set_comment

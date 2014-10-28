@@ -1,6 +1,33 @@
 <%= stylesheet_link_tag "facebox.css" %>
 <%= javascript_include_tag "facebox.js", "endless_page.js" %>
+        <% if user_signed_in? && signed_in? && current_user.admin?  %>
 
+<h4> Posts</h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Sr No.</th>
+      <th>Post ID</th>
+       <th>Price</th>
+      <th>Post Date</th>
+      
+      <th>Area (Sq ft)</th>
+      <th>Price (Sq ft)</th>
+      <th>Address</th>
+      <th>Status</th>
+      <th>Featured</th>
+       
+    </tr>
+  </thead>
+
+  <tbody id="all_posts">
+    <%= render(:partial => 'posts/all_post') %>
+    
+  </tbody>
+</table>
+
+<%= will_paginate @posts %>
+<%else%>
           <%= form_for :search, :url=>{:controller=>'posts', :action=>'all_posts'},:html => {:method => "post"} do |f| %>
                   <div class="field">
                     Price
@@ -57,3 +84,4 @@
 
 <%= will_paginate @posts %>
 
+  <%end%>

@@ -1,5 +1,7 @@
+<% if current_user.id == @post.user_id%>
 <h4>Editing Post</h4>
 
 <%= render 'form' %>
-
-
+<%else%>
+"You are not authorized to edit this page"
+<%end%>
