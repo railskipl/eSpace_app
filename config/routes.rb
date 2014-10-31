@@ -39,17 +39,22 @@ Rails.application.routes.draw do
    match 'all_posts' => "posts#all_posts", via: [:get, :post]
    
   resources :posts do
-resources :comments, :only => [:create, :show]
+    resources :comments, :only => [:create, :show]
     member do
         get 'toggle'
         get 'toggled_feature'
     end
-
     collection do
         get 'archive'
     end
- 
   end
+
+  resources :bookings do
+    collection do
+      post :checkout
+    end
+  end
+
 
 resources :ratings, only: :update
 

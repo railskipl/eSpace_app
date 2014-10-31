@@ -1,11 +1,10 @@
-<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min" %>
 
- <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+ <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min" %>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
  <script type="text/javascript">
     Stripe.setPublishableKey('pk_test_utn2AL4PFviXeehaGbIJZ0oY');
    $(document).ready(function() {
-
     function addInputNames() {
     // Not ideal, but jQuery's validate plugin requires fields to have names
     // so we add them at the last possible minute, in case any javascript
@@ -27,7 +26,6 @@
       removeInputNames(); // THIS IS IMPORTANT!
      
       // given a valid form, submit the payment details to stripe
-      // https://stripe.com/docs/testing
       $(form['submit-button']).attr("disabled", "disabled")
      
         Stripe.createToken({
@@ -66,16 +64,16 @@
       }, "Please enter a valid expiration");
  
       // We use the jQuery validate plugin to validate required params on submit
-      $("#new_bank_detail").validate({
+      $("#new_booking").validate({
         submitHandler: submit,
         rules: {
         "card_code" : {
-          cardCVC: true,
-          required: true
+        cardCVC: true,
+        required: true
         },
         "card_number" : {
-          cardNumber: true,
-          required: true
+        cardNumber: true,
+        required: true
         },
         "card-expiry-year" : "cardExpiry" // we don't validate month separately
         }
@@ -86,13 +84,11 @@
   });
 </script>
 
-<%= form_for(@bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>
-  <% if @bank_detail.errors.any? %>
+<%= form_for(@booking) do |f| %>
+  <% if @booking.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@bank_detail.errors.count, "error") %> prohibited this bank_detail from being saved:</h2>
-
       <ul>
-      <% @bank_detail.errors.full_messages.each do |message| %>
+      <% @booking.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -103,19 +99,18 @@
   <%= hidden_field_tag :stripe_card_token %>
 
   <div class="field">
-    <%= f.label :full_name %>
-    <%= f.text_field :full_name %>
+    <%= f.label :price %>
+    <%= f.text_field :price, :value=> session[:price], :readonly => true  %>
   </div>
- 
+
   <div class="field">
-      <%= label_tag :card_number, "Debit Card Number " %>
+      <%= label_tag :card_number, "Credit Card Number " %>
       <%= text_field_tag :card_number, nil,:autocomplete => "off", name: nil, :class=> "card_number stripe-sensitive required" %>
   </div>
   <div class="field">
       <%= label_tag :card_code, "Security Code on Card (CVV)" %>
       <%= text_field_tag :card_code, nil, name: nil, :autocomplete => :off, :class => "card_code stripe-sensitive required" %>
   </div>
-
   <div class="field">
     <label for="card_month">Card Expiration</label>
     <div class="expiry-wrapper">
@@ -143,8 +138,8 @@
   
        <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 
+
   <div class="actions">
-    <%= f.submit :class=>"btn btn-primary" %>
-    
+    <%= f.submit "Checkout", :class => "btn btn-primary contact-form" %>
   </div>
 <% end %>

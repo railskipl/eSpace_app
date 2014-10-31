@@ -4,6 +4,7 @@ function validateForm() {
 
 	var userinput = $('#email').val();
 	var domain = 'usc.edu';
+	
 	//var domain = 'kunalinfotech.net';
 
 	var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
@@ -13,10 +14,19 @@ function validateForm() {
         err++;
     }
 
-	if(!pattern.test(userinput) || userinput.split('@').pop() != domain)
-	{
-	 	$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
-        err++;
+    if(userinput.split('@').pop() == domain)
+    {
+
+		if(!pattern.test(userinput) || userinput.split('@').pop() != domain)
+		{
+		 	$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+	        err++;
+		}
+	}
+	else 
+	{ 
+		$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+	    err++;
 	}
 
 	if(err == 0){
