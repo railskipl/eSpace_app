@@ -312,21 +312,6 @@ jQuery("#new_comment").validate({
 });
 
 
-jQuery("#checkEmail").validate({
-errorElement:'div',
-rules: {
-  
-"user[personal_email]":{
-required:true
-}
-},
-messages: {
 
-"user[personal_email]":{
-required: "Please enter Email"
-}
-}
-
-});
 
 });

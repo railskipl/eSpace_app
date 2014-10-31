@@ -14,12 +14,6 @@ class User < ActiveRecord::Base
  
   has_many :comments
 
-   # def weekly_report
-   # last_week_date = (DateTime.current().to_date() - 7.days)
-   # last_report = self.reports.last
-   # last_report if last_report != nil && last_report.created_at >= last_week_date
-   # end
-   
    
   def self.json_tokens(query)
     users = where("email like ?", "%#{query}%")
