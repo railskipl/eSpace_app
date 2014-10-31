@@ -104,6 +104,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, :value=> current_user.email  %>
+  </div>
+
+  <div class="field">
       <%= label_tag :card_number, "Credit Card Number " %>
       <%= text_field_tag :card_number, nil,:autocomplete => "off", name: nil, :class=> "card_number stripe-sensitive required" %>
   </div>

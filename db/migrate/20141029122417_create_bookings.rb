@@ -4,6 +4,7 @@ class CreateBookings < ActiveRecord::Migration
       t.string :stripe_customer_token
       t.float :price
       t.integer :user_id
+      t.string :email
 
       t.timestamps
     end
