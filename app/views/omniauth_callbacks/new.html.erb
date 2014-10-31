@@ -1,0 +1,7 @@
+<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
+<%= form_for :user, :url=>{:controller=>'omniauth_callbacks',:action=>'create'},:html => {:id => "checkEmail"} do |f| %>
+  <%= f.email_field :personal_email, :style=>"height: 30px;margin-top:12px;"  %>
+  <%#= f.password_field :password, :class => "input-medium" %>
+
+  <%= f.submit "Confirm Email", :class => "btn btn-small" ,:style =>"height: 31px; margin-top:4px; width: 104px;" %>
+<% end %>

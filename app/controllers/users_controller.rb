@@ -32,6 +32,10 @@ def update
 
 end
 
+
+   def confirm
+   	@user = User.find_for_facebook_oauth(request.env["omniauth.auth"])
+   end
 def destroy
 	@user = User.find(params[:id])
 	@user.destroy

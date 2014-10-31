@@ -1,22 +1,35 @@
 class OmniauthCallbacksController < ApplicationController
 
   
+     def new
+     @user = User.new
+     end
 
-	# Facebook authentication
-	def facebook
-	    # You need to implement the method below in your model (e.g. app/models/user.rb)
-	    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"])
-	    
-	    if @user.present?
+     def create
+     	@user = User.find_for_facebook_oauth(session["omniauth.auth"], params[:user][:personal_email])
+     	if @user.present?   
 	      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
 	      flash.notice = "Signed in!" if is_navigational_format?
 	    else
-	      session["devise.facebook_data"] = request.env["omniauth.auth"]
-	      redirect_to new_user_registration_url
+	      session["omniauth.auth"] = request.env["omniauth.auth"]
+	      redirect_to new_omniauth_callback_path
+	    end
+     end
+
+	# Facebook authentication
+	def facebook
+	      @user = User.is_present_facebook_oauth(request.env["omniauth.auth"])
+	    if @user.present?   	
+	      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
+	      flash.notice = "Signed in!" if is_navigational_format?
+	    else
+	      session["omniauth.auth"] = request.env["omniauth.auth"]
+	      redirect_to new_omniauth_callback_path
 	    end
   	end
 
    def failure
    		redirect_to root_path
    end
+
 end
