@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028065918) do
+ActiveRecord::Schema.define(version: 20141029122417) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
     t.string   "stripe_card_id_token"
     t.string   "stripe_recipient_token"
     t.string   "card_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bookings", force: true do |t|
+    t.string   "stripe_customer_token"
+    t.float    "price"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
