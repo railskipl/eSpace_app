@@ -105,7 +105,7 @@ class PostsController < ApplicationController
     @post.featured = !@post.featured?
     @post.save!
      respond_to do |format|
-      format.html { redirect_to all_posts_path, notice: 'Post status updated.' }
+      format.html { redirect_to home_all_postings_path, notice: 'Post status updated.' }
       format.json { head :no_content }
     end
    end

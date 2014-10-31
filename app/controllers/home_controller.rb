@@ -6,6 +6,10 @@ class HomeController < ApplicationController
     
    def contactus
    end
+ 
+    def all_postings
+      @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(10)
+    end
 
   def search
   q = params[:q]

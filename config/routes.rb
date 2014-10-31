@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
    get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
    get '/users/:id/status', :to => "users#toggled_status"
-   # get '/posts/:id/featured', :to => "posts#toggled_feature"
+   
    
    resources :contactus
    
@@ -32,6 +32,8 @@ Rails.application.routes.draw do
    get '/home/customer_daily_report', :to => "home#customer_daily_report"
    get '/home/customer_weekly_report', :to => "home#customer_weekly_report"
    get '/home/customer_monthly_report', :to => "home#customer_monthly_report"
+   get '/home/all_postings', :to => "home#all_postings"
+   
    get 'terms',:to => "home#terms"
    get  'search'  => "posts#search"
    match 'all_posts' => "posts#all_posts", via: [:get, :post]
