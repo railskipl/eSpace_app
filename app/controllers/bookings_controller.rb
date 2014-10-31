@@ -7,7 +7,9 @@ class BookingsController < ApplicationController
 	def create
 		
 
-        if params[:booking][:price]
+        if session[:price] != nil
+
+          @booking = Booking.new(page_params)
 
           @amount = (params[:booking][:price]).to_f
           
@@ -31,62 +33,38 @@ class BookingsController < ApplicationController
 
           if charge[:id] && charge[:captured] == true
             
-            @month = charge[:card][:exp_month]
-            @year = charge[:card][:exp_year]
-
-            @cardinfo = { 
-               "stripe_id" => charge[:id],
-               "card_id" => charge[:card][:id],
-               "card_last4" => charge[:card][:last4],
-               "card_exp_month" => charge[:card][:exp_month],
-               "card_exp_year" => charge[:card][:exp_year],
-               "card_fingerprint" => charge[:card][:fingerprint],
-               "card_country" => charge[:card][:country],
-               "card_address_line1" => charge[:card][:address_line1],
-               "card_address_line2" => charge[:card][:address_line2],
-               "card_address_city" => charge[:card][:address_city],
-               "card_address_state" => charge[:card][:address_state],
-               "card_address_zip" => charge[:card][:address_city],
-               "card_address_country" => charge[:card][:address_country],
-               "card_customer" => charge[:card][:customer],
-               "card_type" => charge[:card][:type],
-               "card_captured" => charge[:captured],
-               "card_paid" => charge[:paid],
-               "card_balance_transaction" => charge[:balance_transaction]
-            }
-
-            session[:grades] = session[:grades].merge(@cardinfo)
-            @grades = session[:grades]
-
+            @booking.stripe_customer_token = charge[:created]
+            @booking.save
             
-            @subscription.stripe_customer_token = charge[:created]
-            subscriber = params[:subscription][:email]
-            addition_email = params[:addition_email]
-
-            
-            
-            session[:anualpremium] = nil
-            session[:grades] = nil
-            redirect_to feedback_subscriptions_path, :notice => "Thank you for choosing Bernard Fleischer & Sons, Inc."
+            session[:price] = nil
+            session[:post_id] = nil
+            redirect_to root_path, :notice => "Thank you"
           
         else
           render :new
           flash[:notice] = "Something went wrong,please try again. "
         end
       else
-        flash[:notice] = "Session is clear, Please try again."
+        flash[:notice] = "Session expired."
         redirect_to :back
       end
-    
-
 	end
+
 
 	def checkout
-		
 		session[:price] = params[:booking][:price]
-        session[:user_id] = params[:booking][:user_id] 
-       
+        session[:post_id] = params[:booking][:post_id] 
         redirect_to new_booking_path
 	end
+
+	def is_number?(i)
+    	true if Float(i) rescue false
+  	end
+
+
+private
+	def page_params
+      params.require(:booking).permit(:stripe_customer_token, :price, :user_id, :email, :post_id)
+    end
 
 end

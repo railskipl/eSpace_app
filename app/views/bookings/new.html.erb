@@ -97,10 +97,13 @@
 
   <span class="payment-errors"></span>
   <%= hidden_field_tag :stripe_card_token %>
+  <%= f.hidden_field :user_id, :value=> current_user.id %>
+  <%= f.hidden_field :post_id, :value=> session[:post_id] %>
 
   <div class="field">
     <%= f.label :price %>
     <%= f.text_field :price, :value=> session[:price], :readonly => true  %>
+      
   </div>
 
   <div class="field">
