@@ -6,18 +6,24 @@ class BookingsController < ApplicationController
 
 	def create
 		
-
         if session[:price] != nil
 
           @booking = Booking.new(page_params)
 
           @amount = (params[:booking][:price]).to_f
           
-          customer = Stripe::Customer.create(
-            :email => params[:booking][:email],
-            :card  => params[:stripe_card_token],
-            :description => "Customer #{params[:booking][:email]}"
-          )
+          begin
+
+            customer = Stripe::Customer.create(
+              :email => params[:booking][:email],
+              :card  => params[:stripe_card_token],
+              :description => "Customer #{params[:booking][:email]}"
+            )
+
+          rescue Stripe::InvalidRequestError => e
+            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+            return false
+          end
           
           if is_number?(@amount.to_f)
             @amount = ((@amount.to_f)*100).to_i
