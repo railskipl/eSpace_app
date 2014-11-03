@@ -312,6 +312,38 @@ jQuery("#new_comment").validate({
 });
 
 
+jQuery("#new_page").validate({
+errorElement:'div',
+rules: {
+  
+"page[title]":{
+	required:true
+},
+"page[body]":{
+	required:true
+},
+"page[meta_title]":{
+required:true
+},
+"page[meta_description]":{
+required:true
+}
+},
+messages: {
 
+"page[title]":{
+	required: "Please enter Title"
+},
+"page[body]":{
+	required: "Please enter Body"
+},
+"page[meta_title]":{
+required: "Please enter Meta title"
+},
+"page[meta_description]":{
+required: "Please enter Meta Description"
+}
+}
+});
 
 });
