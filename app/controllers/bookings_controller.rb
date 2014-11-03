@@ -37,9 +37,11 @@ class BookingsController < ApplicationController
             
           end
 
+          
           if charge[:id] && charge[:captured] == true
             
             @booking.stripe_customer_token = charge[:created]
+            @booking.stripe_charge_id = charge[:id]
             @booking.save
             
             session[:price] = nil
