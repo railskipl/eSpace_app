@@ -14,12 +14,6 @@ class User < ActiveRecord::Base
  
   has_many :comments, :dependent => :destroy
 
-   # def weekly_report
-   # last_week_date = (DateTime.current().to_date() - 7.days)
-   # last_report = self.reports.last
-   # last_report if last_report != nil && last_report.created_at >= last_week_date
-   # end
-   
    
   def self.json_tokens(query)
     users = where("email like ?", "%#{query}%")
@@ -38,7 +32,7 @@ class User < ActiveRecord::Base
       user.email = auth["info"]["email"]
       user.personal_email = alt_email
       user.password  = Devise.friendly_token[0,20]
-       
+       user.skip_confirmation!
     end
     
   end
