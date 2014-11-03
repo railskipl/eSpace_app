@@ -73,7 +73,7 @@ jQuery(document).ready(function(){
 <% end %>
 
 	<td><%= image_tag(@post.photo.url(:medium)) %> <br/>
-    <%= @post.user.name %> <%= @post.user.last_name %><br/>
+    <%= @post.user.name rescue nil %> <%= @post.user.last_name rescue nil %><br/>
 		<strong>Price : </strong> $ <%= @post.price_sq_ft %> /Sq.ft <br/>
 
     <% if @post.drop_off %>
