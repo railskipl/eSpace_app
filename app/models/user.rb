@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def self.is_present_facebook_oauth(auth)
-      where(auth.slice(:provider, :uid)).first 
+      User.where(auth.slice(:provider, :uid)).first 
   end
  
   #Message count
