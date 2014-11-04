@@ -22,8 +22,11 @@ ActiveRecord::Schema.define(version: 20141103073929) do
 
   create_table "bookings", force: true do |t|
     t.string   "stripe_customer_token"
+    t.string   "stripe_charge_id"
     t.float    "price"
+    t.integer  "post_id"
     t.integer  "user_id"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,7 +3,7 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
  <script type="text/javascript">
-    Stripe.setPublishableKey('pk_test_utn2AL4PFviXeehaGbIJZ0oY');
+    Stripe.setPublishableKey('pk_test_17xmTuMVQ5oVgcT0AWY6XcNo');
    $(document).ready(function() {
     function addInputNames() {
     // Not ideal, but jQuery's validate plugin requires fields to have names
@@ -97,10 +97,18 @@
 
   <span class="payment-errors"></span>
   <%= hidden_field_tag :stripe_card_token %>
+  <%= f.hidden_field :user_id, :value=> current_user.id %>
+  <%= f.hidden_field :post_id, :value=> session[:post_id] %>
 
   <div class="field">
     <%= f.label :price %>
     <%= f.text_field :price, :value=> session[:price], :readonly => true  %>
+      
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, :value=> current_user.email  %>
   </div>
 
   <div class="field">
