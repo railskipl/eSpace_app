@@ -20,24 +20,31 @@ Rails.application.routes.draw do
       end
    end
 
-   resources :users, :only => [:index,:edit,:update,:show] 
+   resources :users do 
 
+    collection do
+        get 'new_user'
+        post 'create_user'
+    end
+end
    get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
    get '/users/:id/status', :to => "users#toggled_status"
    get '/mutual_friends', to: 'posts#mutual'
+
    
    resources :contactus
-   
+   # resources :home
    get 'home/contactus',:to => "home#contactus"
    get '/home/customer_daily_report', :to => "home#customer_daily_report"
    get '/home/customer_weekly_report', :to => "home#customer_weekly_report"
    get '/home/customer_monthly_report', :to => "home#customer_monthly_report"
    get '/home/all_postings', :to => "home#all_postings"
-   
+   get  'search'  => "home#searching"
    get 'terms',:to => "home#terms"
    get  'search'  => "posts#search"
    match 'all_posts' => "posts#all_posts", via: [:get, :post]
-   
+
+  resources :comments
   resources :posts do
     resources :comments, :only => [:create, :show]
     member do

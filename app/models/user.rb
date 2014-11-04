@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
  
   has_many :comments, :dependent => :destroy
 
-   
+  
   def self.json_tokens(query)
     users = where("email like ?", "%#{query}%")
     if users.empty?
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
       user.oauth_expires_at = Time.at(auth["credentials"]["expires_at"])
       user.personal_email = alt_email
       user.password  = Devise.friendly_token[0,20]
-       user.skip_confirmation!
+      user.skip_confirmation!
     end
     
   end

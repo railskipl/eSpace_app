@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
-
+   before_filter :authenticate_user!
+   before_action :set_comment, only: [:index,:show, :edit, :update, :destroy]
+    def index
+      
+    end
     def show
      @posts = Post.where("user_id != ?",current_user.id)
      @user = User.find_by_id(current_user)

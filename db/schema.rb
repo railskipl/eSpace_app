@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20141031115610) do
 
   add_index "authentication_providers", ["name"], name: "index_name_on_authentication_providers", using: :btree
 
+ActiveRecord::Schema.define(version: 20141103073929) do
+
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
     t.string   "card_number"
@@ -175,6 +177,8 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.string   "mobile_number"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.integer  "admin_user_id"
+
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

@@ -233,23 +233,23 @@ jQuery("#new_bank_detail").validate({
 errorElement:'div',
 rules: {
   
-"bank_detail[full_name]":{
-required:true
-},
-"bank_detail[card_number]":{
-required:true,
-number:true,
-minlength: 8
-}
+	"bank_detail[full_name]":{
+		required:true
+	},
+	"bank_detail[card_number]":{
+		required:true,
+		number:true,
+		minlength: 8
+	}
 },
 messages: {
 
-"bank_detail[full_name]":{
-required: "Please enter name"
-},
-"bank_detail[card_number]":{
-required: "Please card number"
-}
+	"bank_detail[full_name]":{
+		required: "Please enter name"
+	},
+	"bank_detail[card_number]":{
+		required: "Please card number"
+	}
 }
 });
 
@@ -257,34 +257,34 @@ jQuery("#contactus").validate({
 errorElement:'div',
 rules: {
   
-"contactus[name]":{
-	required:true
-},
-"contactus[email]":{
-	required:true,
-	email: true
-},
-"contactus[subject]":{
-required:true
-},
-"contactus[message]":{
-required:true
-}
+	"contactus[name]":{
+		required:true
+	},
+	"contactus[email]":{
+		required:true,
+		email: true
+	},
+	"contactus[subject]":{
+		required:true
+	},
+	"contactus[message]":{
+		required:true
+	}
 },
 messages: {
 
-"contactus[name]":{
-	required: "Please enter Name"
-},
-"contactus[email]":{
-	required: "Please enter Email"
-},
-"contactus[subject]":{
-required: "Please enter Subject"
-},
-"contactus[message]":{
-required: "Please enter Message"
-}
+	"contactus[name]":{
+		required: "Please enter Name"
+	},
+	"contactus[email]":{
+		required: "Please enter Email"
+	},
+	"contactus[subject]":{
+		required: "Please enter Subject"
+	},
+	"contactus[message]":{
+		required: "Please enter Message"
+	}
 }
 });
 
@@ -293,57 +293,28 @@ jQuery("#new_comment").validate({
 	errorElement:'div',
 
 	rules: {
-		"comment[comments]":{
-			required:true
-		},
+
         "comment[rating]":{
 	        required:true
-        }
+        },
+		"comment[comments]":{
+			required:true,
+			minlength: 4,
+			maxlength: 100
+		}
 	},
 	messages: {
 
+		"comment[rating]":{
+        required: "Please rate"
+        },
 		"comment[comments]":{
 			required: "Please enter comment"
-		},
-        "comment[rating]":{
-        required: "Please Rate"
-        }
+		}
+       
 	}
 });
 
 
-jQuery("#new_page").validate({
-errorElement:'div',
-rules: {
-  
-"page[title]":{
-	required:true
-},
-"page[body]":{
-	required:true
-},
-"page[meta_title]":{
-required:true
-},
-"page[meta_description]":{
-required:true
-}
-},
-messages: {
-
-"page[title]":{
-	required: "Please enter Title"
-},
-"page[body]":{
-	required: "Please enter Body"
-},
-"page[meta_title]":{
-required: "Please enter Meta title"
-},
-"page[meta_description]":{
-required: "Please enter Meta Description"
-}
-}
-});
 
 });

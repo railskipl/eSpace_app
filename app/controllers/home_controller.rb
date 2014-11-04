@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-# before_filter :authenticate_user!, :only => [ :show]
+ before_filter :authenticate_user!, :except => []
 	def index
     @adminusers = User.where("admin =?",false).page(params[:page]).per_page(10)
 	end
@@ -11,10 +11,13 @@ class HomeController < ApplicationController
       @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(10)
     end
 
-  def search
-  q = params[:q]
-  @adminusers =User.ransack(name_or_last_name_cont: q).result  
-  end
+    def admin_user
+    @adminusers = User.where("admin =?",false).page(params[:page]).per_page(10)
+    end
+      def searching
+      q = params[:q]
+      @adminusers =User.ransack(name_or_last_name_cont: q).result  
+      end
 
    def customer_daily_report
    @adminusers = User.where("Date(created_at) =?" ,Date.today)
