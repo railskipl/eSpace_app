@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
    get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
    get '/users/:id/status', :to => "users#toggled_status"
-   
+   get '/mutual_friends', to: 'posts#mutual'
    
    resources :contactus
    

@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.email = auth["info"]["email"]
+      user.oauth_token = auth["credentials"]["token"]
+      user.oauth_expires_at = Time.at(auth["credentials"]["expires_at"])
       user.personal_email = alt_email
       user.password  = Devise.friendly_token[0,20]
        
