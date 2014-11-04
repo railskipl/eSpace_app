@@ -312,21 +312,38 @@ jQuery("#new_comment").validate({
 });
 
 
-jQuery("#checkEmail").validate({
+jQuery("#new_page").validate({
 errorElement:'div',
 rules: {
   
-"user[personal_email]":{
+"page[title]":{
+	required:true
+},
+"page[body]":{
+	required:true
+},
+"page[meta_title]":{
+required:true
+},
+"page[meta_description]":{
 required:true
 }
 },
 messages: {
 
-"user[personal_email]":{
-required: "Please enter Email"
+"page[title]":{
+	required: "Please enter Title"
+},
+"page[body]":{
+	required: "Please enter Body"
+},
+"page[meta_title]":{
+required: "Please enter Meta title"
+},
+"page[meta_description]":{
+required: "Please enter Meta Description"
 }
 }
-
 });
 
 });

@@ -1,7 +1,49 @@
-<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
-<%= form_for :user, :url=>{:controller=>'omniauth_callbacks',:action=>'create'},:html => {:id => "checkEmail"} do |f| %>
-  <%= f.email_field :personal_email, :style=>"height: 30px;margin-top:12px;"  %>
-  <%#= f.password_field :password, :class => "input-medium" %>
 
-  <%= f.submit "Confirm Email", :class => "btn btn-small" ,:style =>"height: 31px; margin-top:4px; width: 104px;" %>
-<% end %>
+
+<script>
+function validateForm() {
+	var err = 0;
+
+	var userinput = $('#personal_email').val();
+	var domain = 'usc.edu';
+	//var domain = 'kunalinfotech.net';
+
+	var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+
+	if($('#personal_email').val() == ''){
+        $('#personal_email').parent().parent().find('.form-error').html("Please enter email address.");
+        err++;
+    }
+
+	if(!pattern.test(userinput) || userinput.split('@').pop() != domain)
+	{
+	 	$('#personal_email').parent().parent().find('.form-error').html("Please enter valid email address.");
+        err++;
+	}
+
+	if(err == 0){
+            
+             return true;      
+    }else{
+            
+            return false;
+    }
+
+}
+</script>
+
+
+<div class="dragonContent">
+ 	<div class="dialog-content">
+
+    <%= form_tag url_for(:controller => 'omniauth_callbacks', :action => 'create'), :method => 'post', :id=>"checkEmail", :onsubmit => "return validateForm()" do |f| %>
+	    <%= label_tag :email%>
+
+      <%= text_field_tag :personal_email%>
+      <div class="form-error"></div>
+	    
+	    <div><%= submit_tag "Confirmation Email", :class=>"btn btn-primary" %> </div>
+    <% end %>
+  
+    </div>
+</div>

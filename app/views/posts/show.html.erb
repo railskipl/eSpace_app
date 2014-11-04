@@ -73,6 +73,7 @@ jQuery(document).ready(function(){
 <% end %>
 
 	<td><%= image_tag(@post.photo.url(:medium)) %> <br/>
+    <%= @post.user.name rescue nil %> <%= @post.user.last_name rescue nil %><br/>
 		<strong>Price : </strong> $ <%= @post.price_sq_ft %> /Sq.ft <br/>
 
     <% if @post.drop_off %>
@@ -101,7 +102,7 @@ jQuery(document).ready(function(){
 
     
     <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'} do |f| %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :post_id, :value => @post.id %>
       <%= f.hidden_field :price, :value => "" %>
       <%= f.submit "Book", :class => "btn btn-primary contact-form"%>
     <% end %>
@@ -139,6 +140,6 @@ jQuery(document).ready(function(){
     <% num_stars(comment.rating)[:empty].times do %>
       <i class="fa fa-star-o"></i>
     <% end %>
-    <strong><%= comment.user.name %>&nbsp;<%= comment.user.last_name %></strong>&nbsp;<%= comment.created_at.strftime("%b %d,%Y") %><br><br>
+    <strong><%= comment.user.name rescue nil %>&nbsp;<%= comment.user.last_name rescue nil %></strong>&nbsp;<%= comment.created_at.strftime("%b %d,%Y") %><br><br>
     <%= comment.comments %><br><br>
     <%end%>
