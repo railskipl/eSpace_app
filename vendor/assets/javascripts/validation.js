@@ -299,7 +299,7 @@ jQuery("#new_comment").validate({
         },
 		"comment[comments]":{
 			required:true,
-			minlength: 4
+			minlength: 4,
 			maxlength: 100
 		}
 	},
