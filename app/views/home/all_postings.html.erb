@@ -5,6 +5,7 @@
     <tr>
       <th>Sr No.</th>
       <th>Post ID</th>
+       <th>Name</th>
        <th>Price</th>
       <th>Post Date</th>
       <th>Area (Sq ft)</th>
@@ -17,13 +18,14 @@
   </thead>
 
   <tbody id="all_posts" >
-
+<%#= City.find(initiative.city_id).city_name%>
    
     <% @posts.each_with_index do |post, index| %>
     
         <tr>
         <td><%= index + 1 %></td>
         <td><%= post.id %></td>
+        <td><%= User.find(post.user_id).name rescue nil%>&nbsp;<%= User.find(post.user_id).last_name rescue nil%></td>
         <td><%= post.price_sq_ft %></td>
         <td><%= post.created_at.strftime("%d-%m-%Y") %></td> 
         <td><%= post.area %></td>

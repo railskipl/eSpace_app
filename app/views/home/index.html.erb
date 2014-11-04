@@ -22,7 +22,9 @@
                  <!-- </div> -->
   <%= submit_tag "Search"%> 
   <%end%>
-              
+  <div>
+  <%= link_to "Add new User",new_user_users_path%> 
+  </div> <br>   
   <table class="table table-bordered">
 
 	 <tr>
@@ -77,6 +79,7 @@ Please Select Your State and City
 </div>
 </div>
 </div>
+<%= will_paginate @adminusers %>
 
 <% else %>
 

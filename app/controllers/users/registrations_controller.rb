@@ -23,7 +23,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  
+  def build_resource(hash=nil)
+  self.resource = resource_class.new_with_session(hash || {}, session)
+end
 
   # DELETE /resource
   def destroy

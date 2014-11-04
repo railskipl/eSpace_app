@@ -1,0 +1,67 @@
+<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","admin_validation" %>
+<%= form_for :user, :url=>{:controller=>'users',:action=>'create_user'},:html => {:method => "post",:id=>"admin_create_user"} do |f| %>
+<div class="container">
+<div class="row">
+<div class="span12">
+<h2>Manage user</h2>
+<fieldset>
+<div>
+<div class="col-md-6">
+<div>
+<div class="form-group">
+<label for="username" class="control-label">First name</label>
+<div class="controls">
+<%= f.text_field :name,:class=> "form-control",:style=>"height:auto" rescue nil%>
+</div> <!-- /controls -->
+</div>
+</div>
+<div>
+<div>
+<div class="form-group">
+<label for="username" class="control-label">Last name</label>
+<div class="controls">
+<%= f.text_field :last_name,:class=> "form-control",:style=>"height:auto" rescue nil%>
+</div> <!-- /controls -->
+</div>
+</div>
+</div>
+<div>
+<div>
+<div class="form-group">
+<label for="username" class="control-label">Email address</label>
+<div class="controls">
+<%= f.text_field :email, :class=> "form-control",:style=>"height:auto" rescue nil%>
+</div> <!-- /controls -->
+
+</div>
+</div>
+<div class="form-group">
+<label for="username" class="control-label">Password</label>
+<div class="controls">
+<%= f.password_field :password, :class=> "form-control",:style=>"height:auto" rescue nil%>
+</div> <!-- /controls -->
+
+</div>
+</div>
+<div class="form-group">
+<label for="username" class="control-label">Password Confirmation</label>
+<div class="controls">
+<%= f.password_field :password_confirmation, :class=> "form-control",:style=>"height:auto" rescue nil%>
+</div> <!-- /controls -->
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="form-group">
+<%= f.submit "Create user",:class=>"button button-primary", :style=>"margin-left: 18px;" %>
+</div>
+</div>
+</fieldset>
+</div>
+</div> <!-- /.row -->
+</div> <!-- /.container -->
+<%end%>

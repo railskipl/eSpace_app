@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029122417) do
+ActiveRecord::Schema.define(version: 20141103073929) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20141029122417) do
     t.string   "personal_email"
     t.integer  "mobile_no"
     t.string   "mobile_number"
+    t.integer  "admin_user_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

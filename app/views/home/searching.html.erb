@@ -1,0 +1,27 @@
+<% if @adminusers.blank? %>
+No Results found!!
+<%else%>
+  <%= form_tag search_path,:method=> :get do %>
+  <%= text_field_tag :q, nil %>
+  <%= submit_tag "Search"%> 
+  <%end%>
+
+  <table class="table table-bordered">
+
+	 <tr>
+	 <th>Email </th>
+	 <th>View Details</th>
+	 <th>Delete</th>
+	 <th>Activate/Deactivate</th>
+	 </tr>
+	<% @adminusers.each do |adminuser|%>
+	<tr>
+	 <td><%= adminuser.email %>
+	 <td><%= link_to "View Details",{:controller => 'users', :action => 'show', :id => adminuser.id}%></td>
+	 <td><%= link_to "Destroy",{:controller => 'users', :action => 'destroy', :id => adminuser.id}%></td>
+	 <td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>
+	 </tr>
+	<%end%>	
+
+	</table>
+ <%end%>
