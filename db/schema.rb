@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20141031115610) do
 
   add_index "authentication_providers", ["name"], name: "index_name_on_authentication_providers", using: :btree
 
-ActiveRecord::Schema.define(version: 20141103073929) do
+
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
