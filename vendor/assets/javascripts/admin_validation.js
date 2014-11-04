@@ -40,7 +40,6 @@ required: "Please enter Password Confirmation"
 }
 });
 
-
 jQuery("#new_page").validate({
 errorElement:'div',
 rules: {
