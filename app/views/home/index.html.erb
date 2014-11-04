@@ -43,42 +43,7 @@
 	<%end%>	
 
 	</table>
-  <%elsif signed_in? %>
 
-<script type="text/javascript">
-jQuery(document).ready(function() {
-<% if request.remote_ip %>
-<% else %>
-jQuery("#various1").fancybox().trigger('click');
-<%end%>
-});
-</script>
-
-
-<a id="various1" href="#inline3" title="" ></a>
-<div style="display: none">
-<div id="inline3" style="width:400px; height:auto ; overflow:auto; text-align:left">
-<div>
-Please Select Your State and City
-<%#=form_for @user do |f|%>
-<table width="100%" border="0" cellspacing="10" cellpadding="0">
-<tr>
-<td align="right" valign="top">State :</td>
-<td align="left" valign="top">
-<%#= f.email_field :email%>
-</td>
-</tr>
-
-<tr>
-<td align="right" valign="top"><label>
-<%#= f.submit "Update" ,:class => "details" %>
-</label></td>
-</tr>
-</table>
-<%# end %>
-</div>
-</div>
-</div>
 <%= will_paginate @adminusers %>
 
 <% else %>
@@ -90,5 +55,5 @@ Please Select Your State and City
 
  
 
-<%= will_paginate @adminusers %>
+<%#= will_paginate @adminusers %>
 
