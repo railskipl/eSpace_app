@@ -6,7 +6,7 @@ class OmniauthCallbacksController < ApplicationController
      end
 
      def create
-
+     	
      	@user = User.find_for_facebook_oauth(session["omniauth.auth"],params[:personal_email])
      	if @user.present?   
 	      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
@@ -15,9 +15,9 @@ class OmniauthCallbacksController < ApplicationController
 	      session["omniauth.auth"] = request.env["omniauth.auth"]
 	      redirect_to new_omniauth_callback_path
 	           respond_to do |format|
-      # format.html { redirect_to home_all_postings_path, notice: 'Post status updated.' }
-      format.json {  render :json => !@user }
-    end
+			      # format.html { redirect_to home_all_postings_path, notice: 'Post status updated.' }
+			      format.json {  render :json => !@user }
+			    end
 	    end
 
      end

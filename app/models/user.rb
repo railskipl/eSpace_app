@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_facebook_oauth(auth, alt_email)
-    raise auth.inspect
+
     User.where(auth.slice("provider", "uid")).first_or_create do |user|
       raise auth.inspect
       user.provider = auth["provider"]
