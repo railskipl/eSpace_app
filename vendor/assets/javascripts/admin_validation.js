@@ -4,39 +4,42 @@ jQuery("#admin_create_user").validate({
 	errorElement:'div',
 	rules: {
   
-"user[name]":{
-	required:true
-},
-"user[last_name]":{
-	required:true
-},
-"user[email]":{
-required:true
-},
-"user[password]":{
-required:true
-},
-"user[password_confirmation]":{
-required:true
-}
+	"user[name]":{
+		required:true
+	},
+	"user[last_name]":{
+		required:true
+	},
+	"user[email]":{
+		required:true,
+		email: true
+	},
+	"user[password]":{
+		required:true
+	},
+	"user[password_confirmation]":{
+		required:true,
+		equalTo: "#user_password"
+	}
 },
 messages: {
 
-"user[name]":{
-	required: "Please enter Name"
-},
-"user[last_name]":{
-	required: "Please enter Last Name"
-},
-"user[email]":{
-required: "Please enter Email"
-},
-"user[password]":{
-required: "Please enter Password"
-},
-"user[password_confirmation]":{
-required: "Please enter Password Confirmation"
-}
+	"user[name]":{
+		required: "Please enter Name"
+	},
+	"user[last_name]":{
+		required: "Please enter Last Name"
+	},
+	"user[email]":{
+		required: "Please enter Email"
+	},
+	"user[password]":{
+		required: "Please enter Password"
+	},
+	"user[password_confirmation]":{
+		required: "Please enter Password Confirmation",
+		equalTo: "Password does not match"
+	}
 }
 });
 
