@@ -15,37 +15,83 @@ jQuery(document).ready(function(){
         // update the total to sum    
         var qty = parseInt($('#area').val());
         var price = parseFloat($('#price').val());
-        $('#total').val((qty * price ? qty * price : 0).toFixed(2));
-        $('#booking_price').val((qty * price ? qty * price : 0).toFixed(2));   
+        var drop_off = 0;
+        var pickup = 0;
+
+        if($('#checkbox1').is(":checked"))
+        {
+          var drop_off = parseFloat($('#dropoff').val());
+        }
+        if($('#checkbox2').is(":checked"))
+        {
+          var pickup = parseFloat($('#pickup').val());
+        }
+
+        $('#total').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
+        $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));   
     }
 
 
-    //set initial state.
-    
-    $('#textbox1').val($(this).is(':checked'));
+    //Pickup and drop off calculation.
     
     $('#checkbox1').change(function() {
 
        var qty = parseInt($('#area').val());
        var price = parseFloat($('#price').val());
        var drop_off = 0;
+       var pickup = 0;
 
-       if($('#checkbox1').is(":checked"))
-       {
-        var drop_off = parseFloat($('#dropoff').val());
-       }
+        if($('#checkbox1').is(":checked"))
+        {
+          var drop_off = parseFloat($('#dropoff').val());
+        }
+        if($('#checkbox2').is(":checked"))
+        {
+          var pickup = parseFloat($('#pickup').val());
+        }
 
-       var total = parseFloat((qty * price ? qty * price : 0).toFixed(2));
+        var total = parseFloat((qty * price ? qty * price : 0).toFixed(2));
 
         if($(this).is(":checked")) {
          
-          $('#total').val((total + drop_off ? total + drop_off : 0).toFixed(2));
-          $('#booking_price').val((total + drop_off ? total + drop_off : 0).toFixed(2));
+          $('#total').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
         }
         else
         {
-          $('#total').val((total + drop_off ? total + drop_off : 0).toFixed(2));
-          $('#booking_price').val((total + drop_off ? total + drop_off : 0).toFixed(2));
+          $('#total').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+        }
+
+    });
+
+    $('#checkbox2').change(function() {
+
+       var qty = parseInt($('#area').val());
+       var price = parseFloat($('#price').val());
+       var drop_off = 0;
+       var pickup = 0;
+
+        if($('#checkbox1').is(":checked"))
+        {
+          var drop_off = parseFloat($('#dropoff').val());
+        }
+        if($('#checkbox2').is(":checked"))
+        {
+          var pickup = parseFloat($('#pickup').val());
+        }
+
+        var total = parseFloat((qty * price ? qty * price : 0).toFixed(2));
+
+        if($(this).is(":checked")) {
+         
+          $('#total').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+        }
+        else
+        {
+          $('#total').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
         }       
     });
 
@@ -95,8 +141,10 @@ jQuery(document).ready(function(){
   <td>
     <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' /> <input type='text' name='area' id='area' value='' /><br />
 
-    <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off %>' />
+    <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
+    <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
     <input type="checkbox" id="checkbox1" /> Drop Off <br />
+    <input type="checkbox" id="checkbox2" /> Pick Up <br />
     <input type='text' name='total' id='total' value='' />
 
 
@@ -123,7 +171,7 @@ jQuery(document).ready(function(){
         <%= f.radio_button(:rating, "2") %><%= f.label(:rating.to_s + "_2") %>
         <%= f.radio_button(:rating, "1") %><%= f.label(:rating.to_s + "_1") %>
        </fieldset><br><br><br>
-   Comment:<%= f.text_area :comments ,:cols=>"30", :rows=>"4" %>
+   <strong>Comment : </strong><%= f.text_area :comments ,:cols=>"30", :rows=>"4" %>
    <p ><%= f.submit "Add comment", :class => "btn btn-primary contact-form" %></p>
    <% end %>
 <% end %>
