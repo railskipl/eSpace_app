@@ -42,13 +42,11 @@ class User < ActiveRecord::Base
   def self.is_present_facebook_oauth(auth)
       where(auth.slice(:provider, :uid)).first 
   end
-
-
+ 
   #Message count
   def check_message
     reminders =[]
-    
-    reminders = Message.where("recipient_id = ?",self.id)
+    reminders = Message.select(:sender_id,:is_read).where("recipient_id = ? AND is_read =?",self.id,false).uniq!
     count = 0
     reminders.each do |r|
       unless r.is_read
@@ -57,6 +55,7 @@ class User < ActiveRecord::Base
     end
     return count
   end
+
 
 
 end

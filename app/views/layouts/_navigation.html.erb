@@ -17,7 +17,13 @@
     <li><%= link_to "Personal Information", edit_user_path(current_user)%></li>
      <li><%= link_to "Change Password", edit_user_registration_path%></li>
      <li><%= link_to "Bank Details", bank_details_path%></li>
-     <li><%= link_to "Messages (#{render  :partial => 'layouts/message_count'})", messages_path%> </li>
+       <li>
+      <%= link_to "Messages",{:controller => 'messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil%>
+       <li id="responsecontainer">
+          
+       </li>
+     </li>
+    
  
      <li> <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %> </li>
   <% else %>
@@ -31,3 +37,10 @@
 
 
 
+<script>
+  
+  var refreshId = setInterval(function()
+  {
+       $('#responsecontainer').fadeOut("slow").load('<%= refresh_part_messages_path%>').fadeIn("slow");
+  }, 10000);
+</script>
