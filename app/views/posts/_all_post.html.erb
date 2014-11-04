@@ -2,7 +2,7 @@
     
         <tr>
         <td><%= index + 1 %></td>
-         <td><%= link_to post.user.email ,mutual_friends_path(:user_id => post.user.id) rescue nil rescue nil%><br/>You have(<%= mutual_count(post.user.id) rescue nil%>)in common</td>
+         <td><%= link_to post.user.email ,mutual_friends_path(:user_id => post.user.id) rescue nil rescue nil%><br/>You have(<%= mutual_count(post.user.id) rescue nil%>)friend's in common</td>
         <td><%= post.id %></td>
         <td><%= post.price_sq_ft %></td>
         <td><%= post.created_at.strftime("%d-%m-%Y") %></td> 
