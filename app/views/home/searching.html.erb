@@ -1,11 +1,29 @@
 <% if @adminusers.blank? %>
 No Results found!!
 <%else%>
-  <%= form_tag search_path,:method=> :get do %>
-  <%= text_field_tag :q, nil %>
-  <%= submit_tag "Search"%> 
+  
+<% if signed_in? && current_user.admin? %>
+ <h4>Search by</h4>
+  <%= form_tag searching_path,:method=> :get do %>
+  <%= text_field_tag :search, params[:search] %>
+      <!-- <div class="span5"> -->
+                     <!-- <section id="buttons"> -->
+                       
+            <!--               <select  onchange="location = this.options[this.selectedIndex].value;">
+                            <option value="<%= root_path %>">All</option>
+                            <option value="<%= home_customer_monthly_report_path %>">Month</option>
+                            <option value="<%= home_customer_weekly_report_path %>"> 
+                            Weekly
+                            </option>
+                            <option value="<%= home_customer_daily_report_path%>">Daily
+                            </option>
+                     
+                          </select> -->
+                     <!-- </section> -->
+                 <!-- </div> -->
+  <%= submit_tag "Search", :class => "btn btn-primary contact-form"%> 
   <%end%>
-
+  <%end%>
   <table class="table table-bordered">
 
 	 <tr>

@@ -1,7 +1,7 @@
 
 <% if signed_in? && current_user.admin? %>
 
-  <%= form_tag search_path,:method=> :get do %>
+  <%= form_tag home_customer_daily_report_path,:method=> :get do %>
   <%= text_field_tag :q, nil %>
   <select  onchange="location = this.options[this.selectedIndex].value;">
     <option value="<%= root_path %>">All</option>
@@ -9,7 +9,7 @@
     <option value="<%= home_customer_weekly_report_path %>" > Weekly</option>
     <option value="<%= home_customer_daily_report_path%>"selected="selected">Daily</option>
   </select>
-  <%= submit_tag "Search"%> 
+  <%= submit_tag "Search", :class => "btn btn-primary contact-form"%> 
      
   <%end%>
             <div  style="text-align:right;margin-left:10px;">
@@ -35,7 +35,7 @@
 	<%end%>	
 
 	</table>
-<%= %>
+
 <% else %>
 <h1>Home Page</h1>
 

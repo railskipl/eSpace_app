@@ -3,12 +3,21 @@
 
 <% if signed_in? && current_user.admin? %>
  <h4>Search by</h4>
-  <%= form_tag search_path,:method=> :get do %>
-  <%= text_field_tag :q, nil %>
+ <%date = (Date.today.beginning_of_week)%>
+ <%daily =(Date.today)%>
+ <%weekly =(Date.today.beginning_of_week..(date + 6.days))%>
+ <% monthly= (Date.today.beginning_of_month..Date.today.end_of_month)%>
+  <%= form_tag searching_path,:method=> :get do %>
+
+ <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+
+<%#= select_tag "created_at", options_for_select([['Select', ''], ['Daily'], ['Weekly'], ['Monthly']]) %>
+ <%#= select_tag :created_at, User.all, :id, :created_at, :include_blank => true %>
+ <%= select_tag "created_at", options_for_select([daily,weekly,monthly], params[:search]) %>
       <!-- <div class="span5"> -->
                      <!-- <section id="buttons"> -->
                        
-                          <select  onchange="location = this.options[this.selectedIndex].value;">
+              <!--             <select  onchange="location = this.options[this.selectedIndex].value;">
                             <option value="<%= root_path %>">All</option>
                             <option value="<%= home_customer_monthly_report_path %>">Month</option>
                             <option value="<%= home_customer_weekly_report_path %>"> 
@@ -17,7 +26,7 @@
                             <option value="<%= home_customer_daily_report_path%>">Daily
                             </option>
                      
-                          </select>
+                          </select> -->
                      <!-- </section> -->
                  <!-- </div> -->
   <%= submit_tag "Search", :class => "btn btn-primary contact-form"%> 
