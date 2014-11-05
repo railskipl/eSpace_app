@@ -34,9 +34,6 @@ end
    resources :contactus
    # resources :home
    get 'home/contactus',:to => "home#contactus"
-   get '/home/customer_daily_report', :to => "home#customer_daily_report"
-   get '/home/customer_weekly_report', :to => "home#customer_weekly_report"
-   get '/home/customer_monthly_report', :to => "home#customer_monthly_report"
    get '/home/all_postings', :to => "home#all_postings"
    get  'search'  => "home#searching"
    get 'terms',:to => "home#terms"
@@ -108,31 +105,5 @@ resources :ratings, only: :update
   #     end
   #   end
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

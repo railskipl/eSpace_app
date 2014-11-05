@@ -8,19 +8,15 @@
       <!-- <div class="span5"> -->
                      <!-- <section id="buttons"> -->
                        
-                          <select  onchange="location = this.options[this.selectedIndex].value;">
-                            <option value="<%= root_path %>">All</option>
-                            <option value="<%= home_customer_monthly_report_path %>">Month</option>
-                            <option value="<%= home_customer_weekly_report_path %>"> 
-                            Weekly
-                            </option>
-                            <option value="<%= home_customer_daily_report_path%>">Daily
-                            </option>
-                     
+                          <select>
+                            <option value="all">All</option>
+                            <option value="monthly">Month</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="daily">Daily</option>
                           </select>
                      <!-- </section> -->
                  <!-- </div> -->
-  <%= submit_tag "Search", :class => "btn btn-primary contact-form"%> 
+  <%= submit_tag "Search", :class => "btn btn-primary contact-form" %> 
   <%end%>
   <div>
   <%= link_to "Add new User",new_user_users_path%> 
@@ -28,6 +24,7 @@
   <table class="table table-bordered">
 
 	 <tr>
+   <th>Name </th>
 	 <th>Email </th>
 	 <th>View Details</th>
 	 <th>Delete</th>
@@ -35,7 +32,8 @@
 	 </tr>
 	<% @adminusers.each do |adminuser|%>
 	<tr>
-	 <td><%= adminuser.email %>
+    <td><%= adminuser.name %> <%= adminuser.last_name %></td>
+	 <td><%= adminuser.email %></td>
 	 <td><%= link_to "View Details",{:controller => 'users', :action => 'show', :id => adminuser.id}%></td>
 	 <td><%= link_to "Destroy",{:controller => 'users', :action => 'destroy', :id => adminuser.id}%></td>
 	 <td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>

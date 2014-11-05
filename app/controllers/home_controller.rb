@@ -12,45 +12,36 @@ class HomeController < ApplicationController
     end
 
     def admin_user
-    @adminusers = User.where("admin =?",false).page(params[:page]).per_page(10)
+      @adminusers = User.where("admin =?",false).page(params[:page]).per_page(10)
     end
-      def searching
+      
+    def searching
       q = params[:q]
-      @adminusers =User.ransack(name_or_last_name_cont: q).result  
+
+       @adminusers = User.where(:admin => false).order(:id)
+       @adminusers = @adminusers.where("name like ? or last_name like ?", "%#{q}%", "%#{q}%") if q.present?
+       
+
+      if params[:created] == 'All'
+       
+      elsif params[:created] == 'Monthly'
+        @adminusers = @adminusers.where(:created_at => Date.today.beginning_of_month..Date.today.end_of_month) if params[:created].present?
+      elsif params[:created] == 'Weekly'
+        date = Date.today.beginning_of_week
+        @adminusers = @adminusers.where(:created_at => Date.today.beginning_of_week..(date + 6.days)) if params[:created].present?
+      elsif params[:created] == 'Daily'
+        @adminusers = @adminusers.where("Date(created_at) =?" ,Date.today) if params[:created].present?
       end
 
-   def customer_daily_report
-   @adminusers = User.where("Date(created_at) =?" ,Date.today)
-    respond_to do |format|
+      respond_to do |format|
       format.html
       format.xls
       format.pdf do
-         render :pdf => "file_name"
+         render :pdf => "users_report"
       end
     end
-   end
 
-   def customer_weekly_report
-    date = Date.today.beginning_of_week
-    @adminusers	= User.where(:created_at => Date.today.beginning_of_week..(date + 6.days))
-    respond_to do |format|
-      format.html
-      format.xls
-      format.pdf do
-        render :pdf => "file_name"
-      end
     end
-   end
 
-
-     def customer_monthly_report
-    @adminusers = User.where(:created_at => Date.today.beginning_of_month..Date.today.end_of_month)
-    respond_to do |format|
-      format.html
-      format.xls
-      format.pdf do
-        render :pdf => "file_name"
-      end
-    end
-   end
+  
 end
