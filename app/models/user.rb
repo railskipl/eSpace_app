@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   def self.find_for_facebook_oauth(auth, alt_email)
 
     User.where(auth.slice("provider", "uid")).first_or_create do |user|
-      
+     
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.email = auth["info"]["email"]
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def self.is_present_facebook_oauth(auth)
-      where(auth.slice(:provider, :uid)).first 
+      User.where(auth.slice(:provider, :uid)).first 
   end
  
   #Message count
