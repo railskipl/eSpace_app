@@ -50,8 +50,10 @@ gem 'spring',        group: :development
 gem 'geocoder'
 gem "koala", "~> 1.10.0rc"
 
-#gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+gem "wkhtmltopdf-heroku"
+
 # Paperclip gem for managing file uploads
 gem 'paperclip', github: 'thoughtbot/paperclip'
 
