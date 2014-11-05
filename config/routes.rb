@@ -29,16 +29,14 @@ Rails.application.routes.draw do
 end
    get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
    get '/users/:id/status', :to => "users#toggled_status"
-   # get "/users/add_adminuser",:to =>"users#add_adminuser"
+   get '/mutual_friends', to: 'posts#mutual'
+
    
    resources :contactus
    # resources :home
    get 'home/contactus',:to => "home#contactus"
-   get '/home/customer_daily_report', :to => "home#customer_daily_report"
-   get '/home/customer_weekly_report', :to => "home#customer_weekly_report"
-   get '/home/customer_monthly_report', :to => "home#customer_monthly_report"
    get '/home/all_postings', :to => "home#all_postings"
-   get  'searching'  => "home#searching"
+   get  'search'  => "home#searching"
    get 'terms',:to => "home#terms"
    get  'search'  => "posts#search"
    match 'all_posts' => "posts#all_posts", via: [:get, :post]
@@ -70,6 +68,9 @@ resources :ratings, only: :update
       get :sent_messages
       put :move_all_to_trash_recipient
       put :delete_all_by_sender
+      get :refresh_part
+      get :refresh_message
+      get :user_message
     end
     
     member do
@@ -77,6 +78,7 @@ resources :ratings, only: :update
      post :destroy_recipient
      post :destroy_sender
      get :reply
+     get :is_read_all
     end
   end
 
@@ -108,31 +110,5 @@ resources :ratings, only: :update
   #     end
   #   end
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

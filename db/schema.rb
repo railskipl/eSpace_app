@@ -22,11 +22,8 @@ ActiveRecord::Schema.define(version: 20141103073929) do
 
   create_table "bookings", force: true do |t|
     t.string   "stripe_customer_token"
-    t.string   "stripe_charge_id"
     t.float    "price"
-    t.integer  "post_id"
     t.integer  "user_id"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -152,6 +149,8 @@ ActiveRecord::Schema.define(version: 20141103073929) do
     t.integer  "mobile_no"
     t.string   "mobile_number"
     t.integer  "admin_user_id"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

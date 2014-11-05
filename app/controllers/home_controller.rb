@@ -12,52 +12,37 @@ class HomeController < ApplicationController
     end
 
     def admin_user
-    @adminusers = User.where("admin =?",false).page(params[:page]).per_page(10)
+      @adminusers = User.where("admin =?",false).page(params[:page]).per_page(10)
     end
- 
+
+      
     def searching
+      q = params[:q]
+
+       @adminusers = User.where(:admin => false).order(:id)
+       @adminusers = @adminusers.where("name like ? or last_name like ?", "%#{q}%", "%#{q}%") if q.present?
+       
+
+      if params[:created] == 'All'
+       
+      elsif params[:created] == 'Monthly'
+        @adminusers = @adminusers.where(:created_at => Date.today.beginning_of_month..Date.today.end_of_month) if params[:created].present?
+      elsif params[:created] == 'Weekly'
         date = Date.today.beginning_of_week
-        daily =Date.today
-        weekly =Date.today.beginning_of_week..(date + 6.days)
-        monthly= Date.today.beginning_of_month..Date.today.end_of_month
-      if User.where("name LIKE ? AND created_at LIKE ? ","#{params[:search].to_i}",daily) ||  User.where("name LIKE ? AND created_at LIKE ? ","#{params[:search].to_i}",weekly) || User.where("name LIKE ? AND created_at LIKE ? ","#{params[:search].to_i}",monthly)
-        # raise User.where(:created_at == daily).inspect
-       @adminusers = User.search(params[:search])
-      end
+        @adminusers = @adminusers.where(:created_at => Date.today.beginning_of_week..(date + 6.days)) if params[:created].present?
+      elsif params[:created] == 'Daily'
+        @adminusers = @adminusers.where("Date(created_at) =?" ,Date.today) if params[:created].present?
       end
 
-   # def customer_daily_report
-   #  @adminusers = User.where("Date(created_at) =?" ,Date.today)
-   #  respond_to do |format|
-   #    format.html
-   #    format.xls
-   #    format.pdf do
-   #       render :pdf => "file_name"
-   #    end
-   #  end
-   # end
+      respond_to do |format|
+      format.html
+      format.xls
+      format.pdf do
+         render :pdf => "users_report"
+      end
+    end
 
-   # def customer_weekly_report
-   #  date = Date.today.beginning_of_week
-   #  @adminusers	= User.where(:created_at => Date.today.beginning_of_week..(date + 6.days))
-   #  respond_to do |format|
-   #    format.html
-   #    format.xls
-   #    format.pdf do
-   #      render :pdf => "file_name"
-   #    end
-   #  end
-   # end
+    end
 
 
-   #   def customer_monthly_report
-   #  @adminusers = User.where(:created_at => Date.today.beginning_of_month..Date.today.end_of_month)
-   #  respond_to do |format|
-   #    format.html
-   #    format.xls
-   #    format.pdf do
-   #      render :pdf => "file_name"
-   #    end
-   #  end
-   # end
 end

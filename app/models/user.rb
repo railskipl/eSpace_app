@@ -26,10 +26,12 @@ class User < ActiveRecord::Base
   def self.find_for_facebook_oauth(auth, alt_email)
 
     User.where(auth.slice("provider", "uid")).first_or_create do |user|
-      
+     
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.email = auth["info"]["email"]
+      user.oauth_token = auth["credentials"]["token"]
+      user.oauth_expires_at = Time.at(auth["credentials"]["expires_at"])
       user.personal_email = alt_email
       user.password  = Devise.friendly_token[0,20]
       user.skip_confirmation!
@@ -38,42 +40,13 @@ class User < ActiveRecord::Base
   end
 
   def self.is_present_facebook_oauth(auth)
-      where(auth.slice(:provider, :uid)).first 
+      User.where(auth.slice(:provider, :uid)).first 
   end
 
-  #  def search(search)
-  # users = User.order(:name)
-  # users = users.where("name like ?", "%#{search}%") if name.present?
-  # # users = users.where(created_at: created_at) if created_at.present?
-  # users
-  # end
-
-
-def self.search(query)
-  date = Date.today.beginning_of_week
-  daily =(Date.today).to_s
-  weekly =(Date.today.beginning_of_week..(date + 6.days))
-  monthly= (Date.today.beginning_of_month..Date.today.end_of_month)
-  where("name like ? AND created_at like ? ","%#{query}%","%#{daily}%") || where("name like ? AND created_at like ? ","%#{query}%","%#{weekly}%") || where("name like ? AND created_at like ? ","%#{query}%","%#{monthly}%")
-end
-
-# def self.search(search)
-#   users = User.order(:id)
-#   date = Date.today.beginning_of_week
-#   daily =Date.today
-#   weekly =Date.today.beginning_of_week..(date + 6.days)
-#   monthly= Date.today.beginning_of_month..Date.today.end_of_month
-#   users = users.where("name = ?", "#{search[:name]}") if search[:name].present?
-#   users = users.where("daily = ?", "#{search[:daily]}") if search[:daily].present?
-#   users = users.where("weekly = ?", "#{search[:weekly]}") if search[:weekly].present?
-#   users.page(page).per_page(10)
-   
-# end
   #Message count
   def check_message
     reminders =[]
-    
-    reminders = Message.where("recipient_id = ?",self.id)
+    reminders = Message.select(:sender_id,:is_read).where("recipient_id = ? AND is_read =?",self.id,false).uniq!
     count = 0
     reminders.each do |r|
       unless r.is_read
@@ -82,6 +55,7 @@ end
     end
     return count
   end
+
 
 
 end

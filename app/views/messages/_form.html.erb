@@ -1,6 +1,3 @@
-<%#= stylesheet_link_tag  "token-input-facebook", "token-input" %>
-<%#= javascript_include_tag "jquery.tokeninput","messages" %>
-
 
 <%= form_for(@message) do |f| %>
   <% if @message.errors.any? %>
@@ -18,13 +15,14 @@
   To <br/>
 
   <%= f.text_field :recipient_id,:value =>post_user_id,:readonly => true,:class => "pe_tf" %>
-  <%#= hidden_field_tag :post_id,@message.id %>
+  <%= hidden_field_tag :post_id,params[:post_id] %>
+    <%#= f.text_field :recipient_id,:class => "pe_tf" %>
 
 </div>
-  <div class="row">
-    <%= f.label :subject %>
-    <%= f.text_field :subject ,:class => "pe_tf" ,:style => "width:500px;" %>
-  </div>
+  <!-- <div class="row">
+    <%#= f.label :subject %>
+    <%#= f.text_field :subject ,:class => "pe_tf" ,:style => "width:500px;" %>
+  </div> -->
   <div class="row">
     <%= f.label :body %>
     <%= f.text_area :body ,:class => "pe_tf" ,:style => "width:500px;" ,:rows => "10"%>

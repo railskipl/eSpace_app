@@ -4,16 +4,30 @@ class MessagesController < ApplicationController
   respond_to :html, :xml, :json, :js
   
   def index
-
-    @messages = current_user.recipient_messages
-    if @messages == 0
-     @messages = @messages.delete_if {|i| (i.is_deleted_by_recipient == true || i.is_trashed_by_recipient == true)}
-    end
-      # @messages = @messages.paginate(page: params[:page], per_page: 10)
-      respond_with(@messages)
-    end
+   @message = Message.new
+   @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
+   @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
+   @total_message = @messages_sender + @messages_receiver
+   @total_messages =  @total_message.sort_by { |k| k["id"] }
+   @user_messages = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
+   
+  end
+  #make all messages mark as read.
+  def is_read_all
+   message = Message.select(:id,:sender_id,:is_read).where("recipient_id = ? AND is_read =?",current_user.id,false).uniq!
+   messages_sender = Message.select(:id,:sender_id,:is_read).where("recipient_id = ?",current_user.id).uniq!.last.sender_id rescue nil
+  
+   message.each do |r|
+     if r.is_read == false
+        r.update_column('is_read',true) 
+     end 
+   end
+   redirect_to :controller =>'messages',:action=>"index",:recv_id =>messages_sender
+  end 
 
   def show
+
+    # @message = Message.new
     @message = Message.find(params[:id])
  
     @original_msg =  @message.message
@@ -46,6 +60,7 @@ end
   end
 
   def create
+    
     @post = Post.find_by_id(params[:message][:post_id])
 
     @msg = Message.new(message_params)
@@ -54,13 +69,14 @@ end
 
         @message = Message.new(message_params)
         Message.create(:subject => @message.subject , :body => @message.body,:sender_id => current_user.id, :recipient_id => params[:recipient_id].to_i, :message_id =>params[:message_id].to_i ,:post_id=>params[:post_id].to_i )
+
         redirect_to :back
         else
           if user.nil?
           redirect_to new_message_url ,:notice => "Please enter recipient"
           else
             @message = Message.create(:subject => @msg.subject, :body => @msg.body, :recipient_id => user.id, :sender_id => current_user.id)
-              @message.post_id = @message.id
+              @message.post_id = params[:post_id].to_i
              if @message.save
              redirect_to messages_path
            end
@@ -75,7 +91,7 @@ end
 
   def destroy
     @message.destroy
-    respond_with(@message)
+    redirect_to :controller =>'messages',:action=>"index",:recv_id =>params[:recv_id]
   end
 
   def trash
@@ -104,12 +120,13 @@ end
   end
 
 
-    def destroy_sender
+  def destroy_sender
     @message =  Message.find(params[:id])
     if @message.is_deleted_by_sender== false
       @message.is_deleted_by_sender = true
       @message.save
     end
+    # @message.destroy
     respond_to do |format|
       format.html { redirect_to sent_messages_messages_url }
       format.json { head :no_content }
@@ -157,32 +174,49 @@ end
    redirect_to sent_messages_messages_url
   end 
 
-
- def reply
-   @messagee = Message.find(params[:id])
-   @message = Message.new
-   @messageee = Message.find(params[:id])
- 
-    @original_msg =  @messageee.message
-    @message2 = Message.maximum(:id)
-    if @original_msg.nil?
-    @msgs = Message.where("post_id = ?",@messageee.post_id)
-    else
-    @msgs = Message.where("post_id = ? OR id = ? and message_id = ?",@original_msg.id,@message2,@messageee.id)
-    end
-    if @messageee.sender == current_user
-    respond_with(@messageee)
+  #method user for reply message
+  def reply
+     @messagee = Message.find(params[:id])
+     @message = Message.new
+     @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
+     @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
+     @total_message = @messages_sender + @messages_receiver
+     @total_messages =  @total_message.sort_by { |k| k["id"] }
+     @user_messages = current_user.recipient_messages.select(:sender_id).uniq
+  end
   
-    else
-      if @messageee.is_deleted_by_recipient == true 
-         redirect_to messages_url
-      else
-      Message.update(@messageee.id, :is_read => true)  
-      respond_with(@messageee)
-      end
-    end
+  #method used for autorefresh message count div &
+  #show current updated msg count for curr user.
+  
+  def refresh_part
 
- end
+   @msg = current_user.check_message
+   respond_to do |format|
+      format.js
+    end
+  end
+
+  #method used for autorefresh chat message div &
+  #show current updated chat msg.
+  def refresh_message
+   @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
+   @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
+   @total_message = @messages_sender + @messages_receiver
+   @total_messages =  @total_message.sort_by { |k| k["id"] }
+
+  
+   respond_to do |format|
+      format.js
+    end
+  end
+
+  def user_message
+   @user_messages = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
+ 
+   respond_to do |format|
+      format.js
+    end
+  end
 
   private
     def set_message
@@ -190,6 +224,6 @@ end
     end
 
     def message_params
-      params.require(:message).permit(:body, :is_deleted_by_recipient, :is_deleted_by_sender, :is_read, :is_trashed_by_recipient, :subject,:sender_id,:recipient_id,:message_id)
+      params.require(:message).permit(:body, :is_deleted_by_recipient, :is_deleted_by_sender, :is_read, :is_trashed_by_recipient, :subject,:sender_id,:recipient_id,:message_id,:post_id)
     end
 end
