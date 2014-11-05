@@ -148,7 +148,6 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.boolean  "admin",                  default: false
     t.string   "provider"
     t.string   "uid"
-    t.boolean  "status"
     t.string   "name"
     t.string   "last_name"
     t.string   "personal_email"
@@ -156,6 +155,7 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.string   "mobile_number"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.boolean  "status",                 default: true
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
