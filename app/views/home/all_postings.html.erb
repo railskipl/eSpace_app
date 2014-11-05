@@ -13,7 +13,7 @@
       <th>Price (Sq ft)</th>
       <th>Address</th>
       <th>Status</th>
-      <th>Action</th>
+      <!-- <th>Action</th> -->
        
     </tr>
   </thead>
@@ -39,7 +39,7 @@
         <td>$<%= post.price_sq_ft %></td>
         <td><%= post.address %></td>
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
-         <% if post.featured == true %>
+         <% if post.status == true %>
         <td> <%= link_to 'Deactive', toggled_feature_post_path(post.id)%></td>
          <% else %>
          <td><%= link_to 'Activate', toggled_feature_post_path(post.id)%></td>
