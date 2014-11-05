@@ -1,4 +1,6 @@
 
+<h4>Search by</h4>
+
   <%= form_tag search_path,:method=> :get do %>
   <%= text_field_tag :q, params[:q] %>
 
@@ -15,8 +17,10 @@
 	   </div>
   	
  	<%end%>
+
    
     <%= link_to "Add new User",new_user_users_path%> 
+
 
   <table class="table table-striped">
 

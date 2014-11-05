@@ -60,11 +60,14 @@ def confirm
    end
 
 def destroy
+  
 	@user = User.find(params[:id])
-	@user.destroy
+	@user.delete
 	flash[:notice] = "User deleted successfully."
 	redirect_to root_path
 end
+
+
 
  def show
 	@user = User.find(params[:id])

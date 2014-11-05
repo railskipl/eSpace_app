@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   def self.is_present_facebook_oauth(auth)
       User.where(auth.slice(:provider, :uid)).first 
   end
- 
+
   #Message count
   def check_message
     reminders =[]

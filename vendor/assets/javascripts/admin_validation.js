@@ -44,7 +44,6 @@ messages: {
 }
 });
 
-
 jQuery("#new_page").validate({
 errorElement:'div',
 rules: {

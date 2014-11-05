@@ -10,7 +10,6 @@ Rails.application.routes.draw do
 
   root :to => 'home#index'
 
-
    resources :omniauth_callbacks 
    get 'auth/failure' => redirect('/')
 
@@ -27,10 +26,13 @@ Rails.application.routes.draw do
         post 'create_user'
     end
 end
-   get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
+
+
+   delete '/users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
    get '/users/:id/status', :to => "users#toggled_status"
-   # get "/users/add_adminuser",:to =>"users#add_adminuser"
-   
+
+   get '/mutual_friends', to: 'posts#mutual'
+
    resources :contactus
    # resources :home
    get 'home/contactus',:to => "home#contactus"
@@ -59,7 +61,7 @@ end
   end
 
 
-resources :ratings, only: :update
+  resources :ratings, only: :update
 
   resources :messages do
     collection do
@@ -67,6 +69,9 @@ resources :ratings, only: :update
       get :sent_messages
       put :move_all_to_trash_recipient
       put :delete_all_by_sender
+      get :refresh_part
+      get :refresh_message
+      get :user_message
     end
     
     member do
@@ -74,6 +79,7 @@ resources :ratings, only: :update
      post :destroy_recipient
      post :destroy_sender
      get :reply
+     get :is_read_all
     end
   end
 
