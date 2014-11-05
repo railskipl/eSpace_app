@@ -10,7 +10,6 @@ Rails.application.routes.draw do
 
   root :to => 'home#index'
 
-
    resources :omniauth_callbacks 
    get 'auth/failure' => redirect('/')
 
@@ -31,7 +30,6 @@ end
    get '/users/:id/status', :to => "users#toggled_status"
    get '/mutual_friends', to: 'posts#mutual'
 
-   
    resources :contactus
    # resources :home
    get 'home/contactus',:to => "home#contactus"

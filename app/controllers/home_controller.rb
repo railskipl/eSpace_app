@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
- before_filter :authenticate_user!, :except => []
+ # before_filter :authenticate_user!, :except => []
 	def index
     @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(10)
 	end
@@ -18,13 +18,9 @@ class HomeController < ApplicationController
       
     def searching
       q = params[:q]
-
        @adminusers = User.where(:admin => false).order(:id)
        @adminusers = @adminusers.where("name like ? or last_name like ?", "%#{q}%", "%#{q}%") if q.present?
-       
-
       if params[:created] == 'All'
-       
       elsif params[:created] == 'Monthly'
         @adminusers = @adminusers.where(:created_at => Date.today.beginning_of_month..Date.today.end_of_month) if params[:created].present?
       elsif params[:created] == 'Weekly'

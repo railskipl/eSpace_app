@@ -1,6 +1,3 @@
- 
- 
-
 
 <table style='border-spacing: 40px;border-collapse: separate;height:100%;'><tr><td valign='top'>
 Users	
@@ -24,12 +21,9 @@ Users
 <br>
 <% @total_messages.each do |messages|%>
 <p>
-    
-     
+
       <b> <%= messages.sender.name %> </b>:
           <%= messages.body %><br/> <%= messages.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
-        
-     
 
 </p>
 <% end %>

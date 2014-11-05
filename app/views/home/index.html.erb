@@ -34,7 +34,8 @@
 <td><%= adminuser.last_name %></td>
 <td><%= adminuser.email %></td>
 <td><%= link_to "View Details",{:controller => 'users', :action => 'show', :id => adminuser.id}%></td>
-<td><%= link_to "Destroy",{:controller => 'users', :action => 'destroy', :id => adminuser.id}%></td>
+
+<td><%= link_to "Destroy", [:delete, adminuser], method: :delete %></td>
 <td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>
 </tr>
 <%end%> 

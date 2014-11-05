@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	# sbefore_filter :authenticate_user!, :only => [ :show]
  # helper_method :resource, :resource_name, :devise_mapping
  #respond_to :html, :js, :json
- before_filter :authenticate_user!
+# before_filter :authenticate_user!
   respond_to :html, :xml, :json
 def index
  @users = User.all
@@ -58,7 +58,7 @@ def confirm
 
 def destroy
 	@user = User.find(params[:id])
-	@user.destroy
+	@user.delete
 	flash[:notice] = "User deleted successfully."
 	redirect_to root_path
 end
