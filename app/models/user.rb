@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.email = auth["info"]["email"]
+      user.oauth_token = auth["credentials"]["token"]
+      user.oauth_expires_at = Time.at(auth["credentials"]["expires_at"])
       user.personal_email = alt_email
       user.password  = Devise.friendly_token[0,20]
       user.skip_confirmation!
@@ -40,13 +42,11 @@ class User < ActiveRecord::Base
   def self.is_present_facebook_oauth(auth)
       where(auth.slice(:provider, :uid)).first 
   end
-
-
+ 
   #Message count
   def check_message
     reminders =[]
-    
-    reminders = Message.where("recipient_id = ?",self.id)
+    reminders = Message.select(:sender_id,:is_read).where("recipient_id = ? AND is_read =?",self.id,false).uniq!
     count = 0
     reminders.each do |r|
       unless r.is_read
@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
     end
     return count
   end
+
 
 
 end

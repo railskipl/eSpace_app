@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   before_filter :authenticate_user!, :except => []
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
-
+  include PostsHelper
   # GET /posts
   # GET /posts.json
   def index
@@ -21,7 +21,13 @@ class PostsController < ApplicationController
     end
 
   end
-  
+
+  def mutual
+      @user_fb_token = current_user.oauth_token
+      @users = User.find_by_id(params[:user_id])
+      @graph = Koala::Facebook::API.new(@users.oauth_token) 
+      @graph1 = Koala::Facebook::API.new(@user_fb_token)
+  end
 
   # GET /posts/1
   # GET /posts/1.json

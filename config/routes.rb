@@ -29,7 +29,8 @@ Rails.application.routes.draw do
 end
    get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
    get '/users/:id/status', :to => "users#toggled_status"
-   # get "/users/add_adminuser",:to =>"users#add_adminuser"
+   get '/mutual_friends', to: 'posts#mutual'
+
    
    resources :contactus
    # resources :home
@@ -67,6 +68,9 @@ resources :ratings, only: :update
       get :sent_messages
       put :move_all_to_trash_recipient
       put :delete_all_by_sender
+      get :refresh_part
+      get :refresh_message
+      get :user_message
     end
     
     member do
@@ -74,6 +78,7 @@ resources :ratings, only: :update
      post :destroy_recipient
      post :destroy_sender
      get :reply
+     get :is_read_all
     end
   end
 

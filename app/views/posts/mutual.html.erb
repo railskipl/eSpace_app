@@ -1,0 +1,12 @@
+
+
+
+<% @mutual = @graph.get_object("me") rescue nil%>
+
+ <% @mutual_friends = @graph1.get_connections("me", "mutualfriends/#{@mutual["id"]}") rescue nil%>
+
+ <p>You have <%= @mutual_friends.count rescue nil%> friends in common</p>
+
+<% @mutual_friends.each do |mutual_friends|%>
+  <p> <%= image_tag "http://graph.facebook.com/#{mutual_friends['id']}/picture", :class => 'float-left' rescue nil%> <%= mutual_friends['name']rescue nil %></p>
+<% end %>
