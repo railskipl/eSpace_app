@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
     posts = posts.where("user_id != ?", "#{userID}")
     posts = posts.where("area <= ?", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
-    posts = posts.where("address like ?", "%#{search[:address]}%") if search[:address].present?
+    posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present?
     posts.page(page).per_page(10)
    
   end

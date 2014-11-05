@@ -15,7 +15,8 @@ jQuery("#admin_create_user").validate({
 		email: true
 	},
 	"user[password]":{
-		required:true
+		required:true,
+		minlength:6
 	},
 	"user[password_confirmation]":{
 		required:true,

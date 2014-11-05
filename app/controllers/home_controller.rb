@@ -17,9 +17,11 @@ class HomeController < ApplicationController
 
       
     def searching
-      q = params[:q]
+      q = params[:q].downcase
+
        @adminusers = User.where(:admin => false).order(:id)
-       @adminusers = @adminusers.where("name like ? or last_name like ?", "%#{q}%", "%#{q}%") if q.present?
+       @adminusers = @adminusers.where("LOWER(name) like ? or LOWER(last_name) like ?", "%#{q}%", "%#{q}%") if q.present?
+
       if params[:created] == 'All'
       elsif params[:created] == 'Monthly'
         @adminusers = @adminusers.where(:created_at => Date.today.beginning_of_month..Date.today.end_of_month) if params[:created].present?
