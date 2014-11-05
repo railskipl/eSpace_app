@@ -16,10 +16,10 @@ class HomeController < ApplicationController
     end
       
     def searching
-      q = params[:q]
+      q = params[:q].downcase
 
        @adminusers = User.where(:admin => false).order(:id)
-       @adminusers = @adminusers.where("name like ? or last_name like ?", "%#{q}%", "%#{q}%") if q.present?
+       @adminusers = @adminusers.where("LOWER(name) like ? or LOWER(last_name) like ?", "%#{q}%", "%#{q}%") if q.present?
        
 
       if params[:created] == 'All'
