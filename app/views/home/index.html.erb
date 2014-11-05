@@ -24,7 +24,8 @@
   <table class="table table-bordered">
 
 	 <tr>
-   <th>Name </th>
+   <th>First Name </th>
+   <th>Last Name </th>
 	 <th>Email </th>
 	 <th>View Details</th>
 	 <th>Delete</th>
@@ -32,7 +33,8 @@
 	 </tr>
 	<% @adminusers.each do |adminuser|%>
 	<tr>
-    <td><%= adminuser.name %> <%= adminuser.last_name %></td>
+    <td><%= adminuser.name %></td>
+    <td><%= adminuser.last_name %></td>
 	 <td><%= adminuser.email %></td>
 	 <td><%= link_to "View Details",{:controller => 'users', :action => 'show', :id => adminuser.id}%></td>
 	 <td><%= link_to "Destroy",{:controller => 'users', :action => 'destroy', :id => adminuser.id}%></td>
