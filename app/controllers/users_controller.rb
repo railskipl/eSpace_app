@@ -45,7 +45,10 @@ end
    @user.skip_confirmation!
 
    if @user.save
-    redirect_to root_path,:flash => {:notice => "User successfully created."}  
+    redirect_to root_path,:flash => {:notice => "User successfully created."}
+   else
+    flash[:notice] = "Email has already been taken "
+    render :new_user
    end
  
  end
