@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
- before_filter :authenticate_user!, :only => [ :edit]
+ before_filter :authenticate_user!, :only => [ :edit, :order_received]
  # helper_method :resource, :resource_name, :devise_mapping
  #respond_to :html, :js, :json
 # before_filter :authenticate_user!
@@ -81,6 +81,12 @@ def toggled_status
 	@users.update_column(:status,@users.status)
 	redirect_to :back
 	# UserMailer.user_status_mail(@users).deliver
+end
+
+def order_received
+  @order_details = User.joins(:bookings)
+  raise @order_details.inspect
+
 end
 
 

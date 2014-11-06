@@ -151,6 +151,7 @@ jQuery(document).ready(function(){
     
     <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'} do |f| %>
       <%= f.hidden_field :post_id, :value => @post.id %>
+      <%= f.hidden_field :poster_id, :value=> @post.user_id %>
       <%= f.hidden_field :price, :value => "" %>
       <%= f.submit "Book", :class => "btn btn-primary contact-form"%>
     <% end %>

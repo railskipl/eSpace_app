@@ -20,12 +20,12 @@ Rails.application.routes.draw do
    end
 
    resources :users do 
-
     collection do
+        get 'order_received'
         get 'new_user'
         post 'create_user'
     end
-end
+  end
 
 
    delete '/users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    

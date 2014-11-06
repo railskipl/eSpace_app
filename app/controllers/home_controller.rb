@@ -2,6 +2,13 @@ class HomeController < ApplicationController
  # before_filter :authenticate_user!, :except => []
 	def index
     @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(10)
+    respond_to do |format|
+        format.html
+        format.xls
+        format.pdf do
+           render :pdf => "users_report"
+        end
+      end
 	end
     
    def contactus
@@ -33,12 +40,12 @@ class HomeController < ApplicationController
       end
 
       respond_to do |format|
-      format.html
-      format.xls
-      format.pdf do
-         render :pdf => "users_report"
+        format.html
+        format.xls
+        format.pdf do
+           render :pdf => "users_report"
+        end
       end
-    end
 
     end
 

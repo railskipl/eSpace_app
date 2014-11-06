@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :recipient_messages, :class_name => 'Message', :foreign_key => 'recipient_id', :dependent => :destroy
  
   has_many :comments, :dependent => :destroy
+  has_many :bookings, :dependent => :destroy
 
   
   def self.json_tokens(query)

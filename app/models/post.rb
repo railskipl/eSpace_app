@@ -5,7 +5,8 @@ class Post < ActiveRecord::Base
   has_many :comments
 	belongs_to :user
   has_many :messages
-   has_many :ratings
+  has_many :ratings
+  has_many :bookings
 
 
 	has_attached_file :photo, :styles => { :thumb => "100x100", :medium => "350x350" },

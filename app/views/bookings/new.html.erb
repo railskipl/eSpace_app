@@ -99,6 +99,7 @@
   <%= hidden_field_tag :stripe_card_token %>
   <%= f.hidden_field :user_id, :value=> current_user.id %>
   <%= f.hidden_field :post_id, :value=> session[:post_id] %>
+  <%= f.hidden_field :poster_id, :value=> session[:poster_id] %>
 
   <div class="field">
     <%= f.label :price %>

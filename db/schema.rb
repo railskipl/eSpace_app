@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.float    "price"
     t.integer  "post_id"
     t.integer  "user_id"
+    t.integer  "poster_id"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"

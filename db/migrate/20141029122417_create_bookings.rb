@@ -6,6 +6,7 @@ class CreateBookings < ActiveRecord::Migration
       t.float :price
       t.integer :post_id
       t.integer :user_id
+      t.integer :poster_id
       t.string :email
 
       t.timestamps
