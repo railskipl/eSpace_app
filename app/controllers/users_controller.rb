@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	# sbefore_filter :authenticate_user!, :only => [ :show]
+ before_filter :authenticate_user!, :only => [ :edit]
  # helper_method :resource, :resource_name, :devise_mapping
  #respond_to :html, :js, :json
 # before_filter :authenticate_user!

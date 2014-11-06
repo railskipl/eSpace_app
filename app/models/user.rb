@@ -47,9 +47,7 @@ class User < ActiveRecord::Base
     super && self.status # i.e. super && self.is_active
   end
 
-  def inactive_message
-    "Sorry, this account has been deactivated."
-  end
+  
 
   #Message count
   def check_message
