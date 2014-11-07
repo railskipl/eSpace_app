@@ -8,7 +8,7 @@ class HomeController < ApplicationController
    end
  
     def all_postings
-      @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(10)
+      @posts = Post.where("user_id != ?",current_user.id).order("id desc").page(params[:page]).per_page(10)
     end
 
     def admin_user

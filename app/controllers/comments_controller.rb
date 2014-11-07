@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
       @post = Post.find(params[:post_id])
       @comment = @post.comments.new(comment_params) 
       @comment.save! 
-      redirect_to @post
+      redirect_to :back
      end
 
      def destroy

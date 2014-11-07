@@ -10,6 +10,7 @@ Rails.application.config.assets.precompile += %w( font-awesome.css )
 Rails.application.config.assets.precompile += %w( jquery.fancybox.pack.js )
 Rails.application.config.assets.precompile += %w( jquery.fancybox.css )
 Rails.application.config.assets.precompile += %w( admin_validation.js )
+
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )

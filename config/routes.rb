@@ -26,10 +26,14 @@ Rails.application.routes.draw do
         post 'create_user'
     end
 end
-   get 'users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
+
+
+   delete '/users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
    get '/users/:id/status', :to => "users#toggled_status"
+
    get '/mutual_friends', to: 'posts#mutual'
 
+   match 'search_by_date' => "bookings#search_by_date", via: [:get, :post]
    resources :contactus
    # resources :home
    get 'home/contactus',:to => "home#contactus"
@@ -58,7 +62,7 @@ end
   end
 
 
-resources :ratings, only: :update
+  resources :ratings, only: :update
 
   resources :messages do
     collection do

@@ -21,6 +21,7 @@
 <label for="username" class="control-label">Last name</label>
 <div class="controls">
 <%= f.text_field :last_name,:class=> "form-control",:style=>"height:auto" rescue nil%>
+<%= f.hidden_field :status, :value=> true %>
 </div> <!-- /controls -->
 </div>
 </div>

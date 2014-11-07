@@ -17,9 +17,9 @@
 <%= submit_tag "Search", :class => "btn btn-primary contact-form" %>
 <%end%>
 <div>
-<%= link_to "Add new User",new_user_users_path%>
+<%= link_to "Add new User",new_user_users_path%> 
 </div> <br>
-<table class="table table-bordered">
+<table class="table table-striped">
 <tr>
 <th>First Name </th>
 <th>Last Name </th>
@@ -33,13 +33,14 @@
 <td><%= adminuser.name %></td>
 <td><%= adminuser.last_name %></td>
 <td><%= adminuser.email %></td>
-<td><%= link_to "View Details",{:controller => 'users', :action => 'show', :id => adminuser.id}%></td>
+<td><%= link_to "View Details",{:controller => 'users', :action => 'show', :id => adminuser.id} %></td>
 
-<td><%= link_to "Delete", [:delete, adminuser], method: :delete %></td>
+<td><%= link_to "Delete", [:delete, adminuser], method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>
 </tr>
 <%end%> 
 </table>
+
 <%= will_paginate @adminusers %>
 <% else %>
 <h1>Home Page</h1>

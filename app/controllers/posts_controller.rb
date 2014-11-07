@@ -55,7 +55,6 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-
         format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
@@ -107,7 +106,7 @@ class PostsController < ApplicationController
 
    def toggled_feature
     @post = Post.find(params[:id])
-    @post.featured = !@post.featured?
+    @post.status = !@post.status?
     @post.save!
      respond_to do |format|
       format.html { redirect_to home_all_postings_path, notice: 'Post status updated.' }

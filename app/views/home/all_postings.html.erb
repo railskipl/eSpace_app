@@ -1,4 +1,5 @@
-   
+
+<h4>Listing All Post</h4>
 <table class="table table-striped">
 
   <thead>
@@ -12,18 +13,24 @@
       <th>Price (Sq ft)</th>
       <th>Address</th>
       <th>Status</th>
-      <th>Action</th>
+      <!-- <th>Action</th> -->
        
     </tr>
   </thead>
 
   <tbody id="all_posts" >
-<%#= City.find(initiative.city_id).city_name%>
+
    
     <% @posts.each_with_index do |post, index| %>
     
         <tr>
-        <td><%= index + 1 %></td>
+        <% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
+          <% x = 0 %>
+          <% else %>
+          <% page = params[:page].to_i - 1 %>
+          <% x = page * 10 %>
+        <% end %>
+        <td><%= index + x+1 %></td>
         <td><%= post.id %></td>
         <td><%= User.find(post.user_id).name rescue nil%>&nbsp;<%= User.find(post.user_id).last_name rescue nil%></td>
         <td><%= post.price_sq_ft %></td>
@@ -32,7 +39,7 @@
         <td>$<%= post.price_sq_ft %></td>
         <td><%= post.address %></td>
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
-         <% if post.featured == true %>
+         <% if post.status == true %>
         <td> <%= link_to 'Deactive', toggled_feature_post_path(post.id)%></td>
          <% else %>
          <td><%= link_to 'Activate', toggled_feature_post_path(post.id)%></td>
@@ -42,8 +49,11 @@
     <% end %>
 
     
+
   </tbody>
 </table> 
+
+<%= will_paginate @posts %>
 
 
 
