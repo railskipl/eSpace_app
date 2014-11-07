@@ -1,0 +1,37 @@
+<div style="width:40%;"><h4> New Message</h4></div>
+
+<%= form_for(@message, :url => {:controller=>"messages", :action=>"sent_to"}) do |f| %>
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+      <% @message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+  To <br/>
+
+  <%= f.text_field :recipient_id,:value =>post_user_id,:readonly => true,:class => "pe_tf" %>
+  <%= hidden_field_tag :post_id,params[:post_id] %>
+    <%#= f.text_field :recipient_id,:class => "pe_tf" %>
+
+</div>
+  <!-- <div class="row">
+    <%#= f.label :subject %>
+    <%#= f.text_field :subject ,:class => "pe_tf" ,:style => "width:500px;" %>
+  </div> -->
+  <div class="row">
+    <%= f.label :body %>
+    <%= f.text_area :body ,:class => "pe_tf" ,:style => "width:500px;" ,:rows => "10"%>
+  </div>
+
+  <div class="actions" style ="float:left">
+    <%= f.submit "Send message",:class => "btn" %>
+  </div>
+
+<% end %>
+<br/>

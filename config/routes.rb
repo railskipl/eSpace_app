@@ -20,12 +20,12 @@ Rails.application.routes.draw do
    end
 
    resources :users do 
-
     collection do
+        get 'order_received'
         get 'new_user'
         post 'create_user'
     end
-end
+  end
 
 
    delete '/users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
@@ -73,6 +73,8 @@ end
       get :refresh_part
       get :refresh_message
       get :user_message
+      get :compose_message
+      post :sent_to
     end
     
     member do

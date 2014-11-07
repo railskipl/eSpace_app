@@ -1,0 +1,20 @@
+<table class="table table-striped">
+<tr>
+<th>Full Name </th>
+<th>Area/Sq.ft </th>
+
+<th>Total paid </th>
+<th>View Details</th>
+
+</tr>
+<% @order_details.each do |order_detail|%>
+<tr>
+<td><%= order_detail.user.name %><%= order_detail.user.last_name %></td>
+<td><%= order_detail.price_sq_ft %></td>
+
+<td><%= order_detail.total_price %></td>
+<td><%= link_to "View Details", nil %></td>
+
+</tr>
+<%end%> 
+</table>

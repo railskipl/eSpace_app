@@ -51,6 +51,7 @@ class BookingsController < ApplicationController
             
             session[:price] = nil
             session[:post_id] = nil
+            session[:poster_id] = nil
             redirect_to root_path, :notice => "Thank you"
           
         else
@@ -80,8 +81,9 @@ end
 
 	def checkout
 		session[:price] = params[:booking][:price]
-        session[:post_id] = params[:booking][:post_id] 
-        redirect_to new_booking_path
+    session[:post_id] = params[:booking][:post_id] 
+    session[:poster_id] = params[:booking][:poster_id]
+    redirect_to new_booking_path
 	end
 
 	def is_number?(i)
@@ -91,7 +93,7 @@ end
 
 private
 	def page_params
-      params.require(:booking).permit(:stripe_customer_token, :price, :user_id, :email, :post_id)
+      params.require(:booking).permit(:stripe_customer_token, :price, :user_id, :email, :post_id, :poster_id)
     end
 
 end
