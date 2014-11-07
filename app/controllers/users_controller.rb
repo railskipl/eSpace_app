@@ -84,8 +84,7 @@ def toggled_status
 end
 
 def order_received
-  @order_details = User.joins(:bookings)
-  raise @order_details.inspect
+  @order_details = Post.joins(:bookings).select('posts.*, bookings.price as total_price').where('bookings.poster_id' => current_user.id)
 
 end
 

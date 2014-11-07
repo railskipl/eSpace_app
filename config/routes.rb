@@ -72,6 +72,8 @@ Rails.application.routes.draw do
       get :refresh_part
       get :refresh_message
       get :user_message
+      get :compose_message
+      post :sent_to
     end
     
     member do

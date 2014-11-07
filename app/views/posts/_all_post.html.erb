@@ -21,7 +21,7 @@
         <%else%>
         <td><%= link_to 'View Details', post_path(post) %>
         </td>
-        <td><%= link_to "Send Message ", new_message_path(:user_id => post.user_id,:post_id => post.id ), :remote=>true %></td>
+        <td id="message_<%= post.id %>"><%= link_to "Send Message ", compose_message_messages_path(:user_id => post.user_id,:post_id => post.id ), :remote=>true %></td>
         <%end%> 
       </tr>
     <% end %>

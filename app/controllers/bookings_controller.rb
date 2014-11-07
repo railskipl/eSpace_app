@@ -77,7 +77,7 @@ class BookingsController < ApplicationController
 
 private
 	def page_params
-      params.require(:booking).permit(:stripe_customer_token, :price, :user_id, :email, :post_id)
+      params.require(:booking).permit(:stripe_customer_token, :price, :user_id, :email, :post_id, :poster_id)
     end
 
 end

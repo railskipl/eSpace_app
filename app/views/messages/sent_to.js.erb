@@ -1,0 +1,7 @@
+<% if @message.save %>
+  jQuery('#message_<%= @message.post_id %>').html('Message sent').hide().fadeIn()
+  jQuery(document).trigger('close.facebox')
+<% else %>
+  jQuery('#facebox .content').html('<%= escape_javascript(render :template => 'messages/compose_message.html') %>')
+  jQuery('#facebox form').data('remote','true');
+<% end %>
