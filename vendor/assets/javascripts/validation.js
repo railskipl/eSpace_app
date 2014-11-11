@@ -9,6 +9,19 @@ function(value, element, params) {
         || (Number(value) > Number($(params).val())); 
 },'Must be greater than Start date.');
 
+//User not select next drop off date
+jQuery.validator.addMethod("lessThanDropDate", 
+	function(value, element, params) {
+
+	    if (!/Invalid|NaN/.test(new Date(value))) {
+	        return new Date(value) < new Date($(params).val());
+	    }
+
+	    return isNaN(value) && isNaN($(params).val()) 
+	        || (Number(value) < Number($(params).val())); 
+	},'Must be less than given drop off date.');
+
+
 
 jQuery.validator.addMethod("greaterThanPickUp", 
 function(value, element, params) {
@@ -311,6 +324,30 @@ jQuery("#new_comment").validate({
 		"comment[comments]":{
 			required: "Please enter comment"
 		}
+       
+	}
+});
+
+
+jQuery("#booking").validate({
+	ignore:'', // initialize the plugin
+	errorElement:'div',
+
+	rules: {
+
+        "area":{
+	        required:true,
+	        number:true
+        },
+        "booking[dropoff_date]" :{
+	     	lessThanDropDate: "#booking_posting_dropoff_date"   
+        }
+	},
+	messages: {
+
+		"area":{
+        required: "Please enter area"
+        }
        
 	}
 });

@@ -5,9 +5,9 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w(jquery-1.5.2.min.js jquery-1.4.2.min.js facebox.js facebox.css endless_page.js)
 Rails.application.config.assets.precompile += %w( jquery.validate.min.js validation.js)
-Rails.application.config.assets.precompile += %w( bookreviews.css )
+Rails.application.config.assets.precompile += %w( bookreviews.css perfect-scrollbar.css )
 Rails.application.config.assets.precompile += %w( font-awesome.css )
-Rails.application.config.assets.precompile += %w( jquery.fancybox.pack.js )
+Rails.application.config.assets.precompile += %w( jquery.fancybox.pack.js perfect-scrollbar.js )
 Rails.application.config.assets.precompile += %w( jquery.fancybox.css )
 Rails.application.config.assets.precompile += %w( admin_validation.js )
 # Precompile additional assets.
