@@ -39,6 +39,7 @@ Rails.application.routes.draw do
    get 'home/contactus',:to => "home#contactus"
    get '/home/all_postings', :to => "home#all_postings"
    get  'search'  => "home#searching"
+   get  'searched'  => "home#search_post", :as => 'search_post'
    get 'terms',:to => "home#terms"
    get  'search'  => "posts#search"
    match 'all_posts' => "posts#all_posts", via: [:get, :post]

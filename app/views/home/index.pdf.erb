@@ -1,21 +1,22 @@
 
 
 <table cellpadding="10" cellspacing="0" border="1" class="table table-striped table-bordered">
-
-	 <tr>
-	 <th>Email </th>
-	 <th>Name</th>
-	 <th>Last Name</th>
-	 </tr>
-	<% @adminusers.each do |adminuser|%>
-	<tr>
-	 <td><%= adminuser.email %>
-	 <td><%=adminuser.name%></td>
-	 <td><%= adminuser.last_name%></td>
-	 
-	 </tr>
-	<%end%>	
-
-	</table>
-
- 
+<tr>
+<th>First Name </th>
+<th>Last Name </th>
+<th>College ID </th>
+<th>A/C Creation Date</th>
+<th>Last Login Date</th>
+<th>Last Login IP</th>
+</tr>
+<% @adminusers.each do |adminuser|%>
+<tr>
+<td><%= adminuser.name %></td>
+<td><%= adminuser.last_name %></td>
+<td><%= adminuser.email %></td>
+<td><%= adminuser.created_at.to_date rescue nil%></td>
+<td><%= adminuser.last_sign_in_at.to_date rescue nil%></td>
+<td><%= adminuser.last_sign_in_ip%></td>
+</tr>
+<%end%> 
+</table>

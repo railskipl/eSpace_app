@@ -49,5 +49,28 @@ class HomeController < ApplicationController
 
     end
 
+    def search_post
+      q = params[:q]
+       @posts = Post.where("user_id != ?",current_user.id).order("id desc")
+       @posts = @posts.where("(created_at) like ? or (created_at) like ?", "%#{q}%", "%#{q}%") if q.present?
+       start_date = "#{params['start_date']}"
+       end_date ="#{params['end_date']}"
 
-end
+      if start_date.blank? || end_date.blank?
+       flash[:error] = "Please Select Date"
+       return false
+       elsif start_date > end_date
+       flash[:error] = "Start Date Cannot Be Greater"
+       return false
+      else
+      @posts = Post.where("date(created_at) >= ? and date(created_at) <= ?",start_date,end_date) 
+       end
+        respond_to do |format|
+        format.html
+        format.xls
+          format.pdf do
+          render :pdf => "posts_report"
+          end   
+        end
+      end
+    end

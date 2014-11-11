@@ -10,7 +10,6 @@ class Message < ActiveRecord::Base
 
     def user_tokens=(ids)
         self.user_ids = ids.split(",")
-
     end
 
       def subject_name(sub)
