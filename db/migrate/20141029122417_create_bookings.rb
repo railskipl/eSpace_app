@@ -8,6 +8,11 @@ class CreateBookings < ActiveRecord::Migration
       t.integer :user_id
       t.integer :poster_id
       t.string :email
+      t.string :email
+      t.date :dropoff_date
+      t.float :dropoff_price
+      t.date :pickup_date
+      t.float :pickup_price
 
       t.timestamps
     end

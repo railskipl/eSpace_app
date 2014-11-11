@@ -1,3 +1,14 @@
+  <script type="text/javascript">
+
+    jQuery(function($){
+      $("#booking_dropoff_date").datepicker({dateFormat: 'yy-mm-dd', showOn: 'button', buttonImage: '/assets/calendar.gif', buttonImageOnly: true})
+
+      $("#booking_pickup_date").datepicker({dateFormat: 'yy-mm-dd', showOn: 'button', buttonImage: '/assets/calendar.gif', buttonImageOnly: true})
+
+    });
+
+  </script>
+
 <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css'%>
 <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 
@@ -27,8 +38,9 @@ jQuery(document).ready(function(){
           var pickup = parseFloat($('#pickup').val());
         }
 
-        $('#total').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
-        $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));   
+        $('#total').html((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
+        $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
+         
     }
 
 
@@ -54,12 +66,12 @@ jQuery(document).ready(function(){
 
         if($(this).is(":checked")) {
          
-          $('#total').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
         }
         else
         {
-          $('#total').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
         }
 
@@ -85,12 +97,12 @@ jQuery(document).ready(function(){
 
         if($(this).is(":checked")) {
          
-          $('#total').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
         }
         else
         {
-          $('#total').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
         }       
     });
@@ -98,8 +110,10 @@ jQuery(document).ready(function(){
 
 });//]]>  
 
-</script>
 
+  
+</script>
+<!-- <script src="https://checkout.stripe.com/checkout.js"></script> -->
 
 <table width="100%">
 <tr>
@@ -139,28 +153,59 @@ jQuery(document).ready(function(){
 
 <tr>
   <td>
-    <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' /> <input type='text' name='area' id='area' value='' /><br />
+    <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' /> <br />
 
     <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
     <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
     <input type="checkbox" id="checkbox1" /> Drop Off <br />
     <input type="checkbox" id="checkbox2" /> Pick Up <br />
-    <input type='text' name='total' id='total' value='' />
+    
 
 
     
-    <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'} do |f| %>
+    <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
+      <%= text_field_tag :area %>
       <%= f.hidden_field :post_id, :value => @post.id %>
-      <%= f.hidden_field :poster_id, :value=> @post.user_id %>
-      <%= f.hidden_field :price, :value => "" %>
-      <%= f.submit "Book", :class => "btn btn-primary contact-form"%>
+      <%= f.hidden_field :poster_id, :value=> @post.user_id %><br/>
+      <%= f.hidden_field :posting_dropoff_date, :value=> @post.drop_off_avaibility_end_date %>
+      Area :<%= f.hidden_field :price, :value => "" %> <br/>
+
+      Drop Off Date : <%= f.text_field :dropoff_date %> <br/>
+      
+      Pick Up Date : <%= f.text_field :pickup_date %> <br/>
+     
+
+      <%= f.submit "Book", :class => "btn btn-primary contact-form" %>
     <% end %>
+    <div id="total"></div>
 
   </td>
 
 </tr>
 
 </table>
+
+<!--  <script>
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
+    image: '/square-image.png',
+    token: function(token) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+    }
+  });
+
+  document.getElementById('customButton').addEventListener('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'Demo Site',
+      description: '2 widgets ($20.00)',
+      amount: 2000
+    });
+    e.preventDefault();
+  });
+</script> -->
+
 <%if current_user.present?%>
     <h3>Post your comment</h3>
     <%= form_for [@post, Comment.new] ,:html=>{ id: "new_comment"} do |f| %>

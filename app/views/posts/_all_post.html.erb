@@ -1,27 +1,27 @@
+     
     <% @posts.each_with_index do |post, index| %>
-    
-        <tr>
-        <td><%= index + 1 %></td>
-         <td><%= post.user.email rescue nil%></td>
-        <td><%= post.id %></td>
-        <td><%= post.price_sq_ft %></td>
-        <td><%= post.created_at.strftime("%d-%m-%Y") %></td> 
-        <td><%= post.area %></td>
-        <td>$<%= post.price_sq_ft %></td>
-        <td><%= post.address %></td>
-        <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
+      <div class="box1">
+        <%= index + 1 %>)
+         <%= post.user.email rescue nil%>
+        <%= post.id %>
+        <%= post.price_sq_ft %>
+        <%= post.created_at.strftime("%d-%m-%Y") %>
+        <%= post.area %>
+        $<%= post.price_sq_ft %>
+        <%= post.address %>
+        <% if post.status == true %> Active <% else %> Deactive <% end %>
         <% if user_signed_in? && signed_in? && current_user.admin?  %>
 
       <% if post.featured == true %>
-     <td> <%= link_to 'Deactive', toggled_feature_post_path(post.id)%></td>
+     <%= link_to 'Deactive', toggled_feature_post_path(post.id)%>
       <% else %>
-      <td><%= link_to 'Activate', toggled_feature_post_path(post.id)%></td>
+      <%= link_to 'Activate', toggled_feature_post_path(post.id)%>
       <% end %>
    
         <%else%>
-        <td><%= link_to 'View Details', post_path(post) %>
-        </td>
-        <td id="message_<%= post.id %>"><%= link_to "Send Message ", compose_message_messages_path(:user_id => post.user_id,:post_id => post.id ), :remote=>true %></td>
+        <%= link_to 'View Details', post_path(post) %>
+        
+        <div id="message_<%= post.id %>"><%= link_to "Send Message ", compose_message_messages_path(:user_id => post.user_id,:post_id => post.id ), :remote=>true %></div>
         <%end%> 
-      </tr>
+     </div>
     <% end %>
