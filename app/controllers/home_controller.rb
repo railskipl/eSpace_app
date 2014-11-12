@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
  # before_filter :authenticate_user!, :except => []
 	def index
-    @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(10)
+    @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(10) rescue nil
     respond_to do |format|
         format.html
         format.xls
