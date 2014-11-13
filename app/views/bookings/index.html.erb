@@ -10,14 +10,13 @@
 
 
   </script>
- <%= form_tag search_by_date_path, :method => 'get' do %>
+ <%= form_tag search_by_date_path,:method => 'get' do %>
 From Date :
-<%= text_field_tag :start_date, params[:start_date] %></br>
+<%= text_field_tag :start_date, params[:start_date]%></br>
 
 To Date :
-<%= text_field_tag :end_date, params[:end_date] %></br>
+<%= text_field_tag :end_date, params[:end_date],onchange:"checkAndSubmit()" %></br>
      
-<%= submit_tag "Search by date" ,:class => "btn btn-secondary" %>
 <%end%> 
 <table class="table table-striped">
 <tr>
@@ -58,3 +57,24 @@ To Date :
 </tr>
 <%end%> 
 </table>
+
+ 
+<script>
+
+ function checkAndSubmit()
+
+{
+ 
+  if ($('#start_date').val() != null && $('#end_date').val() != null)
+  
+     {
+      //document.getElementById('formID').submit();
+      var start_date = $('#start_date').val();
+      var end_date = $('#end_date').val();
+
+      window.location.href = '/search_by_date?start_date=' + start_date +"&end_date="+end_date;
+      
+     } 
+       
+}
+</script>  
