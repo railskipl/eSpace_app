@@ -52,7 +52,7 @@ jQuery(document).ready(function(){
        var price = parseFloat($('#price').val());
        var drop_off = 0;
        var pickup = 0;
-
+       
         if($('#checkbox1').is(":checked"))
         {
           var drop_off = parseFloat($('#dropoff').val());
@@ -68,7 +68,21 @@ jQuery(document).ready(function(){
          
           $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
-        }
+
+           var fees = (total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2);        
+            if (fees <= 8)
+            {
+               var cut_off = fees * 0.80;
+               $('#cut_off').html("+ Our Commission&nbsp;" + cut_off.toFixed(2)); 
+            }
+             else if (price > 8)
+             {
+                var cut_off =  fees * (10/100);
+                $('#cut_off').html("+ Our Cut&nbsp;" + cut_off.toFixed(2)); 
+             }
+               
+          }
+        
         else
         {
           $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
@@ -83,7 +97,7 @@ jQuery(document).ready(function(){
        var price = parseFloat($('#price').val());
        var drop_off = 0;
        var pickup = 0;
-
+      
         if($('#checkbox1').is(":checked"))
         {
           var drop_off = parseFloat($('#dropoff').val());
@@ -99,6 +113,8 @@ jQuery(document).ready(function(){
          
           $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          
+         
         }
         else
         {
@@ -177,8 +193,8 @@ jQuery(document).ready(function(){
 
       <%= f.submit "Book", :class => "btn btn-primary contact-form" %>
     <% end %>
-    <div id="total"></div>
-
+    <div id="total"></div> <div id="cut_off"></div>
+    
   </td>
 
 </tr>

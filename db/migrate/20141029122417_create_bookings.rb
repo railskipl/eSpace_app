@@ -3,6 +3,8 @@ class CreateBookings < ActiveRecord::Migration
     create_table :bookings do |t|
       t.string :stripe_customer_token
       t.string :stripe_charge_id
+      t.string :stripe_transfer_id
+      t.string :status
       t.float :price
       t.integer :post_id
       t.integer :user_id
@@ -13,7 +15,8 @@ class CreateBookings < ActiveRecord::Migration
       t.float :dropoff_price
       t.date :pickup_date
       t.float :pickup_price
-
+      t.float :cut_off_price
+      t.boolean :is_cancel, :default => false
       t.timestamps
     end
   end

@@ -7,6 +7,15 @@ module PostsHelper
    @mutual = @graph.get_object("me")
    @mutual_friends = @graph1.get_connections("me", "mutualfriends/#{@mutual["id"]}")
    return @mutual_friends.count	
- end	
+ end
+
+ def processing_fees(fees)
+   if fees <= 8
+   	@cut_off = fees * 0.80
+   	return @cut_off 
+   elsif fees > 8
+     fees * 10/100
+   end
+ end		
 
 end

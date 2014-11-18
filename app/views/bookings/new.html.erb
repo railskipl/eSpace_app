@@ -100,11 +100,14 @@
   <%= f.hidden_field :user_id, :value=> current_user.id %>
   <%= f.hidden_field :post_id, :value=> session[:post_id] %>
   <%= f.hidden_field :poster_id, :value=> session[:poster_id] %>
-
+  <%= f.hidden_field :dropoff_date, :value=> session[:dropoff_date] %>
+  <%= f.hidden_field :dropoff_price, :value=> session[:price] %>
+  <% @cut_off = processing_fees(session[:price].to_f)%>
+  <%= f.hidden_field :cut_off_price, :value => @cut_off  %>
   <div class="field">
     <%= f.label :price %>
-    <%= f.text_field :price, :value=> session[:price], :readonly => true  %>
-      
+    <%= f.text_field :price, :value=> (session[:price].to_f + processing_fees(session[:price].to_f)), :readonly => true  %>  Total Price <%= session[:price].to_f%>  + Our Commission <%= processing_fees(session[:price].to_f) %>
+
   </div>
 
   <div class="field">

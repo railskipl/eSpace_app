@@ -1,8 +1,9 @@
 class BookingsController < ApplicationController
  before_filter :authenticate_user!, :except => []
+ include BookingsHelper
 
  def index
- 	@bookings = Booking.where("user_id = ?",current_user.id)
+ 	@bookings = Booking.where("user_id = ? AND is_cancel = ?",current_user.id,false)
  end
 
 	def new
@@ -65,7 +66,7 @@ class BookingsController < ApplicationController
 	end
 
 def search_by_date
- @bookings = Booking.where("user_id = ?",current_user.id)
+ @bookings = Booking.where("user_id = ? AND is_cancel = ?",current_user.id,false)
  if params[:start_date].blank? || params[:end_date].blank?
       redirect_to bookings_path, alert: "Please Select Date"
  elsif  params[:start_date] > params[:end_date]
@@ -80,11 +81,35 @@ end
 end
 
 	def checkout
-		session[:price] = params[:booking][:price]
+   	session[:price] = params[:booking][:price]
     session[:post_id] = params[:booking][:post_id] 
     session[:poster_id] = params[:booking][:poster_id]
+    session[:dropoff_date] = params[:booking][:posting_dropoff_date]
+    session[:dropoff_price] = params[:booking][:price]
     redirect_to new_booking_path
 	end
+
+  #this method cancel's the booking done by finder & does the cancel_booking_deduction
+  # according to criteria.
+  def cancel_booking
+    @booking = Booking.where("id = ?",params[:id])
+    @price = @booking.first.dropoff_price
+    @stripe_charge_id = @booking.first.stripe_charge_id
+    @days_diff =  days_diff(params[:drop_off_date].to_date)
+    @amount = cancel_booking_deduction(@days_diff,@price).to_i 
+    @amount_cents = ((@amount.to_f)*100).to_i
+
+    begin
+    ch = Stripe::Charge.retrieve(@stripe_charge_id) 
+    refund = ch.refunds.create(:amount => @amount_cents)
+    cancel_booking = @booking.first.update_columns(is_cancel: true)
+    rescue Stripe::InvalidRequestError => e
+            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+            return false
+    end
+    redirect_to new_booking_path
+    flash[:notice] = "Booking is cancel & $#{@amount} is refunded. "
+  end
 
 	def is_number?(i)
     	true if Float(i) rescue false
@@ -93,7 +118,7 @@ end
 
 private
 	def page_params
-      params.require(:booking).permit(:stripe_customer_token, :price, :user_id, :email, :post_id, :poster_id)
+      params.require(:booking).permit(:stripe_customer_token, :price, :user_id, :email, :post_id, :poster_id,:dropoff_date,:dropoff_price,:cut_off_price)
     end
 
 end

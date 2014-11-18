@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'payement_transfers/index'
+
   get 'ratings/update'
 
   resources :pages
@@ -59,10 +61,11 @@ Rails.application.routes.draw do
   resources :bookings do
     collection do
       post :checkout
+      get 'cancel_booking'
     end
   end
 
-
+  
   resources :ratings, only: :update
 
   resources :messages do
@@ -86,8 +89,12 @@ Rails.application.routes.draw do
      get :is_read_all
     end
   end
-
-
+  resources :payement_transfers do 
+    collection do
+      get 'transfer_money'
+      get 'check_status'
+    end
+  end  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.string   "stripe_card_id_token"
     t.string   "stripe_recipient_token"
     t.string   "card_number"
+    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,6 +26,8 @@ ActiveRecord::Schema.define(version: 20141031115610) do
   create_table "bookings", force: true do |t|
     t.string   "stripe_customer_token"
     t.string   "stripe_charge_id"
+    t.string   "stripe_transfer_id"
+    t.string   "status"
     t.float    "price"
     t.integer  "post_id"
     t.integer  "user_id"
@@ -34,6 +37,8 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.float    "dropoff_price"
     t.date     "pickup_date"
     t.float    "pickup_price"
+    t.float    "cut_off_price"
+    t.boolean  "is_cancel",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
