@@ -35,8 +35,7 @@ class BankDetailsController < ApplicationController
     #   end
     # end
 
-
-   
+        
         @bank_detail = BankDetail.new(bank_detail_params)
 
         if params[:stripe_card_token]
@@ -58,9 +57,10 @@ class BankDetailsController < ApplicationController
 
           if stripe_response["cards"]["data"][0]["id"].present?
             @bank_detail.stripe_recipient_token = stripe_response["id"]
-            @bank_detail.full_name = stripe_response["cards"]["data"][0]["name"]
+            @bank_detail.full_name = params[:bank_detail][:full_name]
             @bank_detail.stripe_card_id_token = stripe_response["cards"]["data"][0]["id"]
             @bank_detail.card_number = stripe_response["cards"]["data"][0]["last4"]
+            @bank_detail.user_id = params[:bank_detail][:user_id]
             @bank_detail.save
 
             # https://stripe.com/docs/api/ruby#update_transfer
@@ -105,6 +105,6 @@ class BankDetailsController < ApplicationController
     end
 
     def bank_detail_params
-      params.require(:bank_detail).permit(:full_name, :card_number)
+      params.require(:bank_detail).permit(:full_name, :card_number,:user_id)
     end
 end

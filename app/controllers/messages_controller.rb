@@ -9,21 +9,30 @@ class MessagesController < ApplicationController
    @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
    @total_message = @messages_sender + @messages_receiver
    @total_messages =  @total_message.sort_by { |k| k["id"] }
-   @user_messages = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
+   @check_user = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
+   @user_messages_sender = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
+   @user_messages_receiver = current_user.sent_messages.order("id Desc").select(:recipient_id).uniq
+     
    
   end
   #make all messages mark as read.
   def is_read_all
    message = Message.select(:id,:sender_id,:is_read).where("recipient_id = ? AND is_read =?",current_user.id,false).uniq!
-   messages_sender = Message.select(:id,:sender_id,:is_read).where("recipient_id = ?",current_user.id).uniq!.last.sender_id rescue nil
+   messages_receiver = Message.select(:id,:sender_id,:is_read).where("recipient_id = ?",current_user.id).uniq!.last.sender_id rescue nil
+  
+   messages_sender = Message.select(:id,:sender_id,:recipient_id,:is_read).where("sender_id = ?",current_user.id).uniq!.last.recipient_id rescue nil
   
    message.each do |r|
      if r.is_read == false
         r.update_column('is_read',true) 
      end 
    end
-   redirect_to :controller =>'messages',:action=>"index",:recv_id =>messages_sender
-  end 
+       unless messages_receiver.nil?
+         redirect_to :controller =>'messages',:action=>"index",:recv_id =>messages_receiver
+      else
+         redirect_to :controller =>'messages',:action=>"index",:recv_id =>messages_sender
+      end   
+    end 
 
   def show
 
@@ -242,7 +251,9 @@ end
   end
 
   def user_message
-   @user_messages = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
+   @check_user = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
+   @user_messages_sender = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
+   @user_messages_receiver = current_user.sent_messages.order("id Desc").select(:recipient_id).uniq
  
    respond_to do |format|
       format.js

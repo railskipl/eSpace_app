@@ -1,6 +1,8 @@
+<% if @check_user.present? %>
 <div id="user_msg">
 	<ul>
-		<% @user_messages.each do |user_messages|%> 
+
+		<% @user_messages_sender.each do |user_messages|%> 
 		<li>
 		<img src="assets/thumb_profile.jpg" alt=""> 
 		 <a style="margin:0" href="<%= messages_path(:recv_id =>user_messages.sender_id)%>"><%= user_messages.sender.name %><%= user_messages.sender.last_name %></a>
@@ -8,3 +10,17 @@
 		 </li> 
 	</ul>
 </div>
+<% else %>
+  <div id="user_msg">
+	<ul>
+
+		<% @user_messages_receiver.each do |user_messages|%> 
+		<li>
+		<img src="assets/thumb_profile.jpg" alt=""> 
+		 <a style="margin:0" href="<%= messages_path(:recv_id =>user_messages.recipient_id)%>"><%= user_messages.recipient.name %><%= user_messages.recipient.last_name %></a>
+		<% end %>
+		 </li> 
+	</ul>
+</div>
+<% end %>       
+     

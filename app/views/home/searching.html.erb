@@ -25,28 +25,26 @@
 
 
   <table class="table table-striped">
-
-  
-	 <tr>
-	 <th>First Name </th>
-   	 <th>Last Name </th>
-	 <th>Email </th>
-	 <th>View Details</th>
-	 <th>Delete</th>
-	 <th>Activate/Deactivate</th>
-	 </tr>
-	<% @adminusers.each do |adminuser|%>
-	<tr>
-	 <td><%= adminuser.name %></td>
-	 <td><%= adminuser.last_name %></td>
-	 <td><%= adminuser.email %></td>
-	 <td><%= link_to "View Details",{:controller => 'users', :action => 'show', :id => adminuser.id}%></td>
-	 <td><%= link_to "Destroy",{:controller => 'users', :action => 'destroy', :id => adminuser.id}, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	 <td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>
-	 </tr>
-
-	<%end%>	
-
-	</table>
+<tr>
+<th>First Name </th>
+<th>Last Name </th>
+<th>College ID </th>
+<th>A/C Creation Date</th>
+<th>Last Login Date</th>
+<th>Last Login IP</th>
+<th>User Status</th>
+</tr>
+<% @adminusers.each do |adminuser|%>
+<tr>
+<td><%= adminuser.name %></td>
+<td><%= adminuser.last_name %></td>
+<td><%= adminuser.email %></td>
+<td><%= adminuser.created_at.to_date rescue nil%></td>
+<td><%= adminuser.last_sign_in_at.to_date rescue nil%></td>
+<td><%= adminuser.last_sign_in_ip%></td>
+<td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>
+</tr>
+<%end%> 
+</table>
 
 

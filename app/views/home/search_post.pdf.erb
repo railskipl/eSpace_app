@@ -1,0 +1,77 @@
+
+<table cellpadding="10" cellspacing="0" border="1" class="table table-striped table-bordered">
+<thead>
+    <tr>
+      <th>Sr No.</th>
+      <th>Post ID</th>
+       <th>Poster First Name</th>
+      <th>Poster Last Name</th>
+      <th>Post Description</th>
+      <th>Total Area (Sq ft)</th>
+      <th>Booked Area</th>
+      <th>No of Bookings</th>
+       <th>Date</th>
+      <th>Status</th>
+      <th>Drop Off Start Date</th>
+      <th>Drop Off End Date</th>
+      <th>Pick up Start Date</th>
+      <th>Pick up End Date</th>
+      <th>Drop off Price</th>
+      <th>Pick up price</th>
+      <th>Archived</th>
+      <th>Ratings</th>
+    </tr>
+  </thead>
+
+  <tbody id="all_posts" >
+
+    <% @posts.each_with_index do |post, index| %>
+    
+        <tr>
+        <% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
+          <% x = 0 %>
+          <% else %>
+          <% page = params[:page].to_i - 1 %>
+          <% x = page * 10 %>
+        <% end %>
+        <td><%= index + x+1 %></td>
+        <td><%= post.id %></td>
+        <td><%= User.find(post.user_id).name rescue nil%></td>
+        <td><%= User.find(post.user_id).last_name rescue nil%></td>
+        <td><%= post.additional_comments%></td>
+        <td><%= post.area %></td>
+        <td></td>
+  
+        <td><%= Booking.where(:user_id=>post.user_id).count rescue nil%></td>
+        <td><%= post.created_at.strftime("%d-%m-%Y") %></td> 
+        <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
+        
+        
+         <td><%= post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") %></td>
+        <td><%= post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") %></td>
+        <td><%= post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %></td>
+        <td><%= post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %></td>
+        <%if post.price_include_drop_off.blank?%>
+        <td>-</td>
+         <%else%>
+        <td> <%= post.price_include_drop_off %></td>
+         <%end%>
+          <%if post.price_include_pick_up.blank?%>
+        <td>-</td>
+         <%else%>
+        <td><%= post.price_include_pick_up %></td>
+          <%end%>
+        <td><% if post.archive == true %> Yes <% else %> No <% end %></td>
+        <%if post.overall_rating.to_s ==  "NaN"%>
+        <td>No Ratings</td>
+        <%else%>
+      <td><%= post.overall_rating.round(1)%></td>
+        <%end%>
+
+      </tr>
+    <% end %>
+
+    
+
+  </tbody>
+</table> 

@@ -1,0 +1,47 @@
+<table class="table table-striped">
+<tr>
+<th>Sr No.</th>
+<th>Booking Date</th>
+<th>Booking Area/Sq.Ft</th>
+<th>Lister's Name</th>
+<th>Address</th>
+<th>Pick up Date</th>
+<th>Drop off Date</th>
+<th>Order</th>
+<th>Transfer Status</th>
+<th>Money Transfer</th>
+<th>Check Status</th>
+</tr>
+<% @bookings.each_with_index do |booking, index|%>
+<tr>
+
+<td><%= index + 1 %></td>
+<td><%= booking.created_at.to_date %></td>
+<td><%= Post.find(booking.post_id).area %></td>
+<td><%= User.find(booking.user_id).name %></td>
+<td><%= Post.find(booking.post_id).address %></td>
+	
+ <td><%= Post.find(booking.post_id).pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= Post.find(booking.post_id).pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
+	</td>
+ <td><%= Post.find(booking.post_id).drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= Post.find(booking.post_id).drop_off_avaibility_end_date.strftime("%d-%m-%Y")%></td>
+	
+<td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
+<td><%= booking.status.camelize rescue nil %>
+	
+<td>
+  <% unless booking.stripe_transfer_id.present? %>	
+	<%= link_to "Money Transfer",transfer_money_payement_transfers_path(:booking_id =>booking.id,:poster_id =>booking.poster_id,:finder_id=>booking.user_id) %>
+  <% else %>
+     -----
+  <% end %>
+</td>  
+<td>
+  <% if booking.status.present? && booking.status == "pending"%>
+    <%= link_to "Check Status",check_status_payement_transfers_path(:booking_id =>booking.id) %>
+  <% else %>
+     -----  
+  <% end %>
+</td>
+</tr>
+<%end%> 
+</table>

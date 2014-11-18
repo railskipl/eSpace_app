@@ -1,47 +1,51 @@
-   <%#= @posts.where(:created_at => Date.today.beginning_of_month..Date.today.end_of_month).count%>
-
-
-  <script type="text/javascript">
-
+<script type="text/javascript">
     jQuery(function($){
-      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
-
-    });
+      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true}) });
     jQuery(function($){
-      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
-    });
-
-
+      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true}) });
   </script>
-<h4>Search by</h4>
-  <%= form_tag search_post_path,:method=> :get do %>
-  <%= hidden_field_tag :q, params[:q] %>
-From Date :
-<%= text_field_tag :start_date, params[:start_date] %>
 
-To Date :
-<%= text_field_tag :end_date, params[:end_date]%>&nbsp;
+<% if (@posts.blank?)%>
 
-  <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %> 
-  <%end%>
+"No Results Found!!"
+<%else%>
 
+<%if start_date > end_date%>
+
+<%= render "home/search_date"%>
+
+  <%elsif start_date.blank? || end_date.blank?%>
+
+ <%= render "home/search_date"%>
+
+  <%else%>
+
+  <%= render "home/search_date"%>
+      <div  style="text-align:right;margin-left:10px;margin-bottom: -42px;">
+            <a href="<%= search_post_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> 
+            <a href="<%= search_post_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
+     </div>
 <h4>Listing All Post</h4>
-<table cellpadding="1"  class="table table-striped ">
+<table cellpadding="1"  class="table table-striped">
+
+  <thead>
     <tr>
       <th>Sr No.</th>
       <th>Post ID</th>
-      <th>Poster Name</th>
-      <th>Date</th>
+       <th>Poster Name</th>
+       <th>Date</th>
       <th>Status</th>
       <th></th>
       <th>Drop Off Date</th>
       <th>Pick up Date</th>
       <th>Drop off Price</th>
       <th>Pick up price</th>
-      <!-- <th>Booking Status</th> -->
       <th>Archived</th>
       <th>Ratings</th>
     </tr>
+  </thead>
+
+  <tbody id="all_posts" >
 
     <% @posts.each_with_index do |post, index| %>
     
@@ -75,7 +79,6 @@ To Date :
          <%else%>
         <td><%= post.price_include_pick_up %></td>
           <%end%>
-        <!-- <td></td> -->
         <td><% if post.archive == true %> Yes <% else %> No <% end %></td>
         <%if post.overall_rating.to_s ==  "NaN"%>
         <td>No Ratings</td>
@@ -85,9 +88,16 @@ To Date :
 
       </tr>
     <% end %>
+
+    
+
+  </tbody>
 </table> 
 
-<%= will_paginate @posts %>
+<%#= will_paginate @posts %>
 
 
+
+<%end%>
+  <%end%>
 

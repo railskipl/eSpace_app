@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'payement_transfers/index'
+
   get 'ratings/update'
 
   resources :pages
-
+  
+  resources :admins
+  
   resources :bank_details
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",sessions: 'users/sessions',registrations: 'users/registrations'}
@@ -39,6 +43,7 @@ Rails.application.routes.draw do
    get 'home/contactus',:to => "home#contactus"
    get '/home/all_postings', :to => "home#all_postings"
    get  'search'  => "home#searching"
+   get  'searched'  => "home#search_post", :as => 'search_post'
    get 'terms',:to => "home#terms"
    get  'search'  => "posts#search"
    match 'all_posts' => "posts#all_posts", via: [:get, :post]
@@ -59,10 +64,11 @@ Rails.application.routes.draw do
   resources :bookings do
     collection do
       post :checkout
+      get 'cancel_booking'
     end
   end
 
-
+  
   resources :ratings, only: :update
 
   resources :messages do
@@ -86,6 +92,14 @@ Rails.application.routes.draw do
      get :is_read_all
     end
   end
+
+  resources :payement_transfers do 
+    collection do
+      get 'transfer_money'
+      get 'check_status'
+    end
+  end  
+ 
 
   # Example resource route with options:
   #   resources :products do
