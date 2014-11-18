@@ -6,25 +6,21 @@
   </script>
 
 <% if (@posts.blank?)%>
-"No Results Found!!"
 
+"No Results Found!!"
 <%else%>
 
+<%if start_date > end_date%>
 
+<%= render "home/search_date"%>
 
-<h4>Search by</h4>
-  <%= form_tag search_post_path,:method=> :get do %>
-  <%= hidden_field_tag :q, params[:q] %>
-From Date :
- 
-<%= text_field_tag :start_date, params[:start_date] %>
+  <%elsif start_date.blank? || end_date.blank?%>
 
-To Date :
+ <%= render "home/search_date"%>
 
-<%= text_field_tag :end_date, params[:end_date]%>
+  <%else%>
 
-  <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %> 
-  <%end%>
+  <%= render "home/search_date"%>
       <div  style="text-align:right;margin-left:10px;margin-bottom: -42px;">
             <a href="<%= search_post_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> 
             <a href="<%= search_post_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
@@ -44,7 +40,6 @@ To Date :
       <th>Pick up Date</th>
       <th>Drop off Price</th>
       <th>Pick up price</th>
-      <!-- <th>Booking Status</th> -->
       <th>Archived</th>
       <th>Ratings</th>
     </tr>
@@ -84,8 +79,6 @@ To Date :
          <%else%>
         <td><%= post.price_include_pick_up %></td>
           <%end%>
-        <!-- <td></td> -->
-
         <td><% if post.archive == true %> Yes <% else %> No <% end %></td>
         <%if post.overall_rating.to_s ==  "NaN"%>
         <td>No Ratings</td>
@@ -105,6 +98,6 @@ To Date :
 
 
 
-
+<%end%>
   <%end%>
 

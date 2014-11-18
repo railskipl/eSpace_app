@@ -1,14 +1,7 @@
 class HomeController < ApplicationController
  # before_filter :authenticate_user!, :except => []
 	def index
-    @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(10) rescue nil
-    respond_to do |format|
-        format.html
-        format.xls
-        format.pdf do
-           render :pdf => "users_report"
-        end
-      end
+
 	end
     
    def contactus
@@ -61,7 +54,7 @@ class HomeController < ApplicationController
        return false
        elsif start_date > end_date
        flash[:error] = "Start Date Cannot Be Greater"
-       return false
+      # return false
       else
       @posts = Post.where("date(created_at) >= ? and date(created_at) <= ?",start_date,end_date) 
        end

@@ -6,6 +6,9 @@
 <th>First Name </th>
 <th>Last Name </th>
 <th>College ID </th>
+<th>Signed In Through</th>
+<th>Email Id</th>
+<th>No. of Post</th>
 <th>A/C Creation Date</th>
 <th>Last Login Date</th>
 <th>Last Login IP</th>
@@ -15,7 +18,10 @@
 <tr>
 <td><%= adminuser.name %></td>
 <td><%= adminuser.last_name %></td>
-<td><%= adminuser.email %></td>
+<td><%= adminuser.personal_email %></td>
+<td><%= adminuser.provider%></td>
+<td><%= adminuser.email%></td>
+<td><%= Post.where(:user_id=>adminuser.id).count rescue nil%></td>
 <td><%= adminuser.created_at.to_date rescue nil%></td>
 <td><%= adminuser.last_sign_in_at.to_date rescue nil%></td>
 <td><%= adminuser.last_sign_in_ip%></td>
