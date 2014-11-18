@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'ratings/update'
 
   resources :pages
-
+  
+  resources :admins
+  
   resources :bank_details
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",sessions: 'users/sessions',registrations: 'users/registrations'}

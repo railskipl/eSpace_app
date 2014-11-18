@@ -1,0 +1,53 @@
+<%= javascript_include_tag "jquery.fancybox.pack.js" %>
+<%= stylesheet_link_tag "jquery.fancybox.css"%>
+<% if signed_in? && current_user.admin? %>
+<h4>Search by</h4>
+<%= form_tag search_path,:method=> :get do %>
+<%= text_field_tag :q, nil %>
+<!-- <div class="span5"> -->
+<!-- <section id="buttons"> -->
+<select>
+<option value="all">All</option>
+<option value="monthly">Month</option>
+<option value="weekly">Weekly</option>
+<option value="daily">Daily</option>
+</select>
+
+<!-- </section> -->
+<!-- </div> -->
+<%= submit_tag "Search", :class => "btn btn-primary contact-form" %>
+<%end%>
+<div>
+<%= link_to "Add new User",new_user_users_path%> 
+</div> <br>
+<table class="table table-striped">
+<tr>
+<th>First Name </th>
+<th>Last Name </th>
+<th>College ID </th>
+<th>A/C Creation Date</th>
+<th>Last Login Date</th>
+<th>Last Login IP</th>
+<th>User Status</th>
+</tr>
+<% @adminusers.each do |adminuser|%>
+<tr>
+<td><%= adminuser.name %></td>
+<td><%= adminuser.last_name %></td>
+<td><%= adminuser.personal_email %></td>
+
+<td><%= adminuser.created_at.to_date rescue nil%></td>
+<td><%= adminuser.last_sign_in_at.to_date rescue nil%></td>
+<td><%= adminuser.last_sign_in_ip%></td>
+<td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>
+</tr>
+<%end%> 
+</table>
+<%= will_paginate @adminusers %>
+<% else %>
+<h1>Home Page</h1>
+<%end%>
+
+
+<%#= will_paginate @adminusers %>
+

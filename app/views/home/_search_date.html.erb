@@ -1,0 +1,18 @@
+<% start_date = "#{params['start_date']}" %>
+<% end_date ="#{params['end_date']}" %>
+
+
+
+ <h4>Search by</h4>
+  <%= form_tag search_post_path,:method=> :get do %>
+  <%= hidden_field_tag :q, params[:q] %>
+From Date :
+ 
+<%= text_field_tag :start_date, params[:start_date] %>
+
+To Date :
+
+<%= text_field_tag :end_date, params[:end_date]%>
+
+  <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %> 
+  <%end%>
