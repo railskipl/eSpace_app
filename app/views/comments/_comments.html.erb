@@ -1,0 +1,13 @@
+ <% @comments.each do |comment| %>
+    <% num_stars(comment.rating)[:full].times do %>
+      <i class="fa fa-star"></i>
+    <% end %>
+    <% num_stars(comment.rating)[:half].times do %>
+      <i class="fa fa-star-half-o"></i>
+    <% end %>
+    <% num_stars(comment.rating)[:empty].times do %>
+      <i class="fa fa-star-o"></i>
+    <% end %>
+    <strong><%= comment.user.name rescue nil %>&nbsp;<%= comment.user.last_name rescue nil %></strong>&nbsp;<%= comment.created_at.strftime("%b %d,%Y") %><br><br>
+    <%= comment.comments %><br><br>
+<%end%>

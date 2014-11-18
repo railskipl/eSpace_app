@@ -1,0 +1,20 @@
+
+
+
+
+<% @posts.each_with_index do |post, index| %>
+
+	<% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
+      <% x = 0 %>
+    <% else %>
+      <% page = params[:page].to_i - 1 %>
+      <% x = page * 4 %>
+    <% end %>
+
+<div class="box1">
+ <a onmouseout="hover.out(<%= index+x %>)" onmouseover="hover.over(<%= index+x %>)" href="javascript:triggerClick(<%= index+x %>)" id="m<%= post.id %>">
+  <%= post.user.name rescue nil%> <%= post.user.last_name rescue nil%>  Area: <%= post.area %> Price : <%= post.price_sq_ft %> <br/>
+  Address : <%= post.address %>  <%= link_to 'View Details', post_path(post) %>
+ </a><br>
+</div>
+<% end %>

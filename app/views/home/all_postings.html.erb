@@ -30,7 +30,7 @@
           <% page = params[:page].to_i - 1 %>
           <% x = page * 10 %>
         <% end %>
-        <td><%= index +x+1 %></td>
+        <td><%= index + x+1 %></td>
         <td><%= post.id %></td>
         <td><%= User.find(post.user_id).name rescue nil%>&nbsp;<%= User.find(post.user_id).last_name rescue nil%></td>
         <td><%= post.price_sq_ft %></td>

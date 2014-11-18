@@ -9,6 +9,7 @@
 
   </script>
 
+<script src="https://checkout.stripe.com/checkout.js"></script>
 <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css'%>
 <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 
@@ -108,12 +109,15 @@ jQuery(document).ready(function(){
     });
 
 
+    $("#ref_comment").load('<%= comments_path(:post_id => @post.id) %>');
+
+
 });//]]>  
 
 
   
 </script>
-<!-- <script src="https://checkout.stripe.com/checkout.js"></script> -->
+
 
 <table width="100%">
 <tr>
@@ -128,12 +132,12 @@ jQuery(document).ready(function(){
         <% num_stars(@post.overall_rating)[:empty].times do %>
           <i class="fa fa-star-o"></i>
         <% end %>
-        <%= "(" + pluralize(@post.comments.count.to_s, "customer review") + ")" if @post.comments.count > 0 %>
+        <%= "(" + pluralize(@post.comments.count.to_s, "") + ")" if @post.comments.count > 0 %>
      </p>
 <% end %>
 
 	<td><%= image_tag(@post.photo.url(:medium)) %> <br/>
-    <%= @post.user.name rescue nil %> <%= @post.user.last_name rescue nil %><br/>
+   <strong>Name : </strong> <%= @post.user.name rescue nil %> <%= @post.user.last_name rescue nil %><br/>
 		<strong>Price : </strong> $ <%= @post.price_sq_ft %> /Sq.ft <br/>
 
     <% if @post.drop_off %>
@@ -175,7 +179,7 @@ jQuery(document).ready(function(){
       Pick Up Date : <%= f.text_field :pickup_date %> <br/>
      
 
-      <%= f.submit "Book", :class => "btn btn-primary contact-form" %>
+      <%= f.submit "Book", :class => "btn btn-primary contact-form", :id=>"customButton" %>
     <% end %>
     <div id="total"></div>
 
@@ -185,26 +189,22 @@ jQuery(document).ready(function(){
 
 </table>
 
-<!--  <script>
-  var handler = StripeCheckout.configure({
-    key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
-    image: '/square-image.png',
-    token: function(token) {
-      // Use the token to create the charge with a server-side script.
-      // You can access the token ID with `token.id`
-    }
-  });
 
-  document.getElementById('customButton').addEventListener('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      name: 'Demo Site',
-      description: '2 widgets ($20.00)',
-      amount: 2000
-    });
-    e.preventDefault();
-  });
-</script> -->
+
+
+
+<form action="/charge" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+    data-image="/square-image.png"
+    data-name="Demo Site"
+    data-description="2 widgets ($20.00)"
+    data-amount="2000">
+  </script>
+</form>
+
+
 
 <%if current_user.present?%>
     <h3>Post your comment</h3>
@@ -222,18 +222,8 @@ jQuery(document).ready(function(){
    <% end %>
 <% end %>
 
-  <b><%= @comments.count %></b> Comments<br>
+  
 
-    <% @comments.each do |comment| %>
-    <% num_stars(comment.rating)[:full].times do %>
-      <i class="fa fa-star"></i>
-    <% end %>
-    <% num_stars(comment.rating)[:half].times do %>
-      <i class="fa fa-star-half-o"></i>
-    <% end %>
-    <% num_stars(comment.rating)[:empty].times do %>
-      <i class="fa fa-star-o"></i>
-    <% end %>
-    <strong><%= comment.user.name rescue nil %>&nbsp;<%= comment.user.last_name rescue nil %></strong>&nbsp;<%= comment.created_at.strftime("%b %d,%Y") %><br><br>
-    <%= comment.comments %><br><br>
-    <%end%>
+  <div id="ref_comment"> </div>
+
+    

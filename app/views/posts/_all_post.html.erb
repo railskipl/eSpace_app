@@ -1,7 +1,15 @@
      
     <% @posts.each_with_index do |post, index| %>
       <div class="box1">
-        <%= index + 1 %>)
+
+         <% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
+          <% x = 0 %>
+        <% else %>
+          <% page = params[:page].to_i - 1 %>
+          <% x = page * 4 %>
+        <% end %>
+
+        <%= index+x+1 %>)
          <%= post.user.email rescue nil%>
         <%= post.id %>
         <%= post.price_sq_ft %>

@@ -330,6 +330,7 @@ jQuery("#new_comment").validate({
 
 
 jQuery("#booking").validate({
+
 	ignore:'', // initialize the plugin
 	errorElement:'div',
 
@@ -338,9 +339,6 @@ jQuery("#booking").validate({
         "area":{
 	        required:true,
 	        number:true
-        },
-        "booking[dropoff_date]" :{
-	     	lessThanDropDate: "#booking_posting_dropoff_date"   
         }
 	},
 	messages: {
@@ -350,7 +348,32 @@ jQuery("#booking").validate({
         }
        
 	}
+	// ,
+	// submitHandler: function() {
+
+	// 	var handler = StripeCheckout.configure({
+	//     key: 'pk_test_17xmTuMVQ5oVgcT0AWY6XcNo',
+	//     image: '/square-image.png',
+	//     token: function(token) {
+	//       // Use the token to create the charge with a server-side script.
+	//       // You can access the token ID with `token.id`
+	//     }
+	//   });
+
+	  
+	//     // Open Checkout with further options
+	//     handler.open({
+	//       name: 'Demo Site',
+	//       description: '2 widgets ($20.00)',
+	//       amount: 2000
+	//     });
+	//     return false;
+
+	// }
+		
+
 });
+
 
 
 

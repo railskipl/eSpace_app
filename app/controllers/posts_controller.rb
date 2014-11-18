@@ -1,12 +1,20 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => []
+  helper_method :sort_column, :sort_direction
+
+  before_filter :authenticate_user!, :except => [:overview]
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
   include PostsHelper
+
   # GET /posts
   # GET /posts.json
   def index
    @posts = Post.search_post(params[:search], current_user.id)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml
+    end
   end
 
   def archive
@@ -14,10 +22,10 @@ class PostsController < ApplicationController
   end
 
   def all_posts
-    if request.post? || params[:search]
-      @posts = Post.search(params[:search], params[:page], current_user.id)
+    if params[:search]
+      @posts = Post.search(params[:search], params[:page], current_user.id).order(sort_column + " " + sort_direction)
     else
-      @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(4)
+      @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
     end
 
   end
@@ -33,7 +41,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.where(:post_id => @post)
+   
     
   end
 
@@ -64,11 +72,43 @@ class PostsController < ApplicationController
     end
   end
 
+  def overview
+
+    unless user_signed_in? 
+
+      @overviews = Post.page(params[:page]).order(sort_column + " " + sort_direction)
+      if params[:search]
+        @posts = Post.search_without_login(params[:search], params[:page]).order(sort_column + " " + sort_direction)
+      else
+        @posts = Post.page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
+      end
+
+    else
+
+      @overviews = Post.where("user_id != ?",current_user.id).page(params[:page]).order(sort_column + " " + sort_direction)
+      if params[:search]
+        @posts = Post.search(params[:search], params[:page], current_user.id).order(sort_column + " " + sort_direction)
+      else
+        @posts = Post.page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
+      end
+
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js # index.html.erb
+      format.xml
+    end
+  end
+
+
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+
     respond_to do |format|
       if @post.update(post_params)
+
         format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -128,6 +168,16 @@ class PostsController < ApplicationController
       params[:post][:drop_off_avaibility_end_date].to_date
 
       params.require(:post).permit(:area, :price_sq_ft, :pick_up, :drop_off, :price_include_pick_up, :price_include_drop_off, :pick_up_avaibilty_start_date, :pick_up_avaibility_end_date, :drop_off_avaibility_start_date, :drop_off_avaibility_end_date, :status, :additional_comments, :address, :latitude, :longitude, :user_id,:photo,:featured)
+    end
+
+
+    #Sort PostColumn 
+    def sort_column
+      Post.column_names.include?(params[:sort]) ? params[:sort] : "id"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 
 

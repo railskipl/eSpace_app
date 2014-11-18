@@ -1,6 +1,4 @@
 
-
-
 <% @mutual = @graph.get_object("me") %>
 
  <% @mutual_friends = @graph1.get_connections("me", "mutualfriends/#{@mutual["id"]}")%>

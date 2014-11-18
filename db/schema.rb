@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031115610) do
+ActiveRecord::Schema.define(version: 20141111114657) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
@@ -30,6 +30,10 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.integer  "user_id"
     t.integer  "poster_id"
     t.string   "email"
+    t.date     "dropoff_date"
+    t.float    "dropoff_price"
+    t.date     "pickup_date"
+    t.float    "pickup_price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,6 +107,7 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.datetime "photo_updated_at"
     t.boolean  "archive",                        default: false
     t.boolean  "featured",                       default: false
+    t.string   "miles"
   end
 
   create_table "ratings", force: true do |t|
@@ -147,6 +152,7 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.boolean  "admin",                  default: false
+    t.boolean  "status",                 default: true
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
@@ -156,7 +162,6 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.string   "mobile_number"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.boolean  "status",                 default: true
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
