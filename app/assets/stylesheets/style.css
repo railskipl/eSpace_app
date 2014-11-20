@@ -18,10 +18,7 @@
 	font-family: 'brandon5';
 	src:url('../font/Brandon_light.otf');}
 
-*{
-margin:0px;
-padding:0px;	
-	}
+
 	
 .clear{clear:both;}
 body {background-color:#F00;}
