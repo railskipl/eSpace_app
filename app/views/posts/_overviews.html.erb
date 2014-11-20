@@ -12,9 +12,10 @@
     <% end %>
 
 <div class="box1">
- <a onmouseout="hover.out(<%= index+x %>)" onmouseover="hover.over(<%= index+x %>)" href="javascript:triggerClick(<%= index+x %>)" id="m<%= post.id %>">
+ <a onmouseout="hover.out(<%= index+x %>)" onmouseover="hover.over(<%= index+x %>)" href="<%= post_path(post) %>" id="m<%= post.id %>">
   <%= post.user.name rescue nil%> <%= post.user.last_name rescue nil%>  Area: <%= post.area %> Price : <%= post.price_sq_ft %> <br/>
-  Address : <%= post.address %>  <%= link_to 'View Details', post_path(post) %>
+  Address : <%= post.address %>   <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? " | ( #{post.distance.round(2)} ) miles" : '' : '' %>
+
  </a><br>
 </div>
 <% end %>

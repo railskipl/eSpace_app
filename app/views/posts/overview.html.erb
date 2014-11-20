@@ -1,6 +1,12 @@
 
-<%= stylesheet_link_tag "facebox.css", "perfect-scrollbar.css" %>
-<%= javascript_include_tag "facebox.js", "endless_page.js", "perfect-scrollbar.js" %>
+<%= stylesheet_link_tag "perfect-scrollbar.css" %>
+<%= javascript_include_tag  "endless_page.js", "perfect-scrollbar.js" %>
+
+    <script type="text/javascript">
+      $(document).ready(function ($) {
+        $('.description').perfectScrollbar();
+      });
+    </script>
 
 <style type="text/css">
 
@@ -18,7 +24,7 @@
  white-space:nowrap;
  margin-top: -37px;
 }
-
+.head {height: auto; width: 310px; text-align: right;}
 .box1 { border: 1px solid #000000; height: 62px; margin: 8px auto; width: 382px;}
 .normal { background-color:#FFF; }
 .focus { background-color:#FFC; }
@@ -44,22 +50,11 @@
  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
  <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/src/markerclusterer.js"></script>
 
- <script type="text/javascript">
-      $(document).ready(function ($) {
-        $('.description').perfectScrollbar();
-      });
-    </script>
+
+
 
 <script type="text/javascript">
 //<![CDATA[
-
-/** COPYRIGHT NOTICE
-
-This code is available for a fee.
-
-Please contact me at wolfpil@gmail.com
-
-*/
 
 var map, actual, iw;
 var gmarkers = [];
@@ -79,13 +74,13 @@ var icons = {
       {
         stylers: [
           { hue: "#00b4ff" },
-          { saturation: 20 }
+          { saturation: 50 }
         ]
       },{
         featureType: "road",
         elementType: "geometry",
         stylers: [
-          { lightness: 100 },
+          { hue: "#28A0E5" },
           { visibility: "simplified" }
         ]
       },{
@@ -137,27 +132,27 @@ function createMarker(b, c, d, e, f) {
     i.id = f;
     gmarkers.push(i);
 
-    //  ///get array of markers currently in cluster
-    // var allMarkers = mc.getMarkers();
+     ///get array of markers currently in cluster
+    var allMarkers = mc.getMarkers();
+    var text = "<p><b>" + c + "<\/b><\/p>";
 
-    // //check to see if any of the existing markers match the latlng of the new marker
-    //   if (allMarkers.length != 0) {
-    //     for (j=0; j < allMarkers.length; j++) {
+    //check to see if any of the existing markers match the latlng of the new marker
+      if (allMarkers.length != 0) {
+        for (j=0; j < allMarkers.length; j++) {
             
-    //       var existingMarker = allMarkers[j];
-    //       var pos = existingMarker.getPosition();
+          var existingMarker = allMarkers[j];
+          var pos = existingMarker.getPosition();
 
-    //       if (b.equals(pos)) {
-    //         // text = text + " & " + content[j];
-    //       }                   
-    //     }
-    //   }
+          if (b.equals(pos)) {
+            text = text + "<p><b>" + c + "<\/b><\/p>";
+          }                 
+        }
+      }
 
-
-    var j = "<b>" + c + "<\/b><p>" + d + "<\/p>";
+    
     g.event.addListener(i, "click", function() {
-        iw.setContent(j);
-        iw.open(map, this)
+        iw.setContent(text);
+        iw.open(map,this);
     });
     g.event.addListener(i, "mouseover", function() {
         i.setIcon(shifter(icons.white));
@@ -247,7 +242,7 @@ function loadMap() {
     var g = google.maps;
     
     var a = {
-        center: new g.LatLng(48.139543, 11.571436),
+        center: new g.LatLng(21.1500, 79.0900),
         zoom: 5,
         mapTypeId: g.MapTypeId.ROADMAP,
         mapTypeControlOptions: {
@@ -283,11 +278,19 @@ function readData() {
             k = new XMLHttpRequest()
         }
     } catch (e) {}
+    <% if params[:search] %>
+    k.open("GET", "/posts/overview.xml?utf8=✓&search[price]=<%= params[:search][:price] %>&search[area]=<%= params[:search][:area] %>&search[miles]=<%= params[:search][:miles] %>&search[address]=<%= params[:search][:address] %>&commit=Search", true);
+    <% else %>
     k.open("GET", "/posts/overview.xml", true);
+    <% end %>
     k.onreadystatechange = function() {
         if (k.readyState == 4) {
             var a = k.responseXML;
             var b = a.documentElement.getElementsByTagName("marker");
+
+            
+            mc = new MarkerClusterer(map, [], mcOptions);
+
             for (var i = 0, m; m = b[i]; i++) {
                 var c = parseFloat(m.getAttribute("lat"));
                 var d = parseFloat(m.getAttribute("lng"));
@@ -365,10 +368,46 @@ window.onload = loadMap;
     <div class="left"><div id="map"></div></div>
 
     <div class="right">
-    <div id="all_posts" class="description">
-        <%= render(:partial => 'posts/overviews') %>
-        <%= will_paginate @posts %>
-    </div>
+
+            <div class="head">
+                <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get"} do |f| %>
+                  <div class="field">
+                    Price
+                  &nbsp; &nbsp; &nbsp;&nbsp;<%= f.text_field :price, :value=> "#{params[:search][:price] if params[:search]}" %>
+                
+                  </div>
+                  <div class="field">
+                    Area
+                   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<%= f.text_field :area, :value=> "#{params[:search][:area] if params[:search] }" %>
+                  </div>
+                  <div class="field">
+                    Miles
+                    <%= f.text_field :miles, :value=> "#{params[:search][:miles] if params[:search]}" %>
+                  </div>
+                  <div class="field">
+                    Address
+                    &nbsp;<%= f.text_field :address, :value=> "#{params[:search][:address] if params[:search]}" %>
+                  </div>
+                   
+                  <div class ="field">
+                 
+                  </div>
+
+                  <div class="actions"><%= f.submit "Search" ,:class => "btn btn-secondary" %></div>
+                 
+              <%end%>
+
+              Sort By: <%= sortable "price_sq_ft", "Price" %> | <%= sortable "distance" %>
+
+            </div>
+
+            
+
+        <div id="all_posts" class="description">
+            <%= render(:partial => 'posts/overviews') %>
+            <%= will_paginate @posts %>
+        </div>
+
     </div>
 
 

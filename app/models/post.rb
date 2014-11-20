@@ -10,14 +10,14 @@ class Post < ActiveRecord::Base
   has_many :ratings
   has_many :bookings
 
-	has_attached_file :photo, :styles => { :thumb => "100x100", :medium => "350x350" },
+	has_attached_file :photo, :styles => { :thumb => "91x61", :medium => "512x344" },
   
     :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :path => "/estore_management/posts/:id/:style/:basename.:extension",
                     
                     :convert_options => {
-                          :thumb => "-compose Copy -gravity center -extent 100x100",
-                          :medium => "-compose Copy -gravity center -extent 350x350",
+                          :thumb => "-compose Copy -gravity center -extent 91x61",
+                          :medium => "-compose Copy -gravity center -extent 512x344",
                           
                       }
 
@@ -32,16 +32,27 @@ class Post < ActiveRecord::Base
     posts = Post.where("user_id != ?", "#{userID}")
     posts = posts.where("area <= ?", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
-    posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present?
+    posts = posts.near(search[:address], search[:miles]) if search[:address].present? && search[:miles].present?
+    posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present? != search[:miles].present?
+
     posts.page(page).per_page(4)
   end
 
-  def self.search_without_login(search, page)
-    posts = Post.where("area <= ?", "#{search[:area]}") if search[:area].present?
+  def self.search_overview(search, userID)
+    posts = Post.where("user_id != ?", "#{userID}")
+    posts = posts.where("area <= ?", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
-    posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present?
-    posts.page(page).per_page(4)
+    posts = posts.near(search[:address], search[:miles]) if search[:address].present? && search[:miles].present?
+    posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present? != search[:miles].present?
+    posts
   end
+
+  # def self.search_without_login(search, page)
+  #   posts = Post.where("area <= ?", "#{search[:area]}") if search[:area].present?
+  #   posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
+  #   posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present?
+  #   posts.page(page).per_page(4)
+  # end
 
 
   def self.search_post(search, userID)

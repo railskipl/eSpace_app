@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
-  before_filter :authenticate_user!, :except => [:overview]
+  before_filter :authenticate_user!, :except => [:show]
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
   include PostsHelper
 
@@ -73,31 +73,20 @@ class PostsController < ApplicationController
   end
 
   def overview
-
-    unless user_signed_in? 
-
-      @overviews = Post.page(params[:page]).order(sort_column + " " + sort_direction)
-      if params[:search]
-        @posts = Post.search_without_login(params[:search], params[:page]).order(sort_column + " " + sort_direction)
-      else
-        @posts = Post.page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
-      end
-
-    else
-
-      @overviews = Post.where("user_id != ?",current_user.id).page(params[:page]).order(sort_column + " " + sort_direction)
-      if params[:search]
+      
+      if params[:search]   
+        @overviews = Post.search_overview(params[:search], current_user.id).order(sort_column + " " + sort_direction)
         @posts = Post.search(params[:search], params[:page], current_user.id).order(sort_column + " " + sort_direction)
       else
-        @posts = Post.page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
+        @overviews = Post.where("user_id != ?",current_user.id).order(sort_column + " " + sort_direction)
+        @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
       end
 
-    end
 
     respond_to do |format|
       format.html # index.html.erb
       format.js # index.html.erb
-      format.xml
+      format.xml 
     end
   end
 

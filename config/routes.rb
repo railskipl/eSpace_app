@@ -46,7 +46,7 @@ Rails.application.routes.draw do
    get  'searched'  => "home#search_post", :as => 'search_post'
    get 'terms',:to => "home#terms"
    get  'search'  => "posts#search"
-   match 'all_posts' => "posts#all_posts", via: [:get, :post]
+   match 'posts/overview' => "posts#overview", via: [:get, :post]
 
   resources :comments
   resources :posts do
@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     end
     collection do
         get 'archive'
-        get 'overview'
+        
     end
   end
 
