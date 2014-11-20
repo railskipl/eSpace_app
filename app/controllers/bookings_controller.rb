@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
  include BookingsHelper
 
  def index
- 	@bookings = Booking.where("user_id = ? AND is_cancel = ?",current_user.id,false)
+ 	@bookings = Booking.where("user_id = ?",current_user.id)
  end
 
 	def new
@@ -48,8 +48,12 @@ class BookingsController < ApplicationController
             
             @booking.stripe_customer_token = charge[:created]
             @booking.stripe_charge_id = charge[:id]
+            #@random generates random value which wiil be used for generating 
+            #temparary code which will be send by finder to poster.
+            @random = (0..6).map{ ('a'..'z').to_a[rand(26)] }.join
+
+            @booking.random_code = @random
             @booking.save
-            
             session[:price] = nil
             session[:post_id] = nil
             session[:poster_id] = nil
@@ -66,7 +70,7 @@ class BookingsController < ApplicationController
 	end
 
 def search_by_date
- @bookings = Booking.where("user_id = ? AND is_cancel = ?",current_user.id,false)
+ @bookings = Booking.where("user_id = ?",current_user.id)
  if params[:start_date].blank? || params[:end_date].blank?
       redirect_to bookings_path, alert: "Please Select Date"
  elsif  params[:start_date] > params[:end_date]

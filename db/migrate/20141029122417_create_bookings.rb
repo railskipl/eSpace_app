@@ -17,6 +17,7 @@ class CreateBookings < ActiveRecord::Migration
       t.float :pickup_price
       t.float :cut_off_price
       t.boolean :is_cancel, :default => false
+      t.string :random_code
       t.timestamps
     end
   end

@@ -63,6 +63,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    cronic (0.1.2)
+      dante (~> 0.1.5)
+      rails (>= 3)
+      rufus-scheduler (~> 2.0.17)
+    dante (0.1.5)
     devise (3.4.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -162,6 +167,8 @@ GEM
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rufus-scheduler (2.0.24)
+      tzinfo (>= 0.3.22)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -216,6 +223,7 @@ DEPENDENCIES
   aws-sdk
   bootstrap-sass
   coffee-rails (~> 4.0.0)
+  cronic
   devise
   geocoder
   jbuilder (~> 2.0)

@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
  # before_filter :authenticate_user!, :except => []
+  layout 'home'
 	def index
 
 	end

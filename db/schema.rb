@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.float    "pickup_price"
     t.float    "cut_off_price"
     t.boolean  "is_cancel",             default: false
+    t.string   "random_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
