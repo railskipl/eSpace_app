@@ -280,7 +280,7 @@ jQuery(document).ready(function(){
                   
                   <%= @post.address %><br/>
                   <div id="message_<%= @post.id %>">
-                    <%= link_to "Send Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true %><br/>
+                    <div style="float:right"><%= link_to "Send Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true %></div><br/>
 
                   <% if @post.drop_off %>
                     <strong>Drop-Off : </strong> <%= @post.price_include_drop_off %> <br/>

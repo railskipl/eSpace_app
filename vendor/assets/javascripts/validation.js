@@ -375,6 +375,64 @@ jQuery("#booking").validate({
 });
 
 
+ jQuery("#new_message").validate({
+
+	ignore:'', // initialize the plugin
+	errorElement:'div',
+
+	rules: {
+
+        "message[body]":{
+	        required:true,
+	        minlength:6
+        }
+	},
+	messages: {
+
+		"message[body]":{
+        	required: "Please enter message"
+        }
+       
+	}
+  });
+
+  jQuery("#browse_post").validate({
+
+	ignore:'', // initialize the plugin
+	errorElement:'div',
+
+	rules: {
+
+        "search[price]":{
+	        number:true
+        },
+        "search[area]":{
+	        number:true
+        },
+        "search[miles]":{
+	        number:true
+        }
+	},
+	messages: {
+
+		"search[price]":{
+        	number:"Please enter integer value"
+        },
+        "search[area]":{
+        	number:"Please enter integer value"
+        },
+        "search[miles]":{
+        	number:"Please enter integer value"
+        }
+
+       
+	}
+  });
+
+
+ 
+
+
 
 
 });

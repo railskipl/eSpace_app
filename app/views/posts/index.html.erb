@@ -1,4 +1,4 @@
-<p><%= link_to "My Post", posts_path %> | <%= link_to "Archive Post", archive_posts_path %></p><br/>
+<p><%= link_to "My Post", posts_path %> | <%= link_to "Archived Post", archive_posts_path %></p><br/>
 
 
 <%= form_for :search, :url=> {:controller=>'posts', :action=>'index'}, :html => {:method => 'get'} do |f| %>

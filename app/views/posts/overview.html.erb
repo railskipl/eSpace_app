@@ -1,6 +1,8 @@
 
+
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.6.3.js'></script>
 <%= stylesheet_link_tag "perfect-scrollbar.css" %>
-<%= javascript_include_tag  "endless_page.js", "perfect-scrollbar.js" %>
+<%= javascript_include_tag  "endless_page.js", "perfect-scrollbar.js","jquery.validate.min","validation" %>
 
     <script type="text/javascript">
       $(document).ready(function ($) {
@@ -370,7 +372,7 @@ window.onload = loadMap;
     <div class="right">
 
             <div class="head">
-                <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get"} do |f| %>
+                <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get", :id=>"browse_post"} do |f| %>
                   <div class="field">
                     Price
                   &nbsp; &nbsp; &nbsp;&nbsp;<%= f.text_field :price, :value=> "#{params[:search][:price] if params[:search]}" %>
@@ -382,7 +384,8 @@ window.onload = loadMap;
                   </div>
                   <div class="field">
                     Miles
-                    <%= f.text_field :miles, :value=> "#{params[:search][:miles] if params[:search]}" %>
+                    
+                    <%= f.select :miles, ((1..20).map {|i| [i,i] }), :prompt => "" %>
                   </div>
                   <div class="field">
                     Address

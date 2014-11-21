@@ -1,3 +1,4 @@
+<%= javascript_include_tag "validation" %>
 <div style="width:40%;"><h4> New Message</h4></div>
 
 <%= form_for(@message, :url => {:controller=>"messages", :action=>"sent_to"}, :remote=> true) do |f| %>
@@ -13,15 +14,14 @@
     </div>
   <% end %>
   <div class="row">
-  To <br/>
 
-  <%= f.text_field :recipient_id,:value =>post_user_id,:readonly => true,:class => "pe_tf" %>
+  <%= f.hidden_field :recipient_id,:value =>post_user_id %>
   <%= hidden_field_tag :post_id,params[:post_id] %>
     <%#= f.text_field :recipient_id,:class => "pe_tf" %>
 
 </div>
  
-  <div class="row">
+  <div class="row" style="margin-left: 1px;">
     <%= f.label :body %>
     <%= f.text_area :body ,:class => "pe_tf" ,:style => "width:500px;" ,:rows => "10"%>
   </div>
