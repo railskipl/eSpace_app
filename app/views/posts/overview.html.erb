@@ -1,8 +1,8 @@
 
 
-<script type='text/javascript' src='http://code.jquery.com/jquery-1.6.3.js'></script>
+
 <%= stylesheet_link_tag "perfect-scrollbar.css" %>
-<%= javascript_include_tag  "endless_page.js", "perfect-scrollbar.js","jquery.validate.min","validation" %>
+<%= javascript_include_tag  "endless_page.js", "perfect-scrollbar.js", "jquery.validate.min_1.8.1", "validation" %>
 
     <script type="text/javascript">
       $(document).ready(function ($) {
@@ -39,13 +39,10 @@
  background: url('http://sites.google.com/site/mxamples/icons-dot.png') no-repeat;
 }
 
- .description {
-        
-        height:310px;
-        width: 455px;
-        overflow: hidden;
-        position: absolute;
-      }
+ .description { height:310px; width: 455px; overflow: hidden; position: absolute;}
+
+
+ .infowindow_div2 { background-color: #FFF; width: 150px; height: auto; padding:2px; margin:2px auto; font-family:Verdana, Geneva, sans-serif; }
 
 </style>
 
@@ -111,7 +108,7 @@ function shifter(a) {
     return b
 }
 
-function createMarker(b, c, d, e, f) {
+function createMarker(b, c, d, e, f, v) {
     var g = google.maps;
     // var bounds = new g.LatLngBounds();
 
@@ -132,22 +129,29 @@ function createMarker(b, c, d, e, f) {
     i.category = e;
     i.name = c;
     i.id = f;
+    i.postid = v;
     gmarkers.push(i);
 
      ///get array of markers currently in cluster
     var allMarkers = mc.getMarkers();
-    var text = "<p><b>" + c + "<\/b><\/p>";
+    var text = "<div class='infowindow_div2'><p><a href='/posts/"+v+"'>"+ c +"<\/a><\/p> <\/div>";
+
+
 
     //check to see if any of the existing markers match the latlng of the new marker
       if (allMarkers.length != 0) {
+        
         for (j=0; j < allMarkers.length; j++) {
             
           var existingMarker = allMarkers[j];
           var pos = existingMarker.getPosition();
 
+
           if (b.equals(pos)) {
-            text = text + "<p><b>" + c + "<\/b><\/p>";
-          }                 
+            text = text + "<div class='infowindow_div2'><p><a href='/posts/"+allMarkers[j].postid+"'>"+ allMarkers[j].name +"<\/a><\/p> <\/div>";
+          } 
+
+
         }
       }
 
@@ -178,16 +182,16 @@ function createMarker(b, c, d, e, f) {
 
 var hover = {
     over: function(i) {
-      
+        
         var a = gmarkers[i];
         var b = document.getElementById(a.id);
-        b.className = "focus";
+        // b.className = "focus";
         a.setIcon(shifter(icons.white))
     },
     out: function(i) {
         var a = gmarkers[i];
         var b = document.getElementById(a.id);
-        b.className = "normal";
+        // b.className = "normal";
         a.setIcon(shifter(icons[a.category]))
     }
 };
@@ -218,7 +222,7 @@ function boxclick(a, b) {
     } else {
         visible.hide(b)
     }
-    //makeSidebar()
+    // makeSidebar()
 }
 
 function triggerClick(i) {
@@ -226,9 +230,11 @@ function triggerClick(i) {
 }
 
 // function makeSidebar() {
+
 //     var a;
 //     var b = "";
 //     for (var i = 0, m; m = gmarkers[i]; i++) {
+
 //         if (m.getVisible()) {
 //             var c = gmarkers[i].category;
 //             c = c.replace(/^./, c.charAt(0).toUpperCase());
@@ -254,15 +260,12 @@ function loadMap() {
         zoomControl: true
     };
 
-    
-
     map = new g.Map(document.getElementById("map"), a);
 
     map.mapTypes.set('map_style', styledMap);
     map.setMapTypeId('map_style');
 
-
-    iw = new g.InfoWindow();
+    iw = new g.InfoWindow({Width: 500});
     
     
     g.event.addListener(map, "click", function() {
@@ -301,16 +304,17 @@ function readData() {
                 var g = m.getAttribute("nr");
                 var h = m.getAttribute("name");
                 var j = m.getAttribute("category");
-                createMarker(e, h, f, j, g)
+                var v = m.getAttribute("postid");
+                createMarker(e, h, f, j, g, v)
             }
             if (gmarkers) {
-                gmarkers.sort(compareCats)
+                gmarkers
             }
             visible.show("bar");
             visible.show("cafe");
             visible.hide("hotel");
             visible.hide("disco");
-            //makeSidebar()
+            // makeSidebar()
 
           function AutoCenter() {
               //  Create a new viewpoint bound
@@ -370,6 +374,8 @@ window.onload = loadMap;
     <div class="left"><div id="map"></div></div>
 
     <div class="right">
+
+        
 
             <div class="head">
                 <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get", :id=>"browse_post"} do |f| %>
