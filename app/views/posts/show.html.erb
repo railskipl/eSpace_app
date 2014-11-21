@@ -129,7 +129,7 @@ jQuery(document).ready(function(){
           var pickup = parseFloat($('#pickup').val());
         }
 
-        $('#total').html((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
+        $('#total').html("Total : <b>"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"<\/b>");
         $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
          
     }
@@ -157,26 +157,26 @@ jQuery(document).ready(function(){
 
         if($(this).is(":checked")) {
          
-          $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
 
            var fees = (total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2);        
             if (fees <= 8)
             {
                var cut_off = fees * 0.80;
-               $('#cut_off').html("+ Our Commission&nbsp;" + cut_off.toFixed(2)); 
+               // $('#cut_off').html("+ Our Commission&nbsp;" + cut_off.toFixed(2)); 
             }
              else if (price > 8)
              {
                 var cut_off =  fees * (10/100);
-                $('#cut_off').html("+ Our Cut&nbsp;" + cut_off.toFixed(2)); 
+                // $('#cut_off').html("+ Our Cut&nbsp;" + cut_off.toFixed(2)); 
              }
                
           }
         
         else
         {
-          $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
         }
 
@@ -202,14 +202,14 @@ jQuery(document).ready(function(){
 
         if($(this).is(":checked")) {
          
-          $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           
          
         }
         else
         {
-          $('#total').html((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
         }       
     });
@@ -309,18 +309,21 @@ jQuery(document).ready(function(){
 
                   <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
                   <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
-                  <input type="checkbox" id="checkbox1" /> Drop Off <br />
-                  <input type="checkbox" id="checkbox2" /> Pick Up <br />
+                 
                   
 
 
                   
                   <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
-                    <%= text_field_tag :area %>
+                    Area : <%= text_field_tag :area %> (<%= @post.area %> Sq. feet remaining)
+                    <%= f.hidden_field :remaining_area, :value => @post.area %>
                     <%= f.hidden_field :post_id, :value => @post.id %>
-                    <%= f.hidden_field :poster_id, :value=> @post.user_id %><br/>
+                    <%= f.hidden_field :poster_id, :value=> @post.user_id %>
                     <%= f.hidden_field :posting_dropoff_date, :value=> @post.drop_off_avaibility_end_date %>
-                    Area :<%= f.hidden_field :price, :value => "" %> <br/>
+                     <%= f.hidden_field :price, :value => "" %> <br />
+
+                      <input type="checkbox" id="checkbox1" /> Drop Off <br />
+                      <input type="checkbox" id="checkbox2" /> Pick Up <br /><br/>
 
                     Drop Off Date : <%= f.text_field :dropoff_date %> <br/>
                     

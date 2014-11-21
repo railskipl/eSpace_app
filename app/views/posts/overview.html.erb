@@ -337,29 +337,7 @@ function readData() {
     };
     k.send(null)
 }
-var compareCats = function(a, b) {
-    var c = a.name;
-    c = c.toLowerCase();
-    c = c.replace(/ä/g, "a");
-    c = c.replace(/ö/g, "o");
-    c = c.replace(/ü/g, "u");
-    c = c.replace(/ß/g, "s");
-    var d = b.name;
-    d = d.toLowerCase();
-    d = d.replace(/ä/g, "a");
-    d = d.replace(/ö/g, "o");
-    d = d.replace(/ü/g, "u");
-    d = d.replace(/ß/g, "s");
-    var e = a.category;
-    var f = b.category;
-    if (a.category == b.category) {
-        if (a.name == b.name) {
-            return 0
-        }
-        return (a.name < b.name) ? -1 : 1
-    }
-    return (a.category < b.category) ? -1 : 1
-};
+
 window.onload = loadMap;
 
 //]]>

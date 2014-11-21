@@ -22,6 +22,19 @@ jQuery.validator.addMethod("lessThanDropDate",
 	},'Must be less than given drop off date.');
 
 
+//Less than Booking area
+jQuery.validator.addMethod("lessThan", 
+	function(value, element, params) {
+
+	    if (!/Invalid|NaN/.test(new Date(value))) {
+	        return new Date(value) <= new Date($(params).val());
+	    }
+
+	    return isNaN(value) && isNaN($(params).val()) 
+	        || (Number(value) <= Number($(params).val())); 
+	},'Must be less or equal to remaining area.');
+
+
 
 jQuery.validator.addMethod("greaterThanPickUp", 
 function(value, element, params) {
@@ -338,7 +351,8 @@ jQuery("#booking").validate({
 
         "area":{
 	        required:true,
-	        number:true
+	        number:true,
+	        lessThan: "#booking_remaining_area"
         }
 	},
 	messages: {
