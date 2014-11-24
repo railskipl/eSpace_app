@@ -26,7 +26,7 @@
  white-space:nowrap;
  margin-top: -37px;
 }
-.head {height: auto; width: 310px; text-align: right;}
+.head {height: auto; width: 434px; text-align: right;}
 .box1 { border: 1px solid #000000; height: 62px; margin: 8px auto; width: 382px;}
 .normal { background-color:#FFF; }
 .focus { background-color:#FFC; }
@@ -253,9 +253,6 @@ function loadMap() {
         center: new g.LatLng(21.1500, 79.0900),
         zoom: 5,
         mapTypeId: g.MapTypeId.ROADMAP,
-        mapTypeControlOptions: {
-            mapTypeIds: [g.MapTypeId.ROADMAP, g.MapTypeId.SATELLITE, g.MapTypeId.HYBRID, 'map_style']
-        },
         panControl: true,
         zoomControl: true
     };
@@ -284,7 +281,7 @@ function readData() {
         }
     } catch (e) {}
     <% if params[:search] %>
-    k.open("GET", "/posts/overview.xml?utf8=✓&search[price]=<%= params[:search][:price] %>&search[area]=<%= params[:search][:area] %>&search[miles]=<%= params[:search][:miles] %>&search[address]=<%= params[:search][:address] %>&commit=Search", true);
+    k.open("GET", "<%= posts_overview_path(params.merge(format: "xml")) %>", true);
     <% else %>
     k.open("GET", "/posts/overview.xml", true);
     <% end %>
@@ -357,24 +354,34 @@ window.onload = loadMap;
 
             <div class="head">
                 <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get", :id=>"browse_post"} do |f| %>
+
+                 <div class="field">
+                    Search near this address
+                    &nbsp;<%= f.text_field :address, :value=> "#{params[:search][:address] if params[:search]}" %>
+                  </div>
+
                   <div class="field">
-                    Price
+                    Within
+                    <%= f.select :miles, ((1..20).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:miles] if params[:search]}" %>
+                  </div>
+
+                  <div class="field">
+                    Max price/sq. foot
                   &nbsp; &nbsp; &nbsp;&nbsp;<%= f.text_field :price, :value=> "#{params[:search][:price] if params[:search]}" %>
                 
                   </div>
                   <div class="field">
-                    Area
+                    Area needed
                    &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<%= f.text_field :area, :value=> "#{params[:search][:area] if params[:search] }" %>
                   </div>
+
                   <div class="field">
-                    Miles
-                    
-                    <%= f.select :miles, ((1..20).map {|i| [i,i] }), :prompt => "" %>
+                    I need a car to transfer the stuff for 
+                   &nbsp; &nbsp; &nbsp; Drop-off <%= f.check_box :dropoff, :checked=> params[:search] ? params[:search][:dropoff].present? ? true : false : false %>
+                   &nbsp; &nbsp; &nbsp; Pick-up <%= f.check_box :pickup, :checked=> params[:search] ? params[:search][:pickup] ? true : false : false %>
                   </div>
-                  <div class="field">
-                    Address
-                    &nbsp;<%= f.text_field :address, :value=> "#{params[:search][:address] if params[:search]}" %>
-                  </div>
+                  
+                 
                    
                   <div class ="field">
                  
