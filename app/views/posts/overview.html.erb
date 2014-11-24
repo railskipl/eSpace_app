@@ -377,8 +377,8 @@ window.onload = loadMap;
 
                   <div class="field">
                     I need a car to transfer the stuff for 
-                   &nbsp; &nbsp; &nbsp; Drop-off <%= f.check_box :dropoff, :checked=> params[:search] ? params[:search][:dropoff].present? ? true : false : false %>
-                   &nbsp; &nbsp; &nbsp; Pick-up <%= f.check_box :pickup, :checked=> params[:search] ? params[:search][:pickup] ? true : false : false %>
+                   &nbsp; &nbsp; &nbsp; Drop-off <%= f.check_box :dropoff, :checked=> params[:search] ? params[:search][:dropoff] == '1' ? true : false : false %>
+                   &nbsp; &nbsp; &nbsp; Pick-up <%= f.check_box :pickup, :checked=> params[:search] ? params[:search][:pickup] == '1' ? true : false : false %>
                   </div>
                   
                  
