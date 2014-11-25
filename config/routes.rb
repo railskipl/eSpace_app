@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :about_us
+
+  resources :faqs
+
   get 'payement_transfers/index'
 
   get 'ratings/update'
@@ -9,7 +13,8 @@ Rails.application.routes.draw do
   resources :admins
   
   resources :bank_details
-
+  
+  
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",sessions: 'users/sessions',registrations: 'users/registrations'}
 
   root :to => 'home#index'
@@ -41,6 +46,7 @@ Rails.application.routes.draw do
    resources :contactus
    # resources :home
    get 'home/contactus',:to => "home#contactus"
+   get 'home/about_us',:to => "home#about_us"
    get '/home/all_postings', :to => "home#all_postings"
    get  'search'  => "home#searching"
    get  'searched'  => "home#search_post", :as => 'search_post'

@@ -1,17 +1,12 @@
  <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 <%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'create'},:html => {:id => "contactus"} do |f| %>
 <div>
-<%= f.label :Name %><br />	
-<%= f.text_field :name%>
-</div>
-<div>
-<%= f.label :Email %><br />	
-<%= f.text_field :email%>
-</div>
-<div>
-<%= f.label :Subject %><br />	
-<%= f.text_field :subject%>
-</div>
+  <div class="field">
+                <%= f.collection_select :subject, Contactus.where("message IS NULL"), :subject, :subject, {prompt: "Subject"}, :class=>"alignleft" %></br> </br>
+               
+              <%#= f.text_field :initiative_category,:placeholder=>"Initiative Category" %>
+              </div>
+
 <div>
 <%= f.label :Message %><br />	
 <%= f.text_area :message,:cols => "30", :rows => "5"%>
