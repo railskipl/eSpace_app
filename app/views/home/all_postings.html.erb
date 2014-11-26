@@ -1,4 +1,4 @@
-   <%#= @posts.where(:created_at => Date.today.beginning_of_month..Date.today.end_of_month).count%>
+   
 
 
   <script type="text/javascript">
@@ -13,8 +13,9 @@
 
 
   </script>
+  <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","admin_validation" %>
 <h4>Search by</h4>
-  <%= form_tag search_post_path,:method=> :get do %>
+  <%= form_tag search_post_path,:method=> :get, :id=>"admin_posts" do %>
   <%= hidden_field_tag :q, params[:q] %>
 From Date :
 <%= text_field_tag :start_date, params[:start_date] %>

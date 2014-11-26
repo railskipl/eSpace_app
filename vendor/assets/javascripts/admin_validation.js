@@ -1,3 +1,8 @@
+jQuery.validator.addMethod("date", function(date, element) {
+                return this.optional(element) || date.match(/^\d{4}-((0\d)|(1[012]))-(([012]\d)|3[01])$/);
+            }, "Please select a valid date");
+
+
 jQuery(document).ready(function() {
 
 jQuery("#admin_create_user").validate({
@@ -136,20 +141,45 @@ required: "Please enter Content"
 }
 });
 
-jQuery("#new_access_id").validate({
-errorElement:'div',
-rules: {
-  
-"access_id[email]":{
-	required:true
-},
+	jQuery("#new_access_id").validate({
+		errorElement:'div',
+		rules: {
+		  
+		"access_id[email]":{
+			required:true
+		},
 
-},
-messages: {
+		},
+		messages: {
 
-"access_id[email]":{
-	required: "Please enter valid domain."
-},
-}
-});
+		"access_id[email]":{
+			required: "Please enter valid domain."
+		},
+		}
+	});
+
+	jQuery("#admin_posts").validate({
+		errorElement:'div',
+		rules: {
+		  
+		"start_date":{
+			required:true,
+			date: "#start_date"
+		},
+		"end_date":{
+			required:true,
+			date: "#end_date"
+		}
+
+		},
+		messages: {
+
+		"start_date":{
+			required: "Please enter date."
+		},
+		"end_date":{
+			required: "Please enter date."
+		}
+		}
+	});
 });

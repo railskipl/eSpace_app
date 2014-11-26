@@ -3,7 +3,7 @@
 <% if signed_in? && current_user.admin? %>
 <h4>Search by</h4>
 <%= form_tag search_path,:method=> :get do %>
-<%= text_field_tag :q, nil %>
+<%= text_field_tag :q, nil, placeholder:"name" %>
 <!-- <div class="span5"> -->
 <!-- <section id="buttons"> -->
 <select>
