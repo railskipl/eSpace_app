@@ -1,23 +1,26 @@
 <%if signed_in?%>
 <h4>About Us</h4>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
+      <th>Name</th>
       <th>Content</th>
-      <th colspan="3"></th>
+      <th>Photo</th>
+      <th colspan="3" style="text-align:center">Action</th>
     </tr>
   </thead>
 
   <tbody>
     <% @about_us.each do |about_u| %>
       <tr>
+        <td><%= about_u.name %></td>
         <td><%= about_u.content %></td>
         <td><%= image_tag about_u.photo.url(:thumb) %></td>
         
         <td><%= link_to 'Show', about_u %></td>
         <td><%= link_to 'Edit', edit_about_u_path(about_u) %></td>
-        <td><%= link_to 'Destroy', about_u, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', about_u, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,8 +33,9 @@
 <br>
 <%else%>
  <% @about_us.each do |about_u| %>
- <center><%= image_tag about_u.photo.url(:thumb) %></center>
-<td><%= about_u.content %></td><br>
+  <center><%= image_tag about_u.photo.url(:thumb) %></center><br/>
+  <center><%= about_u.name %></center><br/>
+  <center><%= about_u.content %></center><br>
 
 <% end %>
 

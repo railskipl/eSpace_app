@@ -1,12 +1,12 @@
 <%if signed_in?%>
 <h1>Listing faqs</h1>
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Question</th>
       <th>Answer</th>
       <th>Title</th>
-      <th colspan="3"></th>
+      <th colspan="3" style="text-align:center;">Action</th>
     </tr>
   </thead>
 
@@ -18,7 +18,7 @@
         <td><%= faq.title%></td>
         <td><%= link_to 'Show', faq %></td>
         <td><%= link_to 'Edit', edit_faq_path(faq) %></td>
-        <td><%= link_to 'Destroy', faq, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', faq, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

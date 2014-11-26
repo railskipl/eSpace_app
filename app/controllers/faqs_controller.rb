@@ -23,12 +23,12 @@ class FaqsController < ApplicationController
   def create
     @faq = Faq.new(faq_params)
     @faq.save
-    respond_with(@faq)
+     redirect_to faqs_path
   end
 
   def update
     @faq.update(faq_params)
-    respond_with(@faq)
+    redirect_to faqs_path
   end
 
   def destroy

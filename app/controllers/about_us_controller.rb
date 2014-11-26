@@ -21,17 +21,17 @@ class AboutUsController < ApplicationController
   def create
     @about_u = AboutU.new(about_u_params)
     @about_u.save
-    respond_with(@about_u)
+    redirect_to about_us_path
   end
 
   def update
     @about_u.update(about_u_params)
-    respond_with(@about_u)
+    redirect_to about_us_path
   end
 
   def destroy
     @about_u.destroy
-    respond_with(@about_u)
+     redirect_to about_us_path
   end
 
   private
@@ -40,6 +40,6 @@ class AboutUsController < ApplicationController
     end
 
     def about_u_params
-      params.require(:about_u).permit(:content,:photo)
+      params.require(:about_u).permit(:content,:photo,:name)
     end
 end
