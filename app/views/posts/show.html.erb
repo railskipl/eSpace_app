@@ -282,7 +282,7 @@ jQuery(document).ready(function(){
 
                 <td>
                   <i> $ <%= @post.price_sq_ft %> /Sq.ft for entire duration</i> <br/>
-                 <strong> <%= @post.user.name rescue nil %> <%= @post.user.last_name rescue nil %> </strong><br/>
+                 <strong> <%= @post.user.name rescue nil %> <%= @post.user.last_name rescue nil %> </strong>(<%= mutual_friend_list(@post.user.id) %>)<br/>
                   
                   <%= @post.address %><br/>
                   <div id="message_<%= @post.id %>">
