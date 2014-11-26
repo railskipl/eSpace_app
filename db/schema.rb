@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20141125122106) do
 
   create_table "about_us", force: true do |t|
+    t.string   "name"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
