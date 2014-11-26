@@ -397,8 +397,8 @@ jQuery("#booking").validate({
 	rules: {
 
         "message[body]":{
-	        required:true,
-	        minlength:6
+	        required:true
+	       
         }
 	},
 	messages: {
