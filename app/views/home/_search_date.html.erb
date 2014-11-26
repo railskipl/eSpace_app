@@ -4,7 +4,7 @@
 
 
  <h4>Search by</h4>
-  <%= form_tag search_post_path,:method=> :get do %>
+  <%= form_tag search_post_path,:method=> :get, :id=>"admin_posts" do %>
   <%= hidden_field_tag :q, params[:q] %>
 From Date :
  

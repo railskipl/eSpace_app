@@ -160,6 +160,12 @@ required: "Please enter Content"
 
 	jQuery("#admin_posts").validate({
 		errorElement:'div',
+    
+	    errorPlacement: function(error, element) {
+	        var trigger = element.next('.ui-datepicker-trigger');
+	        error.insertAfter(trigger.length > 0 ? trigger : element);
+	    },
+	    
 		rules: {
 		  
 		"start_date":{
