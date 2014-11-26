@@ -229,33 +229,21 @@ function triggerClick(i) {
     google.maps.event.trigger(gmarkers[i], "click")
 }
 
-// function makeSidebar() {
-
-//     var a;
-//     var b = "";
-//     for (var i = 0, m; m = gmarkers[i]; i++) {
-
-//         if (m.getVisible()) {
-//             var c = gmarkers[i].category;
-//             c = c.replace(/^./, c.charAt(0).toUpperCase());
-//             if (a != c) b += "<b>" + c + "s<\/b><br \/>";
-//             b += '<a id="' + gmarkers[i].id + '" href="javascript:triggerClick(' + gmarkers[i].id + ')" onmouseover="hover.over(' + i + ')" onmouseout="hover.out(' + i + ')">' + gmarkers[i].name + '<\/a><br \/>';
-//             a = c
-//         }
-//     }
-//     document.getElementById("sidebar").innerHTML = b
-// }
-
 function loadMap() {
     var g = google.maps;
     
+    //Disable map view:   mapTypeControl: false,
+
+        // mapTypeControl: false,
+        // panControl: true,
+        // zoomControl: true
+
     var a = {
         center: new g.LatLng(21.1500, 79.0900),
         zoom: 5,
-        mapTypeId: g.MapTypeId.ROADMAP,
-        panControl: true,
-        zoomControl: true
+        disableDefaultUI: true
     };
+
 
     map = new g.Map(document.getElementById("map"), a);
 
