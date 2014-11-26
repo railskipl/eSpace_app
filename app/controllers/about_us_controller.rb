@@ -1,4 +1,5 @@
 class AboutUsController < ApplicationController
+  before_filter :authenticate_user!, :except => []
   before_action :set_about_u, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   def index
