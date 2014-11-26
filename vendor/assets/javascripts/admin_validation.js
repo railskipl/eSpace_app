@@ -135,4 +135,21 @@ required: "Please enter Content"
 }
 }
 });
+
+jQuery("#new_access_id").validate({
+errorElement:'div',
+rules: {
+  
+"access_id[email]":{
+	required:true
+},
+
+},
+messages: {
+
+"access_id[email]":{
+	required: "Please enter email"
+},
+}
+});
 });
