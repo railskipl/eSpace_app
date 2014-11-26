@@ -313,8 +313,8 @@ jQuery(document).ready(function(){
                   
 
 
-                  
-                  <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
+                  <%#= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
+                  <%= form_for :booking, :html=>{ :id=>"booking", :method=>"get"} do |f| %>
                     Area needed : <%= text_field_tag :area %> 
                     <%= f.hidden_field :remaining_area, :value => @post.area %>
                     <%= f.hidden_field :post_id, :value => @post.id %>
@@ -332,7 +332,7 @@ jQuery(document).ready(function(){
                     Tentative pick-up date : <%= f.text_field :pickup_date %> <br/><br/>
                     Need a ride for pick-up  <input type="checkbox" id="checkbox2" /> <br /><br/>
 
-                    <%#= f.submit "Book", :class => "btn btn-primary contact-form", :id=>"customButton" %>
+                    <%= f.submit "Book", :class => "btn btn-primary contact-form" %>
                   <% end %>
                   <div id="total"></div> <div id="cut_off"></div>
                   
