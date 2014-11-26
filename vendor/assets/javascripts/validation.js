@@ -389,7 +389,7 @@ jQuery("#booking").validate({
 });
 
 
- jQuery("#new_message").validate({
+ jQuery("#reply_message").validate({
 
 	ignore:'', // initialize the plugin
 	errorElement:'div',
@@ -397,8 +397,8 @@ jQuery("#booking").validate({
 	rules: {
 
         "message[body]":{
-	        required:true,
-	        minlength:6
+	        required:true
+	       
         }
 	},
 	messages: {
