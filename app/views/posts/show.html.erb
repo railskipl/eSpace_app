@@ -63,17 +63,16 @@ float:left;
         var myLatlng = new google.maps.LatLng(<%= @post.latitude %>,<%= @post.longitude %>);
         var mapOptions = {
           zoom: 12,
-          center: myLatlng
+          center: myLatlng,
+          disableDefaultUI: true
         }
         
           var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
           var marker = new google.maps.Marker({
               position: myLatlng,
-              map: map,
-              mapTypeControlOptions: {
-                mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-              }
+              map: map
+              
           });
 
           //Associate the styled map with the MapTypeId and set it to display.
