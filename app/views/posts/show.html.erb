@@ -315,20 +315,22 @@ jQuery(document).ready(function(){
 
                   
                   <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
-                    Area : <%= text_field_tag :area %> (<%= @post.area %> Sq. feet remaining)
+                    Area needed : <%= text_field_tag :area %> 
                     <%= f.hidden_field :remaining_area, :value => @post.area %>
                     <%= f.hidden_field :post_id, :value => @post.id %>
                     <%= f.hidden_field :poster_id, :value=> @post.user_id %>
                     <%= f.hidden_field :posting_dropoff_date, :value=> @post.drop_off_avaibility_end_date %>
                      <%= f.hidden_field :price, :value => "" %> <br />
+                     <div style="float:left; font-size: 11px; width:107px;"> <strong>How to estimate:</strong><br/> 4 feet * 5 feet = 20 sq feet </div> 
+                     <div style="float:left; width:180px; font-size: 9px;"> (<%= @post.area %> Sq. feet remaining) </div> 
 
-                      <input type="checkbox" id="checkbox1" /> Drop Off <br />
-                      <input type="checkbox" id="checkbox2" /> Pick Up <br /><br/>
+                     <br/><br/>
+                     <div style="float:left; width: 100%;">
+                     Drop Off Date : <%= f.text_field :dropoff_date %></div> <br/><br/>
+                       Need a ride for drop-off <input type="checkbox" id="checkbox1" /> <br /><br/>
 
-                    Drop Off Date : <%= f.text_field :dropoff_date %> <br/>
-                    
-                    Pick Up Date : <%= f.text_field :pickup_date %> <br/>
-                   
+                    Tentative pick-up date : <%= f.text_field :pickup_date %> <br/><br/>
+                    Need a ride for pick-up  <input type="checkbox" id="checkbox2" /> <br /><br/>
 
                     <%#= f.submit "Book", :class => "btn btn-primary contact-form", :id=>"customButton" %>
                   <% end %>

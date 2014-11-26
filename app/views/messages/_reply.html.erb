@@ -4,7 +4,7 @@
   <%= form_for(@message,:html => {:id => "reply_message"}) do |f| %>
 
       <%#= f.hidden_field :subject, :value =>  @messagee.subject_name(@messagee.subject) %>
-      <%= f.label :body %>
+
       <%= f.text_area :body ,:id=>"area4"%>
       <%#= hidden_field_tag :message_id,@messagee.id  %>
       <%#= hidden_field_tag :post_id,@messagee.id%>
@@ -12,9 +12,9 @@
       <%# raise @messagee.sender.id.inspect %>
       <%= hidden_field_tag :recipient_id, params[:recv_id] %>
 
-    <%= hidden_field_tag :reply,"reply"%>
+    <%= hidden_field_tag :reply,"reply"%><br/>
     <div class="actions">
-      <%= f.submit "Reply"  %>
+      <%= f.submit "Reply", :class=>"btn btn-primary"  %>
     </div>
   <% end %>
   <script type="text/javascript">
