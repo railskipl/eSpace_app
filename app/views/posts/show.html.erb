@@ -98,7 +98,7 @@ float:left;
 
   </script>
 
-<script src="https://checkout.stripe.com/checkout.js"></script>
+
 <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css" %>
 <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation", "facebox.js" %>
 
@@ -351,6 +351,45 @@ jQuery(document).ready(function(){
                   data-amount="2000">
                 </script>
               </form> -->
+
+
+            <form action="<%= checkout_bookings_path %>" method="post">
+              <script src="https://checkout.stripe.com/checkout.js"></script>
+              
+              <button id="customButton">Pay with Card</button>
+              <style>
+              #customButton{
+              width:300px;
+              height:50px;
+              background-color:orange;
+              color:white;
+              border:2px solid green;
+              }
+              </style>
+               <script>
+               $('#customButton').click(function(){
+               var token = function(res){
+               var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+               $('form').append($input).submit();
+               };
+
+               StripeCheckout.open({
+               key:         'pk_test_17xmTuMVQ5oVgcT0AWY6XcNo',
+               address:     false,
+               amount:      '5500',
+               currency:    'usd',
+               name:        'test',
+               description: 'testing ......',
+               panelLabel:  'Checkout',
+               token:       token
+               });
+
+               return false;
+               });
+               </script>
+               <input type="hidden" name="desc" value="<?php echo $desc; ?>"/>
+               <input type="hidden" name="totalPrice" value="<?php echo $price; ?>"/>
+              </form>
 
 
     </div>

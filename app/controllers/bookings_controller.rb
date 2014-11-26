@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
  before_filter :authenticate_user!, :except => []
+ skip_before_filter :verify_authenticity_token, :only => [:checkout]
  include BookingsHelper
 
  def index
@@ -10,10 +11,10 @@ class BookingsController < ApplicationController
 		@booking = Booking.new
 	end
 
-   def show
-  @booking = Booking.find(params[:id])
-  @post = Post.find(params[:id])
-  @comments = Comment.where(:post_id => @post)
+  def show
+    @booking = Booking.find(params[:id])
+    @post = Post.find(params[:id])
+    @comments = Comment.where(:post_id => @post)
   end
 
 	def create
@@ -81,6 +82,7 @@ end
 end
 
 	def checkout
+    raise params.inspect
    	session[:price] = params[:booking][:price]
     session[:post_id] = params[:booking][:post_id] 
     session[:poster_id] = params[:booking][:poster_id]
