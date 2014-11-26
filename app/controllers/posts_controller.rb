@@ -30,12 +30,7 @@ class PostsController < ApplicationController
 
   end
 
-  def mutual
-      @user_fb_token = current_user.oauth_token
-      @users = User.find_by_id(params[:user_id])
-      @graph = Koala::Facebook::API.new(@users.oauth_token) 
-      @graph1 = Koala::Facebook::API.new(@user_fb_token)
-  end
+
 
   # GET /posts/1
   # GET /posts/1.json
@@ -81,8 +76,6 @@ class PostsController < ApplicationController
         @overviews = Post.where("user_id != ?",current_user.id).order(sort_column + " " + sort_direction)
         @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
       end
-
-
     respond_to do |format|
       format.html # index.html.erb
       format.js # index.html.erb

@@ -1,0 +1,26 @@
+<h4>Listing Pages</h4>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th colspan="3">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contactus.each do |contactus| %>
+      <tr>
+        <td><%= contactus.subject %></td>
+        <td><%#= link_to 'Show', page %></td>
+        <td><%= link_to 'Edit', edit_contactu_path(contactus) %></td>
+        <td><%= link_to 'Destroy', contactus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Page', new_page_path %>
+

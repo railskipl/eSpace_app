@@ -1,0 +1,38 @@
+<%if signed_in?%>
+<h1>Listing about_us</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @about_us.each do |about_u| %>
+      <tr>
+        <td><%= about_u.content %></td>
+        <td><%= image_tag about_u.photo.url(:thumb) %></td>
+        
+        <td><%= link_to 'Show', about_u %></td>
+        <td><%= link_to 'Edit', edit_about_u_path(about_u) %></td>
+        <td><%= link_to 'Destroy', about_u, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New About us', new_about_u_path %>
+
+<br>
+<%else%>
+ <% @about_us.each do |about_u| %>
+ <center><%= image_tag about_u.photo.url(:thumb) %></center>
+<td><%= about_u.content %></td><br>
+
+<% end %>
+
+<% end %>

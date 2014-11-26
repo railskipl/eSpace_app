@@ -11,8 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 20141125122106) do
 
-ActiveRecord::Schema.define(version: 20141111114657) do
+  create_table "about_us", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
@@ -62,6 +71,14 @@ ActiveRecord::Schema.define(version: 20141111114657) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "faqs", force: true do |t|
+    t.text     "question"
+    t.text     "answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "messages", force: true do |t|
@@ -117,7 +134,7 @@ ActiveRecord::Schema.define(version: 20141111114657) do
   end
 
   create_table "ratings", force: true do |t|
-    t.decimal  "value",      precision: 10, scale: 0
+    t.decimal  "value"
     t.integer  "vote_count"
     t.integer  "item_id"
     t.string   "item_type"
@@ -127,8 +144,8 @@ ActiveRecord::Schema.define(version: 20141111114657) do
     t.datetime "updated_at"
   end
 
-  add_index "ratings", ["item_id", "item_type"], name: "index_ratings_on_item_id_and_item_type", using: :btree
-  add_index "ratings", ["rater_id", "rater_type"], name: "index_ratings_on_rater_id_and_rater_type", using: :btree
+  add_index "ratings", ["item_id", "item_type"], name: "index_ratings_on_item_id_and_item_type"
+  add_index "ratings", ["rater_id", "rater_type"], name: "index_ratings_on_rater_id_and_rater_type"
 
   create_table "reviews", force: true do |t|
     t.string   "name"
@@ -139,7 +156,7 @@ ActiveRecord::Schema.define(version: 20141111114657) do
     t.datetime "updated_at"
   end
 
-  add_index "reviews", ["post_id"], name: "index_reviews_on_post_id", using: :btree
+  add_index "reviews", ["post_id"], name: "index_reviews_on_post_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -170,8 +187,8 @@ ActiveRecord::Schema.define(version: 20141111114657) do
     t.datetime "oauth_expires_at"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
