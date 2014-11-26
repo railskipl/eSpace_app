@@ -15,9 +15,8 @@
     <% @about_us.each do |about_u| %>
       <tr>
         <td><%= about_u.name %></td>
-        <td><%= about_u.content %></td>
+        <td><%= truncate(about_u.content, :length => 50) %></td>
         <td><%= image_tag about_u.photo.url(:thumb) %></td>
-        
         <td><%= link_to 'Show', about_u %></td>
         <td><%= link_to 'Edit', edit_about_u_path(about_u) %></td>
         <td><%= link_to 'Delete', about_u, method: :delete, data: { confirm: 'Are you sure?' } %></td>
