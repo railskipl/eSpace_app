@@ -5,10 +5,7 @@
       $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true}) });
   </script>
 
-<% if (@posts.blank?)%>
 
-"No Results Found!!"
-<%else%>
 
 <%if @start_date > @end_date %>
 
@@ -99,5 +96,5 @@
 
 
 <%end%>
-  <%end%>
+
 
