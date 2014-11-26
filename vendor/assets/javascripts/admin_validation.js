@@ -148,7 +148,7 @@ rules: {
 messages: {
 
 "access_id[email]":{
-	required: "Please enter email"
+	required: "Please enter valid domain."
 },
 }
 });
