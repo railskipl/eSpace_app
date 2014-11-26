@@ -389,7 +389,7 @@ jQuery("#booking").validate({
 });
 
 
- jQuery("#new_message").validate({
+ jQuery("#reply_message").validate({
 
 	ignore:'', // initialize the plugin
 	errorElement:'div',
