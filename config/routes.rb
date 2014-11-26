@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :about_us
+  resources :access_ids
 
   resources :faqs
 

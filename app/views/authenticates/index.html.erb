@@ -3,26 +3,47 @@ function validateForm() {
 	var err = 0;
 
 	var userinput = $('#email').val();
-	var domain = 'usc.edu';
+
+	<% @access_ids = AccessId.all %>
 	
-	// var domain = 'kunalinfotech.net';
+	<% @access_ids.each_with_index do |access_id, index| %>
+	var domain<%= index %> = '<%= access_id.email %>';
+	<% end %>
+	
 
 	var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
 
 	if($('#email').val() == ''){
-        $('#email').parent().parent().find('.form-error').html("Please enter email address.");
-        err++;
-    }
+		        $('#email').parent().parent().find('.form-error').html("Please enter email address.");
+		        err++;
+		    }
 
-    if(userinput.split('@').pop() == domain)
-    {
+	<% @access_ids.each_with_index do |access_id, index| %>
+		<% if index == 0 %>
+			
 
-		if(!pattern.test(userinput) || userinput.split('@').pop() != domain)
-		{
-		 	$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
-	        err++;
-		}
-	}
+		    if(userinput.split('@').pop() == domain<%= index %>)
+		    {
+
+				if(!pattern.test(userinput) || userinput.split('@').pop() != domain<%= index %>)
+				{
+				 	$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+			        err++;
+				}
+			}
+		<% else %>
+
+		    else if(userinput.split('@').pop() == domain<%= index %>)
+		    {
+
+				if(!pattern.test(userinput) || userinput.split('@').pop() != domain<%= index %>)
+				{
+				 	$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+			        err++;
+				}
+			}
+		<% end %>
+	<% end %>
 	else 
 	{ 
 		$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");

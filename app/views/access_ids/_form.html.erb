@@ -1,0 +1,21 @@
+<%= form_for(@access_id) do |f| %>
+  <% if @access_id.errors.any? %>
+    <div id="error_explanation">
+      
+      <ul>
+      <% @access_id.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+      <%= f.label :email %>
+      xyz@<%= f.text_field :email, placeholder:"usc.edu" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save", :class=>"btn btn-primary" %>
+  </div>
+<% end %>
