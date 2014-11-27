@@ -252,6 +252,7 @@ end
 
   def user_message
    @check_user = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
+   raise @check_user.inspect
    @user_messages_sender = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
    @user_messages_receiver = current_user.sent_messages.order("id Desc").select(:recipient_id).uniq
  
