@@ -1,5 +1,6 @@
 class ContactusController < ApplicationController
-  
+  before_filter :authenticate_user!, except: [:create]
+  before_filter :correct_user, :only => [:index, :show, :edit, :new]
 	 before_action :set_contactus, only: [:edit, :update, :destroy]
    respond_to :html, :xml, :json
 
@@ -38,7 +39,7 @@ class ContactusController < ApplicationController
     else
     @contactus = Contactus.new(contactus_params)
     @contactus.save
-    ContactusMailer.contactus(@contactus).deliver
+    #ContactusMailer.contactus(@contactus).deliver
     flash[:notice] = "Thank You for Contacting Us."
     redirect_to root_path
     end 
@@ -63,5 +64,10 @@ class ContactusController < ApplicationController
     end
     def contact_params
       params.require(:contactus).permit(:subject)
+    end
+
+    def correct_user
+      @user = User.find_by_id_and_admin(current_user.id, true)
+      redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
     end
 end
