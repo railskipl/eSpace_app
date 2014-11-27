@@ -1,11 +1,14 @@
 class ContactusController < ApplicationController
-	 respond_to :html, :xml, :json
-def index
-  # @contact = Contactus.all
-  @contactus = Contactus.where("message IS NULL")
-    # raise @contactus.inspect
+	 before_action :set_contactus, only: [:edit, :update, :destroy]
+   respond_to :html, :xml, :json
+
+  def index
+    # @contact = Contactus.all
+    @contactus = Contactus.where("message IS NULL")
+      # raise @contactus.inspect
   end
-# Business.where(:user_id => current_user.id).present?
+
+
   def show
     respond_with(@contactus)
   end
@@ -16,12 +19,13 @@ def index
   end
 
   def edit
-    @contactus = Contactus.find(params[:id]) 
+    
   end
 
   def update
+   
     @contactus.update(contact_params)
-    respond_with(@contactus)
+    redirect_to contactus_path
   end
   
   def create
@@ -41,7 +45,7 @@ def index
   end
 
   def destroy
-      @contactus = Contactus.find(params[:id])
+      
       @contactus.destroy
 
       redirect_to :back

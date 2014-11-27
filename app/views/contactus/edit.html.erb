@@ -1,7 +1,14 @@
 
 <h4>Editing Subject</h4>
 
-<%= render 'form' %>
+<%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'update', :id=> @contactus.id}, :html => {:id => "contactus", :method=>"put"} do |f| %>
+        
+<div>
+<%= f.label :Subject %><br />	
+<%= f.text_field :subject%>
+</div>
+<%= f.submit "Edit", :class => "btn btn-primary contact-form"%>
+<% end %>
 
 <%#= link_to 'Show', @contactus %> |
 <%= link_to 'Back', contactus_path %>
