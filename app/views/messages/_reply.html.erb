@@ -1,6 +1,6 @@
   <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 
-  <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> 
+ <!-- <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>-->
   <%= form_for(@message,:html => {:id => "reply_message"}) do |f| %>
 
       <%#= f.hidden_field :subject, :value =>  @messagee.subject_name(@messagee.subject) %>
@@ -17,10 +17,10 @@
       <%= f.submit "Reply", :class=>"btn btn-primary"  %>
     </div>
   <% end %>
-  <script type="text/javascript">
-  bkLib.onDomLoaded(function() {
+  <!--<script type="text/javascript">
+  // bkLib.onDomLoaded(function() {
    
-    new nicEditor({buttonList : ['bold','italic','underline','html','justify','left','center','right','justify','ol','ul']}).panelInstance('area4');
+  //   new nicEditor({buttonList : ['bold','italic','underline','html','justify','left','center','right','justify','ol','ul']}).panelInstance('area4');
    
-  });
-  </script>
+  // });
+  </script>-->
