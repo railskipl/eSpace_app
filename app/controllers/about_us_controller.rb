@@ -1,10 +1,15 @@
 class AboutUsController < ApplicationController
-  before_filter :authenticate_user!, :except => []
+  before_filter :authenticate_user!, :except => [:about]
   before_action :set_about_u, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
+  
   def index
     @about_us = AboutU.all
     respond_with(@about_us)
+  end
+
+  def about
+    @about_us = AboutU.all
   end
 
   def show
