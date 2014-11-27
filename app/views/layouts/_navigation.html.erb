@@ -23,7 +23,8 @@
      <!-- <li><%#= link_to "My Booking", bookings_path %></li>
      <li><%#= link_to "Bank Details", bank_details_path%></li>  -->
        <li>
-      <%= link_to "Messages",{:controller => 'messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil%>
+        
+      <%= link_to "Messages",{:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil%>
        <li id="responsecontainer">
           
        </li>
