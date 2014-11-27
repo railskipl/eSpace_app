@@ -43,7 +43,12 @@ class User < ActiveRecord::Base
   end
 
   def self.is_present_facebook_oauth(auth)
+    if Rails.env.development?
       oauth = Koala::Facebook::OAuth.new("382895341863463", "70e00b19e5cf11f56990e9402da7e8f5")
+      
+    else  
+      oauth = Koala::Facebook::OAuth.new("463439180461791", "da2a8a7e85b8c3eda15f129204dd9d23")
+    end  
       new_access_token = oauth.exchange_access_token(auth["credentials"]["token"])
       user = User.where(auth.slice(:provider, :uid)).first
       @new_token = user.update_columns(oauth_token: new_access_token) rescue nil
