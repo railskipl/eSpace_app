@@ -85,14 +85,14 @@
       opacity : 0.2,
       overlay : true,
       loadingImage : '/assets/loading.gif',
-      closeImage : '/assets/cross.png',
+      closeImage : '/assets/close.png',
       imageTypes : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml : '\
         <div id="facebox" style="display:none;"> \
+        <a href="#" class="close"></a> \
         <div class="popup"> \
         <div class="content"> \
         </div> \
-        <a href="#" class="close"></a> \
         </div> \
         </div>'
     },

@@ -281,11 +281,17 @@ jQuery(document).ready(function(){
 
                 <td>
                   <i> $ <%= @post.price_sq_ft %> /Sq.ft for entire duration</i> <br/>
-                 <strong> <%= @post.user.name rescue nil %> <%= @post.user.last_name rescue nil %> </strong><% if current_user.provider.present? &&  @post.user.provider.present?%>(<%= mutual_friend_list(@post.user.id) rescue nil%>)<% end %><br/>
+                 <strong> <%= @post.user.name rescue nil %> <%= @post.user.last_name rescue nil %> </strong>
+                 <% if current_user.provider.present? &&  @post.user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%>)<% end %><br/>
                   
                   <%= @post.address %><br/>
+
+                  <% if @post.user_id != current_user.id %>
                   <div id="message_<%= @post.id %>">
-                    <div style="float:right"><%= link_to "Send Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true %></div><br/>
+                    <div style="float:right"><%= link_to "Send Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true %>
+                  </div><br/>
+                  <% end %>
+
 
                   <% if @post.drop_off %>
                     <strong>Drop-Off : </strong> <%= @post.price_include_drop_off %> <br/>
