@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141126112153) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "about_us", force: true do |t|
     t.string   "name"
     t.text     "content"
@@ -141,7 +144,7 @@ ActiveRecord::Schema.define(version: 20141126112153) do
   end
 
   create_table "ratings", force: true do |t|
-    t.decimal  "value",      precision: 10, scale: 0
+    t.decimal  "value"
     t.integer  "vote_count"
     t.integer  "item_id"
     t.string   "item_type"
