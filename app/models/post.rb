@@ -28,8 +28,8 @@ class Post < ActiveRecord::Base
   end
 
 
-  def self.search(search, page, userID)
-    posts = Post.where("user_id != ?", "#{userID}")
+  def self.search(search, page)
+    posts = Post
     posts = posts.where("area <= ?", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
     posts = posts.near(search[:address], search[:miles]) if search[:address].present? && search[:miles].present?
@@ -41,8 +41,8 @@ class Post < ActiveRecord::Base
   
   end
 
-  def self.search_overview(search, userID)
-    posts = Post.where("user_id != ?", "#{userID}")
+  def self.search_overview(search)
+    posts = Post
     posts = posts.where("area <= ?", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
     posts = posts.near(search[:address], search[:miles]) if search[:address].present? && search[:miles].present?

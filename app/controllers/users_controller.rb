@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
- before_filter :authenticate_user!, :only => [ :edit, :order_received]
+ before_filter :authenticate_user!, :only => [ :edit, :order_received, :new_user, :toggled_status]
+ before_filter :correct_user, :only => [:new_user, :toggled_status]
+
  # helper_method :resource, :resource_name, :devise_mapping
  #respond_to :html, :js, :json
 # before_filter :authenticate_user!
@@ -90,11 +92,16 @@ end
 
 
 
-private
+  private
 
-	
-def person_params
-  params.require(:user).permit(:name,:last_name,:personal_email,:mobile_number,:email,:password,:password_confirmation,:admin,:status,:provider,:uid,:mobile_number,:mobile_no,:admin_user_id)
-end
+  	
+    def person_params
+      params.require(:user).permit(:name,:last_name,:personal_email,:mobile_number,:email,:password,:password_confirmation,:admin,:status,:provider,:uid,:mobile_number,:mobile_no,:admin_user_id)
+    end
+
+    def correct_user
+      @user = User.find_by_id_and_admin(current_user.id, true)
+      redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
+    end
 
 end

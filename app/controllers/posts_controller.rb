@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
-  before_filter :authenticate_user!, :except => [:show]
+  before_filter :authenticate_user!
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
   include PostsHelper
 
@@ -70,11 +70,11 @@ class PostsController < ApplicationController
   def overview
       
       if params[:search]   
-        @overviews = Post.search_overview(params[:search], current_user.id).order(sort_column + " " + sort_direction)
-        @posts = Post.search(params[:search], params[:page], current_user.id).order(sort_column + " " + sort_direction)
+        @overviews = Post.search_overview(params[:search]).order(sort_column + " " + sort_direction)
+        @posts = Post.search(params[:search], params[:page]).order(sort_column + " " + sort_direction)
       else
-        @overviews = Post.where("user_id != ?",current_user.id).order(sort_column + " " + sort_direction)
-        @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
+        @overviews = Post.order(sort_column + " " + sort_direction)
+        @posts = Post.page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
       end
     respond_to do |format|
       format.html # index.html.erb

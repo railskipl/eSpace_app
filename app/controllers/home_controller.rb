@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
- # before_filter :authenticate_user!, :except => []
+ before_filter :authenticate_user!, :only => [:searching, :all_postings]
+ before_filter :correct_user, :only => [:searching, :all_postings]
+
 	def index
 
 	end
@@ -20,6 +22,7 @@ class HomeController < ApplicationController
 
       
     def searching
+
       q = params[:q].downcase
 
        @adminusers = User.where(:admin => false).order(:id)
@@ -69,5 +72,14 @@ class HomeController < ApplicationController
           render :pdf => "posts_report"
           end   
         end
-      end
     end
+
+    private
+
+    def correct_user
+      @user = User.find_by_id_and_admin(current_user.id, true)
+      redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
+    end
+    
+
+end
