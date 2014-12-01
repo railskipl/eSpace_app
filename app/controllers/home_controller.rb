@@ -17,7 +17,7 @@ class HomeController < ApplicationController
     end
 
     def admin_user
-      @adminusers = User.where("admin =?",false).page(params[:page]).per_page(10)
+      @adminusers = User.page(params[:page]).per_page(10)
     end
 
       
@@ -25,18 +25,19 @@ class HomeController < ApplicationController
 
       q = params[:q].downcase
 
-       @adminusers = User.where(:admin => false).order(:id)
+       @adminusers = User.order(:id)
        @adminusers = @adminusers.where("LOWER(name) like ? or LOWER(last_name) like ? or LOWER(email) like ?", "%#{q}%", "%#{q}%", "%#{q}%") if q.present?
+ 
+      @start_date = "#{params['start_date']}"
+      @end_date ="#{params['end_date']}"
 
-      if params[:created] == 'All'
-      elsif params[:created] == 'Monthly'
-        @adminusers = @adminusers.where(:created_at => Date.today.beginning_of_month..Date.today.end_of_month) if params[:created].present?
-      elsif params[:created] == 'Weekly'
-        date = Date.today.beginning_of_week
-        @adminusers = @adminusers.where(:created_at => Date.today.beginning_of_week..(date + 6.days)) if params[:created].present?
-      elsif params[:created] == 'Daily'
-        @adminusers = @adminusers.where("Date(created_at) =?" ,Date.today) if params[:created].present?
-      end
+     if @start_date > @end_date 
+       flash[:error] = "Start Date Cannot Be Greater"
+        @adminusers = []
+        return false
+      else
+          @adminusers = @adminusers.where("date(created_at) >= ? and date(created_at) <= ? ",@start_date, @end_date) if @start_date.present? && @end_date.present?
+       end
 
       respond_to do |format|
         format.html

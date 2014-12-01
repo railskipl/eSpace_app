@@ -1,10 +1,28 @@
 
+  <script type="text/javascript">
+
+    jQuery(function($){
+      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
+
+    });
+    jQuery(function($){
+      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
+    });
+
+
+  </script>
 <h4>Search by</h4>
 
   <%= form_tag search_path,:method=> :get do %>
   <%= text_field_tag :q, params[:q] %>
 
-  <%= select_tag(:created, options_for_select(['All', 'Monthly', 'Weekly', 'Daily'], :selected=>params[:created])) %>
+From Date :
+<%= text_field_tag :start_date, params[:start_date], :readonly => true %>
+
+To Date :
+<%= text_field_tag :end_date, params[:end_date], :readonly => true %>&nbsp;
+
+  <%#= select_tag(:created, options_for_select(['All', 'Monthly', 'Weekly', 'Daily'], :selected=>params[:created])) %>
 
   						
   <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %> 

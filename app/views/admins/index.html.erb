@@ -1,17 +1,38 @@
 <%= javascript_include_tag "jquery.fancybox.pack.js" %>
-<%= stylesheet_link_tag "jquery.fancybox.css"%>
-<% if signed_in? && current_user.admin? %>
-<h4>Search by</h4>
-<%= form_tag search_path,:method=> :get do %>
-<%= text_field_tag :q, nil, placeholder:"name" %>
-<!-- <div class="span5"> -->
-<!-- <section id="buttons"> -->
-<%= select_tag(:created, options_for_select(['All', 'Monthly', 'Weekly', 'Daily'])) %>
 
-<!-- </section> -->
-<!-- </div> -->
-<%= submit_tag "Search", :class => "btn btn-primary contact-form" %>
-<%end%>
+
+<%= stylesheet_link_tag "jquery.fancybox.css"%>
+
+
+
+  <script type="text/javascript">
+
+    jQuery(function($){
+      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
+
+    });
+    jQuery(function($){
+      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
+    });
+
+
+  </script>  
+
+<% if signed_in? && current_user.admin? %>
+
+<h4>Search by</h4>
+  <%= form_tag search_path,:method=> :get, :id=>"admin_users"  do %>
+  <%= text_field_tag :q, params[:q] %>
+From Date :
+<%= text_field_tag :start_date, params[:start_date], :readonly => true %>
+
+To Date :
+<%= text_field_tag :end_date, params[:end_date], :readonly => true %>&nbsp;
+<%#= select_tag(:created, options_for_select(['All', 'Monthly', 'Weekly', 'Daily'])) %>
+
+  <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %> 
+  <%end%>
+
 <div>
 <%= link_to "Add new User",new_user_users_path%> 
 </div> <br>
