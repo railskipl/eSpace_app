@@ -255,21 +255,21 @@ jQuery(document).ready(function(){
          </p>
       <% end %>
 
-      <%if current_user.present?%>
+      <!-- <%# if current_user.present?%>
           <h3>Post your comment</h3>
-          <%= form_for [@post, Comment.new] ,:html=>{ id: "new_comment"} do |f| %>
-          <%= f.hidden_field :user_id, :value=> current_user.id %>
+          <%#= form_for [@post, Comment.new] ,:html=>{ id: "new_comment"} do |f| %>
+          <%#= f.hidden_field :user_id, :value=> current_user.id %>
               <fieldset class="rating">
-              <%= f.radio_button(:rating, "5") %><%= f.label(:rating.to_s + "_5") %>
-              <%= f.radio_button(:rating, "4") %><%= f.label(:rating.to_s + "_4") %>
-              <%= f.radio_button(:rating, "3") %><%= f.label(:rating.to_s + "_3") %>
-              <%= f.radio_button(:rating, "2") %><%= f.label(:rating.to_s + "_2") %>
-              <%= f.radio_button(:rating, "1") %><%= f.label(:rating.to_s + "_1") %>
+              <%#= f.radio_button(:rating, "5") %><%#= f.label(:rating.to_s + "_5") %>
+              <%#= f.radio_button(:rating, "4") %><%#= f.label(:rating.to_s + "_4") %>
+              <%#= f.radio_button(:rating, "3") %><%#= f.label(:rating.to_s + "_3") %>
+              <%#= f.radio_button(:rating, "2") %><%#= f.label(:rating.to_s + "_2") %>
+              <%#= f.radio_button(:rating, "1") %><%#= f.label(:rating.to_s + "_1") %>
              </fieldset><br><br><br>
-         <strong>Comment : </strong><%= f.text_area :comments ,:cols=>"30", :rows=>"4" %>
-         <p ><%= f.submit "Add comment", :class => "btn btn-primary contact-form" %></p>
-         <% end %>
-      <% end %>
+         <strong>Comment : </strong><%#= f.text_area :comments ,:cols=>"30", :rows=>"4" %>
+         <p ><%#= f.submit "Add comment", :class => "btn btn-primary contact-form" %></p>
+         <%# end %>
+      <%# end %> -->
 
         <div id="ref_comment"> </div>
 
@@ -349,19 +349,10 @@ jQuery(document).ready(function(){
 
               </table>
 
-              <!-- <form action="/charge" method="POST">
-                <script
-                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-                  data-image="/square-image.png"
-                  data-name="Demo Site"
-                  data-description="2 widgets ($20.00)"
-                  data-amount="2000">
-                </script>
-              </form> -->
+             
 
 
-            <form action="<%= checkout_bookings_path %>" method="post">
+            <!-- <form action="<%= checkout_bookings_path %>" method="post">
               <script src="https://checkout.stripe.com/checkout.js"></script>
               
               <button id="customButton">Pay with Card</button>
@@ -395,9 +386,9 @@ jQuery(document).ready(function(){
                return false;
                });
                </script>
-               <input type="hidden" name="desc" value="<?php echo $desc; ?>"/>
-               <input type="hidden" name="totalPrice" value="<?php echo $price; ?>"/>
-              </form>
+               <input type="hidden" name="desc" value=""/>
+               <input type="hidden" name="totalPrice" value=""/>
+              </form> -->
 
 
     </div>
