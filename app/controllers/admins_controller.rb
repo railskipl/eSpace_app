@@ -4,7 +4,7 @@ class AdminsController < ApplicationController
   before_filter :correct_user, :only => [:index, :show, :destroy]
 
    def index
-    @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(5) rescue nil
+    @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(10) rescue nil
     
     respond_to do |format|
         format.html
