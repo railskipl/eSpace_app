@@ -108,7 +108,7 @@ function shifter(a) {
     return b
 }
 
-function createMarker(b, c, d, e, f, v) {
+function createMarker(b, c, d, e, f, v, w) {
     var g = google.maps;
     // var bounds = new g.LatLngBounds();
 
@@ -130,11 +130,12 @@ function createMarker(b, c, d, e, f, v) {
     i.name = c;
     i.id = f;
     i.postid = v;
+    i.price = v;
     gmarkers.push(i);
 
      ///get array of markers currently in cluster
     var allMarkers = mc.getMarkers();
-    var text = "<div class='infowindow_div2'><p><a href='/posts/"+v+"'>"+ c +"<\/a><\/p> <\/div>";
+    var text = "<div class='infowindow_div2'><p><a href='/posts/"+v+"'>"+ c +".  $"+ w +"/sq. ft <\/a><\/p> <\/div>";
 
 
 
@@ -148,7 +149,7 @@ function createMarker(b, c, d, e, f, v) {
 
 
           if (b.equals(pos)) {
-            text = text + "<div class='infowindow_div2'><p><a href='/posts/"+allMarkers[j].postid+"'>"+ allMarkers[j].name +"<\/a><\/p> <\/div>";
+            text = text + "<div class='infowindow_div2'><p><a href='/posts/"+allMarkers[j].postid+"'>"+ allMarkers[j].name +".  $"+ allMarkers[j].price +"/sq. ft<\/a><\/p> <\/div>";
           } 
 
 
@@ -239,8 +240,10 @@ function loadMap() {
         // zoomControl: true
 
     var a = {
-        center: new g.LatLng(21.1500, 79.0900),
+        center: new g.LatLng(34.0264, 118.2830),
         zoom: 5,
+        panControl: true,
+        zoomControl: true,
         disableDefaultUI: true
     };
 
@@ -290,7 +293,8 @@ function readData() {
                 var h = m.getAttribute("name");
                 var j = m.getAttribute("category");
                 var v = m.getAttribute("postid");
-                createMarker(e, h, f, j, g, v)
+                var w = m.getAttribute("price");
+                createMarker(e, h, f, j, g, v, w)
             }
             if (gmarkers) {
                 gmarkers
