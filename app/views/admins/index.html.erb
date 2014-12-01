@@ -6,12 +6,7 @@
 <%= text_field_tag :q, nil, placeholder:"name" %>
 <!-- <div class="span5"> -->
 <!-- <section id="buttons"> -->
-<select>
-<option value="all">All</option>
-<option value="monthly">Month</option>
-<option value="weekly">Weekly</option>
-<option value="daily">Daily</option>
-</select>
+<%= select_tag(:created, options_for_select(['All', 'Monthly', 'Weekly', 'Daily'])) %>
 
 <!-- </section> -->
 <!-- </div> -->
@@ -24,7 +19,7 @@
 <tr>
 <th>First Name </th>
 <th>Last Name </th>
-<th>College ID </th>
+<th>Email ID </th>
 <th>A/C Creation Date</th>
 <th>Last Login Date</th>
 <th>Last Login IP</th>
@@ -34,8 +29,7 @@
 <tr>
 <td><%= adminuser.name %></td>
 <td><%= adminuser.last_name %></td>
-<td><%= adminuser.personal_email %></td>
-
+<td><%= adminuser.email %></td>
 <td><%= adminuser.created_at.to_date rescue nil%></td>
 <td><%= adminuser.last_sign_in_at.to_date rescue nil%></td>
 <td><%= adminuser.last_sign_in_ip%></td>

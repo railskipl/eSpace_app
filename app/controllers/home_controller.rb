@@ -26,7 +26,7 @@ class HomeController < ApplicationController
       q = params[:q].downcase
 
        @adminusers = User.where(:admin => false).order(:id)
-       @adminusers = @adminusers.where("LOWER(name) like ? or LOWER(last_name) like ?", "%#{q}%", "%#{q}%") if q.present?
+       @adminusers = @adminusers.where("LOWER(name) like ? or LOWER(last_name) like ? or LOWER(email) like ?", "%#{q}%", "%#{q}%", "%#{q}%") if q.present?
 
       if params[:created] == 'All'
       elsif params[:created] == 'Monthly'

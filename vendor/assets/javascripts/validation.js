@@ -59,6 +59,7 @@ jQuery.validator.addMethod('customphone', function (value, element) {
 jQuery(document).ready(function() {
 
 jQuery("#userSignup").validate({
+
 	errorElement:'div',
 	rules: {
 
@@ -68,7 +69,10 @@ jQuery("#userSignup").validate({
 		
 	 	"email":{ remote:"Email already exists" }
 																
-		}
+		},
+		errorPlacement: function(error, element) {
+            jQuery('#email').parent().parent().find('.form-error').html("Email already exists");
+        }
 	});
 
 

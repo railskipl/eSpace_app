@@ -28,6 +28,6 @@
 	box-shadow: 0 1px 2px rgba(0,0,0,.15);
 	}
 
-.error { color: #DD0000; }
+.error { color: #FD0000; }
 
-.form-error{ color: red; padding: 0 5px; clear: left }
+.form-error{ color: #FD0000; padding: 0 5px; clear: left }
