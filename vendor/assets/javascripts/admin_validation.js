@@ -188,4 +188,43 @@ required: "Please enter Content"
 		}
 		}
 	});
+
+
+
+
+	jQuery("#admin_users").validate({
+		errorElement:'div',
+    
+	    errorPlacement: function(error, element) {
+	        var trigger = element.next('.ui-datepicker-trigger');
+	        error.insertAfter(trigger.length > 0 ? trigger : element);
+	    },
+	    
+		rules: {
+		  
+		"start_date":{
+			required:true,
+			date: "#start_date"
+		},
+		"end_date":{
+			required:true,
+			date: "#end_date"
+		},
+		"q":{
+			required:true
+		}
+	},
+		messages: {
+
+		"start_date":{
+			required: "Please enter date."
+		},
+		"end_date":{
+			required: "Please enter date."
+		},
+		"q":{
+			required: "Please enter Name"
+		}
+		}
+	});
 });
