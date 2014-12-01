@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
 
   before_filter :authenticate_user!
-  before_filter :correct_user, :only => [:index]
+  before_filter :correct_user, :only => [:index, :show, :destroy]
 
    def index
     @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(10) rescue nil
@@ -14,6 +14,18 @@ class AdminsController < ApplicationController
         end
       end
 	end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def destroy
+     @user = User.find(params[:id])
+     @user.delete
+
+     redirect_to admins_path
+  end
+
 
   private
     def authenticate

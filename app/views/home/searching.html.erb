@@ -42,7 +42,9 @@
 <td><%= adminuser.created_at.to_date rescue nil%></td>
 <td><%= adminuser.last_sign_in_at.to_date rescue nil%></td>
 <td><%= adminuser.last_sign_in_ip%></td>
-<td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>
+<td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %> |
+  <%= link_to "Show", admin_path(adminuser.id) %> | <%= link_to "Delete", admin_path(adminuser.id), :method=> :delete, data: { confirm: 'Are you sure?' } %>
+</td>
 </tr>
 <%end%> 
 </table>
