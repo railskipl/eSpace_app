@@ -278,12 +278,13 @@ function readData() {
     <% end %>
     k.onreadystatechange = function() {
         if (k.readyState == 4) {
+
             var a = k.responseXML;
             var b = a.documentElement.getElementsByTagName("marker");
 
-            
             mc = new MarkerClusterer(map, [], mcOptions);
 
+            
             for (var i = 0, m; m = b[i]; i++) {
                 var c = parseFloat(m.getAttribute("lat"));
                 var d = parseFloat(m.getAttribute("lng"));
@@ -299,6 +300,27 @@ function readData() {
             if (gmarkers) {
                 gmarkers
             }
+
+            if (!(typeof b !== 'undefined' && b.length > 0)) {
+                
+                var geocoder = new google.maps.Geocoder();
+
+                var address = document.getElementById('search_address').value;
+                  geocoder.geocode( { 'address': address}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                      map.setCenter(results[0].geometry.location);
+                      var marker = new google.maps.Marker({
+                          map: map,
+                          position: results[0].geometry.location,
+                          icon: shifter(icons['bar'])
+                      });
+                    } else {
+                      alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                  });
+
+            }
+
             visible.show("bar");
             visible.show("cafe");
             visible.hide("hotel");
