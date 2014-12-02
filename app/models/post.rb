@@ -43,23 +43,22 @@ class Post < ActiveRecord::Base
     posts = posts.where("pick_up = ?", "#{search[:pickup]}") if search[:pickup] == '1'
 
     posts.page(page).per_page(4)
+    
   end
 
   # Result show on map
-  def self.search_overview(search, sort)
+  def self.search_overview(search, page, sort)
+
     posts = Post
     posts = posts.where("area <= ?", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
+    posts = posts.near(search[:address], search[:miles]) if search[:address].present? && search[:miles].present?
     
-    if sort.present?
-      posts = posts.near(search[:address], search[:miles], :order => "#{sort} desc") if search[:address].present? && search[:miles].present?
-    else
-      posts = posts.near(search[:address], search[:miles]) if search[:address].present? && search[:miles].present?
-    end
     posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present? != search[:miles].present?
     posts = posts.where("drop_off = ?", "#{search[:dropoff]}") if search[:dropoff] == '1'
     posts = posts.where("pick_up = ?", "#{search[:pickup]}") if search[:pickup] == '1'
-    posts
+    posts.page(page)
+    
   end
 
 

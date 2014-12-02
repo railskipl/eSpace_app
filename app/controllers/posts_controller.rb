@@ -70,7 +70,7 @@ class PostsController < ApplicationController
   def overview
       
       if params[:search]   
-        @overviews = Post.search_overview(params[:search], params[:sort])
+        @overviews = Post.search_overview(params[:search], params[:page], params[:sort])
         @posts = Post.search(params[:search], params[:page], params[:sort])
       else
         @overviews = Post.order(sort_column + " " + sort_direction)
