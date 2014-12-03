@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 20141031115610) do
     t.float    "cut_off_price"
     t.boolean  "is_cancel",             default: false
     t.string   "random_code"
+    t.boolean  "is_transfer",           default: false
+    t.boolean  "is_confirm",            default: false
+    t.boolean  "is_complaint",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

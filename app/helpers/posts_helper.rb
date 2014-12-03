@@ -5,8 +5,7 @@ module PostsHelper
    @graph = Koala::Facebook::API.new(@users.oauth_token) 
    @graph1 = Koala::Facebook::API.new(@user_fb_token)
    @mutual = @graph.get_object("me")
-   @mutual_friends = @graph1.get_connections("me", "mutualfriends/#{@mutual["id"]}")
-   return @mutual_friends.count	
+   ra
  end
 
  def processing_fees(fees)

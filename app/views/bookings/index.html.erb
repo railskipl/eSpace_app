@@ -31,6 +31,8 @@ To Date :
 <th>Drop off Date</th>
 <th>Order</th>
 <th>Cancel Booking</th>
+<th>Confirm Booking</th>
+<th>Add Complaint's</th>
 </tr>
 <% @bookings.each_with_index do |booking, index|%>
 <tr>
@@ -52,8 +54,34 @@ To Date :
  <td><%= Post.find(booking.post_id).drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= Post.find(booking.post_id).drop_off_avaibility_end_date.strftime("%d-%m-%Y")%></td>
 	
 <td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
-<td><%= link_to "Cancel Booking",cancel_booking_bookings_path(:drop_off_date =>booking.dropoff_date,:id =>booking.id) %></td>
-<td><%#= link_to "Delete", [:delete, adminuser], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<td>
+    <% if booking.is_confirm == false %>
+    <%= link_to "Cancel Booking",cancel_booking_bookings_path(:drop_off_date =>booking.dropoff_date,:id =>booking.id) %>
+    <% else %>
+      booking Canceled
+    <% end %>
+</td>
+<td>
+  <% if booking.is_confirm == false %>
+  <%= link_to "Confirm Booking",confirm_booking_finder_bookings_path(:id =>booking.id) %>
+  <% else %>
+    Confirmed
+  <% end %>
+</td>
+<% if booking.is_confirm == false && booking.is_complaint == false%>  
+ <td>
+
+  <%= form_tag("/bookings/add_complaint", :method=>"post") do %>
+    <%= label_tag "Add Complaint"%>
+    <%= text_area_tag "complaint"%>
+    <%= hidden_field_tag "booking_id",booking.id %>
+   <%= submit_tag "submit" %>
+
+  <% end %>
+</td> 
+<%else%>
+  <td> status confirmed</td>
+<% end %>
 <td><%#= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>
 </tr>
 <%end%> 

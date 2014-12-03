@@ -10,8 +10,10 @@
 
 
 # output the current time every 5 minutes
-every 5.minutes do
-  puts "The current time is: #{Time.now}"
+every 1.minutes do
+  #PayementTransfersController.automatic_transfer_money
+  @test = PayementTransfersController.poster_confirmation_reminder
+ 
 end
 
 

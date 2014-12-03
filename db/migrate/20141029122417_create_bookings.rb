@@ -18,6 +18,9 @@ class CreateBookings < ActiveRecord::Migration
       t.float :cut_off_price
       t.boolean :is_cancel, :default => false
       t.string :random_code
+      t.boolean :is_transfer,:default => false
+      t.boolean :is_confirm, :default => false
+      t.boolean :is_complaint,:default => false
       t.timestamps
     end
   end

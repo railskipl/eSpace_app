@@ -64,6 +64,10 @@ Rails.application.routes.draw do
     collection do
       post :checkout
       get 'cancel_booking'
+      get 'poster_bookings'
+      post 'confirm_booking'
+      post 'confirm_booking_finder'
+      post 'add_complaint'
     end
   end
 
@@ -94,6 +98,8 @@ Rails.application.routes.draw do
   resources :payement_transfers do 
     collection do
       get 'transfer_money'
+      get 'automatic_transfer_money'
+      get 'poster_confirmation_reminder'
       get 'check_status'
     end
   end  

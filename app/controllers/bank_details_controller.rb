@@ -5,7 +5,7 @@ class BankDetailsController < ApplicationController
  respond_to :html, :xml, :json
 
   def index
-    @bank_details = BankDetail.all
+    @bank_details = BankDetail.where(user_id:current_user.id)
     
   end
 

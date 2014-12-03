@@ -1,0 +1,51 @@
+<table class="table table-striped">
+<tr>
+<th>Sr No.</th>
+<th>Booking Date</th>
+<th>Booking Area/Sq.Ft</th>
+<th>Lister's Name</th>
+<th>Address</th>
+<th>Pickup?</th>
+<th>Dropoff?</th>
+<th>Pick up Date</th>
+<th>Drop off Date</th>
+<th>Order</th>
+<th>Confirm Booking</th>
+</tr>
+<% @bookings.each_with_index do |booking, index|%>
+<tr>
+
+<td><%= index + 1 %></td>
+<td><%= booking.created_at.to_date %></td>
+<td><%= Post.find(booking.post_id).area %></td>
+<td><%= User.find(booking.user_id).name %></td>
+<td><%= Post.find(booking.post_id).address %></td>
+	<%if Post.find(booking.post_id).pick_up == true%>
+	<td><%= check_box_tag(Post.find(booking.post_id).pick_up, value = "1", checked = true, disabled: true)%></td>
+	<td><%= check_box_tag(Post.find(booking.post_id).drop_off, value = "1", checked = false, disabled: true)%></td>
+	<%else%>
+	<td><%= check_box_tag(Post.find(booking.post_id).pick_up, value = "1", checked = false, disabled: true)%></td>
+	<td><%= check_box_tag(Post.find(booking.post_id).drop_off, value = "1", checked = true, disabled: true)%></td>
+	<%end%>
+ <td><%= Post.find(booking.post_id).pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= Post.find(booking.post_id).pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
+	</td>
+ <td><%= Post.find(booking.post_id).drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= Post.find(booking.post_id).drop_off_avaibility_end_date.strftime("%d-%m-%Y")%></td>
+	
+<td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
+<% if booking.is_confirm == false %>	
+ <td>
+
+	<%= form_tag("/bookings/confirm_booking", :method=>"post") do %>
+	  <%= label_tag "Enter Random code for confirmation"%>
+	  <%= text_field_tag "random_code"%>
+	  <%= hidden_field_tag "booking_id",booking.id %>
+	 <%= submit_tag "submit" %>
+
+	<% end %>
+</td>	
+<%else%>
+  <td> status confirmed</td>
+<% end %>
+</tr>
+<%end%> 
+</table>

@@ -6,14 +6,28 @@ class BookingsController < ApplicationController
  	@bookings = Booking.where("user_id = ?",current_user.id)
  end
 
+ def poster_bookings
+   @bookings = Booking.where("poster_id = ?",current_user.id)
+ end
+
+ def confirm_booking
+   @bookings = Booking.where("id = ?",params[:booking_id])
+   if @bookings.first.random_code == params[:random_code]
+      @confirm_booking = @bookings.first.update_columns(is_confirm:true)
+      redirect_to poster_bookings_bookings_path,:notice => "Your post has been confirmed." 
+   else
+      redirect_to poster_bookings_bookings_path,:notice => "Please enter correct random code." 
+   end
+ end 
+
 	def new
 		@booking = Booking.new
 	end
 
-   def show
-  @booking = Booking.find(params[:id])
-  @post = Post.find(params[:id])
-  @comments = Comment.where(:post_id => @post)
+  def show
+    @booking = Booking.find(params[:id])
+    @post = Post.find(params[:id])
+    @comments = Comment.where(:post_id => @post)
   end
 
 	def create
@@ -51,12 +65,16 @@ class BookingsController < ApplicationController
             #@random generates random value which wiil be used for generating 
             #temparary code which will be send by finder to poster.
             @random = (0..6).map{ ('a'..'z').to_a[rand(26)] }.join
-
+            booking_params = params[:booking]
             @booking.random_code = @random
             @booking.save
             session[:price] = nil
             session[:post_id] = nil
             session[:poster_id] = nil
+
+            NotificationMailer.booking_notification(booking_params)
+            @message = Message.create(:body =>"test random_code you random code is #{@random}",:sender_id =>booking_params[:user_id],:recipient_id => booking_params[:poster_id],:post_id=>booking_params[:post_id])
+
             redirect_to root_path, :notice => "Thank you"
           
         else
@@ -114,6 +132,18 @@ end
     redirect_to new_booking_path
     flash[:notice] = "Booking is cancel & $#{@amount} is refunded. "
   end
+
+  def confirm_booking_finder
+      @bookings = Booking.where("id = ?",params[:booking_id])
+      @confirm_booking = @bookings.first.update_columns(is_confirm:true)
+      redirect_to bookings_path,:notice => "Your post has been confirmed." 
+  end 
+
+  def add_complaint
+     @bookings = Booking.where("id = ?",params[:booking_id])
+     @add_complaint = @bookings.first.update_columns(is_complaint:true)
+     redirect_to bookings_path,:notice => "Complaint has been submitted Successfully." 
+  end  
 
 	def is_number?(i)
     	true if Float(i) rescue false
