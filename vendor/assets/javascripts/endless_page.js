@@ -5,7 +5,7 @@
         var url;
         url = $('.pagination .next_page').attr('href');
         if (url && $(".description").scrollTop() > $(".description").prop("scrollHeight") - $(".description").height() - 50) {
-          $('.pagination').html('<img src="/assets/loading.gif" alt="Loading..." title="Loading..." />');
+          $('.pagination').html('<img src="/assets/loader.gif" alt="Loading..." title="Loading..." />');
           return $.getScript(url);
         }
       });

@@ -44,6 +44,8 @@
 
  .infowindow_div2 { background-color: #FFF; width: 150px; height: auto; padding:2px; margin:2px auto; font-family:Verdana, Geneva, sans-serif; }
 
+ .pagination a, em { display: none; }
+
 </style>
 
  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -411,10 +413,12 @@ window.onload = loadMap;
 
             
 
-        <div id="all_posts" class="description">
-            <%= render(:partial => 'posts/overviews') %>
+         <div>
+            <div id="all_posts" class="description">
+              <%= render(:partial => 'posts/overviews') %>
+            </div>
             <%= will_paginate @posts %>
-        </div>
+         </div>
 
     </div>
 

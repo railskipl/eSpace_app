@@ -92,9 +92,9 @@ float:left;
       <script type="text/javascript">
 
     jQuery(function($){
-      $("#booking_dropoff_date").datepicker({dateFormat: 'yy-mm-dd', showOn: 'button', buttonImage: '/assets/calendar.gif', buttonImageOnly: true})
+      $("#booking_dropoff_date").datepicker({dateFormat: 'yy-mm-dd', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true})
 
-      $("#booking_pickup_date").datepicker({dateFormat: 'yy-mm-dd', showOn: 'button', buttonImage: '/assets/calendar.gif', buttonImageOnly: true})
+      $("#booking_pickup_date").datepicker({dateFormat: 'yy-mm-dd', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true})
 
     });
 
@@ -132,6 +132,7 @@ jQuery(document).ready(function(){
 
         $('#total').html("Total : <b>"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"<\/b>");
         $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
+        $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
          
     }
 
@@ -160,6 +161,7 @@ jQuery(document).ready(function(){
          
           $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
 
            var fees = (total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2);        
             if (fees <= 8)
@@ -179,6 +181,7 @@ jQuery(document).ready(function(){
         {
           $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
         }
 
     });
@@ -205,13 +208,14 @@ jQuery(document).ready(function(){
          
           $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
-          
+          $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
          
         }
         else
         {
           $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
+          $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
         }       
     });
 
@@ -352,30 +356,34 @@ jQuery(document).ready(function(){
              
 
 
-            <!-- <form action="<%= checkout_bookings_path %>" method="post">
+            <form action="<%= checkout_bookings_path %>" method="post" >
               <script src="https://checkout.stripe.com/checkout.js"></script>
               
               <button id="customButton">Pay with Card</button>
               <style>
-              #customButton{
-              width:300px;
-              height:50px;
-              background-color:orange;
-              color:white;
-              border:2px solid green;
-              }
+                #customButton{
+                  width:300px;
+                  height:50px;
+                  background-color:orange;
+                  color:white;
+                  border:2px solid green;
+                }
               </style>
+
+               <input type="hidden" name="desc" id="desc" value=""/>
+               <input type="hidden" name="totalPrice" id="totalPrice" value=""/>
+
                <script>
                $('#customButton').click(function(){
-               var token = function(res){
-               var $input = $('<input type=hidden name=stripeToken />').val(res.id);
-               $('form').append($input).submit();
+                 var token = function(res){
+                 var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+                 $('form').append($input).submit();
                };
 
                StripeCheckout.open({
                key:         'pk_test_17xmTuMVQ5oVgcT0AWY6XcNo',
                address:     false,
-               amount:      '5500',
+               amount:      document.getElementById('totalPrice').value,
                currency:    'usd',
                name:        'test',
                description: 'testing ......',
@@ -386,9 +394,8 @@ jQuery(document).ready(function(){
                return false;
                });
                </script>
-               <input type="hidden" name="desc" value=""/>
-               <input type="hidden" name="totalPrice" value=""/>
-              </form> -->
+              
+              </form> 
 
 
     </div>
