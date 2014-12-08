@@ -144,8 +144,8 @@
 	-webkit-transition: transform 0.3s, opacity 0.2s;
 }
 
-.fbox  nth-child(3n-1),
-.fbox nth-child(3n-2) {
+.fbox  nth-child,
+.fbox nth-child {
 	box-shadow: 1px 0 0 #F00;
 }
 
