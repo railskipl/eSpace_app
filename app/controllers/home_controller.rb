@@ -2,7 +2,7 @@ class HomeController < ApplicationController
  before_filter :authenticate_user!, :only => [:searching, :all_postings]
  before_filter :correct_user, :only => [:searching, :all_postings]
 
- layout 'application'
+ layout :custom_layout
 
 	def index
 
@@ -89,6 +89,15 @@ class HomeController < ApplicationController
       @user = User.find_by_id_and_admin(current_user.id, true)
       redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
     end
+
+      def custom_layout
+        case action_name
+         when "index"
+          "home"
+         else
+          "application"
+       end
+      end
     
 
 end

@@ -1,7 +1,4 @@
-
-
-
-<%= stylesheet_link_tag "perfect-scrollbar.css" %>
+  <%= stylesheet_link_tag "perfect-scrollbar.css" %>
 <%= javascript_include_tag  "endless_page.js", "perfect-scrollbar.js", "jquery.validate.min_1.8.1", "validation" %>
 
     <script type="text/javascript">
@@ -14,10 +11,9 @@
 
 #map {
  float: left;
- margin: 0 25px 10px 14px;
+ margin: 0;
  width: 100%;
- height: 70%;
- border: 1px solid gray;
+ height: 96%;
 }
 
 #desc {
@@ -26,12 +22,6 @@
  white-space:nowrap;
  margin-top: -37px;
 }
-.head {height: auto; width: 434px; text-align: right;}
-.box1 { border: 1px solid #000000; height: 62px; margin: 8px auto; width: 382px;}
-.normal { background-color:#FFF; }
-.focus { background-color:#FFC; }
-.left{ width:488px; margin:auto; float:left; }
-.right{ width:450px; height:600px; margin:auto; float:left; }
 
 .sprite { display:inline-block;
  height: 32px;
@@ -39,7 +29,7 @@
  background: url('http://sites.google.com/site/mxamples/icons-dot.png') no-repeat;
 }
 
- .description { height:310px; width: 455px; overflow: hidden; position: absolute;}
+ .description { height:394px; width: 510px; overflow: hidden; position: absolute;}
 
 
  .infowindow_div2 { background-color: #FFF; width: 150px; height: auto; padding:2px; margin:2px auto; font-family:Verdana, Geneva, sans-serif; }
@@ -356,72 +346,92 @@ window.onload = loadMap;
 //]]>
 </script>
 
-</head>
 
-<body>
-  
+  <div class="main2">
+                <div class="map_loc">
+                <div id="map"></div>
+               
+              </div>
+              <div class="right_blue">    
 
 
-    <div class="left"><div id="map"></div></div>
+          <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get", :id=>"browse_post"} do |f| %>
+          Search near this address 
 
-    <div class="right">
+          <%= f.text_field :address, :value=> "#{params[:search][:address] if params[:search]}", :class=>"sign_up_id1", :placeholder=>"Street, Los angeles, CA 10021", :style=>"width:295px; height:18px; background-color:#072743; color:#FFF; border:1px solid #899199; margin:24px 0 5px 13px; padding-left:5px;" %><br/>
+   
+       
+               <!-------------box_1-------------------->
+
+               <p  class="text_1">Within</p>
+                
+                <div class="styleSelect">
+
+                <%= f.select :miles, ((1..20).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:miles] if params[:search]}" %>
+                 
+              </div>
+
+
+            <!-------------box_1 end-------------------->
+
+             <!-------------box_2-------------------->
+             <p  class="text_2">Max price/sq. foot</p>
+              <div class="styleSelect" style="margin:-22px 20px 30px 245px;">
+
+              <%= f.select :price, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:price] if params[:search]}" %>
+            </div>
+<!-------------box_2 end-------------------->
+ 
+ 
+        <!-------------box_3-------------------->
+        <div class="text_3">Area needed <a class="tooltip1" href="#" style="color:#999; text-decoration:none;">
+        <div id="cf2" style="margin-left:60px;">
+                  <img class="bottom" src="/assets/queh.png" />
+                  <img class="top" src="/assets/que.png" />
+                    </div>
+                <span class="classic1">This is just an</span> </a></div>
+              <div class="styleSelect" style="margin:-52px 30px 20px 400px;">
+          
+              <%= f.select :area, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}" %>
+            </div>
+<!-------------box_3 end-------------------->
+<p  class="miles" style="margin-top:-19px;">Miles</p> 
+<p  class="miles1" style="margin-top:-12px;">$</p>
+<p  class="miles2" style="margin-top:-15px;">Square feet</p>
+<div class="need">I need a car to transport the stuff for <a class="tooltip" href="#" style="color:#999; text-decoration:none;"> 
+<div id="cf2" style="margin-left:130px;">
+                  <img class="bottom" src="/assets/queh.png" />
+                  <img class="top" src="/assets/que.png" />
+                    </div>
+
+
+<span class="classic">This is just an example of what you can do using </span> </a></div>
+<div class="example">
+      <div class="pickup">
+     Drop-off &nbsp; <%= f.check_box :dropoff, :checked=> params[:search] ? params[:search][:dropoff] == '1' ? true : false : false %><label for="checkbox1">&nbsp;</label>
+      </div>
+       <div class="pickup1">
+     Pick-up &nbsp; <%= f.check_box :pickup, :checked=> params[:search] ? params[:search][:pickup] == '1' ? true : false : false %> <label for="checkbox1">&nbsp;</label>
+      </div>
+    <div class="search1"> <a href="#"> <img src="/assets/search_new.png"></a></div>
+
+   </div>  
+
+  <% end %>
+
 
         
+     <p class="para" style="font-size:10px;">Sort by : <%= sortable "price_sq_ft", "Price" %> / <%= sortable "distance" %> / Mutual Friends</p> 
 
-            <div class="head">
-                <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get", :id=>"browse_post"} do |f| %>
-
-                 <div class="field">
-                    Search near this address
-                    &nbsp;<%= f.text_field :address, :value=> "#{params[:search][:address] if params[:search]}" %>
-                  </div>
-
-                  <div class="field">
-                    Within
-                    <%= f.select :miles, ((1..20).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:miles] if params[:search]}" %>
-                  </div>
-
-                  <div class="field">
-                    Max price/sq. foot
-                  &nbsp; &nbsp; &nbsp;&nbsp;
-                  <%= f.select :price, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:price] if params[:search]}" %>
-                
-                  </div>
-                  <div class="field">
-                    Area needed
-                   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-                   <%= f.select :area, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}" %>
-                  </div>
-
-                  <div class="field">
-                    I need a car to transfer the stuff for 
-                   &nbsp; &nbsp; &nbsp; Drop-off <%= f.check_box :dropoff, :checked=> params[:search] ? params[:search][:dropoff] == '1' ? true : false : false %>
-                   &nbsp; &nbsp; &nbsp; Pick-up <%= f.check_box :pickup, :checked=> params[:search] ? params[:search][:pickup] == '1' ? true : false : false %>
-                  </div>
-                  
-                 
-                   
-                  <div class ="field">
-                 
-                  </div>
-
-                  <div class="actions"><%= f.submit "Search" ,:class => "btn btn-secondary" %></div>
-                 
-              <%end%>
-
-              Sort By: <%= sortable "price_sq_ft", "Price" %> | <%= sortable "distance" %>
-
-            </div>
-
+     
+       
+        <div id="all_posts" class="description">
+          <%= render(:partial => 'posts/overviews') %>
+        </div>
+   
+      
+       
             
-
-         <div>
-            <div id="all_posts" class="description">
-              <%= render(:partial => 'posts/overviews') %>
-            </div>
-            <%= will_paginate @posts %>
-         </div>
-
-    </div>
-
+</div>
+</div>
 

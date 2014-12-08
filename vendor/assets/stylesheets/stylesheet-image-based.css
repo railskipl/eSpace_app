@@ -1,0 +1,85 @@
+
+.pickup{
+		margin:-19px 0px 0px -331px;
+		color:#CCC;
+		font-family:brandon4;
+		font-size:12px;
+		margin-left:191px;
+		
+		
+		
+		}
+		.pickup1{
+		margin:-25px 0px 0px -331px;
+		color:#CCC;
+		font-family:brandon4;
+		font-size:12px;
+		margin-left:352px;
+		
+		
+		}
+		.pickup3{
+		margin:-20px 0px 0px -200px;
+		color:#CCC;
+		font-family:brandon4;
+		font-size:12px;
+		margin-left:220px;
+		
+		
+		}
+			.pickup4{
+		margin:-150px 0px 0px -200px;
+		color:#CCC;
+		font-family:brandon4;
+		font-size:12px;
+		margin-left:12px;
+		
+		
+		}
+  		
+.example{
+  margin-bottom : 1.5em;
+}
+
+input[type=checkbox]:not(old),
+input[type=radio   ]:not(old){
+  width   : 28px;
+  margin  : 0;
+  padding : 0;
+  opacity : 0;
+}
+
+input[type=checkbox]:not(old) + label,
+input[type=radio   ]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -28px;
+  padding-left : 28px;
+  background-image:url(/assets/checks.png);
+  background-repeat:no-repeat;
+  line-height  : 24px;
+}
+.pickup4 input[type=checkbox]:not(old) + label,
+input[type=radio   ]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -28px;
+  padding-left : 28px;
+  background-image:url(/assets/checks3.png);
+  background-repeat:no-repeat;
+  line-height  : 24px;
+}
+
+input[type=checkbox]:checked:not(old) + label{
+  background-position : 0 -24px;
+}
+
+input[type=radio]:checked:not(old) + label{
+  background-position : 0 -48px;
+}
+		
+		
+
+.checkbox1
+{
+margin:left;	
+	
+	}

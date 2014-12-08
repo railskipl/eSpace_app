@@ -1,41 +1,51 @@
 
 
 
-
-<% @posts.each_with_index do |post, index| %>
-
-	<% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
+    <% @posts.each_with_index do |post, index| %>
+    <% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
       <% x = 0 %>
     <% else %>
       <% page = params[:page].to_i - 1 %>
       <% x = page * 4 %>
     <% end %>
 
-<div class="box1">
- <a onmouseout="hover.out(<%= index+x %>)" onmouseover="hover.over(<%= index+x %>)" href="<%= post_path(post) %>" id="m<%= post.id %>">
- 	<div style="float:left; width:100px;"><% if post.photo.url(:thumb) == "/photos/thumb/missing.png" %>
-        <%= image_tag "default_post_small.png" %>
-    <% else %>
-        <%= image_tag(post.photo.url(:thumb)) %>
-   <% end %></div>
-  <div style="float:left; width:275px;"><%= post.user.name rescue nil%> <%= post.user.last_name rescue nil%>  Price : <%= post.price_sq_ft %> <br/>
-  Address : <%= post.address %>   <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? " | ( #{post.distance.round(2)} ) miles" : '' : '' %></div>
+    <div class="new_box">
+      <a onmouseout="hover.out(<%= index+x %>)" onmouseover="hover.over(<%= index+x %>)" href="<%= post_path(post) %>" id="m<%= post.id %>">
+              <div class="img1">
+              
+              <div class="1" style="float:left; margin-right:10px;"> 
+                  <% if post.photo.url(:thumb) == "/photos/thumb/missing.png" %>
+                      <%= image_tag "default_post_small.png", :style=>"margin-top:4px;" %>
+                  <% else %>
+                      <%= image_tag(post.photo.url(:thumb), :style=>"margin-top:4px;") %>
+                 <% end %>
+               
+              </div>
+              <div class="circle">
+               <p>$<%= post.price_sq_ft.to_i %></p></div>
+                </div>
+        
+        
+                <div class="add">
+                 <p style="float:left; "> <strong style="font-size:14px; color:#0b243a; font-family:brandon2;"><%= post.user.name rescue nil%> <%= post.user.last_name rescue nil%></strong> ( 5 mutual friends )<br>
+                 May 1 - May 10 <p class="tooltip" style="color:#999;"><img src="/assets/right.png" style="margin:27px 0 0 -70px;"><span class="classic">Drop off ride availabe ($5)</span> </p><br>
+               <p class="add1" style="margin-top:13px; font-size:10px;" >August 12 - August 20 </p><p class="tooltip" style="color:#999;margin-right:-60px;"><img src="/assets/close1.png"style="margin:18px 0 0 94px;"><span class="classic">Pick-up ride unavailabe</span> </p>
+                 <p style="float:right;font-size:11px; margin:-6px 25px 0px 0px; line-height:12px; "><strong style="font-size:14px; color:#0b243a; font-family:brandon2;">0.5 miles</strong><br>
+                 111, 1st Street<br>
+                 Los Angeles, CA 10021
+                <div class="clear"></div>
+                
+                 <p style="font-size:10px;  margin:-10px 0px 0px 10px;"> <%= post.area %> sq.ft.available - <%= truncate(post.additional_comments, :length => 30) %></p>
+              <div class="btn_b1"> 
+             <div id="cf">
+                  <img class="bottom" src="/assets/b2.png" />
+                  <img class="top" src="/assets/b1.png" />
+                    </div>
+                     </div>
+  
+             
+      </div></a>
+      </div>
 
-  <%= post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%b %e") %>
-  <% if post.drop_off == true %> Drop-off ride available ($ post.price_include_drop_off) <% else %>  Pick-Up ride unavailable <% end %>
-
-  <%= post.pick_up_avaibilty_start_date.strftime("%b %e") %> - <%= post.pick_up_avaibility_end_date.strftime("%b %e") %>
-  <% if post.pick_up == true %> Pick-Up ride available ($ post.price_include_pick_up) <% else %>  Pick-Up ride unavailable <% end %>
-
-  <p> <%= post.area %> sq. feet available - <%= truncate(post.additional_comments, :length => 30) %>
-
- </a><br>
-</div>
-<% end %>
-
-
-
-<% if @posts.empty? %>
-<div class="box1"><p style="text-align:center;">Sorry no results</p></div>
-<% end %>
+    <% end %>
 
