@@ -61,8 +61,8 @@
 	min-height:500px;
 }
 
-.cbp-ig-grid li:nth-child(3n-1),
-.cbp-ig-grid li:nth-child(3n-2) {
+.cbp-ig-grid li:nth-child,
+.cbp-ig-grid li:nth-child {
 	box-shadow: 1px 0 0 #ddd;
 	color: #F00;
 }
