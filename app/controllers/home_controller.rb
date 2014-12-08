@@ -2,6 +2,8 @@ class HomeController < ApplicationController
  before_filter :authenticate_user!, :only => [:searching, :all_postings]
  before_filter :correct_user, :only => [:searching, :all_postings]
 
+ layout 'application'
+
 	def index
 
 	end

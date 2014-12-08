@@ -8,7 +8,7 @@ Rails.application.config.assets.precompile += %w( jquery.validate.min.js validat
 Rails.application.config.assets.precompile += %w( bookreviews.css perfect-scrollbar.css )
 Rails.application.config.assets.precompile += %w( font-awesome.css jquery.validate.min_1.8.1.js )
 Rails.application.config.assets.precompile += %w( jquery.fancybox.pack.js perfect-scrollbar.js )
-Rails.application.config.assets.precompile += %w( jquery.fancybox.css )
+Rails.application.config.assets.precompile += %w( jquery.fancybox.css style.css components.css typer.js )
 Rails.application.config.assets.precompile += %w( admin_validation.js )
 
 # Precompile additional assets.

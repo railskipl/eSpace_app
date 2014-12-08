@@ -73,7 +73,8 @@ float:left;
 
           var marker = new google.maps.Marker({
               position: myLatlng,
-              map: map
+              map: map,
+              icon: "/assets/marker.png"
               
           });
 
@@ -166,13 +167,15 @@ jQuery(document).ready(function(){
            var fees = (total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2);        
             if (fees <= 8)
             {
+              //alert("Raje");
                var cut_off = fees * 0.80;
-               // $('#cut_off').html("+ Our Commission&nbsp;" + cut_off.toFixed(2)); 
+               $('#cut_off').html("+ Our Commission&nbsp;" + cut_off.toFixed(2)); 
             }
              else if (price > 8)
              {
+               //alert("Amol");
                 var cut_off =  fees * (10/100);
-                // $('#cut_off').html("+ Our Cut&nbsp;" + cut_off.toFixed(2)); 
+                $('#cut_off').html("+ Our Cut&nbsp;" + cut_off.toFixed(2)); 
              }
                
           }
@@ -244,8 +247,9 @@ jQuery(document).ready(function(){
     
     <div class="left1">
 
-      <% if @post.overall_rating > 0 %>
+     
          <p>
+           <%= "(" + pluralize(@post.comments.count.to_s, "")+")" %>
             <% num_stars(@post.overall_rating)[:full].times do %>
               <i class="fa fa-star"></i>
             <% end %>
@@ -255,9 +259,9 @@ jQuery(document).ready(function(){
             <% num_stars(@post.overall_rating)[:empty].times do %>
               <i class="fa fa-star-o"></i>
             <% end %>
-            <%= "(" + pluralize(@post.comments.count.to_s, "") + ")" if @post.comments.count > 0 %>
+           
          </p>
-      <% end %>
+      
 
       <!-- <%# if current_user.present?%>
           <h3>Post your comment</h3>
@@ -292,6 +296,8 @@ jQuery(document).ready(function(){
                   
                   <%= @post.address %><br/>
 
+                  <%= @post.additional_comments %><br/>
+
                   <% if @post.user_id != current_user.id %>
                   <div id="message_<%= @post.id %>">
                     <div style="float:right"><%= link_to "Send Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true %>
@@ -301,11 +307,11 @@ jQuery(document).ready(function(){
 
                   <% if @post.drop_off %>
                     <strong>Drop-Off : </strong> <%= @post.price_include_drop_off %> <br/>
-                    <strong>Drop-Off Avaibilty Date : </strong><%= @post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
+                   
                   <% end %>
 
                   <% if @post.pick_up == true %> 
-                    <strong>Pick-Up Avaibilty Date : </strong> <%= @post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= @post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
+                    
                     <strong>Pick-Up : </strong> <%= @post.price_include_pick_up %> <br/>
                   <% end %>
                   
@@ -338,10 +344,24 @@ jQuery(document).ready(function(){
                      <br/><br/>
                      <div style="float:left; width: 100%;">
                      Drop Off Date : <%= f.text_field :dropoff_date %></div> <br/><br/>
+
+                      <strong>Drop-Off Avaibilty Date : </strong><%= @post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
+
+                     <% if @post.drop_off == true %> 
                        Need a ride for drop-off <input type="checkbox" id="checkbox1" /> <br /><br/>
+                     <% else %>
+                        Unavailable <br /><br/>
+                     <% end %>
 
                     Tentative pick-up date : <%= f.text_field :pickup_date %> <br/><br/>
-                    Need a ride for pick-up  <input type="checkbox" id="checkbox2" /> <br /><br/>
+                    <strong>Pick-Up Avaibilty Date : </strong> <%= @post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= @post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %><br/>
+
+                    Need a ride for pick-up
+                    <% if @post.pick_up == true %> 
+                      <input type="checkbox" id="checkbox2" /> <br /><br/>
+                    <% else %>
+                        Unavailable <br /><br/>
+                    <% end %>
 
                     <%= f.submit "Book", :class => "btn btn-primary contact-form" %>
                   <% end %>
@@ -356,7 +376,7 @@ jQuery(document).ready(function(){
              
 
 
-            <form action="<%= checkout_bookings_path %>" method="post" >
+            <!-- <form action="<%= checkout_bookings_path %>" method="post" >
               <script src="https://checkout.stripe.com/checkout.js"></script>
               
               <button id="customButton">Pay with Card</button>
@@ -395,7 +415,7 @@ jQuery(document).ready(function(){
                });
                </script>
               
-              </form> 
+              </form> -->
 
 
     </div>

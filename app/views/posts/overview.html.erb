@@ -383,12 +383,14 @@ window.onload = loadMap;
 
                   <div class="field">
                     Max price/sq. foot
-                  &nbsp; &nbsp; &nbsp;&nbsp;<%= f.text_field :price, :value=> "#{params[:search][:price] if params[:search]}" %>
+                  &nbsp; &nbsp; &nbsp;&nbsp;
+                  <%= f.select :price, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:price] if params[:search]}" %>
                 
                   </div>
                   <div class="field">
                     Area needed
-                   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<%= f.text_field :area, :value=> "#{params[:search][:area] if params[:search] }" %>
+                   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+                   <%= f.select :area, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}" %>
                   </div>
 
                   <div class="field">

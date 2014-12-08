@@ -1,6 +1,8 @@
-.fa-star, .fa-star-o, .fa-star-half-o {
+.fa-star, .fa-star-half-o {
   color: #28A0E5;
 }
+
+.fa-star-o { color: #efefef; }
 
 
 .rating {

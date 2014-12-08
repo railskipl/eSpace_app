@@ -23,8 +23,14 @@ class Post < ActiveRecord::Base
 
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
+
+  # Check overall ratings an reviews
   def overall_rating
-    comments.sum(:rating).to_f / comments.size
+    if comments.size != 0
+      comments.sum(:rating).to_f / comments.size
+    else
+      comments.sum(:rating)
+    end
   end
 
   # Search result on browser page

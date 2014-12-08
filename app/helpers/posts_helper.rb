@@ -1,8 +1,9 @@
 module PostsHelper
+
  def current_user_token(user)
-   @user_fb_token = current_user.oauth_token
-   @users = User.find_by_id(user)
-   @users.oauth_token   
+    @user_fb_token = current_user.oauth_token
+    @users = User.find_by_id(user)
+    @users.oauth_token 
  end
 
   # This method send the request to facebookGraph Api & gives the mutual friend count.  
@@ -21,12 +22,8 @@ module PostsHelper
                        @mutual = ActiveSupport::JSON.decode(@mutual_friend_list)
                        @count = @mutual["context"]["mutual_friends"]["summary"]["total_count"]
                        return @count
-
                     else
                        response 
-                   
-                    
-                      
                     end   
                   } 
   end

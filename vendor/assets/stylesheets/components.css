@@ -1,0 +1,204 @@
+@font-face {
+	font-family: 'brandon';
+	src:url('/assets/Brandon_thin.otf');}
+	
+	@font-face {
+	font-family: 'brandon2';
+	src:url('/assets/Brandon_light.otf');}
+	
+	@font-face {
+	font-family: 'brandon3';
+	src:url('/assets/Brandon_med.otf');}
+	
+	@font-face {
+	font-family: 'brandon4';
+	src:url('/assets/Brandon_reg.otf');}
+
+
+@font-face {
+	font-family: 'anyoldicon';
+	src:url('../fonts/anyoldicon/anyoldicon.eot');
+	src:url('../fonts/anyoldicon/anyoldicon.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/anyoldicon/anyoldicon.woff') format('woff'),
+		url('../fonts/anyoldicon/anyoldicon.ttf') format('truetype'),
+		url('../fonts/anyoldicon/anyoldicon.svg#anyoldicon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* General grid styles */
+.cbp-ig-grid {
+	list-style: none;
+	padding: 0 0 0 0;
+	margin: 0;
+}
+
+/* Clear floats */
+.cbp-ig-grid:before, 
+.cbp-ig-grid:after { 
+	content: " "; 
+	display: table; 
+}
+
+.cbp-ig-grid:after { 
+	clear: both; 
+}
+
+/* grid item */
+.cbp-ig-grid li {
+	width: 33%;
+	float: left;
+	height: 150px;
+	text-align: center;
+	text-decoration:none;
+	
+}
+
+/* we are using a combination of borders and box shadows to control the grid lines */
+.cbp-ig-grid li:nth-child(-n+3){
+	border-top: none;
+	background-color:#072643;
+	min-height:500px;
+}
+
+.cbp-ig-grid li:nth-child(3n-1),
+.cbp-ig-grid li:nth-child(3n-2) {
+	box-shadow: 1px 0 0 #ddd;
+	color: #F00;
+}
+
+/* anchor style */
+.cbp-ig-grid li > a {
+	display: block;
+	height: 100%;
+	color: #FFF;
+	text-decoration:none;
+	-webkit-transition: background 0.2s;
+	-moz-transition: background 0.2s;
+	transition: background 0.2s;
+}
+
+/* the icon with pseudo class for icon font */
+.cbp-ig-icon {
+	padding: 95px 40px 0 0;
+	display: block;
+	-webkit-transition: -webkit-transform 0.2s;
+	transition: -moz-transform 0.2s;
+	transition: transform 0.2s;
+}
+
+.cbp-ig-icon:before {
+	
+	font-size: 14em;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+
+
+/* title element */
+.cbp-ig-grid .cbp-ig-title {
+	margin: 10px 0 0px 0;
+	padding: 50px 0 0 0;
+	font-size: 25px;
+	position: relative;
+	-webkit-transition: -webkit-transform 0.2s;
+	-moz-transition: -moz-transform 0.2s;
+	transition: transform 0.1s;
+	font-family:brandon2;
+}
+
+.cbp-ig-grid .cbp-ig-title:before {
+	/*content: '';*/
+	position: absolute;
+	background: #47a3da;
+	width: 160px;
+	height: 50px;
+	top: 0px;
+	left: 50%;
+	margin: -10px 0 0 -80px;
+	-webkit-transition: margin-top 0.2s; /* top or translate does not seem to work in Firefox */
+	-moz-transition: margin-top 0.2s;
+	transition: margin-top 0.2s;
+}
+
+.cbp-ig-grid .cbp-ig-category {
+	
+	display: inline-block;
+	font-size: 11px;
+	letter-spacing: 1px;
+	color: #fff;
+	font-family:brandon4;
+	-webkit-transform: translateY(100px);
+	-moz-transform: -moz-translateY(100px);
+	-ms-transform: -ms-translateY(100px);
+	transform: translateY(100px);
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.2s;
+	-webkit-transition: transform 0.3s, opacity 0.2s;
+}
+
+.fbox  nth-child(3n-1),
+.fbox nth-child(3n-2) {
+	box-shadow: 1px 0 0 #F00;
+}
+
+.cbp-ig-grid li:hover .cbp-ig-category,
+.touch .cbp-ig-grid li .cbp-ig-category {
+	opacity: 1;
+	-webkit-transform: translateY(5px);
+	-moz-transform: translateY(5px);
+	-ms-transform: translateY(5px);
+	transform: translateY(5px);
+	color: #fff;
+	text-decoration:none;
+}
+
+/* Hover styles */
+ 
+.cbp-ig-grid li > a:hover {
+	background: #00b4ff;
+	text-decoration:none;
+}
+.over_text{display:none}
+
+
+
+.cbp-ig-grid li > a:hover .cbp-ig-icon {
+	-webkit-transform: translateY(20px);
+	-moz-transform: translateY(20px);
+	-ms-transform: translateY(20px);
+	transform: translateY(20px);
+}
+
+.cbp-ig-grid li > a:hover .cbp-ig-icon:before,
+.cbp-ig-grid li > a:hover .cbp-ig-title {
+	color: #fff;
+}
+
+.cbp-ig-grid li > a:hover .cbp-ig-title {
+	-webkit-transform: translateY(-80px);
+	-moz-transform: translateY(-80px);
+	-ms-transform: translateY(-80px);
+	transform: translateY(-80px);
+	border:none;
+}
+
+.cbp-ig-grid li > a:hover img {
+	-webkit-transform: translateY(50px);
+	-moz-transform: translateY(50px);
+	-ms-transform: translateY(50px);
+	transform: translateY(50px);
+	border:none;
+}
+
+.cbp-ig-grid li > a:hover .cbp-ig-title:before {
+	background: #fff;
+	margin-top: 80px;
+}

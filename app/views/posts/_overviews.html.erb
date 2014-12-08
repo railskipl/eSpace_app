@@ -18,8 +18,16 @@
     <% else %>
         <%= image_tag(post.photo.url(:thumb)) %>
    <% end %></div>
-  <div style="float:left; width:275px;"><%= post.user.name rescue nil%> <%= post.user.last_name rescue nil%>  Area: <%= post.area %> Price : <%= post.price_sq_ft %> <br/>
+  <div style="float:left; width:275px;"><%= post.user.name rescue nil%> <%= post.user.last_name rescue nil%>  Price : <%= post.price_sq_ft %> <br/>
   Address : <%= post.address %>   <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? " | ( #{post.distance.round(2)} ) miles" : '' : '' %></div>
+
+  <%= post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%b %e") %>
+  <% if post.drop_off == true %> Drop-off ride available ($ post.price_include_drop_off) <% else %>  Pick-Up ride unavailable <% end %>
+
+  <%= post.pick_up_avaibilty_start_date.strftime("%b %e") %> - <%= post.pick_up_avaibility_end_date.strftime("%b %e") %>
+  <% if post.pick_up == true %> Pick-Up ride available ($ post.price_include_pick_up) <% else %>  Pick-Up ride unavailable <% end %>
+
+  <p> <%= post.area %> sq. feet available - <%= truncate(post.additional_comments, :length => 30) %>
 
  </a><br>
 </div>
