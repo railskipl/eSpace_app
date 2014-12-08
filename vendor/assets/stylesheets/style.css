@@ -577,11 +577,6 @@ margin-top:290px;
 }
 
 /* Clear floats */
-.new:before, 
-.:after { 
-	content: " "; 
-	display: table; 
-}
 
 
 
