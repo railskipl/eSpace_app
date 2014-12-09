@@ -71,7 +71,7 @@
       <script type="text/javascript">
 
     jQuery(function($){
-      $("#booking_dropoff_date").datepicker({dateFormat: 'yy-mm-dd', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true})
+      $("#booking_dropoff_date").datepicker({dateFormat: 'mm dd', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true})
 
       $("#booking_pickup_date").datepicker({dateFormat: 'yy-mm-dd', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true})
 
@@ -111,6 +111,7 @@ jQuery(document).ready(function(){
         }
 
         $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
+        $('#check_drop').html("$"+(drop_off)+"");
         $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
         $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
         $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -140,6 +141,8 @@ jQuery(document).ready(function(){
 
         if($(this).is(":checked")) {
          
+          $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
+          $('#check_drop').html("$"+(drop_off)+"");
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -162,6 +165,8 @@ jQuery(document).ready(function(){
         
         else
         {
+          $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
+          $('#check_drop').html("$"+(drop_off)+"");
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -189,6 +194,8 @@ jQuery(document).ready(function(){
 
         if($(this).is(":checked")) {
          
+          $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
+          $('#check_drop').html("$"+(drop_off)+"");
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -196,6 +203,8 @@ jQuery(document).ready(function(){
         }
         else
         {
+           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
+           $('#check_drop').html("$"+(drop_off)+"");
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -330,7 +339,7 @@ jQuery(document).ready(function(){
                    
                      </div>
                      <p class="miles3"> <%= @post.area.to_i %> sq. feet available</p>
-                   <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><strong style="margin:0 0 0 25px; font-size:13px;" id="area_needed"> $50</strong></p>
+                   <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><strong style="margin:0 0 0 25px; font-size:13px;" id="area_needed"> $0</strong></p>
                 </div>
                 
                 <div class="f1">
@@ -365,8 +374,8 @@ jQuery(document).ready(function(){
                       <input type="checkbox" id="checkbox1" />
                       <label for="checkbox1">&nbsp;</label>
                      </div>
-                    <p class="miles3" style="padding-left:64px;"> $5</p>
-                   <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:13px;">$5</p>
+                    <p class="miles3" style="padding-left:64px;"> $<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %></p>
+                   <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:13px;" id="check_drop">$0</p>
                 </div>
                 <div class="f1">
                       <div class="f1_tool">Tentative pick-up date <a class="tooltip10" href="#" style="color:#999; text-decoration:none;"> 
@@ -398,7 +407,7 @@ jQuery(document).ready(function(){
                       
                       
                       
-                      <span class="classic10">  Thisisjust an example of what  </span> </a></div>
+                      <span class="classic10">  This isjust an example of what  </span> </a></div>
                  
                      <div class="styleSelect3">
                    <p> Unavailable</p>
