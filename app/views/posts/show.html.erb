@@ -369,13 +369,13 @@ jQuery(document).ready(function(){
                     </div>
                       
                       
-                      <span class= "classic10"> Ride for drop off is $5 <u>learn_More</u> </span> </a></div>
+                      <span class= "classic10"> Ride for drop off is $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %> <u>learn_More</u> </span> </a></div>
                  
                     <div class="pickup3">
                       <input type="checkbox" id="checkbox1" />
                       <label for="checkbox1">&nbsp;</label>
                      </div>
-                    <p class="miles3" style="padding-left:64px;"> $<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %></p>
+                    <p class="miles3" style="padding-left:64px;"> $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %></p>
                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:13px;" id="check_drop">$0</p>
                 </div>
                 <div class="f1">
