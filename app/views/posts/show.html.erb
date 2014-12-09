@@ -228,7 +228,7 @@ jQuery(document).ready(function(){
             <% end %>
 
            </div>
-               <div class="sam"><p class="sq">$<%= @post.price_sq_ft.to_i %>/sq.ft. <p> <p class="sq1">for entire duration</p></div>
+               <div class="sam"><p class="sq">$<%= @post.price_sq_ft.to_i %>/sq.ft. <span class="sq1">for entire duration</span></p></div>
                 
                  </div> 
               
@@ -246,7 +246,7 @@ jQuery(document).ready(function(){
                   <% num_stars(@post.overall_rating)[:empty].times do %>
                     <i class="fa fa-star-o"></i>
                   <% end %>
-                  
+
                   </div>
                   </div>
                  <div class="p1" style="float:left; margin-top:-12px;">
