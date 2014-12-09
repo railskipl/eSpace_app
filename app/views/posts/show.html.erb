@@ -232,10 +232,10 @@ jQuery(document).ready(function(){
                <div class="s2">
            
            <div class="kal">  
-            <% if @post.photo.url(:medium) == "/photos/medium/missing.png" %>
+            <% if @post.photo.url() == "/photos/original/missing.png" %>
               <%= image_tag "default_post_large.png", :style => "width:510px" %>
             <% else %>
-              <%= image_tag(@post.photo.url(:medium), :style => "width:510px") %>
+              <%= image_tag(@post.photo.url(), :style => "width:510px") %>
             <% end %>
 
            </div>

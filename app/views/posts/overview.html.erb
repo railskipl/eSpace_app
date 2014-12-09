@@ -392,7 +392,7 @@ window.onload = loadMap;
                 <span class="classic1">This is just an</span> </a></div>
               <div class="styleSelect" style="margin:-52px 30px 20px 400px;">
           
-              <%= f.select :area, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}", :style=>"color:#fff" %>
+              <%= f.select :area, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}" %>
             </div>
 <!-------------box_3 end-------------------->
 <p  class="miles" style="margin-top:-19px;">Miles</p> 
