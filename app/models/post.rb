@@ -16,8 +16,8 @@ class Post < ActiveRecord::Base
                     :path => "/estore_management/posts/:id/:style/:basename.:extension",
                     
                     :convert_options => {
-                          :thumb => "-compose Copy -gravity center -extent 91x61",
-                          :medium => "-compose Copy -gravity center -extent 512x344",
+                          :thumb => "-background '#999' -compose Copy -gravity center -extent 91x61",
+                          :medium => "-background '#999' -compose Copy -gravity center -extent 512x344",
                           
                       }
 
