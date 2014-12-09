@@ -27,7 +27,7 @@
         
         
                 <div class="add">
-                 <p style="float:left; "> <strong style="font-size:14px; color:#0b243a; font-family:brandon2;"><%= post.user.name rescue nil%> <%= post.user.last_name rescue nil%></strong> ( 5 mutual friends )<br>
+                 <p style="float:left; "> <strong style="font-size:14px; color:#0b243a; font-family:brandon2;"><%= post.user.name.capitalize rescue nil%> <%= post.user.last_name[0,1] rescue nil %></strong> ( 5 mutual friends )<br>
                   <%= post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%b %e") %>
                   <p class="tooltip" style="color:#999;">
                   <% if post.drop_off == true %> 

@@ -1,3 +1,68 @@
+ 		<script>
+function validateForm() {
+	var err = 0;
+
+	var userinput = $('#email').val();
+
+	<% @access_ids = AccessId.all %>
+	
+	<% @access_ids.each_with_index do |access_id, index| %>
+	var domain<%= index %> = '<%= access_id.email %>';
+	<% end %>
+	
+
+	var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+
+	if($('#email').val() == ''){
+		        $('#email').parent().parent().find('.form-error').html("Please enter email address.");
+		        err++;
+		    }
+
+	<% @access_ids.each_with_index do |access_id, index| %>
+		<% if index == 0 %>
+			
+
+		    if(userinput.split('@').pop() == domain<%= index %>)
+		    {
+
+				if(!pattern.test(userinput) || userinput.split('@').pop() != domain<%= index %>)
+				{
+				 	$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+			        err++;
+				}
+			}
+		<% else %>
+
+		    else if(userinput.split('@').pop() == domain<%= index %>)
+		    {
+
+				if(!pattern.test(userinput) || userinput.split('@').pop() != domain<%= index %>)
+				{
+				 	$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+			        err++;
+				}
+			}
+		<% end %>
+	<% end %>
+	else 
+	{ 
+		$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+	    err++;
+	}
+
+	if(err == 0){
+            
+             return true;      
+    }else{
+            
+            return false;
+    }
+
+}
+</script>
+
+<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
+
  		<div id="image">
   
                   <img src="/assets/bg_1.jpg">
@@ -7,13 +72,16 @@
                    <div class="hd2" >Find summer storage provided by other USC students, <br>
                              or rent out some space to store other students' goods over the summer.<br>
                   </div>
-                  <div class="input-group">
-                         <input type="text"placeholder="@usd.edu email address" class="sign_up_id">
+                  	<div class="input-group">
+                  		<%= form_tag url_for(:controller => 'authenticates', :action => 'create'), :method => 'post', :id=>"userSignup", :onsubmit => "return validateForm()" do |f| %>
+                         <%= text_field_tag :email, nil, :class=>"sign_up_id", :placeholder=>"@usd.edu email address" %>
                          <span class="input-group-btn">
-                             <button class="btn_signup" style="margin:-78px 0px 0px 601px;" type="button">Sign Up</button>
+                             <%= submit_tag "Sign Up", :class=>"btn_signup", :style=>"margin:-78px 0px 0px 601px;" %>
+                             <div class="form-error"></div>
                              <p class="usc"><p style="color:#d3d4d5; margin:-14px 0 0 414px;font-family:brandon5; font-size:14px;" >Currently open to USC students only.</p></p>
                         </span>
-                         </div>
+                        <% end %>
+                    </div>
               </div>    
                   
                   

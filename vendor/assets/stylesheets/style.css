@@ -182,7 +182,7 @@ background-color:#666;
     font-family: brandon4;
     font-size: 20px;
     height: 48px;
-	width:260px;
+	width:254px;
     padding:10px 0px 10px 30px;
 	border-radius: 1000px 0 0 1000px;
 	border: 2px solid #00b4ff;
@@ -666,7 +666,7 @@ background-color:#072643;
 	.footer_new ul
 	{
 	
-	margin-left:80px;	
+	margin-left:33px;	
 	text-decoration:none;
 	margin-top:40px;
 	line-height:21px;
@@ -1751,5 +1751,9 @@ font-size:15px;
 .loading{ width:36px; height:36px; float:left; margin-left:235px; margin-top: 370px;}	
 
 .address {float: left; font-family: brandon4; font-size: 10px; line-height: 10px; margin: -47px 0 0 333px; width: 81px;}
+
+.error { color: #FD0000; text-align: right;}
+
+.form-error{ color: #FD0000; clear: left; text-align: right; }
 	
 	

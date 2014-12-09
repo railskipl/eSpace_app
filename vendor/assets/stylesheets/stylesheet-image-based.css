@@ -51,12 +51,12 @@ input[type=radio   ]:not(old){
 
 input[type=checkbox]:not(old) + label,
 input[type=radio   ]:not(old) + label{
-  display      : inline-block;
-  margin-left  : -28px;
-  padding-left : 28px;
-  background-image:url(/assets/checks.png);
-  background-repeat:no-repeat;
-  line-height  : 24px;
+    background-image: url("/assets/checks.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    line-height: 24px;
+    margin-left: -30px;
+    padding-left: 28px;
 }
 .pickup4 input[type=checkbox]:not(old) + label,
 input[type=radio   ]:not(old) + label{
