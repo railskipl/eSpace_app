@@ -1,7 +1,7 @@
   <style>
 
 
-#map-canvas { height: 100%; margin: 0px; padding: 0px }
+    #map-canvas { height: 100%; margin: 0px; padding: 0px }
 
  </style>
 
@@ -80,8 +80,8 @@
   </script>
 
 
-<%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css" %>
-<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation", "facebox.js" %>
+<%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css", "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker" %>
+<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation", "facebox.js", "jquery.ui.core", "jquery.ui.datepicker.js" %>
 
 <script type='text/javascript'>//<![CDATA[ 
 
@@ -97,6 +97,7 @@ jQuery(document).ready(function(){
         // update the total to sum    
         var qty = parseInt($('#area').val());
         var price = parseFloat($('#price').val());
+
         var drop_off = 0;
         var pickup = 0;
 
@@ -109,7 +110,8 @@ jQuery(document).ready(function(){
           var pickup = parseFloat($('#pickup').val());
         }
 
-        $('#total').html("Total : <b>"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"<\/b>");
+        $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
+        $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
         $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
         $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
          
@@ -138,7 +140,7 @@ jQuery(document).ready(function(){
 
         if($(this).is(":checked")) {
          
-          $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
+          $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
 
@@ -160,7 +162,7 @@ jQuery(document).ready(function(){
         
         else
         {
-          $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
+          $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
         }
@@ -187,14 +189,14 @@ jQuery(document).ready(function(){
 
         if($(this).is(":checked")) {
          
-          $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
+          $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
          
         }
         else
         {
-          $('#total').html("Total : <b>"+(total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2)+"<\/b>");
+          $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
         }       
@@ -235,7 +237,7 @@ jQuery(document).ready(function(){
               
                  <div class="s3">
                  <div class="review"><p style="float:left;">Reviews</p>
-                 <div class="star-new" style="float:right; margin: 20px 50px 0 0; font-size:11px; color:#9198a0;">
+                 <div class="star-new" style="float:right; margin: 20px 35px 0 0; font-size:15px; color:#9198a0;">
                   <%= "(" + pluralize(@post.comments.count.to_s, "")+")" %>
                   <% num_stars(@post.overall_rating)[:full].times do %>
                     <i class="fa fa-star"></i>
@@ -304,7 +306,11 @@ jQuery(document).ready(function(){
                 </div>
 
                    <p class="sed2" style="line-height:12px;"><%= @post.additional_comments %></p>
-                   <div class="function">
+                  <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' />
+                   <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
+                  <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
+              <%= form_for :booking, :html=>{ :id=>"booking", :method=>"get"} do |f| %>
+              <div class="function">
                 <div class="f1">
                 
                       <div class="f1_tool" style="margin-top:10px;">Area needed <a class="tooltip10" href="#" style="color:#999; text-decoration:none;">
@@ -315,28 +321,16 @@ jQuery(document).ready(function(){
                     </div>
                       
                       
-                      <span class="classic10"> Thisisjust an example of what  </span> </a></div>
+                      <span class="classic10"> This is just an example of what  </span> </a></div>
                      <p class="sed">How to estimate :<br>
                      4 feet x 5 feet = 20 sq. feet</p><div class="clear"></div>
                      <div class="styleSelect1">
 
-                 <select class="units">
-                    <option value="10" style="color:#999;">10</option>
-                    <option value="9" style="color:#999;">9</option>
-                    <option value="8" style="color:#999;">8</option>
-                    <option value="7" style="color:#999;">7</option>
-                    <option value="6" style="color:#999;">6</option>
-                    <option value="5" style="color:#999;">5</option>
-                    <option value="4" style="color:#999;">4</option>
-                    <option value="3" style="color:#999;">3</option>
-                    <option value="2" style="color:#999;">2</option>
-                    <option value="1" style="color:#999;">1</option>
-                   
-                  </select>
+                      <%= text_field_tag :area, nil, :class=>"units" %> 
                    
                      </div>
-                     <p class="miles3"> 15 sq. feet available</p>
-                   <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $5<strong style="margin:0 0 0 25px; font-size:13px;"> $50</strong></p>
+                     <p class="miles3"> <%= @post.area.to_i %> sq. feet available</p>
+                   <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><strong style="margin:0 0 0 25px; font-size:13px;" id="area_needed"> $50</strong></p>
                 </div>
                 
                 <div class="f1">
@@ -347,29 +341,29 @@ jQuery(document).ready(function(){
                     </div>
                       
                       
-                       <span class= "classic10"> Ride for drop off is $5 <u>learn_More</u> </span> </a></div>
-                 <form class="dates" style="margin-top:-23px;">
-                     <input type="text" id="dates1" name="FirstName" value="20 May" readonly="readonly" >
-                   
-                    </form>
-                     <div class="styleSelect2">
-                   <a href="#">  <img src="/assets/cal_icon.png" style="margin:2px 0 0 4px;"> </a>
-                     </div>
-                      <p class="miles3" style="padding-left:10px;"> May-19 May-22</p>
+                    <span class= "classic10"> Ride for drop off is $5 <u>learn_More</u> </span> </a></div>
+                      <div class="drop_off_date dates" style="margin-top:-23px;">
+                        
+                        <%= f.text_field :dropoff_date, :readonly=>true, :style=>"width: 40px;" %>
+                      </div>
+
+                      <p class="miles3" style="padding-left:10px;"> <%= @post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%b %e") %></p>
+
                    <p class="sed" style="float:right; margin:-17px -2px 0 0px;">-</p>
                 </div>
                 <div class="f1">
                       <div class="f1_tool">Need a ride for drop-off <a class="tooltip10" href="#" style="color:#999; text-decoration:none;">
                       <div id="cf2" style="margin-left:134px;">
-                  <img class="bottom" src="/assets/queh.png" />
-                  <img class="top" src="/assets/que.png" />
+                      <img class="bottom" src="/assets/queh.png" />
+                      <img class="top" src="/assets/que.png" />
                     </div>
                       
                       
                       <span class= "classic10"> Ride for drop off is $5 <u>learn_More</u> </span> </a></div>
                  
                     <div class="pickup3">
-                      <input id="checkbox1" type="checkbox" name="checkbox" value="1" checked="checked"><label for="checkbox1">&nbsp;</label>
+                      <input type="checkbox" id="checkbox1" />
+                      <label for="checkbox1">&nbsp;</label>
                      </div>
                     <p class="miles3" style="padding-left:64px;"> $5</p>
                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:13px;">$5</p>
@@ -383,12 +377,16 @@ jQuery(document).ready(function(){
                      
                       
                       
-                      <span class="classic10"> Thisisjust an example of what  </span> </a></div>
+                      <span class="classic10"> This is just an example of what  </span> </a></div>
                  
-                     <div class="styleSelect2">
-                    <a href="#">  <img src="/assets/cal_icon.png" style="margin:2px 0 0 4px;"> </a>
-                     </div>
-                     <p class="miles3" style="padding-left:10px;"> Aug-12 Aug-20</p>
+
+                       <div class="drop_off_date dates" style="margin-top:-23px;">
+                        <%= f.text_field :pickup_date, :readonly=>true, :style=>"width: 40px;" %>
+                      </div>
+
+                     
+
+                     <p class="miles3" style="padding-left:10px;"> <%= @post.pick_up_avaibilty_start_date.strftime("%b %e") %> - <%= @post.pick_up_avaibility_end_date.strftime("%b %e") %></p>
                    <p class="sed" style="float:right; margin:-17px -2px 0 0px;">-</p>
                 </div>
                 <div class="f1">
@@ -408,13 +406,12 @@ jQuery(document).ready(function(){
                      
                    <p class="sed" style="float:right; margin:-25px -2px 0 0px;">-</p>
                 </div>
-                
-                                
-                
            </div>
+           <% end %>
+
            <div class="square_btn">
-     <a href="javascript:void(0);" class="book  " id="bt1"> Book  </a>
-      <div class=" total "> Total <strong style="margin-left:10px;">&nbsp; &nbsp; $55 </strong>
+     <a href="javascript:void(0);" class="book" id="bt1"> Book  </a>
+      <div class="total"> Total <strong style="margin-left:10px;" id="total"> </strong>
                </div>
        
                    </div>

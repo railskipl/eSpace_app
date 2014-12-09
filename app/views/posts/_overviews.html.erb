@@ -27,7 +27,8 @@
         
         
                 <div class="add">
-                 <p style="float:left; "> <strong style="font-size:14px; color:#0b243a; font-family:brandon2;"><%= post.user.name.capitalize rescue nil%> <%= post.user.last_name[0,1] rescue nil %></strong> ( 5 mutual friends )<br>
+                 <p style="float:left; "> <strong style="font-size:14px; color:#0b243a; font-family:brandon2;"><%= post.user.name.capitalize rescue nil%> <%= post.user.last_name[0,1] rescue nil %></strong> <% if current_user.provider.present? &&  post.user.provider.present? && post.user_id != current_user.id %>(<%= mutual_friend_list(post.user.id) rescue nil%> mutual friends)<% end %>
+                  <br>
                   <%= post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%b %e") %>
                   <p class="tooltip" style="color:#999;">
                   <% if post.drop_off == true %> 

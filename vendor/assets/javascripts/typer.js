@@ -40,7 +40,7 @@ String.prototype.rightChars = function(n){
       color = 'rgb(255, 255, 255)';
     }
 
-    return $('<span></span>')
+    return jQuery('<span></span>')
       .css('color', color)
       .css('background-color', backgroundColor);
   };
