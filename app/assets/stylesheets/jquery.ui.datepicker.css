@@ -13,6 +13,8 @@
 
  */
 
+
+
 .ui-datepicker {
 	width: 17em;
 	padding: .2em .2em 0;
@@ -81,7 +83,7 @@
 	text-align: center;
 	font-weight: bold;
 	border: 0;
-	color: #878B94;
+	color: #9198a0;
 }
 .ui-datepicker td {
 	border: 0;
@@ -91,7 +93,7 @@
 .ui-datepicker td a {
 	display: block;
 	padding: .2em;
-	text-align: right;
+	text-align: center;
 	text-decoration: none;
 }
 .ui-datepicker .ui-datepicker-buttonpane {
