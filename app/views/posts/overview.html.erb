@@ -356,7 +356,7 @@ window.onload = loadMap;
 
 
           <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get", :id=>"browse_post"} do |f| %>
-          Search near this address 
+          <div class="search-add">Search near this address </div>
 
           <%= f.text_field :address, :value=> "#{params[:search][:address] if params[:search]}", :class=>"sign_up_id1", :placeholder=>"Street, Los angeles, CA 10021", :style=>"width:295px; height:18px; background-color:#072743; color:#FFF; border:1px solid #899199; margin:24px 0 5px 13px; padding-left:5px;" %><br/>
    
@@ -365,7 +365,7 @@ window.onload = loadMap;
 
                <p  class="text_1">Within</p>
                 
-                <div class="styleSelect">
+                <div class="styleSelect" style="margin-top:12px;">
 
                 <%= f.select :miles, ((1..20).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:miles] if params[:search]}" %>
                  
@@ -376,7 +376,7 @@ window.onload = loadMap;
 
              <!-------------box_2-------------------->
              <p  class="text_2">Max price/sq. foot</p>
-              <div class="styleSelect" style="margin:-22px 20px 30px 245px;">
+              <div class="styleSelect" style="margin:-23px 20px 30px 245px;">
 
               <%= f.select :price, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:price] if params[:search]}" %>
             </div>
@@ -413,7 +413,8 @@ window.onload = loadMap;
        <div class="pickup1">
      Pick-up &nbsp; <%= f.check_box :pickup, :checked=> params[:search] ? params[:search][:pickup] == '1' ? true : false : false %> <label for="checkbox1">&nbsp;</label>
       </div>
-    <div class="search1"> <a href="#"> <img src="/assets/search_new.png"></a></div>
+   
+    <div class="search1"> <%= f.submit "" %> </div>
 
    </div>  
 
@@ -421,13 +422,14 @@ window.onload = loadMap;
 
 
         
-     <p class="para" style="font-size:10px;">Sort by : <%= sortable "price_sq_ft", "Price" %> / <%= sortable "distance" %> / Mutual Friends</p> 
+     <p class="para sortby" style="font-size:10px;">Sort by : <%= sortable "price_sq_ft", "Price" %> / <%= sortable "distance" %> / Mutual Friends</p> 
 
      
        
         <div id="all_posts" class="description">
           <%= render(:partial => 'posts/overviews') %>
         </div>
+        <div class="loading"><%= will_paginate @posts %></div>
    
       
        
