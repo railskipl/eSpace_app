@@ -26,32 +26,41 @@
                 </div>
         
         
-                <div class="add">
-                 <p style="float:left; "> <strong style="font-size:14px; color:#0b243a; font-family:brandon2;"><%= post.user.name.capitalize rescue nil%> <%= post.user.last_name[0,1] rescue nil %></strong> <% if current_user.provider.present? &&  post.user.provider.present? && post.user_id != current_user.id %>(<%= mutual_friend_list(post.user.id) rescue nil%> mutual friends)<% end %>
-                  <br>
-                  <%= post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%b %e") %>
-                  <p class="tooltip" style="color:#999;">
-                  <% if post.drop_off == true %> 
-                    <img src="/assets/right.png" style="margin:27px 0 0 -100px"><span class="classic">Drop-off ride available ($<%= post.price_include_drop_off.to_i %>) </span> <% else %>  <p class="tooltip" style="color:#999;"><img src="/assets/close1.png" style="margin:27px 0 0 -100px"><span class="classic">Drop-off ride unavailable </span> </p><br>
+            
+
+                 <div class="name-title"> <%= post.user.name.capitalize rescue nil%> <%= post.user.last_name[0,1] rescue nil %> 
+
+                  <span style="font-size:10px; color:#999;"> <% if current_user.provider.present? &&  post.user.provider.present? && post.user_id != current_user.id %>(<%= mutual_friend_list(post.user.id) rescue nil%> mutual friends)<% end %>
+                  </span>
+                  <p class="month"> <%= post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%b %e") %> <div class="right-mark">
+                   <% if post.drop_off == true %> 
+                    <p class="tooltip"><img src="/assets/right.png" style="float:right; margin:-6px 24px 0 0;"><span class="classic">Drop off ride availabe ($<%= post.price_include_drop_off.to_i %>) </span></p> 
+                    <% else %>  
+                    <p class="tooltip" style="color:#999;"><img src="/assets/close1.png" style="float:right; margin:-6px 24px 0 0;"><span class="classic">Drop off ride unavailable </span> </p>
                   <% end %>
-                  </p><br>
-                 
-               <p class="add1" style="margin-top:13px; font-size:10px;" > <%= post.pick_up_avaibilty_start_date.strftime("%b %e") %> - <%= post.pick_up_avaibility_end_date.strftime("%b %e") %> </p>
 
-               <p class="tooltip" style="color:#999;margin-right:-60px;">
-                <% if post.pick_up == true %> 
-                  <img src="/assets/right.png"style="margin:18px 0 0 94px;"><span class="classic">Pick-up ride available ($ <%= post.price_include_pick_up %>) </span> 
-                <% else %>  
-                  <img src="/assets/close1.png"style="margin:18px 0 0 94px;"> <span class="classic">Pick-Up ride unavailable </span> 
-                <% end %>   
-                </p>
+                  </p>
 
-                 <p style="float:right;font-size:11px; margin:-6px 79px 0px 0px; line-height:12px; "><strong style="font-size:14px; color:#0b243a; font-family:brandon2;"><%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? "#{post.distance.round(2)} miles" : '' : '' %></strong></p>
-                  <div class="address">  <%= post.address %></div>
-                <div class="clear"></div>
+
+                    <p class="month"> <%= post.pick_up_avaibilty_start_date.strftime("%b %e") %> - <%= post.pick_up_avaibility_end_date.strftime("%b %e") %> <div class="right-mark">
+                      <% if post.pick_up == true %> 
+                      <p class="tooltip"><img src="/assets/right.png" style="float:right; margin:11px -20px 0 0;"><span class="classic">Pick-up ride availabe ($<%= post.price_include_pick_up.to_i %>) </span></p> 
+                      <% else %>  
+                      <p class="tooltip" style="color:#999;"><img src="/assets/close1.png" style="float:right; margin:11px -20px 0 0;"><span class="classic">Pick-up ride unavailable </span> </p>
+                      <% end %>
+                    </p>
+
+
                 
-                 <p style="font-size:10px;  margin:-10px 0px 0px 10px;"> <%= post.area %> sq.ft.available - <%= truncate(post.additional_comments, :length => 30) %></p>
-              <div class="btn_b1"> 
+                  
+                 
+                  
+                  <div class="name-title" style="margin:-30px 0 0 180px;"> <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? "#{post.distance.round(2)} miles" : '' : '' %></div>
+                  <div class="address">  <%= post.address %></div>
+                 </div>
+              </div>
+
+              <div class="btn_b1" style="margin-left:324px; margin-top:-15px"> 
              <div id="cf">
                   <img class="bottom" src="/assets/b2.png" />
                   <img class="top" src="/assets/b1.png" />

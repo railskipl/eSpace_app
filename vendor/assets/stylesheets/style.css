@@ -800,7 +800,7 @@ background-color:#072643;
 	.btn_b1
 	{
 	float:right;
-	margin:-50px -12px 0 -0px;	
+	margin:-50px -12px 0 -0px;	position: absolute;
 		
 		}
 		
@@ -1178,7 +1178,7 @@ background-color:#072643;
 	
 	/*-----------------tooltip------------------------*/
 	
-		.need.tooltip {
+		need .tooltip {
 			text-decoration:none;
 			
 			
@@ -1191,13 +1191,13 @@ background-color:#072643;
 		
 	.tooltip:hover span {
 			font-family: brandon4;
-			 z-index: 99;position:absolute;
-			margin-left:10px; width: 120px;
+			 z-index: 99; position:absolute;
+			margin-left:10px; /*------------9/12/14--------------------------*/
 			color:#9A9A9A;
 		}
 		
 		
-		.classic { padding: 0.8em 1em; color:#000;}
+		.classic { padding: 0.8em 1em; color:#000; float:left;}/*------------9/12/14--------------------------*/
 		.classic { padding: 0.8em 1em; color:#000; }
 		
 		
@@ -1749,7 +1749,16 @@ font-size:15px;
 	
 .loading{ width:36px; height:36px; float:left; margin-left:235px; margin-top: 370px;}	
 
-.address {float: left; font-family: brandon4; font-size: 10px; line-height: 10px; margin: -47px 0 0 333px; width: 81px;}
+.address {
+    color: #999999;
+    float: left;
+    font-family: brandon4;
+    font-size: 10px;
+    line-height: 11px;
+    margin-left: 180px;
+    margin-top: -5px;
+    width: 81px;
+}
 
 .error { color: #FD0000;}
 
@@ -1769,5 +1778,25 @@ font-size:15px;
     width: 70px;
 }
 
+.name-title {
+    color: #0B243A;
+    font-family: brandon4;
+    font-size: 14px;
+    margin-left: 150px;
+    margin-top: 10px;
+    position: absolute;
+    width: 140px;
+}
+
+.month {
+    color: #999999;
+    float: left;
+    font-family: brandon4;
+    font-size: 10px;
+    line-height: 10px;
+    position: absolute;
+    width: auto;
+}
+.right-mark { margin-right: 30px; }
 	
 	
