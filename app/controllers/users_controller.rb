@@ -5,6 +5,7 @@ class UsersController < ApplicationController
  # helper_method :resource, :resource_name, :devise_mapping
  #respond_to :html, :js, :json
 # before_filter :authenticate_user!
+ layout :custom_layout
   respond_to :html, :xml, :json
 def index
  @users = User.all
@@ -103,5 +104,15 @@ end
       @user = User.find_by_id_and_admin(current_user.id, true)
       redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
     end
+
+
+    def custom_layout
+        case action_name
+         when "new_user"
+          "admin"
+         else
+          "application"
+       end
+      end
 
 end

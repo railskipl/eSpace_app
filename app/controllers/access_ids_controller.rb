@@ -5,7 +5,7 @@ class AccessIdsController < ApplicationController
   before_action :set_access, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
 
-
+ layout :custom_layout
 	def index
 	   @access_ids = AccessId.all
 	   respond_with(@access_ids)
@@ -48,5 +48,20 @@ class AccessIdsController < ApplicationController
       		@user = User.find_by_id_and_admin(current_user.id, true)
       		redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
     	end
+
+    	def custom_layout
+        case action_name
+         when "index"
+          "admin"
+         when "show"
+          "admin"
+         when "new"
+          "admin"
+         when "edit"
+          "admin"
+         else
+          "application"
+       end
+      end
 
 end

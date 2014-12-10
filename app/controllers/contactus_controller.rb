@@ -3,7 +3,7 @@ class ContactusController < ApplicationController
   before_filter :correct_user, :only => [:index, :show, :edit, :new]
 	 before_action :set_contactus, only: [:edit, :update, :destroy]
    respond_to :html, :xml, :json
-
+   layout :custom_layout
   def index
     # @contact = Contactus.all
     @contactus = Contactus.where("message IS NULL")
@@ -70,4 +70,19 @@ class ContactusController < ApplicationController
       @user = User.find_by_id_and_admin(current_user.id, true)
       redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
     end
+          def custom_layout
+        case action_name
+         when "index"
+          "admin"
+        when "new"
+          "admin"
+       when "edit"
+          "admin"
+       when "new"
+          "admin"
+         else
+          "application"
+       end
+      end
+    
 end
