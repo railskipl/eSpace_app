@@ -1799,5 +1799,7 @@ font-size:15px;
     width: auto;
 }
 .right-mark { margin-right: 30px; }
+
+#map-canvas { height: 100%; margin: 0px; padding: 0px }
 	
 	

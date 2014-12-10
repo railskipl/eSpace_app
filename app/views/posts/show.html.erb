@@ -1,11 +1,3 @@
-  <style>
-
-
-    #map-canvas { height: 100%; margin: 0px; padding: 0px }
-
- </style>
-
-
 
    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
@@ -72,13 +64,13 @@
 
     jQuery(function($){
       
-      $("#booking_dropoff_date").datepicker({dateFormat: 'd M', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true})
+      $("#booking_dropoff_date").datepicker({dateFormat: 'd M', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.drop_off_avaibility_start_date %>'), maxDate: new Date('<%= @post.drop_off_avaibility_end_date %>')})
 
-      $("#booking_pickup_date").datepicker({dateFormat: 'd M', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true})
+      $("#booking_pickup_date").datepicker({dateFormat: 'd M', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= @post.pick_up_avaibility_end_date %>')})
 
     });
 
-  </script>
+  </script> 
 
 
 <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css", "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker" %>
