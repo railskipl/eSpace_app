@@ -471,7 +471,7 @@ margin:40px 0 0 385px;
 }
 	
 .book{ font-size:11px; position: absolute; border-radius:0px 0 0 0px; background:#00b4ff; color:#FFF; border:2px solid #00b4ff;
-	font-family:brandon2; padding:10px 15px 10px 20px; text-decoration:none; padding:9px 43px; margin: -10px; }
+	font-family:brandon2; padding:10px 15px 10px 20px; text-decoration:none; padding:9px 43px; margin: -10px; cursor: pointer;}
 	
 .total{ font-size:11px; color:#00b4ff; background-color:#ffffff; border:2px solid #ffffff;
 	height:26px;

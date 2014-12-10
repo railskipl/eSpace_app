@@ -362,9 +362,6 @@ jQuery("#booking").validate({
         },
         "booking[dropoff_date]":{
 	        required:true
-        },
-        "booking[pickup_date]":{
-	        required:true
         }
 	},
 	messages: {
@@ -373,24 +370,28 @@ jQuery("#booking").validate({
         required: "Please enter area"
         }
        
-	}, // initialize the plugin
-	errorPlacement: function () {
-        return false; // <- kill default error labels
-    }
+	}
 		
 
 });
 
 
 	jQuery('input').live('blur', function() {
-		alert("Amol");
+		
         if (jQuery("#booking").valid()) {
-        	alert("Amol");
+        	// alert("Amol");
             jQuery('#customButton').removeAttr('disabled'); 
         } else {
+
             jQuery('#customButton').attr('disabled', 'disabled');
         }
     });
+
+   
+
+    
+
+    
 
 
  jQuery("#reply_message").validate({
