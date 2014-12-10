@@ -1,5 +1,32 @@
+<!-- 
+
 <% @about_us.each do |about_u| %>
   <center><%= image_tag about_u.photo.url(:thumb) %></center><br/>
   <center><%= about_u.name %></center><br/>
   <center><%= about_u.content %></center><br>
 <% end %>
+ -->
+
+
+
+
+
+
+<div style="background-color:#072643;" class="main2">
+
+    <div class="main2" style="background-color:#072643;">
+    <div class="dinobo1"> 
+    <% @about_us.each do |about_u| %>  
+        <div class="dinobo-img"> 
+            <%= image_tag about_u.photo.url, :style=>"margin-left:9px;" rescue nil %>
+            <p style="color:#FFF"><%= about_u.name rescue nil%></p> 
+        </div>
+              
+        <div class="dinobo-para">                    
+            <p class="sed1"><%= about_u.content rescue nil %><br/><br/><br/><br/><br/><br/></p>
+        </div> 
+    <% end %>
+    </div>  
+    </div>
+
+</div>
