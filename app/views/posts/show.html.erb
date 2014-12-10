@@ -76,6 +76,8 @@
 <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css", "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker" %>
 <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation", "facebox.js", "jquery.ui.core", "jquery.ui.datepicker.js" %>
 
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
 <script type='text/javascript'>//<![CDATA[ 
 
 jQuery(document).ready(function(){
@@ -409,17 +411,42 @@ jQuery(document).ready(function(){
                    <p class="sed" style="float:right; margin:-25px -2px 0 0px;">-</p>
                 </div>
            </div>
-           <% end %>
+           
 
-           <div class="square_btn">
-     <a href="javascript:void(0);" class="book" id="bt1"> Book  </a>
-      <div class="total"> Total <strong style="margin-left:10px;" id="total"> </strong>
-               </div>
-       
-                   </div>
-        <div class="clear"></div>
-                        
-                  
+            <div class="square_btn">
+              <%= f.submit "Book", :class => "book", :id=>"customButton", :disabled=> true %>
+              <div class="total"> Total <strong style="margin-left:10px;" id="total"> </strong></div>
+            </div>
+
+
+               <input type="hidden" name="desc" id="desc" value=""/>
+               <input type="hidden" name="totalPrice" id="totalPrice" value=""/>
+
+               <script>
+               $('#customButton').click(function(){
+                 var token = function(res){
+                 var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+                 $('form').append($input).submit();
+               };
+
+               StripeCheckout.open({
+               key:         'pk_test_17xmTuMVQ5oVgcT0AWY6XcNo',
+               address:     false,
+               amount:      document.getElementById('totalPrice').value,
+               currency:    'usd',
+               name:        'test',
+               description: 'testing ......',
+               panelLabel:  'Checkout',
+               token:       token
+               });
+
+               return false;
+               });
+               </script>
+
+            <div class="clear"></div>
+           <% end %>             
+                    
       </div>
         </div>
                     

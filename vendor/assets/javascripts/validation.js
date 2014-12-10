@@ -58,6 +58,8 @@ jQuery.validator.addMethod('customphone', function (value, element) {
 // All Jquery Validation
 jQuery(document).ready(function() {
 
+
+
 jQuery("#userSignup").validate({
 
 	errorElement:'div',
@@ -348,15 +350,21 @@ jQuery("#new_comment").validate({
 
 jQuery("#booking").validate({
 
-	ignore:'', // initialize the plugin
+	ignore:'',
 	errorElement:'div',
 
 	rules: {
 
         "area":{
 	        required:true,
-	        number:true,
-	        lessThan: "#booking_remaining_area"
+	        number:true
+	       // ,lessThan: "#booking_remaining_area"
+        },
+        "booking[dropoff_date]":{
+	        required:true
+        },
+        "booking[pickup_date]":{
+	        required:true
         }
 	},
 	messages: {
@@ -365,32 +373,24 @@ jQuery("#booking").validate({
         required: "Please enter area"
         }
        
-	}
-	// ,
-	// submitHandler: function() {
-
-	// 	var handler = StripeCheckout.configure({
-	//     key: 'pk_test_17xmTuMVQ5oVgcT0AWY6XcNo',
-	//     image: '/square-image.png',
-	//     token: function(token) {
-	//       // Use the token to create the charge with a server-side script.
-	//       // You can access the token ID with `token.id`
-	//     }
-	//   });
-
-	  
-	//     // Open Checkout with further options
-	//     handler.open({
-	//       name: 'Demo Site',
-	//       description: '2 widgets ($20.00)',
-	//       amount: 2000
-	//     });
-	//     return false;
-
-	// }
+	}, // initialize the plugin
+	errorPlacement: function () {
+        return false; // <- kill default error labels
+    }
 		
 
 });
+
+
+	jQuery('input').live('blur', function() {
+		alert("Amol");
+        if (jQuery("#booking").valid()) {
+        	alert("Amol");
+            jQuery('#customButton').removeAttr('disabled'); 
+        } else {
+            jQuery('#customButton').attr('disabled', 'disabled');
+        }
+    });
 
 
  jQuery("#reply_message").validate({

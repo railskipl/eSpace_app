@@ -469,36 +469,19 @@ margin:40px 0 0 385px;
 .square_btn{
 	margin:-9px 0 0 154px;
 }
-	.book{
-	font-size:11px;
-
-	border-radius:0px 0 0 0px;
-	background:#00b4ff;
-	color:#FFF;
-	border:2px solid #00b4ff;
-	font-family:brandon2;
-	padding:10px 15px 10px 20px;
-	text-decoration:none;
-	padding:10px 40px 10px 40px;
 	
-	}
-	.total{
-	font-size:11px;
-	color:#00b4ff;
-	background-color:#ffffff;
+.book{ font-size:11px; position: absolute; border-radius:0px 0 0 0px; background:#00b4ff; color:#FFF; border:2px solid #00b4ff;
+	font-family:brandon2; padding:10px 15px 10px 20px; text-decoration:none; padding:9px 43px; margin: -10px; }
 	
-	border:2px solid #ffffff;
-	
-	
-	
-	
+.total{ font-size:11px; color:#00b4ff; background-color:#ffffff; border:2px solid #ffffff;
 	height:26px;
 	width:114px;
-	margin:-28px 0 0 105px;
+	margin:-10px 0 0 106px;
 	font-size:11px;
 	font-family:brandon4;
 	text-align:center;
 	padding-top:10px;
+	position: absolute;
 	
 	}
 	

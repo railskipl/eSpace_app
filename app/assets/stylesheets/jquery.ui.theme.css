@@ -60,7 +60,7 @@
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
 	border: 1px solid #E3E5E4;
-	background: #fff !important;
+	background: #fff;
 	font-weight: normal/*{fwDefault}*/;
 	color: #555555/*{fcDefault}*/;
 }
