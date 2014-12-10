@@ -352,7 +352,7 @@ jQuery(document).ready(function(){
                    
                      </div>
                      <p class="miles3"> <%= @post.area.to_i %> sq. feet available</p>
-                   <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><strong style="margin:0 0 0 25px; font-size:13px;" id="area_needed"> $0</strong></p>
+                   <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><span style="margin:0 0 0 25px; font-size:14px;" id="area_needed"> $0</span></p>
                 </div>
                 
                 <div class="f1">
@@ -369,7 +369,7 @@ jQuery(document).ready(function(){
                         <%= f.text_field :dropoff_date, :readonly=>true, :style=>"width: 40px;" %>
                       </div>
 
-                      <p class="miles3" style="padding-left:10px;"> <%= @post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%b %e") %></p>
+                      <p class="miles3" style="padding-left:7px;"> <%= @post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%b %e") %></p>
 
                    <p class="sed" style="float:right; margin:-17px -2px 0 0px;">-</p>
                 </div>
@@ -389,13 +389,13 @@ jQuery(document).ready(function(){
                       <label for="checkbox1">&nbsp;</label>
                     </div>
                     <p class="miles3" style="padding-left:64px;"> $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %></p>
-                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:13px;" id="check_drop">$0</p>
+                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:14px;" id="check_drop">$0</p>
                   <% else %>
                     <div class="styleSelect3">
                       <p> Unavailable</p>
                     </div>
 
-                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:13px;" id="check_drop">-</p>
+                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:14px;" id="check_drop">-</p>
                   <% end %>
 
                 </div>
@@ -437,13 +437,13 @@ jQuery(document).ready(function(){
                      </div>
                     
                     <p class="miles3" style="padding-left:64px;"> $<%= @post.price_include_pick_up ? @post.price_include_pick_up.to_i : 0 %></p>
-                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:13px;" id="check_pickup">$0</p>
+                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:14px;" id="check_pickup">$0</p>
                   <% else %>
                     <div class="styleSelect3">
                       <p> Unavailable</p>
                     </div>
 
-                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:13px;" id="check_pickup">-</p>
+                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:14px;" id="check_pickup">-</p>
                   <% end %>
 
                 </div>

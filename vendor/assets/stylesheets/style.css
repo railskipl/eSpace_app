@@ -1748,7 +1748,7 @@ font-size:15px;
 
 .form-error{ color: #FD0000; clear: left; }
 
-.drop_off_date img {border: 1px solid #FFFFFF; height: 19px; margin: -18px 0 0 220px; width: 19px; z-index: -22 !important;}
+.drop_off_date img {height: 21px; margin: -18px 0 0 220px; width: 21px; z-index: -22 !important;}
 
 .styleSelect1 input {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
