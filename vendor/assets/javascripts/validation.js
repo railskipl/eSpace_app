@@ -379,17 +379,7 @@ jQuery("#booking").validate({
 });
 
 
-	jQuery('input').live('blur', function() {
-		
-        if (jQuery("#booking").valid()) {
-        	// alert("Amol");
-            jQuery('#customButton').removeAttr('disabled'); 
-        } else {
-
-            jQuery('#customButton').attr('disabled', 'disabled');
-        }
-    });
-
+	
     
 
 

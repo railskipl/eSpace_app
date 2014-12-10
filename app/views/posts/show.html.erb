@@ -68,6 +68,19 @@
 
       $("#booking_pickup_date").datepicker({dateFormat: 'd M', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= @post.pick_up_avaibility_end_date %>')})
 
+
+      jQuery('input').live('blur', function() {
+    
+        if (jQuery("#booking").valid()) {
+          // alert("Amol");
+            jQuery('#customButton').removeAttr('disabled'); 
+        } else {
+
+            jQuery('#customButton').attr('disabled', 'disabled');
+        }
+      });
+
+
     });
 
   </script> 
