@@ -362,9 +362,6 @@ jQuery("#booking").validate({
         },
         "booking[dropoff_date]":{
 	        required:true
-        },
-        "booking[pickup_date]":{
-	        required:true
         }
 	},
 	messages: {
