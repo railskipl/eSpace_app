@@ -362,6 +362,9 @@ jQuery("#booking").validate({
         },
         "booking[dropoff_date]":{
 	        required:true
+        },
+        "booking[pickup_date]":{
+	        required:true
         }
 	},
 	messages: {
@@ -370,7 +373,10 @@ jQuery("#booking").validate({
         required: "Please enter area"
         }
        
-	}
+	}, // initialize the plugin
+	errorPlacement: function () {
+        return false; // <- kill default error labels
+    }
 		
 
 });
@@ -386,10 +392,6 @@ jQuery("#booking").validate({
             jQuery('#customButton').attr('disabled', 'disabled');
         }
     });
-
-   
-
-    
 
     
 
