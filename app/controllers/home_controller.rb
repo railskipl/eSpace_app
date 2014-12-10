@@ -94,6 +94,12 @@ class HomeController < ApplicationController
         case action_name
          when "index"
           "home"
+        when "searching"
+          "admin"
+         when "all_postings"
+          "admin"
+        when "search_post"
+          "admin"
          else
           "application"
        end

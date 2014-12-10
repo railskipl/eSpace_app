@@ -13,7 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20141126112153) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "about_us", force: true do |t|
+    t.string   "name"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -31,7 +35,10 @@ ActiveRecord::Schema.define(version: 20141126112153) do
 
   create_table "bank_details", force: true do |t|
     t.string   "full_name"
+    t.string   "stripe_card_id_token"
+    t.string   "stripe_recipient_token"
     t.string   "card_number"
+    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,10 +46,19 @@ ActiveRecord::Schema.define(version: 20141126112153) do
   create_table "bookings", force: true do |t|
     t.string   "stripe_customer_token"
     t.string   "stripe_charge_id"
+    t.string   "stripe_transfer_id"
+    t.string   "status"
     t.float    "price"
     t.integer  "post_id"
     t.integer  "user_id"
+    t.integer  "poster_id"
     t.string   "email"
+    t.date     "dropoff_date"
+    t.float    "dropoff_price"
+    t.date     "pickup_date"
+    t.float    "pickup_price"
+    t.float    "cut_off_price"
+    t.boolean  "is_cancel",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,6 +69,7 @@ ActiveRecord::Schema.define(version: 20141126112153) do
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "stars",      default: 0
     t.integer  "rating"
     t.integer  "user_id"
   end
@@ -137,8 +154,8 @@ ActiveRecord::Schema.define(version: 20141126112153) do
     t.datetime "updated_at"
   end
 
-  add_index "ratings", ["item_id", "item_type"], name: "index_ratings_on_item_id_and_item_type"
-  add_index "ratings", ["rater_id", "rater_type"], name: "index_ratings_on_rater_id_and_rater_type"
+  add_index "ratings", ["item_id", "item_type"], name: "index_ratings_on_item_id_and_item_type", using: :btree
+  add_index "ratings", ["rater_id", "rater_type"], name: "index_ratings_on_rater_id_and_rater_type", using: :btree
 
   create_table "reviews", force: true do |t|
     t.string   "name"
@@ -149,7 +166,7 @@ ActiveRecord::Schema.define(version: 20141126112153) do
     t.datetime "updated_at"
   end
 
-  add_index "reviews", ["post_id"], name: "index_reviews_on_post_id"
+  add_index "reviews", ["post_id"], name: "index_reviews_on_post_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -168,7 +185,7 @@ ActiveRecord::Schema.define(version: 20141126112153) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.boolean  "admin",                  default: false
-    t.boolean  "status"
+    t.boolean  "status",                 default: true
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
@@ -176,13 +193,12 @@ ActiveRecord::Schema.define(version: 20141126112153) do
     t.string   "personal_email"
     t.integer  "mobile_no"
     t.string   "mobile_number"
-    t.integer  "admin_user_id"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
