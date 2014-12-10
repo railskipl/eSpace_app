@@ -371,7 +371,7 @@ jQuery(document).ready(function(){
 
                       <p class="miles3" style="padding-left:7px;"> <%= @post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%b %e") %></p>
 
-                   <p class="sed" style="float:right; margin:-17px -2px 0 0px;">-</p>
+                   <p class="sed" style="float:right; margin:-32px -2px 0 0px;">-</p>
                 </div>
                 <div class="f1">
                       <div class="f1_tool">Need a ride for drop-off <a class="tooltip10" href="#" style="color:#999; text-decoration:none;">
@@ -388,14 +388,14 @@ jQuery(document).ready(function(){
                       <input type="checkbox" id="checkbox1" />
                       <label for="checkbox1">&nbsp;</label>
                     </div>
-                    <p class="miles3" style="padding-left:64px;"> $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %></p>
-                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:14px;" id="check_drop">$0</p>
+                    <p class="miles3" style="padding-left:60px;"> $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %></p>
+                    <p class="sed" style="float:right; margin:-32px -2px 0 30px; font-size:14px;" id="check_drop">$0</p>
                   <% else %>
                     <div class="styleSelect3">
                       <p> Unavailable</p>
                     </div>
 
-                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:14px;" id="check_drop">-</p>
+                    <p class="sed" style="float:right; margin:-32px -2px 0 30px; font-size:14px;" id="check_drop">-</p>
                   <% end %>
 
                 </div>
@@ -436,14 +436,14 @@ jQuery(document).ready(function(){
                       <label for="checkbox2">&nbsp;</label>
                      </div>
                     
-                    <p class="miles3" style="padding-left:64px;"> $<%= @post.price_include_pick_up ? @post.price_include_pick_up.to_i : 0 %></p>
-                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:14px;" id="check_pickup">$0</p>
+                    <p class="miles3" style="padding-left:60px;"> $<%= @post.price_include_pick_up ? @post.price_include_pick_up.to_i : 0 %></p>
+                    <p class="sed" style="float:right; margin:-32px -2px 0 30px; font-size:14px;" id="check_pickup">$0</p>
                   <% else %>
                     <div class="styleSelect3">
                       <p> Unavailable</p>
                     </div>
 
-                    <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:14px;" id="check_pickup">-</p>
+                    <p class="sed" style="float:right; margin:-32px -2px 0 30px; font-size:14px;" id="check_pickup">-</p>
                   <% end %>
 
                 </div>
