@@ -5,7 +5,7 @@ class AboutUsController < ApplicationController
   respond_to :html, :xml, :json
    layout :custom_layout
   def index
-    @about_us = AboutU.all
+    @about_us = AboutU.all.order("id asc")
     respond_with(@about_us)
   end
 
