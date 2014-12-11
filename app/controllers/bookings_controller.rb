@@ -87,22 +87,33 @@ class BookingsController < ApplicationController
 
   #Checkout Stripe payment
 	def checkout
-    raise params.inspect
+    
+   	if params[:totalPrice] != nil
 
-    booking = {}
-    booking["stripe_customer_token"] = params[:stripeToken]
-    booking["stripe_customer_token"] = params[:stripeToken]
+      dropoff_date = Chronic.parse("#{params[:booking][:dropoff_date]}")
+      pickup_date = Chronic.parse("#{params[:booking][:pickup_date]}")    
 
-   	if params[:booking][:totalPrice] != nil
+      booking = {}
+      booking["stripe_customer_token"] = params[:stripeToken]
+      booking["price"] = (params[:totalPrice].to_i)/100
+      booking["post_id"] = params[:booking][:post_id]
+      booking["user_id"] = current_user.id
+      booking["poster_id"] = params[:booking][:poster_id]
+      booking["email"] = params[:stripeEmail]
+      booking["dropoff_date"] = dropoff_date
+      booking["dropoff_price"] = params[:dropoff_price]
+      booking["pickup_date"] = pickup_date
+      booking["pickup_price"] = params[:pickup_price]
+
       
-      @booking = Booking.new(page_params)
-      @amount = (params[:booking][:price]).to_f
+      @booking = Booking.new(booking)
+      @amount = (params[:totalPrice]).to_f
       
         begin
           customer = Stripe::Customer.create(
-            :email => params[:booking][:email],
-            :card  => params[:stripe_card_token],
-            :description => "Customer #{params[:booking][:email]}"
+            :email => params[:stripeEmail],
+            :card  => params[:stripeToken],
+            :description => "Customer #{params[:stripeEmail]}"
           )
         rescue Stripe::InvalidRequestError => e
           redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
@@ -110,12 +121,12 @@ class BookingsController < ApplicationController
         end
           
         if is_number?(@amount.to_f)
-            @amount = ((@amount.to_f)*100).to_i
+            @amount = ((@amount.to_f)).to_i
 
           charge = Stripe::Charge.create(
             :customer    => customer.id,
             :amount      => @amount,
-            :description => "Charge for #{params[:booking][:email]}, Booking of price #{params[:booking][:price]}.",
+            :description => "Charge for #{params[:stripeEmail]}, Booking of price #{booking["price"]}.",
             :currency    => 'usd'
           )
 
@@ -128,9 +139,6 @@ class BookingsController < ApplicationController
           @booking.stripe_charge_id = charge[:id]
           @booking.save
             
-          session[:price] = nil
-          session[:post_id] = nil
-          session[:poster_id] = nil
           redirect_to root_path, :notice => "Thank you"
           
         else
@@ -142,7 +150,7 @@ class BookingsController < ApplicationController
         redirect_to :back
     end
 
-    redirect_to new_booking_path
+    
 	end
 
   #this method cancel's the booking done by finder & does the cancel_booking_deduction
