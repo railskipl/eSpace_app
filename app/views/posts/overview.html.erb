@@ -377,8 +377,9 @@ window.onload = loadMap;
              <!-------------box_2-------------------->
              <p  class="text_2">Max price/sq. foot</p>
               <div class="styleSelect" style="margin:-23px 20px 30px 245px;">
-
-              <%= f.select :price, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:price] if params[:search]}" %>
+                 
+                <%= select_tag("search[price]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:price] if params[:search]}"), :prompt => "") %>
+              <%#= f.select :price, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:price] if params[:search]}" %>
             </div>
 <!-------------box_2 end-------------------->
  

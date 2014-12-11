@@ -7,6 +7,7 @@ module ApplicationHelper
 		 end
 	end
 
+
    def link_to_add_fields(name, f, association)
         new_object = f.object.send(association).klass.new
 
@@ -22,9 +23,10 @@ module ApplicationHelper
       f.hidden_field(:_destroy) + link_to(name, "remove_fields(this)")  
     end
 
-	def yes_no(featured)
-	   featured ? "Active" : "Inactive"
-	end
+
+	 def yes_no(featured)
+	    featured ? "Active" : "Inactive"
+	 end
 
 	def icon_tick(alt_text='Tick')
 		build_image_tag("deactivate.png", alt_text)
@@ -44,4 +46,19 @@ module ApplicationHelper
 	  direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
 	  link_to title, params.merge(:sort => column, :direction => direction, :page => nil), {:class => css_class}
 	end
+
+	# Custome dropdown
+	def options_with_colors(values, sel_val)
+	
+	  values.collect do |sel| 
+	  	if sel_val.to_i == sel
+	    	"<option value='#{sel}' style='color:#999;' selected='selected ' >#{sel}</option> "
+	    else
+	    	"<option value='#{sel}' style='color:#999;' >#{sel}</option> "
+	    end
+	  end.join
+
+	end
+
+
 end

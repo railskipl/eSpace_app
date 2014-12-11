@@ -87,9 +87,15 @@
 }
 .ui-datepicker td {
 	border: 0;
-	padding: 1px;
+	padding: 0;
 }
-.ui-datepicker td span,
+.ui-datepicker td span{
+	display: block;
+	padding: .2em;
+	text-align: center;
+	text-decoration: none;
+	background: #f5f5f5 !important;
+}
 .ui-datepicker td a {
 	display: block;
 	padding: .2em;
