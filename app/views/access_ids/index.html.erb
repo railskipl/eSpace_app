@@ -13,7 +13,7 @@
     <% @access_ids.each do |access_id| %>
       <tr>
         <td><%= access_id.email %></td>
-        <td><%= link_to 'Show', access_id %></td>
+        
         <td><%= link_to 'Edit', edit_access_id_path(access_id) %></td>
         <td><%= link_to 'Destroy', access_id, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
