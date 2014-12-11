@@ -90,7 +90,8 @@ class BookingsController < ApplicationController
     raise params.inspect
 
     booking = {}
-    booking["pc"] = b[0]
+    booking["stripe_customer_token"] = params[:stripeToken]
+    booking["stripe_customer_token"] = params[:stripeToken]
 
    	if params[:booking][:totalPrice] != nil
       
