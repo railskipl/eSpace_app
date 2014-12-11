@@ -379,8 +379,17 @@ jQuery("#booking").validate({
 });
 
 
-	
-    
+
+	jQuery('input').live('blur', function() {
+		
+        if (jQuery("#booking").valid()) {
+        	
+            jQuery('#customButton').removeAttr('disabled'); 
+        } else {
+            jQuery('#customButton').attr('disabled', 'disabled');
+        }
+    });
+
 
 
  jQuery("#reply_message").validate({
