@@ -246,9 +246,9 @@ jQuery(document).ready(function(){
            
            <div class="kal">  
             <% if @post.photo.url(:medium) == "/photos/medium/missing.png" %>
-              <%= image_tag "default_post_large.png", :style => "width:510px" %>
+              <%= image_tag "default_post_large.png", :style => "width:512px" %>
             <% else %>
-              <%= image_tag(@post.photo.url(:medium), :style => "width:510px") %>
+              <%= image_tag(@post.photo.url(:medium), :style => "width:512px") %>
             <% end %>
 
            </div>
@@ -331,7 +331,8 @@ jQuery(document).ready(function(){
                   <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' />
                    <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
                   <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
-              <%= form_for :booking, :html=>{ :id=>"booking", :method=>"get"} do |f| %>
+              <%#= form_for :booking, :html=>{ :id=>"booking", :method=>"get"} do |f| %>
+              <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
               <div class="function">
                 <div class="f1">
                 
