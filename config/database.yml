@@ -31,6 +31,14 @@
 
 
 development:
+<<<<<<< HEAD
+ adapter: mysql2
+ pool: 5 
+ database: college_app_development
+ username: root
+ password: root
+  #socket: /var/run/mysqld/mysqld.sock
+=======
   adapter: postgresql
   encoding: unicode
   database: estore
@@ -38,6 +46,7 @@ development:
   pool: 5
   username: postgres
   password: root
+>>>>>>> 7eb1e0231f2a293ad6931b1e337212c25c162a4b
 
   
 # Warning: The database defined as "test" will be erased and
