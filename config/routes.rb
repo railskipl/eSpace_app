@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   resources :about_us
   resources :access_ids
-
-  resources :faqs
+  get 'faq' => "faqs#faq", as: "faq"
+  resources :faqs 
 
   get 'payement_transfers/index'
 

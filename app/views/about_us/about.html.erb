@@ -15,7 +15,7 @@
 <div style="background-color:#072643;" class="main2">
 
     <div class="main2" style="background-color:#072643;">
-    <div class="dinobo1"> 
+    <div class="dinobo3"> 
     <% @about_us.each_with_index do |about_u, index| %> 
     <% if index == 1 %> 
         <div class="dinobo-img"> 
@@ -25,7 +25,7 @@
         <% else %>
              <div class="dinobo-img"> 
             <%= image_tag about_u.photo.url, :style=>"margin-left:6px;" rescue nil %>
-            <p style="color:#FFF; margin-left:0px;"><%= about_u.name rescue nil%></p> 
+            <p style="color:#FFF; margin-left:5px;"><%= about_u.name rescue nil%></p> 
         </div>
         <% end %> 
         <div class="dinobo-para">                    
