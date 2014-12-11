@@ -118,12 +118,14 @@ jQuery(document).ready(function(){
           var pickup = parseFloat($('#pickup').val());
         }
 
-        $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
-        $('#check_drop').html("$"+(drop_off)+"");
-        $('#check_pickup').html("$"+(pickup)+"");
-        $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
-        $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
-        $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
+          $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
+          $('#check_drop').html("$"+(drop_off)+"");
+          $('#check_pickup').html("$"+(pickup)+"");
+          $('#dropoff_price').val(drop_off);
+          $('#pickup_price').val(pickup);
+          $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
+          $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
+          $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
          
     }
 
@@ -153,6 +155,8 @@ jQuery(document).ready(function(){
           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
           $('#check_drop').html("$"+(drop_off)+"");
           $('#check_pickup').html("$"+(pickup)+"");
+          $('#dropoff_price').val(drop_off);
+          $('#pickup_price').val(pickup);
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -178,6 +182,8 @@ jQuery(document).ready(function(){
           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
           $('#check_drop').html("$"+(drop_off)+"");
           $('#check_pickup').html("$"+(pickup)+"");
+          $('#dropoff_price').val(drop_off);
+          $('#pickup_price').val(pickup);
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -208,6 +214,8 @@ jQuery(document).ready(function(){
           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
           $('#check_drop').html("$"+(drop_off)+"");
           $('#check_pickup').html("$"+(pickup)+"");
+          $('#dropoff_price').val(drop_off);
+          $('#pickup_price').val(pickup);
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -218,6 +226,8 @@ jQuery(document).ready(function(){
            $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
            $('#check_drop').html("$"+(drop_off)+"");
            $('#check_pickup').html("$"+(pickup)+"");
+           $('#dropoff_price').val(drop_off);
+           $('#pickup_price').val(pickup);
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -333,6 +343,10 @@ jQuery(document).ready(function(){
                   <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
               <%#= form_for :booking, :html=>{ :id=>"booking", :method=>"get"} do |f| %>
               <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
+
+              <%= f.hidden_field :post_id, :value => @post.id %>
+              <%= f.hidden_field :poster_id, :value=> @post.user_id %>
+
               <div class="function">
                 <div class="f1">
                 
@@ -414,6 +428,7 @@ jQuery(document).ready(function(){
 
                        <div class="drop_off_date dates" style="margin-top:-23px;">
                         <%= f.text_field :pickup_date, :readonly=>true, :style=>"width: 40px;" %>
+
                       </div>
 
                      
@@ -459,14 +474,16 @@ jQuery(document).ready(function(){
             </div>
 
 
-               <input type="hidden" name="desc" id="desc" value=""/>
+               <input type="hidden" name="dropoff_price" id="dropoff_price" value=""/>
+               <input type="hidden" name="pickup_price" id="pickup_price" value=""/>
                <input type="hidden" name="totalPrice" id="totalPrice" value=""/>
 
                <script>
                $('#customButton').click(function(){
                  var token = function(res){
                  var $input = $('<input type=hidden name=stripeToken />').val(res.id);
-                 $('form').append($input).submit();
+                 var $input2 = $('<input type=hidden name=stripeEmail />').val(res.email);
+                 $('form').append($input, $input2).submit();
                };
 
                StripeCheckout.open({
@@ -474,8 +491,9 @@ jQuery(document).ready(function(){
                address:     false,
                amount:      document.getElementById('totalPrice').value,
                currency:    'usd',
-               name:        'test',
-               description: 'testing ......',
+               image:       '/assets/dinobo_stripe.jpg',
+               name:        'Dinobo',
+               description: '<%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %> ( $'+ document.getElementById('totalPrice').value / 100+ ')' ,
                panelLabel:  'Checkout',
                token:       token
                });

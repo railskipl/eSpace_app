@@ -18,76 +18,129 @@ class BookingsController < ApplicationController
   end
 
 	def create
-        if session[:price] != nil
-          @booking = Booking.new(page_params)
-          @amount = (params[:booking][:price]).to_f
-          begin
-            customer = Stripe::Customer.create(
-              :email => params[:booking][:email],
-              :card  => params[:stripe_card_token],
-              :description => "Customer #{params[:booking][:email]}"
-            )
-          rescue Stripe::InvalidRequestError => e
-            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
-            return false
-          end
+    if session[:price] != nil
+      
+      @booking = Booking.new(page_params)
+      @amount = (params[:booking][:price]).to_f
+      
+        begin
+          customer = Stripe::Customer.create(
+            :email => params[:booking][:email],
+            :card  => params[:stripe_card_token],
+            :description => "Customer #{params[:booking][:email]}"
+          )
+        rescue Stripe::InvalidRequestError => e
+          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+          return false
+        end
           
-          if is_number?(@amount.to_f)
+        if is_number?(@amount.to_f)
             @amount = ((@amount.to_f)*100).to_i
 
-            charge = Stripe::Charge.create(
-              :customer    => customer.id,
-              :amount      => @amount,
-              :description => "Charge for #{params[:booking][:email]}, Booking of price #{params[:booking][:price]}.",
-              :currency    => 'usd'
-            )
-            
-          end
+          charge = Stripe::Charge.create(
+            :customer    => customer.id,
+            :amount      => @amount,
+            :description => "Charge for #{params[:booking][:email]}, Booking of price #{params[:booking][:price]}.",
+            :currency    => 'usd'
+          )
+
+        end
 
           
-          if charge[:id] && charge[:captured] == true
+        if charge[:id] && charge[:captured] == true
             
-            @booking.stripe_customer_token = charge[:created]
-            @booking.stripe_charge_id = charge[:id]
-            @booking.save
+          @booking.stripe_customer_token = charge[:created]
+          @booking.stripe_charge_id = charge[:id]
+          @booking.save
             
-            session[:price] = nil
-            session[:post_id] = nil
-            session[:poster_id] = nil
-            redirect_to root_path, :notice => "Thank you"
+          session[:price] = nil
+          session[:post_id] = nil
+          session[:poster_id] = nil
+          redirect_to root_path, :notice => "Thank you"
           
         else
           render :new
           flash[:notice] = "Something went wrong,please try again. "
         end
-      else
+    else
         flash[:notice] = "Session expired."
         redirect_to :back
-      end
+    end
+
 	end
 
-def search_by_date
- @bookings = Booking.where("user_id = ? AND is_cancel = ?",current_user.id,false)
- if params[:start_date].blank? || params[:end_date].blank?
+  def search_by_date
+    @bookings = Booking.where("user_id = ? AND is_cancel = ?",current_user.id,false)
+    if params[:start_date].blank? || params[:end_date].blank?
       redirect_to bookings_path, alert: "Please Select Date"
- elsif  params[:start_date] > params[:end_date]
+    elsif  params[:start_date] > params[:end_date]
       redirect_to  bookings_path, alert: "Start Date Cannot Be Greater"
-  elsif params[:start_date] == params[:end_date]
-    @bookings = @bookings.where("created_at >= :start_date and date(created_at) <= :end_date", {:start_date => params[:start_date], :end_date => params[:end_date]})
-  else
+    elsif params[:start_date] == params[:end_date]
+      @bookings = @bookings.where("created_at >= :start_date and date(created_at) <= :end_date", {:start_date => params[:start_date], :end_date => params[:end_date]})
+    else
 
     @bookings = @bookings.where("date(created_at) >= :start_date AND date(created_at) <= :end_date", {:start_date => params[:start_date], :end_date => params[:end_date]})
-end
+    end
 
-end
+  end
 
+
+  #Checkout Stripe payment
 	def checkout
     raise params.inspect
-   	session[:price] = params[:booking][:price]
-    session[:post_id] = params[:booking][:post_id] 
-    session[:poster_id] = params[:booking][:poster_id]
-    session[:dropoff_date] = params[:booking][:posting_dropoff_date]
-    session[:dropoff_price] = params[:booking][:price]
+
+    booking = {}
+    booking["pc"] = b[0]
+
+   	if params[:booking][:totalPrice] != nil
+      
+      @booking = Booking.new(page_params)
+      @amount = (params[:booking][:price]).to_f
+      
+        begin
+          customer = Stripe::Customer.create(
+            :email => params[:booking][:email],
+            :card  => params[:stripe_card_token],
+            :description => "Customer #{params[:booking][:email]}"
+          )
+        rescue Stripe::InvalidRequestError => e
+          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+          return false
+        end
+          
+        if is_number?(@amount.to_f)
+            @amount = ((@amount.to_f)*100).to_i
+
+          charge = Stripe::Charge.create(
+            :customer    => customer.id,
+            :amount      => @amount,
+            :description => "Charge for #{params[:booking][:email]}, Booking of price #{params[:booking][:price]}.",
+            :currency    => 'usd'
+          )
+
+        end
+
+          
+        if charge[:id] && charge[:captured] == true
+            
+          @booking.stripe_customer_token = charge[:created]
+          @booking.stripe_charge_id = charge[:id]
+          @booking.save
+            
+          session[:price] = nil
+          session[:post_id] = nil
+          session[:poster_id] = nil
+          redirect_to root_path, :notice => "Thank you"
+          
+        else
+          render :new
+          flash[:notice] = "Something went wrong,please try again. "
+        end
+    else
+        flash[:notice] = "Session expired."
+        redirect_to :back
+    end
+
     redirect_to new_booking_path
 	end
 

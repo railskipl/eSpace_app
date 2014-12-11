@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141126112153) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "about_us", force: true do |t|
     t.string   "name"
     t.text     "content"
@@ -38,7 +35,6 @@ ActiveRecord::Schema.define(version: 20141126112153) do
     t.string   "stripe_card_id_token"
     t.string   "stripe_recipient_token"
     t.string   "card_number"
-    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -144,7 +140,7 @@ ActiveRecord::Schema.define(version: 20141126112153) do
   end
 
   create_table "ratings", force: true do |t|
-    t.decimal  "value"
+    t.decimal  "value",      precision: 10, scale: 0
     t.integer  "vote_count"
     t.integer  "item_id"
     t.string   "item_type"
