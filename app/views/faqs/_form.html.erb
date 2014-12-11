@@ -1,4 +1,4 @@
-<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","admin_validation" %>
+<%= javascript_include_tag "jquery-1.8.3.min","jquery.validate.min","admin_validation" %>
 <%= form_for(@faq) do |f| %>
   <% if @faq.errors.any? %>
     <div id="error_explanation">
@@ -15,14 +15,14 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :question %><br>
-    <%= f.text_area :question %>
-  </div>
-  <div class="field">
-    <%= f.label :answer %><br>
-    <%= f.text_area :answer %>
-  </div>
+
+  <%= f.fields_for :faq_questions do |builder| %>
+    <%= render  "faq_question_fields", :f => builder %>
+  <% end %> 
+
+  <div ><%= link_to_add_fields "Add",f, :faq_questions%></div> 
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -2,10 +2,11 @@
 # Mysql
 # gem install mysql
 development:
-  adapter: mysql2
-  database: college_app_development
-  username: root
-  password: 
+ adapter: mysql2
+ pool: 5 
+ database: college_app_development
+ username: root
+ password: root
   #socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and

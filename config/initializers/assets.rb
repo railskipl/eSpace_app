@@ -10,6 +10,9 @@ Rails.application.config.assets.precompile += %w( font-awesome.css jquery.valida
 Rails.application.config.assets.precompile += %w( jquery.fancybox.pack.js perfect-scrollbar.js )
 Rails.application.config.assets.precompile += %w( jquery.fancybox.css style.css components.css typer.js )
 Rails.application.config.assets.precompile += %w( admin_validation.js )
+Rails.application.config.assets.precompile += %w( ddaccordion.js )
+Rails.application.config.assets.precompile += %w( jquery.min.js )
+Rails.application.config.assets.precompile += %w( bootstrap.min.css )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
