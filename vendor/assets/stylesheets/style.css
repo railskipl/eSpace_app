@@ -117,7 +117,7 @@ background-color:#FFF;
 
  }
 
-.sam {margin-top:-49px;
+.sam {margin-top:-45px;
 	z-index:22em !important;
 	width:257px;
 	height:45px;
@@ -473,9 +473,9 @@ margin:40px 0 0 385px;
 	font-family:brandon2; padding:10px 15px 10px 20px; text-decoration:none; padding:10px 46px; margin: -10px; cursor: pointer;}
 	
 .total{ font-size:11px; color:#00b4ff; background-color:#ffffff; border:2px solid #ffffff;
-	height:26px;
+	height:43px;
 	width:114px;
-	margin:-10px 0 0 106px;
+	margin:-10px 0 0 107px;
 	font-size:11px;
 	font-family:brandon4;
 	text-align:center;
@@ -1790,19 +1790,26 @@ font-size:15px;
 
 
 
-.main-new
+/*.main-new
 	{
 	width:1024px;
 	background:url(/assets/menubg.jpg) repeat-y #fff;
 	margin-top:0px;
 	overflow:hidden
-	}
+	} 
+
+.main-new {
+    background: url(/assets/menubg.jpg) repeat-y scroll 0 0 #fff;
+    margin-top: 0;
+    overflow: hidden;
+    width: 1024px;
+}
 
 .verticle-menu{
 	margin:0; 
 	padding:27px 43px; 
 	list-style-type:none;
-	width:270px;
+	width:268px;
 	font-family:'brandon2';
 	font-size:13px;
 	float:left;
@@ -1830,7 +1837,7 @@ font-size:15px;
 	}
 
 .right-side{
-	width:754px;
+	width:756px;
 	background:#fff; 
 	float:left;
 	}
@@ -1846,6 +1853,8 @@ font-size:15px;
 
 .search{ float:right;}
 
+.mart5{ margin-top:5px}
+
 .faq-wrap{ 
 	width:100%; 
 	padding:15px 140px; 
@@ -1854,15 +1863,347 @@ font-size:15px;
 .expand{width:100%; text-align:right}
 .expand a{ color:#899199; text-decoration:none}
 
-a{color:#00b4ff}
-a:hover{ color:#00b4ff; text-decoration:underline}
+.technology{ /*header of 2nd demo*/
+cursor: hand;
+cursor: pointer;
+font-size:13px;
+font-family:'brandon6';
+margin: 10px 0;
+} 
+
+/*.thelanguage{ padding:30px 45px}
+.thelanguage span{ font-size:12px; display:block; margin-bottom:10px}
+
+.sep{ border-bottom:2px solid #eeeeee; height:2px; margin:30px 0} */
+
+body{ 
+		margin:0; 
+		background:#eee;
+		font-family:'brandon13';
+		font-size:inherit;
+		color:#899199;
+		 
+		}
+		
+	.login{ 
+		padding:39px 0; 
+		text-align:right; 
+		font-family: brandon3;
+		background:#eee;
+		display:block;
+		font-size:12px
+		}
+		
+	.login a{
+		color:#292c2f;
+		text-decoration:none;
+		margin:0 40px 0 0
+		}
+		
+	.menu{
+		text-align:center;
+		display:inline-block;
+		width:100%
+		}
+		
+	.menu span{
+	float:left;
+	}
+	.menu span img{
+	max-width:103px;
+		}
+	.logo{ margin:31px 50px 31px 0; max-width:100px}
+	
+	.verticle-menu{
+	margin:0; 
+	padding:27px 43px; 
+	list-style-type:none;
+	width:268px;
+	font-family:'brandon2';
+	font-size:13px;
+	float:left;
+	}
+	
+	.verticle-menu li{
+	margin:0; 
+	padding:13px 0 14px 0; 
+	list-style-type:none;
+	position:relative
+	}
+	
+	.verticle-menu li.active a{
+	color:#00b4ff
+	}
+	
+	.mart5{ margin-top:5px}
+	
+	.verticle-menu li a{
+	color:#bbbfc2;
+	text-decoration:none
+	}
+	.verticle-menu li a:hover{
+	color:#00b4ff
+	}
+	
+	.right-side{
+	width:756px;
+	background:#fff; 
+	float:left;
+	}
+	
+	.blue-header{
+	width:100%;
+	background:#072643; 
+	padding:22px 33px 22px 22px;
+	color:#bbbfc2;
+	display:table;}
+	
+	.date{ 
+	width: auto;
+	font-size:12px;
+	float:left;
+	list-style-type:none;
+	margin:0; padding:0;
+	font-family:'brandon2';
+	
+	}
+	
+	.date li{ 
+	padding:0;
+	margin:0;
+	line-height:20px;
+	position:relative;
+	display:inline-block;
+	margin-right:59px
+	}
+	
+	.date li:last-child{ 
+	margin-right:0
+	}
+	
+	.date span{
+	float:right;
+	margin-left:52px;
+	font-size:9px
+	}
+	
+	.date li:last-child span{
+	margin-left:64px;
+	}
+	
+	.date span input{ text-align:right; color:#BBBFC2; border:0; background:#072643; width:80px; padding:0; vertical-align:middle}
+	
+	.date span a{
+	position:absolute;
+	top:-2px;
+	right:-21px
+	}
+	
+	.font20{ font-size:20px}
+	
+	.form-control::-moz-placeholder {
+    color: #eee;
+    opacity: 1;
+}
+	
+	.search{ float:right;}
+	
+	.faq-wrap{ 
+	width:100%; 
+	padding:15px 140px; 
+	font-family:'brandon4'}
+	
+	.expand{width:100%; text-align:right}
+	.expand a{ color:#899199; text-decoration:none}
+	
+	.booking-wrap{ 
+	width:100%; 
+	padding:15px 38px 15px 22px; 
+	font-family:'brandon4'}
+	
+	.order-wrap{ 
+	width:100%; 
+	padding:40px 40px 30px 40px; 
+	font-family:'brandon4'}
+	
+	.payment-wrap{ 
+	width:100%; 
+	padding:27px 40px 27px 40px; 
+	font-family:'brandon4'; border-top:1px solid #eeeeee}
+	
+	a{color:#00b4ff}
+	a:hover{ color:#00b4ff; text-decoration:underline}
+
+	.col{ width:95px; float:left;}
+	.col1{ width:140px; float:left; margin-left:80px}
+	.col2{ width:130px; float:left; margin-left:40px}
+	.col4{ width:150px; float:left;}
+	.col5{ width:140px; float:left; margin-left:20px}
+	.col6{ width:130px; float:left; margin-left:40px}
+	
+	.booking-box{ width:auto; padding:9px 12px; border:2px solid #eee; margin:0 0 10px 16px; overflow:hidden; font-size:9px;}
+	.booking-box:hover{ border:2px solid #d1d1d1;}
+	.bmar10{ margin-bottom:10px}
+	
+	.booking-box p{ margin:10px 0 0 0}
+	.booking-box h4{ margin:0; color:#072743; font-size:13px}
+	.booking-col{width:162px; float:left; line-height:normal}
+	.booking-col1{width:162px; float:left; margin-top:11px}
+	.booking-col1 span{font-family:'brandon3'}
+	.order-box label{ margin-bottom:0}
+	.booking-col1-tmar{ margin-top:15px}
+	.booking-name{color:#072743; font-size:13px}
+	.note{ width:auto; float:left; font-size:11px; margin:7px 0 10px 162px}
+
+	
+	.order-box{ width:auto; padding:10px 12px; border:2px solid #eee; margin:0; overflow:hidden; font-size:9px; line-height:18px; margin-bottom:10px}
+	.order-box:hover{ border:2px solid #d1d1d1;}
+	.order-box p{ margin:10px 0 0 0}
+	.order-box h4{ margin:0; color:#072743; font-size:13px}
+	.order-col{float:left; line-height:normal}
+	.order-col1{width:161px; float:left;}
+	.order-col1 span{font-family:'brandon3'}
+	.order-box label{ margin-bottom:0}
+	.order-col1-tmar{ margin-top:15px}
+	.vmp{ margin-top:33px!important}
+	.order-box a{ text-decoration:underline}
+	
+	
+	.pay-col{float:left; line-height:normal}
+	.pay-col1{ width:161px; float:left;}
+	.pay-col span{font-family:'brandon3'}
+	
+	.booking-btn{ border:2px solid #eeeeee; padding:0px 5px; margin:0; color:#899199; font-size:9px; font-family:'brandon3'; line-height:normal}
+	.heading{ margin-bottom:10px;}
+	.font10{font-size:10px}
+	
+	.right-col span{ font-family:'brandon3'}
+	
+	
+	.left-col span{ font-size:14px; font-family:'brandon3'; color:#072743}
+	
+	
+	.round-btn{ padding:2px 10px; border-radius:15px; border:1px solid #cbcaca; color:#a1a7ad; float:left; text-decoration:none!important}
+	.round-btn:hover{ background:#00B4FF; border:1px solid #00B4FF; color:#899199; text-decoration:none}
+	
+	.verticle-menu li span {
+    background: none repeat scroll 0 0 #00B4FF;
+    border-radius: 100%;
+    display: inline-block;
+    height: 6px;
+    left: 0;
+    position: absolute;
+    width: 6px;
+	left:-20px; bottom:18px
+}
+
+	.main-new
+	{
+	width:1024px;
+	background:url(/assets/menubg.jpg) repeat-y #fff;
+	margin-top:0px;
+	overflow:hidden
+	} 
+	
+	.chat-wrap {
+    background: url(/assets/chat-bg.jpg) repeat-y #fff;
+    float: left;
+    width: 754px;
+	
+	}
+	
+	.chat-menu{
+	margin:0; 
+	padding:0; 
+	list-style-type:none;
+	width:245px;
+	font-family:'brandon2';
+	font-size:11px;
+	float:left;
+	margin:27px 0
+	}
+	
+	.chat-menu li{
+	margin:0; 
+	padding:0; 
+	list-style-type:none;
+	position:relative
+	}
+	
+	.chat-menu li.active a{
+	background:#fff;
+	color:#072643
+	}
+	
+	.chat-menu li a{
+	color:#b0b9c0;
+	padding:13px 26px 14px 26px; 
+	text-decoration:none;
+	display:block
+	}
+	.chat-menu li a:hover{
+	background:#fff;
+	color:#072643
+	}
+	
+	.chat-menu li span {
+    background: none repeat scroll 0 0 #00B4FF;
+    border-radius: 100%;
+    display: inline-block;
+    height: 6px;
+    left: 0;
+    position: absolute;
+    width: 6px;
+	left:14px; bottom:20px
+	}
+	
+	.chatdiv{ border-top:1px solid #eee; padding:25px 0 0 25px; width:509px; float:left; line-height:10px}
+	
+	.chat{ width:100%; font-size:10px; line-height:10px}
+	.chat .left{ float:left; margin:0; position:relative}
+	.chat .right{ float:right; margin:0; position:relative}
+	.chat div p{ width:233px; padding:10px; border:2px solid #19bbff; margin-bottom:10px;}
+	.chat .right > p{ border:2px solid #69afcc}
+	.chat .left span{ float:left; position:absolute; bottom:-9px; left:13px; color:#d1d1d1}
+	.chat .right span{ float:right; position:absolute; bottom:-9px; right:13px; color:#d1d1d1}
+	.message-wraper{ width:100%; overflow-y:scroll; height:450px; padding:0 16px 0 0}
+	
+	.enter{ text-align:right; padding:0 84px 0 0; margin:5px 0 5px 0; font-family:'brandon6'; font-size:14px}
+	.enter a{ color:#899199; text-decoration:none}
+	.inbputbg{ background:#072643; padding:7px; float:right; width:510px; border-left:2px solid #13304c}
+	.inbputbg textarea{ width:430px; padding:5px 10px; color:#899199; float:left; height:75px; }
+	.inbputbg span{ float:left;}
+	.inbputbg span a{ float:left; text-align:center; padding:30px 32px; height:75px; background:url(../image/w-btn.jpg) 50% 50% no-repeat}
+	.inbputbg span a:hover{ background:url(/assets/b-btn.jpg) 50% 50% no-repeat}
+	
+	
+	.mypets{ /*header of 1st demo*/
+cursor: hand;
+cursor: pointer;
+padding: 2px 5px;
+border: 1px solid gray;
+background: #E1E1E1;
+}
+
+.openpet{ /*class added to contents of 1st demo when they are open*/
+background: yellow;
+}
 
 .technology{ /*header of 2nd demo*/
-	cursor: hand;
-	cursor: pointer;
-	font-size:13px;
-	font-family:'brandon6';
-	margin: 10px 0;
+cursor: hand;
+cursor: pointer;
+font-size:13px;
+font-family:'brandon6';
+margin: 10px 0;
+}
+
+
+.openlanguage{ /*class added to contents of 2nd demo when they are open*/
+background:#eee; padding:10px 25px; margin:5px 0; color:#072643;
+}
+
+.closedlanguage{ /*class added to contents of 2nd demo when they are closed*/
+color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 }
 
 .thelanguage{ padding:30px 45px}
@@ -1870,152 +2211,254 @@ a:hover{ color:#00b4ff; text-decoration:underline}
 
 .sep{ border-bottom:2px solid #eeeeee; height:2px; margin:30px 0}
 
-.openlanguage {
-    background: none repeat scroll 0 0 #eee;
-    color: #072643;
-    margin: 5px 0;
-    padding: 10px 25px;
+
+
+	
+	
+	
+	/*for checkbox*/
+	.tasks-lists {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -11px;
+  padding: 10px 4px;
+  width: 19px;
+  height: 3px;
+  font: 0/0 serif;
+  text-shadow: none;
+  color: transparent;
+}
+.tasks-lists:before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: #8c959d;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 6px #8c959d, 0 -6px #8c959d;
+  box-shadow: 0 6px #8c959d, 0 -6px #8c959d;
 }
 
-.closedlanguage {
-    background: none repeat scroll 0 0 #eee;
-    color: #072643;
-    margin: 5px 0;
-    padding: 10px 25px;
-  }
+.tasks-list-item {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.tasks-list-item + .tasks-list-item {
+  border-top: 1px solid #f0f2f3;
+}
+
+.tasks-list-cb {
+  display: none;
+}
+
+.tasks-list-mark {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin:0 2px 0 18px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #eee;
+  border-radius:0px;
+}
+.tasks-list-mark:before {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -4px 0 0 -3px;
+  height:5px;
+  width: 8px;
+  border: solid #40586e;
+  border-width: 0 0 1px 1px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.tasks-list-cb:checked ~ .tasks-list-mark {
+  border-color: #eeeeee;
+}
+.tasks-list-cb:checked ~ .tasks-list-mark:before {
+  display: block;
+}
+
+.tasks-list-desc {
+  font-weight: bold;
+  color: #8a9a9b;
+}
+.tasks-list-cb:checked ~ .tasks-list-desc {
+  color: #34bf6e;
+  text-decoration: line-through;
+}
+
+	/*for checkbox*/
+	
+	/*--------------------------8/12/2014-----------------------*/
+	
+	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:571px; font-size:10px}
+	.blue-bg p{ margin:11px 0 0 0; color:#cbcaca}
+	
+	.blue-bg-div1 > p{text-align:justify}
+
+	.g-round-btn{ padding:1px 10px; border-radius:15px; border:1px solid #cbcaca; color:#fff; text-decoration:none!important; margin-right:7px}
+	.g-round-btn:hover{ background:#00B4FF; border:1px solid #00B4FF; color:#fff; text-decoration:none}
+	
+	.blue-bg-div1{ position:relative}
+	.address{ position:absolute; top:0; right:0; text-align:right; color:#cbcaca}
+	.blue-bg-div1 span{ font-size:13px}
+	.blue-bg-div2{ margin:25px 0 0 0}
+	.blue-bg-div2 ul{ margin:0; padding:0; list-style-type:none; font-size:12px; position:relative}
+	.blue-bg-div2 li{ margin:0; padding:22px 0 23px 0;}
+	.blue-bg-div2 li div{ float:left; width:140px}
+	.blue-bg-div2 li span{ float:left; font-size:10px; margin:2px 0 0 0}
+	.blue-bg-div2 li span p{ margin:0; color:#899199}
+	.cdo{ position:absolute; top:116px; right:0px; padding:1px 8px; border:2px solid #d4d7db; color:#d4d7db; font-size:12px; float:left;}
+	.cb{ padding:12px; border:2px solid #d4d7db; color:#d4d7db; font-size:12px; float:left; margin-top:27px}
+	
+	.mapdiv{ width:268px; float:left}
+	.review-div{ padding:43px; 27px; font-size:13px; color:#072643; font-family: 'brandon6';}
+	.review-div span{font-family: 'brandon6';}
+	
+	.star { float:right; font-size:10px; color:#899199}
+	.star span{ margin:2px 10px 0 0; float:left}
+	.review-div ul{ list-style-type:none; margin:0; padding:0; font-size:10px; color:#899199; }
+	.review-div li{ margin:0; padding:15px 0; border-bottom:2px solid #eee; line-height:10px; font-family: 'brandon4';}
+	.review-div li p{ color:#00b4ff; font-size:11px; margin-bottom:7px; font-family: 'brandon6';}
+	.review-div li span{ margin-top:10px; display:block}
+	
+	.more{ border:1px solid #eee; color:#899199; padding:5px 33px; float:left}
+	/*-----------------------------8/12/2014----------------------------*/
+	
+	.inbputbg-new{ background:#072643; padding:7px; float:right; width:510px; border-left:2px solid #13304c}
+	.input-group .btn{ margin:0}
+	
+	
+	/*11-12-2014*/
+	
+	.main-new2
+	{
+	width:1024px;
+	background:#fff;
+	margin-top:0px;
+	overflow:hidden;
+	text-align:center
+	
+	} 
+	
+	.main-new2 ul{
+		margin:25px 0;
+		padding:0; list-style-type:none;
+		font-family:'brandon4'
+		}
+		
+		.main-new2 li{
+		margin:0;
+		padding:13px 0; font-size:13px
+		}
+		
+		.main-new2 li a{
+		color:#041628; text-decoration:none;
+		padding:7px 15px;
+		border:1px solid #fff
+		}
+		
+		.main-new2 li a:hover{
+		color:#44c8ff; text-decoration:none;
+		border:1px solid #d1d1d1;
+		border-radius:20px
+		}
+		
+		.main-new2 li.active a{
+			color:#44c8ff;
+		}
+		
+		.main-new2 li a:focus{
+		color:#44c8ff; outline:0
+		}
+		
+		.main-new2 li a span{
+		color:#fff; background:#ff7e00; border-radius:100%; width:20px; height:auto; font-size:10px; text-align:center; margin-left:12px; padding:3px 3px;
+		display:inline-block
+		}
+		.logo{ margin:31px 100px 31px 0; max-width:100px}
+		.formwrap{ width:280px; margin:60px auto; font-size:18px; color:#989ba0; text-align:left; font-family:'brandon4'; position:relative}
+		.formwrap p{ margin-bottom:35px}
+		.formwrap p span{ position:absolute; top:-10px}
+		
+		body{ 
+		 line-height: 1.42857;
+		}
+		
+		.form-control {
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555555;
+    display: block;
+    font-size: 18px;
+    height:45px;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%; color:#dedede;
+	border-radius:0;
+	margin-bottom:18px}
+	
+	
+	.blue-btn{
+    border-radius:0;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+	width:100%;
+	background:#00b4ff;
+	color:#fff; font-size:20px;
+	border:0;
+	font-family:'brandon4'
+}
+
+.inbputbg textarea{ font-family:'brandon3'; font-size:10px}
+
+	.blue-btn:hover{
+	background:#39c3fd;
+}
+
+.card{ position:relative}
+.card span{ position: absolute; top:6px; right:10px}
+
+*:before, *:after {
+    box-sizing: border-box;
+}
+*:before, *:after {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.b-mar{ margin-top:48px}
+
+		.login a span{
+		color:#fff; background:#ff7e00; border-radius:100%; width:20px; height:auto; font-size:10px; text-align:center; margin-left:12px; padding:3px 3px;
+		display:inline-block
+		}
 
 
 #map-canvas { height: 100%; margin: 0px; padding: 0px }
-	
-	
-
-.dinobo-img {
-    font-size: 15px;
-    margin: 0 0 0 180px;
-    width: 150px;
-}
-
-
-.sed1 {
-    color: #899199;
-    font-family: "brandon4";
-    font-size: 12px;
-    line-height: 12px;
-    margin-top: 5px;
-    padding: 0 0 0 10px;
-    text-align: justify;
-    z-index: -2147483648;
-}
-
-
-
-
-.verticle-menu {
-    float: left;
-    font-family: "brandon2";
-    font-size: 13px;
-    list-style-type: none;
-    margin: 0;
-    padding: 27px 43px;
-    width: 270px;
-}
-
-.mark {
-    background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
-    border: medium none;
-    color: #b2b3b5;
-    font-family: brandon4;
-    padding: 10px 10px 8px;
-    width: 300px;
-}
-
-#topic1 {
-    border: 1px solid #eeeeee;
-    color: #b2b3b5;
-    font-family: brandon4;
-    font-size: 12px;
-    padding: 10px 10px 8px;
-    width: 275px;
-    margin-left: 184px;
-
-}
-
-.button {
-    background: none repeat scroll 0 0 #00b4ff;
-    border: medium none;
-    color: #ffffff;
-    font-family: brandon4;
-    font-size: 15px;
-    margin-left: 183px;
-    margin-top: 26px;
-    padding: 10px 10px 8px;
-    width: 294px;
-}
-
-.help {
-    color: #072643;
-    font-family: brandon4;
-    font-size: 12px;
-    margin-top: 30px;
-    padding-left: 639px;
-}
-
-.selectParent {
-    border: 1px solid #eeeeee;
-    overflow: hidden;
-    width: 276px;
-}
-
-.topics {
-    color: red;
-    font-size: 12px;
-    line-height: 1;
-    margin: 60px 0 0 354px;
-}
-
-.main-new {
-    background: url("/assets/menubg.jpg") repeat-y scroll 0 0 #fff;
-    margin-top: 0;
-    overflow: hidden;
-    width: 1024px;
-}
-
-
-
-
-.verticle-menu li {
-    list-style-type: none;
-    margin: 0;
-    padding: 13px 0 14px;
-    position: relative;
-    margin-left: -5px;
-}
-
-.verticle-menu li.active a {
-    color: #00b4ff;
-}
-
-.verticle-menu li a {
-    color: #bbbfc2;
-    text-decoration: none;
-}
-
-.dropdown-menu {
-    width: 300px !important;
-    height: 400px !important;
-}
-#contactus_subject{
-	background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
-border: medium none;
-    color: #b2b3b5;
-    font-family: brandon4;
-    font-size: 12px;
-    padding: 10px 10px 8px;
-    width: 308px;
-    
-}
-.selectParent {
-    border: 1px solid #eeeeee;
-    overflow: hidden;
-    width: 276px;
-}
