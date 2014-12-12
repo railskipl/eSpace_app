@@ -93,7 +93,6 @@
 
 #cf2 img {
 	position:absolute;
-	
 	-webkit-transition: opacity 0s ease-in-out;
 	-moz-transition: opacity 0s ease-in-out;
 	-o-transition: opacity 0s ease-in-out;
@@ -121,7 +120,7 @@ background-color:#FFF;
 .sam {margin-top:-49px;
 	z-index:22em !important;
 	width:257px;
-	height:46px;
+	height:45px;
 	position:absolute;
 	background-image:url(/assets/grey-img.png) ;
 	
@@ -471,7 +470,7 @@ margin:40px 0 0 385px;
 }
 	
 .book{ font-size:11px; position: absolute; border-radius:0px 0 0 0px; background:#00b4ff; color:#FFF; border:2px solid #00b4ff;
-	font-family:brandon2; padding:10px 15px 10px 20px; text-decoration:none; padding:9px 43px; margin: -10px; }
+	font-family:brandon2; padding:10px 15px 10px 20px; text-decoration:none; padding:10px 46px; margin: -10px; cursor: pointer;}
 	
 .total{ font-size:11px; color:#00b4ff; background-color:#ffffff; border:2px solid #ffffff;
 	height:26px;
@@ -1748,7 +1747,7 @@ font-size:15px;
 
 .form-error{ color: #FD0000; clear: left; }
 
-.drop_off_date img {border: 1px solid #FFFFFF; height: 19px; margin: -18px 0 0 220px; width: 19px; z-index: -22 !important;}
+.drop_off_date img {height: 21px; margin: -18px 0 0 220px; width: 21px; z-index: -22 !important;}
 
 .styleSelect1 input {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -1783,6 +1782,109 @@ font-size:15px;
 }
 .right-mark { margin-right: 30px; }
 
+
+
+
+/*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*/
+/*__________________________________________By Moreshwar______________________________________*/
+
+
+
+.main-new
+	{
+	width:1024px;
+	background:url(/assets/menubg.jpg) repeat-y #fff;
+	margin-top:0px;
+	overflow:hidden
+	}
+
+.verticle-menu{
+	margin:0; 
+	padding:27px 43px; 
+	list-style-type:none;
+	width:270px;
+	font-family:'brandon2';
+	font-size:13px;
+	float:left;
+	}
+	
+.verticle-menu li{
+	margin:0; 
+	padding:13px 0 14px 0; 
+	list-style-type:none;
+	position:relative
+	}
+	
+.verticle-menu li.active a{
+	color:#00b4ff
+	}
+	
+.mart5{ margin-top:5px}
+	
+.verticle-menu li a{
+	color:#bbbfc2;
+	text-decoration:none
+	}
+.verticle-menu li a:hover{
+	color:#00b4ff
+	}
+
+.right-side{
+	width:754px;
+	background:#fff; 
+	float:left;
+	}
+
+.blue-header{
+	width:100%;
+	background:#072643; 
+	padding:22px 33px 22px 22px;
+	color:#bbbfc2;
+	display:table;}
+
+.font20{ font-size:20px}
+
+.search{ float:right;}
+
+.faq-wrap{ 
+	width:100%; 
+	padding:15px 140px; 
+	font-family:'brandon4'}
+
+.expand{width:100%; text-align:right}
+.expand a{ color:#899199; text-decoration:none}
+
+a{color:#00b4ff}
+a:hover{ color:#00b4ff; text-decoration:underline}
+
+.technology{ /*header of 2nd demo*/
+	cursor: hand;
+	cursor: pointer;
+	font-size:13px;
+	font-family:'brandon6';
+	margin: 10px 0;
+}
+
+.thelanguage{ padding:30px 45px}
+.thelanguage span{ font-size:12px; display:block; margin-bottom:10px}
+
+.sep{ border-bottom:2px solid #eeeeee; height:2px; margin:30px 0}
+
+.openlanguage {
+    background: none repeat scroll 0 0 #eee;
+    color: #072643;
+    margin: 5px 0;
+    padding: 10px 25px;
+}
+
+.closedlanguage {
+    background: none repeat scroll 0 0 #eee;
+    color: #072643;
+    margin: 5px 0;
+    padding: 10px 25px;
+  }
+
+
 #map-canvas { height: 100%; margin: 0px; padding: 0px }
 	
 	
@@ -1806,12 +1908,6 @@ font-size:15px;
 }
 
 
-.main2 {
-    background-color: #fff;
-    margin-top: 0;
-    min-height: 630px;
-    width: 1024px;
-}
 
 
 .verticle-menu {

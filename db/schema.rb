@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20141210095226) do
     t.string   "stripe_card_id_token"
     t.string   "stripe_recipient_token"
     t.string   "card_number"
-    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

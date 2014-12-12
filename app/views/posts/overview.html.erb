@@ -367,7 +367,9 @@ window.onload = loadMap;
                 
                 <div class="styleSelect" style="margin-top:12px;">
 
-                <%= f.select :miles, ((1..20).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:miles] if params[:search]}" %>
+                <%= select_tag("search[miles]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:miles] if params[:search]}")) %>
+
+                <%#= f.select :miles, ((1..20).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:miles] if params[:search]}" %>
                  
               </div>
 
@@ -378,7 +380,7 @@ window.onload = loadMap;
              <p  class="text_2">Max price/sq. foot</p>
               <div class="styleSelect" style="margin:-23px 20px 30px 245px;">
                  
-                <%= select_tag("search[price]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:price] if params[:search]}"), :prompt => "") %>
+                <%= select_tag("search[price]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:price] if params[:search]}")) %>
               <%#= f.select :price, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:price] if params[:search]}" %>
             </div>
 <!-------------box_2 end-------------------->
@@ -393,7 +395,9 @@ window.onload = loadMap;
                 <span class="classic1">This is just an</span> </a></div>
               <div class="styleSelect" style="margin:-52px 30px 20px 400px;">
           
-              <%= f.select :area, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}" %>
+               <%= select_tag("search[area]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:area] if params[:search]}")) %>
+
+              <%#= f.select :area, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}" %>
             </div>
 <!-------------box_3 end-------------------->
 <p  class="miles" style="margin-top:-19px;">Miles</p> 

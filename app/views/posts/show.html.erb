@@ -64,9 +64,22 @@
 
     jQuery(function($){
       
-      $("#booking_dropoff_date").datepicker({dateFormat: 'd M', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.drop_off_avaibility_start_date %>'), maxDate: new Date('<%= @post.drop_off_avaibility_end_date %>')})
+      $("#booking_dropoff_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.drop_off_avaibility_start_date %>'), maxDate: new Date('<%= @post.drop_off_avaibility_end_date %>')})
 
-      $("#booking_pickup_date").datepicker({dateFormat: 'd M', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= @post.pick_up_avaibility_end_date %>')})
+      $("#booking_pickup_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= @post.pick_up_avaibility_end_date %>')})
+
+
+      jQuery('input').live('blur', function() {
+    
+        if (jQuery("#booking").valid()) {
+          // alert("Amol");
+            jQuery('#customButton').removeAttr('disabled'); 
+        } else {
+
+            jQuery('#customButton').attr('disabled', 'disabled');
+        }
+      });
+
 
     });
 
@@ -105,11 +118,14 @@ jQuery(document).ready(function(){
           var pickup = parseFloat($('#pickup').val());
         }
 
-        $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
-        $('#check_drop').html("$"+(drop_off)+"");
-        $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
-        $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
-        $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
+          $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
+          $('#check_drop').html("$"+(drop_off)+"");
+          $('#check_pickup').html("$"+(pickup)+"");
+          $('#dropoff_price').val(drop_off);
+          $('#pickup_price').val(pickup);
+          $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
+          $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
+          $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
          
     }
 
@@ -138,6 +154,9 @@ jQuery(document).ready(function(){
          
           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
           $('#check_drop').html("$"+(drop_off)+"");
+          $('#check_pickup').html("$"+(pickup)+"");
+          $('#dropoff_price').val(drop_off);
+          $('#pickup_price').val(pickup);
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -162,6 +181,9 @@ jQuery(document).ready(function(){
         {
           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
           $('#check_drop').html("$"+(drop_off)+"");
+          $('#check_pickup').html("$"+(pickup)+"");
+          $('#dropoff_price').val(drop_off);
+          $('#pickup_price').val(pickup);
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -191,6 +213,9 @@ jQuery(document).ready(function(){
          
           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
           $('#check_drop').html("$"+(drop_off)+"");
+          $('#check_pickup').html("$"+(pickup)+"");
+          $('#dropoff_price').val(drop_off);
+          $('#pickup_price').val(pickup);
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -200,6 +225,9 @@ jQuery(document).ready(function(){
         {
            $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
            $('#check_drop').html("$"+(drop_off)+"");
+           $('#check_pickup').html("$"+(pickup)+"");
+           $('#dropoff_price').val(drop_off);
+           $('#pickup_price').val(pickup);
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
@@ -228,9 +256,9 @@ jQuery(document).ready(function(){
            
            <div class="kal">  
             <% if @post.photo.url(:medium) == "/photos/medium/missing.png" %>
-              <%= image_tag "default_post_large.png", :style => "width:510px" %>
+              <%= image_tag "default_post_large.png", :style => "width:512px" %>
             <% else %>
-              <%= image_tag(@post.photo.url(:medium), :style => "width:510px") %>
+              <%= image_tag(@post.photo.url(:medium), :style => "width:512px") %>
             <% end %>
 
            </div>
@@ -313,7 +341,12 @@ jQuery(document).ready(function(){
                   <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' />
                    <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
                   <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
-              <%= form_for :booking, :html=>{ :id=>"booking", :method=>"get"} do |f| %>
+              <%#= form_for :booking, :html=>{ :id=>"booking", :method=>"get"} do |f| %>
+              <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
+
+              <%= f.hidden_field :post_id, :value => @post.id %>
+              <%= f.hidden_field :poster_id, :value=> @post.user_id %>
+
               <div class="function">
                 <div class="f1">
                 
@@ -334,7 +367,7 @@ jQuery(document).ready(function(){
                    
                      </div>
                      <p class="miles3"> <%= @post.area.to_i %> sq. feet available</p>
-                   <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><strong style="margin:0 0 0 25px; font-size:13px;" id="area_needed"> $0</strong></p>
+                   <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><span style="margin:0 0 0 25px; font-size:14px;" id="area_needed"> $0</span></p>
                 </div>
                 
                 <div class="f1">
@@ -346,14 +379,14 @@ jQuery(document).ready(function(){
                       
                       
                     <span class= "classic10"> Ride for drop off is $5 <u>learn_More</u> </span> </a></div>
-                      <div class="drop_off_date dates" style="margin-top:-23px;">
+                      <div class="drop_off_date dates" style="margin-top:-10px;">
                         
                         <%= f.text_field :dropoff_date, :readonly=>true, :style=>"width: 40px;" %>
                       </div>
 
-                      <p class="miles3" style="padding-left:10px;"> <%= @post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%b %e") %></p>
+                      <p class="miles3" style="padding-left:7px;"> <%= @post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%b %e") %></p>
 
-                   <p class="sed" style="float:right; margin:-17px -2px 0 0px;">-</p>
+                   <p class="sed" style="float:right; margin:-32px -2px 0 0px;">-</p>
                 </div>
                 <div class="f1">
                       <div class="f1_tool">Need a ride for drop-off <a class="tooltip10" href="#" style="color:#999; text-decoration:none;">
@@ -365,12 +398,21 @@ jQuery(document).ready(function(){
                       
                       <span class= "classic10"> Ride for drop off is $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %> <u>learn_More</u> </span> </a></div>
                  
+                  <% if @post.drop_off == true %> 
                     <div class="pickup3">
                       <input type="checkbox" id="checkbox1" />
                       <label for="checkbox1">&nbsp;</label>
-                     </div>
-                    <p class="miles3" style="padding-left:64px;"> $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %></p>
-                   <p class="sed" style="float:right; margin:-41px -2px 0 30px; font-size:13px;" id="check_drop">$0</p>
+                    </div>
+                    <p class="miles3" style="padding-left:60px;"> $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %></p>
+                    <p class="sed" style="float:right; margin:-32px -2px 0 30px; font-size:14px;" id="check_drop">$0</p>
+                  <% else %>
+                    <div class="styleSelect3">
+                      <p> Unavailable</p>
+                    </div>
+
+                    <p class="sed" style="float:right; margin:-32px -2px 0 30px; font-size:14px;" id="check_drop">-</p>
+                  <% end %>
+
                 </div>
                 <div class="f1">
                       <div class="f1_tool">Tentative pick-up date <a class="tooltip10" href="#" style="color:#999; text-decoration:none;"> 
@@ -386,12 +428,13 @@ jQuery(document).ready(function(){
 
                        <div class="drop_off_date dates" style="margin-top:-23px;">
                         <%= f.text_field :pickup_date, :readonly=>true, :style=>"width: 40px;" %>
+
                       </div>
 
                      
 
                      <p class="miles3" style="padding-left:10px;"> <%= @post.pick_up_avaibilty_start_date.strftime("%b %e") %> - <%= @post.pick_up_avaibility_end_date.strftime("%b %e") %></p>
-                   <p class="sed" style="float:right; margin:-17px -2px 0 0px;">-</p>
+                   <p class="sed" style="float:right; margin:-32px -2px 0 0px;">-</p>
                 </div>
                 <div class="f1">
                       <div class="f1_tool">Need a ride for pick-up <a class="tooltip10" href="#" style="color:#999; text-decoration:none;">
@@ -400,15 +443,27 @@ jQuery(document).ready(function(){
                   <img class="top" src="/assets/que.png" />
                     </div>
                       
+                      <span class="classic10">  This is just an example of what  </span> </a></div>
                       
+                  <% if @post.pick_up == true %> 
                       
-                      <span class="classic10">  This isjust an example of what  </span> </a></div>
                  
-                     <div class="styleSelect3">
-                   <p> Unavailable</p>
+                     <div class="pickup3">
+                      <input type="checkbox" id="checkbox2" />
+                      <label for="checkbox2">&nbsp;</label>
                      </div>
-                     
-                   <p class="sed" style="float:right; margin:-25px -2px 0 0px;">-</p>
+                    
+                    <p class="miles3" style="padding-left:60px;"> $<%= @post.price_include_pick_up ? @post.price_include_pick_up.to_i : 0 %></p>
+                    <p class="sed" style="float:right; margin:-32px -2px 0 30px; font-size:14px;" id="check_pickup">$0</p>
+                  <% else %>
+                    <div class="styleSelect3">
+                      <p> Unavailable</p>
+                      <p class="miles3" style="padding-left: 60px;"></p>
+                    </div>
+
+                    <p class="sed" style="float:right; margin:-32px -2px 0 30px; font-size:14px;" id="check_pickup">-</p>
+                  <% end %>
+
                 </div>
            </div>
            
@@ -419,14 +474,16 @@ jQuery(document).ready(function(){
             </div>
 
 
-               <input type="hidden" name="desc" id="desc" value=""/>
+               <input type="hidden" name="dropoff_price" id="dropoff_price" value=""/>
+               <input type="hidden" name="pickup_price" id="pickup_price" value=""/>
                <input type="hidden" name="totalPrice" id="totalPrice" value=""/>
 
                <script>
                $('#customButton').click(function(){
                  var token = function(res){
                  var $input = $('<input type=hidden name=stripeToken />').val(res.id);
-                 $('form').append($input).submit();
+                 var $input2 = $('<input type=hidden name=stripeEmail />').val(res.email);
+                 $('form').append($input, $input2).submit();
                };
 
                StripeCheckout.open({
@@ -434,8 +491,9 @@ jQuery(document).ready(function(){
                address:     false,
                amount:      document.getElementById('totalPrice').value,
                currency:    'usd',
-               name:        'test',
-               description: 'testing ......',
+               image:       '/assets/dinobo_stripe.jpg',
+               name:        'Dinobo',
+               description: '<%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %> ( $'+ document.getElementById('totalPrice').value / 100+ ')' ,
                panelLabel:  'Checkout',
                token:       token
                });
