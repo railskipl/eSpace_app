@@ -92,7 +92,7 @@ class BookingsController < ApplicationController
 
       dropoff_date = Chronic.parse("#{params[:booking][:dropoff_date]}")
       pickup_date = Chronic.parse("#{params[:booking][:pickup_date]}")    
-
+      
       booking = {}
       booking["stripe_customer_token"] = params[:stripeToken]
       booking["price"] = (params[:totalPrice].to_i)/100

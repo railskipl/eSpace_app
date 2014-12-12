@@ -1,4 +1,6 @@
-<%#= javascript_include_tag "ddaccordion.js", "jquery.min.js" %>
+<%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js" %>
+<%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker"%>
+
 <script type="text/javascript">
 
     jQuery(function($){
@@ -33,7 +35,7 @@
             <li><a href="#">Bank Details</a></li>
             <li><a href="#">My Post</a></li>
             <li><a href="#">My Order/Received</a></li>
-            <li class="active"><a href="#">My Booking</a></li>
+            <li class="active"><%= link_to "My Booking", bookings_path%></a></li>
             <li><a href="#">Payment</a></li>
             <li><a href="#">Message</a></li>
             </ul>
@@ -44,46 +46,55 @@
                     <%= form_tag search_by_date_path,:method => 'get' do %>
                     <ul class="date">
                     <li>
-                    From <span><%= text_field_tag :start_date, params[:start_date]%></span>
+                    From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off, :class => "date", :style => "padding: 3px;"%></span>
                     </li>
                     
                     <li>
-                    To <span><%= text_field_tag :end_date, params[:end_date],onchange:"checkAndSubmit()" %></span>
+                    To <span><%= text_field_tag :end_date, params[:end_date],:class => "date",:style => "padding: 3px;" %></span>
                     </li>
                     
                     </ul>
                     <div class="search">
-                    <a href=""><img src="image/search_new.png"></a>
+                    <%= submit_tag "Submit"%>
+                    <!-- <a href=""><img src="/assets/search_new.png"></a> -->
                     </div>
                     <%end%> 
               </div>
                 
                 <div class="booking-wrap">
                 <div class="bmar10 font10"><a href="">Show all</a> / Hide cancelled and past bookings</div>
-
+                    <% @bookings.each_with_index do |booking, index|%>
                     <div class="booking-box">
                         <div class="booking-col">
-                            <span class="booking-name">Laurent H.</span>(5 mutual friends)
+                            <span class="booking-name"><%= User.find(booking.poster_id).name.capitalize rescue nil%> <%= User.find(booking.poster_id).last_name[0,1] rescue nil%></span><% if booking.post.user.provider.present? && booking.post.user_id != current_user.id %>
+                                (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)<% end %>
                             <p>
-                            111, 1st Street</br>
-                            Los Angeles, CA 10021
+                            <%= Post.find(booking.post_id).address%>
                             </p>
                         </div>
                         
                        
                         <div class="booking-col1">
-                        <span>Booking area</span> : 80 sq. ft
+                        <span>Booking area</span> : <%= Post.find(booking.post_id).area %> sq. ft
                         <p>
-            <span>Status</span> : Normal
+                           <%if booking.status.present? %>      
+                              <span>Status</span> : <%= booking.status rescue nil%>
+                           <%else%>
+                              <span>Status</span> : Waiting for drop-off confirmation
+                           <%end%>
                         </p>
                         </div>
                         
                         <div class="booking-col1">
-                        <span>Drop-off date</span> : September 7, 2014
+                        <span>Drop-off date</span> : <%= Post.find(booking.post_id).drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= Post.find(booking.post_id).drop_off_avaibility_end_date.strftime("%d-%m-%Y")%>
                         <p>
             <span>Booked drop-off</span> 
                         <label class="tasks-list-item">
-                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
+                        <%if Post.find(booking.post_id).pick_up == true%>
+                          <%= check_box_tag(Post.find(booking.post_id).drop_off, value = "1", checked = false, disabled: true)%>
+                        <%else%>
+                          <%= check_box_tag(Post.find(booking.post_id).drop_off, value = "1", checked = true, disabled: true)%>
+                        <%end%>
                         <span class="tasks-list-mark"></span>
                         <!--<span class="tasks-list-desc">Left Label</span>-->
                         </label>
@@ -95,169 +106,31 @@
                         </div>
                         
                         <div class="booking-col1">
-                        <span>Pick-up date</span>  : October 18, 2014
+                        <span>Pick-up date</span>  : <%= Post.find(booking.post_id).pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= Post.find(booking.post_id).pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
                         <p>
             <span>Booked pick-up</span>
                         <label class="tasks-list-item">
-                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
+                        <%if Post.find(booking.post_id).pick_up == true%>
+                          <%= check_box_tag(Post.find(booking.post_id).pick_up, value = "1", checked = true, disabled: true)%>
+                        <%else%>
+                          <%= check_box_tag(Post.find(booking.post_id).pick_up, value = "1", checked = false, disabled: true)%>
+                        <%end%>
                         <span class="tasks-list-mark"></span>
                         <!--<span class="tasks-list-desc">Left Label</span>-->
                         </label>
                         </p>
                         </div>
                         
-                  <div class="note"><span>Notes</span> : Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                  <div class="note"><span>Notes</span> : <%=booking.post.additional_comments rescue nil%>
                         </div>
                         </div>
-                        
-                        <div class="booking-box">
-                        <div class="booking-col1">
-                            <span class="booking-name">Laurent H.</span>(5 mutual friends)
-                            <p>
-                            111, 1st Street</br>
-                            Los Angeles, CA 10021
-                            </p>
-                        </div>
-                        
-                       
-                        <div class="booking-col1">
-                        <span>Booking area</span> : 80 sq. ft
-                        <p>
-            <span>Status</span> : Normal
-                        </p>
-                        </div>
-                        
-                        <div class="booking-col1">
-                        <span>Drop-off date</span> : September 7, 2014
-                        <p>
-            <span>Booked drop-off</span> 
-                        <label class="tasks-list-item">
-                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
-                        <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
-                        </label>
-                        </p>
-                        <p>
-                        <a href="#" class="booking-btn">Confirm drop-off</a>
-                        </p>
-
-                        </div>
-                        
-                        <div class="booking-col1">
-                        <span>Pick-up date</span>  : October 18, 2014
-                        <p>
-            <span>Booked pick-up</span>
-                        <label class="tasks-list-item">
-                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
-                        <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
-                        </label>
-                        </p>
-                        </div>
-                        
-                  <div class="note"><span>Notes</span> : Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                        </div>
-                        </div>
+                        <%end%> 
                         
                         
-                        <div class="booking-box">
-                        <div class="booking-col">
-                            <span class="booking-name">Laurent H.</span>(5 mutual friends)
-                            <p>
-                            111, 1st Street</br>
-                            Los Angeles, CA 10021
-                            </p>
-                        </div>
+                     
                         
-                       
-                        <div class="booking-col1">
-                        <span>Booking area</span> : 80 sq. ft
-                        <p>
-            <span>Status</span> : Normal
-                        </p>
-                        </div>
                         
-                        <div class="booking-col1">
-                        <span>Drop-off date</span> : September 7, 2014
-                        <p>
-            <span>Booked drop-off</span> 
-                        <label class="tasks-list-item">
-                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
-                        <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
-                        </label>
-                        </p>
-                        <p>
-                        <a href="#" class="booking-btn">Confirm drop-off</a>
-                        </p>
-
-                        </div>
                         
-                        <div class="booking-col1">
-                        <span>Pick-up date</span>  : October 18, 2014
-                        <p>
-            <span>Booked pick-up</span>
-                        <label class="tasks-list-item">
-                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
-                        <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
-                        </label>
-                        </p>
-                        </div>
-                        
-                  <div class="note"><span>Notes</span> : Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                        </div>
-                        </div>
-                        
-                        <div class="booking-box">
-                        <div class="booking-col">
-                            <span class="booking-name">Laurent H.</span>(5 mutual friends)
-                            <p>
-                            111, 1st Street</br>
-                            Los Angeles, CA 10021
-                            </p>
-                        </div>
-                        
-                       
-                        <div class="booking-col1">
-                        <span>Booking area</span> : 80 sq. ft
-                        <p>
-            <span>Status</span> : Normal
-                        </p>
-                        </div>
-                        
-                        <div class="booking-col1">
-                        <span>Drop-off date</span> : September 7, 2014
-                        <p>
-            <span>Booked drop-off</span> 
-                        <label class="tasks-list-item">
-                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
-                        <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
-                        </label>
-                        </p>
-                        <p>
-                        <a href="#" class="booking-btn">Confirm drop-off</a>
-                        </p>
-
-                        </div>
-                        
-                        <div class="booking-col1">
-                        <span>Pick-up date</span>  : October 18, 2014
-                        <p>
-            <span>Booked pick-up</span>
-                        <label class="tasks-list-item">
-                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
-                        <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
-                        </label>
-                        </p>
-                        </div>
-                        
-                  <div class="note"><span>Notes</span> : Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                        </div>
-                        </div>
-                  
                     
                     
                 </div>
