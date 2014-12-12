@@ -76,7 +76,7 @@
   <div class="field">
    
        <%= f.label :drop_off_avaibility_start_date %>
-       <%= f.text_field :drop_off_avaibility_start_date%>
+       <%= f.text_field :drop_off_avaibility_start_date, :readonly => true %>
       
 
   </div>
@@ -84,17 +84,17 @@
   <div class="field">
  
       <%= f.label :drop_off_avaibility_end_date %>
-      <%= f.text_field :drop_off_avaibility_end_date%>
+      <%= f.text_field :drop_off_avaibility_end_date, :readonly => true %>
 
   </div>
 
   <div class="field">
    
       <%= f.label :pick_up_avaibilty_start_date %>
-      <%= f.text_field :pick_up_avaibilty_start_date%>
+      <%= f.text_field :pick_up_avaibilty_start_date, :readonly => true %>
 
       <%= f.label :pick_up_avaibility_end_date %>
-      <%= f.text_field :pick_up_avaibility_end_date%>
+      <%= f.text_field :pick_up_avaibility_end_date, :readonly => true %>
 
   </div>
 
