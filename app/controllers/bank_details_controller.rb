@@ -39,22 +39,25 @@ class BankDetailsController < ApplicationController
         @bank_detail = BankDetail.new(bank_detail_params)
 
         if params[:stripe_card_token]
-   
+
           begin
+
             recipient = Stripe::Recipient.create(
               :name => params[:bank_detail][:full_name],
               :type => "individual",
               :email => "payee@example.com",
               :card => params[:stripe_card_token]
             )
-          
+    
           rescue Stripe::InvalidRequestError => e
-            redirect_to :back, :notice => "Stripe error while creating Recipient: #{e.message}" 
+            redirect_to :back
+            flash[:notice] = "Stripe error while creating Recipient: #{e.message}"
+
             return false
           end
-
+           
           stripe_response = JSON.parse("#{recipient}")
-
+               
           if stripe_response["cards"]["data"][0]["id"].present?
             @bank_detail.stripe_recipient_token = stripe_response["id"]
             @bank_detail.full_name = params[:bank_detail][:full_name]

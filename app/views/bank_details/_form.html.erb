@@ -86,6 +86,28 @@
   });
 </script>
 
+
+
+                             
+    <div class="main-new">
+            <ul class="verticle-menu">
+            <li><a href="#">Personal Information</a></li>
+            <li><a href="#">Change Password</a></li>
+            <li class="active"><a href="#">Bank Details</a></li>
+            <li><a href="#">My Post</a></li>
+            <li><a href="#">My Order/Received</a></li>
+            <li><a href="#">My Booking</a></li>
+            <li ><a href="#">Payment</a></li>
+            <li><a href="#">Message</a></li>
+            </ul>
+            
+            <div class="right-side">
+              
+                
+                <div class="payment-wrap">
+                
+                <div class="formwrap">
+    
 <%= form_for(@bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>
   <% if @bank_detail.errors.any? %>
     <div id="error_explanation">
@@ -99,25 +121,20 @@
     </div>
   <% end %>
 
-  <span class="payment-errors"></span>
   <%= hidden_field_tag :stripe_card_token %>
+       <p>Setup a Card to receive payments <span>?</span></p>
+       <%= f.text_field :full_name, :class=>"form-control",:placeholder=>"Full name"  %>
+    <%= f.hidden_field :user_id,:value =>current_user.id%>
+       <div class="card">
+      <%= text_field_tag :card_number, nil,:autocomplete => "off", name: nil,:class=>"form-control card_number stripe-sensitive required",:placeholder=>"Card Number" %>
 
-  <div class="field">
-    <%= f.label :full_name %>
-    <%= f.text_field :full_name %>
-    <%= f.hidden_field :user_id,:value =>current_user.id %>
-  </div>
+       <span><img src="/assets/card.jpg" alt=""></span>
+       </div>
+       <div class="card">
+      <%= text_field_tag :card_code, nil, name: nil, :autocomplete => :off,:class=>"form-control card_code stripe-sensitive required", :placeholder=>"Card Code" %>
+            </div>
+      
  
-  <div class="field">
-      <%= label_tag :card_number, "Debit Card Number " %>
-      <%= text_field_tag :card_number, nil,:autocomplete => "off", name: nil, :class=> "card_number stripe-sensitive required" %>
-  </div>
-  <div class="field">
-      <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-      <%= text_field_tag :card_code, nil, name: nil, :autocomplete => :off, :class => "card_code stripe-sensitive required" %>
-  </div>
-
-  <div class="field">
     <label for="card_month">Card Expiration</label>
     <div class="expiry-wrapper">
      <select class="card-expiry-month stripe-sensitive required">
@@ -140,12 +157,17 @@
         }
       </script>
     </div>
-  </div>
-  
-       <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+<!-- <button class="blue-btn b-mar" type="button">Save Changes</button> -->
+ <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+        <%= submit_tag "Save Changes",:class=>"blue-btn b-mar" %>
+           </div>         
+                </div>
+            </div>
+        </div>
+ 
 
-  <div class="actions">
-    <%= f.submit :class=>"btn btn-primary" %>
-    
-  </div>
 <% end %>
+
+
+
+
