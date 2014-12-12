@@ -1783,106 +1783,6 @@ font-size:15px;
 }
 .right-mark { margin-right: 30px; }
 
-
-
-/*MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM*/
-/*__________________________________________By Moreshwar______________________________________*/
-
-
-
-.main-new
-	{
-	width:1024px;
-	background:url(/assets/menubg.jpg) repeat-y #fff;
-	margin-top:0px;
-	overflow:hidden
-	}
-
-.verticle-menu{
-	margin:0; 
-	padding:27px 43px; 
-	list-style-type:none;
-	width:270px;
-	font-family:'brandon2';
-	font-size:13px;
-	float:left;
-	}
-	
-.verticle-menu li{
-	margin:0; 
-	padding:13px 0 14px 0; 
-	list-style-type:none;
-	position:relative
-	}
-	
-.verticle-menu li.active a{
-	color:#00b4ff
-	}
-	
-.mart5{ margin-top:5px}
-	
-.verticle-menu li a{
-	color:#bbbfc2;
-	text-decoration:none
-	}
-.verticle-menu li a:hover{
-	color:#00b4ff
-	}
-
-.right-side{
-	width:754px;
-	background:#fff; 
-	float:left;
-	}
-
-.blue-header{
-	width:100%;
-	background:#072643; 
-	padding:22px 33px 22px 22px;
-	color:#bbbfc2;
-	display:table;}
-
-.font20{ font-size:20px}
-
-.search{ float:right;}
-
-.faq-wrap{ 
-	width:100%; 
-	padding:15px 140px; 
-	font-family:'brandon4'}
-
-.expand{width:100%; text-align:right}
-.expand a{ color:#899199; text-decoration:none}
-
-a{color:#00b4ff}
-a:hover{ color:#00b4ff; text-decoration:underline}
-
-.technology{ /*header of 2nd demo*/
-	cursor: hand;
-	cursor: pointer;
-	font-size:13px;
-	font-family:'brandon6';
-	margin: 10px 0;
-}
-
-.thelanguage{ padding:30px 45px}
-.thelanguage span{ font-size:12px; display:block; margin-bottom:10px}
-
-.sep{ border-bottom:2px solid #eeeeee; height:2px; margin:30px 0}
-
-.openlanguage {
-    background: none repeat scroll 0 0 #eee;
-    color: #072643;
-    margin: 5px 0;
-    padding: 10px 25px;
-}
-
-.closedlanguage {
-    background: none repeat scroll 0 0 #eee;
-    color: #072643;
-    margin: 5px 0;
-    padding: 10px 25px;
-
 #map-canvas { height: 100%; margin: 0px; padding: 0px }
 	
 	
@@ -1896,7 +1796,7 @@ a:hover{ color:#00b4ff; text-decoration:underline}
 
 .sed1 {
     color: #899199;
-    font-family: brandon4;
+    font-family: "brandon4";
     font-size: 12px;
     line-height: 12px;
     margin-top: 5px;
@@ -1925,7 +1825,7 @@ a:hover{ color:#00b4ff; text-decoration:underline}
 }
 
 .mark {
-    background: url("../image/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
+    background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
     border: medium none;
     color: #b2b3b5;
     font-family: brandon4;
@@ -1961,6 +1861,7 @@ a:hover{ color:#00b4ff; text-decoration:underline}
     font-family: brandon4;
     font-size: 12px;
     margin-top: 30px;
+    padding-left: 639px;
 }
 
 .selectParent {
