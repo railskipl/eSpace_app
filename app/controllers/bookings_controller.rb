@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
  include BookingsHelper
 
  def index
- 	@bookings = Booking.where("user_id = ?",current_user.id)
+ 	@bookings = Booking.where("user_id = ?",current_user.id).order("id desc")
  end
 
 	def new
@@ -184,10 +184,7 @@ class BookingsController < ApplicationController
             return false
     end
 
-    @booking.status = "Cancel"
-    @booking.save
-
-
+    
     redirect_to bookings_path
     flash[:notice] = "Booking is cancel & $#{@amount} is refunded. "
   end
