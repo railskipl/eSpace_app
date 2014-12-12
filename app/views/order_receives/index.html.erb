@@ -1,0 +1,101 @@
+<div class="main-new">
+  <ul class="verticle-menu">
+    <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+    <li><%= link_to "Change Password", edit_user_registration_path %></li>
+    <li><%= link_to "Bank Details",bank_details_path %></li>
+    <li><%= link_to "My Post",posts_path%></li>
+    <li class="active"><%= link_to "My Order/Received",order_receives_path%></li>
+    <li><%= link_to "My Booking", bookings_path%></li>
+    <li><%= link_to "Payment", nil%></li>
+    <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
+  </ul>
+            
+  <div class="right-side">
+    <div class="blue-header">
+      <ul class="date">
+      <li>
+      From <span><input type="text" value="May 20, 2014"><a href="#"><img src="/assets/cal_icon2.png" alt=""></a></span>
+      </li>
+      
+      <li>
+      To <span><input type="text" value="December 30, 2014"><a href="#"><img src="/assets/cal_icon2.png" alt=""></a></span>
+      </li>
+      
+      </ul>
+      <div class="search">
+        <a href=""><img src="/assets/search_new.png"></a>
+      </div>
+    </div>
+    <div class="order-wrap">
+      <% @bookings.each_with_index do |booking, index|%>
+      <div class="order-box">
+        <div class="order-col order-col1">
+          <div class="heading">
+            <h4><%= User.find(booking.user_id).name %></h4>
+          </div>
+          <p>
+            <%= Post.find(booking.post_id).address %>
+          </p>
+          <p>
+            Total amount : $<%=booking.price %>
+          </p>
+          <p>
+            <a href="#" class="round-btn">Message</a>
+          </p>
+        </div>
+        <div class="order-col order-col1 order-col1-tmar">
+          <span>Booking area</span> : <%= booking.area%> sq. ft
+            <p>
+              <span>Rate</span> : $<%= booking.post.price_sq_ft%>/sq.ft.
+            </p>
+            <p>
+              <%if booking.status.present?%>
+                <span>Status</span> :<%= booking.status%>
+              <%else%>
+                <span>Status</span> :Awaiting drop-off confirmation
+              <%end%>
+            </p>
+            <p>
+              <a href="#">Cancel booking</a>
+            </p>
+        </div>
+        <div class="order-col order-col1 order-col1-tmar">
+          <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %d, %Y")%>
+          <p>
+            <span>Booked drop-off</span>
+            <label class="tasks-list-item">
+              <% if booking.dropoff_price != 0 %>
+                <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
+              <%else%>
+                <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
+              <%end%>
+              <span class="tasks-list-mark"></span>
+              <!--<span class="tasks-list-desc">Left Label</span>-->
+            </label>
+            $ 5
+          </p>
+          <p class="vmp">
+            <%= link_to "View My Post",{:controller => 'bookings', :action => 'show', :id => booking.id}%>
+          </p>
+        </div>
+        <div class="order-col order-col1 order-col1-tmar">
+          <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %d, %Y")%>
+
+          <p>
+            <span>Booked pick-up</span>
+            <label class="tasks-list-item">
+              <% if booking.pickup_price != 0 %>
+                <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
+              <%else%>
+                <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
+              <%end%>
+              <span class="tasks-list-mark"></span>
+              <!--<span class="tasks-list-desc">Left Label</span>-->
+            </label>
+          </p>
+        </div>
+      </div>
+    </div>
+    <%end%>
+  </div>
+</div>
