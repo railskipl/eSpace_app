@@ -81,6 +81,19 @@
             <div class="right-side">
               
                     <div class="blue-bg">
+
+                      <!-- Error Message -->
+                      <% flash.each do |name, msg| %>
+                        <% if msg.is_a?(String) %>
+                          <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+                            <a class="close" data-dismiss="alert">&#215;</a>
+                            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+                          </div>
+                        <% end %>
+                      <% end %>
+                      <!-- End -->
+
+
                       <div class="blue-bg-div1">
                             <span><%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %>.</span> 
                             <% if current_user.provider.present? &&  @post.user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %>
@@ -116,7 +129,12 @@
                           <a href="#" class="cdo">Confirm drop-off</a>
                           
                           </ul>
-                          <a href="#" class="cb">Cancel Booking</a>
+
+                            <%= link_to "Cancel Booking", cancel_popup_bookings_path(:drop_off_date =>@booking.dropoff_date,:id =>@booking.id), :class=>"cb", :remote=> true %>
+                            
+                            <%#= link_to "Cancel Booking", cancel_booking_bookings_path(:drop_off_date =>@booking.dropoff_date,:id =>@booking.id), :class=>"cb" %>
+                            
+
                           </div>
                     </div> 
                     

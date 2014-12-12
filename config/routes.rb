@@ -73,6 +73,7 @@ Rails.application.routes.draw do
     collection do
       post :checkout
       get 'cancel_booking'
+      get 'cancel_popup'
     end
   end
 

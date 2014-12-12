@@ -2377,3 +2377,5 @@ img {
 #map-canvas { height: 100%; margin: 0px; padding: 0px }
 
 #small-map-canvas { height: 129px; margin: 0px; padding: 0px; width: 269px; }
+
+#flash_notice {color: #FD0000; }
