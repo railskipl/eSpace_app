@@ -100,6 +100,7 @@ class BookingsController < ApplicationController
       booking["user_id"] = current_user.id
       booking["poster_id"] = params[:booking][:poster_id]
       booking["email"] = params[:stripeEmail]
+      booking["area"] = params[:area]
       booking["dropoff_date"] = dropoff_date
       booking["dropoff_price"] = params[:dropoff_price]
       booking["pickup_date"] = pickup_date
@@ -139,7 +140,7 @@ class BookingsController < ApplicationController
           @booking.stripe_charge_id = charge[:id]
           @booking.save
             
-          redirect_to root_path, :notice => "Thank you"
+          redirect_to bookings_path, :notice => "Thank you"
           
         else
           render :new
