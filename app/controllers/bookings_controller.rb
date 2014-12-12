@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
  include BookingsHelper
 
  def index
- 	@bookings = Booking.where("user_id = ? AND is_cancel = ?",current_user.id,false)
+ 	@bookings = Booking.where("user_id = ?",current_user.id)
  end
 
 	def new

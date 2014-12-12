@@ -103,6 +103,8 @@
                         <a href="#" class="booking-btn">Confirm drop-off</a>
                         </p>
 
+                        
+
                         </div>
                         
                         <div class="booking-col1">
@@ -118,6 +120,9 @@
                           <input id="false" type="checkbox" value="1" name="false" disabled="disabled">
                         <%end%>
                         <span class="tasks-list-mark"></span>
+                          <p class="vmp">
+                           <%= link_to "View My Post", booking_path(booking.id) %>
+                          </p>
                         <!--<span class="tasks-list-desc">Left Label</span>-->
                         </label>
                         </p>
