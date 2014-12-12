@@ -28,8 +28,6 @@
 
 # #   #socket: /var/run/mysqld/mysqld.sock  
 
-
-
 development:
 
  adapter: mysql2
