@@ -1,13 +1,12 @@
-<%= stylesheet_link_tag   "bootstrap.min.css"%>
-<%= javascript_include_tag "ddaccordion.js", "jquery.min.js" %>
+<%#= javascript_include_tag "ddaccordion.js", "jquery.min.js" %>
 <script type="text/javascript">
 
     jQuery(function($){
-      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
+      $("#start_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
 
     });
     jQuery(function($){
-      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
+      $("#end_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
     });
 </script>
 
@@ -45,11 +44,11 @@
                     <%= form_tag search_by_date_path,:method => 'get' do %>
                     <ul class="date">
                     <li>
-                    From <span><%= text_field_tag :start_date, params[:start_date]%><a href="#"><img src="image/cal_icon2.png" alt=""></a></span>
+                    From <span><%= text_field_tag :start_date, params[:start_date]%></span>
                     </li>
                     
                     <li>
-                    To <span><%= text_field_tag :end_date, params[:end_date],onchange:"checkAndSubmit()" %><a href="#"><img src="image/cal_icon2.png" alt=""></a></span>
+                    To <span><%= text_field_tag :end_date, params[:end_date],onchange:"checkAndSubmit()" %></span>
                     </li>
                     
                     </ul>
