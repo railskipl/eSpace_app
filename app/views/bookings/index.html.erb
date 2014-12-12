@@ -65,6 +65,7 @@
                 <div class="bmar10 font10"><a href="">Show all</a> / Hide cancelled and past bookings</div>
                     <% @bookings.each_with_index do |booking, index|%>
                     <div class="booking-box">
+                        
                         <div class="booking-col">
                             <span class="booking-name"><%= User.find(booking.poster_id).name.capitalize rescue nil%> <%= User.find(booking.poster_id).last_name[0,1] rescue nil%></span><% if booking.post.user.provider.present? && booking.post.user_id != current_user.id %>
                                 (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)<% end %>
@@ -123,6 +124,7 @@
                         
                   <div class="note"><span>Notes</span> : <%=booking.post.additional_comments rescue nil%>
                         </div>
+                        
                         </div>
                         <%end%> 
                         
