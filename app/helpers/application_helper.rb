@@ -52,9 +52,9 @@ module ApplicationHelper
 	
 	  values.collect do |sel| 
 	  	if sel_val.to_i == sel
-	    	"<option value='#{sel}' style='color:#999;' selected='selected ' >#{sel}</option> "
+	    	"<option value='#{sel}' style='color:#999;' selected='selected ' >#{sel}</option> ".html_safe
 	    else
-	    	"<option value='#{sel}' style='color:#999;' >#{sel}</option> "
+	    	"<option value='#{sel}' style='color:#999;' >#{sel}</option> ".html_safe
 	    end
 	  end.join
 

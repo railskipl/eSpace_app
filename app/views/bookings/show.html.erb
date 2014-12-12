@@ -1,110 +1,183 @@
+    
 
-<%= stylesheet_link_tag 'bookreviews.css','font-awesome.css'%>
+   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+      function initialize() {
+        
+        // Create an array of styles.
+        var styles = [
+          {
+            stylers: [
+              { hue: "#00b4ff" },
+              { saturation: 50 }
+            ]
+          },{
+            featureType: "road",
+            elementType: "geometry",
+            stylers: [
+              { hue: "#28A0E5" },
+              { visibility: "simplified" }
+            ]
+          },{
+            featureType: "road",
+            elementType: "labels",
+            stylers: [
+              { visibility: "off" }
+            ]
+          }
+        ];
 
-<p id="notice"><%= notice %></p>
+        // Create a new StyledMapType object, passing it the array of styles,
+        // as well as the name to be displayed on the map type control.
+        var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
 
-<p>
-  <strong>Name of Poster:</strong>
-  <%=User.find(@booking.user_id).name rescue nil %>&nbsp;&nbsp;<%=User.find(@booking.user_id).last_name rescue nil  %>
-</p>
+        var myLatlng = new google.maps.LatLng(<%= @post.latitude %>,<%= @post.longitude %>);
+        var mapOptions = {
+          zoom: 8,
+          center: myLatlng,
+          panControl: true,
+          zoomControl: true,
+          disableDefaultUI: true
+        }
+        
+          var map = new google.maps.Map(document.getElementById('small-map-canvas'), mapOptions);
 
-<p>
-  <strong>Frist Name:</strong>
-  <%= User.find(@booking.user_id).name rescue nil %>&nbsp;&nbsp;
-  <strong>Last Name:</strong>
-  <%=User.find(@booking.user_id).last_name rescue nil %>&nbsp;&nbsp;
-  <%if User.find(@booking.user_id).mobile_number.present?%>
-  <strong>Mobile No:</strong>&nbsp;&nbsp;
-  <%=User.find(@booking.user_id).mobile_number rescue nil  %>
-  <%else%> 
-   <%end%>
-</p>
+          var marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              icon: "/assets/marker.png"
+              
+          });
 
-<p>
-  <strong>Booked Area:</strong>
-  <%= Post.find(@booking.post_id).area %>&nbsp;&nbsp;
-   <strong>Date of Booking:</strong>
-   <%= @booking.created_at%>
-</p>
+          //Associate the styled map with the MapTypeId and set it to display.
+          map.mapTypes.set('map_style', styledMap);
+          map.setMapTypeId('map_style');
 
-<p>
-  <strong>Rate/Sq.ft:</strong>
-  <%= Post.find(@booking.post_id).price_sq_ft %>
-  <strong>Drop off Date:</strong>
-  <%= Post.find(@booking.post_id).drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= Post.find(@booking.post_id).drop_off_avaibility_end_date.strftime("%d-%m-%Y")%>
-  <strong>Pick up Date:</strong>
-  <%= Post.find(@booking.post_id).pick_up_avaibilty_start_date.strftime("%d-%m-%Y")%> - <%= Post.find(@booking.post_id).pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
-</p>
-<p>
- <strong>Total Amount:</strong>
- <%= @booking.price%>&nbsp;&nbsp;
- <% if Post.find(@booking.post_id).drop_off %>
-      <strong>Drop-Off : </strong> <%= Post.find(@booking.post_id).price_include_drop_off %> <br/>
-    <% end %>
-
-    <% if Post.find(@booking.post_id).pick_up == true %> 
-      <strong>Pick-Up : </strong> <%= Post.find(@booking.post_id).price_include_pick_up %> <br/>
-    <% end %>
-
-</p>
-
-<p>
- <strong>Address:</strong>
- <%= Post.find(@booking.post_id).address %>
-</p>
-<p>
-<strong>Rating:</strong>
-<% if @post.overall_rating > 0 %>
-  
-        <% num_stars(@post.overall_rating)[:full].times do %>
-          <i class="fa fa-star"></i>
-        <% end %>
-        <% num_stars(@post.overall_rating)[:half].times do %>
-          <i class="fa fa-star-half-o"></i>
-        <% end %>
-        <% num_stars(@post.overall_rating)[:empty].times do %>
-          <i class="fa fa-star-o"></i>
-        <% end %>
-        <%else%>
-        "No Rating"
-        <%#= "(" + pluralize(@post.comments.count.to_s, "customer review") + ")" if @post.comments.count > 0 %>
-<% end %><br><br>
-
- <td><%= link_to "Send Message ", new_message_path(:user_id => @post.user_id,:post_id => @post.id ) , :class => "btn btn-primary contact-form" %></td>
+      }
 
 
-<%if current_user.present?%>
-    <h3>Post your Review</h3>
-    <%= form_for [@post, Comment.new] ,:html=>{ id: "new_comment"} do |f| %>
-    <%= f.hidden_field :user_id, :value=> current_user.id %>
-        <fieldset class="rating">
-        <%= f.radio_button(:rating, "5") %><%= f.label(:rating.to_s + "_5") %>
-        <%= f.radio_button(:rating, "4") %><%= f.label(:rating.to_s + "_4") %>
-        <%= f.radio_button(:rating, "3") %><%= f.label(:rating.to_s + "_3") %>
-        <%= f.radio_button(:rating, "2") %><%= f.label(:rating.to_s + "_2") %>
-        <%= f.radio_button(:rating, "1") %><%= f.label(:rating.to_s + "_1") %>
-       </fieldset><br><br><br>
-   <strong>Review : </strong><%= f.text_area :comments ,:cols=>"30", :rows=>"4" %>
-   <p ><%= f.submit "Add Review", :class => "btn btn-primary contact-form" %></p>
-   <% end %>
-<% end %>
 
-  <b><%= @comments.count %></b> Reviews<br>
+      google.maps.event.addDomListener(window, 'load', initialize);
 
-    <% @comments.each do |comment| %>
-    <% num_stars(comment.rating)[:full].times do %>
-      <i class="fa fa-star"></i>
-    <% end %>
-    <% num_stars(comment.rating)[:half].times do %>
-      <i class="fa fa-star-half-o"></i>
-    <% end %>
-    <% num_stars(comment.rating)[:empty].times do %>
-      <i class="fa fa-star-o"></i>
-    <% end %>
-    <strong><%= comment.user.name rescue nil %>&nbsp;<%= comment.user.last_name rescue nil %></strong>&nbsp;<%= comment.created_at.strftime("%b %d,%Y") %><br><br>
-    <%= comment.comments %><br><br>
-    <%end%>
+      </script>
+
+      <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css" %>
+      <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation", "facebox.js" %>
 
 
-</p>
 
+    <div class="main-new">
+            <ul class="verticle-menu">
+            <li><a href="#">Personal Information</a></li>
+            <li><a href="#">Change Password</a></li>
+            <li><a href="#">Bank Details</a></li>
+            <li><a href="#">My Post</a></li>
+            <li><a href="#">My Order/Received</a></li>
+            <li class="active"><a href="#">My Booking</a></li>
+            <li><a href="#">Payment</a></li>
+            <li><a href="#">Message</a></li>
+            </ul>
+            
+            <div class="right-side">
+              
+                    <div class="blue-bg">
+                      <div class="blue-bg-div1">
+                            <span><%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %>.</span> 
+                            <% if current_user.provider.present? &&  @post.user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %>
+                            <p>
+                            <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %> <a href="#" class="g-round-btn">Rate</a>
+                            </p>
+                            <p>
+                              <%= @post.additional_comments %>
+                            </p>
+                            
+                                <div class="address">
+                                <%= @post.address %>
+                                </div>
+                          </div>
+                          
+                          <div class="blue-bg-div2">
+                          <ul>
+                          <li><div>Date of booking</div> <span><%= @booking.created_at.strftime("%B %m,%Y") %></span></li>
+                          <li><div>Booked area</div> <span><%= @booking.area %><p>Sq. Feet</p></span></li>
+                          <li><div>Drop-off</div> 
+                              <span><%= @booking.dropoff_date.strftime("%B %m,%Y") %></br>
+                                Drive : <% if @booking.dropoff_price != 0 %> $<%= @booking.dropoff_price %> <% else %> Unavailable <% end %>
+                              </span>
+                            </li>
+                          <li><div>Pick-up</div> 
+                            <span><%= @booking.pickup_date.strftime("%B %m,%Y") %></br>
+                            Drive :  <% if @booking.pickup_price != 0 %> $<%= @booking.pickup_price %> <% else %> Unavailable <% end %>
+                            </span>
+                          </li>
+                          <li><div>Total Amount</div> <span>$<%= @booking.price %></span></li>
+                          <li><div>Status</div> <span>Waiting for drop-off confirmation</span></li>
+                          
+                          <a href="#" class="cdo">Confirm drop-off</a>
+                          
+                          </ul>
+                          <a href="#" class="cb">Cancel Booking</a>
+                          </div>
+                    </div> 
+                    
+                    <div class="mapdiv">
+                    <div>
+
+                      <div id="small-map-canvas"></div>
+                    </div>
+                    
+                    <div class="review-div">
+                    
+                    <span>Reviews</span>
+                    
+                    
+                    <div class="star" style="font-size: 14px;">
+                        <%= "(" + pluralize(@post.comments.count.to_s, "")+")" %>
+                        <% num_stars(@post.overall_rating)[:full].times do %>
+                          <i class="fa fa-star"></i>
+                        <% end %>
+                        <% num_stars(@post.overall_rating)[:half].times do %>
+                          <i class="fa fa-star-half-o"></i>
+                        <% end %>
+                        <% num_stars(@post.overall_rating)[:empty].times do %>
+                          <i class="fa fa-star-o"></i>
+                        <% end %>
+                    </div>
+                    
+                    <ul>
+                    <li>
+                    <p>Juliette</p>
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo 
+                    inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    <span>
+                    October 2014
+                    </span>
+                    </li>
+                    
+                    <li>
+                    <p>Rbert</p>
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo 
+                    inventore veritatis et quasi.
+                    <span>
+                    October 2014
+                    </span>
+                    </li>
+                    
+                    <li>
+                    <p>Fanny</p>
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+                    inventore veritatis et quasi.
+                    <span>
+                    October 2014
+                    </span>
+                    </li>
+                    
+                    
+                    </ul>
+                    <a href="#" class="more">More</a>
+                    
+                    </div>
+                    
+                    </div>
+           </div>
+        </div>
