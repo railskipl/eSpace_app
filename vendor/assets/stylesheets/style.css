@@ -2377,3 +2377,12 @@ img {
 #map-canvas { height: 100%; margin: 0px; padding: 0px }
 
 #small-map-canvas { height: 129px; margin: 0px; padding: 0px; width: 269px; }
+/*
+.search_button input{
+ background:none;
+ border:none;
+ background-image:url(/assets/search_new.png);
+ background-repeat:no-repeat;
+ width:18%;
+ 
+ }*/
