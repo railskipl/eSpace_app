@@ -18,7 +18,7 @@
 <td><%= index + 1 %></td>
 <td><%= booking.created_at.to_date %></td>
 <td><%= Post.find(booking.post_id).area %></td>
-<td><%= User.find(booking.user_id).name %></td>
+<td><%= User.find(booking.poster_id).name %></td>
 <td><%= Post.find(booking.post_id).address %></td>
 	
  <td><%= Post.find(booking.post_id).pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= Post.find(booking.post_id).pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>

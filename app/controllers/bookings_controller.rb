@@ -12,8 +12,9 @@ class BookingsController < ApplicationController
 	end
 
   def show
+
     @booking = Booking.find(params[:id])
-    @post = Post.find(params[:id])
+    @post = Post.find(@booking.post_id)
     @comments = Comment.where(:post_id => @post)
   end
 
