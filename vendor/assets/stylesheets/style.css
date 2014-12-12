@@ -2235,7 +2235,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 	.cb{ padding:12px; border:2px solid #d4d7db; color:#d4d7db; font-size:12px; float:left; margin-top:27px}
 	
 	.mapdiv{ width:268px; float:left}
-	.review-div{ padding:43px; 27px; font-size:13px; color:#072643; font-family: 'brandon6';}
+	.review-div{ padding:43px; font-size:13px; color:#072643; font-family: 'brandon6';}
 	.review-div span{font-family: 'brandon6';}
 	
 	.star { float:right; font-size:10px; color:#899199}
