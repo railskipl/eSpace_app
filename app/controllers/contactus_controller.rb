@@ -31,17 +31,22 @@ class ContactusController < ApplicationController
   end
   
   def create
-    if signed_in? 
- 
-    @contactus = Contactus.new(contact_params)
-    @contactus.save
-    redirect_to contactus_path
+    unless params[:subject].blank?
+      if signed_in? 
+   
+      @contactus = Contactus.new(contact_params)
+      @contactus.save
+      redirect_to contactus_path
+      else
+      @contactus = Contactus.new(contactus_params)
+      @contactus.save
+      #ContactusMailer.contactus(@contactus).deliver
+      flash[:notice] = "Thank You for Contacting Us."
+      redirect_to root_path
+      end
     else
-    @contactus = Contactus.new(contactus_params)
-    @contactus.save
-    #ContactusMailer.contactus(@contactus).deliver
-    flash[:notice] = "Thank You for Contacting Us."
-    redirect_to root_path
+      flash[:notice] = "Please select topic."
+      redirect_to :back
     end 
    
   end

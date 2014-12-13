@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'ratings/update'
 
+  get '/payments' => "order_receives#payments" , as: "payments"
+
   resources :pages
   
   resources :admins

@@ -8,7 +8,7 @@
             <ul class="verticle-menu" style="min-height:500px;" >
       
             <li class="active"><%= link_to 'Contact-Us', home_contactus_path %></li>
-            <li><%=  link_to "FAQs",faqs_path%></li>
+            <li><%=  link_to "FAQs",frequently_asked_question_path%></li>
             
             </ul>
                    
@@ -18,7 +18,7 @@
               
 
                <div class="topics">
-                    <div style="overflow: hidden; border: 1px solid rgb(238, 238, 238); margin-left: 144px; width: 291px; " > <%= f.collection_select :subject, Contactus.where("message IS NULL"), :subject, :subject, {prompt: "Topic"}%></div><br/><br/>
+                    <div style="overflow: hidden; border: 1px solid rgb(238, 238, 238); margin-left: 144px; width: 291px; " > <%= f.collection_select :subject, Contactus.where("message IS NULL"), :subject, :subject, {:include_blank => "Topic"}%></div><br/><br/>
 
                </div> 
                 
