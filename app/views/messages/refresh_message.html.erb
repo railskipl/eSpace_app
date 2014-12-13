@@ -1,12 +1,14 @@
-<div id="refresh_msg">
 
-	<% @total_messages.each do |messages|%>
-	<p>
-	         <b> <%= messages.sender.name %> </b>:
-	          <%= messages.body.html_safe %><br/> <%= messages.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
-	         <!-- <a href="/messages/<%= messages.id %>/delete" onclick="if(confirm('Are you sure you want to delete this page?'))  return true;  else  return false;" class="btn" >Delete</a> -->
-	           <%= link_to "Click to view Post" ,post_path(messages.post.id) rescue nil%>
-	         
-	</p>
-	<% end %>
-</div>
+
+		<div id="refresh_msg">
+			<% @total_messages.each do |messages|%>
+				<div class="chat">
+	            	<div <% if messages.sender_id == current_user.id %> class="right" <% else %> class="left" <% end %>>
+
+	            		<%= messages.sender.name %>
+	            		<p><%= messages.body.html_safe %>  <%= link_to "Click to view Post" ,post_path(messages.post.id) rescue nil%></p>
+	            		<span><%= messages.created_at.strftime("%e %b %Y %H:%M:%S%p") %></span>
+	            	</div>
+	            </div>
+	        <% end %>
+	    </div>

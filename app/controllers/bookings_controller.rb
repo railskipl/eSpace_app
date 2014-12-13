@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
  include BookingsHelper
 
  def index
- 	@bookings = Booking.where("user_id = ? AND is_cancel = ?",current_user.id,false)
+ 	@bookings = Booking.where("user_id = ?",current_user.id).order("id desc")
  end
 
 	def new
@@ -154,11 +154,21 @@ class BookingsController < ApplicationController
     
 	end
 
+
+  def cancel_popup
+
+     @booking = Booking.find(params[:id])
+
+  end
+
   #this method cancel's the booking done by finder & does the cancel_booking_deduction
   # according to criteria.
   def cancel_booking
+
     @booking = Booking.where("id = ?",params[:id])
-    @price = @booking.first.dropoff_price
+    @price = @booking.first.price
+
+
     @stripe_charge_id = @booking.first.stripe_charge_id
     @days_diff =  days_diff(params[:drop_off_date].to_date)
     @amount = cancel_booking_deduction(@days_diff,@price).to_i 
@@ -172,7 +182,9 @@ class BookingsController < ApplicationController
             redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
             return false
     end
-    redirect_to new_booking_path
+
+    
+    redirect_to bookings_path
     flash[:notice] = "Booking is cancel & $#{@amount} is refunded. "
   end
 

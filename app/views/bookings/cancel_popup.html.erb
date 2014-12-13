@@ -1,0 +1,22 @@
+
+<div style="width:400px;">
+<h4>Cancel Booking</h4>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et varius eros, pretium scelerisque tortor. Duis in sem eu diam vehicula hendrerit at ac magna</p>
+
+<a href="#">Learn more</a>
+
+	<div class="actions" >
+		
+		<% if @booking.is_cancel == true %>
+			<%= link_to "Already Booking", "javascript:void(0)", :class => "book", :style=>"margin:0; padding: 6px 45px; position: unset; font-size: 14px;" %>
+		<% else %>
+    	<%= link_to "Cancel Booking", cancel_booking_bookings_path(:drop_off_date =>params[:drop_off_date],:id =>params[:id]), :class => "blue-btn b-mar" %>
+    	<% end %>
+  	</div>
+
+
+</div>
+	
+<br/>
+
