@@ -2376,11 +2376,16 @@ img {
 
 #map-canvas { height: 100%; margin: 0px; padding: 0px }
 
+<<<<<<< HEAD
 
 #small-map-canvas { height: 129px; margin: 0px; padding: 0px; width: 269px; }
 
 #flash_notice {color: #FD0000; }
 
+=======
+#small-map-canvas { height: 129px; margin: 0px; padding: 0px; width: 269px; }
+
+>>>>>>> development
 .sed1 {
     color: #899199;
     font-family: "brandon4";
