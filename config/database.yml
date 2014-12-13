@@ -14,60 +14,60 @@
 #   #socket: /var/run/mysqld/mysqld.sock
 
 
-  adapter: mysql2
-  database: college_app_development
-  username: root
-  password: 
-  #socket: /var/run/mysqld/mysqld.sock
+#   adapter: mysql2
+#   database: college_app_development
+#   username: root
+#   password: 
+#   #socket: /var/run/mysqld/mysqld.sock
 
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-
-  adapter: mysql2
-  database: college_app_test
-  username: root
-  password: 
-  #socket: /var/run/mysqld/mysqld.sock
-
-production:
-  adapter: mysql2
-  database: college_app_production
-  username: root
-  password: 
-#   #socket: /var/run/mysqld/mysqld.sock  
-
-
-# development:
-
-#   adapter: postgresql
-#   encoding: unicode
-#   database: estore
-#   host: localhost
-#   pool: 5
-#   username: postgres
-#   password: root
 
 # # Warning: The database defined as "test" will be erased and
 # # re-generated from your development database when you run "rake".
 # # Do not set this db to the same as development or production.
 # test:
-#       adapter: postgresql
-#       encoding: unicode
-#       database: estore
-#       host: localhost
-#       pool: 5
-#       username: postgres
-#       password: root
+
+#   adapter: mysql2
+#   database: college_app_test
+#   username: root
+#   password: 
+#   #socket: /var/run/mysqld/mysqld.sock
+
+# production:
+#   adapter: mysql2
+#   database: college_app_production
+#   username: root
+#   password: 
+# #   #socket: /var/run/mysqld/mysqld.sock  
+
+
+development:
+
+  adapter: postgresql
+  encoding: unicode
+  database: estore
+  host: localhost
+  pool: 5
+  username: postgres
+  password: root
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+      adapter: postgresql
+      encoding: unicode
+      database: estore
+      host: localhost
+      pool: 5
+      username: postgres
+      password: root
 
       
-# production:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: estore
-#   host: localhost
-#   pool: 5
-#   username: postgres
-#   password: root
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: estore
+  host: localhost
+  pool: 5
+  username: postgres
+  password: root
