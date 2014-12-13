@@ -143,10 +143,11 @@ background-color:#FFF;
 .kal img{ z-index:-22em !important;
 }
 .intire{font-size:12px; color:#F00;}
+
 #menu
 {
 width:1024px;
-height:88px;
+height:87px;
 background-color:#FFF;	
 	
 	}
@@ -2214,7 +2215,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 	
 	/*--------------------------8/12/2014-----------------------*/
 	
-	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:571px; font-size:10px}
+	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:604px; font-size:10px}
 	.blue-bg p{ margin:11px 0 0 0; color:#cbcaca}
 	
 	.blue-bg-div1 > p{text-align:justify}
@@ -2444,7 +2445,7 @@ img {
     font-family: brandon4;
     font-size: 12px;
     margin-top: 30px;
-    padding-left: 639px;
+    padding-left: 600px;
 }
 
 .selectParent {
@@ -2465,6 +2466,7 @@ img {
     margin-top: 0;
     overflow: hidden;
     width: 1024px;
+    border-top: 1px solid #eeeeee;
 }
 
 
@@ -2512,4 +2514,93 @@ img {
     overflow: hidden;
     width: 276px;
 }
+
+#small-map-canvas { height: 129px; margin: 0px; padding: 0px; width: 269px; }
+/*
+.search_button input{
+ background:none;
+ border:none;
+ background-image:url(/assets/search_new.png);
+ background-repeat:no-repeat;
+ width:18%;
+ 
+ }*/
+
+
+#password{
+  font-family:brandon4;
+  font-size:15px;
+  color:#b2b3b5;
+  margin-top: 12px;
+      
+  }
+.button-new2 {
+    background: none repeat scroll 0 0 #00b4ff;
+    border: medium none;
+    color: #ffffff;
+    font-family: brandon4;
+    font-size: 15px;
+    margin: 50px 17px 12px 14px;
+    padding: 10px 10px 8px;
+    width: 216px;
+}
+.button-new4 { 
+  
+  background: #00b4ff;
+  border:none;
+  color:#ffffff;
+  padding:10px 10px 8px;
+  margin-top:20px;
+  font-size:15px; 
+  width:212px;
+  font-family:brandon4;
+  position:absolute;
+  margin-left:11px;
+  
+}
+.new_login3
+ {
+  width:250px;
+  min-height:200px;
+/*  border:1px #F00 solid;*/
+  float:right;
+  margin:80px 230px 0 0;
+   
+   }
+
+form.signin .textbox input { 
+  background:#fffffff; 
+  border:1px solid #eeeeee;
+  color:#666; 
+  font:13px;
+  padding:10px 10px 8px;
+  width:211px;
+  height: 40px;
+}
+
+fieldset {
+    border: medium none;
+}
+
+.pickup4 {
+    color: #ccc;
+    font-family: brandon4;
+    font-size: 12px;
+}
+
+input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    width: 28px;
+}
+
+.new_login3 {
+    float: right;
+    margin: 100px 230px 0 0;
+    min-height: 200px;
+    width: 250px;
+}
+
+
 
