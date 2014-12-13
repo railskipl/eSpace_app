@@ -1,32 +1,54 @@
 
+ <div class="main2">
+                <div class="main-new">
+                 <ul class="verticle-menu" style="min-height:600px;">
+
+                    <li ><%= link_to "Personal Information",edit_user_path(current_user)%></li>
+                    <li class="active"><%= link_to "Change Password", edit_user_registration_path%></li>
+                    <li> <%= link_to "Bank Detail", bank_details_path%></li>
+                    <li><a href="#">My Post</a></li>
+                    <li><a href="#">My Order Received</a></li>
+                    <li><a href="#">My Booking</a></li>
+                    <li><a href="#">Payment</a></li>
+                    <li><a href="#">Message</a></li>
+                </ul>
+
+   <div class="new_login4">
+                 <div class="f1">
+
+                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {:class=>"change_password", method: :put }) do |f| %>
+                <%= devise_error_messages! %>
+                <fieldset class="textbox">
+                     
+              <label class="username">
+               <%= f.password_field :current_password, autocomplete: "off",:id=>"password1", :placeholder=>"Old password" %>
+
+                </label>
+                
+                <label class="username">
+               <%= f.password_field :password, autocomplete: "off",:id=>"password1", :placeholder=>"New password" %>
+
+                </label>
+                
+                <label class="username">
+             <%= f.password_field :password_confirmation, autocomplete: "off",:id=>"password1", :placeholder=>"Confirm password"  %>
+         
+                </label>
+                
+                </fieldset>
+                <%= f.submit "Change password",:class=>"button-new5"%>
+                  <% end %>
+     
+             </div> 
+          </div>
+        </div> 
+    </div>
 
 
-<h4>Change Password</h4>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <!-- <div><%#= f.label :email %><br />
-  <%#= f.email_field :email, autofocus: true %></div> -->
+           
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div><%= f.label :Old_Password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
-
-  <div><%= f.label :New_password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div><%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  
-    
-
-<div><%= f.submit "Update", :class=>"btn btn-primary" %></div>
-<% end %>
 
 
 <!-- <h3>Cancel my account</h3>
