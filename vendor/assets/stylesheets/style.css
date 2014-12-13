@@ -2016,7 +2016,8 @@ body{
 	width:1024px;
 	background:url(/assets/menubg.jpg) repeat-y #fff;
 	margin-top:0px;
-	overflow:hidden
+	overflow:hidden;
+	border-top: 1px solid #eeeeee;
 	} 
 	
 	.chat-wrap {
@@ -2377,15 +2378,70 @@ img {
 
 #map-canvas { height: 100%; margin: 0px; padding: 0px }
 
-<<<<<<< HEAD
-=======
+
 
 
 #small-map-canvas { height: 129px; margin: 0px; padding: 0px; width: 269px; }
 
+/*
+.search_button input{
+ background:none;
+ border:none;
+ background-image:url(/assets/search_new.png);
+ background-repeat:no-repeat;
+ width:18%;
+ 
+ }*/
+
+ fieldset {
+    border: medium none;
+}
+
+
+form.change_password .textbox input { 
+  background:#fffffff; 
+  border:1px solid #eeeeee;
+  color:#666; 
+  font:13px;
+  padding:10px 10px 8px;
+  width:215px;
+}
+
+.button-new5 { 
+  
+  background: #00b4ff;
+  border:none;
+  color:#ffffff;
+  padding:10px 10px 8px;
+  margin-top:20px;
+  font-size:15px; 
+  width:215px;
+  margin-left: 12px;
+  font-family:brandon4;
+  /*position:absolute;*/
+  
+}
+ .new_login4
+ {
+  width:250px;
+  min-height:200px;
+/*  border:1px #F00 solid;*/
+  float:right;
+  margin:80px 230px 0 0;
+  
+   
+   }
+  
+     #password1{
+      font-family:brandon4;
+      font-size:15px;
+      color:#b2b3b5;
+      margin-top: 12px
+       }
+
+
 #flash_notice {color: #FD0000; }
 
->>>>>>> 5da25a02304afb957331c554b80c3280b93e743f
 .sed1 {
     color: #899199;
     font-family: "brandon4";
@@ -2405,17 +2461,6 @@ img {
     width: 1024px;
 }
 
-
-
-.verticle-menu {
-    float: left;
-    font-family: "brandon2";
-    font-size: 13px;
-    list-style-type: none;
-    margin: 0;
-    padding: 27px 43px;
-    width: 270px;
-}
 
 .mark {
     background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
@@ -2610,5 +2655,6 @@ input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
     min-height: 200px;
     width: 250px;
 }
+
 
 
