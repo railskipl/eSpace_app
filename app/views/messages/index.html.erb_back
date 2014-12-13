@@ -40,8 +40,7 @@
 	{
 	     $('#responsecontainer').fadeOut("slow").load('<%= refresh_part_messages_path%>').fadeIn("slow");
 	}, 10000);
-</script>
-<script>
+
 	var refresmsg_hId = setInterval(function()
 	{
 	     $('#refresh_msg').load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
@@ -56,8 +55,7 @@
 
 	});
 
-</script>
-<script>
+
 	var refresmsg_hId = setInterval(function()
 	{
 	     $('#user_msg').load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');

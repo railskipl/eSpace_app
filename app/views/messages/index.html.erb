@@ -1,90 +1,26 @@
 		<div class="main-new">
             <ul class="verticle-menu">
-	            <li><a href="#">Personal Information</a></li>
-	            <li><a href="#">Change Password</a></li>
-	            <li><a href="#">Bank Details</a></li>
-	            <li><a href="#">My Post</a></li>
-	            <li><a href="#">My Order/Received</a></li>
-	            <li><a href="#">My Booking</a></li>
-	            <li><a href="#">Payment</a></li>
-	            <li class="active"><a href="#"><span></span>Message</a></li>
+	         
+	            <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+	            <li><%= link_to "Change Password", edit_user_registration_path %></li>
+	            <li><%= link_to "Bank Details",bank_details_path %></li>
+	            <li><%= link_to "My Post",posts_path%></li>
+	            <li><%= link_to "My Order/Received",order_receives_path%></li>
+	            <li><%= link_to "My Booking", bookings_path%></li>
+	            <li><%= link_to "Payment", nil%></li>
+
+	            <li class="active"><%= link_to("<span></span>".html_safe + "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> </li>
+                
             </ul>
             
             <div class="chat-wrap">
             
-            	<ul class="chat-menu">
-		            <li><a href="#">Laurent Luc</a></li>
-					<li class="active"><a href="#">John Doe</a></li>
-					<li><a href="#"><span></span>Christian Lau</a></li>
-					<li><a href="#">Lucie Mae</a></li>
-            	</ul>
+            	<div id="user_msg"></div>
             
             <div class="chatdiv">
             <div class="content">
-            <div class="chat">
-            <div class="left">
-            <p>
-            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            </p>
-            <span>13:02, 12-10-2014</span>
-            </div>
-            </div>
-            
-            <div class="chat">
-            <div class="right">
-            <p>
-            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-            </p>
-            <span>13:02, 12-10-2014</span>
-            </div>
-            </div>
-            
-            <div class="chat">
-            <div class="left">
-            <p>
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            </p>
-            <span>13:02, 12-10-2014</span>
-            </div>
-            </div>
-            
-            <div class="chat">
-            <div class="right">
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-            </p>
-            <span>13:02, 12-10-2014</span>
-            </div>
-            </div>
-            
-            <div class="chat">
-            <div class="left">
-            <p>
-            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            </p>
-            <span>13:02, 12-10-2014</span>
-            </div>
-            </div>
-            
-            <div class="chat">
-            <div class="right">
-            <p>
-            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-            </p>
-            <span>13:02, 12-10-2014</span>
-            </div>
-            </div>
-            
-            <div class="chat">
-            <div class="left">
-            <p>
-            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            </p>
-            <span>13:02, 12-10-2014</span>
-            </div>
-            </div>
-            
+	            <div id="refresh_msg"></div>
+      
             </div>
             
             <div class="enter"><a href="#">Press ENTER to send</a></div>
@@ -94,9 +30,10 @@
             </div>
             
             <div class="inbputbg">
-            <textarea rows="3" cols="" name="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-            </textarea>
-            <span><a href=""></a></span>
+            	
+
+            	<%= render 'reply'%>
+
             </div>
             
 
@@ -182,4 +119,40 @@
 				
 			});
 		})(jQuery);
+
+
+
 	</script>
+
+	<script>
+
+	jQuery(document).ready(function() {
+		jQuery("#refresh_msg").load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
+
+	});
+
+	var refreshId = setInterval(function()
+	{
+	     $('#responsecontainer').fadeOut("slow").load('<%= refresh_part_messages_path%>').fadeIn("slow");
+	}, 10000);
+
+	var refresmsg_hId = setInterval(function()
+	{
+	     $('#refresh_msg').load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
+	}, 10000);
+	</script>
+
+
+	<script>
+
+	jQuery(document).ready(function() {
+		jQuery("#user_msg").load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
+
+	});
+
+
+	var refresmsg_hId = setInterval(function()
+	{
+	     $('#user_msg').load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
+	}, 10000);
+</script>
