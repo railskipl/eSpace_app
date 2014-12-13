@@ -1,4 +1,4 @@
-    
+
 
    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
@@ -59,6 +59,10 @@
 
       google.maps.event.addDomListener(window, 'load', initialize);
 
+      jQuery(document).ready(function(){
+        $("#ref_comment").load('<%= books_comments_path(:post_id => @post.id) %>');
+      });//]]>  
+
       </script>
 
       <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css" %>
@@ -66,14 +70,14 @@
 
 
 
-    <div class="main-new">
+        <div class="main-new">
             <ul class="verticle-menu">
              <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
               <li><%= link_to "Change Password", edit_user_registration_path %></li>
               <li><%= link_to "Bank Details",bank_details_path %></li>
               <li><%= link_to "My Post",posts_path%></li>
-              <li class="active"><%= link_to "My Order/Received",order_receives_path%></li>
-              <li><%= link_to "My Booking", bookings_path%></li>
+              <li><%= link_to "My Order/Received",order_receives_path%></li>
+              <li class="active"><%= link_to "My Booking", bookings_path%></li>
               <li><%= link_to "Payment", nil%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
             </ul>
@@ -94,11 +98,17 @@
                       <!-- End -->
 
 
+                      
+
+
                       <div class="blue-bg-div1">
                             <span><%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %>.</span> 
                             <% if current_user.provider.present? &&  @post.user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %>
                             <p>
-                            <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %> <a href="#" class="g-round-btn">Rate</a>
+                            <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %> 
+
+                            <%= link_to "Rate ", rating_bookings_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %> 
+                             
                             </p>
                             <p>
                               <%= @post.additional_comments %>
@@ -126,13 +136,11 @@
                           <li><div>Total Amount</div> <span>$<%= @booking.price %></span></li>
                           <li><div>Status</div> <span>Waiting for drop-off confirmation</span></li>
                           
-                          <a href="#" class="cdo">Confirm drop-off</a>
+                          <%= link_to "Confirm drop-off ", drop_off_bookings_path(:booking_id => @booking.id ), :remote=>true, :class=>"cdo" %> 
                           
                           </ul>
 
                             <%= link_to "Cancel Booking", cancel_popup_bookings_path(:drop_off_date =>@booking.dropoff_date,:id =>@booking.id), :class=>"cb", :remote=> true %>
-                            
-                            <%#= link_to "Cancel Booking", cancel_booking_bookings_path(:drop_off_date =>@booking.dropoff_date,:id =>@booking.id), :class=>"cb" %>
                             
 
                           </div>
@@ -162,37 +170,11 @@
                         <% end %>
                     </div>
                     
-                    <ul>
-                    <li>
-                    <p>Juliette</p>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo 
-                    inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                    <span>
-                    October 2014
-                    </span>
-                    </li>
-                    
-                    <li>
-                    <p>Rbert</p>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo 
-                    inventore veritatis et quasi.
-                    <span>
-                    October 2014
-                    </span>
-                    </li>
-                    
-                    <li>
-                    <p>Fanny</p>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                    inventore veritatis et quasi.
-                    <span>
-                    October 2014
-                    </span>
-                    </li>
+                   
+                    <div id="ref_comment"> </div>
                     
                     
-                    </ul>
-                    <a href="#" class="more">More</a>
+                    
                     
                     </div>
                     
