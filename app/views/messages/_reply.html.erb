@@ -1,26 +1,9 @@
-  <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 
- <!-- <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>-->
-  <%= form_for(@message,:html => {:id => "reply_message"}) do |f| %>
-
-      <%#= f.hidden_field :subject, :value =>  @messagee.subject_name(@messagee.subject) %>
-
-      <%= f.text_area :body ,:id=>"area4"%>
-      <%#= hidden_field_tag :message_id,@messagee.id  %>
-      <%#= hidden_field_tag :post_id,@messagee.id%>
-      <%#= hidden_field_tag :post_id,@messagee.post_id  %>
-      <%# raise @messagee.sender.id.inspect %>
+   <%= form_for(@message,:html => {:id => "reply_message"}) do |f| %>
+      <%= f.text_area :body ,:rows=>"3" %>
       <%= hidden_field_tag :recipient_id, params[:recv_id] %>
-
-    <%= hidden_field_tag :reply,"reply"%><br/>
-    <div class="actions">
+      <%= hidden_field_tag :reply,"reply"%>
+  
       <%= f.submit "Reply", :class=>"btn btn-primary"  %>
-    </div>
+
   <% end %>
-  <!--<script type="text/javascript">
-  // bkLib.onDomLoaded(function() {
-   
-  //   new nicEditor({buttonList : ['bold','italic','underline','html','justify','left','center','right','justify','ol','ul']}).panelInstance('area4');
-   
-  // });
-  </script>-->

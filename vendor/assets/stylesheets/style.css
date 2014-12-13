@@ -1743,7 +1743,7 @@ font-size:15px;
     width: 81px;
 }
 
-.error { color: #FD0000;}
+.error { color: #FD0000; margin-left: 546px;}
 
 .form-error{ color: #FD0000; clear: left; }
 
@@ -1831,7 +1831,7 @@ body{
 	margin:0; 
 	padding:27px 43px; 
 	list-style-type:none;
-	width:268px;
+	width:270px;
 	font-family:'brandon2';
 	font-size:13px;
 	float:left;
@@ -1859,7 +1859,7 @@ body{
 	}
 	
 	.right-side{
-	width:756px;
+	width:754px;
 	background:#fff; 
 	float:left;
 	}
@@ -2377,7 +2377,10 @@ img {
 
 #map-canvas { height: 100%; margin: 0px; padding: 0px }
 
+
+
 #small-map-canvas { height: 129px; margin: 0px; padding: 0px; width: 269px; }
+
 /*
 .search_button input{
  background:none;
@@ -2433,3 +2436,146 @@ form.change_password .textbox input {
       color:#b2b3b5;
       margin-top: 12px
        }
+
+
+#flash_notice {color: #FD0000; }
+
+.sed1 {
+    color: #899199;
+    font-family: "brandon4";
+    font-size: 12px;
+    line-height: 12px;
+    margin-top: 5px;
+    padding: 0 0 0 10px;
+    text-align: justify;
+    z-index: -2147483648;
+}
+
+
+.main2 {
+    background-color: #fff;
+    margin-top: 0;
+    min-height: 630px;
+    width: 1024px;
+}
+
+
+
+.verticle-menu {
+    float: left;
+    font-family: "brandon2";
+    font-size: 13px;
+    list-style-type: none;
+    margin: 0;
+    padding: 27px 43px;
+    width: 270px;
+}
+
+.mark {
+    background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
+    border: medium none;
+    color: #b2b3b5;
+    font-family: brandon4;
+    padding: 10px 10px 8px;
+    width: 300px;
+}
+
+#topic1 {
+    border: 1px solid #eeeeee;
+    color: #b2b3b5;
+    font-family: brandon4;
+    font-size: 12px;
+    padding: 10px 10px 8px;
+    width: 291px;
+    margin-left: 228px;
+
+}
+
+.button {
+    background: none repeat scroll 0 0 #00b4ff;
+    border: medium none;
+    color: #ffffff;
+    font-family: brandon4;
+    font-size: 15px;
+    margin-left: 228px;
+    margin-top: 26px;
+    padding: 10px 10px 8px;
+    width: 292px;
+}
+
+.help {
+    color: #072643;
+    font-family: brandon4;
+    font-size: 12px;
+    margin-top: 30px;
+    padding-left: 639px;
+}
+
+.selectParent {
+    border: 1px solid #eeeeee;
+    overflow: hidden;
+    width: 276px;
+}
+
+.topics {
+    color: red;
+    font-size: 12px;
+    line-height: 1;
+    margin: 140px 0 0 354px;
+}
+
+.main-new {
+    background: url("/assets/menubg.jpg") repeat-y scroll 0 0 #fff;
+    margin-top: 0;
+    overflow: hidden;
+    width: 1024px;
+}
+
+
+
+
+.verticle-menu li {
+    list-style-type: none;
+    margin: 0;
+    padding: 13px 0 14px;
+    position: relative;
+    margin-left: -5px;
+}
+
+.verticle-menu li.active a {
+    color: #00b4ff;
+}
+
+.verticle-menu li a {
+    color: #bbbfc2;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    width: 300px !important;
+    height: 400px !important;
+}
+
+
+#contactus_subject{
+	background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
+    border: medium none;
+    /*border-bottom-style: hidden;*/
+    color: #b2b3b5;
+    font-family: "brandon4";
+    font-size: 12px;
+    padding: 10px 10px 8px;
+    width: 291px;
+    border-right-style: hidden;
+    
+
+    
+}
+.selectParent {
+    border: 1px solid #eeeeee;
+    overflow: hidden;
+    width: 276px;
+}
+
+
+

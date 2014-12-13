@@ -1,34 +1,35 @@
-<% if @check_user.present? %>
-<div id="user_msg">
-	<ul>
+		<% if @check_user.present? %>
+			<div id="user_msg">
 
-		<% @user_messages_sender.each do |user_messages|%> 
-		<li>
-			<% unless user_messages.sender.id == current_user.id%>	
-			<img src="assets/thumb_profile.jpg" alt=""> 
-			 <a style="margin:0" href="<%= messages_path(:recv_id =>user_messages.sender_id)%>">
-			 	<% if @user_messages_sender_last.sender.id ==  user_messages.sender.id %>*<% end %>
-			 	<%= user_messages.sender.name %><%= user_messages.sender.last_name %></a>
-			<% end %>
-		<% end %>
-		 </li> 
-	</ul>
-</div>
-<% else %>
-  <div id="user_msg">
-	<ul>
+				<ul class="chat-menu">
+					<% @user_messages_sender.each do |user_messages|%>
+		            <li <% if user_messages.sender_id = params[:recv_id] %> class="active" <% end %>>
+		            	<% unless user_messages.sender.id == current_user.id%>	
+		            	<a style="margin:0" href="<%= messages_path(:recv_id =>user_messages.sender_id)%>">
+		            		<% if @user_messages_sender_last.sender.id ==  user_messages.sender.id %><span></span><% end %>
+		            		<%= user_messages.sender.name %> <%= user_messages.sender.last_name %>
+		            	</a>
+		            	<% end %>
+		            </li>
+					
+					<% end %>
+     			</ul>     
+			</div>	
+		<% else %>
+  		
+				<ul class="chat-menu">
+					<% @user_messages_receiver.each do |user_messages|%> 
+		            <li <% if user_messages.recipient_id = params[:recv_id] %> class="active" <% end %>>
+		            	<% unless user_messages.recipient.id == current_user.id %>
+		            	<a style="margin:0" href="<%= messages_path(:recv_id =>user_messages.recipient_id)%>">
+		            		<% if @user_messages_receiver_last.recipient.id ==  user_messages.recipient.id %><span></span><% end %>
+		            		<%= user_messages.recipient.name %><%= user_messages.recipient.last_name %>
+		            	</a>
+		            	<% end %>
+		            </li>
+					
+					<% end %>
+            	</ul>     
 
-		<% @user_messages_receiver.each do |user_messages|%> 
-		<li>
-		    <% unless user_messages.recipient.id == current_user.id%>		
-			<img src="assets/thumb_profile.jpg" alt=""> 
-			 <a style="margin:0" href="<%= messages_path(:recv_id =>user_messages.recipient_id)%>">
-			 	<% if @user_messages_receiver_last.recipient.id ==  user_messages.recipient.id %>*<% end %>
-			 	<%= user_messages.recipient.name %><%= user_messages.recipient.last_name %></a>
-			<% end %>
-		<% end %>
-		 </li> 
-	</ul>
-</div>
-<% end %>       
-     
+		<% end %> 
+
