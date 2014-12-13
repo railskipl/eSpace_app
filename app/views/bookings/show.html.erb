@@ -72,8 +72,8 @@
               <li><%= link_to "Change Password", edit_user_registration_path %></li>
               <li><%= link_to "Bank Details",bank_details_path %></li>
               <li><%= link_to "My Post",posts_path%></li>
-              <li class="active"><%= link_to "My Order/Received",order_receives_path%></li>
-              <li><%= link_to "My Booking", bookings_path%></li>
+              <li><%= link_to "My Order/Received",order_receives_path%></li>
+              <li class="active"><%= link_to "My Booking", bookings_path%></li>
               <li><%= link_to "Payment", nil%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
             </ul>
@@ -94,11 +94,17 @@
                       <!-- End -->
 
 
+                      
+
+
                       <div class="blue-bg-div1">
                             <span><%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %>.</span> 
                             <% if current_user.provider.present? &&  @post.user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %>
                             <p>
-                            <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %> <a href="#" class="g-round-btn">Rate</a>
+                            <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %> 
+
+                            <%= link_to "Rate ", rating_bookings_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %> 
+                             
                             </p>
                             <p>
                               <%= @post.additional_comments %>
@@ -131,8 +137,6 @@
                           </ul>
 
                             <%= link_to "Cancel Booking", cancel_popup_bookings_path(:drop_off_date =>@booking.dropoff_date,:id =>@booking.id), :class=>"cb", :remote=> true %>
-                            
-                            <%#= link_to "Cancel Booking", cancel_booking_bookings_path(:drop_off_date =>@booking.dropoff_date,:id =>@booking.id), :class=>"cb" %>
                             
 
                           </div>

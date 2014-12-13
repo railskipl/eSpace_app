@@ -77,6 +77,7 @@ Rails.application.routes.draw do
       post :checkout
       get 'cancel_booking'
       get 'cancel_popup'
+      get 'rating'
     end
   end
 
