@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   resources :about_us
   resources :access_ids
-  get 'faq' => "faqs#faq", as: "faq"
+  
   resources :faqs 
-
+  get 'frequently_asked_question' => "faqs#frequently_asked_question", as: "frequently_asked_question"
   resources :order_receives
   get '/search_order_received_by_date' => "order_receives#search_order_received_by_date", as: "search_order_received_by_date"
 

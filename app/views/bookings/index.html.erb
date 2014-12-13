@@ -90,15 +90,18 @@
                         <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %m,%Y") %> 
                         <p>
                         <span>Booked drop-off</span> 
-                        <label class="tasks-list-item">
                         <% if booking.dropoff_price != 0 %>
-                           <input id="false" type="checkbox" value="1" name="false" disabled="disabled" checked>
-                        <%else%>
-                          <input id="false" type="checkbox" value="1" name="false" disabled="disabled">
+                          <label class="tasks-list-item">
+                            <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
+                            <span class="tasks-list-mark"></span>
+                          </label>
+                            $<%= booking.pickup_price %>
+                          <%else%>
+                            <label class="tasks-list-item">
+                            <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
+                            <span class="tasks-list-mark"></span>
+                            </label>
                         <%end%>
-                        <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
-                        </label>
                         </p>
                         <p>
                         <a href="#" class="booking-btn">Confirm drop-off</a>
@@ -111,16 +114,18 @@
                         <p>
 
                         <span>Booked pick-up</span>
-                        <label class="tasks-list-item">
                         <% if booking.pickup_price != 0 %>
-                        
-                          <input id="false" type="checkbox" value="1" name="false" disabled="disabled" checked >
-                        <%else%>
-                          <input id="false" type="checkbox" value="1" name="false" disabled="disabled">
+                          <label class="tasks-list-item">
+                            <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
+                            <span class="tasks-list-mark"></span>
+                          </label>
+                            $<%= booking.pickup_price %>
+                          <%else%>
+                          <label class="tasks-list-item">
+                            <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
+                            <span class="tasks-list-mark"></span>
+                          </label>
                         <%end%>
-                        <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
-                        </label>
                         </p>
                         </div>
                         
