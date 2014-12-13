@@ -143,8 +143,22 @@ class BookingsController < ApplicationController
 
 
   def rating
-    
+    @post = Post.find(params[:post_id])
   end
+
+  def drop_off
+    @booking = Booking.find(params[:booking_id])
+  end
+
+  def confirm
+    @booking = Booking.find(params[:id])
+    @booking.update_columns(is_confirm: true)
+
+    redirect_to booking_path(@booking.id)
+    flash[:notice] = "Confirm drop off"
+
+  end
+
 
 	def is_number?(i)
     	true if Float(i) rescue false

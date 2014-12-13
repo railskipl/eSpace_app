@@ -59,7 +59,12 @@ Rails.application.routes.draw do
    get  'search'  => "posts#search"
    match 'posts/overview' => "posts#overview", via: [:get, :post]
 
-  resources :comments
+  resources :comments do
+    collection do
+        get 'books'
+    end
+  end
+
   resources :posts do
     resources :comments, :only => [:create, :show]
     member do
@@ -78,6 +83,8 @@ Rails.application.routes.draw do
       get 'cancel_booking'
       get 'cancel_popup'
       get 'rating'
+      get 'drop_off'
+      get 'confirm'
     end
   end
 
