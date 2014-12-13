@@ -29,25 +29,25 @@
   <div class="main2">
                 <div class="main-new">
                  <ul class="verticle-menu" style="min-height:600px;">
-                    <li >
+                    <li class="active">
                     <%= link_to "Personal Information", edit_user_path(current_user)%>
                     </li>
 
-                    <li class="active">
+                    <li>
                     <%= link_to "Change Password", edit_user_registration_path%>
                     </li>
 
                     <li>
-                    <a href="#">Bank Detail</a>
+                    <%= link_to "Bank Details",bank_details_path %>
                     </li>
 
                     <li>
                     <%= link_to 'My Post', posts_path %>
                     </li>
 
-                    <li><a href="#">My Order Received</a></li>
-                    <li><a href="#">My Booking</a></li>
-                    <li><a href="#">Payment</a></li>
+                    <li><%= link_to "My Order/Received",order_receives_path%></li>
+                    <li><%= link_to "My Booking", bookings_path%></li>
+                    <li><%= link_to "Payment", payments_path%></li>
 
                     <li>
                     <%= link_to "Messages",{:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil%></li>
