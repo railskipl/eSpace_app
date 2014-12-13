@@ -1832,7 +1832,7 @@ body{
 	margin:0; 
 	padding:27px 43px; 
 	list-style-type:none;
-	width:268px;
+	width:270px;
 	font-family:'brandon2';
 	font-size:13px;
 	float:left;
@@ -1860,7 +1860,7 @@ body{
 	}
 	
 	.right-side{
-	width:756px;
+	width:754px;
 	background:#fff; 
 	float:left;
 	}
@@ -2377,6 +2377,15 @@ img {
 
 #map-canvas { height: 100%; margin: 0px; padding: 0px }
 
+<<<<<<< HEAD
+=======
+
+
+#small-map-canvas { height: 129px; margin: 0px; padding: 0px; width: 269px; }
+
+#flash_notice {color: #FD0000; }
+
+>>>>>>> 5da25a02304afb957331c554b80c3280b93e743f
 .sed1 {
     color: #899199;
     font-family: "brandon4";
@@ -2496,7 +2505,7 @@ img {
 
 
 #contactus_subject{
-	background: url("/..assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
+	background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
     border: medium none;
     /*border-bottom-style: hidden;*/
     color: #b2b3b5;
@@ -2601,6 +2610,5 @@ input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
     min-height: 200px;
     width: 250px;
 }
-
 
 

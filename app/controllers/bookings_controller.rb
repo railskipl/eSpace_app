@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
  include BookingsHelper
 
  def index
- 	@bookings = Booking.where("user_id = ? AND is_cancel = ?",current_user.id,false)
+ 	@bookings = Booking.where("user_id = ?",current_user.id).order("id desc")
  end
 
 	def new
@@ -76,10 +76,10 @@ class BookingsController < ApplicationController
     elsif  params[:start_date] > params[:end_date]
       redirect_to  bookings_path, alert: "Start Date Cannot Be Greater"
     elsif params[:start_date] == params[:end_date]
-      @bookings = @bookings.where("created_at >= :start_date and date(created_at) <= :end_date", {:start_date => params[:start_date], :end_date => params[:end_date]})
+      @bookings = @bookings.where("created_at >= :start_date and date(created_at) <= :end_date", {:start_date => params[:start_date].to_date, :end_date => params[:end_date].to_date})
     else
 
-    @bookings = @bookings.where("date(created_at) >= :start_date AND date(created_at) <= :end_date", {:start_date => params[:start_date], :end_date => params[:end_date]})
+    @bookings = @bookings.where("date(created_at) >= :start_date AND date(created_at) <= :end_date", {:start_date => params[:start_date].to_date, :end_date => params[:end_date].to_date})
     end
 
   end
@@ -154,11 +154,21 @@ class BookingsController < ApplicationController
     
 	end
 
+
+  def cancel_popup
+
+     @booking = Booking.find(params[:id])
+
+  end
+
   #this method cancel's the booking done by finder & does the cancel_booking_deduction
   # according to criteria.
   def cancel_booking
+
     @booking = Booking.where("id = ?",params[:id])
-    @price = @booking.first.dropoff_price
+    @price = @booking.first.price
+
+
     @stripe_charge_id = @booking.first.stripe_charge_id
     @days_diff =  days_diff(params[:drop_off_date].to_date)
     @amount = cancel_booking_deduction(@days_diff,@price).to_i 
@@ -172,7 +182,9 @@ class BookingsController < ApplicationController
             redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
             return false
     end
-    redirect_to new_booking_path
+
+    
+    redirect_to bookings_path
     flash[:notice] = "Booking is cancel & $#{@amount} is refunded. "
   end
 

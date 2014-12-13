@@ -34,8 +34,8 @@
               <li><%= link_to "Change Password", edit_user_registration_path %></li>
               <li><%= link_to "Bank Details",bank_details_path %></li>
               <li><%= link_to "My Post",posts_path%></li>
-              <li class="active"><%= link_to "My Order/Received",order_receives_path%></li>
-              <li><%= link_to "My Booking", bookings_path%></li>
+              <li><%= link_to "My Order/Received",order_receives_path%></li>
+              <li class="active"><%= link_to "My Booking", bookings_path%></li>
               <li><%= link_to "Payment", nil%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
             </ul>
@@ -104,6 +104,8 @@
                         <a href="#" class="booking-btn">Confirm drop-off</a>
                         </p>
 
+                        
+
                         </div>
                         
                         <div class="booking-col1">
@@ -119,6 +121,9 @@
                           <input id="false" type="checkbox" value="1" name="false" disabled="disabled">
                         <%end%>
                         <span class="tasks-list-mark"></span>
+                          <p class="vmp">
+                           <%= link_to "View My Post", booking_path(booking.id) %>
+                          </p>
                         <!--<span class="tasks-list-desc">Left Label</span>-->
                         </label>
                         </p>

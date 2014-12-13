@@ -37,7 +37,7 @@ ddaccordion.init({
       <%= form_tag faq_path, method: :get do %>
       <span class="font20"><%= text_field_tag :search, params[:search]%></span>
       <div class="search">
-        <%= submit_tag 'Search' %>
+        <%= image_submit_tag("search_new.png")%>
       </div>
       <% end %>
     </div>
