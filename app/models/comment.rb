@@ -6,6 +6,6 @@ class Comment < ActiveRecord::Base
   # validates :comments, presence: true 
     # belongs_to :user
 
-   self.per_page = 2
+   self.per_page = 4
 
 end
