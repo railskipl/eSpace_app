@@ -1,65 +1,185 @@
-<% unless params[:recv_id].nil?%>
-<table style='border-spacing: 40px;border-collapse: separate;height:100%;'>
-	<tr><td valign='top'>
-	Users 
-		<div class="menu_simple">
-			<div id="user_msg"></div>
-
-
-		</div>
-
-
-		</td>
-		<td valign='top'>
-			<div style="width:40%;text-align:center"><h4>Message</h4></div>
-
- 			<p id="notice"><%= notice %></p>
-			<div id="refresh_msg">
-			</div>	
-            <div>
-			   <%= render 'reply'%>
+		<div class="main-new">
+            <ul class="verticle-menu">
+	            <li><a href="#">Personal Information</a></li>
+	            <li><a href="#">Change Password</a></li>
+	            <li><a href="#">Bank Details</a></li>
+	            <li><a href="#">My Post</a></li>
+	            <li><a href="#">My Order/Received</a></li>
+	            <li><a href="#">My Booking</a></li>
+	            <li><a href="#">Payment</a></li>
+	            <li class="active"><a href="#"><span></span>Message</a></li>
+            </ul>
+            
+            <div class="chat-wrap">
+            
+            	<ul class="chat-menu">
+		            <li><a href="#">Laurent Luc</a></li>
+					<li class="active"><a href="#">John Doe</a></li>
+					<li><a href="#"><span></span>Christian Lau</a></li>
+					<li><a href="#">Lucie Mae</a></li>
+            	</ul>
+            
+            <div class="chatdiv">
+            <div class="content">
+            <div class="chat">
+            <div class="left">
+            <p>
+            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            </p>
+            <span>13:02, 12-10-2014</span>
             </div>
-   
- 		</td>
-	</tr>
-</table>
+            </div>
+            
+            <div class="chat">
+            <div class="right">
+            <p>
+            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+            </p>
+            <span>13:02, 12-10-2014</span>
+            </div>
+            </div>
+            
+            <div class="chat">
+            <div class="left">
+            <p>
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            </p>
+            <span>13:02, 12-10-2014</span>
+            </div>
+            </div>
+            
+            <div class="chat">
+            <div class="right">
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            </p>
+            <span>13:02, 12-10-2014</span>
+            </div>
+            </div>
+            
+            <div class="chat">
+            <div class="left">
+            <p>
+            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            </p>
+            <span>13:02, 12-10-2014</span>
+            </div>
+            </div>
+            
+            <div class="chat">
+            <div class="right">
+            <p>
+            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+            </p>
+            <span>13:02, 12-10-2014</span>
+            </div>
+            </div>
+            
+            <div class="chat">
+            <div class="left">
+            <p>
+            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            </p>
+            <span>13:02, 12-10-2014</span>
+            </div>
+            </div>
+            
+            </div>
+            
+            <div class="enter"><a href="#">Press ENTER to send</a></div>
+            
+            
 
-<% end %>
+            </div>
+            
+            <div class="inbputbg">
+            <textarea rows="3" cols="" name="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
+            </textarea>
+            <span><a href=""></a></span>
+            </div>
+            
+
+            
+            </div>
+        </div>
 
 
-<!-- https://github.com/titanous/mailman/issues/19 -->
 
-<script>
-
-	jQuery(document).ready(function() {
-		jQuery("#refresh_msg").load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
-
-	});
-
-	var refreshId = setInterval(function()
-	{
-	     $('#responsecontainer').fadeOut("slow").load('<%= refresh_part_messages_path%>').fadeIn("slow");
-	}, 10000);
-</script>
-<script>
-	var refresmsg_hId = setInterval(function()
-	{
-	     $('#refresh_msg').load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
-	}, 10000);
-	</script>
-
-
+        <!-- custom scrollbar plugin -->
+    <%= stylesheet_link_tag  'scroll', "jquery.mCustomScrollbar" %>
+    <%= javascript_include_tag "bootstrap.min", "jquery.mCustomScrollbar.concat.min" %>
+	
 	<script>
+		(function($){
+			$(window).load(function(){
 
-	jQuery(document).ready(function() {
-		jQuery("#user_msg").load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
 
-	});
-
-</script>
-<script>
-	var refresmsg_hId = setInterval(function()
-	{
-	     $('#user_msg').load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
-	}, 10000);
-</script>
+				
+				/* all available option parameters with their default values */
+				$(".content").mCustomScrollbar({
+					setWidth:false,
+					setHeight:false,
+					setTop:0,
+					setLeft:0,
+					axis:"y",
+					scrollbarPosition:"inside",
+					scrollInertia:950,
+					autoDraggerLength:true,
+					autoHideScrollbar:false,
+					autoExpandScrollbar:false,
+					alwaysShowScrollbar:0,
+					snapAmount:null,
+					snapOffset:0,
+					mouseWheel:{
+						enable:true,
+						scrollAmount:"auto",
+						axis:"y",
+						preventDefault:false,
+						deltaFactor:"auto",
+						normalizeDelta:false,
+						invert:false,
+						disableOver:["select","option","keygen","datalist","textarea"]
+					},
+					scrollButtons:{
+						enable:false,
+						scrollType:"stepless",
+						scrollAmount:"auto"
+					},
+					keyboard:{
+						enable:true,
+						scrollType:"stepless",
+						scrollAmount:"auto"
+					},
+					contentTouchScroll:25,
+					advanced:{
+						autoExpandHorizontalScroll:false,
+						autoScrollOnFocus:"input,textarea,select,button,datalist,keygen,a[tabindex],area,object,[contenteditable='true']",
+						updateOnContentResize:true,
+						updateOnImageLoad:true,
+						updateOnSelectorChange:false,
+						releaseDraggableSelectors:false
+					},
+					theme:"light",
+					callbacks:{
+						onInit:false,
+						onScrollStart:false,
+						onScroll:false,
+						onTotalScroll:false,
+						onTotalScrollBack:false,
+						whileScrolling:false,
+						onTotalScrollOffset:0,
+						onTotalScrollBackOffset:0,
+						alwaysTriggerOffsets:true,
+						onOverflowY:false,
+						onOverflowX:false,
+						onOverflowYNone:false,
+						onOverflowXNone:false
+					},
+					live:false,
+					liveSelector:null
+				});
+				
+			});
+		})(jQuery);
+	</script>
