@@ -1,5 +1,5 @@
 class FaqsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:faq]
+  before_filter :authenticate_user!, :except => [:frequently_asked_question]
   before_filter :correct_user, :only => [:index, :show, :destroy,:create, :edit,:update,:new]
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
@@ -34,7 +34,6 @@ class FaqsController < ApplicationController
   end
 
   def update
-    #raise params[:faq][:faq_questions_attributes][:value].inspect
     @faq.update(faq_params)
     redirect_to faqs_path
   end
@@ -44,7 +43,7 @@ class FaqsController < ApplicationController
     respond_with(@faq)
   end
 
-  def faq
+  def frequently_asked_question
     if params[:search].present?
       search_condition = "%" + params[:search] + "%"
       @faqss = Faq.where('title LIKE ? ',search_condition)
@@ -88,7 +87,7 @@ class FaqsController < ApplicationController
 
     def custom_layout
       case action_name
-      when "faq"
+      when "frequently_asked_question"
         "application"
       else
         "admin"

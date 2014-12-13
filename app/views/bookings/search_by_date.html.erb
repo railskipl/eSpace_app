@@ -1,3 +1,16 @@
+<%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js" %>
+<%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker"%>
+
+<script type="text/javascript">
+
+    jQuery(function($){
+      $("#start_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+
+    });
+    jQuery(function($){
+      $("#end_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+    });
+</script>
 <div class="main-new">
             <ul class="verticle-menu">
             <li><a href="#">Personal Information</a></li>
@@ -25,7 +38,7 @@
                     
                     </ul>
                     <div class="search">
-                    <%#= submit_tag "Submit"%>
+                      <%= image_submit_tag("search_new.png")%>
                     <!-- <a href=""><img src="/assets/search_new.png"></a> -->
                     </div>
                     <%end%> 
