@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
-    @post = Post.find(params[:id])
+    @post = Post.find(@booking.post_id)
     @comments = Comment.where(:post_id => @post)
   end
 
@@ -76,10 +76,10 @@ class BookingsController < ApplicationController
     elsif  params[:start_date] > params[:end_date]
       redirect_to  bookings_path, alert: "Start Date Cannot Be Greater"
     elsif params[:start_date] == params[:end_date]
-      @bookings = @bookings.where("created_at >= :start_date and date(created_at) <= :end_date", {:start_date => params[:start_date], :end_date => params[:end_date]})
+      @bookings = @bookings.where("created_at >= :start_date and date(created_at) <= :end_date", {:start_date => params[:start_date].to_date, :end_date => params[:end_date].to_date})
     else
 
-    @bookings = @bookings.where("date(created_at) >= :start_date AND date(created_at) <= :end_date", {:start_date => params[:start_date], :end_date => params[:end_date]})
+    @bookings = @bookings.where("date(created_at) >= :start_date AND date(created_at) <= :end_date", {:start_date => params[:start_date].to_date, :end_date => params[:end_date].to_date})
     end
 
   end

@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'faq' => "faqs#faq", as: "faq"
   resources :faqs 
 
+  resources :order_receives
+  get '/search_order_received_by_date' => "order_receives#search_order_received_by_date", as: "search_order_received_by_date"
+
   get 'payement_transfers/index'
 
   get 'ratings/update'
