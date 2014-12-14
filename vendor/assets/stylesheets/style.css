@@ -2661,4 +2661,157 @@ input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
 }
 
 
+.post-bg{ background:#072643; width:100%; float:left; padding:20px 25px; color:#eee; min-height:571px; font-size:10px; font-family: 'brandon4'; font-size:10px}
+.post-bg-left{ float:left; width:380px}
+.post-bg-right{ float:left; width:310px}
+.post-bg-row{ width:100%; margin:0 0 30px 0; display:inline-block}
+.post-bg-row-col1{ float:left; width:180px}
+.post-bg p{ margin:7px 0 0 0; font-size:10px; color:#899199; line-height:11px}
+.post-bg-row-col2{ float:left; width:50px}
+.post-bg-input{ width:100%; border:2px solid #889098; padding:0px 5px; color:#eeeeee; background:#072643; font-size:10px}
+.right-align{ text-align:right}
+.font13{ font-size:13px}
+.post-bg-row-col3{ float:left; width:200px}
+
+
+.question {
+    color: #B0B9C0;
+    font-size: 10px;
+    position: relative;
+    top: -8px;
+}
+
+.post-date{ width: auto; font-size:12px; float:left; list-style-type:none; margin:5px 0; padding:0; font-family:'brandon2';}
+.post-date li{ padding:0; margin:4px 0; position:relative; display:inline-block;}
+.post-date li label{ width:66px; float:left; font-size:12px}
+.post-date li input{background: none repeat scroll 0 0 #072643; border: 0 none; color: #BBBFC2; padding:0 0 3px 0; text-align: right; vertical-align: middle; width:110px; 						font-size:10px}
+.post-date span{float:right;}
+.post-date span a{position:absolute; top:0px; right:-21px}
+
+.check-box{ margin:5px 0; padding:0; list-style-type:none; font-size:10px; }
+.check-box li{ padding:4px 0; list-style-type:none}
+.check-box li .tasks-list-desc{ float:left; color:#eee; font-weight:normal; width:165px}
+.check-box li .tasks-list-cb:checked ~ .tasks-list-mark{border-color: #848d96!important;}
+.check-box li .tasks-list-mark{border-color: #848d96!important;}
+.check-box li .tasks-list-mark:before{border-color:#fff!important}
+
+.tasks-list-item {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.tasks-list-item + .tasks-list-item {
+  border-top: 1px solid #f0f2f3;
+}
+
+.post-price label{ width:30px!important;}
+.post-price{margin:18px 0 0 0 !important;}
+.post-price li{padding:3px 0 !important; margin:0!important} 
+.post-price li input{border: 2px solid #889098!important; width:50px; text-align:left }
+	
+.post-price span{color: #899199;
+    float: left;
+    font-size: 10px;
+    margin: 2px 5px;
+}
+
+.post-bg-row-col4 {float:left; width:140px; margin:0 0 0 40px}
+
+.field-list{ margin:5px 0; padding:0; list-style-type:none}
+.field-list li{ margin:0; padding:1px 0; display:inline-block}
+.field-list li label{ width:183px; float:left}
+.field-list li input{ width:154px; float:left; background: none repeat scroll 0 0 #072643; border: 2px solid #889098; color: #EEEEEE; font-size: 10px; padding: 0 5px;}
+	
+.field-list li.small input{ width:60px;}
+
+.btn-file input[type="file"] {
+    background: none repeat scroll 0 0 #FF0000;
+    cursor: inherit;
+    display: block;
+    min-height: 100%;
+    width:150px;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    text-align: right;
+    top: 0;
+}
+
+.btn-file {
+    overflow: hidden;
+    position: relative;
+	background:#ffffff; color:#112138; padding:1px 10px;
+	font-size:11px;
+	font-family: 'brandon6';
+	float:left
+}
+
+.photo{ float:left; margin:0 0 0 20px}
+.photo img{ float:left}
+.photo > a {
+    display: inline-block;
+    float: left;
+	margin:5px 0 0 20px;
+	color:#eee
+}
+
+.comment-area{    background: none repeat scroll 0 0 #072643;
+    border: 2px solid #889098;
+    color: #EEEEEE;
+    float: left;
+    font-size: 10px;
+    padding:5px 10px;
+    width:100%;
+	color:#899199;
+	font-family: 'brandon4';
+	}
+
+.submit-btn{
+	background: none repeat scroll 0 0 #00B4FF;
+    border: 0 none;
+    border-radius: 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: 'brandon4';
+    font-size:14px;
+    margin:40px 0 0 0;
+    padding: 6px 30px;
+    text-align: center;
+	float:right}
+
+div.dropdown {
+margin:0
+width: auto;
+position: relative;
+height: auto;
+text-align:left;
+float:left
+}
+
+a.account {
+	font-size: 11px;
+	line-height: 16px;
+	color: #555;
+	position: absolute;
+	z-index: 110;
+	display: block;
+	padding:47px 52px;
+	text-decoration: none;
+	background: url(/assets/menu.png)no-repeat;
+	cursor:pointer;
+}
+
+div.submenu
+{
+	background: url(/assets/close1.jpg) no-repeat;
+	position: absolute;
+	top: 94px;
+	left: 0px;
+	z-index: 100;
+	display: none;
+	border-radius: 6px;
+
+}
 
