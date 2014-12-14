@@ -1,3 +1,5 @@
+<%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js" %>
+<%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker"%>
 <script type="text/javascript" >
 $(document).ready(function()
 {
@@ -39,26 +41,90 @@ $(".account").attr('id', '');
   
 });
  </script>
+
+<script type="text/javascript">
+
+  jQuery(function($){
+    $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+
+  });
+  jQuery(function($){
+    $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+  });
+  jQuery(function($){
+    $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+  });
+  jQuery(function($){
+    $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+  });
+    
+  $(document).ready(function(){
+      $('input[type="checkbox"]').click(function(){
+          if($(this).attr("id")=="post_pick_up"){
+              $(".post_pick_up").toggle();
+          }
+          if($(this).attr("id")=="post_drop_off"){
+              $(".post_drop_off").toggle();
+          }
+          
+      });
+  });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+// Tooltip only Text
+$('.masterTooltip').hover(function(){
+        // Hover over code
+        var title = $(this).attr('title');
+        $(this).data('tipText', title).removeAttr('title');
+        $('<p class="tooltip"></p>')
+        .text(title)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        // Hover out code
+        $(this).attr('title', $(this).data('tipText'));
+        $('.tooltip').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.tooltip')
+        .css({ top: mousey, left: mousex })
+});
+});
+</script>
              
     <div class="main-new">
             <ul class="verticle-menu">
-            <li><a href="#">Personal Information</a></li>
-            <li><a href="#">Change Password</a></li>
-            <li><a href="#">Bank Details</a></li>
-            <li class="active"><a href="#">My Post</a></li>
-            <li><a href="#">My Order/Received</a></li>
-            <li><a href="#">My Booking</a></li>
-            <li><a href="#">Payment</a></li>
-            <li><a href="#">Message</a></li>
+              <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+              <li><%= link_to "Change Password", edit_user_registration_path %></li>
+              <li><%= link_to "Bank Details",bank_details_path %></li>
+              <li class="active"><%= link_to "My Post",posts_path%></li>
+              <li><%= link_to "My Order/Received",order_receives_path%></li>
+              <li><%= link_to "My Booking", bookings_path%></li>
+              <li><%= link_to "Payment", nil%></li>
+              <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
             </ul>
             
             <div class="right-side">
-              
+              <%= form_for(@post, :html=>{ id: "new_post"}) do |f| %>
+                <% if @post.errors.any? %>
+                  <div id="error_explanation">
+                    <ul>
+                    <% @post.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
                     <div class="post-bg">
                       <div class="post-bg-left">
                             <div class="post-bg-row">
                               <div class="post-bg-row-col1">
-                                <span class="font13">Area available<span class="question">?</span></span>
+                                <span class="font13">Area available
+                                <span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
+                                </span>
                                 <p>
                                 How to estimate :</br>
                 4 feet x 5 feet = 20 sq. feet
@@ -66,7 +132,7 @@ $(".account").attr('id', '');
                               </div>
                                 
                                 <div class="post-bg-row-col2 right-align">
-                                <input name="" type="text" class="post-bg-input">
+                                <%= f.text_field :area , :class=>"post-bg-input"%>
                                 <p>
                                 sq. ft.
                                 </p>
@@ -76,10 +142,15 @@ $(".account").attr('id', '');
                             
                             <div class="post-bg-row">
                               <div class="post-bg-row-col3">
-                                When can they drop off goods at your place ?<span class="question">?</span>
+                                When can they drop off goods at your place ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
                                 <ul class="post-date">
-                          <li><label>From</label><input type="text" value=""><span><a href="#"><img alt="" src="/assets/cal_icon2.png"></a></span></li>
-                                <li><label>To</label><input type="text" value=""><span><a href="#"><img alt="" src="/assets/cal_icon2.png"></a></span></li>
+                                  <li><label>From</label>
+                                    <%= f.text_field :drop_off_avaibility_start_date%>
+                                  </li>
+
+                                  <li><label>To</label>
+                                    <%= f.text_field :drop_off_avaibility_end_date%>
+                                  </li>
                                 </ul>
                               </div> 
                                 
@@ -90,19 +161,21 @@ $(".account").attr('id', '');
                             
                             <div class="post-bg-row">
                               <div class="post-bg-row-col3">
-                                Can you help transport the stuff in your car ?<span class="question">?</span>
+                                Can you help transport the stuff in your car ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
                                 <ul class="check-box">
-                          <li>
+                            <li>
                                 <label class="tasks-list-item">
-                                <input type="checkbox" name="task_3" value="1" class="tasks-list-cb">
+                                <input type="checkbox" id="post_drop_off" name="post[drop_off]" value="1" class="tasks-list-cb">
+                                <%#= f.check_box :drop_off, :class => "tasks-list-cb" %>
                                 <span class="tasks-list-mark"></span>
                                 <span class="tasks-list-desc">Drop-off</span>
                                 </label>
                             </li>
                                 
-                                <li>
+                            <li>
                                 <label class="tasks-list-item">
-                                <input type="checkbox" name="task_3" value="1" class="tasks-list-cb">
+                                <input type="checkbox" id="post_pick_up" name="post[pick_up]" value="1" class="tasks-list-cb">
+                                <%#= f.check_box :pick_up, :class => "tasks-list-cb" %>
                                 <span class="tasks-list-mark"></span>
                                 <span class="tasks-list-desc">Pick-up</span>
                                 </label>
@@ -113,8 +186,13 @@ $(".account").attr('id', '');
                                 
                                 <div class="post-bg-row-col4">
                                 <ul class="post-date post-price">
-                          <li><label>Price</label><span>$</span><input type="text" value=""></li>
-                                <li><label>Price</label><span>$</span><input type="text" value=""></li>
+
+                                <li <% if @post.drop_off == true %> <% else %> style="display: none;" <% end %> ><label>Price</label><span>$</span>
+                                  <%= f.text_field :price_include_drop_off %>
+                                </li>
+                                <li <% if @post.pick_up == true %> <% else %> style="display: none;" <% end %>><label>Price</label><span>$</span>
+                                  <%= f.text_field :price_include_pick_up %>
+                                </li>
                                 </ul>
                               </div>
                                 
@@ -125,12 +203,24 @@ $(".account").attr('id', '');
                             
                             <div class="post-bg-row">
                             <ul class="field-list">
-                            <li><label>Address<span class="question">?</span></label></li>
-                            <li><label>Street address</label> <input type="text" value=""></li>
-                            <li class="small"><label>Apt # <span style="color:#78838e; font-size:10px">Optional</span></label> <input type="text" value=""></li>
-                            <li><label>City</label> <input type="text" value=""></li>
-                            <li class="small"><label>State</label> <input type="text" value=""></li>
-                            <li class="small"><label>Zip code</label> <input type="text" value=""></li>
+                            <li><label>Address</label> 
+                              <%= f.text_field :address, :class => "small" %>
+                            </li>
+                            <li><label>Street address</label> 
+                              <input type="text" value="">
+                            </li>
+                            <li class="small"><label>Apt # <span style="color:#78838e; font-size:10px">Optional</span></label> 
+                              <input type="text" value="">
+                            </li>
+                            <li><label>City</label> 
+                              <input type="text" value="">
+                            </li>
+                            <li class="small"><label>State</label> 
+                              <input type="text" value="">
+                            </li>
+                            <li class="small"><label>Zip code</label> 
+                              <input type="text" value="">
+                            </li>
                             </ul>
                             </div>
                             
@@ -139,16 +229,16 @@ $(".account").attr('id', '');
                       <div class="post-bg-right">
                             <div class="post-bg-row">
                               <div class="post-bg-row-col1">
-                                <span class="font13">Price per sq. foot<span class="question">?</span></span>
+                                <span class="font13">Price per sq. foot<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
                                 <p>
                                 This is the price the renters will see.
-                A small commission will be deducted 
-                before the money is sent to you. <a href="#" style="color:#b0b9c0">Learn more</a>
+                                A small commission will be deducted 
+                                before the money is sent to you. <a href="#" style="color:#b0b9c0">Learn more</a>
                                 </p>
                               </div>
                                 
                                 <div class="post-bg-row-col2 right-align">
-                                <input type="text" class="post-bg-input" name="">
+                                <%= f.text_field :price_sq_ft,:class=>"post-bg-input" %>
                                 <p>
                                 sq. ft.
                                 </p>
@@ -157,53 +247,53 @@ $(".account").attr('id', '');
                             
                             <div class="post-bg-row" style="margin-bottom:18px">
                               <div class="post-bg-row-col3">
-                               When can they pick up the goods ?<span class="question">?</span>
+                               When can they pick up the goods ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
                                 <ul class="post-date">
-                          <li><label>From</label><input type="text" value=""><span><a href="#"><img src="/assets/cal_icon2.png" alt=""></a></span></li>
-                                <li><label>To</label><input type="text" value=""><span><a href="#"><img src="/assets/cal_icon2.png" alt=""></a></span></li>
+                                <li><label>From</label><%= f.text_field :pick_up_avaibilty_start_date%></li>
+                                <li><label>To</label><%= f.text_field :pick_up_avaibility_end_date%></li>
                                 </ul>
                               </div> 
                             </div>
                             
                             <div class="post-bg-row rel" style="margin-bottom:30px">
                               <span class="file-input btn-file">
-                        Upload Photo <input type="file" multiple="">
-                      </span>
+                                Upload Photo <%= f.file_field:photo %>
+                              </span>
                                 
                                 <div class="photo">
-                                <img src="/assets/photo.jpg" alt="">
-                               <a href="#">Delete</a>
+                                  <% if @post.photo.exists? %>
+                                    <%= image_tag @post.photo.url(:thumb) %>
+                                  <% end %>
+                                  <!-- <a href="#">Delete</a> -->
                                 </div>
                             </div>
                             
                             
                             <div class="post-bg-row">
                               
-                               Comments<span class="question">?</span>
+                               Comments<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
                                 <p>
-                                <textarea rows="5" class="comment-area">Apartment will be acessible all summer</textarea>
+                                <%= f.text_area :additional_comments,:rows => "5", :class => "comment-area" , :placeholder => "Apartment will be accessible all summer"%>
                                 </p>
                                 <p>
-                                <button  type="button" class="submit-btn">Submit</button>
-                              
+                                <%= f.submit "Submit",:class=>"submit-btn" %>&nbsp;&nbsp;&nbsp;&nbsp;
+                                
                                 </p>
                             
                             </div>
-                            
+                               <% if @post.id %>
+                                  <% if @post.status == true %>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Deactive Post', toggle_post_path(@post.id), :class=>"booking-btn" %>
+                                  <% else %>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Activate Post', toggle_post_path(@post.id), :class=>"booking-btn" %>
+                                  <% end %>
+                                  &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"booking-btn" %> 
+                                <% end %>
                             
                         </div>
-                    </div>   
+                 
+              <%end%>   </div>   
            </div>
         </div>
  
-  </div><!-------------------main--------------------------->
-</div><!-------------------wrapper--------------------------->
-            
-             
  
-        
-
-
-
-</body>
-</html>

@@ -61,23 +61,23 @@
                   <fieldset class="textbox">
                        
                         <div input id="password">
-                          <%= f.email_field :email, :readonly => true, :placeholder=>"Email" %>
+                          <%= f.email_field :email, :readonly => true,:style => "font-family: brandon4;", :placeholder=>"Email" %>
                         </div>
 
                         <div input id="password">
-                          <%= f.text_field :name, :placeholder=> "First Name" %>
+                          <%= f.text_field :name,:style => "font-family: brandon4;", :placeholder=> "First Name" %>
                         </div>
                        
                         <div input id="password">
-                          <%= f.text_field :last_name, :placeholder=> "Last Name" %>
+                          <%= f.text_field :last_name, :style => "font-family: brandon4;",:placeholder=> "Last Name" %>
                         </div>
 
                         <div input id="password">
-                          <%= f.text_field :personal_email, :placeholder=> "Personal Email" %>
+                          <%= f.text_field :personal_email, :style => "font-family: brandon4;",:placeholder=> "Personal Email" %>
                         </div>
 
                         <div input id="password"> 
-                          <%= f.text_field :mobile_number, placeholder:"xxx xxx-xxxx"%>
+                          <%= f.text_field :mobile_number, :style => "font-family: brandon4;",placeholder:"xxx xxx-xxxx"%>
                         </div> 
 
                   </fieldset>
