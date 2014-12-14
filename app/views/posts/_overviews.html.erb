@@ -10,66 +10,84 @@
     <% end %>
 
     <div class="new_box">
-      <a onmouseout="hover.out(<%= index+x %>)" onmouseover="hover.over(<%= index+x %>)" href="<%= post_path(post) %>" id="m<%= post.id %>">
-              <div class="img1">
+          <a onmouseout="hover.out(<%= index+x %>)" onmouseover="hover.over(<%= index+x %>)" href="<%= post_path(post) %>" id="m<%= post.id %>">
+                  <div class="img1">
               
-              <div class="1" style="float:left; margin-right:10px;"> 
-                  <% if post.photo.url(:thumb) == "/photos/thumb/missing.png" %>
-                      <%= image_tag "default_post_small.png", :style=>"margin-top:4px;" %>
-                  <% else %>
-                      <%= image_tag(post.photo.url(:thumb), :style=>"margin-top:4px;") %>
-                 <% end %>
-               
-              </div>
-              <div class="circle">
-               <p>$<%= post.price_sq_ft.to_i %></p></div>
-                </div>
+                    <div class="1" style="float:left; margin-right:10px;"> 
+                        <% if post.photo.url(:thumb) == "/photos/thumb/missing.png" %>
+                            <%= image_tag "default_post_small.png", :style=>"margin-top:4px;" %>
+                        <% else %>
+                            <%= image_tag(post.photo.url(:thumb), :style=>"margin-top:4px;") %>
+                       <% end %>
+                     
+                    </div>
+                    <div class="circle"><p>$<%= post.price_sq_ft.to_i %></p></div>
+                  </div>
         
         
             
 
-                 <div class="name-title"> <%= post.user.name.capitalize rescue nil%> <%= post.user.last_name[0,1] rescue nil %> 
+                 <div class="name-title"> <%= post.user.name.capitalize rescue nil%> <%= post.user.last_name[0,1] rescue nil %>  
+          <span style="font-size:10px; color:#999;"> 
+            <% if current_user.provider.present? &&  post.user.provider.present? && post.user_id != current_user.id %>(<%= mutual_friend_list(post.user.id) rescue nil%> mutual friends)
+            <% end %>
+          </span>
+           <div class="month"> <%= post.drop_off_avaibility_start_date.strftime("%B %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%B %e") %> 
+                <% if post.drop_off == true %> 
+                  <p title="Drop off ride availabe ($<%= post.price_include_drop_off.to_i %>)" class="tooltip_new">
+                    <span title="More"><img src="/assets/right.png"></span>
+                  </p> 
+                <% else %>  
+                  <p title="Drop off ride unavailable" class="tooltip_new">
+                    <span title="More"><img src="/assets/close1.png"></span>
+                  </p> 
+                <% end %>
+            </div>
 
-                  <span style="font-size:10px; color:#999;"> <% if current_user.provider.present? &&  post.user.provider.present? && post.user_id != current_user.id %>(<%= mutual_friend_list(post.user.id) rescue nil%> mutual friends)<% end %>
-                  </span>
-                  <p class="month"> <%= post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%b %e") %> <div class="right-mark">
-                   <% if post.drop_off == true %> 
-                    <p class="tooltip"><img src="/assets/right.png" style="float:right; margin:-6px 24px 0 0;"><span class="classic">Drop off ride availabe ($<%= post.price_include_drop_off.to_i %>) </span></p> 
-                    <% else %>  
-                    <p class="tooltip" style="color:#999;"><img src="/assets/close1.png" style="float:right; margin:-6px 24px 0 0;"><span class="classic">Drop off ride unavailable </span> </p>
-                  <% end %>
-
-                  </p>
-
-
-                    <p class="month"> <%= post.pick_up_avaibilty_start_date.strftime("%b %e") %> - <%= post.pick_up_avaibility_end_date.strftime("%b %e") %> <div class="right-mark">
-                      <% if post.pick_up == true %> 
-                      <p class="tooltip"><img src="/assets/right.png" style="float:right; margin:11px -20px 0 0;"><span class="classic">Pick-up ride availabe ($<%= post.price_include_pick_up.to_i %>) </span></p> 
-                      <% else %>  
-                      <p class="tooltip" style="color:#999;"><img src="/assets/close1.png" style="float:right; margin:11px -20px 0 0;"><span class="classic">Pick-up ride unavailable </span> </p>
-                      <% end %>
-                    </p>
-
-
-                
-                  
-                 
-                  
-                  <div class="name-title" style="margin:-30px 0 0 180px;"> <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? "#{post.distance.round(2)} miles" : '' : '' %></div>
-                  <div class="address">  <%= post.address %></div>
-                 </div>
-              </div>
-
-              <div class="btn_b1" style="margin-left:324px; margin-top:-15px"> 
-             <div id="cf">
+            <div class="month"  style="margin-top:12px;"> <%= post.pick_up_avaibilty_start_date.strftime("%B %e") %> -  <%= post.pick_up_avaibility_end_date.strftime("%B %e") %> 
+              <% if post.pick_up == true %> 
+                  <p title="Pick-up ride availabe ($<%= post.price_include_pick_up.to_i %>)" class="tooltip_new">
+                    <span title="More"><img src="/assets/right.png"></span>
+                  </p> 
+                <% else %>  
+                  <p title="Pick-up ride unavailable" class="tooltip_new">
+                    <span title="More"><img src="/assets/close1.png"></span>
+                  </p> 
+                <% end %>
+            </div>
+         
+            <div class="name-title" style="margin:-20px 0 0 175px;"> <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? "#{post.distance.round(2)} miles" : '' : '' %> </div>
+            <div class="address-new">  <%= post.address %></div>
+            <div class="btn_b1" style="margin-left:324px; margin-top:-16px"> 
+              <div id="cf">
                   <img class="bottom" src="/assets/b2.png" />
                   <img class="top" src="/assets/b1.png" />
-                    </div>
-                     </div>
-  
+              </div>
+            </div>
              
-      </div></a>
+         </div>
+
+        </a>
       </div>
 
     <% end %>
+
+
+
+
+
+
+
+
+  
+            
+        
+
+                  
+
+
+
+                
+
+         
 

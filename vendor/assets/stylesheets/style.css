@@ -1774,7 +1774,7 @@ font-size:15px;
 
 .month {
     color: #999999;
-    float: left;
+    float: right;
     font-family: brandon4;
     font-size: 10px;
     line-height: 10px;
@@ -2077,7 +2077,7 @@ body{
 	.chat{ width:100%; font-size:10px; line-height:10px}
 	.chat .left{ float:left; margin:0; position:relative}
 	.chat .right{ float:right; margin:0; position:relative}
-	.chat div p{ width:233px; padding:10px; border:2px solid #19bbff; margin-bottom:10px;}
+	.chat div p{ width:238px; padding:10px; border:2px solid #19bbff; margin-bottom:10px;}
 	.chat .right > p{ border:2px solid #69afcc}
 	.chat .left span{ float:left; position:absolute; bottom:-9px; left:13px; color:#d1d1d1}
 	.chat .right span{ float:right; position:absolute; bottom:-9px; right:13px; color:#d1d1d1}
@@ -2237,7 +2237,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 	.cb{ padding:12px; border:2px solid #d4d7db; color:#d4d7db; font-size:12px; float:left; margin-top:27px}
 	
 	.mapdiv{ width:268px; float:left}
-	.review-div{ padding:43px; font-size:13px; color:#072643; font-family: 'brandon6';}
+	.review-div{ padding:43px 43px 15px; font-size:13px; color:#072643; font-family: 'brandon6';}
 	.review-div span{font-family: 'brandon6';}
 	
 	.star { float:right; font-size:10px; color:#899199}
@@ -2656,5 +2656,64 @@ input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
     width: 250px;
 }
 
+.tooltip_new{
+   			display: inline;
+    		position: relative;
+}
 
+.tooltip_new img {
+    margin-top: -3px;
+}
+		
+		.tooltip_new:hover:after{
+    		background: #ffffff;
+    		border:1px #ededed solid;
+    	   	bottom: 0px;
+    		color: #b0b0ba;
+    		content: attr(title);
+    		left:150%;
+    		padding: 5px 15px;
+    		position: absolute;
+    		z-index: 98;
+    		width: 150px;
+		}
+		
+		.tooltip_new:hover:before{
+    		border:1px #CCC solid;
+    		width:auto;
+    		bottom: 20px;
+    		position: absolute;
+    		z-index: 99;
+		}
+
+		.address-new{  /*------9/12/14----------------*/
+			 width:86px;
+			margin-left:175px;
+		    font-size: 10px;
+		    line-height: 11px;
+			font-family:brandon4;
+			margin-top:0px;
+		    color:#999;
+
+		 }	
+
+		 .booking_content { 
+		 	box-sizing: border-box;
+		    height: 392px;
+		    overflow: auto;
+		    padding: 0 16px 0 0;
+		    position: relative;
+		    width: 100%;
+		}
+
+
+		.message_btn {
+		    background: url("/assets/w-btn.jpg") no-repeat scroll 50% 50% rgba(0, 0, 0, 0);
+		    float: left;
+		    height: 75px;
+		    padding: 30px 28px;
+		    text-align: center;
+		    border:0;
+		    cursor:pointer;
+		}
 
