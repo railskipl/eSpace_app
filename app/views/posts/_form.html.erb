@@ -1,57 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dinobo</title>
+<script type="text/javascript" >
+$(document).ready(function()
+{
+$(".account").click(function()
+{
+var X=$(this).attr('id');
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <link rel="stylesheet" type="text/css" href="css/components.css" />
-  <link rel="stylesheet" type="text/css" href="css/stylesheet-image-based.css">
-  <script src="js/jquery.min.js"></script>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+if(X==1)
+{
+$(".submenu").hide();
+$(this).attr('id', '0');  
+}
+else
+{
+
+$(".submenu").show();
+$(this).attr('id', '1');
+}
+  
+});
+
+//Mouseup textarea false
+$(".submenu").mouseup(function()
+{
+return false
+});
+$(".account").mouseup(function()
+{
+return false
+});
 
 
-<div class="wrapper">
-  <div class="main"> 
-          
-    <div class="login">
-          <a href="#">Vivek Chakole</a>
-        </div>
-                
-    <div class="menu">
-          <a href="#"><img src="image/logo.png" class="logo"></a>
-            
-    <div class="dropdown">
-  <a class="account" >
-    </a>
-  <div class="submenu" style="display: none; ">
-    
-   
-<div class="main-new2">
-  <ul>
-        <li><a href="#">List your place</a></li>
-        <li><a href="#">Browse  Spaces</a></li>
-        <li><a href="#">Messages <span>2</span></a></li>
-        <li class="active"><a href="#">My Account</a></li>
-        <li><a href="#">About Us</a></li>
-       <li><a href="#">Support</a></li>
-        </ul>
-
-      </div>
-  </div>
-  </div>
-        
-        </div>
-                             
+//Textarea without editing.
+$(document).mouseup(function()
+{
+$(".submenu").hide();
+$(".account").attr('id', '');
+});
+  
+});
+ </script>
+             
     <div class="main-new">
             <ul class="verticle-menu">
             <li><a href="#">Personal Information</a></li>
@@ -90,8 +78,8 @@
                               <div class="post-bg-row-col3">
                                 When can they drop off goods at your place ?<span class="question">?</span>
                                 <ul class="post-date">
-                          <li><label>From</label><input type="text" value=""><span><a href="#"><img alt="" src="image/cal_icon2.png"></a></span></li>
-                                <li><label>To</label><input type="text" value=""><span><a href="#"><img alt="" src="image/cal_icon2.png"></a></span></li>
+                          <li><label>From</label><input type="text" value=""><span><a href="#"><img alt="" src="/assets/cal_icon2.png"></a></span></li>
+                                <li><label>To</label><input type="text" value=""><span><a href="#"><img alt="" src="/assets/cal_icon2.png"></a></span></li>
                                 </ul>
                               </div> 
                                 
@@ -171,8 +159,8 @@
                               <div class="post-bg-row-col3">
                                When can they pick up the goods ?<span class="question">?</span>
                                 <ul class="post-date">
-                          <li><label>From</label><input type="text" value=""><span><a href="#"><img src="image/cal_icon2.png" alt=""></a></span></li>
-                                <li><label>To</label><input type="text" value=""><span><a href="#"><img src="image/cal_icon2.png" alt=""></a></span></li>
+                          <li><label>From</label><input type="text" value=""><span><a href="#"><img src="/assets/cal_icon2.png" alt=""></a></span></li>
+                                <li><label>To</label><input type="text" value=""><span><a href="#"><img src="/assets/cal_icon2.png" alt=""></a></span></li>
                                 </ul>
                               </div> 
                             </div>
@@ -183,7 +171,7 @@
                       </span>
                                 
                                 <div class="photo">
-                                <img src="image/photo.jpg" alt="">
+                                <img src="/assets/photo.jpg" alt="">
                                <a href="#">Delete</a>
                                 </div>
                             </div>
