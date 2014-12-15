@@ -1,78 +1,96 @@
+    <div class="main-new">
+          <ul class="verticle-menu">
+            <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+              <li><%= link_to "Change Password", edit_user_registration_path %></li>
+              <li><%= link_to "Bank Details",bank_details_path %></li>
+              <li class="active"><%= link_to "My Post",posts_path%></li>
+              <li><%= link_to "My Order/Received",order_receives_path%></li>
+              <li><%= link_to "My Booking", bookings_path%></li>
+              <li><%= link_to "Payment", nil%></li>
+              <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
+          </ul>
+            
+            <div class="right-side">
+              <div class="blue-header">
+                <ul class="date">
+                  <li>From <span><input type="text" value="May 20, 2014">
+                      <a href="#"><img src="image/cal_icon2.png" alt=""></a></span>
+                  </li>
+                    
+                  <li>
+                    To <span><input type="text" value="December 30, 2014"><a href="#"><img src="image/cal_icon2.png" alt=""></a></span>
+                  </li>
+                    
+                </ul>
+                    
+                <div class="status">
+                    <select  class="status-prev">
+                        <option value="10" style="color:#999;">Status</option>
+                        <option value="9" style="color:#999;">Active</option>
+                        <option value="9" style="color:#999;">Inactive</option>
+                    </select>
+                </div>
 
-  <script type="text/javascript">
+                <div class="search">
+                    <button type="button" class="search-btn-new"></button>
+                </div>
 
-    jQuery(function($){
-      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
+              </div>
+                
+              <div class="booking-wrap">
+    
+                <div class="new-add-post"><%= link_to 'Add Post', new_post_path %> </div>
+  
+                  <% @posts.each_with_index do |post, index| %>
+                    <div class="booking-box-add">
+                      <div class="booking-col">
+                            
+                        <p style="width:70px;">111, 1st Street Los Angeles, CA 10021 </p>
+                        <p><span> Bookings received </span>: 13 </p>
+                      </div>
+                        
+                       
+                        <div class="booking-col1">
+                         
+                        <span>Total area</span> : <%= post.area.to_i %> sq. ft
+                        <p>
+                          <span>Booking area</span> : 80 sq. ft
+                        </p>
+                        <p>
+                          <span>Price/sq. ft</span> : $<%= post.price_sq_ft.to_i %>
+                        </p>
+                        </div>
+                        
+                        <div class="booking-col1">
+                        
+                        <p>
+                          <span>Booked drop-off</span> 
+                        <label class="tasks-list-item">
+                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
+                        <span class="tasks-list-mark"></span>
+                        <!--<span class="tasks-list-desc">Left Label</span>-->
+                        </label>
+                        </p>
+                        <p>
+                          <span>Booked Pick-up</span> 
+                        <label class="tasks-list-item">
+                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
+                        <span class="tasks-list-mark"></span>
+                        <!--<span class="tasks-list-desc">Left Label</span>-->
+                        </label>
+                        </p>
+                        
+                        </div>
+                        
+                        <div class="booking-col1">
+                        <span>Status</span>  : <% if post.status == true %> Active <% else %> Deactive <% end %>
+                        <br>
+                        <span>Post date</span>  : <%= post.created_at.strftime("%d-%m-%Y") %> </div>
+                        
+                  </div>
+                  <% end %>
 
-    });
-    jQuery(function($){
-      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
-    });
-
-
-  </script>
-
-
-<p><%= link_to "My Post", posts_path %> | <%= link_to "Archived Post", archive_posts_path %></p><br/>
-
-<h4>Search by</h4>
-<%= form_for :search, :url=> {:controller=>'posts', :action=>'index'}, :html => {:method => 'get'} do |f| %>
-  <p>
-    <%= f.select :status, options_for_select(%w[Active Inactive]) %>
-    From Date :
-     <%= text_field_tag :start_date, params[:start_date], :readonly => true %>
-
-     To Date :
-     <%= text_field_tag :end_date, params[:end_date], :readonly => true %>&nbsp;
-
-    <%= f.submit "Search",:class => "btn btn-primary contact-form" %>
-  </p>
-<% end %>
-
-
-<% if @start_date > @end_date %>
-"Start Date Cannot Be Greater"
-<% elsif @posts.blank? %>
-No Results found!!
-
-<%else%>
-<h4>My Post</h4>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Sr No.</th>
-      <th>Post ID</th>
-       <th>Price</th>
-      <th>Post Date</th>
-      <th>Area (Sq ft)</th>
-      <th>Price (Sq ft)</th>
-      <th>Address</th>
-      <th>Status</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each_with_index do |post, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= post.id %></td>
-        <td><%= post.price_sq_ft %></td>
-        <td><%= post.created_at.strftime("%d-%m-%Y") %></td>
-       
-        <td><%= post.area %></td>
-        <td>$<%= post.price_sq_ft %></td>
-
-        <td><%= post.address %></td>
-        <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
-        <td><%= link_to 'View Details', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-    <% end %>
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+  
+                </div>
+            </div>
+        </div>

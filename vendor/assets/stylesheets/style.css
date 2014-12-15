@@ -2790,7 +2790,7 @@ a.account {
 
 div.submenu
 {
-	background: url(/assets/close1.jpg) no-repeat;
+	background: url(/assets/close_menu.jpg) no-repeat;
 	position: absolute;
 	top: 92px;
 	left: 0px;
@@ -2868,6 +2868,48 @@ div.submenu
 	color:#899199;
 	font-size:14px;
 }
+
+ .new-add-post {float:right; margin:-12px 0 0 30px; font-size:10px;}
+ .new-add-post a {text-decoration:none;}
+ .new-add-post a:hover {text-decoration:none;}
+ .booking-box-add{ width:auto; padding:9px 12px; border:2px solid #eee; margin:15px 0 10px 16px; overflow:hidden; font-size:9px;}
+
+ .status {
+    background-image: url("/assets/down_arrow.png");
+    background-repeat: no-repeat;
+    border: 1px solid #ccc;
+    height: 20px;
+    margin-left: 440px;
+    overflow: hidden;
+    position: relative;
+    width: 100px;
+}
+.status-prev {
+  background: transparent;
+  width: 100px;
+  padding:0px 8px 0px 40px;
+  font-size: 12px;
+  line-height: 1;
+  border: 0;
+  border-radius: 0;
+  height: 34px;
+  -webkit-appearance: none;
+  color: #FFF;
+   float:right;
+   margin-top:-8px;
+  font-family:brandon4;
+	}
+  
+.search-btn-new
+{ 
+	float:left; 
+	text-align:center; 
+	padding:8px 10px; 
+	background:url(/assets/search_new.png) 50% 50% no-repeat; 
+	border:0; 
+	cursor:pointer;
+	margin-top:-20px;
+ }
 
 
 
