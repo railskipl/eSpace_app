@@ -1,0 +1,295 @@
+
+
+  <script type="text/javascript">
+
+    jQuery(function($){
+      $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/calendar.gif', buttonImageOnly: true})
+
+    });
+    jQuery(function($){
+      $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/calendar.gif', buttonImageOnly: true})
+    });
+    jQuery(function($){
+      $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/calendar.gif', buttonImageOnly: true})
+    });
+    jQuery(function($){
+      $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/calendar.gif', buttonImageOnly: true})
+    });
+    
+    $(document).ready(function(){
+        $('input[type="checkbox"]').click(function(){
+            if($(this).attr("id")=="post_pick_up"){
+                $(".post_pick_up").toggle();
+            }
+            if($(this).attr("id")=="post_drop_off"){
+                $(".post_drop_off").toggle();
+            }
+            
+        });
+    });
+
+  </script>
+
+
+
+  
+
+<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
+
+<%= form_for(@post, :html=>{ id: "new_post"}) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :area %>
+    <%= f.text_field :area %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price_sq_ft, "Price per square feet" %>
+    <%= f.text_field :price_sq_ft %>
+
+  </div>
+
+  <div class="field">
+     <%= f.check_box :drop_off %> Drop Off  <%= f.check_box :pick_up %> Pick Up <br/><br/>
+  </div>
+
+  <div class="field post_pick_up" <% if @post.pick_up == true %> <% else %> style="display: none;" <% end %>>
+    <%= f.label :price_include_pick_up, "Pick up Price"%>
+    <%= f.text_field :price_include_pick_up %>
+  </div>
+
+  <div class="field post_drop_off" <% if @post.drop_off == true %> <% else %> style="display: none;" <% end %>>
+    <%= f.label :price_include_drop_off, "Drop off Price" %>
+    <%= f.text_field :price_include_drop_off %>
+  </div>
+
+
+  <div class="field">
+   
+       <%= f.label :drop_off_avaibility_start_date %>
+       <%= f.text_field :drop_off_avaibility_start_date%>
+      
+
+  </div>
+
+  <div class="field">
+ 
+      <%= f.label :drop_off_avaibility_end_date %>
+      <%= f.text_field :drop_off_avaibility_end_date%>
+
+  </div>
+
+  <div class="field">
+   
+      <%= f.label :pick_up_avaibilty_start_date %>
+      <%= f.text_field :pick_up_avaibilty_start_date%>
+
+      <%= f.label :pick_up_avaibility_end_date %>
+      <%= f.text_field :pick_up_avaibility_end_date%>
+
+  </div>
+
+   <div class="field">
+    <%= f.label :additional_comments %>
+    <%= f.text_area :additional_comments %>
+    <%= f.hidden_field :user_id, :value=> current_user.id %>
+  </div>
+ 
+  <div class="field">
+      <%= f.label :photo, "Photo" %>
+       <% if @post.photo.exists? %>
+       <%= image_tag @post.photo.url(:thumb) %>
+       <% end %>
+      <%= f.file_field:photo %><br><br>
+  </div>
+   <div class="field">
+    <%= f.label :address %>
+    <%= f.text_area :address %>
+    
+  </div>
+
+  
+
+  <div class="actions">
+    <%= f.submit :class=>"btn btn-primary" %>
+
+    <% if @post.id %>
+      <% if @post.status == true %>
+      &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Deactive Post', toggle_post_path(@post.id), :class=>"btn btn-primary" %>
+      <% else %>
+      &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Activate Post', toggle_post_path(@post.id), :class=>"btn btn-primary" %>
+      <% end %>
+      &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-primary" %>
+      
+    <% end %>
+  </div>
+<% end %>
+
+
+###############################################################################################
+
+
+
+<!-- <div class="dropdown">
+  <a class="account" > </a>
+  <div class="submenu" style="display: none; ">
+    <div class="main-new2">
+      <ul>
+        <li><a href="#">List your place</a></li>
+        <li><a href="#">Browse  Spaces</a></li>
+        <li><a href="#">Messages <span>2</span></a></li>
+        <li class="active"><a href="#">My Account</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </div>
+  </div>
+</div>       -->                       
+<div class="main-new">
+  <ul class="verticle-menu">
+    <li><a href="#">Personal Information</a></li>
+    <li><a href="#">Change Password</a></li>
+    <li><a href="#">Bank Details</a></li>
+    <li class="active"><a href="#">My Post</a></li>
+    <li><a href="#">My Order/Received</a></li>
+    <li><a href="#">My Booking</a></li>
+    <li><a href="#">Payment</a></li>
+    <li><a href="#">Message</a></li>
+  </ul>
+  <div class="right-side">
+    <div class="post-bg">
+      <div class="post-bg-left">
+        <div class="post-bg-row">
+          <div class="post-bg-row-col1">
+            <span class="font13">Area available<span class="question">?</span></span>
+              <p>
+              How to estimate :</br>
+              4 feet x 5 feet = 20 sq. feet
+              </p>
+          </div>
+          <div class="post-bg-row-col2 right-align">
+            <input name="" type="text" class="post-bg-input">
+              <p>
+              sq. ft.
+              </p>
+          </div>
+        </div>
+        <div class="post-bg-row">
+          <div class="post-bg-row-col3">
+            When can they drop off goods at your place ?<span class="question">?</span>
+            <ul class="post-date">
+              <li><label>From</label><input type="text" value=""><span><a href="#"><img alt="" src="/assets/cal_icon2.png"></a></span></li>
+              <li><label>To</label><input type="text" value=""><span><a href="#"><img alt="" src="/assets/cal_icon2.png"></a></span></li>
+            </ul>
+          </div> 
+        </div>  
+        <div class="post-bg-row">
+          <div class="post-bg-row-col3">
+            Can you help transport the stuff in your car ?<span class="question">?</span>
+            <ul class="check-box">
+              <li>
+                <label class="tasks-list-item">
+                  <input type="checkbox" name="task_3" value="1" class="tasks-list-cb">
+                  <span class="tasks-list-mark"></span>
+                  <span class="tasks-list-desc">Drop-off</span>
+                </label>
+              </li>
+              <li>
+                <label class="tasks-list-item">
+                  <input type="checkbox" name="task_3" value="1" class="tasks-list-cb">
+                  <span class="tasks-list-mark"></span>
+                  <span class="tasks-list-desc">Pick-up</span>
+                </label>
+              </li>
+            </ul>
+          </div> 
+          <div class="post-bg-row-col4">
+            <ul class="post-date post-price">
+              <li><label>Price</label><span>$</span><input type="text" value=""></li>
+              <li><label>Price</label><span>$</span><input type="text" value=""></li>
+            </ul>
+          </div>    
+        </div>
+        <div class="post-bg-row">
+          <ul class="field-list">
+            <li><label>Address<span class="question">?</span></label></li>
+            <li><label>Street address</label> <input type="text" value=""></li>
+            <li class="small"><label>Apt # <span style="color:#78838e; font-size:10px">Optional</span></label> <input type="text" value=""></li>
+            <li><label>City</label> <input type="text" value=""></li>
+            <li class="small"><label>State</label> <input type="text" value=""></li>
+            <li class="small"><label>Zip code</label> <input type="text" value=""></li>
+          </ul>
+        </div>
+        </div>
+        <div class="post-bg-right">
+          <div class="post-bg-row">
+            <div class="post-bg-row-col1">
+              <span class="font13">Price per sq. foot<span class="question">?</span></span>
+              <p>
+                This is the price the renters will see.
+                A small commission will be deducted 
+                before the money is sent to you. <a href="#" style="color:#b0b9c0">Learn more</a>
+              </p>
+            </div>
+            <div class="post-bg-row-col2 right-align">
+              <input type="text" class="post-bg-input" name="">
+              <p>
+              sq. ft.
+              </p>
+            </div>
+          </div>
+          <div class="post-bg-row" style="margin-bottom:18px">
+            <div class="post-bg-row-col3">
+              When can they pick up the goods ?<span class="question">?</span>
+              <ul class="post-date">
+                <li><label>From</label><input type="text" value=""><span><a href="#"><img src="/assets/cal_icon2.png" alt=""></a></span></li>
+                <li><label>To</label><input type="text" value=""><span><a href="#"><img src="/assets/cal_icon2.png" alt=""></a></span></li>
+              </ul>
+            </div> 
+          </div>
+          <div class="post-bg-row rel" style="margin-bottom:30px">
+            <span class="file-input btn-file">
+              Upload Photo <input type="file" multiple="">
+            </span>
+            <div class="photo">
+              <img src="image/photo.jpg" alt="">
+              <a href="#">Delete</a>
+            </div>
+          </div>
+          <div class="post-bg-row">
+            Comments<span class="question">?</span>
+            <p>
+            <textarea rows="5" class="comment-area">Apartment will be acessible all summer</textarea>
+            </p>
+            <p>
+            <button  type="button" class="submit-btn">Submit</button>
+            </p>
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
+</div>
+</div><!-------------------main--------------------------->
+</div><!-------------------wrapper--------------------------->
+            
+             
+ 
+        
+
+
+
+
+</body>
+</html>
+
+

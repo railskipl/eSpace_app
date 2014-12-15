@@ -2,15 +2,17 @@ Rails.application.routes.draw do
 
   resources :about_us
   resources :access_ids
-  get 'faq' => "faqs#faq", as: "faq"
+  
   resources :faqs 
-
+  get 'frequently_asked_question' => "faqs#frequently_asked_question", as: "frequently_asked_question"
   resources :order_receives
   get '/search_order_received_by_date' => "order_receives#search_order_received_by_date", as: "search_order_received_by_date"
 
   get 'payement_transfers/index'
 
   get 'ratings/update'
+
+  get '/payments' => "order_receives#payments" , as: "payments"
 
   resources :pages
   
@@ -47,6 +49,8 @@ Rails.application.routes.draw do
 
    get '/mutual_friends', to: 'posts#mutual'
 
+   match 'search_payments' => "payement_transfers#search_payments", via: [:get, :post]
+
    match 'search_by_date' => "bookings#search_by_date", via: [:get, :post]
    resources :contactus
    # resources :home
@@ -59,7 +63,12 @@ Rails.application.routes.draw do
    get  'search'  => "posts#search"
    match 'posts/overview' => "posts#overview", via: [:get, :post]
 
-  resources :comments
+  resources :comments do
+    collection do
+        get 'books'
+    end
+  end
+
   resources :posts do
     resources :comments, :only => [:create, :show]
     member do
@@ -77,6 +86,9 @@ Rails.application.routes.draw do
       post :checkout
       get 'cancel_booking'
       get 'cancel_popup'
+      get 'rating'
+      get 'drop_off'
+      get 'confirm'
     end
   end
 

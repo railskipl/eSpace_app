@@ -25,22 +25,22 @@
             
   <div class="right-side">
     <div class="blue-header">
-                    <%= form_tag search_order_received_by_date_path,:method => 'get' do %>
-                    <ul class="date">
-                    <li>
-                    From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off, :class => "date", :style => "padding: 3px;"%></span>
-                    </li>
-                    
-                    <li>
-                    To <span><%= text_field_tag :end_date, params[:end_date],:class => "date",:style => "padding: 3px;" %></span>
-                    </li>
-                    
-                    </ul>
-                    <div class="search">
-                      <%= image_submit_tag("search_new.png")%>
-                    <!-- <a href=""><img src="/assets/search_new.png"></a> -->
-                    </div>
-                    <%end%> 
+      <%= form_tag search_order_received_by_date_path,:method => 'get' do %>
+      <ul class="date">
+      <li>
+      From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off, :class => "date", :style => "padding: 3px;"%></span>
+      </li>
+      
+      <li>
+      To <span><%= text_field_tag :end_date, params[:end_date],:class => "date",:style => "padding: 3px;" %></span>
+      </li>
+      
+      </ul>
+      <div class="search">
+        <%= image_submit_tag("search_new.png")%>
+      <!-- <a href=""><img src="/assets/search_new.png"></a> -->
+      </div>
+      <%end%> 
     </div>
     <div class="order-wrap">
       <% @bookings.each_with_index do |booking, index|%>
@@ -97,7 +97,7 @@
             
           </p>
           <p class="vmp">
-            <%= link_to "View My Post",{:controller => 'bookings', :action => 'show', :id => booking.id}%>
+            <%= link_to "View My Post", post_path(booking.post_id) %>
           </p>
         </div>
         <div class="order-col order-col1 order-col1-tmar">

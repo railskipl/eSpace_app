@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212073825) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20141215064457) do
 
   create_table "about_us", force: true do |t|
     t.string   "name"
@@ -62,6 +59,7 @@ ActiveRecord::Schema.define(version: 20141212073825) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "area"
+    t.boolean  "is_confirm",            default: false
   end
 
   create_table "comments", force: true do |t|
@@ -150,10 +148,15 @@ ActiveRecord::Schema.define(version: 20141212073825) do
     t.boolean  "archive",                        default: false
     t.boolean  "featured",                       default: false
     t.string   "miles"
+    t.text     "street_add"
+    t.string   "apt"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
   end
 
   create_table "ratings", force: true do |t|
-    t.decimal  "value"
+    t.decimal  "value",      precision: 10, scale: 0
     t.integer  "vote_count"
     t.integer  "item_id"
     t.string   "item_type"

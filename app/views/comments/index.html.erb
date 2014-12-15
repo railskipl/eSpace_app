@@ -3,4 +3,6 @@
 <%= render :partial => 'comments/comments', :locals => { :comments => @comments } %>
 </div>
 
-<%= link_to 'More', comments_path(:post_id => params[:post_id], :page => @comments.next_page), :class => 'load-more-posts', :remote => true if @comments.next_page %>
+
+
+<div class="more-new"> <%= link_to 'More', comments_path(:post_id => params[:post_id], :page => @comments.next_page), :class => 'load-more-posts', :remote => true if @comments.next_page %> </div>    

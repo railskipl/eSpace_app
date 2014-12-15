@@ -1,4 +1,4 @@
-$('.comments').append('<%= escape_javascript(render(:partial => 'comments/comments', :locals => {:comments => @comments }))%>');
+$('#ref_comment').append('<%= escape_javascript(render(:partial => 'comments/comments', :locals => {:comments => @comments }))%>');
 $('a.load-more-posts').attr('href', '<%= comments_path(:post_id => params[:post_id], :page => @comments.next_page) %>');
  
 <% unless @comments.next_page %>

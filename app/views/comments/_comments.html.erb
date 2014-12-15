@@ -1,13 +1,12 @@
- <% @comments.each do |comment| %>
-    <% num_stars(comment.rating)[:full].times do %>
-      <i class="fa fa-star"></i>
-    <% end %>
-    <% num_stars(comment.rating)[:half].times do %>
-      <i class="fa fa-star-half-o"></i>
-    <% end %>
-    <% num_stars(comment.rating)[:empty].times do %>
-      <i class="fa fa-star-o"></i>
-    <% end %>
-    <strong><%= comment.user.name rescue nil %>&nbsp;<%= comment.user.last_name rescue nil %></strong>&nbsp;<%= comment.created_at.strftime("%b %d,%Y") %><br><br>
-    <%= comment.comments %><br><br>
-<%end%>
+
+  <% @comments.each do |comment| %>
+    <div class="new_para1" style="<%= cycle('float:left', 'float:right') %>" >
+      <p class="sed_h"><%= comment.user.name rescue nil %></p>
+      <p class="sed1"><%= comment.comments %></p>
+      <h4 class="bottom1"> <%= comment.created_at.strftime("%B %Y") %></h4>
+      <div class="line"></div>
+    </div>
+
+  <%end%>
+
+

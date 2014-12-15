@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
     def index
        
-      @comments = Comment.where(:post_id => params[:post_id]).paginate(:page => params[:page])
+      @comments = Comment.where(:post_id => params[:post_id]).paginate(:per_page => 6, :page => params[:page])
 
       respond_to do |format|
         format.html { render :layout => false}
@@ -12,6 +12,17 @@ class CommentsController < ApplicationController
       end
 
     end
+
+    def books
+      @comments = Comment.where(:post_id => params[:post_id]).paginate(:per_page => 4, :page => params[:page])
+
+      respond_to do |format|
+        format.html { render :layout => false}
+        format.js
+      end
+      
+    end
+
     
     def show
      @posts = Post.where("user_id != ?",current_user.id)
@@ -22,6 +33,7 @@ class CommentsController < ApplicationController
     end
 
     def create
+      
       @post = Post.find(params[:post_id])
       @comment = @post.comments.new(comment_params) 
       @comment.save! 

@@ -5,8 +5,14 @@
 .fa-star-o { color: #e0dfdf; }
 
 
-.rating {
+/*.rating {
     float:left;
+}*/
+
+.rating {
+    float: left;
+    margin-left: 90px;
+    margin-top: -72px;
 }
 
 /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
@@ -25,10 +31,10 @@
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
-    font-size:200%;
+    font-size:90%;
     line-height:1.2;
     color:#ddd;
-    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+    text-shadow:1px 1px #bbb, 1px 1px #666, .1em .1em .2em rgba(0,0,0,.5);
 }
 
 .rating:not(:checked) > label:before {
@@ -37,13 +43,13 @@
 
 .rating > input:checked ~ label {
     color: #f70;
-    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+    text-shadow:1px 1px #c60, 1px 1px #940, .1em .1em .2em rgba(0,0,0,.5);
 }
 
 .rating:not(:checked) > label:hover,
 .rating:not(:checked) > label:hover ~ label {
     color: #28A0E5;
-    text-shadow:1px 1px #28A0E5, 2px 2px #2E46D1, .1em .1em .2em rgba(0,0,0,.5);
+    text-shadow:1px 1px #28A0E5, 1px 1px #2E46D1, .1em .1em .2em rgba(0,0,0,.5);
 }
 
 .rating > input:checked + label:hover,
@@ -52,7 +58,7 @@
 .rating > input:checked ~ label:hover ~ label,
 .rating > label:hover ~ input:checked ~ label {
     color: #ea0;
-    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+    text-shadow:1px 1px goldenrod, 1px 1px #B57340, .1em .1em .2em rgba(0,0,0,.5);
 }
 
 .rating > label:active {

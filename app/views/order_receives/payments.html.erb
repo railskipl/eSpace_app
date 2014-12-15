@@ -1,0 +1,44 @@
+<div class="main-new">
+    <ul class="verticle-menu">
+    <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+    <li><%= link_to "Change Password", edit_user_registration_path %></li>
+    <li><%= link_to "Bank Details",bank_details_path %></li>
+    <li><%= link_to "My Post",posts_path%></li>
+    <li><%= link_to "My Order/Received",order_receives_path%></li>
+    <li><%= link_to "My Booking", bookings_path%></li>
+    <li class="active"><%= link_to "Payment", payments_path%></li>
+    <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
+    </ul>
+    
+    <div class="right-side">
+    	
+        
+        <div class="payment-wrap">
+            <% @bookings.each do |booking|%>
+            <div class="order-box">
+                <div class="pay-col pay-col1">
+                	<%if booking.stripe_charge_id.present? %>
+                    <span>Payment type</span> : Received
+                    <%end%>
+                   
+                    <p>
+                    <%= link_to "View order received", booking_path(booking.id) %>
+                    </p>
+                </div>
+                
+                <div class="pay-col pay-col1">
+                	<span>To/From</span>: <%= booking.user.name.capitalize%> <%= booking.user.last_name[0,1]%>
+                </div>
+                
+                <div class="pay-col pay-col1">
+                	<span>Date of transaction</span>: <%= booking.updated_at.strftime("%m/%d/%Y")%>
+                </div>
+                
+                <div class="pay-col pay-col1">
+                	<span>Amount</span>: $<%= booking.price%>
+                </div>
+            </div>
+            <%end%>
+        </div>
+    </div>
+</div>
