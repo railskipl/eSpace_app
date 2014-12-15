@@ -144,24 +144,13 @@ background-color:#FFF;
 }
 .intire{font-size:12px; color:#F00;}
 
-#menu
-{
-width:1024px;
-height:87px;
-background-color:#FFF;	
+.menu{ text-align:center; display:inline-block; width:100% }
+		
+.menu span{ }
 	
-	}
-#menu img
-{
-margin-bottom:-12px;
-padding:0px;
+.menu span img{ max-width:103px; }
 
-	}
-#image{
-width:1024px;
-height:600px;	
-	
-	}
+#image{ width:1024px; height:600px;	}
 
 #image img
 {
@@ -1244,7 +1233,6 @@ background-color:#072643;
 		.classic2 { padding: 0.8em 1em; color:#000; }
 		.classic2 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic2 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1271,7 +1259,6 @@ background-color:#072643;
 		.classic3 { padding: 0.8em 1em; color:#000; }
 		.classic3 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic3 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1298,7 +1285,6 @@ background-color:#072643;
 		.classic4 { padding: 0.8em 1em; color:#000; }
 		.classic4 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic4 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1325,7 +1311,6 @@ background-color:#072643;
 		.classic5 { padding: 0.8em 1em; color:#000; }
 		.classic5 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic5 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1352,7 +1337,7 @@ background-color:#072643;
 		.classic6 { padding: 0.8em 1em; color:#000; }
 		.classic6 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+	
 		.classic6 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1379,7 +1364,7 @@ background-color:#072643;
 		.classic7 { padding: 0.8em 1em; color:#000; }
 		.classic7 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+
 		.classic7 {background: #FFFFFF; border: 1px solid #CCC; }
 	
 	.add.tooltip8 {
@@ -1404,7 +1389,7 @@ background-color:#072643;
 		.classic8 { padding: 0.8em 1em; color:#000; }
 		.classic8 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		
 		.classic8 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1431,7 +1416,7 @@ background-color:#072643;
 		.classic9 { padding: 0.8em 1em; color:#000; }
 		.classic9 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		
 		.classic9 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1462,7 +1447,7 @@ background-color:#072643;
 		.classic10 { padding: 0.8em 1em; color:#000; }
 		.classic10 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		
 		.classic10 {background: #FFFFFF; border:1px #CCC solid;}
 	
 	
@@ -2303,7 +2288,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 		
 		.main-new2 li a span{
 		color:#fff; background:#ff7e00; border-radius:100%; width:20px; height:auto; font-size:10px; text-align:center; margin-left:12px; padding:3px 3px;
-		display:inline-block
+		display:inline-block; float: none;
 		}
 		.logo{ margin:31px 100px 31px 0; max-width:100px}
 		.formwrap{ width:280px; margin:60px auto; font-size:18px; color:#989ba0; text-align:left; font-family:'brandon4'; position:relative}
@@ -2314,18 +2299,8 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 		 line-height: 1.42857;
 		}
 		
-		.form-control {
-    background-color: #FFFFFF;
-    background-image: none;
-    border: 1px solid #eeeeee;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    color: #555555;
-    display: block;
-    font-size: 18px;
-    height:45px;
-    padding: 6px 12px;
-    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-    width: 100%; color:#dedede;
+	.form-control { background-color: #FFFFFF; background-image: none; border: 1px solid #eeeeee; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; color: #555555;
+    display: block; font-size: 18px; height:45px; padding: 6px 12px; transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s; width: 100%; color:#dedede;
 	border-radius:0;
 	margin-bottom:18px}
 	
