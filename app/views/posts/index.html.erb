@@ -63,22 +63,36 @@
                         
                         <div class="booking-col1">
                         
+                        
                         <p>
                           <span>Booked drop-off</span> 
-                        <label class="tasks-list-item">
-                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
-                        <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
-                        </label>
+                          <label class="tasks-list-item">
+                            <% if post.drop_off == true %> 
+                              <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" checked>
+                            <% else %>
+                             <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
+                            <% end %>
+
+                            <span class="tasks-list-mark"></span>
+                          </label>
                         </p>
+                        
+
+                        
                         <p>
                           <span>Booked Pick-up</span> 
-                        <label class="tasks-list-item">
-                        <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
-                        <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
+                          <label class="tasks-list-item">
+
+                          <% if post.pick_up == true %>
+                            <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" checked>
+                          <% else %>
+                            <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
+                          <% end %>
+                          <span class="tasks-list-mark"></span>
+                        
                         </label>
                         </p>
+                        
                         
                         </div>
                         
