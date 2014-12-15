@@ -11,8 +11,7 @@
     <li><%= link_to "Manage All Posts", home_all_postings_path %></li>
     <li><%=  link_to "College ID",access_ids_path%></li>
     <li><%=  link_to "FAQs",faqs_path%></li>
-
-     <!-- <li><%#= link_to "Payement Transfer", payement_transfers_path %></li> -->
+     <li><%= link_to "Payment", payement_transfers_path %></li>
     <li> <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %> </li>
   <%# end %>
   <% elsif user_signed_in? %>

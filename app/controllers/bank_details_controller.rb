@@ -48,11 +48,12 @@ class BankDetailsController < ApplicationController
               :email => "payee@example.com",
               :card => params[:stripe_card_token]
             )
-    
+   
           rescue Stripe::InvalidRequestError => e
+    "Stripe error while creating Recipient: #{e.message}"
             redirect_to :back
             flash[:notice] = "Stripe error while creating Recipient: #{e.message}"
-
+          
             return false
           end
            

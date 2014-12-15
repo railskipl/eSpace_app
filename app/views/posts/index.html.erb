@@ -1,14 +1,41 @@
+
+  <script type="text/javascript">
+
+    jQuery(function($){
+      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
+
+    });
+    jQuery(function($){
+      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
+    });
+
+
+  </script>
+
+
 <p><%= link_to "My Post", posts_path %> | <%= link_to "Archived Post", archive_posts_path %></p><br/>
 
-
+<h4>Search by</h4>
 <%= form_for :search, :url=> {:controller=>'posts', :action=>'index'}, :html => {:method => 'get'} do |f| %>
   <p>
     <%= f.select :status, options_for_select(%w[Active Inactive]) %>
-    <%= f.submit "Search",:class => "btn btn-secondary" %>
+    From Date :
+     <%= text_field_tag :start_date, params[:start_date], :readonly => true %>
+
+     To Date :
+     <%= text_field_tag :end_date, params[:end_date], :readonly => true %>&nbsp;
+
+    <%= f.submit "Search",:class => "btn btn-primary contact-form" %>
   </p>
 <% end %>
 
 
+<% if @start_date > @end_date %>
+"Start Date Cannot Be Greater"
+<% elsif @posts.blank? %>
+No Results found!!
+
+<%else%>
 <h4>My Post</h4>
 
 <table class="table table-striped">
@@ -45,7 +72,7 @@
     <% end %>
   </tbody>
 </table>
-
+    <% end %>
 <br>
 
 <%= link_to 'New Post', new_post_path %>

@@ -9,12 +9,21 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-   @posts = Post.search_post(params[:search], current_user.id)
+        q = params[:q]
+       @posts = Post.search_post(params[:search], current_user.id)
+       @posts = @posts.where("LOWER(status) like ?", "%#{q}%") if q.present?
+ 
+      @start_date = "#{params['start_date']}"
+      @end_date ="#{params['end_date']}"
+      
+      
+       @posts = @posts.where("date(created_at) >= ? and date(created_at) <= ? ",@start_date, @end_date) if @start_date.present? && @end_date.present?
+      @posts= @posts.page(params[:page]).per_page(50)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml
-    end
+      respond_to do |format|
+        format.html
+      end
+
   end
 
   def archive
@@ -53,7 +62,6 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    raise params.inspect
     @post = Post.new(post_params)
 
     respond_to do |format|

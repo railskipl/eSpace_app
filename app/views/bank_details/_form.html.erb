@@ -73,12 +73,16 @@
           cardCVC: true,
           required: true
         },
+      "bank_detail[full_name]":{
+         required:true
+        },
         "card_number" : {
           cardNumber: true,
           required: true
         },
         "card-expiry-year" : "cardExpiry" // we don't validate month separately
         }
+
         });
  
         // adding the input field names is the last step, in case an earlier step errors
@@ -100,18 +104,16 @@
             <li ><a href="#">Payment</a></li>
             <li><a href="#">Message</a></li>
             </ul>
-            
+
             <div class="right-side">
-              
-                
-                <div class="payment-wrap">
-                
-                <div class="formwrap">
-    
-<%= form_for(@bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>
+              <div class="payment-wrap">
+
+    <div class="formwrap">
+   
+ <%= form_for(@bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>   
   <% if @bank_detail.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bank_detail.errors.count, "error") %> prohibited this bank_detail from being saved:</h2>
+    <div id="error_explanation" >
+      <h2><%= pluralize(@bank_detail.errors.count, "error")%> prohibited this bank_detail from being saved:</h2>
 
       <ul>
       <% @bank_detail.errors.full_messages.each do |message| %>
@@ -121,18 +123,18 @@
     </div>
   <% end %>
 
-  <%= hidden_field_tag :stripe_card_token %>
+      <%= hidden_field_tag :stripe_card_token %>
        <p>Setup a Card to receive payments <span>?</span></p>
        <%= f.text_field :full_name, :class=>"form-control",:placeholder=>"Full name"  %>
-    <%= f.hidden_field :user_id,:value =>current_user.id%>
+      <%= f.hidden_field :user_id,:value =>current_user.id%>
        <div class="card">
-      <%= text_field_tag :card_number, nil,:autocomplete => "off", name: nil,:class=>"form-control card_number stripe-sensitive required",:placeholder=>"Card Number" %>
+      <%= text_field_tag :card_number, nil,:autocomplete => "off", name: nil,:class=>"card_number stripe-sensitive required form-control ",:placeholder=>"Card Number" %>
 
        <span><img src="/assets/card.jpg" alt=""></span>
        </div>
        <div class="card">
-      <%= text_field_tag :card_code, nil, name: nil, :autocomplete => :off,:class=>"form-control card_code stripe-sensitive required", :placeholder=>"Card Code" %>
-            </div>
+      <%= text_field_tag :card_code, nil, name: nil, :autocomplete => :off,:class=>" card_code stripe-sensitive required form-control", :placeholder=>"Card Code" %>
+      </div>
       
  
     <label for="card_month">Card Expiration</label>
@@ -160,13 +162,13 @@
 <!-- <button class="blue-btn b-mar" type="button">Save Changes</button> -->
  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
         <%= submit_tag "Save Changes",:class=>"blue-btn b-mar" %>
+        <% end %>
            </div>         
                 </div>
             </div>
         </div>
- 
 
-<% end %>
+
 
 
 
