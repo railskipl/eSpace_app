@@ -21,6 +21,7 @@ background:#FFF;
   margin-top:30px;
   border:2px #00b4ff solid;
   color:#ffffff;
+  cursor:pointer;
   
     }
 .booking-btn a{
@@ -103,8 +104,9 @@ font-family: brandon4;
         </div>
       <% end %>
       <div class="row">
-        <%= f.hidden_field :recipient_id,:value =>@user.id %>
-        <%= hidden_field_tag :post_id,params[:post_id] %>
+        <%= f.hidden_field :recipient_id, :value =>@user.id %>
+        <%= f.hidden_field :sender_id, :value =>current_user.id %>
+        <%= f.hidden_field :post_id, :value =>params[:post_id] %>
       </div>
      
       <div class="paragraph-new">

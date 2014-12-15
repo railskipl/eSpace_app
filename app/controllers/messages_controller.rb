@@ -167,28 +167,11 @@ end
 
   def sent_to
       
-      @post = Post.find_by_id(params[:message][:post_id])
-
-      @msg = Message.new(message_params)
-      user = User.find_by_email(params[:message][:recipient_id])
-       if params["reply"] == "reply"
-
-        @message = Message.new(message_params)
-        Message.create(:subject => @message.subject , :body => @message.body,:sender_id => current_user.id, :recipient_id => params[:recipient_id].to_i, :message_id =>params[:message_id].to_i ,:post_id=>params[:post_id].to_i )
-
+      @message = Message.new(message_params)
+      
+      if @message.save
         respond_with(@message, location: compose_message_messages_path)
-        else
-          if user.nil?
-            #redirect_to new_message_url ,:notice => "Please enter recipient"
-            respond_with(@message, location: compose_message_messages_path)
-          else
-            @message = Message.create(:subject => @msg.subject, :body => @msg.body, :recipient_id => user.id, :sender_id => current_user.id)
-              @message.post_id = params[:post_id].to_i
-             if @message.save
-             respond_with(@message, location: messages_path)
-           end
-          end
-        end  
+      end
 
   end
 
