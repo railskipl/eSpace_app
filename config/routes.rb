@@ -49,6 +49,8 @@ Rails.application.routes.draw do
 
    get '/mutual_friends', to: 'posts#mutual'
 
+   match 'search_payments' => "payement_transfers#search_payments", via: [:get, :post]
+
    match 'search_by_date' => "bookings#search_by_date", via: [:get, :post]
    resources :contactus
    # resources :home
