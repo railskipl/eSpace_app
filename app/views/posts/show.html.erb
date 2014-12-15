@@ -298,9 +298,9 @@ jQuery(document).ready(function(){
 
                    </p><div class="street"><p><%= @post.address %> </p> </div>
                       
-                 <div id="message_<%= @post.id %>">
-                  <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"sms_btn" %>
-                </div>
+                   <div id="message_<%= @post.id %>">
+                    <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"sms_btn" %>
+                   </div>
 
                    <p class="sed2" style="line-height:12px;"><%= @post.additional_comments %></p>
                   <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' />
