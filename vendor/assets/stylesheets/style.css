@@ -1726,7 +1726,8 @@ font-size:15px;
     width: 81px;
 }
 
-.error { color: #FD0000;}
+.error { color: #FD0000; }
+
 
 .form-error{ color: #FD0000; clear: left; }
 
@@ -2439,7 +2440,7 @@ form.change_password .textbox input {
 
 
 .mark {
-    background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
+    /*background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);*/
     border: medium none;
     color: #b2b3b5;
     font-family: brandon4;
@@ -2455,6 +2456,7 @@ form.change_password .textbox input {
     padding: 10px 10px 8px;
     width: 291px;
     margin-left: 228px;
+    margin-top: -2px;
 
 }
 
@@ -2526,19 +2528,25 @@ form.change_password .textbox input {
 
 
 #contactus_subject{
-	background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
+	background: url("/assetss/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
     border: medium none;
-    /*border-bottom-style: hidden;*/
+    border-bottom-style: hidden;
     color: #b2b3b5;
     font-family: "brandon4";
     font-size: 12px;
     padding: 10px 10px 8px;
     width: 291px;
-    border-right-style: hidden;
-    
-
-    
+    border-right-style: hidden; 
+    webkit-appearance: none !important;
+    webkit-border-bottom-colors: none !important;
+    margin: 0;
+    border: medium none;   
 }
+
+
+
+
+
 .selectParent {
     border: 1px solid #eeeeee;
     overflow: hidden;
@@ -2910,6 +2918,94 @@ div.submenu
 	cursor:pointer;
 	margin-top:-20px;
  }
+
+
+div.selectBox
+      {
+        
+        display:inline-block;
+        cursor:default;
+        text-align:left;
+        line-height:30px;
+        /*margin:96px 0 0 95px;*/
+        color:#b2b3b5;
+        position:absolute;
+        z-index:555555;
+        font-family:brandon4;
+        font-size:12px;
+      }
+      span.selected
+      {
+        width:258px;
+        text-indent:20px;
+        border:1px solid #eeeeee;
+        border-right:none;
+        background:#FFF;
+        overflow:hidden;
+        color:#b2b3b5;
+        margin-left: 229px;
+      }
+
+
+
+      span.selectArrow
+      {
+        width:32px;
+        border-right:1px solid #eeeeee;
+        border-top:1px solid #eeeeee;
+        border-bottom:1px solid #eeeeee;
+        text-align:center;
+        font-size:20px;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        
+      }
+      
+      span.selectArrow,span.selected
+      {
+        position:relative;
+        float:left;
+        height:40px;
+        z-index:1;
+      }
+      
+      div.selectOptions
+      {
+        position:absolute;
+        top:31px;
+        left:0;
+        width:273px;
+        /*border:1px solid #ccc;*/
+        overflow:hidden;
+        background:#FFF;
+        padding-top:2px;
+        display:none;
+
+      }
+        
+      span.selectOption
+      {
+        display:block;
+        
+        line-height:20px;
+        padding:5px 10%;
+      }
+      
+      span.selectOption:hover
+      {
+        color:#f6f6f6;
+        background:#4096ee; 
+      }  
+
+
+
+
+    
+
+
 
 
 

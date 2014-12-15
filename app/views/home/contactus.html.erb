@@ -1,4 +1,34 @@
- 
+<script type='text/javascript'><!--
+      $(document).ready(function() {
+        enableSelectBoxes();
+      });
+      
+      function enableSelectBoxes(){
+        $('div.selectBox').each(function(){
+          $(this).children('span.selected').html($(this).children('div.selectOptions').children('span.selectOption:first').html());
+          $(this).attr('value',$(this).children('div.selectOptions').children('span.selectOption:first').attr('value'));
+          
+          $(this).children('span.selected,span.selectArrow').click(function(){
+            if($(this).parent().children('div.selectOptions').css('display') == 'none'){
+              $(this).parent().children('div.selectOptions').css('display','block');
+            }
+            else
+            {
+              $(this).parent().children('div.selectOptions').css('display','none');
+            }
+          });
+          
+          $(this).find('span.selectOption').click(function(){
+            $(this).parent().css('display','none');
+            $(this).closest('div.selectBox').attr('value',$(this).attr('value'));
+            $(this).parent().siblings('span.selected').html($(this).html());
+          });
+        });       
+      }//-->
+    </script>
+
+
+
 <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 
 <div class="wrapper">
@@ -18,10 +48,24 @@
               
 
                <div class="topics">
-                    <div style="overflow: hidden; border: 1px solid rgb(238, 238, 238); margin-left: 144px; width: 291px; " > <%= f.collection_select :subject, Contactus.where("message IS NULL"), :subject, :subject, {:include_blank => "Topic"}%></div><br/><br/>
+                  <div style="overflow: hidden; border: 1px solid rgb(238, 238, 238); margin-left: 144px; width: 291px; " > <%= f.collection_select :subject, Contactus.where("message IS NULL"), :subject, :subject, {prompt: "Topic"}%></div><br/><br/>  
+
 
                </div> 
+
                 
+<!-- 
+              <div class='selectBox'>
+               <span class='selected'></span>
+               <span class='selectArrow'><img src="/assets/new_drop-arrow.png"></span>
+               <div class="selectOptions" >
+               <span class="selectOption" value="Option 1">Topic</span>
+                    <%= f.collection_select :subject, Contactus.where("message IS NULL"), :subject, :subject%>
+               </div>
+               </div> -->              
+
+
+
               
 
                 <div class="massage"><%= f.text_area :message,:cols => "40", :rows => "40",placeholder: "Message", :style=>"width:290px; height:80px;", :id=>"topic1" %></div>
@@ -35,3 +79,16 @@
 </div>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
