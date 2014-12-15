@@ -19,7 +19,7 @@
             <div id="login1">
               <% if user_signed_in? %>
                 <p style="margin:40px 0 0px 900px;">
-                  <%= current_user.name rescue nil %> <%= current_user.last_name rescue nil %> <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+                  <%= current_user.name rescue nil %> <%= current_user.last_name rescue nil %> 
                 </p>
               <% else %>
               <p style="margin:40px 0 0px 900px;">
@@ -29,14 +29,88 @@
               <% end %>
             </div>
                 
-            <div id="menu">
-               <a href="#"> <img src="/assets/menu.png" style="width:94px;">
-               </a>
-                <p style="margin:-56px 0 0 455px;">  <img src="/assets/logo.png"; style="width:120px;"></p>
+            <div class="menu">
+
+                <a href="javascript:void(0);"><img src="/assets/logo.png" class="logo"></a>
+
+                 <div class="dropdown">
+                     <a class="account"></a>
+                     <% if user_signed_in? %>
+                      <div class="submenu" style="display: none; ">
+                        
+                          
+                            <div class="main-new2">
+                                <ul>
+                                    <li>
+                                        <%= link_to "List your place", posts_overview_path %>
+                                    </li>
+                                    <li>
+                                        <%= link_to "Browse Spaces", posts_overview_path %>
+                                    </li>
+                                    <li>
+                                     <%= link_to("Message" + "<span>2</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
+                                    </li>
+                                    <li class="active">
+                                      <%= link_to "My Account", edit_user_path(current_user) %>
+                                    </li>
+                                    <li>
+                                      <%= link_to "About Us", {:controller=>"/about_us", :action=>"about"} %>
+                                    </li>
+                                   <li><a href="javascript:void(0);">Support</a></li>
+                                   <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+                                </ul>
+                            </div>
+
+                      </div>
+                     <% end %>
+                  </div>
             </div>
            
 
               <%= yield %>
+
+
+              <script type="text/javascript" >
+              $(document).ready(function()
+              {
+                  $(".account").click(function()
+                  {
+                    var X=$(this).attr('id');
+
+                    if(X==1)
+                    {
+                      $(".submenu").hide();
+                      $(this).attr('id', '0');  
+                    }
+                    else
+                    {
+                      $(".submenu").show();
+                      $(this).attr('id', '1');
+                    }
+                    
+                  });
+
+                  //Mouseup textarea false
+                  $(".submenu").mouseup(function()
+                  {
+                    return false
+                  });
+
+                  $(".account").mouseup(function()
+                  {
+                    return false
+                  });
+
+
+                //Textarea without editing.
+                $(document).mouseup(function()
+                {
+                  $(".submenu").hide();
+                  $(".account").attr('id', '');
+                });
+                  
+              });
+            </script>
 
 
             </div><!-------------------main------------------------- -->
