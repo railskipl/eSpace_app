@@ -5,8 +5,14 @@
 .fa-star-o { color: #e0dfdf; }
 
 
-.rating {
+/*.rating {
     float:left;
+}*/
+
+.rating {
+    float: left;
+    margin-left: 90px;
+    margin-top: -72px;
 }
 
 /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
