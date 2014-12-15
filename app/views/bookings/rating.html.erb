@@ -4,21 +4,66 @@ input[type="checkbox"]:not(old) + label, input[type="radio"]:not(old) + label { 
 
 </style>
 
-<%= stylesheet_link_tag 'bookreviews.css','font-awesome.css' %>
-<div style="width:400px;">
-<h4>Rate</h4>
+<style>
 
-    <%= form_for [@post, Comment.new] ,:html=>{ id: "new_comment"} do |f| %>
-    	<%= f.hidden_field :user_id, :value=> current_user.id %>
-        <fieldset class="rating">
-        <%= f.radio_button(:rating, "5") %><%= f.label(:rating.to_s + "_5") %>
-        <%= f.radio_button(:rating, "4") %><%= f.label(:rating.to_s + "_4") %>
-        <%= f.radio_button(:rating, "3") %><%= f.label(:rating.to_s + "_3") %>
-        <%= f.radio_button(:rating, "2") %><%= f.label(:rating.to_s + "_2") %>
-        <%= f.radio_button(:rating, "1") %><%= f.label(:rating.to_s + "_1") %>
-       </fieldset><br><br><br>
-   		<strong>Review : </strong><%= f.text_area :comments ,:cols=>"30", :rows=>"4" %>
-   		<p ><%= f.submit "Add Review", :class => "btn btn-primary contact-form" %></p>
-   <% end %>
+.boxpop-up
+{
+width:380px;
+
+background:#FFF;
+border:1px #eeeeee solid; 
+
+}
+.booking-btn{
+    background: none repeat scroll 0 0 #00b4ff;
+    border: 2px solid #00b4ff;
+    color: #ffffff;
+    font-family: brandon4;
+    font-size: 15px;
+    margin-left: 183px;
+    margin-top: 30px;
+    padding: 0;
+    text-align: center;
+    width: 50%;
+    }
+.bookingg-btn {
+text-decoration:none;
+ color:#ffffff;
+  }
+  
+.paragraph-new
+{
+width:86%;  
+font-size:11px;
+color:#b0b4b8;
+margin-top:50px;
+padding-left:20px;  
+  }
+.heading {
+    color: #14263a;
+    font-family: brandon4;
+    padding-left: 20px;
+    padding-top: 30px;
+}
+
+</style>
+
+<%#= stylesheet_link_tag 'bookreviews.css','font-awesome.css' %>
+<div class="boxpop-up">
+  <div class="heading">Rate</div>
+    <div class="paragraph-new">
+      <%= form_for [@post, Comment.new] ,:html=>{ id: "new_comment"} do |f| %>
+      	<%= f.hidden_field :user_id, :value=> current_user.id %>
+          <fieldset class="rating">
+          <%= f.radio_button(:rating, "5") %><%= f.label(:rating.to_s + "_5") %>
+          <%= f.radio_button(:rating, "4") %><%= f.label(:rating.to_s + "_4") %>
+          <%= f.radio_button(:rating, "3") %><%= f.label(:rating.to_s + "_3") %>
+          <%= f.radio_button(:rating, "2") %><%= f.label(:rating.to_s + "_2") %>
+          <%= f.radio_button(:rating, "1") %><%= f.label(:rating.to_s + "_1") %>
+         </fieldset><br><br><br>
+        <%= f.text_area :comments ,:placeholder => "Review",:cols=>"30", :style=>"width: 337px; height: 90px;"%>
+        <%= f.submit "Add Review", :class=>"booking-btn" %>
+      <% end %>
+    </div>
 </div>
 

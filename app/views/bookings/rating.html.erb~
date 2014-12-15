@@ -1,0 +1,24 @@
+<style>
+input[type="checkbox"]:not(old) + label, input[type="radio"]:not(old) + label { margin-left: 0; background-image: none;}
+
+
+</style>
+
+<%= stylesheet_link_tag 'bookreviews.css','font-awesome.css' %>
+<div style="width:400px;">
+<h4>Rate</h4>
+
+    <%= form_for [@post, Comment.new] ,:html=>{ id: "new_comment"} do |f| %>
+    	<%= f.hidden_field :user_id, :value=> current_user.id %>
+        <fieldset class="rating">
+        <%= f.radio_button(:rating, "5") %><%= f.label(:rating.to_s + "_5") %>
+        <%= f.radio_button(:rating, "4") %><%= f.label(:rating.to_s + "_4") %>
+        <%= f.radio_button(:rating, "3") %><%= f.label(:rating.to_s + "_3") %>
+        <%= f.radio_button(:rating, "2") %><%= f.label(:rating.to_s + "_2") %>
+        <%= f.radio_button(:rating, "1") %><%= f.label(:rating.to_s + "_1") %>
+       </fieldset><br><br><br>
+   		<strong>Review : </strong><%= f.text_area :comments ,:cols=>"30", :rows=>"4" %>
+   		<p ><%= f.submit "Add Review", :class => "btn btn-primary contact-form" %></p>
+   <% end %>
+</div>
+
