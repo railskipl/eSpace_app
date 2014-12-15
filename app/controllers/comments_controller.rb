@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
     def index
        
-      @comments = Comment.where(:post_id => params[:post_id]).paginate(:page => params[:page])
+      @comments = Comment.where(:post_id => params[:post_id]).paginate(:per_page => 6, :page => params[:page])
 
       respond_to do |format|
         format.html { render :layout => false}

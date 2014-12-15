@@ -3,8 +3,9 @@
 <%= render :partial => 'comments/book_comment', :locals => { :comments => @comments } %>
 </div>
 
-<% if @comments.next_page %>
-<%= link_to 'More', books_comments_path(:post_id => params[:post_id], :page => @comments.next_page), :class => 'more', :remote => true if @comments.next_page %>
-<% end %>
+
+
+<%= link_to 'More', books_comments_path(:post_id => params[:post_id], :page => @comments.next_page), :class => 'more', :remote => true if @comments.next_page %>  
+
 
 
