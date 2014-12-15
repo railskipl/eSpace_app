@@ -30,7 +30,7 @@
 
 <div class="main-new">
             <ul class="verticle-menu">
-             <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+              <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
               <li><%= link_to "Change Password", edit_user_registration_path %></li>
               <li><%= link_to "Bank Details",bank_details_path %></li>
               <li><%= link_to "My Post",posts_path%></li>
@@ -129,7 +129,9 @@
                           </label>
                         <%end%>
                         <!--<span class="tasks-list-desc">Left Label</span>-->
-                        </label>
+                        <p class="vmp"> 
+                          <%= link_to "View Post", booking_path(booking.id) %>
+                        </p>
                         </p>
                         </div>
                         

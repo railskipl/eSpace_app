@@ -29,25 +29,25 @@
   <div class="main2">
                 <div class="main-new">
                  <ul class="verticle-menu" style="min-height:600px;">
-                    <li >
+                    <li class="active">
                     <%= link_to "Personal Information", edit_user_path(current_user)%>
                     </li>
 
-                    <li class="active">
+                    <li>
                     <%= link_to "Change Password", edit_user_registration_path%>
                     </li>
 
                     <li>
-                    <a href="#">Bank Detail</a>
+                    <%= link_to "Bank Details",bank_details_path %>
                     </li>
 
                     <li>
                     <%= link_to 'My Post', posts_path %>
                     </li>
 
-                    <li><a href="#">My Order Received</a></li>
-                    <li><a href="#">My Booking</a></li>
-                    <li><a href="#">Payment</a></li>
+                    <li><%= link_to "My Order/Received",order_receives_path%></li>
+                    <li><%= link_to "My Booking", bookings_path%></li>
+                    <li><%= link_to "Payment", payments_path%></li>
 
                     <li>
                     <%= link_to "Messages",{:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil%></li>
@@ -61,23 +61,23 @@
                   <fieldset class="textbox">
                        
                         <div input id="password">
-                          <%= f.email_field :email, :readonly => true, :placeholder=>"Email" %>
+                          <%= f.email_field :email, :readonly => true,:style => "font-family: brandon4;", :placeholder=>"Email" %>
                         </div>
 
                         <div input id="password">
-                          <%= f.text_field :name, :placeholder=> "First Name" %>
+                          <%= f.text_field :name,:style => "font-family: brandon4;", :placeholder=> "First Name" %>
                         </div>
                        
                         <div input id="password">
-                          <%= f.text_field :last_name, :placeholder=> "Last Name" %>
+                          <%= f.text_field :last_name, :style => "font-family: brandon4;",:placeholder=> "Last Name" %>
                         </div>
 
                         <div input id="password">
-                          <%= f.text_field :personal_email, :placeholder=> "Personal Email" %>
+                          <%= f.text_field :personal_email, :style => "font-family: brandon4;",:placeholder=> "Personal Email" %>
                         </div>
 
                         <div input id="password"> 
-                          <%= f.text_field :mobile_number, placeholder:"xxx xxx-xxxx"%>
+                          <%= f.text_field :mobile_number, :style => "font-family: brandon4;",placeholder:"xxx xxx-xxxx"%>
                         </div> 
 
                   </fieldset>

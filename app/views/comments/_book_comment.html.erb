@@ -1,0 +1,13 @@
+
+            <ul>
+              <% @comments.each do |comment| %>
+                <li>
+                    <p><%= comment.user.name rescue nil %></p>
+                      <%= comment.comments %>
+                    <span>
+                      <%= comment.created_at.strftime("%B %Y") %>
+                    </span>
+                </li>
+              <%end%>    
+            </ul>
+          

@@ -15,4 +15,8 @@ class OrderReceivesController < ApplicationController
 	      @bookings = Booking.where("date(created_at) >= ? and date(created_at) <= ? and poster_id = ?", params[:start_date].to_date, params[:end_date].to_date,current_user.id)
 	    end
 	end
+
+	def payments
+	   @bookings = Booking.where('poster_id = ? and stripe_charge_id is not null', current_user.id  )
+	end
 end

@@ -1,7 +1,7 @@
 module CommentsHelper
 
 	    def num_stars(score)
-
+            
         full_star = score.to_i
         half_star = score - full_star
 

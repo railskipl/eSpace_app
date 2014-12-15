@@ -53,7 +53,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-
+    raise params.inspect
     @post = Post.new(post_params)
 
     respond_to do |format|
@@ -149,7 +149,7 @@ class PostsController < ApplicationController
       params[:post][:drop_off_avaibility_start_date].to_date
       params[:post][:drop_off_avaibility_end_date].to_date
 
-      params.require(:post).permit(:area, :price_sq_ft, :pick_up, :drop_off, :price_include_pick_up, :price_include_drop_off, :pick_up_avaibilty_start_date, :pick_up_avaibility_end_date, :drop_off_avaibility_start_date, :drop_off_avaibility_end_date, :status, :additional_comments, :address, :latitude, :longitude, :user_id,:photo,:featured)
+      params.require(:post).permit(:area, :price_sq_ft, :pick_up, :drop_off, :price_include_pick_up, :price_include_drop_off, :pick_up_avaibilty_start_date, :pick_up_avaibility_end_date, :drop_off_avaibility_start_date, :drop_off_avaibility_end_date, :status, :additional_comments, :address, :latitude, :longitude, :user_id,:photo,:featured,:street_add,:apt,:city,:state,:zip_code)
     end
 
 

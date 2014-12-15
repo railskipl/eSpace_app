@@ -7,7 +7,7 @@
 	            <li><%= link_to "My Post",posts_path%></li>
 	            <li><%= link_to "My Order/Received",order_receives_path%></li>
 	            <li><%= link_to "My Booking", bookings_path%></li>
-	            <li><%= link_to "Payment", nil%></li>
+	            <li><%= link_to "Payment", payments_path%></li>
 
 	            <li class="active"><%= link_to("<span></span>".html_safe + "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> </li>
                 
@@ -128,6 +128,30 @@
 
 	jQuery(document).ready(function() {
 		jQuery("#refresh_msg").load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
+
+
+    	jQuery("#message_body").keyup(function (e) {
+
+        var code = (e.keyCode ? e.keyCode : e.which);
+        
+        var text_title = this.form.message_body.value;
+	      
+		   if(text_title != ''){
+
+		      jQuery('input[type="submit"]').addClass('msg_active');
+
+		      if (code == 13) {
+	        	
+	            $("#reply_message").submit();
+	            return true;
+	         }
+		   } 
+		   if(text_title == '')
+			{
+				jQuery('input[type="submit"]').removeClass('msg_active');
+			}
+
+		});
 
 	});
 
