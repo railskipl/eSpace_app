@@ -1,46 +1,6 @@
 <%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js" %>
 <%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker"%>
-<script type="text/javascript" >
-$(document).ready(function()
-{
-$(".account").click(function()
-{
-var X=$(this).attr('id');
 
-if(X==1)
-{
-$(".submenu").hide();
-$(this).attr('id', '0');  
-}
-else
-{
-
-$(".submenu").show();
-$(this).attr('id', '1');
-}
-  
-});
-
-//Mouseup textarea false
-$(".submenu").mouseup(function()
-{
-return false
-});
-$(".account").mouseup(function()
-{
-return false
-});
-
-
-//Textarea without editing.
-$(document).mouseup(function()
-{
-$(".submenu").hide();
-$(".account").attr('id', '');
-});
-  
-});
- </script>
 
 <script type="text/javascript">
 
@@ -207,19 +167,19 @@ $('.masterTooltip').hover(function(){
                               <%= f.text_field :address, :class => "small" %>
                             </li>
                             <li><label>Street address</label> 
-                              <input type="text" value="">
+                              <%= f.text_field :street_add, :class => "small" %>
                             </li>
                             <li class="small"><label>Apt # <span style="color:#78838e; font-size:10px">Optional</span></label> 
-                              <input type="text" value="">
+                              <%= f.text_field :apt, :class => "small" %>
                             </li>
                             <li><label>City</label> 
-                              <input type="text" value="">
+                              <%= f.text_field :city, :class => "small" %>
                             </li>
                             <li class="small"><label>State</label> 
-                              <input type="text" value="">
+                              <%= f.text_field :state, :class => "small" %>
                             </li>
                             <li class="small"><label>Zip code</label> 
-                              <input type="text" value="">
+                              <%= f.text_field :zip_code, :class => "small" %>
                             </li>
                             </ul>
                             </div>
