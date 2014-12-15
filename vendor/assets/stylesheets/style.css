@@ -2848,13 +2848,15 @@ div.submenu
 
 		.message_btn {
 		    background: url("/assets/w-btn.jpg") no-repeat scroll 50% 50% rgba(0, 0, 0, 0);
+		    border: 0 none;
+		    cursor: pointer;
 		    float: left;
 		    height: 75px;
-		    padding: 30px 28px;
+		    padding: 30px 29px;
 		    text-align: center;
-		    border:0;
-		    cursor:pointer;
 		}
+
+		.msg_active{ background:url(/assets/b-btn.jpg) 50% 50% no-repeat}
 
 .tooltip {
 	display:block;
@@ -2864,7 +2866,8 @@ div.submenu
 	background-color:#fff;
 	padding:2px 5px;
 	color:#899199;
-	font-size:14px}
+	font-size:14px;
+}
 
 
 
