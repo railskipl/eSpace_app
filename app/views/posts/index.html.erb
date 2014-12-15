@@ -1,3 +1,16 @@
+  <script type="text/javascript">
+
+    jQuery(function($){
+      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: 'assets/cal_icon2.png', buttonImageOnly: true})
+
+    });
+    jQuery(function($){
+      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'assets/cal_icon2.png', buttonImageOnly: true})
+    });
+
+
+  </script>
+
     <div class="main-new">
           <ul class="verticle-menu">
             <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
@@ -11,19 +24,22 @@
           </ul>
             
             <div class="right-side">
+
+              <%= form_for :search, :url=> {:controller=>'posts', :action=>'index'}, :html => {:method => 'get'} do |f| %>
               <div class="blue-header">
                 <ul class="date">
-                  <li>From <span><input type="text" value="May 20, 2014">
-                      <a href="#"><img src="image/cal_icon2.png" alt=""></a></span>
+                  <li>From <span>
+                   <%= text_field_tag :start_date, params[:start_date], :readonly => true %></span>
                   </li>
                     
                   <li>
-                    To <span><input type="text" value="December 30, 2014"><a href="#"><img src="image/cal_icon2.png" alt=""></a></span>
+                    To <span><%= text_field_tag :end_date, params[:end_date], :readonly => true %></span>
                   </li>
                     
                 </ul>
                     
                 <div class="status">
+                  <%= f.select :status, options_for_select(%w[Active Inactive]) %>
                     <select  class="status-prev">
                         <option value="10" style="color:#999;">Status</option>
                         <option value="9" style="color:#999;">Active</option>
@@ -32,10 +48,12 @@
                 </div>
 
                 <div class="search">
-                    <button type="button" class="search-btn-new"></button>
+                    
+                    <%= f.submit "",:class => "search-btn-new" %>
                 </div>
 
               </div>
+              <% end %>
                 
               <div class="booking-wrap">
     
