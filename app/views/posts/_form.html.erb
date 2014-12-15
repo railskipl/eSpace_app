@@ -5,17 +5,17 @@
 <script type="text/javascript">
 
   jQuery(function($){
-    $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+    $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
 
   });
   jQuery(function($){
-    $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+    $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
   });
   jQuery(function($){
-    $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+    $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
   });
   jQuery(function($){
-    $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+    $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
   });
     
   $(document).ready(function(){
@@ -101,7 +101,7 @@ $('.masterTooltip').hover(function(){
                             
                             
                             <div class="post-bg-row">
-                              <div class="post-bg-row-col3">
+                              <div class="post-bg-row-col3" >
                                 When can they drop off goods at your place ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
                                 <ul class="post-date">
                                   <li><label>From</label>
@@ -147,11 +147,11 @@ $('.masterTooltip').hover(function(){
                                 <div class="post-bg-row-col4">
                                 <ul class="post-date post-price">
 
-                                <li <% if @post.drop_off == true %> <% else %> style="display: none;" <% end %> ><label>Price</label><span>$</span>
-                                  <%= f.text_field :price_include_drop_off %>
+                                <li <% if @post.drop_off == true %> <% else %>  <% end %> ><label>Price</label><span>$</span>
+                                  <%= f.text_field :price_include_drop_off,:style=>"text-align: right;" %>
                                 </li>
-                                <li <% if @post.pick_up == true %> <% else %> style="display: none;" <% end %>><label>Price</label><span>$</span>
-                                  <%= f.text_field :price_include_pick_up %>
+                                <li <% if @post.pick_up == true %> <% else %>  <% end %>><label>Price</label><span>$</span>
+                                  <%= f.text_field :price_include_pick_up,:style=>"text-align: right;" %>
                                 </li>
                                 </ul>
                               </div>
@@ -167,19 +167,19 @@ $('.masterTooltip').hover(function(){
                               <%= f.text_field :address, :class => "small" %>
                             </li>
                             <li><label>Street address</label> 
-                              <input type="text" value="">
+                              <%= f.text_field :street_add, :class => "small" %>
                             </li>
                             <li class="small"><label>Apt # <span style="color:#78838e; font-size:10px">Optional</span></label> 
-                              <input type="text" value="">
+                              <%= f.text_field :apt, :class => "small" %>
                             </li>
                             <li><label>City</label> 
-                              <input type="text" value="">
+                              <%= f.text_field :city, :class => "small" %>
                             </li>
                             <li class="small"><label>State</label> 
-                              <input type="text" value="">
+                              <%= f.text_field :state, :class => "small" %>
                             </li>
                             <li class="small"><label>Zip code</label> 
-                              <input type="text" value="">
+                              <%= f.text_field :zip_code, :class => "small" %>
                             </li>
                             </ul>
                             </div>
@@ -205,7 +205,7 @@ $('.masterTooltip').hover(function(){
                               </div>
                             </div>
                             
-                            <div class="post-bg-row" style="margin-bottom:18px">
+                            <div class="post-bg-row" style="margin-bottom:18px; margin-top: -10px;">
                               <div class="post-bg-row-col3">
                                When can they pick up the goods ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
                                 <ul class="post-date">
@@ -217,7 +217,7 @@ $('.masterTooltip').hover(function(){
                             
                             <div class="post-bg-row rel" style="margin-bottom:30px">
                               <span class="file-input btn-file">
-                                Upload Photo <%= f.file_field:photo %>
+                                Upload Photo <%= f.file_field :photo %>
                               </span>
                                 
                                 <div class="photo">
@@ -228,7 +228,7 @@ $('.masterTooltip').hover(function(){
                                 </div>
                             </div>
                             
-                            
+                            <%= f.hidden_field :user_id, :value=> current_user.id %>
                             <div class="post-bg-row">
                               
                                Comments<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>

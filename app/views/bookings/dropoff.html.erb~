@@ -1,0 +1,8 @@
+<div style="width:400px;">
+<h4>Confirm drop-off</h4>
+<% if @booking.is_confirm == false %>
+	<%= link_to "Confirm drop-off ", confirm_bookings_path(:id => @booking.id ) %> 
+<% else %>
+	<%= link_to "Already confirmed", nil %> 
+<% end %>
+</div>
