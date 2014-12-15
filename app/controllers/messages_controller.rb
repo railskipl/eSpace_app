@@ -159,6 +159,7 @@ end
   end
 
   def compose_message
+    @user = User.find(params[:user_id])
     @message = Message.new
     respond_with(@message)
   end

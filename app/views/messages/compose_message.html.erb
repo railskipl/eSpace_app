@@ -1,34 +1,119 @@
 <%= javascript_include_tag "validation" %>
-<div style="width:40%;"><h4> New Message</h4></div>
 
-<%= form_for(@message, :url => {:controller=>"messages", :action=>"sent_to"}, :html=>{:id=>"reply_message"}, :remote=> true) do |f| %>
-  <% if @message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+<style>
 
-      <ul>
-      <% @message.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+.boxpop-up
+{
+width:380px;
+
+background:#FFF;
+/*border:1px #eeeeee solid; */
+
+}
+.booking-btn{
+  background: #00b4ff;
+  padding:10px 10px 8px;
+  font-size:15px; 
+  text-align:center;  
+  font-family:brandon4;
+  width:50%;
+  margin-left:171px;
+  margin-top:30px;
+  border:2px #00b4ff solid;
+  color:#ffffff;
+  
+    }
+.booking-btn a{
+text-decoration:none;
+ color:#ffffff;
+  }
+.alredy-btn{
+  background: #ffffff;
+  padding:10px 10px 8px;
+  font-size:15px; 
+  text-align:center;  
+  font-family:brandon4;
+  width:50%;
+  margin-left:140px;
+  margin-top:30px;
+  border:2px #ccc solid;
+    }
+.alredy-btn a{
+text-decoration:none;
+ color:#00b4ff;
+  } 
+   
+.link-more a
+{
+text-decoration:none;
+color:#00b4ff;
+font-size:12px; 
+padding-left:20px;
+  }
+  
+.paragraph-new { width:86%;   
+  font-size:11px; 
+  color:#b0b4b8; 
+  margin-top:50px;
+  padding-left:20px;    
+} 
+
+.heading { padding-left:20px; 
+  color:#14263a; 
+  padding-top:30px; 
+  font-family: brandon4;
+  margin-top:0px;       
+} 
+.cancel-btn{margin-top:6px} 
+
+.cancel-btn a 
+{
+text-decoration:none;
+padding-top:13px;
+color:#ccc; 
+font-size:12px;
+margin-left:329px;
+font-family: brandon4;
+
+}
+
+#facebox .content {
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 4px;
+    display: table;
+    height: 421px;
+    padding: 10px;
+    width: 100%;
+}   
+</style>
+
+<div class="content">
+  <div class="boxpop-up">
+    <div class="heading"><%= @user.name.capitalize rescue nil%> <%= @user.last_name[0,1] rescue nil %></div>
+    <%= form_for(@message, :url => {:controller=>"messages", :action=>"sent_to"}, :html=>{:id=>"reply_message"}, :remote=> true) do |f| %>
+      <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+          <ul>
+          <% @message.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+      <div class="row">
+        <%= f.hidden_field :recipient_id,:value =>@user.id %>
+        <%= hidden_field_tag :post_id,params[:post_id] %>
+      </div>
+     
+      <div class="paragraph-new">
+        <%= f.text_area :body ,:class => "pe_tf" ,:style => "width:338px; border: 2px solid #eee;" ,:rows => "10"%>
+      </div>
+      <%= f.submit "Proceed",:class=>"booking-btn"%>
+    <% end %>
+    <div class="cancel-btn">
+      <a href="#">Cancel</a>
     </div>
-  <% end %>
-  <div class="row">
-
-  <%= f.hidden_field :recipient_id,:value =>post_user_id %>
-  <%= hidden_field_tag :post_id,params[:post_id] %>
- 
-
+  </div>
 </div>
- 
-  <div class="row" style="margin-left: 1px;">
-    
-    <%= f.text_area :body ,:class => "pe_tf" ,:style => "width:500px; border: 2px solid #eee;" ,:rows => "10"%>
-  </div>
-
-  <div class="actions" style ="float:right; margin-top: 20px;">
-    <%= f.submit "Proceed", :class => "book", :style=>"margin:0; padding: 6px 45px; position: unset; font-size: 14px;" %>
-  </div>
-
-<% end %>
-<br/>
