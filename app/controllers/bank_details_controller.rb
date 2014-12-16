@@ -49,16 +49,16 @@ class BankDetailsController < ApplicationController
               :card => params[:stripe_card_token]
             )
    
-          rescue Stripe::InvalidRequestError => e
-    "Stripe error while creating Recipient: #{e.message}"
-            redirect_to :back
+            rescue Stripe::InvalidRequestError => e
+    # "Stripe error while creating Recipient: #{e.message}"
             flash[:notice] = "Stripe error while creating Recipient: #{e.message}"
-          
+            redirect_to :back
+            
             return false
           end
            
           stripe_response = JSON.parse("#{recipient}")
-               
+              raise  stripe_response.inspect
           if stripe_response["cards"]["data"][0]["id"].present?
             @bank_detail.stripe_recipient_token = stripe_response["id"]
             @bank_detail.full_name = params[:bank_detail][:full_name]
@@ -70,10 +70,8 @@ class BankDetailsController < ApplicationController
             # https://stripe.com/docs/api/ruby#update_transfer
             redirect_to bank_details_path, :notice => "Bank info was successfully created." 
             return false
-            
           end
-           
-           
+
         else
           render :new
           flash[:notice] = "Something went wrong,please try again. "
