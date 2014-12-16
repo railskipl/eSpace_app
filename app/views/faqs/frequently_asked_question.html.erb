@@ -35,10 +35,10 @@ ddaccordion.init({
   <div class="right-side">
     <div class="blue-header">
       <%= form_tag frequently_asked_question_path, method: :get do %>
-      <span class="font20"><%= text_field_tag :search, params[:search]%></span>
-      <div class="search">
-        <%= image_submit_tag("search_new.png")%>
-      </div>
+        <span class="font20"><%= text_field_tag :search, params[:search]%></span>
+        <div class="search">
+          <%= image_submit_tag("search_new.png")%>
+        </div>
       <% end %>
     </div>
     <div class="faq-wrap">
@@ -46,17 +46,18 @@ ddaccordion.init({
         <a href="#" onClick="ddaccordion.collapseall('technology'); return false">Collapse all</a>  - <a href="#" onClick="ddaccordion.expandall('technology');
                  return false">Expand all</a> 
       </div>
-      <%@faqs.each do |faq|%>
-      <div class="technology"><%= faq.title%></div>
-      <div class="thelanguage">
-        <%faq.faq_questions.each do |faq_question|%>
-        <span><%= faq_question.question %></span>
+      <% @faqs.each do |faq|%>
+        <div class="technology">
+          <%= faq.title%>
+        </div>
+        <div class="thelanguage">
+          <%faq.faq_questions.each do |faq_question|%>
+          <span><%= faq_question.question rescue nil%></span>
 
-        <%= faq_question.answer %>
-        <div class="sep"></div>
-
-        <%end%>
-      </div>
+          <%= faq_question.answer %>
+          <div class="sep"></div>
+          <%end%>
+        </div>
       <%end%>
     </div>
   </div>
