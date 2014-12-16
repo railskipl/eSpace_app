@@ -30,11 +30,11 @@
                     <%= form_tag search_order_received_by_date_path,:method => 'get' do %>
                     <ul class="date">
                     <li>
-                    From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off, :class => "date", :style => "padding: 3px;"%></span>
+                    From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></span>
                     </li>
                     
                     <li>
-                    To <span><%= text_field_tag :end_date, params[:end_date],:class => "date",:style => "padding: 3px;" %></span>
+                    To <span><%= text_field_tag :end_date, params[:end_date],:autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;" %></span>
                     </li>
                     
                     </ul>

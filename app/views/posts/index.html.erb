@@ -3,11 +3,11 @@
   <script type="text/javascript">
 
     jQuery(function($){
-      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: 'assets/cal_icon2.png', buttonImageOnly: true})
+      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
 
     });
     jQuery(function($){
-      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'assets/cal_icon2.png', buttonImageOnly: true})
+      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
     });
 
 
@@ -29,11 +29,11 @@
       <div class="blue-header">
         <ul class="date">
           <li>From <span>
-           <%= text_field_tag :start_date, params[:start_date], :readonly => true %></span>
+           <%= text_field_tag :start_date, params[:start_date],:class => "date", :readonly => true %></span>
           </li>
             
           <li>
-            To <span><%= text_field_tag :end_date, params[:end_date], :readonly => true %></span>
+            To <span><%= text_field_tag :end_date, params[:end_date],:class => "date", :readonly => true %></span>
           </li>  
         </ul>
         <div class="status">
@@ -54,13 +54,18 @@
       <% @posts.each_with_index do |post, index| %>
         <div class="booking-box-add">
           <div class="booking-col">       
-            <p style="width:70px;">111, 1st Street Los Angeles, CA 10021 </p>
-            <p><span> Bookings received </span>: 13 </p>
+            <p style="width:70px;"><%= post.address rescue nil%> <%= post.street_add rescue nil%> <%= post.apt rescue nil%> <%= post.city rescue nil%> <%= post.state rescue nil%> <%= post.zip_code rescue nil%></p>
+            <p><span> Bookings received </span>: <%= post.bookings.pluck(:id).count%> </p>
           </div>
           <div class="booking-col1"> 
             <span>Total area</span> : <%= post.area.to_i %> sq. ft
+            <% @a =[] %>
+            <% post.bookings.pluck(:area).each do |area|%>
+              <% @a << area%>
+            <%end%>
+          
             <p>
-              <span>Booking area</span> : 80 sq. ft
+              <span>Booking area</span> : <%= @a.present? ? @a.inject{|sum,x| sum + x } : 0 %>sq. ft
             </p>
             <p>
               <span>Price/sq. ft</span> : $<%= post.price_sq_ft.to_i %>
@@ -71,9 +76,9 @@
               <span>Booked drop-off</span> 
               <label class="tasks-list-item">
                 <% if post.drop_off == true %> 
-                  <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" checked>
+                  <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
                 <% else %>
-                 <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
+                  <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
                 <% end %>
                 <span class="tasks-list-mark"></span>
               </label>
@@ -82,9 +87,9 @@
               <span>Booked Pick-up</span> 
               <label class="tasks-list-item">
                 <% if post.pick_up == true %>
-                  <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" checked>
+                  <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
                 <% else %>
-                  <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
+                  <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
                 <% end %>
                 <span class="tasks-list-mark"></span>
               </label>
@@ -94,6 +99,10 @@
             <span>Status</span>  : <% if post.status == true %> Active <% else %> Deactive <% end %>
             <br>
             <span>Post date</span>  : <%= post.created_at.strftime("%d-%m-%Y") %> 
+            <p>
+            <span><%= link_to "Edit Post", edit_post_path(post) %> </span>
+            </p>
+
           </div>        
         </div>
       <% end %>

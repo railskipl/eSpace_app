@@ -1244,7 +1244,7 @@ background-color:#072643;
 		.classic2 { padding: 0.8em 1em; color:#000; }
 		.classic2 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		
 		.classic2 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1271,7 +1271,6 @@ background-color:#072643;
 		.classic3 { padding: 0.8em 1em; color:#000; }
 		.classic3 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic3 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1298,7 +1297,6 @@ background-color:#072643;
 		.classic4 { padding: 0.8em 1em; color:#000; }
 		.classic4 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic4 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1325,7 +1323,7 @@ background-color:#072643;
 		.classic5 { padding: 0.8em 1em; color:#000; }
 		.classic5 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		
 		.classic5 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1352,7 +1350,6 @@ background-color:#072643;
 		.classic6 { padding: 0.8em 1em; color:#000; }
 		.classic6 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic6 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1379,7 +1376,6 @@ background-color:#072643;
 		.classic7 { padding: 0.8em 1em; color:#000; }
 		.classic7 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic7 {background: #FFFFFF; border: 1px solid #CCC; }
 	
 	.add.tooltip8 {
@@ -1404,7 +1400,6 @@ background-color:#072643;
 		.classic8 { padding: 0.8em 1em; color:#000; }
 		.classic8 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic8 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1431,7 +1426,6 @@ background-color:#072643;
 		.classic9 { padding: 0.8em 1em; color:#000; }
 		.classic9 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic9 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1462,7 +1456,6 @@ background-color:#072643;
 		.classic10 { padding: 0.8em 1em; color:#000; }
 		.classic10 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
 		.classic10 {background: #FFFFFF; border:1px #CCC solid;}
 	
 	
@@ -1549,7 +1542,7 @@ background-color:#072643;
 	}
 	.new_para1
 	{
-		width:231px;
+		width:225px;
    		/* border-bottom:2px #eeeeee solid ;	*/
 		text-align:left;
 		font-size:10px;
@@ -2208,10 +2201,10 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
   font-weight: bold;
   color: #8a9a9b;
 }
-.tasks-list-cb:checked ~ .tasks-list-desc {
+/*.tasks-list-cb:checked ~ .tasks-list-desc {
   color: #34bf6e;
   text-decoration: line-through;
-}
+}*/
 
 	/*for checkbox*/
 	
@@ -2728,13 +2721,13 @@ input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
 .check-box li .tasks-list-mark{border-color: #848d96!important;}
 .check-box li .tasks-list-mark:before{border-color:#fff!important}
 
-.tasks-list-item {
+/*.tasks-list-item {
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
+}*/
 .tasks-list-item + .tasks-list-item {
   border-top: 1px solid #f0f2f3;
 }
@@ -3098,3 +3091,15 @@ div.selectBox
     
 }
 
+.post-btn {
+    border: 2px solid #eeeeee;
+    font-family: 'brandon3';
+    font-size: 9px;
+    line-height: normal;
+    margin: 0;
+    padding: 8px 18px;
+}
+
+a.post-btn {
+   text-decoration: none;
+}
