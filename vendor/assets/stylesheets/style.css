@@ -1729,7 +1729,7 @@ font-size:15px;
 .error { color: #FD0000; }
 
 
-.form-error{ color: #FD0000; clear: left; }
+.form-error{ color: #FD0000; clear: left; font-family: brandon2; }
 
 .drop_off_date img {height: 21px; margin: -18px 0 0 220px; width: 21px; z-index: -22 !important;}
 
@@ -1815,7 +1815,7 @@ body{
 	margin:0; 
 	padding:27px 43px; 
 	list-style-type:none;
-	width:270px;
+	width:269px;
 	font-family:'brandon2';
 	font-size:13px;
 	float:left;
@@ -2588,7 +2588,7 @@ form.change_password .textbox input {
   border:none;
   color:#ffffff;
   padding:10px 10px 8px;
-  margin-top:20px;
+  margin-top: 40px;
   font-size:15px; 
   width:212px;
   font-family:brandon4;

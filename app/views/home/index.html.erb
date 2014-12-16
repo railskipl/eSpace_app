@@ -78,7 +78,7 @@
                          <%= text_field_tag :email, nil, :class=>"sign_up_id", :placeholder=>"@usd.edu email address" %>
                          <span class="input-group-btn">
                              <%= submit_tag "Sign Up", :class=>"btn_signup", :style=>"margin:-78px 0px 0px 601px;" %>
-                             <div class="form-error"></div>
+                             <div class="form-error" style="margin-left: 414px;"></div>
                              <p class="usc"><p style="color:#d3d4d5; margin:-14px 0 0 414px;font-family:brandon5; font-size:14px;" >Currently open to USC students only.</p></p>
                         </span>
                         <% end %>
@@ -255,3 +255,27 @@
      <div class="btn_more">
                <a href="javascript:void(0)">  Learn more </a>
                </div>
+
+
+   <script src="/assets/typer.js"></script> 
+  
+  <script>
+  $(function () { 
+  	
+  	$('[data-typer-targets]').typer(); 
+	});
+</script>
+
+<!---------------------------down arrow-------------------------------------------------->
+  
+  <script>
+  
+  $('a').click(function(){
+    $('html, body').animate({
+        scrollTop: $( $(this).attr('href') ).offset().top
+    }, 500);
+    return false;
+});
+  
+  
+  </script>

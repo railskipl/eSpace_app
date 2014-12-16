@@ -1,3 +1,5 @@
+  <%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js" %>
+<%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker"%>
   <script type="text/javascript">
 
     jQuery(function($){
@@ -11,118 +13,90 @@
 
   </script>
 
-    <div class="main-new">
-          <ul class="verticle-menu">
-            <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
-              <li><%= link_to "Change Password", edit_user_registration_path %></li>
-              <li><%= link_to "Bank Details",bank_details_path %></li>
-              <li class="active"><%= link_to "My Post",posts_path%></li>
-              <li><%= link_to "My Order/Received",order_receives_path%></li>
-              <li><%= link_to "My Booking", bookings_path%></li>
-              <li><%= link_to "Payment", nil%></li>
-              <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
-          </ul>
+<div class="main-new">
+  <ul class="verticle-menu">
+    <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+    <li><%= link_to "Change Password", edit_user_registration_path %></li>
+    <li><%= link_to "Bank Details",bank_details_path %></li>
+    <li class="active"><%= link_to "My Post",posts_path%></li>
+    <li><%= link_to "My Order/Received",order_receives_path%></li>
+    <li><%= link_to "My Booking", bookings_path%></li>
+    <li><%= link_to "Payment", nil%></li>
+    <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
+  </ul>
+  <div class="right-side">
+    <%= form_for :search, :url=> {:controller=>'posts', :action=>'index'}, :html => {:method => 'get'} do |f| %>
+      <div class="blue-header">
+        <ul class="date">
+          <li>From <span>
+           <%= text_field_tag :start_date, params[:start_date], :readonly => true %></span>
+          </li>
             
-            <div class="right-side">
-
-              <%= form_for :search, :url=> {:controller=>'posts', :action=>'index'}, :html => {:method => 'get'} do |f| %>
-              <div class="blue-header">
-                <ul class="date">
-                  <li>From <span>
-                   <%= text_field_tag :start_date, params[:start_date], :readonly => true %></span>
-                  </li>
-                    
-                  <li>
-                    To <span><%= text_field_tag :end_date, params[:end_date], :readonly => true %></span>
-                  </li>
-                    
-                </ul>
-                    
-                <div class="status">
-                  <%= f.select :status, options_for_select(%w[Active Inactive]) %>
-                    <select  class="status-prev">
-                        <option value="10" style="color:#999;">Status</option>
-                        <option value="9" style="color:#999;">Active</option>
-                        <option value="9" style="color:#999;">Inactive</option>
-                    </select>
-                </div>
-
-                <div class="search">
-                    
-                    <%= f.submit "",:class => "search-btn-new" %>
-                </div>
-
-              </div>
-              <% end %>
-                
-              <div class="booking-wrap">
-    
-                <div class="new-add-post"><%= link_to 'Add Post', new_post_path %> </div>
-  
-                  <% @posts.each_with_index do |post, index| %>
-                    <div class="booking-box-add">
-                      <div class="booking-col">
-                            
-                        <p style="width:70px;">111, 1st Street Los Angeles, CA 10021 </p>
-                        <p><span> Bookings received </span>: 13 </p>
-                      </div>
-                        
-                       
-                        <div class="booking-col1">
-                         
-                        <span>Total area</span> : <%= post.area.to_i %> sq. ft
-                        <p>
-                          <span>Booking area</span> : 80 sq. ft
-                        </p>
-                        <p>
-                          <span>Price/sq. ft</span> : $<%= post.price_sq_ft.to_i %>
-                        </p>
-                        </div>
-                        
-                        <div class="booking-col1">
-                        
-                        
-                        <p>
-                          <span>Booked drop-off</span> 
-                          <label class="tasks-list-item">
-                            <% if post.drop_off == true %> 
-                              <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" checked>
-                            <% else %>
-                             <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
-                            <% end %>
-
-                            <span class="tasks-list-mark"></span>
-                          </label>
-                        </p>
-                        
-
-                        
-                        <p>
-                          <span>Booked Pick-up</span> 
-                          <label class="tasks-list-item">
-
-                          <% if post.pick_up == true %>
-                            <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" checked>
-                          <% else %>
-                            <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
-                          <% end %>
-                          <span class="tasks-list-mark"></span>
-                        
-                        </label>
-                        </p>
-                        
-                        
-                        </div>
-                        
-                        <div class="booking-col1">
-                        <span>Status</span>  : <% if post.status == true %> Active <% else %> Deactive <% end %>
-                        <br>
-                        <span>Post date</span>  : <%= post.created_at.strftime("%d-%m-%Y") %> </div>
-                        
-                  </div>
-                  <% end %>
-
-  
-                </div>
-            </div>
+          <li>
+            To <span><%= text_field_tag :end_date, params[:end_date], :readonly => true %></span>
+          </li>  
+        </ul>
+        <div class="status">
+          <%= f.select :status, options_for_select(%w[Active Inactive]) %>
+            <select  class="status-prev">
+                <option value="10" style="color:#999;">Status</option>
+                <option value="9" style="color:#999;">Active</option>
+                <option value="9" style="color:#999;">Inactive</option>
+            </select>
         </div>
+        <div class="search">
+            <%= f.submit "",:class => "search-btn-new" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="booking-wrap">
+      <div class="new-add-post"><%= link_to 'Add Post', new_post_path %> </div>
+      <% @posts.each_with_index do |post, index| %>
+        <div class="booking-box-add">
+          <div class="booking-col">       
+            <p style="width:70px;">111, 1st Street Los Angeles, CA 10021 </p>
+            <p><span> Bookings received </span>: 13 </p>
+          </div>
+          <div class="booking-col1"> 
+            <span>Total area</span> : <%= post.area.to_i %> sq. ft
+            <p>
+              <span>Booking area</span> : 80 sq. ft
+            </p>
+            <p>
+              <span>Price/sq. ft</span> : $<%= post.price_sq_ft.to_i %>
+            </p>
+          </div>
+          <div class="booking-col1"> 
+            <p>
+              <span>Booked drop-off</span> 
+              <label class="tasks-list-item">
+                <% if post.drop_off == true %> 
+                  <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" checked>
+                <% else %>
+                 <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
+                <% end %>
+                <span class="tasks-list-mark"></span>
+              </label>
+            </p>
+            <p>
+              <span>Booked Pick-up</span> 
+              <label class="tasks-list-item">
+                <% if post.pick_up == true %>
+                  <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" checked>
+                <% else %>
+                  <input type="checkbox" class="tasks-list-cb" value="1" name="task_3">
+                <% end %>
+                <span class="tasks-list-mark"></span>
+              </label>
+            </p>
+          </div>
+          <div class="booking-col1">
+            <span>Status</span>  : <% if post.status == true %> Active <% else %> Deactive <% end %>
+            <br>
+            <span>Post date</span>  : <%= post.created_at.strftime("%d-%m-%Y") %> 
+          </div>        
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
