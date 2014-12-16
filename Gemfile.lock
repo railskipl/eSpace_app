@@ -191,6 +191,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    traceroute (0.4.0)
+      rails (>= 3.0.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -238,6 +240,7 @@ DEPENDENCIES
   spring
   stripe
   therubyracer
+  traceroute
   turbolinks
   uglifier (>= 1.3.0)
   wicked_pdf
