@@ -27,18 +27,6 @@
             
   <div class="right-side">
 
-     <!-- Error Message -->
-                      <% flash.each do |name, msg| %>
-                        <% if msg.is_a?(String) %>
-                          <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-                            <a class="close" data-dismiss="alert">&#215;</a>
-                            <%= content_tag :div, msg, :id => "flash_#{name}" %>
-                          </div>
-                        <% end %>
-                      <% end %>
-                      <!-- End -->
-
-                      
     <div class="blue-header">
       <%= form_tag search_order_received_by_date_path,:method => 'get' do %>
       <ul class="date">
