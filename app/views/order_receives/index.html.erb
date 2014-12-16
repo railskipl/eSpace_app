@@ -27,27 +27,16 @@
             
   <div class="right-side">
 
-     <!-- Error Message -->
-                      <% flash.each do |name, msg| %>
-                        <% if msg.is_a?(String) %>
-                          <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-                            <a class="close" data-dismiss="alert">&#215;</a>
-                            <%= content_tag :div, msg, :id => "flash_#{name}" %>
-                          </div>
-                        <% end %>
-                      <% end %>
-                      <!-- End -->
-
-                      
+     
     <div class="blue-header">
       <%= form_tag search_order_received_by_date_path,:method => 'get' do %>
       <ul class="date">
       <li>
-      From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off, :class => "date", :style => "padding: 3px;"%></span>
+      From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></span>
       </li>
       
       <li>
-      To <span><%= text_field_tag :end_date, params[:end_date],:class => "date",:style => "padding: 3px;" %></span>
+      To <span><%= text_field_tag :end_date, params[:end_date],:readonly => true,:class => "date",:style => "padding: 3px;" %></span>
       </li>
       
       </ul>

@@ -1549,7 +1549,7 @@ background-color:#072643;
 	}
 	.new_para1
 	{
-		width:231px;
+		width:225px;
    		/* border-bottom:2px #eeeeee solid ;	*/
 		text-align:left;
 		font-size:10px;
@@ -2208,10 +2208,10 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
   font-weight: bold;
   color: #8a9a9b;
 }
-.tasks-list-cb:checked ~ .tasks-list-desc {
+/*.tasks-list-cb:checked ~ .tasks-list-desc {
   color: #34bf6e;
   text-decoration: line-through;
-}
+}*/
 
 	/*for checkbox*/
 	
@@ -3047,3 +3047,15 @@ div.selectBox
 	}
 
 
+.post-btn {
+    border: 2px solid #eeeeee;
+    font-family: 'brandon3';
+    font-size: 9px;
+    line-height: normal;
+    margin: 0;
+    padding: 8px 18px;
+}
+
+a.post-btn {
+   text-decoration: none;
+}
