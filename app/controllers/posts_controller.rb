@@ -30,17 +30,6 @@ class PostsController < ApplicationController
     @posts = Post.where(archive: true, user_id: current_user.id)
   end
 
-  def all_posts
-    if params[:search]
-      @posts = Post.search(params[:search], params[:page], current_user.id).order(sort_column + " " + sort_direction)
-    else
-      @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
-    end
-
-  end
-
-
-
   # GET /posts/1
   # GET /posts/1.json
   def show

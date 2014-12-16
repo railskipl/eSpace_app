@@ -2,6 +2,8 @@ class PayementTransfersController < ApplicationController
 
   layout 'admin'
   include PostsHelper
+
+  
   def index
   	 @bookings = Booking.all
   end
