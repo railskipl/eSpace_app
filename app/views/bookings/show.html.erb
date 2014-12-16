@@ -121,15 +121,15 @@
                           
                           <div class="blue-bg-div2">
                           <ul>
-                          <li><div>Date of booking</div> <span><%= @booking.created_at.strftime("%B %m,%Y") %></span></li>
+                          <li><div>Date of booking</div> <span><%= @booking.created_at.strftime("%B %d,%Y") %></span></li>
                           <li><div>Booked area</div> <span><%= @booking.area %><p>Sq. Feet</p></span></li>
                           <li><div>Drop-off</div> 
-                              <span><%= @booking.dropoff_date.strftime("%B %m,%Y") %></br>
+                              <span><%= @booking.dropoff_date.strftime("%B %d,%Y") %></br>
                                 Drive : <% if @booking.dropoff_price != 0 %> $<%= @booking.dropoff_price %> <% else %> Unavailable <% end %>
                               </span>
                             </li>
                           <li><div>Pick-up</div> 
-                            <span><%= @booking.pickup_date.strftime("%B %m,%Y") %></br>
+                            <span><%= @booking.pickup_date.strftime("%B %d,%Y") %></br>
                             Drive :  <% if @booking.pickup_price != 0 %> $<%= @booking.pickup_price %> <% else %> Unavailable <% end %>
                             </span>
                           </li>

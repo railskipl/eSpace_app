@@ -43,8 +43,8 @@ class BookingsController < ApplicationController
     
    	if params[:totalPrice] != nil
 
-      dropoff_date = Chronic.parse("#{params[:booking][:dropoff_date]}")
-      pickup_date = Chronic.parse("#{params[:booking][:pickup_date]}")    
+      dropoff_date = params[:booking][:dropoff_date].to_date rescue nil
+      pickup_date = params[:booking][:pickup_date].to_date rescue nil
       
       booking = {}
       booking["stripe_customer_token"] = params[:stripeToken]
