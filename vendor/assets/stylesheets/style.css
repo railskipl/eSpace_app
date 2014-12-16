@@ -1244,7 +1244,7 @@ background-color:#072643;
 		.classic2 { padding: 0.8em 1em; color:#000; }
 		.classic2 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		 
 		.classic2 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1271,7 +1271,7 @@ background-color:#072643;
 		.classic3 { padding: 0.8em 1em; color:#000; }
 		.classic3 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		 
 		.classic3 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1298,7 +1298,7 @@ background-color:#072643;
 		.classic4 { padding: 0.8em 1em; color:#000; }
 		.classic4 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		 
 		.classic4 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1325,7 +1325,7 @@ background-color:#072643;
 		.classic5 { padding: 0.8em 1em; color:#000; }
 		.classic5 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		
 		.classic5 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1352,7 +1352,7 @@ background-color:#072643;
 		.classic6 { padding: 0.8em 1em; color:#000; }
 		.classic6 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		 
 		.classic6 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1379,7 +1379,7 @@ background-color:#072643;
 		.classic7 { padding: 0.8em 1em; color:#000; }
 		.classic7 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		
 		.classic7 {background: #FFFFFF; border: 1px solid #CCC; }
 	
 	.add.tooltip8 {
@@ -1404,7 +1404,7 @@ background-color:#072643;
 		.classic8 { padding: 0.8em 1em; color:#000; }
 		.classic8 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		
 		.classic8 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1431,7 +1431,7 @@ background-color:#072643;
 		.classic9 { padding: 0.8em 1em; color:#000; }
 		.classic9 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		
 		.classic9 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1462,7 +1462,7 @@ background-color:#072643;
 		.classic10 { padding: 0.8em 1em; color:#000; }
 		.classic10 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 html a:hover { background: transparent; }
+		
 		.classic10 {background: #FFFFFF; border:1px #CCC solid;}
 	
 	
@@ -1547,9 +1547,10 @@ background-color:#072643;
 	float:right;
 	background-color:#072643;
 	}
+
 	.new_para1
 	{
-		width:231px;
+		width:225px;
    		/* border-bottom:2px #eeeeee solid ;	*/
 		text-align:left;
 		font-size:10px;
@@ -1747,7 +1748,7 @@ font-size:15px;
 .error { color: #FD0000; }
 
 
-.form-error{ color: #FD0000; clear: left; }
+.form-error{ color: #FD0000; clear: left; font-family: brandon2; }
 
 .drop_off_date img {height: 21px; margin: -18px 0 0 220px; width: 21px; z-index: -22 !important;}
 
@@ -1833,7 +1834,7 @@ body{
 	margin:0; 
 	padding:27px 43px; 
 	list-style-type:none;
-	width:270px;
+	width:269px;
 	font-family:'brandon2';
 	font-size:13px;
 	float:left;
@@ -2217,7 +2218,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 	
 	/*--------------------------8/12/2014-----------------------*/
 	
-	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:604px; font-size:10px}
+	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:626px; font-size:10px}
 	.blue-bg p{ margin:11px 0 0 0; color:#cbcaca}
 	
 	.blue-bg-div1 > p{text-align:justify}
@@ -2300,7 +2301,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 		
 		.main-new2 li a span{
 		color:#fff; background:#ff7e00; border-radius:100%; width:20px; height:auto; font-size:10px; text-align:center; margin-left:12px; padding:3px 3px;
-		display:inline-block
+		display:inline-block; height: auto;
 		}
 		.logo{ margin:31px 100px 31px 0; max-width:100px}
 		.formwrap{ width:280px; margin:60px auto; font-size:18px; color:#989ba0; text-align:left; font-family:'brandon4'; position:relative}
@@ -2629,7 +2630,7 @@ form.change_password .textbox input {
   border:none;
   color:#ffffff;
   padding:10px 10px 8px;
-  margin-top:20px;
+  margin-top: 40px;
   font-size:15px; 
   width:212px;
   font-family:brandon4;
@@ -3090,5 +3091,11 @@ div.selectBox
 	margin-left:1px;
 	
 	}
-
+.month1 {
+    color: #999999;
+    font-family: brandon4;
+    font-size: 10px;
+    line-height: 10px;
+    float:right:left;
+}
 
