@@ -27,6 +27,17 @@ ddaccordion.init({
 
 </script>
 
+<style type="text/css">
+  .new-pickup{
+background:none;
+border:none;
+color:#ffffff;
+background-color:#072743;
+font-family:brandon2;
+ 
+ }
+</style>
+
 <div class="main-new">
   <ul class="verticle-menu">
     <li><%= link_to "Contact Us",home_contactus_path%></li>
@@ -35,9 +46,9 @@ ddaccordion.init({
   <div class="right-side">
     <div class="blue-header">
       <%= form_tag frequently_asked_question_path, method: :get do %>
-        <span class="font20"><%= text_field_tag :search, params[:search]%></span>
+        <span class="font20"><%= text_field_tag :search, params[:search],:placeholder => "Search",:class=>"new-pickup"%></span>
         <div class="search">
-          <%= image_submit_tag("search_new.png")%>
+          <%= image_submit_tag("search_new.png",:style=>"margin-top: 6px;")%>
         </div>
       <% end %>
     </div>
