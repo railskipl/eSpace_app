@@ -48,8 +48,11 @@
                                         <%= link_to "Browse Spaces", posts_overview_path %>
                                     </li>
                                     <li>
-                                     <%= link_to("Message" + "<span>2</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
+                                      
+                                     <%= link_to("Messages <span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
+
                                     </li>
+                                    
                                     <li class="active">
                                       <%= link_to "My Account", edit_user_path(current_user) %>
                                     </li>

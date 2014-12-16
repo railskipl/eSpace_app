@@ -13,26 +13,27 @@ class MessagesController < ApplicationController
    @user_messages_sender = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
    @user_messages_receiver = current_user.sent_messages.order("id Desc").select(:recipient_id).uniq
      
-   
   end
+
+
   #make all messages mark as read.
   def is_read_all
-   message = Message.select(:id,:sender_id,:is_read).where("recipient_id = ? AND is_read =?",current_user.id,false).uniq!
-   messages_receiver = Message.select(:id,:sender_id,:is_read).where("recipient_id = ?",current_user.id).uniq!.last.sender_id rescue nil
-  
-   messages_sender = Message.select(:id,:sender_id,:recipient_id,:is_read).where("sender_id = ?",current_user.id).uniq!.last.recipient_id rescue nil
-  
-   message.each do |r|
-     if r.is_read == false
-        r.update_column('is_read',true) 
-     end 
-   end
-       unless messages_receiver.nil?
-         redirect_to :controller =>'messages',:action=>"index",:recv_id =>messages_receiver
-      else
-         redirect_to :controller =>'messages',:action=>"index",:recv_id =>messages_sender
-      end   
-    end 
+     message = Message.select(:id,:sender_id,:is_read).where("recipient_id = ? AND is_read =?",current_user.id,false).uniq!
+     messages_receiver = Message.select(:id,:sender_id,:is_read).where("recipient_id = ?",current_user.id).uniq!.last.sender_id rescue nil
+    
+     messages_sender = Message.select(:id,:sender_id,:recipient_id,:is_read).where("sender_id = ?",current_user.id).uniq!.last.recipient_id rescue nil
+    
+     message.each do |r|
+       if r.is_read == false
+          r.update_column('is_read',true) 
+       end 
+     end
+         unless messages_receiver.nil?
+           redirect_to :controller =>'messages',:action=>"index",:recv_id =>messages_receiver
+        else
+           redirect_to :controller =>'messages',:action=>"index",:recv_id =>messages_sender
+        end   
+      end 
 
   def show
 
@@ -166,28 +167,11 @@ end
 
   def sent_to
       
-      @post = Post.find_by_id(params[:message][:post_id])
-
-      @msg = Message.new(message_params)
-      user = User.find_by_email(params[:message][:recipient_id])
-       if params["reply"] == "reply"
-
-        @message = Message.new(message_params)
-        Message.create(:subject => @message.subject , :body => @message.body,:sender_id => current_user.id, :recipient_id => params[:recipient_id].to_i, :message_id =>params[:message_id].to_i ,:post_id=>params[:post_id].to_i )
-
+      @message = Message.new(message_params)
+      
+      if @message.save
         respond_with(@message, location: compose_message_messages_path)
-        else
-          if user.nil?
-            #redirect_to new_message_url ,:notice => "Please enter recipient"
-            respond_with(@message, location: compose_message_messages_path)
-          else
-            @message = Message.create(:subject => @msg.subject, :body => @msg.body, :recipient_id => user.id, :sender_id => current_user.id)
-              @message.post_id = params[:post_id].to_i
-             if @message.save
-             respond_with(@message, location: messages_path)
-           end
-          end
-        end  
+      end
 
   end
 

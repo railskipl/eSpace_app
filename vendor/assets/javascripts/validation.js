@@ -291,7 +291,7 @@ rules: {
   
 	
 	"contactus[subject]":{
-	   // required:true
+	    required:true
 	},
 	"contactus[message]":{
 		required:true
@@ -301,7 +301,7 @@ messages: {
 
 	
 	"contactus[subject]":{
-		// required: "Please enter Subject"
+		 required: "Please enter Subject"
 	},
 	"contactus[message]":{
 		required: "Please enter Message"

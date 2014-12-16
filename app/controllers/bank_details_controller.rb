@@ -22,19 +22,6 @@ class BankDetailsController < ApplicationController
   end
 
   def create
-    
-    # @bank_detail = BankDetail.new(bank_detail_params)
-
-    # respond_to do |format|
-    #   if @bank_detail.save
-    #     format.html { redirect_to bank_details_path, notice: 'Bank info was successfully created.' }
-    #     format.json { render :show, status: :created, location: @post }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @bank_detail.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
         
         @bank_detail = BankDetail.new(bank_detail_params)
 
