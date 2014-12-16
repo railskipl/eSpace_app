@@ -2095,7 +2095,7 @@ background: yellow;
 .technology{ /*header of 2nd demo*/
 cursor: hand;
 cursor: pointer;
-font-size:13px;
+font-size:16px;
 font-family:'brandon6';
 margin: 10px 0;
 }
@@ -2109,8 +2109,8 @@ background:#eee; padding:10px 25px; margin:5px 0; color:#072643;
 color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 }
 
-.thelanguage{ padding:30px 45px}
-.thelanguage span{ font-size:12px; display:block; margin-bottom:10px}
+.thelanguage{ padding:30px 45px; font-size:12px;}
+.thelanguage span{ font-size:14px; display:block; margin-bottom:10px}
 
 .sep{ border-bottom:2px solid #eeeeee; height:2px; margin:30px 0}
 
