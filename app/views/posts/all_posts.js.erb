@@ -1,7 +1,0 @@
-$('#all_posts').append('<%= j render(:partial => 'posts/all_post') %>');
-<% if @posts.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate(@posts) %>');
-<% else %>
-  $('.pagination').remove();
-<% end %>
-<% sleep 1 %>

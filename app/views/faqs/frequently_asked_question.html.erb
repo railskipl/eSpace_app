@@ -27,6 +27,17 @@ ddaccordion.init({
 
 </script>
 
+<style type="text/css">
+  .new-pickup{
+background:none;
+border:none;
+color:#ffffff;
+background-color:#072743;
+font-family:brandon2;
+ 
+ }
+</style>
+
 <div class="main-new">
   <ul class="verticle-menu">
     <li><%= link_to "Contact Us",home_contactus_path%></li>
@@ -35,10 +46,10 @@ ddaccordion.init({
   <div class="right-side">
     <div class="blue-header">
       <%= form_tag frequently_asked_question_path, method: :get do %>
-      <span class="font20"><%= text_field_tag :search, params[:search]%></span>
-      <div class="search">
-        <%= image_submit_tag("search_new.png")%>
-      </div>
+        <span class="font20"><%= text_field_tag :search, params[:search],:placeholder => "Search",:class=>"new-pickup"%></span>
+        <div class="search">
+          <%= image_submit_tag("search_new.png",:style=>"margin-top: 6px;")%>
+        </div>
       <% end %>
     </div>
     <div class="faq-wrap">
@@ -46,17 +57,18 @@ ddaccordion.init({
         <a href="#" onClick="ddaccordion.collapseall('technology'); return false">Collapse all</a>  - <a href="#" onClick="ddaccordion.expandall('technology');
                  return false">Expand all</a> 
       </div>
-      <%@faqs.each do |faq|%>
-      <div class="technology"><%= faq.title%></div>
-      <div class="thelanguage">
-        <%faq.faq_questions.each do |faq_question|%>
-        <span><%= faq_question.question %></span>
+      <% @faqs.each do |faq|%>
+        <div class="technology">
+          <%= faq.title%>
+        </div>
+        <div class="thelanguage">
+          <%faq.faq_questions.each do |faq_question|%>
+          <span><%= faq_question.question rescue nil%></span>
 
-        <%= faq_question.answer %>
-        <div class="sep"></div>
-
-        <%end%>
-      </div>
+          <%= faq_question.answer %>
+          <div class="sep"></div>
+          <%end%>
+        </div>
       <%end%>
     </div>
   </div>

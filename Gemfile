@@ -64,7 +64,7 @@ gem 'aws-sdk'
 gem 'will_paginate'
 gem 'rest-client'
 
-gem 'chronic'
+gem 'traceroute'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

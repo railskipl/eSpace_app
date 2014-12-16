@@ -87,7 +87,7 @@
                         </div>
                         
                         <div class="booking-col1">
-                        <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %m,%Y") %> 
+                        <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %d,%Y") %> 
                         <p>
                         <span>Booked drop-off</span> 
                         <% if booking.dropoff_price != 0 %>
@@ -95,7 +95,7 @@
                             <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
                             <span class="tasks-list-mark"></span>
                           </label>
-                            $<%= booking.pickup_price %>
+                            $<%= booking.dropoff_price %>
                           <%else%>
                             <label class="tasks-list-item">
                             <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
@@ -104,7 +104,7 @@
                         <%end%>
                         </p>
                         <p>
-                        <a href="#" class="booking-btn">Confirm drop-off</a>
+                        <a href="javascript:void(0);" class="booking-btn">Confirm drop-off</a>
                         </p>
 
                         
@@ -112,7 +112,7 @@
                         </div>
                         
                         <div class="booking-col1">
-                        <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %m,%Y") %>
+                        <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %d,%Y") %>
                         <p>
 
                         <span>Booked pick-up</span>

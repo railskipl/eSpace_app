@@ -143,14 +143,24 @@ background-color:#FFF;
 .kal img{ z-index:-22em !important;
 }
 .intire{font-size:12px; color:#F00;}
-
-.menu{ text-align:center; display:inline-block; width:100% }
-		
-.menu span{ }
+#menu
+{
+width:1024px;
+height:88px;
+background-color:#FFF;	
 	
-.menu span img{ max-width:103px; }
+	}
+#menu img
+{
+margin-bottom:-12px;
+padding:0px;
 
-#image{ width:1024px; height:600px;	}
+	}
+#image{
+width:1024px;
+height:600px;	
+	
+	}
 
 #image img
 {
@@ -460,10 +470,10 @@ margin:40px 0 0 385px;
 }
 	
 .book{ font-size:11px; position: absolute; border-radius:0px 0 0 0px; background:#00b4ff; color:#FFF; border:2px solid #00b4ff;
-	font-family:brandon2; padding:10px 15px 10px 20px; text-decoration:none; padding:10px 46px; margin: -10px; cursor: pointer;}
+	font-family:brandon2; padding:10px 15px 10px 20px; text-decoration:none; padding:10px 46px; margin: -10px; cursor: pointer; height:42px;}
 	
 .total{ font-size:11px; color:#00b4ff; background-color:#ffffff; border:2px solid #ffffff;
-	height:43px;
+	height:42px;
 	width:114px;
 	margin:-10px 0 0 107px;
 	font-size:11px;
@@ -1001,7 +1011,7 @@ background-color:#072643;
   width: 70px;
   height: 20px;
   overflow: hidden;
- margin: -60px 50px 0 169px;
+ margin: -60px 50px 0 171px;
   border: 1px solid #CCC;
   
   }
@@ -1233,6 +1243,7 @@ background-color:#072643;
 		.classic2 { padding: 0.8em 1em; color:#000; }
 		.classic2 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
+		 html a:hover { background: transparent; }
 		.classic2 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1259,6 +1270,7 @@ background-color:#072643;
 		.classic3 { padding: 0.8em 1em; color:#000; }
 		.classic3 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
+		 html a:hover { background: transparent; }
 		.classic3 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1285,6 +1297,7 @@ background-color:#072643;
 		.classic4 { padding: 0.8em 1em; color:#000; }
 		.classic4 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
+		 html a:hover { background: transparent; }
 		.classic4 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1311,6 +1324,7 @@ background-color:#072643;
 		.classic5 { padding: 0.8em 1em; color:#000; }
 		.classic5 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
+		 html a:hover { background: transparent; }
 		.classic5 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1337,7 +1351,7 @@ background-color:#072643;
 		.classic6 { padding: 0.8em 1em; color:#000; }
 		.classic6 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-	
+		 html a:hover { background: transparent; }
 		.classic6 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1364,7 +1378,7 @@ background-color:#072643;
 		.classic7 { padding: 0.8em 1em; color:#000; }
 		.classic7 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-
+		 html a:hover { background: transparent; }
 		.classic7 {background: #FFFFFF; border: 1px solid #CCC; }
 	
 	.add.tooltip8 {
@@ -1389,7 +1403,7 @@ background-color:#072643;
 		.classic8 { padding: 0.8em 1em; color:#000; }
 		.classic8 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		
+		 html a:hover { background: transparent; }
 		.classic8 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1416,7 +1430,7 @@ background-color:#072643;
 		.classic9 { padding: 0.8em 1em; color:#000; }
 		.classic9 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		
+		 html a:hover { background: transparent; }
 		.classic9 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1447,7 +1461,7 @@ background-color:#072643;
 		.classic10 { padding: 0.8em 1em; color:#000; }
 		.classic10 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		
+		 html a:hover { background: transparent; }
 		.classic10 {background: #FFFFFF; border:1px #CCC solid;}
 	
 	
@@ -1534,9 +1548,12 @@ background-color:#072643;
 	}
 	.new_para1
 	{
-		color: #99a0a7;
-    	font-size: 10px;
-    	width: 230px;
+		width:231px;
+   		/* border-bottom:2px #eeeeee solid ;	*/
+		text-align:left;
+		font-size:10px;
+		color:#99a0a7;
+		margin:1px 0px 0 13px; /*---------9/12/14-----------------*/
 	}
 	.bottom1{
 	font-family:brandon4;
@@ -1757,7 +1774,7 @@ font-size:15px;
 
 .month {
     color: #999999;
-    float: right;
+    float: left;
     font-family: brandon4;
     font-size: 10px;
     line-height: 10px;
@@ -1910,11 +1927,7 @@ body{
 	padding:15px 140px; 
 	font-family:'brandon4'}
 	
-	.expand {
-	    margin-left: -25px;
-	    text-align: right;
-	    width: 100%;
-    }
+	.expand{width:100%; text-align:right}
 	.expand a{ color:#899199; text-decoration:none}
 	
 	.booking-wrap{ 
@@ -2064,7 +2077,7 @@ body{
 	.chat{ width:100%; font-size:10px; line-height:10px}
 	.chat .left{ float:left; margin:0; position:relative}
 	.chat .right{ float:right; margin:0; position:relative}
-	.chat div p{ width:238px; padding:10px; border:2px solid #19bbff; margin-bottom:10px;}
+	.chat div p{ width:233px; padding:10px; border:2px solid #19bbff; margin-bottom:10px;}
 	.chat .right > p{ border:2px solid #69afcc}
 	.chat .left span{ float:left; position:absolute; bottom:-9px; left:13px; color:#d1d1d1}
 	.chat .right span{ float:right; position:absolute; bottom:-9px; right:13px; color:#d1d1d1}
@@ -2094,7 +2107,7 @@ background: yellow;
 .technology{ /*header of 2nd demo*/
 cursor: hand;
 cursor: pointer;
-font-size:13px;
+font-size:16px;
 font-family:'brandon6';
 margin: 10px 0;
 }
@@ -2108,8 +2121,8 @@ background:#eee; padding:10px 25px; margin:5px 0; color:#072643;
 color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 }
 
-.thelanguage{ padding:30px 45px}
-.thelanguage span{ font-size:12px; display:block; margin-bottom:10px}
+.thelanguage{ padding:30px 45px; font-size:12px;}
+.thelanguage span{ font-size:14px; display:block; margin-bottom:10px}
 
 .sep{ border-bottom:2px solid #eeeeee; height:2px; margin:30px 0}
 
@@ -2194,10 +2207,10 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
   font-weight: bold;
   color: #8a9a9b;
 }
-/*.tasks-list-cb:checked ~ .tasks-list-desc {
+.tasks-list-cb:checked ~ .tasks-list-desc {
   color: #34bf6e;
   text-decoration: line-through;
-}*/
+}
 
 	/*for checkbox*/
 	
@@ -2224,7 +2237,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 	.cb{ padding:12px; border:2px solid #d4d7db; color:#d4d7db; font-size:12px; float:left; margin-top:27px}
 	
 	.mapdiv{ width:268px; float:left}
-	.review-div{ padding:43px 43px 15px; font-size:13px; color:#072643; font-family: 'brandon6';}
+	.review-div{ padding:43px; font-size:13px; color:#072643; font-family: 'brandon6';}
 	.review-div span{font-family: 'brandon6';}
 	
 	.star { float:right; font-size:10px; color:#899199}
@@ -2286,7 +2299,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 		
 		.main-new2 li a span{
 		color:#fff; background:#ff7e00; border-radius:100%; width:20px; height:auto; font-size:10px; text-align:center; margin-left:12px; padding:3px 3px;
-		display:inline-block; float: none;
+		display:inline-block
 		}
 		.logo{ margin:31px 100px 31px 0; max-width:100px}
 		.formwrap{ width:280px; margin:60px auto; font-size:18px; color:#989ba0; text-align:left; font-family:'brandon4'; position:relative}
@@ -2297,8 +2310,18 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 		 line-height: 1.42857;
 		}
 		
-	.form-control { background-color: #FFFFFF; background-image: none; border: 1px solid #eeeeee; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; color: #555555;
-    display: block; font-size: 18px; height:45px; padding: 6px 12px; transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s; width: 100%; color:#dedede;
+		.form-control {
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555555;
+    display: block;
+    font-size: 18px;
+    height:45px;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%; color:#dedede;
 	border-radius:0;
 	margin-bottom:18px}
 	
@@ -2354,7 +2377,6 @@ img {
 
 
 #map-canvas { height: 100%; margin: 0px; padding: 0px }
-
 
 
 
@@ -2439,6 +2461,17 @@ form.change_password .textbox input {
 }
 
 
+
+.verticle-menu {
+    float: left;
+    font-family: "brandon2";
+    font-size: 13px;
+    list-style-type: none;
+    margin: 0;
+    padding: 27px 43px;
+    width: 270px;
+}
+
 .mark {
     /*background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);*/
     border: medium none;
@@ -2466,7 +2499,7 @@ form.change_password .textbox input {
     color: #ffffff;
     font-family: brandon4;
     font-size: 15px;
-    margin-left: 228px;
+    margin-left: 1px;
     margin-top: 26px;
     padding: 10px 10px 8px;
     width: 292px;
@@ -2477,7 +2510,7 @@ form.change_password .textbox input {
     font-family: brandon4;
     font-size: 12px;
     margin-top: 30px;
-    padding-left: 600px;
+    padding-left: 639px;
 }
 
 .selectParent {
@@ -2498,7 +2531,6 @@ form.change_password .textbox input {
     margin-top: 0;
     overflow: hidden;
     width: 1024px;
-    border-top: 1px solid #eeeeee;
 }
 
 
@@ -2529,7 +2561,7 @@ form.change_password .textbox input {
 
 #contactus_subject{
 
-	background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
+	background: url("/assetss/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
     border: medium none;
     border-bottom-style: hidden;
     color: #b2b3b5;
@@ -2542,9 +2574,11 @@ form.change_password .textbox input {
     /*webkit-border-bottom-colors: none !important;*/
     margin: 0;
     border: medium none; 
-    -moz-appearance: menulist-text; 
-    /*-moz-appearance: none;*/
+    /*-moz-appearance: menulist-text; */
     /*appearance: none; */
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
 }
 
 
@@ -2556,6 +2590,7 @@ form.change_password .textbox input {
     overflow: hidden;
     width: 276px;
 }
+
 
 #small-map-canvas { height: 129px; margin: 0px; padding: 0px; width: 269px; }
 /*
@@ -2802,7 +2837,7 @@ a.account {
 
 div.submenu
 {
-	background: url(/assets/close1.jpg) no-repeat;
+	background: url(/assets/close_menu.jpg) no-repeat;
 	position: absolute;
 	top: 92px;
 	left: 0px;
@@ -2880,6 +2915,48 @@ div.submenu
 	color:#899199;
 	font-size:14px;
 }
+
+ .new-add-post {float:right; margin:-12px 0 0 30px; font-size:10px;}
+ .new-add-post a {text-decoration:none;}
+ .new-add-post a:hover {text-decoration:none;}
+ .booking-box-add{ width:auto; padding:9px 12px; border:2px solid #eee; margin:15px 0 10px 16px; overflow:hidden; font-size:9px;}
+
+ .status {
+    background-image: url("/assets/down_arrow.png");
+    background-repeat: no-repeat;
+    border: 1px solid #ccc;
+    height: 20px;
+    margin-left: 440px;
+    overflow: hidden;
+    position: relative;
+    width: 100px;
+}
+.status-prev {
+  background: transparent;
+  width: 100px;
+  padding:0px 8px 0px 40px;
+  font-size: 12px;
+  line-height: 1;
+  border: 0;
+  border-radius: 0;
+  height: 34px;
+  -webkit-appearance: none;
+  color: #FFF;
+   float:right;
+   margin-top:-8px;
+  font-family:brandon4;
+	}
+  
+.search-btn-new
+{ 
+	float:left; 
+	text-align:center; 
+	padding:8px 10px; 
+	background:url(/assets/search_new.png) 50% 50% no-repeat; 
+	border:0; 
+	cursor:pointer;
+	margin-top:-20px;
+ }
 
 
 div.selectBox
@@ -2962,12 +3039,16 @@ div.selectBox
         background:#4096ee; 
       }  
 
-
-
-
-    
-
-
-
+	#topic1
+   {
+	border:1px solid #eeeeee;
+	color:#b2b3b5; 
+	font-size:12px;
+	padding:10px 10px 8px;
+	width:275px;
+	font-family:brandon4;
+	margin-left:1px;
+	
+	}
 
 

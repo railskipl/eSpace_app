@@ -52,7 +52,6 @@ GEM
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
-    chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -193,6 +192,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    traceroute (0.4.0)
+      rails (>= 3.0.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -219,7 +220,6 @@ DEPENDENCIES
   aws-s3
   aws-sdk
   bootstrap-sass
-  chronic
   coffee-rails (~> 4.0.0)
   devise
   execjs
@@ -242,6 +242,7 @@ DEPENDENCIES
   sqlite3
   stripe
   therubyracer
+  traceroute
   turbolinks
   uglifier (>= 1.3.0)
   wicked_pdf
