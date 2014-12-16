@@ -86,21 +86,6 @@
               
                     <div class="blue-bg">
 
-                      <!-- Error Message -->
-                      <% flash.each do |name, msg| %>
-                        <% if msg.is_a?(String) %>
-                          <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-                            <a class="close" data-dismiss="alert">&#215;</a>
-                            <%= content_tag :div, msg, :id => "flash_#{name}" %>
-                          </div>
-                        <% end %>
-                      <% end %>
-                      <!-- End -->
-
-
-                      
-
-
                       <div class="blue-bg-div1">
                             <span><%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %>.</span> 
                             <% if current_user.provider.present? &&  @post.user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %>
@@ -134,7 +119,17 @@
                             </span>
                           </li>
                           <li><div>Total Amount</div> <span>$<%= @booking.price %></span></li>
-                          <li><div>Status</div> <span>Waiting for drop-off confirmation</span></li>
+                          <li><div>Status</div> 
+
+                            <% if @booking.is_cancel == true %>
+                              <span>Cancelled</span>
+                            <% elsif @booking.is_confirm == true %>
+                              <span>Confirmed booking</span>
+                            <% else %>
+                              <span>Waiting for drop-off confirmation</span>
+                            <% end %>
+
+                          </li>
                           
                           <%= link_to "Confirm drop-off ", drop_off_bookings_path(:booking_id => @booking.id ), :remote=>true, :class=>"cdo" %> 
                           
@@ -186,7 +181,7 @@
         </div>
 
 
-         <%= stylesheet_link_tag  'scroll', "jquery.mCustomScrollbar" %>
+    <%= stylesheet_link_tag  'scroll', "jquery.mCustomScrollbar" %>
     <%= javascript_include_tag "bootstrap.min", "jquery.mCustomScrollbar.concat.min" %>
   
   <script>

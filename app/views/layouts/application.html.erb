@@ -45,10 +45,15 @@
                                         <%= link_to "List your place", posts_overview_path %>
                                     </li>
                                     <li>
-                                        <%= link_to "Browse Spaces", posts_overview_path %>
+                                        <%= link_to "My Booking", bookings_path %>
                                     </li>
+
                                     <li>
-                                      
+                                        <%= link_to "My Order/Received", order_receives_path %>
+                                    </li>
+
+                                    <li>
+                                  
                                      <%= link_to("Messages <span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
 
                                     </li>
@@ -113,7 +118,81 @@
                 });
                   
               });
+
+
+            //Animated message
+              var showToaster = function(animated, text) {
+                var replaceText = function (text) {
+                  var graf = animated.find('p');
+                  
+                  graf.text(text);
+                };
+
+                if (text != undefined) {
+                  replaceText(text);
+                }
+
+                animated.addClass('fadeInUp');
+                animated.addClass('toaster_opacity');
+                setTimeout(closeToaster, 8250);
+              };
+
+              var closeToaster = function() {
+                $('.animated').removeClass('fadeInUp');
+                $(".animated").removeClass("toaster_opacity");
+                $("p").remove();
+              };
+
+              var setToaster = function(animated, text) {
+                if ($('.animated.fadeInUp').length) {
+                  if (Modernizr.csstransitions) {
+                    $('.animated').one(
+                      'transitionend oTransitionEnd webkitTransitionEnd',
+                      function() { showToaster(animated, text) }
+                    );
+                    closeToaster();
+                  } else {
+                    showToaster(animated, text);
+                  }
+                } else {
+                  showToaster(animated, text);
+                }
+              };
+
+              $('body').delegate('.animated .close_x_bright', 'click', closeToaster);
+
+              $(function () {
+                $('.animated').bind('pop', function (e, text) {
+                  setToaster($(e.target), text);
+                });
+
+                if ($('.animated p').text().length > 0) {
+                  setToaster($('.animated'));
+                }
+                
+              });
+
+
             </script>
+
+
+            <div id="animated_msg">
+              <section class="animated alert">
+                <span class="close_x_bright">Close</span>
+                 
+                  <!-- Error Message -->
+                  <% flash.each do |name, msg| %>
+                  <% if msg.is_a?(String) %>
+                  <p>
+                      <%= msg %>
+                  </p>
+                  <% end %>
+                  <% end %>
+
+                  <!-- End -->
+
+              </section>
+            </div> 
 
 
             </div><!-------------------main------------------------- -->
