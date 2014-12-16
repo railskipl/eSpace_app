@@ -64,9 +64,9 @@
 
     jQuery(function($){
       
-      $("#booking_dropoff_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.drop_off_avaibility_start_date %>'), maxDate: new Date('<%= @post.drop_off_avaibility_end_date %>')})
+      $("#booking_dropoff_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= @post.drop_off_avaibility_start_date %>'), maxDate: new Date('<%= @post.drop_off_avaibility_end_date %>')})
 
-      $("#booking_pickup_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= @post.pick_up_avaibility_end_date %>')})
+      $("#booking_pickup_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= @post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= @post.pick_up_avaibility_end_date %>')})
 
 
 
@@ -306,7 +306,8 @@ jQuery(document).ready(function(){
                   <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' />
                    <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
                   <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
-              <%#= form_for :booking, :html=>{ :id=>"booking", :method=>"get"} do |f| %>
+              <%= hidden_field_tag :remaining_area, @post.area %>
+
               <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
 
               <%= f.hidden_field :post_id, :value => @post.id %>

@@ -1,6 +1,6 @@
 <%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js" %>
 <%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker"%>
-
+<%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css" %>
 <script type="text/javascript">
 
     jQuery(function($){
@@ -11,6 +11,8 @@
       $("#end_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
     });
 </script>
+
+<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation", "facebox.js" %>
 <div class="main-new">
   <ul class="verticle-menu">
     <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
@@ -46,7 +48,8 @@
       <% @bookings.each_with_index do |booking, index|%>
       <div class="order-box">
         <div class="order-col order-col1">
-          <div class="heading">
+          <!-- <div class="heading"> -->
+          <div  style="color: #14263a; font-family: brandon4; margin-top: 0;">
             <h4><%= User.find(booking.user_id).name %></h4>
           </div>
           <p>
@@ -56,7 +59,9 @@
             Total amount : $<%=booking.price %>
           </p>
           <p>
-            <a href="#" class="round-btn">Message</a>
+            <div id="message_<%= booking.post_id %>">
+            <%= link_to "Message ", compose_message_messages_path(:user_id => booking.user_id,:post_id => booking.post_id ), :remote=>true, :class=>"round-btn" %>
+            </div>
           </p>
         </div>
         <div class="order-col order-col1 order-col1-tmar">
@@ -124,7 +129,7 @@
           </p>
         </div>
       </div>
+      <%end%>
     </div>
-    <%end%>
   </div>
 </div>

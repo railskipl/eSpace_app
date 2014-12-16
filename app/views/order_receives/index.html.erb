@@ -48,7 +48,8 @@
       <% @bookings.each_with_index do |booking, index|%>
       <div class="order-box">
         <div class="order-col order-col1">
-          <div class="heading">
+          <!-- <div class="heading"> -->
+          <div  style="color: #14263a; font-family: brandon4; margin-top: 0;">
             <h4><%= User.find(booking.user_id).name %></h4>
           </div>
           <p>
@@ -81,7 +82,7 @@
             </p>
         </div>
         <div class="order-col order-col1 order-col1-tmar">
-          <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %d, %Y")%>
+          <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %d,%Y")%>
           <p>
             <span>Booked drop-off</span>
             <% if booking.dropoff_price != 0 %>
@@ -89,7 +90,7 @@
                 <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
                 <span class="tasks-list-mark"></span>
               </label>
-                $<%= booking.pickup_price %>
+                $<%= booking.dropoff_price %>
               <%else%>
                 <label class="tasks-list-item">
                 <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
@@ -106,7 +107,7 @@
           </p>
         </div>
         <div class="order-col order-col1 order-col1-tmar">
-          <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %d, %Y")%>
+          <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %d,%Y")%>
 
           <p>
             <span>Booked pick-up</span>
@@ -129,7 +130,7 @@
           </p>
         </div>
       </div>
+      <%end%>
     </div>
-    <%end%>
   </div>
 </div>
