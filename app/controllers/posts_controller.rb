@@ -33,7 +33,16 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @remaining_area = 25
+
+    
+    result = Booking.select("sum(area) as area").where("post_id = ? and pickup_date >= ?", @post.id, Date.today).first
+    
+    unless result.area.nil?
+      
+      @remaining_area = @post.area - result.area
+    else
+      @remaining_area = @post.area
+    end
 
     #raise @remaining_area.inspect
   end

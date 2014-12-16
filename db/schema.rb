@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 20141216123750) do
   end
 
   create_table "ratings", force: true do |t|
-    t.decimal  "value"
+    t.decimal  "value",      precision: 10, scale: 0
     t.integer  "vote_count"
     t.integer  "item_id"
     t.string   "item_type"
