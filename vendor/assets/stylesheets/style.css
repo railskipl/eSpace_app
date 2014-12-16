@@ -2299,9 +2299,9 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 		color:#44c8ff; outline:0
 		}
 		
-		.main-new2 li a span{
+		.main-new2 li a span {
 		color:#fff; background:#ff7e00; border-radius:100%; width:20px; height:auto; font-size:10px; text-align:center; margin-left:12px; padding:3px 3px;
-		display:inline-block; height: auto;
+		display:inline-block; float: none;
 		}
 		.logo{ margin:31px 100px 31px 0; max-width:100px}
 		.formwrap{ width:280px; margin:60px auto; font-size:18px; color:#989ba0; text-align:left; font-family:'brandon4'; position:relative}
