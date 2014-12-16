@@ -2561,7 +2561,7 @@ form.change_password .textbox input {
 
 
 #contactus_subject{
-
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 	background: url("/assetss/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
     border: medium none;
     border-bottom-style: hidden;
@@ -2576,13 +2576,11 @@ form.change_password .textbox input {
     margin: 0;
     border: medium none; 
     /*-moz-appearance: menulist-text; */
-    /*appearance: none; */
+    appearance: none; 
     -moz-appearance: none;
     text-indent: 0.01px;
     text-overflow: '';
-    -webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
+
 }
 
 
