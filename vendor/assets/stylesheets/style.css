@@ -1547,9 +1547,10 @@ background-color:#072643;
 	float:right;
 	background-color:#072643;
 	}
+
 	.new_para1
 	{
-		width:231px;
+		width:225px;
    		/* border-bottom:2px #eeeeee solid ;	*/
 		text-align:left;
 		font-size:10px;
@@ -2217,7 +2218,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 	
 	/*--------------------------8/12/2014-----------------------*/
 	
-	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:604px; font-size:10px}
+	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:626px; font-size:10px}
 	.blue-bg p{ margin:11px 0 0 0; color:#cbcaca}
 	
 	.blue-bg-div1 > p{text-align:justify}
@@ -2300,7 +2301,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 		
 		.main-new2 li a span{
 		color:#fff; background:#ff7e00; border-radius:100%; width:20px; height:auto; font-size:10px; text-align:center; margin-left:12px; padding:3px 3px;
-		display:inline-block
+		display:inline-block; height: auto;
 		}
 		.logo{ margin:31px 100px 31px 0; max-width:100px}
 		.formwrap{ width:280px; margin:60px auto; font-size:18px; color:#989ba0; text-align:left; font-family:'brandon4'; position:relative}
