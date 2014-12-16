@@ -26,6 +26,7 @@
   </ul>
             
   <div class="right-side">
+
     <div class="blue-header">
       <%= form_tag search_order_received_by_date_path,:method => 'get' do %>
       <ul class="date">
@@ -78,7 +79,8 @@
               <%end%>
             </p>
             <p>
-              <a href="#">Cancel booking</a>
+              
+              <%= link_to "Cancel Booking", cancel_popup_order_receives_path(:id =>booking.id), :remote=> true %>
             </p>
         </div>
         <div class="order-col order-col1 order-col1-tmar">

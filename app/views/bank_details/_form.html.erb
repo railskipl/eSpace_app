@@ -111,17 +111,7 @@
     <div class="formwrap">
 
  <%= form_for(@bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>   
-  <% if @bank_detail.errors.any? %>
-    <div id="error_explanation" >
-      <h2><%= pluralize(@bank_detail.errors.count, "error")%> prohibited this bank_detail from being saved:</h2>
-
-      <ul>
-      <% @bank_detail.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  
 
       <%= hidden_field_tag :stripe_card_token %>
        <div>Setup a Card to receive payments <span title="This is some information for our tooltip." class="month1 tooltip_new "><img src="/assets/que.png">
