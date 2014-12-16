@@ -95,15 +95,15 @@
                              
     <div class="main-new">
             <ul class="verticle-menu">
-            <li><a href="#">Personal Information</a></li>
-            <li><a href="#">Change Password</a></li>
-            <li class="active"><a href="#">Bank Details</a></li>
-            <li><a href="#">My Post</a></li>
-            <li><a href="#">My Order/Received</a></li>
-            <li><a href="#">My Booking</a></li>
-            <li ><a href="#">Payment</a></li>
-            <li><a href="#">Message</a></li>
-            </ul>
+    <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+    <li><%= link_to "Change Password", edit_user_registration_path %></li>
+    <li class="active"><%= link_to "Bank Details",bank_details_path %></li>
+    <li ><%= link_to "My Post",posts_path%></li>
+    <li><%= link_to "My Order/Received",order_receives_path%></li>
+    <li><%= link_to "My Booking", bookings_path%></li>
+    <li><%= link_to "Payment", nil%></li>
+    <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
+  </ul>
 
             <div class="right-side">
               <div class="payment-wrap">

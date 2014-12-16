@@ -1,4 +1,13 @@
 
+# # Mysql
+# # gem install mysql
+# development:
+#   adapter: mysql2
+#   database: college_app_development
+#   username: root
+#   password: 
+#   #socket: /var/run/mysqld/mysqld.sock
+
 
 # # Mysql
 # # gem install mysql
@@ -26,6 +35,7 @@
 #   username: root
 #   password: 
 # #   #socket: /var/run/mysqld/mysqld.sock  
+
 
 
 
@@ -98,3 +108,11 @@ production:
   pool: 5
   username: postgres
   password: root
+=======
+production:
+  adapter: mysql2
+  database: college_app_production
+  username: root
+  password: 
+#   #socket: /var/run/mysqld/mysqld.sock  
+>>>>>>> 4c312b858c8b4abc8d71dc29140b557637fd54b5
