@@ -2528,7 +2528,8 @@ form.change_password .textbox input {
 
 
 #contactus_subject{
-	background: url("/assetss/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
+
+	background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);
     border: medium none;
     border-bottom-style: hidden;
     color: #b2b3b5;
@@ -2538,9 +2539,12 @@ form.change_password .textbox input {
     width: 291px;
     border-right-style: hidden; 
     webkit-appearance: none !important;
-    webkit-border-bottom-colors: none !important;
+    /*webkit-border-bottom-colors: none !important;*/
     margin: 0;
-    border: medium none;   
+    border: medium none; 
+    -moz-appearance: menulist-text; 
+    /*-moz-appearance: none;*/
+    /*appearance: none; */
 }
 
 
