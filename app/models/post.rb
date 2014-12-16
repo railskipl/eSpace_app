@@ -83,6 +83,12 @@ class Post < ActiveRecord::Base
     end 
   end
 
+  #Calculate remaining area
+  def self.remaining_area(total_area)
+    total_area - 4
+    
+  end
+
 
 
   private

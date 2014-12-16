@@ -1244,7 +1244,7 @@ background-color:#072643;
 		.classic2 { padding: 0.8em 1em; color:#000; }
 		.classic2 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 
+		
 		.classic2 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1271,7 +1271,6 @@ background-color:#072643;
 		.classic3 { padding: 0.8em 1em; color:#000; }
 		.classic3 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 
 		.classic3 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1298,7 +1297,6 @@ background-color:#072643;
 		.classic4 { padding: 0.8em 1em; color:#000; }
 		.classic4 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 
 		.classic4 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1352,7 +1350,6 @@ background-color:#072643;
 		.classic6 { padding: 0.8em 1em; color:#000; }
 		.classic6 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		 
 		.classic6 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1379,7 +1376,6 @@ background-color:#072643;
 		.classic7 { padding: 0.8em 1em; color:#000; }
 		.classic7 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		
 		.classic7 {background: #FFFFFF; border: 1px solid #CCC; }
 	
 	.add.tooltip8 {
@@ -1404,7 +1400,6 @@ background-color:#072643;
 		.classic8 { padding: 0.8em 1em; color:#000; }
 		.classic8 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		
 		.classic8 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1431,7 +1426,6 @@ background-color:#072643;
 		.classic9 { padding: 0.8em 1em; color:#000; }
 		.classic9 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		
 		.classic9 {background: #FFFFFF; border: 1px solid #CCC; }
 		
 		
@@ -1462,7 +1456,6 @@ background-color:#072643;
 		.classic10 { padding: 0.8em 1em; color:#000; }
 		.classic10 { padding: 0.8em 1em; color:#000; }
 		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		
 		.classic10 {background: #FFFFFF; border:1px #CCC solid;}
 	
 	
@@ -1747,7 +1740,7 @@ font-size:15px;
 .error { color: #FD0000; }
 
 
-.form-error{ color: #FD0000; clear: left; font-family: brandon2; }
+.form-error{ color: #FD0000; clear: left; }
 
 .drop_off_date img {height: 21px; margin: -18px 0 0 220px; width: 21px; z-index: -22 !important;}
 
@@ -1833,7 +1826,7 @@ body{
 	margin:0; 
 	padding:27px 43px; 
 	list-style-type:none;
-	width:269px;
+	width:270px;
 	font-family:'brandon2';
 	font-size:13px;
 	float:left;
@@ -2078,7 +2071,7 @@ body{
 	.chat{ width:100%; font-size:10px; line-height:10px}
 	.chat .left{ float:left; margin:0; position:relative}
 	.chat .right{ float:right; margin:0; position:relative}
-	.chat div p{ width:233px; padding:10px; border:2px solid #19bbff; margin-bottom:10px;}
+	.chat div p{ width:240px; padding:10px; border:2px solid #19bbff; margin-bottom:10px;}
 	.chat .right > p{ border:2px solid #69afcc}
 	.chat .left span{ float:left; position:absolute; bottom:-9px; left:13px; color:#d1d1d1}
 	.chat .right span{ float:right; position:absolute; bottom:-9px; right:13px; color:#d1d1d1}
@@ -2298,9 +2291,10 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 		color:#44c8ff; outline:0
 		}
 		
-		.main-new2 li a span{
+		.main-new2 li a span {
 		color:#fff; background:#ff7e00; border-radius:100%; width:20px; height:auto; font-size:10px; text-align:center; margin-left:12px; padding:3px 3px;
-		display:inline-block
+
+		display:inline-block; float: none;
 		}
 		.logo{ margin:31px 100px 31px 0; max-width:100px}
 		.formwrap{ width:280px; margin:60px auto; font-size:18px; color:#989ba0; text-align:left; font-family:'brandon4'; position:relative}
@@ -2511,7 +2505,7 @@ form.change_password .textbox input {
     font-family: brandon4;
     font-size: 12px;
     margin-top: 30px;
-    padding-left: 639px;
+    padding-left: 90px;
 }
 
 .selectParent {
@@ -2571,9 +2565,14 @@ form.change_password .textbox input {
     width: 291px;
     border-right-style: hidden; 
     webkit-appearance: none !important;
-    webkit-border-bottom-colors: none !important;
+    /*webkit-border-bottom-colors: none !important;*/
     margin: 0;
-    border: medium none;   
+    border: medium none; 
+    /*-moz-appearance: menulist-text; */
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+
 }
 
 
@@ -2622,7 +2621,7 @@ form.change_password .textbox input {
   border:none;
   color:#ffffff;
   padding:10px 10px 8px;
-  margin-top: 40px;
+  margin-top:20px;
   font-size:15px; 
   width:212px;
   font-family:brandon4;
@@ -3032,7 +3031,45 @@ div.selectBox
       {
         color:#f6f6f6;
         background:#4096ee; 
-      }  
+      } 
+
+
+  .animated {
+    opacity: 0;
+    transform: translateY(20px);
+    transition-duration: 0.5s;
+    transition-property: all;
+	}
+
+	.toaster_opacity { opacity: 1 !important;}
+	.alert {
+	    background-color: #072643;
+    	border: 2px solid #051628;
+	    border-radius: 8px;
+	    color: #bbbfc2;
+	    display: block;
+	    font-size: 14px;
+	    font-weight: bold;
+	    padding: 5px 20px 15px;
+	    float: right;
+	    width: auto;
+	    font-family: "brandon2";
+	}
+
+
+	.close_x_bright {
+	    background: url("/assets/close.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+	    content: "";
+	    cursor: pointer;
+	    display: inline-block;
+	    height: 16px;
+	    padding: 0;
+	    position: absolute;
+	    right: 4px;
+	    text-indent: -9999px;
+	    top: 3px;
+	    width: 16px;
+	} 
 
 	#topic1
    {
@@ -3046,6 +3083,13 @@ div.selectBox
 	
 	}
 
+.month1 {
+    color: #999999;
+    font-family: brandon4;
+    font-size: 10px;
+    line-height: 10px;
+    
+}
 
 .post-btn {
     border: 2px solid #eeeeee;

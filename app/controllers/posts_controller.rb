@@ -33,8 +33,9 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-   
-    
+    @remaining_area = 25
+
+    #raise @remaining_area.inspect
   end
 
   # GET /posts/new
