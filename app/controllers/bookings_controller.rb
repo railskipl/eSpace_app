@@ -109,36 +109,34 @@ class BookingsController < ApplicationController
 
 
   def cancel_popup
-
      @booking = Booking.find(params[:id])
-
   end
 
   #this method cancel's the booking done by finder & does the cancel_booking_deduction
   # according to criteria.
   def cancel_booking
 
-    @booking = Booking.where("id = ?",params[:id])
-    @price = @booking.first.price
+    @booking = Booking.find(params[:id])
+    price = @booking.price
 
 
-    @stripe_charge_id = @booking.first.stripe_charge_id
-    @days_diff =  days_diff(params[:drop_off_date].to_date)
-    @amount = cancel_booking_deduction(@days_diff,@price).to_i 
-    @amount_cents = ((@amount.to_f)*100).to_i
+    stripe_charge_id = @booking.stripe_charge_id
+    days_diff =  days_diff(params[:drop_off_date].to_date)
+    amount = cancel_booking_deduction(days_diff, price).to_i 
+    amount_cents = ((@amount.to_f)*100).to_i
 
     begin
-    ch = Stripe::Charge.retrieve(@stripe_charge_id) 
-    refund = ch.refunds.create(:amount => @amount_cents)
-    cancel_booking = @booking.first.update_columns(is_cancel: true)
+    ch = Stripe::Charge.retrieve(stripe_charge_id) 
+    refund = ch.refunds.create(:amount => amount_cents)
+    cancel_booking = @booking.update_columns(is_cancel: true)
     rescue Stripe::InvalidRequestError => e
             redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
             return false
     end
 
+    flash[:notice] = "Booking is cancel & $#{amount} is refunded. "
+    redirect_to booking_path(@booking.id)
     
-    redirect_to bookings_path
-    flash[:notice] = "Booking is cancel & $#{@amount} is refunded. "
   end
 
 

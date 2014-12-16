@@ -45,10 +45,15 @@
                                         <%= link_to "List your place", posts_overview_path %>
                                     </li>
                                     <li>
-                                        <%= link_to "Browse Spaces", posts_overview_path %>
+                                        <%= link_to "My Booking", bookings_path %>
                                     </li>
+
                                     <li>
-                                      
+                                        <%= link_to "My Order/Received", order_receives_path %>
+                                    </li>
+
+                                    <li>
+                                  
                                      <%= link_to("Messages <span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
 
                                     </li>
