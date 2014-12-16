@@ -5,7 +5,6 @@ class CreateBankDetails < ActiveRecord::Migration
       t.string :stripe_card_id_token
       t.string :stripe_recipient_token
       t.string :card_number
-      t.string :user_id
       t.timestamps
     end
   end
