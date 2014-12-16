@@ -131,11 +131,14 @@
 
                           </li>
                           
-                          <%= link_to "Confirm drop-off ", drop_off_bookings_path(:booking_id => @booking.id ), :remote=>true, :class=>"cdo" %> 
+                          <% if @booking.dropoff_date >= Date.today + 1 %>
+                            <%= link_to "Confirm drop-off ", drop_off_bookings_path(:booking_id => @booking.id ), :remote=>true, :class=>"cdo" %> 
+                          <% end %>
                           
                           </ul>
-
+                          <% if @booking.dropoff_date >= Date.today %>
                             <%= link_to "Cancel Booking", cancel_popup_bookings_path(:drop_off_date =>@booking.dropoff_date,:id =>@booking.id), :class=>"cb", :remote=> true %>
+                          <% end %>
                             
 
                           </div>

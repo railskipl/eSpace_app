@@ -2079,7 +2079,7 @@ body{
 	.chat{ width:100%; font-size:10px; line-height:10px}
 	.chat .left{ float:left; margin:0; position:relative}
 	.chat .right{ float:right; margin:0; position:relative}
-	.chat div p{ width:233px; padding:10px; border:2px solid #19bbff; margin-bottom:10px;}
+	.chat div p{ width:240px; padding:10px; border:2px solid #19bbff; margin-bottom:10px;}
 	.chat .right > p{ border:2px solid #69afcc}
 	.chat .left span{ float:left; position:absolute; bottom:-9px; left:13px; color:#d1d1d1}
 	.chat .right span{ float:right; position:absolute; bottom:-9px; right:13px; color:#d1d1d1}
