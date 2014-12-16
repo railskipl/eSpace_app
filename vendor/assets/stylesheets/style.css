@@ -2722,13 +2722,13 @@ input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
 .check-box li .tasks-list-mark{border-color: #848d96!important;}
 .check-box li .tasks-list-mark:before{border-color:#fff!important}
 
-.tasks-list-item {
+/*.tasks-list-item {
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
+}*/
 .tasks-list-item + .tasks-list-item {
   border-top: 1px solid #f0f2f3;
 }
