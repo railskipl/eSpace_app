@@ -36,10 +36,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     
-    result = Booking.select("sum(area) as area").where("post_id = ? and pickup_date >= ?", @post.id, Date.today)
+    result = Booking.select("sum(area) as area").where("post_id = ? and pickup_date >= ?", @post.id, Date.today).first
     
-    if result.first.present?
-      @remaining_area = @post.area - result.first.area
+    unless result.area.nil?
+      
+      @remaining_area = @post.area - result.area
     else
       @remaining_area = @post.area
     end
