@@ -51,14 +51,19 @@
 	}
 
 	if(err == 0){
-            
+             
              return true;      
     }else{
-            
+           
             return false;
     }
 
+
+
 }
+
+	
+
 </script>
 
 <%#= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
@@ -74,7 +79,7 @@
                              or rent out some space to store other students' goods over the summer.<br>
                   </div>
                   	<div class="input-group">
-                  		<%= form_tag url_for(:controller => 'authenticates', :action => 'create'), :method => 'post', :id=>"userSignup", :onsubmit => "return validateForm()" do |f| %>
+                  		<%= form_tag url_for(:controller => 'authenticates', :action => 'create'), :method => 'post', :id=>"userSignup", :remote=> true, :onsubmit => "return validateForm()" do |f| %>
                          <%= text_field_tag :email, nil, :class=>"sign_up_id", :placeholder=>"@usd.edu email address" %>
                          <span class="input-group-btn">
                              <%= submit_tag "Sign Up", :class=>"btn_signup", :style=>"margin:-78px 0px 0px 601px;" %>

@@ -3158,6 +3158,7 @@ a.post-btn {
 
 .forgot a {color:#7b7b7b; font-family: brandon4; text-decoration: none;}
 
+.login-popup { margin: 8px auto auto 94px;}
 
 .login-popup input { 
 	background:#fffffff; 
@@ -3165,28 +3166,26 @@ a.post-btn {
 	color:#666; 
 	font:13px;
 	padding:10px 10px 8px;
-	width:50%;
-	margin:auto;
+	width:190px;
    font-family:brandon4;
 	font-size:15px;
    color:#b2b3b5;
-   margin-left:94px;
 }
+
+.password-new-up { margin: 8px auto auto 94px;}
+
 .password-new-up input { 
 	background:#fffffff; 
 	border:1px solid #eeeeee;
 	color:#666; 
 	font:13px;
 	padding:10px 10px 8px;
-	width:50%;
-	margin:auto;
+	width:190px;
    font-family:brandon4;
 	font-size:15px;
-   color:#b2b3b5;
-   margin-left:94px;
-    margin-top:8px;
-   
+   color:#b2b3b5;  
 }
+
 .new-checkbox{
 	margin: 20px 0 0 77px;
 	

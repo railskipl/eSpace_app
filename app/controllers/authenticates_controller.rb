@@ -6,8 +6,10 @@ class AuthenticatesController < ApplicationController
 	end
 
 	def create
+
 		session[:email] = params[:email]
 		redirect_to new_user_registration_path
+    
 	end
 
 	def check_email
