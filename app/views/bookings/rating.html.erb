@@ -70,7 +70,7 @@ padding-left:20px;
           <%= f.radio_button(:rating, "2") %><%= f.label(:rating.to_s + "_2") %>
           <%= f.radio_button(:rating, "1") %><%= f.label(:rating.to_s + "_1") %>
          </fieldset><br><br><br>
-        <%= f.text_area :comments ,:placeholder => "Review",:cols=>"30", :style=>"width: 337px; height: 126px;  margin-top: -60px; border: 2px solid #eee;"%>
+        <%= f.text_area :comments ,:placeholder => "Review",:cols=>"30", :style=>"width: 337px; height: 126px;  margin-top: -60px; border: 2px solid #eee; font-family: brandon4;"%>
         <%= f.submit "Add Review", :class=>"booking-btn" %>
       <% end %>
     </div>

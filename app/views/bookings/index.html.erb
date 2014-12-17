@@ -36,7 +36,7 @@
               <li><%= link_to "My Post",posts_path%></li>
               <li><%= link_to "My Order/Received",order_receives_path%></li>
               <li class="active"><%= link_to "My Booking", bookings_path%></li>
-              <li><%= link_to "Payment", nil%></li>
+              <li><%= link_to "Payment", payments_path%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
             </ul>
           
@@ -46,11 +46,11 @@
                     <%= form_tag search_by_date_path,:method => 'get' do %>
                     <ul class="date">
                     <li>
-                    From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off, :class => "date", :style => "padding: 3px;"%></span>
+                    From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></span>
                     </li>
                     
                     <li>
-                    To <span><%= text_field_tag :end_date, params[:end_date],:class => "date",:style => "padding: 3px;" %></span>
+                    To <span><%= text_field_tag :end_date, params[:end_date],:autocomplete => :off,:readonly => true,:class => "date",:style => "padding: 3px;" %></span>
                     </li>
                     
                     </ul>
@@ -71,6 +71,11 @@
                                 (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)<% end %>
                             <p>
                             <%= Post.find(booking.post_id).address%>
+                            <%= Post.find(booking.post_id).street_add%>
+                            <%= Post.find(booking.post_id).apt%><br>
+                            <%= Post.find(booking.post_id).city%>
+                            <%= Post.find(booking.post_id).state%>
+                            <%= Post.find(booking.post_id).zip_code%>
                             </p>
                         </div>
                         
@@ -136,7 +141,7 @@
                           </label>
                         <%end%>
                         <!--<span class="tasks-list-desc">Left Label</span>-->
-                        <p class="vmp"> 
+                        <p style="margin-top: 13px !important;"> 
                           <%= link_to "View Post", booking_path(booking.id) %>
                         </p>
                         </p>
