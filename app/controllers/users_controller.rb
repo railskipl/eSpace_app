@@ -30,13 +30,12 @@ def update
   @user = User.find(params[:id])
   params[:user].delete(:password) if params[:user][:password].blank?
   params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
-  @user.update_column(:name,"#{params[:user][:name]}")
-  @user.update_column(:last_name,"#{params[:user][:last_name]}")
-  @user.update_column(:personal_email,"#{params[:user][:personal_email]}")
-  @user.update_column(:mobile_number,"#{params[:user][:mobile_number]}")
-  @user.update_column(:notification,"#{params[:user][:notification]}")
-  @user.update_column(:notification_for_email,"#{params[:user][:notification_for_email]}")
-  @user.update_column(:notification_for_personal_email,"#{params[:user][:notification_for_personal_email]}")
+  @user.update_attributes(person_params)
+  # @user.update_column(:last_name,"#{params[:user][:last_name]}")
+  # @user.update_column(:personal_email,"#{params[:user][:personal_email]}")
+  # @user.update_column(:mobile_number,"#{params[:user][:mobile_number]}")
+  # @user.update_column(:notification_for_email,"#{params[:user][:notification_for_email]}")
+  # @user.update_column(:notification_for_personal_email,"#{params[:user][:notification_for_personal_email]}")
   
   flash[:notice] = "Profile Updated Successfully "
   redirect_to root_path

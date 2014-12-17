@@ -1,32 +1,9 @@
 
-  <script type="text/javascript">
-
-    jQuery(function($){
-      $("#start_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
-
-    });
-    jQuery(function($){
-      $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true})
-    });
-
-
-  </script>
-  <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","admin_validation" %>
-<h4>Search by</h4>
-  <%= form_tag search_payments_path,:method=> :get, :id=>"admin_posts" do %>
-  <%= hidden_field_tag :q, params[:q] %>
-From Date :
-<%= text_field_tag :start_date, params[:start_date] %>
-
-To Date :
-<%= text_field_tag :end_date, params[:end_date]%>&nbsp;
-
-  <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %> 
-  <%end%>
-      <div  style="text-align:right;margin-left:10px;">
-            <a href="<%= search_payments_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> 
-            <a href="<%= search_payments_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
-     </div>
+<%= render 'selectdate' %>
+<div  style="text-align:right;margin-left:10px;">
+      <a href="<%= search_payments_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> 
+      <a href="<%= search_payments_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
+</div>
 
 <table class="table table-striped">
 <tr>
@@ -43,35 +20,6 @@ To Date :
 <th>Check Status</th>
 </tr>
 <% @payment_transfers.try(:each_with_index) do |booking, index|%>
-<tr>
-
-<td><%= index + 1 %></td>
-<td><%= booking.created_at.to_date %></td>
-<td><%= Post.find(booking.post_id).area %></td>
-<td><%= User.find(booking.poster_id).name %></td>
-<td><%= Post.find(booking.post_id).address %></td>
-  
- <td><%= Post.find(booking.post_id).pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= Post.find(booking.post_id).pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
-  </td>
- <td><%= Post.find(booking.post_id).drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= Post.find(booking.post_id).drop_off_avaibility_end_date.strftime("%d-%m-%Y")%></td>
-  
-<td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
-<td><%= booking.status.camelize rescue nil %>
-  
-<td>
-  <% unless booking.stripe_transfer_id.present? %>  
-  <%= link_to "Money Transfer",transfer_money_payement_transfers_path(:booking_id =>booking.id,:poster_id =>booking.poster_id,:finder_id=>booking.user_id) %>
-  <% else %>
-     -----
-  <% end %>
-</td>  
-<td>
-  <% if booking.status.present? && booking.status == "pending"%>
-    <%= link_to "Check Status",check_status_payement_transfers_path(:booking_id =>booking.id) %>
-  <% else %>
-     -----  
-  <% end %>
-</td>
-</tr>
+   <%= render 'result_payment', :index => index, :booking => booking %>
 <%end%> 
 </table>

@@ -5,8 +5,8 @@
 <meta name = "viewport" content = "width = device-width">
 
 <title>Dinobo</title>
-<%= stylesheet_link_tag  'style', "components", media: 'all'%>
-<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag  'style', "components", "facebox.css", media: 'all'%>
+<%= javascript_include_tag "application", "facebox.js" %>
 <%= csrf_meta_tags %>  
 </head>
 
@@ -25,7 +25,7 @@
                 </p>
               <% else %>
               <p style="margin:40px 0 0px 900px;">
-                <%= link_to 'Login', new_user_session_path %>
+                <%= link_to 'Login', new_user_session_path, :remote=> true %>
               </p>
                
               <% end %>
@@ -37,12 +37,13 @@
 
                  <div class="dropdown">
                      <a class="account"></a>
-                     <% if user_signed_in? %>
+                     
                       <div class="submenu" style="display: none; ">
                         
                           
                             <div class="main-new2">
                                 <ul>
+                                  <% if user_signed_in? %>
                                     <li>
                                         <%= link_to "List your place", posts_overview_path %>
                                     </li>
@@ -65,11 +66,15 @@
                                     </li>
                                    <li><a href="javascript:void(0);">Support</a></li>
                                    <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+                                   <% else %>
+                                     <li><%= link_to 'About Us',{:controller=>"/about_us", :action=>"about"} %></li>
+                                     <li><a href="javascript:void(0);">Support</a></li>
+                                  <% end %>
                                 </ul>
                             </div>
 
                       </div>
-                     <% end %>
+                     
                   </div>
             </div>
 
@@ -83,9 +88,10 @@
             <div class="right" style="width:191px;float:left;"> <!--------9/12/14---------------->
                 <ul>
                 <li><%= link_to 'About Us',{:controller=>"/about_us", :action=>"about"} %></li>
-                <li><%= link_to "FAQ",frequently_asked_question_path%></li>
+                <li><%= link_to "FAQ", frequently_asked_question_path %></li>
                  
-                <li><%= link_to 'Contact us', home_contactus_path %> </li></ul><br>
+                <li><%= link_to 'Contact us', home_contactus_path %> </li>
+              </ul><br>
             </div>
                
               <div class="left" style="width:200px;float:left;">
@@ -207,7 +213,7 @@ document.getElementById('bt2').addEventListener('click',function(e){
               var closeToaster = function() {
                 $('.animated').removeClass('fadeInUp');
                 $(".animated").removeClass("toaster_opacity");
-                $("p").remove();
+                $("#flashMsg").remove();
               };
 
               var setToaster = function(animated, text) {
@@ -250,7 +256,7 @@ document.getElementById('bt2').addEventListener('click',function(e){
                   <!-- Error Message -->
                   <% flash.each do |name, msg| %>
                   <% if msg.is_a?(String) %>
-                  <p>
+                  <p id="flashMsg">
                       <%= msg %>
                   </p>
                   <% end %>
