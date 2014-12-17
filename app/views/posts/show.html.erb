@@ -306,7 +306,7 @@ jQuery(document).ready(function(){
                   <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' />
                    <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
                   <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
-              <%= hidden_field_tag :remaining_area, @remaining_area %>
+              <%= hidden_field_tag :remaining_area, @remaining_area.to_i %>
 
               <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
 
@@ -332,7 +332,7 @@ jQuery(document).ready(function(){
                       <%= text_field_tag :area, nil, :class=>"units" %> 
                    
                      </div>
-                     <p class="miles3"> <%= @remaining_area %> sq. feet available</p>
+                     <p class="miles3"> <%= @remaining_area.to_i %> sq. feet available</p>
                    <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><span style="margin:0 0 0 25px; font-size:14px;" id="area_needed"> $0</span></p>
                 </div>
                 
