@@ -78,7 +78,7 @@
               <li><%= link_to "My Post",posts_path%></li>
               <li><%= link_to "My Order/Received",order_receives_path%></li>
               <li class="active"><%= link_to "My Booking", bookings_path%></li>
-              <li><%= link_to "Payment", nil%></li>
+              <li><%= link_to "Payment", payments_path%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>@post.user_id,:method => :post} rescue nil %></li>
             </ul>
             
@@ -100,7 +100,7 @@
                             </p>
                             
                                 <div class="address">
-                                <%= @post.address %>
+                                <%= @post.address %> <%= @post.street_add %> <%= @post.apt%> <%= @post.city%> <%= @post.state%> <%= @post.zip_code%>
                                 </div>
                           </div>
                           
