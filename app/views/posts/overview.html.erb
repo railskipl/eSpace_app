@@ -400,17 +400,15 @@ window.onload = loadMap;
               <%= f.select :area, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}" %>
             </div>
 <!-------------box_3 end-------------------->
-<p  class="miles" style="margin-top:-19px;">Miles</p> 
+<p  class="miles" style="margin-top:-18px;">Miles</p> 
 <p  class="miles1" style="margin-top:-12px;">$</p>
 <p  class="miles2" style="margin-top:-15px;">Square feet</p>
-<div class="need">I need a car to transport the stuff for <a class="tooltip" href="#" style="color:#999; text-decoration:none;"> 
+<div class="need">I need a car to transport the stuff for <a class="tooltip1" href="#" style="color:#999; text-decoration:none;"> 
 <div id="cf2" style="margin-left:130px;">
                   <img class="bottom" src="/assets/queh.png" />
                   <img class="top" src="/assets/que.png" />
                     </div>
-
-
-<span class="classic">This is just an example of what you can do using </span> </a></div>
+                    <span class="classic">This is just an example of what you can do using </span> </a></div>
 <div class="example">
       <div class="pickup">
      Drop-off &nbsp; <%= f.check_box :dropoff, :checked=> params[:search] ? params[:search][:dropoff] == '1' ? true : false : false %><label for="checkbox1">&nbsp;</label>
