@@ -346,7 +346,8 @@ jQuery("#booking").validate({
 
         "area":{
 	        required:true,
-	        number:true
+	        number:true ,
+	        lessThan: "#remaining_area"
         },
         "booking[dropoff_date]":{
 	        required:true
