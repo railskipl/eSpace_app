@@ -5,8 +5,8 @@
 <meta name = "viewport" content = "width = device-width">
 
 <title>Dinobo</title>
-<%= stylesheet_link_tag  'style', "components", "stylesheet-image-based", media: 'all'%>
-<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag  'style', "components", "facebox.css", "stylesheet-image-based", media: 'all'%>
+<%= javascript_include_tag "application", "facebox.js" %>
 
  <%= csrf_meta_tags %> 
 </head>
@@ -23,7 +23,7 @@
                 </p>
               <% else %>
               <p style="margin:40px 0 0px 900px;">
-                <%= link_to 'Login', new_user_session_path %>
+                <%= link_to 'Login', new_user_session_path, :remote=> true %> 
               </p>
                
               <% end %>
@@ -140,7 +140,7 @@
               var closeToaster = function() {
                 $('.animated').removeClass('fadeInUp');
                 $(".animated").removeClass("toaster_opacity");
-                $("p").remove();
+                $("#flashMsg").remove();
               };
 
               var setToaster = function(animated, text) {
@@ -183,7 +183,7 @@
                   <!-- Error Message -->
                   <% flash.each do |name, msg| %>
                   <% if msg.is_a?(String) %>
-                  <p>
+                  <p id="flashMsg">
                       <%= msg %>
                   </p>
                   <% end %>

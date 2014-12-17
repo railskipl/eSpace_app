@@ -2210,7 +2210,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 	
 	/*--------------------------8/12/2014-----------------------*/
 	
-	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:604px; font-size:10px}
+	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:626px; font-size:10px}
 	.blue-bg p{ margin:11px 0 0 0; color:#cbcaca}
 	
 	.blue-bg-div1 > p{text-align:justify}
@@ -2821,7 +2821,6 @@ a.account {
 	line-height: 16px;
 	color: #555;
 	position: absolute;
-	z-index: 110;
 	display: block;
 	padding:47px 52px;
 	text-decoration: none;
