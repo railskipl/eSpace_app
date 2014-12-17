@@ -3102,3 +3102,92 @@ div.selectBox
 a.post-btn {
    text-decoration: none;
 }
+
+.boxpop-up-login
+{
+	width:380px;
+	background:#FFF;
+}
+.loginnew-btn{
+    background: #00b4ff;
+	padding:10px 10px 8px;
+	font-size:15px; 
+	text-align:center;	
+	font-family:brandon4;
+	width:50%;
+	margin:16px auto 8px;
+	margin-top:30px;
+	border:2px #00b4ff solid;
+	text-decoration:none;
+ 	color:#ffffff;
+ 	cursor:pointer;
+}
+
+
+.facebook-up-btn{
+    background: #3b5997;
+	padding:10px 10px 8px;
+	font-size:15px; 
+	text-align:center;	
+	font-family:brandon4;
+	width:50%;
+	margin:4px auto auto;
+	border:2px #3b5997 solid;
+}
+
+.facebook-up-btn a{
+
+	text-decoration:none;
+ 	color:#ffffff;
+}
+
+.heading-login
+{
+	padding-left:20px;
+	color:#14263a;
+	margin:20px 0 20px 65px;
+	font-family:brandon4;
+}
+
+
+.forgot
+{
+	margin:3px 0 0 94px;
+	font-size:12px;
+}
+
+.forgot a {color:#7b7b7b; font-family: brandon4; text-decoration: none;}
+
+
+.login-popup input { 
+	background:#fffffff; 
+	border:1px solid #eeeeee;
+	color:#666; 
+	font:13px;
+	padding:10px 10px 8px;
+	width:50%;
+	margin:auto;
+   font-family:brandon4;
+	font-size:15px;
+   color:#b2b3b5;
+   margin-left:94px;
+}
+.password-new-up input { 
+	background:#fffffff; 
+	border:1px solid #eeeeee;
+	color:#666; 
+	font:13px;
+	padding:10px 10px 8px;
+	width:50%;
+	margin:auto;
+   font-family:brandon4;
+	font-size:15px;
+   color:#b2b3b5;
+   margin-left:94px;
+    margin-top:8px;
+   
+}
+.new-checkbox{
+	margin: 20px 0 0 77px;
+	
+	}	

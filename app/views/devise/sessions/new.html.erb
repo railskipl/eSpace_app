@@ -1,22 +1,46 @@
 
-<h2>Sign in</h2>
+<div class="boxpop-up-login">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %>
-  <%= f.email_field :email, autofocus: true %></div>
+    <div class="heading-login">Login</div>
+    
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="login-popup"> 
+   		<%= f.email_field :email, autofocus: true, :placeholder=>"College ID" %>
+    </div>
+    
+   	<div class="password-new-up"> 
+   		<%= f.password_field :password, autocomplete: "off", :placeholder=>"Password" %>
+   	</div>
 
-  <div><%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <div class="new-checkbox">
+    	
+    	<label class="tasks-list-item">
+			<input class="tasks-list-cb" type="checkbox" checked="checked" name="task_3" >
+			<span class="tasks-list-mark"></span>
+		</label>
+         <p style="margin:-25px 0 0 44px; color:#7b7b7b; font-weight:bold; font-family: brandon4;"> I agree term & condition</p>
+    </div>
+        
+        
+    <div style="text-align:center">
+     	<%= f.submit "Login", :class=>"loginnew-btn" %>
+    </div>
+    <% end %>
+   	<div style="text-align:center;"> OR </div>
+    <div class="facebook-up-btn">
+     	<a href="/users/auth/facebook">Sign up with Facebook</a>
+        
+    </div>
+     
+    
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    	<div class="forgot">
+    	<%= link_to "Forgot your password?", new_password_path(resource_name), :remote=> true %>
+    	</div>
+    <% end -%>
 
-  <div><%= f.submit "Sign in", :class=>"btn btn-primary" %></div>
-<% end %>
 
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name), :remote=> true %><br />
-<% end -%>
+
 
 
