@@ -29,7 +29,7 @@ jQuery.validator.addMethod("lessThan",
 	    if (!/Invalid|NaN/.test(new Date(value))) {
 	        return new Date(value) <= new Date($(params).val());
 	    }
-
+        
 	    return isNaN(value) && isNaN($(params).val()) 
 	        || (Number(value) <= Number($(params).val())); 
 	},'Must be less or equal to remaining area.');
@@ -346,7 +346,8 @@ jQuery("#booking").validate({
 
         "area":{
 	        required:true,
-	        number:true
+	        number:true ,
+	        lessThan: "#remaining_area"
         },
         "booking[dropoff_date]":{
 	        required:true

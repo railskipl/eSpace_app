@@ -35,17 +35,17 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     
-    # result = Booking.select("sum(area) as area").where("post_id = ? and pickup_date >= ?", @post.id, Date.today).first
-    
-    # raise result.inspect
-    # unless result.area.nil?
-      
-    #   @remaining_area = @post.area - result.area
-    # else
-    #   @remaining_area = @post.area
-    # end
+    result = Booking.select("area").where("post_id = ? and pickup_date >= ?", @post.id, Date.today)
+    @a = []
+    result.each do |ru|
+       @a << ru.area.to_f
+    end
+    unless @a.nil?
+      @remaining_area = @post.area - @a.inject{|sum, x| sum + x}
+    else
+      @remaining_area = @post.area
+    end
 
-    #raise @remaining_area.inspect
   end
 
   # GET /posts/new

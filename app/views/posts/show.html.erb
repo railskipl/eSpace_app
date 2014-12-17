@@ -90,7 +90,7 @@
 <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css", "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker" %>
 <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation", "facebox.js", "jquery.ui.core", "jquery.ui.datepicker.js" %>
 
-<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="https://checkout.stripe.com/v2/checkout.js"></script>
 
 <script type='text/javascript'>//<![CDATA[ 
 
@@ -296,7 +296,13 @@ jQuery(document).ready(function(){
                   <div class="ami">
                    <p class="ami1"><%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %> <strong style="font-size:10px;"><% if current_user.provider.present? &&  @post.user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %></strong>
 
-                   </p><div class="street"><p><%= @post.address %> </p> </div>
+                   </p>
+                   <div class="street">
+                     <p><%= @post.address %><br/>
+                     <%= @post.street_add %> <%= @post.apt%><br/>
+                     <%= @post.city%> <%= @post.state%> <br/>
+                     <%= @post.zip_code%></p> 
+                   </div>
                       
                    <div id="message_<%= @post.id %>">
                     <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"sms_btn" %>
@@ -306,7 +312,7 @@ jQuery(document).ready(function(){
                   <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' />
                    <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
                   <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
-              <%= hidden_field_tag :remaining_area, @post.area.to_i %>
+              <%= hidden_field_tag :remaining_area, @remaining_area.to_i %>
 
               <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
 
@@ -332,7 +338,7 @@ jQuery(document).ready(function(){
                       <%= text_field_tag :area, nil, :class=>"units" %> 
                    
                      </div>
-                     <p class="miles3"> <%= @post.area.to_i %> sq. feet available</p>
+                     <p class="miles3"> <%= @remaining_area.to_i %> sq. feet available</p>
                    <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><span style="margin:0 0 0 25px; font-size:14px;" id="area_needed"> $0</span></p>
                 </div>
                 
@@ -445,7 +451,7 @@ jQuery(document).ready(function(){
                <input type="hidden" name="totalPrice" id="totalPrice" value=""/>
 
                <script>
-               $('#customButton').click(function(){
+               jQuery('#customButton').click(function(){
                  var token = function(res){
                  var $input = $('<input type=hidden name=stripeToken />').val(res.id);
                  var $input2 = $('<input type=hidden name=stripeEmail />').val(res.email);
