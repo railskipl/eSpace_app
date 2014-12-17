@@ -2,12 +2,8 @@ class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
     respond_to :html, :js
 
-     def new
-      super
-     end
 
     def create
-
       self.resource = warden.authenticate!(auth_options)
       
       if resource.status == false

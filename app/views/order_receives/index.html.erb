@@ -51,10 +51,10 @@
         <div class="order-col order-col1">
           <!-- <div class="heading"> -->
           <div  style="color: #14263a; font-family: brandon4; margin-top: 0;">
-            <h4><%= User.find(booking.user_id).name %></h4>
+            <h4><%= booking.user.name %></h4>
           </div>
           <p>
-            <%= Post.find(booking.post_id).address %>
+            <%= booking.post.address %>
           </p>
           <p>
             Total amount : $<%=booking.price %>

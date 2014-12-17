@@ -2,10 +2,10 @@ class PayementTransfersController < ApplicationController
 
   layout 'admin'
   include PostsHelper
-
+  before_filter :correct_user
   
   def index
-  	 @bookings = Booking.all
+  	 @bookings = Booking.includes(:poster,:post)
   end
   
   #transfer the payement to poster account. 
@@ -75,6 +75,13 @@ class PayementTransfersController < ApplicationController
           end   
         end
   end
+
+  private
+
+    def correct_user
+      @user = User.find_by_id_and_admin(current_user.id, true)
+      redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
+    end
   
 
 end

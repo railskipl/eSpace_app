@@ -5,7 +5,7 @@ class HomeController < ApplicationController
  layout :custom_layout
 
 	def index
-
+    @access_ids = AccessId.all
 	end
     
    def contactus
