@@ -2319,7 +2319,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
     width: 100%; color:#dedede;
 	border-radius:0;
 	margin-bottom:18px;
-	font-family: brandon4;
+	font-family: brandon4;	
 }
 	
 	
@@ -2655,18 +2655,18 @@ fieldset {
     border: medium none;
 }
 
-.pickup4 {
+/*.pickup4 {
     color: #ccc;
     font-family: brandon4;
     font-size: 12px;
-}
+}*/
 
-input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
+/*input[type="checkbox"]:not(old), input[type="radio"]:not(old) {
     margin: 0;
     opacity: 0;
     padding: 0;
     width: 28px;
-}
+}*/
 
 .new_login3 {
     float: right;
