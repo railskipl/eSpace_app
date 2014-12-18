@@ -972,7 +972,7 @@ background-color:#072643;
   border-radius: 0;
   height: 34px;
   -webkit-appearance: none;
-  color: #FFF;
+  /*color: #FFF;*/
   
   }	
 	
@@ -3162,7 +3162,7 @@ a.post-btn {
 
 .heading-login
 {
-	padding-left:20px;
+	padding-left:30px;
 	color:#14263a;
 	margin:20px 0 20px 65px;
 	font-family:brandon4;
