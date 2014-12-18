@@ -269,7 +269,7 @@ jQuery(document).ready(function(){
               
               
                  <div class="s3">
-                 <div class="review"><p style="float:left;">Reviews</p>
+                 <div class="review"><p style="float: left; border-left-width: 0px; padding-left: 0px;">Reviews</p>
                  <div class="star-new" style="float:right; margin: 20px 35px 0 0; font-size:15px; color:#9198a0;">
                   <%= "(" + pluralize(@post.comments.count.to_s, "")+")" %>
                   <% num_stars(@post.overall_rating)[:full].times do %>
@@ -286,7 +286,7 @@ jQuery(document).ready(function(){
                   </div>
 
 
-                    <div class="p1" style="width:480px; margin-left:14px;" id="ref_comment">  
+                    <div class="p1" style="width:480px; margin-left:-3px;" id="ref_comment">  
                       
                     </div>
             
