@@ -4,7 +4,7 @@
 		color:#CCC;
 		font-family:brandon4;
 		font-size:12px;
-		margin-left:191px;
+		margin-left:188px;
 		
 		
 		
@@ -14,7 +14,7 @@
 		color:#CCC;
 		font-family:brandon4;
 		font-size:12px;
-		margin-left:352px;
+		margin-left:346px;
 		
 		
 		}
@@ -44,7 +44,7 @@
 input[type=checkbox]:not(old),
 input[type=radio   ]:not(old){
   width   : 28px;
-  margin  : 0;
+  margin  : 1;
   padding : 0;
   opacity : 0;
 }
