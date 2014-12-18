@@ -972,13 +972,13 @@ background-color:#072643;
   border-radius: 0;
   height: 34px;
   -webkit-appearance: none;
-  /*color: #FFF;*/
+  color: #FFF;
   
   }	
 	
-	
-	
-	
+ #search_miles option {color:#000;}
+ #search_price option {color:#000;}
+ #search_area option {color:#000;}
 
 
 .styleSelect {
