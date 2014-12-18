@@ -20,4 +20,17 @@ module BookingsHelper
     return @days_diff.round
   end	
 
+  def remaining_area(post)
+    result = Booking.result_area(post)
+    @a = []
+    result.each do |ru|
+       @a << ru.area.to_f
+    end
+    unless @a.nil?
+      @remaining_area = post.area - @a.inject{|sum, x| sum + x}
+    else
+      @remaining_area = post.area
+    end
+  end
+
 end
