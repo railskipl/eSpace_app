@@ -44,7 +44,7 @@
                 <% end %>
             </div>
 
-            <div class="month"  style="margin-top:12px;"> <%= post.pick_up_avaibilty_start_date.strftime("%B %e") %> -  <%= post.pick_up_avaibility_end_date.strftime("%B %e") %> 
+            <div class="month"  style="margin-top:12px;"> <%= post.pick_up_avaibilty_start_date.strftime("%B %e") %> -  <%= post.pick_up_avaibility_end_date.strftime("%B %e") %>
               <% if post.pick_up == true %> 
                   <p title="Pick-up ride availabe ($<%= post.price_include_pick_up.to_i %>)" class="tooltip_new">
                     <span title="More"><img src="/assets/right.png"></span>
@@ -53,7 +53,9 @@
                   <p title="Pick-up ride unavailable" class="tooltip_new">
                     <span title="More"><img src="/assets/close1.png"></span>
                   </p> 
-                <% end %>
+                <% end %><br/><br/>
+                
+                <%=  remaining_area(post) %> <%= post.additional_comments %>              
             </div>
          
             <div class="name-title" style="margin:-20px 0 0 175px;"> <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? "#{post.distance.round(2)} miles" : '' : '' %> </div>
