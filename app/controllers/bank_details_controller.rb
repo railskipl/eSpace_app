@@ -45,7 +45,7 @@ class BankDetailsController < ApplicationController
           end
            
           stripe_response = JSON.parse("#{recipient}")
-              raise  stripe_response.inspect
+              
           if stripe_response["cards"]["data"][0]["id"].present?
             @bank_detail.stripe_recipient_token = stripe_response["id"]
             @bank_detail.full_name = params[:bank_detail][:full_name]

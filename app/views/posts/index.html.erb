@@ -37,12 +37,12 @@
           </li>  
         </ul>
         <div class="status">
-          <%= f.select :status, options_for_select(%w[Active Inactive]) %>
-            <select  class="status-prev">
-                <option value="10" style="color:#999;">Status</option>
-                <option value="9" style="color:#999;">Active</option>
-                <option value="9" style="color:#999;">Inactive</option>
-            </select>
+          <%#= f.select :status, options_for_select(%w[Active Inactive]) %>
+          <select name="search[status]" id="search_status" class="status-prev">
+            <option value="" style="color:#999;">Status</option>
+            <option value="Active" style="color:#999;">Active</option>
+            <option value="Inactive" style="color:#999;">Inactive</option>
+          </select>
         </div>
         <div class="search">
             <%= f.submit "",:class => "search-btn-new" %>
@@ -50,7 +50,7 @@
       </div>
     <% end %>
     <div class="booking-wrap">
-      <div class="new-add-post"><%= link_to 'Add Post', new_post_path %> </div>
+      <div class="new-add-post"><%= link_to '+Add Post', new_post_path %> </div>
       <% @posts.each_with_index do |post, index| %>
         <div class="booking-box-add">
           <div class="booking-col">       

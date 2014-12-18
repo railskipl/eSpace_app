@@ -1,0 +1,4 @@
+
+	$(function() {
+        cbpHorizontalMenu.init();
+      });
