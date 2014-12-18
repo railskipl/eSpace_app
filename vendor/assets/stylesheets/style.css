@@ -1814,9 +1814,9 @@ body{
 		width:100%
 		}
 		
-	.menu span{
+	/*.menu span{
 	float:left;
-	}
+	}*/
 	.menu span img{
 	max-width:103px;
 		}
@@ -2261,9 +2261,10 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 	} 
 	
 	.main-new2 ul{
-		margin:25px 0;
+		margin:25px 0!important;
 		padding:0; list-style-type:none;
-		font-family:'brandon4'
+		font-family:'brandon4';
+		width:930px
 		}
 		
 		.main-new2 li{
@@ -2274,7 +2275,8 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 		.main-new2 li a{
 		color:#041628; text-decoration:none;
 		padding:7px 15px;
-		border:1px solid #fff
+		border:1px solid #fff;
+		background:none!important
 		}
 		
 		.main-new2 li a:hover{
@@ -2291,11 +2293,20 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 		color:#44c8ff; outline:0
 		}
 		
-		.main-new2 li a span {
+		.main-new2 li a span{
 		color:#fff; background:#ff7e00; border-radius:100%; width:20px; height:auto; font-size:10px; text-align:center; margin-left:12px; padding:3px 3px;
-
-		display:inline-block; float: none;
+		display:inline-block
 		}
+
+		.main-new2 ul{
+		width:100%
+		}
+
+		html, body {
+		    height: 100%;
+		    margin: 0;
+		}
+
 		.logo{ margin:31px 100px 31px 0; max-width:100px}
 		.formwrap{ width:280px; margin:60px auto; font-size:18px; color:#989ba0; text-align:left; font-family:'brandon4'; position:relative}
 		.formwrap p{ margin-bottom:35px}

@@ -25,7 +25,7 @@ jQuery.validator.addMethod("lessThanDropDate",
 //Less than Booking area
 jQuery.validator.addMethod("lessThan", 
 	function(value, element, params) {
-
+    
 	    if (!/Invalid|NaN/.test(new Date(value))) {
 	        return new Date(value) <= new Date($(params).val());
 	    }

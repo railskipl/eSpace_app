@@ -5,7 +5,7 @@
 <meta name = "viewport" content = "width = device-width">
 
 <title>Dinobo</title>
-<%= stylesheet_link_tag  'style', "components", "facebox.css", media: 'all'%>
+<%= stylesheet_link_tag  'style', "components", "component","facebox.css", media: 'all'%>
 <%= javascript_include_tag "application", "facebox.js" %>
 <%= csrf_meta_tags %>  
 </head>
@@ -32,52 +32,56 @@
             </div>
                 
             <div class="menu">
+              <a href="javascript:void(0);"><img src="/assets/logo.png" class="logo"></a>
+            
+              <nav id="cbp-hrmenu" class="cbp-hrmenu">
+                <ul>
+                  <li>
+                    <a href="#"></a>
+                    <div class="cbp-hrsub">
+                      <div class="main-new2">
+                        <ul>
+                            <% if user_signed_in? %>
+                              <li>
+                                  <%= link_to "List your place", posts_overview_path %>
+                              </li>
+                              <li>
+                                  <%= link_to "My Booking", bookings_path %>
+                              </li>
 
-                <a href="javascript:void(0);"><img src="/assets/logo.png" class="logo"></a>
+                              <li>
+                                  <%= link_to "My Order/Received", order_receives_path %>
+                              </li>
 
-                 <div class="dropdown">
-                     <a class="account"></a>
-                     
-                      <div class="submenu" style="display: none; ">
-                        
-                          
-                            <div class="main-new2">
-                                <ul>
-                                  <% if user_signed_in? %>
-                                    <li>
-                                        <%= link_to "List your place", posts_overview_path %>
-                                    </li>
-                                    <li>
-                                        <%= link_to "My Booking", bookings_path %>
-                                    </li>
+                              <li>
+                            
+                               <%= link_to("Messages <span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
 
-                                    <li>
-                                        <%= link_to "My Order/Received", order_receives_path %>
-                                    </li>
-
-                                    <li>
-                                     <%= link_to("Messages <span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
-                                    </li>
-                                    <li class="active">
-                                      <%= link_to "My Account", edit_user_path(current_user) %>
-                                    </li>
-                                    <li>
-                                      <%= link_to "About Us", {:controller=>"/about_us", :action=>"about"} %>
-                                    </li>
-                                   <li><a href="javascript:void(0);">Support</a></li>
-                                   <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
-                                   <% else %>
-                                     <li><%= link_to 'About Us',{:controller=>"/about_us", :action=>"about"} %></li>
-                                     <li><a href="javascript:void(0);">Support</a></li>
-                                  <% end %>
-                                </ul>
-                            </div>
-
+                              </li>
+                            
+                              <li>
+                                <%if controller.controller_name == "users"%>
+                                <%= link_to "My Account", edit_user_path(current_user),:class=>"active" %>
+                                <%else%>
+                                <%= link_to "My Account", edit_user_path(current_user) %>
+                                <%end%>
+                              </li>
+                              <li>
+                                <%= link_to "About Us", {:controller=>"/about_us", :action=>"about"} %>
+                              </li>
+                             <li><a href="javascript:void(0);">Support</a></li>
+                             <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+                            <% else %>
+                             <li><%= link_to 'About Us',{:controller=>"/about_us", :action=>"about"} %></li>
+                             <li><a href="javascript:void(0);">Support</a></li>     
+                            <% end %>
+                        </ul>
                       </div>
-                     
-                  </div>
+                    </div>
+                  </li>
+                </ul>
+              </nav>
             </div>
-
             <div class="clear"> </div>  
 
               <%= yield %>
@@ -140,7 +144,13 @@ document.getElementById('bt2').addEventListener('click',function(e){
 
 <!-- -------------------------down arrow------------------------------------------------ -->
   
-  
+  <script src="/assets/cbpHorizontalMenu.min.js"></script>
+    <script>
+      $(function() {
+        cbpHorizontalMenu.init();
+      });
+  </script>
+ 
 
 
   <script type="text/javascript" >
