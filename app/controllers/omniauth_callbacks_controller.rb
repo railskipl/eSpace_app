@@ -2,11 +2,13 @@ class OmniauthCallbacksController < ApplicationController
 	respond_to :html, :js, :json
   
      def new
-     @user = User.new
+     	@access_ids = AccessId.all
+     	@user = User.new
+
      end
 
      def create
-
+     	
      	@user = User.find_for_facebook_oauth(session["omniauth.auth"],params[:personal_email])
 
      	if @user.present?   

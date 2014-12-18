@@ -1,10 +1,11 @@
 <script>
-function validateForm() {
+
+	function validateForm() {
+
 	var err = 0;
 
 	var userinput = $('#email').val();
 
-	<% @access_ids = AccessId.all %>
 	
 	<% @access_ids.each_with_index do |access_id, index| %>
 	var domain<%= index %> = '<%= access_id.email %>';
@@ -61,17 +62,25 @@ function validateForm() {
 }
 </script>
 
-<div class="dragonContent">
- 	<div class="dialog-content">
 
+
+
+<div class="boxpop-up-login">
+
+    <div class="heading-login mrleft75" >Enter college ID</div>
+
+    <div class="mrtop50"></div>
     <%= form_tag url_for(:controller => 'omniauth_callbacks', :action => 'create'), :method => 'post', :id=>"checkEmail", :onsubmit => "return validateForm()" do |f| %>
-	    <%= label_tag :email%>
 
-      <%= text_field_tag :personal_email%>
-      <div class="form-error"></div>
-	    
-	    <div><%= submit_tag "Confirmation Email", :class=>"btn btn-primary" %> </div>
-    <% end %>
-  
+    <div class="login-popup"> 
+      <%= text_field_tag :personal_email %>
     </div>
+   
+        
+    <div style="text-align:center">
+    	<%= submit_tag "Submit", :class=>"loginnew-btn" %>
+      
+    </div>
+    <% end %>
+
 </div>
