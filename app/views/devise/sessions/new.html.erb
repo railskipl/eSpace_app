@@ -36,7 +36,7 @@
 
     <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
     	<div class="forgot">
-    	<%= link_to "Forgot your password?", new_password_path(resource_name), :remote=> true %>
+    	<%= link_to "Forgot password?", new_password_path(resource_name), :remote=> true %>
     	</div>
     <% end -%>
 
