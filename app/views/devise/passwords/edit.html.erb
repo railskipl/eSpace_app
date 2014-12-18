@@ -1,16 +1,29 @@
-<h2>Change your password</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.label :password, "New password" %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %></div>
+<div class="boxpop-up-login">
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    <div class="heading-login mrleft75" >Change password</div>
 
-  <div><%= f.submit "Change my password", :class=>"btn btn-primary" %></div>
-<% end %>
+    <div class="mrtop50"></div>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="mrtop16" id="successForgotMsg"><%= devise_error_messages! %></div>  
 
-<%= render "devise/shared/links" %>
+  	<%= f.hidden_field :reset_password_token %>
+
+    <div class="login-popup"> 
+    	<%= f.password_field :password, autofocus: true, :placeholder=>"New password" %>
+    </div>
+
+    <div class="password-new-up"> 
+      <%= f.password_field :password_confirmation, autofocus: true, :placeholder=>"Confirm new password" %>
+    </div>
+
+    
+        
+    <div style="text-align:center">
+      <%= f.submit "Change", :class=>"loginnew-btn" %>
+    </div>
+    <% end %>
+
+</div>
+

@@ -1,8 +1,10 @@
- <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
+
 
   <div class="boxpop-up-login">
 
-    <div class="heading-login">Sign up</div>
+    <div class="heading-login mrleft75">Sign up</div>
+
+    <div><%= devise_error_messages! %></div>
     
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name),:html => {:id => "user"}) do |f| %>
     <div class="login-popup"> 
