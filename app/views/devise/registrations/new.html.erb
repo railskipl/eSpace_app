@@ -1,43 +1,49 @@
  <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
 
-<h2>Sign up</h2>
+  <div class="boxpop-up-login">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name),:html => {:id => "user"}) do |f| %>
-  <%= devise_error_messages! %>
+    <div class="heading-login">Sign up</div>
+    
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name),:html => {:id => "user"}) do |f| %>
+    <div class="login-popup"> 
+      <%= f.text_field :name, :placeholder=>"Name" %>
+    </div>
 
-  <div><%= f.label :email %>
-  <%= f.email_field :email, :value=>session[:email], :readonly => true %></div>
+    <div class="password-new-up"> 
+      <%= f.text_field :last_name, :placeholder=>"Last name" %>
+      <%= f.hidden_field :email, :value=>session[:email], :readonly => true %>
+    </div>
 
-  <div><%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <div class="password-new-up"> 
+      <%= f.text_field :personal_email, :placeholder=>"Secondary email" %>
+    </div>
 
-  <div><%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    <div class="password-new-up"> 
+      <%= f.password_field :password, autocomplete: "off", :placeholder=>"Create password" %>
+    </div>
+    
+    <div class="password-new-up"> 
+      <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder=>"Password" %>
+    </div>
 
-  <div>
-    <%= f.label :name, "First Name" %>
-    <%= f.text_field :name %>
+    <div class="new-checkbox">
+      
+      <label class="tasks-list-item">
+      <input type="checkbox" id="termsConditions" name="termsConditions" class="tasks-list-cb"/>
+
+      <span class="tasks-list-mark"></span>
+    </label>
+         <p style="margin:-25px 0 0 44px; color:#7b7b7b; text-decoration: underline; font-family: brandon4;"> I agree term & condition</p>
+    </div>
+        
+        
+    <div style="text-align:center">
+      <%= f.submit "Submit", :class=>"loginnew-btn" %>
+    </div>
+    <% end %>
+    <div style="text-align:center;"> OR </div>
+    <div class="facebook-up-btn">
+      <a href="/users/auth/facebook">Sign up with Facebook</a>
+
+    </div>
   </div>
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-  <div>
-    <%= f.label :personal_email %>
-    <%= f.text_field :personal_email %>
-  </div>
-  <div>
-    <%= f.label :mobile_number %>
-    <%= f.text_field :mobile_number, placeholder:"xxx xxx-xxxx" %>
-  </div>
-
-  <div>
-    <input type="checkbox" id="termsConditions" name="termsConditions"/> I agree to the <a href="/terms" target="_blank">terms and conditions</a>
-<label style="float: none;" for="termsConditions" class="error" generated="true"></label> <br/><br/>
-  </div>
-
-
-  <div><%= f.submit "Sign up", :class=>"btn btn-primary" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>

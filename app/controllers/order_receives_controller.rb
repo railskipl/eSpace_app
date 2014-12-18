@@ -30,6 +30,8 @@ class OrderReceivesController < ApplicationController
 	 def cancel_booking
 
 	    @booking = Booking.find(params[:id])
+	    @booking.area = 0
+	    @booking.save
 	    amount = @booking.price
 	    
 	    stripe_charge_id = @booking.stripe_charge_id

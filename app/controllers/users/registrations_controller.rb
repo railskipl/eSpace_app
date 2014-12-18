@@ -7,6 +7,10 @@ respond_to :html, :js
   # GET /resource/sign_up
   def new
     super
+
+    respond_to do |format|
+          format.js
+    end
   end
 
   # POST /resource
@@ -21,13 +25,12 @@ respond_to :html, :js
  
   # PUT /resource
    def update
-
     super
-  end
+   end
 
   def build_resource(hash=nil)
-  self.resource = resource_class.new_with_session(hash || {}, session)
-end
+    self.resource = resource_class.new_with_session(hash || {}, session)
+  end
 
   # DELETE /resource
   def destroy

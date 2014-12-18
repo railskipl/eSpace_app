@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
   include PostsHelper
-
+  include BookingsHelper
   # GET /posts
   # GET /posts.json
   def index
@@ -33,19 +33,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-
-    
-    result = Booking.select("area").where("post_id = ? and pickup_date >= ?", @post.id, Date.today)
-    @a = []
-    result.each do |ru|
-       @a << ru.area.to_f
-    end
-    unless @a.nil?
-      @remaining_area = @post.area - @a.inject{|sum, x| sum + x}
-    else
-      @remaining_area = @post.area
-    end
-
+    remaining_area(@post)
   end
 
   # GET /posts/new
@@ -77,11 +65,11 @@ class PostsController < ApplicationController
   def overview
       
       if params[:search]   
-        @overviews = Post.search_overview(params[:search], params[:page], params[:sort])
-        @posts = Post.search(params[:search], params[:page], params[:sort])
+        @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort])
+        @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort])
       else
-        @overviews = Post.order(sort_column + " " + sort_direction)
-        @posts = Post.page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
+        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction)
+        @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
       end
     respond_to do |format|
       format.html # index.html.erb

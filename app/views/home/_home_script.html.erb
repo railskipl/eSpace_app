@@ -1,5 +1,6 @@
 <script>
 	function validateForm() {
+
 	var err = 0;
 
 	var userinput = $('#email').val();
@@ -50,8 +51,19 @@
 	}
 
 	if(err == 0){
-            
-             return true;      
+
+			var email = document.getElementById("email").value;
+			// Returns successful data submission 
+			var dataString = 'email='+ email;
+
+            $.ajax({
+					type: "POST",
+					url: "authenticates",
+					data: dataString,
+					cache: false
+				});
+
+             return false;      
     }else{
             
             return false;
