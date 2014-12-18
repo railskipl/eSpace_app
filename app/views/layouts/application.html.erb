@@ -131,116 +131,23 @@
               <%= yield %>
               
 
-              <script type="text/javascript" >
-              $(document).ready(function()
-              {
-                  $(".account").click(function()
-                  {
-                    var X=$(this).attr('id');
+              
 
-                    if(X==1)
-                    {
-                      $(".submenu").hide();
-                      $(this).attr('id', '0');  
-                    }
-                    else
-                    {
-                      $(".submenu").show();
-                      $(this).attr('id', '1');
-                    }
-                    
-                  });
+          
+            <%= javascript_include_tag "animated_message", "cbpHorizontalMenu.min", "horizontalMenu" %>
 
-                  //Mouseup textarea false
-                  $(".submenu").mouseup(function()
-                  {
-                    return false
-                  });
+            <%= javascript_include_tag "animated_message" %>
 
-                  $(".account").mouseup(function()
-                  {
-                    return false
-                  });
-
-
-                //Textarea without editing.
-                $(document).mouseup(function()
-                {
-                  $(".submenu").hide();
-                  $(".account").attr('id', '');
-                });
-                  
-              });
-
-
-            //Animated message
-              var showToaster = function(animated, text) {
-                var replaceText = function (text) {
-                  var graf = animated.find('p');
-                  
-                  graf.text(text);
-                };
-
-                if (text != undefined) {
-                  replaceText(text);
-                }
-
-                animated.addClass('fadeInUp');
-                animated.addClass('toaster_opacity');
-                setTimeout(closeToaster, 8250);
-              };
-
-              var closeToaster = function() {
-                $('.animated').removeClass('fadeInUp');
-                $(".animated").removeClass("toaster_opacity");
-                $("#flashMsg").remove();
-              };
-
-              var setToaster = function(animated, text) {
-                if ($('.animated.fadeInUp').length) {
-                  if (Modernizr.csstransitions) {
-                    $('.animated').one(
-                      'transitionend oTransitionEnd webkitTransitionEnd',
-                      function() { showToaster(animated, text) }
-                    );
-                    closeToaster();
-                  } else {
-                    showToaster(animated, text);
-                  }
-                } else {
-                  showToaster(animated, text);
-                }
-              };
-
-              $('body').delegate('.animated .close_x_bright', 'click', closeToaster);
-
-              $(function () {
-                $('.animated').bind('pop', function (e, text) {
-                  setToaster($(e.target), text);
-                });
-
-                if ($('.animated p').text().length > 0) {
-                  setToaster($('.animated'));
-                }
-                
-              });
-
-
-            </script>
-            <script src="/assets/cbpHorizontalMenu.min.js"></script>
-            <script>
-              $(function() {
-                cbpHorizontalMenu.init();
-              });
-            </script>
             <div id="animated_msg">
+
               <section class="animated alert">
-                <span class="close_x_bright">Close</span>
+                
                  
                   <!-- Error Message -->
                   <% flash.each do |name, msg| %>
                   <% if msg.is_a?(String) %>
-                  <p id="flashMsg">
+                  
+                    <p id="flashMsg" class="fixed-box">  
                       <%= msg %>
                   </p>
                   <% end %>

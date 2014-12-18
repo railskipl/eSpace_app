@@ -12,7 +12,7 @@
     <div class="mrtop16" id="successForgotMsg"><%= devise_error_messages! %></div>    
         
     <div style="text-align:center">
-      <%= f.submit "Submit", :class=>"loginnew-btn" %>
+      <%= f.submit "Submit", :class=>"loginnew-btn", :disable_with=> "Please wait..." %>
     </div>
     <% end %>
 
