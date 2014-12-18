@@ -26,10 +26,10 @@ module BookingsHelper
     result.each do |ru|
        @a << ru.area.to_f
     end
-    unless @a.nil?
-      @remaining_area = post.area - @a.inject{|sum, x| sum + x}
-    else
+    if @a.nil? || @a.blank?
       @remaining_area = post.area
+    else
+      @remaining_area = post.area - @a.inject{|sum, x| sum + x}
     end
   end
 

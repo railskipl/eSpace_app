@@ -67,15 +67,19 @@
                     <div class="booking-box">
                         
                         <div class="booking-col">
-                            <span class="booking-name"><%= User.find(booking.poster_id).name.capitalize rescue nil%> <%= User.find(booking.poster_id).last_name[0,1] rescue nil%></span><% if booking.post.user.provider.present? && booking.post.user_id != current_user.id %>
+                            <span class="booking-name">
+                              <%= booking.poster.name.capitalize rescue nil%> 
+                              <%= booking.poster.last_name[0,1] rescue nil%>
+                            </span> 
+                            <% if booking.post.user.provider.present? && booking.post.user_id != current_user.id %>
                                 (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)<% end %>
                             <p>
-                            <%= Post.find(booking.post_id).address%>
-                            <%= Post.find(booking.post_id).street_add%>
-                            <%= Post.find(booking.post_id).apt%><br>
-                            <%= Post.find(booking.post_id).city%>
-                            <%= Post.find(booking.post_id).state%>
-                            <%= Post.find(booking.post_id).zip_code%>
+                            <%= booking.post.address%>
+                            <%= booking.post.street_add%>
+                            <%= booking.post.apt%><br>
+                            <%= booking.post.city%>
+                            <%= booking.post.state%>
+                            <%= booking.post.zip_code%>
                             </p>
                         </div>
                         

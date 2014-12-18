@@ -18,7 +18,7 @@
 			<input class="tasks-list-cb" type="checkbox" checked="checked" name="task_3" >
 			<span class="tasks-list-mark"></span>
 		</label>
-         <p style="margin:-25px 0 0 44px; color:#7b7b7b; text-decoration: underline; font-family: brandon4;"> I agree term & condition</p>
+         <p style="margin:-25px 0 0 44px; color:#7b7b7b; text-decoration: underline; font-family: brandon4;"> I agree term & conditions</p>
     </div>
         
         
@@ -36,9 +36,11 @@
 
     <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
     	<div class="forgot">
-    	<%= link_to "Forgot your password?", new_password_path(resource_name), :remote=> true %>
+    	<%= link_to "Forgot password?", new_password_path(resource_name), :remote=> true %>
     	</div>
     <% end -%>
+
+</div>
 
 
 

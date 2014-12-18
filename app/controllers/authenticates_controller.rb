@@ -1,5 +1,8 @@
 class AuthenticatesController < ApplicationController
 
+	#http://stackoverflow.com/questions/20875591/actioncontrollerinvalidauthenticitytoken-in-registrationscontrollercreate
+	skip_before_filter :verify_authenticity_token, :only => :create
+	
 	respond_to :html, :js, :json
 	
 	def index
@@ -8,9 +11,11 @@ class AuthenticatesController < ApplicationController
 	def create
 
 		session[:email] = params[:email]
-		
-      	respond_with(session[:email], location: new_user_registration_path)
-      	return false;
+
+      	respond_to do |format|
+			format.js
+		end
+      	
     
 	end
 
