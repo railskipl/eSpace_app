@@ -3,6 +3,8 @@
 
     <div class="heading-login">Login</div>
     
+    <%= devise_error_messages! %>
+    
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="login-popup"> 
    		<%= f.email_field :email, autofocus: true, :placeholder=>"College ID" %>
@@ -18,15 +20,17 @@
 			<input class="tasks-list-cb" type="checkbox" checked="checked" name="task_3" >
 			<span class="tasks-list-mark"></span>
 		</label>
-         <p style="margin:-25px 0 0 44px; color:#7b7b7b; text-decoration: underline; font-family: brandon4;"> I agree term & conditions</p>
+        
+         <p class="agreeTC"> I agree term & condition</p>
+
     </div>
         
         
     <div style="text-align:center">
-     	<%= f.submit "Login", :class=>"loginnew-btn" %>
+     	<%= f.submit "Login", :class=>"loginnew-btn", :disable_with=> "Please wait..." %>
     </div>
     <% end %>
-   	<div style="text-align:center;"> OR </div>
+   	<div style="text-align:center; font-size: 11px;"> OR </div>
     <div class="facebook-up-btn">
      	<a href="/users/auth/facebook">Sign up with Facebook</a>
 

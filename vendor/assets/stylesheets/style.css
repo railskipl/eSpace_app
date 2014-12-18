@@ -3036,9 +3036,7 @@ div.selectBox
 
   .animated {
     opacity: 0;
-    transform: translateY(20px);
-    transition-duration: 0.5s;
-    transition-property: all;
+   
 	}
 
 	.toaster_opacity { opacity: 1 !important;}
@@ -3109,7 +3107,7 @@ a.post-btn {
 .boxpop-up-login
 {
 	width:380px;
-	height: 360px;
+	height: auto;
 	background:#FFF;
 }
 .loginnew-btn{
@@ -3161,7 +3159,7 @@ a.post-btn {
 
 .forgot
 {
-	margin:3px 0 0 94px;
+	margin:3px 0 18px 94px;
 	font-size:12px;
 }
 
@@ -3218,4 +3216,22 @@ a.post-btn {
 	width:338px; 
 	border: 2px solid #eee;
 	font-family: brandon4
+}
+
+.bottom-div {color: #ccc;font-size: 12px; margin: 8px 0 18px 92px;}
+
+.regErr {color:#fd0000; float:left;}
+
+.agreeTC {margin:-25px 0 0 44px; color:#7b7b7b; text-decoration: underline; font-family: brandon4;}
+
+.fixed-box {
+    background-color: #072643;
+    float: left !important;
+    height: auto;
+    min-width: 160px;
+    position: fixed;
+    right: 0;
+    top: 85%;
+    padding: 20px;
+    border: 2px solid #051628;
 }
