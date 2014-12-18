@@ -7,10 +7,6 @@ respond_to :html, :js
   # GET /resource/sign_up
   def new
     super
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   # POST /resource
@@ -35,6 +31,8 @@ respond_to :html, :js
       
       respond_with resource
     end
+
+
   end
 
   

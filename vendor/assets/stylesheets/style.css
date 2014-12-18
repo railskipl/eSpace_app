@@ -3172,7 +3172,7 @@ a.post-btn {
 
 .forgot
 {
-	margin:3px 0 0 94px;
+	margin:3px 0 18px 94px;
 	font-size:12px;
 }
 
@@ -3224,5 +3224,11 @@ a.post-btn {
 .clear{clear:both;}
 
 #successForgotMsg { font-family: brandon4; margin: 19px 0 0 75px; padding-left: 20px; font-size: 11px;}
+
+.bottom-div {color: #ccc;font-size: 12px; margin: 8px 0 18px 92px;}
+
+.regErr {color:#fd0000; float:left;}
+
+.agreeTC {margin:-25px 0 0 44px; color:#7b7b7b; text-decoration: underline; font-family: brandon4;}
 
 
