@@ -3226,4 +3226,8 @@ a.post-btn {
 
 #successForgotMsg { font-family: brandon4; margin: 19px 0 0 75px; padding-left: 20px; font-size: 11px;}
 
-
+.text_area {
+	width:338px; 
+	border: 2px solid #eee;
+	font-family: brandon4
+}
