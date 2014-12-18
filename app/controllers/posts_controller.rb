@@ -68,8 +68,8 @@ class PostsController < ApplicationController
         @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort])
         @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort])
       else
-        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction)
-        @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
+        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_start_date >= ?",Date.today)
+        @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_start_date >= ?",Date.today)
       end
     respond_to do |format|
       format.html # index.html.erb
