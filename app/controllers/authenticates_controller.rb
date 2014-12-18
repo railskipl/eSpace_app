@@ -8,7 +8,9 @@ class AuthenticatesController < ApplicationController
 	def create
 
 		session[:email] = params[:email]
-		redirect_to new_user_registration_path
+		
+      	respond_with(session[:email], location: new_user_registration_path)
+      	return false;
     
 	end
 
