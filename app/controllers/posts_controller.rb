@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
        q = params[:q]
+  
        @posts = Post.search_post(params[:search], current_user.id)
        @posts = @posts.where("LOWER(status) like ?", "%#{q}%") if q.present?
  
