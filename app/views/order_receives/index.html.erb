@@ -54,7 +54,7 @@
             <h4><%= booking.user.name %></h4>
           </div>
           <p>
-            <%= booking.post.address %>
+            <%= booking.post.address rescue nil%> <%= booking.post.street_add rescue nil%> <br/> <%= booking.post.apt rescue nil%> <%= booking.post.city rescue nil%> <%= booking.post.state rescue nil%> <br/><%= booking.post.zip_code rescue nil%>
           </p>
           <p>
             Total amount : $<%=booking.price %>

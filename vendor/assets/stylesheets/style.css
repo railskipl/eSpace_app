@@ -1597,20 +1597,8 @@ background-color:#072643;
 	z-index:-22222222222;	
 		
 		}
-	.sed1{
-	color:#899199;
-	font-size:11px;
-	font-family:brandon4;
-	margin-top:5px;
-	z-index:-22222222222;
-	padding: 0 0 0 10px;
-	text-align:justify;
-	
-	line-height:12px;
-		
-		
-		}
-	.line{width:220px; height:2px; background-color:#efefef; margin-left:20px;}
+
+	.line{width:220px; height:2px; background-color:#efefef; margin-left:10px;}
 	.sed_h{
 	color:#11b9ff;
 	font-size:11px;
@@ -3224,6 +3212,12 @@ a.post-btn {
 
 #successForgotMsg { font-family: brandon4; margin: 19px 0 0 75px; padding-left: 20px; font-size: 11px;}
 
+.text_area {
+	width:338px; 
+	border: 2px solid #eee;
+	font-family: brandon4
+}
+
 .bottom-div {color: #ccc;font-size: 12px; margin: 8px 0 18px 92px;}
 
 .regErr {color:#fd0000; float:left;}
@@ -3241,5 +3235,3 @@ a.post-btn {
     padding: 20px;
     border: 2px solid #051628;
 }
-
-

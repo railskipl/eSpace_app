@@ -382,6 +382,7 @@ window.onload = loadMap;
                  
                 <%#= select_tag("search[price]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:price] if params[:search]}")) %>
               <%= f.select :price, ((1..200).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:price] if params[:search]}" %>
+              <%#raise "hi"%>
             </div>
 <!-------------box_2 end-------------------->
  
