@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
  include BookingsHelper
 
  def index
- 	@bookings = Booking.includes(:post).where("user_id = ?",current_user.id).order("id desc")
+ 	@bookings = Booking.includes(:post,:poster).where("user_id = ?",current_user.id).order("id desc")
  end
 
 	def new
