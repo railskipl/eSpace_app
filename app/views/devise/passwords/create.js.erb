@@ -1,0 +1,14 @@
+
+<% if @response %>
+
+	jQuery.facebox('<%= escape_javascript(render :template => 'devise/passwords/new.html') %>');
+	jQuery('.loginnew-btn').val("Ok");
+	jQuery("#successForgotMsg").html("A email has been sent to that email address.");
+	jQuery('#facebox form').data('remote','true');
+	
+<% else %>
+
+  	jQuery.facebox('<%= escape_javascript(render :template => 'devise/passwords/new.html') %>');
+	jQuery('#facebox form').data('remote','true');
+
+<% end %>

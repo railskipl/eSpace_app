@@ -3043,6 +3043,8 @@ div.selectBox
 	}
 
 	.toaster_opacity { opacity: 1 !important;}
+
+	/*
 	.alert {
 	    background-color: #072643;
     	border: 2px solid #051628;
@@ -3056,7 +3058,7 @@ div.selectBox
 	    width: auto;
 	    font-family: "brandon2";
 	}
-
+	*/
 
 	.close_x_bright {
 	    background: url("/assets/close.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -3112,7 +3114,7 @@ a.post-btn {
 }
 .loginnew-btn{
     background: #00b4ff;
-	padding:10px 10px 8px;
+	padding:4px 6px 6px;
 	font-size:15px; 
 	text-align:center;	
 	font-family:brandon4;
@@ -3125,6 +3127,11 @@ a.post-btn {
  	cursor:pointer;
 }
 
+.mrleft75 {margin-left:75px !important;}
+
+.mrtop50 {margin-top:50px;}
+
+.mrtop16 {margin-top:16px;}
 
 .facebook-up-btn{
     background: #3b5997;
@@ -3201,9 +3208,10 @@ a.post-btn {
 }
 		
 		
-.add1 img {
-	margin-right:80px;
-	}
+.add1 img { margin-right:80px; }
+
+.clear{clear:both;}
+
+#successForgotMsg { font-family: brandon4; margin: 19px 0 0 75px; padding-left: 20px; font-size: 11px;}
 
 
-	.clear{clear:both;}
