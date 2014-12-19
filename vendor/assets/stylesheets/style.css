@@ -379,8 +379,10 @@ color:#072643;
 margin:10px 0 10px 400px;
 font-family:brandon5;
 font-size:50px;
+text-decoration: none;
 	
 	}
+
 	.new_btn1{
 	font-size:18px;
 
@@ -1928,7 +1930,7 @@ body{
 	font-family:'brandon4'; border-top:1px solid #eeeeee}
 	
 	a{color:#00b4ff}
-	a:hover{ color:#00b4ff; text-decoration:underline}
+	a:hover{ color:#00b4ff; }
 
 	.col{ width:95px; float:left;}
 	.col1{ width:140px; float:left; margin-left:80px}
