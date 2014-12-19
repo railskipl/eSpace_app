@@ -1,6 +1,6 @@
 <markers>
 <% @overviews.each_with_index do |post, index| %>
-<marker nr="m<%= index %>" postid="<%= post.id %>" name="<%= post.user.name rescue nil%> <%= post.user.last_name rescue nil%>" address="<%= post.address %>" lat="<%= post.latitude %>" lng="<%= post.longitude %>" price="<%= post.price_sq_ft %>" category="bar"></marker>
+<marker nr="m<%= index %>" postid="<%= post.id %>" name="<%= post.user_name rescue nil%> <%= post.user_last_name rescue nil%>" address="<%= post.address %>" lat="<%= post.latitude %>" lng="<%= post.longitude %>" price="<%= post.price_sq_ft %>" category="bar"></marker>
 <% end %>
 </markers>
 

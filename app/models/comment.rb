@@ -5,6 +5,6 @@ class Comment < ActiveRecord::Base
   validates :post, presence: true
   # validates :comments, presence: true 
     # belongs_to :user
-
+  delegate :name, :to => :user, :prefix => true
 
 end
