@@ -69,11 +69,11 @@
                               <li>
                                 <%= link_to "About Us", {:controller=>"/about_us", :action=>"about"} %>
                               </li>
-                             <li><a href="javascript:void(0);">Support</a></li>
+                             <li><%= link_to "Support",frequently_asked_question_path%></li>
                              <li><%= link_to 'Logout', sign_out_path, :method=>'delete' %></li>
                             <% else %>
                              <li><%= link_to 'About Us',{:controller=>"/about_us", :action=>"about"} %></li>
-                             <li><a href="javascript:void(0);">Support</a></li>     
+                             <li><%= link_to "Support",frequently_asked_question_path%></li>     
                             <% end %>
                         </ul>
                       </div>

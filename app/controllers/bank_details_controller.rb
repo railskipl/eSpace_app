@@ -14,8 +14,12 @@ class BankDetailsController < ApplicationController
   end
 
   def new
-    @bank_detail = BankDetail.new
-    
+    @bank_detail = BankDetail.has_bank_detail(current_user.id).first
+    if @bank_detail.present?
+       redirect_to edit_bank_detail_path(@bank_detail.id)
+    else
+      @bank_detail = BankDetail.new
+    end 
   end
 
   def edit
