@@ -64,9 +64,9 @@
 
     jQuery(function($){
       
-      $("#booking_dropoff_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.drop_off_avaibility_start_date %>'), maxDate: new Date('<%= @post.drop_off_avaibility_end_date %>')})
+      $("#booking_dropoff_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= @post.drop_off_avaibility_start_date %>'), maxDate: new Date('<%= @post.drop_off_avaibility_end_date %>')})
 
-      $("#booking_pickup_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar.png', buttonImageOnly: true, minDate: new Date('<%= @post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= @post.pick_up_avaibility_end_date %>')})
+      $("#booking_pickup_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= @post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= @post.pick_up_avaibility_end_date %>')})
 
 
 
@@ -88,9 +88,9 @@
 
 
 <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css", "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker" %>
-<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation", "facebox.js", "jquery.ui.core", "jquery.ui.datepicker.js" %>
+<%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation", "facebox.js", "jquery.ui.core", "jquery.ui.datepicker.js" %>
 
-<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="https://checkout.stripe.com/v2/checkout.js"></script>
 
 <script type='text/javascript'>//<![CDATA[ 
 
@@ -269,7 +269,7 @@ jQuery(document).ready(function(){
               
               
                  <div class="s3">
-                 <div class="review"><p style="float:left;">Reviews</p>
+                 <div class="review"><p style="float: left; border-left-width: 0px; padding-left: 0px;">Reviews</p>
                  <div class="star-new" style="float:right; margin: 20px 35px 0 0; font-size:15px; color:#9198a0;">
                   <%= "(" + pluralize(@post.comments.count.to_s, "")+")" %>
                   <% num_stars(@post.overall_rating)[:full].times do %>
@@ -286,7 +286,7 @@ jQuery(document).ready(function(){
                   </div>
 
 
-                    <div class="p1" style="width:480px; margin-left:14px;" id="ref_comment">  
+                    <div class="p1" style="width:480px; margin-left:-3px;" id="ref_comment">  
                       
                     </div>
             
@@ -294,19 +294,26 @@ jQuery(document).ready(function(){
                   
                  <div class="s4">
                   <div class="ami">
-                   <p class="ami1"><%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %> <strong style="font-size:10px;"><% if current_user.provider.present? &&  @post.user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %></strong>
+                   <p class="ami1"><%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %> <strong style="font-size:10px;"><% if current_user.provider.present? &&  @post.user_provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %></strong>
 
-                   </p><div class="street"><p><%= @post.address %> </p> </div>
+                   </p>
+                   <div class="street">
+                     <p><%= @post.address %><br/>
+                     <%= @post.street_add %> <%= @post.apt%><br/>
+                     <%= @post.city%> <%= @post.state%> <br/>
+                     <%= @post.zip_code%></p> 
+                   </div>
                       
-                 <div id="message_<%= @post.id %>">
-                  <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"sms_btn" %>
-                </div>
+                   <div id="message_<%= @post.id %>">
+                    <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"sms_btn" %>
+                   </div>
 
                    <p class="sed2" style="line-height:12px;"><%= @post.additional_comments %></p>
                   <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' />
                    <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
                   <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />
-              <%#= form_for :booking, :html=>{ :id=>"booking", :method=>"get"} do |f| %>
+              <%= hidden_field_tag :remaining_area, @remaining_area.to_i %>
+
               <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
 
               <%= f.hidden_field :post_id, :value => @post.id %>
@@ -330,11 +337,10 @@ jQuery(document).ready(function(){
 
                       <%= text_field_tag :area, nil, :class=>"units" %> 
                    
-                     </div>
-                     <p class="miles3"> <%= @post.area.to_i %> sq. feet available</p>
+                     </div> 
+                     <p class="miles3"> <%= @remaining_area.to_i %> sq. feet available</p>
                    <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><span style="margin:0 0 0 25px; font-size:14px;" id="area_needed"> $0</span></p>
                 </div>
-                
                 <div class="f1">
                       <div class="f1_tool" style="margin-top:10px; ">Drop-off date <a class="tooltip10" href="#" style="color:#999; ">
                    <div id="cf2" style="margin-left:78px;">
@@ -346,7 +352,7 @@ jQuery(document).ready(function(){
                     <span class= "classic10"> Ride for drop off is $5 <u>learn_More</u> </span> </a></div>
                       <div class="drop_off_date dates" style="margin-top:-10px;">
                         
-                        <%= f.text_field :dropoff_date, :readonly=>true, :style=>"width: 40px;" %>
+                        <%= f.text_field :dropoff_date, :readonly=>true, :style=>"width: 29px;" %>
                       </div>
 
                       <p class="miles3" style="padding-left:7px;"> <%= @post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%b %e") %></p>
@@ -364,7 +370,7 @@ jQuery(document).ready(function(){
                       <span class= "classic10"> Ride for drop off is $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %> <u>learn_More</u> </span> </a></div>
                  
                   <% if @post.drop_off == true %> 
-                    <div class="pickup3">
+                    <div class="pickup3" style="margin:-20px 0 0 212px">
                       <input type="checkbox" id="checkbox1" />
                       <label for="checkbox1">&nbsp;</label>
                     </div>
@@ -392,7 +398,7 @@ jQuery(document).ready(function(){
                  
 
                        <div class="drop_off_date dates" style="margin-top:-23px;">
-                        <%= f.text_field :pickup_date, :readonly=>true, :style=>"width: 40px;" %>
+                        <%= f.text_field :pickup_date, :readonly=>true, :style=>"width: 29px;" %>
 
                       </div>
 
@@ -413,7 +419,7 @@ jQuery(document).ready(function(){
                   <% if @post.pick_up == true %> 
                       
                  
-                     <div class="pickup3">
+                     <div class="pickup3" style="margin:-20px 0 0 212px">
                       <input type="checkbox" id="checkbox2" />
                       <label for="checkbox2">&nbsp;</label>
                      </div>
@@ -444,7 +450,7 @@ jQuery(document).ready(function(){
                <input type="hidden" name="totalPrice" id="totalPrice" value=""/>
 
                <script>
-               $('#customButton').click(function(){
+               jQuery('#customButton').click(function(){
                  var token = function(res){
                  var $input = $('<input type=hidden name=stripeToken />').val(res.id);
                  var $input2 = $('<input type=hidden name=stripeEmail />').val(res.email);
@@ -458,7 +464,7 @@ jQuery(document).ready(function(){
                currency:    'usd',
                image:       '/assets/dinobo_stripe.jpg',
                name:        'Dinobo',
-               description: '<%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %> ( $'+ document.getElementById('totalPrice').value / 100+ ')' ,
+               description: '<%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %> ( $'+ document.getElementById('totalPrice').value / 100+ ')' ,
                panelLabel:  'Checkout',
                token:       token
                });

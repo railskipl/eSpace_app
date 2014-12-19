@@ -5,48 +5,37 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
   include PostsHelper
-
+  include BookingsHelper
+  
   # GET /posts
   # GET /posts.json
   def index
-        q = params[:q]
+       q = params[:q]
+  
        @posts = Post.search_post(params[:search], current_user.id)
        @posts = @posts.where("LOWER(status) like ?", "%#{q}%") if q.present?
  
-      @start_date = "#{params['start_date']}"
-      @end_date ="#{params['end_date']}"
+       @start_date = "#{params['start_date']}"
+       @end_date ="#{params['end_date']}"
       
       
-       @posts = @posts.where("date(created_at) >= ? and date(created_at) <= ? ",@start_date, @end_date) if @start_date.present? && @end_date.present?
-      @posts= @posts.page(params[:page]).per_page(50)
+       @posts = @posts.result(@start_date,@end_date) if @start_date.present? && @end_date.present?
+       @posts= @posts.page(params[:page]).per_page(50)
 
       respond_to do |format|
         format.html
       end
-
   end
 
   def archive
     @posts = Post.where(archive: true, user_id: current_user.id)
   end
 
-  def all_posts
-    if params[:search]
-      @posts = Post.search(params[:search], params[:page], current_user.id).order(sort_column + " " + sort_direction)
-    else
-      @posts = Post.where("user_id != ?",current_user.id).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
-    end
-
-  end
-
-
-
   # GET /posts/1
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-   
-    
+    remaining_area(@post)
   end
 
   # GET /posts/new
@@ -78,11 +67,11 @@ class PostsController < ApplicationController
   def overview
       
       if params[:search]   
-        @overviews = Post.search_overview(params[:search], params[:page], params[:sort])
-        @posts = Post.search(params[:search], params[:page], params[:sort])
+        @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort])
+        @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort])
       else
-        @overviews = Post.order(sort_column + " " + sort_direction)
-        @posts = Post.page(params[:page]).per_page(4).order(sort_column + " " + sort_direction)
+        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_start_date >= ?",Date.today)
+        @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_start_date >= ?",Date.today)
       end
     respond_to do |format|
       format.html # index.html.erb

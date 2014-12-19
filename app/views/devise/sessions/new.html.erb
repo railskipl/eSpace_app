@@ -1,18 +1,52 @@
 
-<h2>Sign in</h2>
+    <div class="boxpop-up-login">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %>
-  <%= f.email_field :email, autofocus: true %></div>
+    <div class="heading-login mrleft75">Login</div>
+    
+    <%= devise_error_messages! %>
+    
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="login-popup"> 
+   		<%= f.email_field :email, autofocus: true, :placeholder=>"College ID" %>
+    </div>
+    
+   	<div class="password-new-up"> 
+   		<%= f.password_field :password, autocomplete: "off", :placeholder=>"Password" %>
+   	</div>
 
-  <div><%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <div class="new-checkbox">
+    	
+    	<label class="tasks-list-item">
+			<input class="tasks-list-cb" type="checkbox" checked="checked" name="task_3" >
+			<span class="tasks-list-mark"></span>
+		</label>
+        
+         <p class="agreeTC"> I agree term & conditions</p>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    </div>
+        
+        
+    <div style="text-align:center">
+     	<%= f.submit "Login", :class=>"loginnew-btn", :disable_with=> "Please wait..." %>
+    </div>
+    <% end %>
+   	<div style="text-align:center; font-size: 11px;"> OR </div>
+    <div class="facebook-up-btn">
+     	<a href="/users/auth/facebook">Sign up with Facebook</a>
 
-  <div><%= f.submit "Sign in", :class=>"btn btn-primary" %></div>
-<% end %>
+    </div>
+     
+    
 
-<%= render "devise/shared/links" %>
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    	<div class="forgot">
+    	<%= link_to "Forgot password?", new_password_path(resource_name), :remote=> true %>
+    	</div>
+    <% end -%>
+
+</div>
+
+
+
+
+

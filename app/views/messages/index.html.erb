@@ -3,7 +3,7 @@
 	         
 	            <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
 	            <li><%= link_to "Change Password", edit_user_registration_path %></li>
-	            <li><%= link_to "Bank Details",bank_details_path %></li>
+	            <li><%= link_to "Bank Details",new_bank_detail_path %></li>
 	            <li><%= link_to "My Post",posts_path%></li>
 	            <li><%= link_to "My Order/Received",order_receives_path%></li>
 	            <li><%= link_to "My Booking", bookings_path%></li>
@@ -14,31 +14,28 @@
             </ul>
             
             <div class="chat-wrap">
-            
-            	<div id="user_msg"></div>
-            
-            <div class="chatdiv">
-            <div class="content">
-	            <div id="refresh_msg"></div>
-      
+                
+	            <div id="user_msg"></div>
+	            <%unless params[:recv_id].present?%> 
+	            <div class="chatdiv" style="height:460px;">
+		            
+	            </div>
+	            <%else%>
+	              <div class="chatdiv">
+		            <div class="content">
+			            <div id="refresh_msg"></div>
+		            </div>
+		            <div class="enter"><a href="#">Press ENTER to send</a></div>
+	              </div>
+                <%end%>
+                <%if params[:recv_id].present?%>
+		            <div class="inbputbg">
+		            	<%= render 'reply'%>
+		            </div>
+	            <%end%>
+	            
             </div>
             
-            <div class="enter"><a href="#">Press ENTER to send</a></div>
-            
-            
-
-            </div>
-            
-            <div class="inbputbg">
-            	
-
-            	<%= render 'reply'%>
-
-            </div>
-            
-
-            
-            </div>
         </div>
 
 

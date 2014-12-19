@@ -4,7 +4,7 @@
                  <ul class="verticle-menu" style="min-height:630px;">
                     <li ><%= link_to "Personal Information",edit_user_path(current_user)%></li>
                     <li class="active"><%= link_to "Change Password", edit_user_registration_path%></li>
-                    <li> <%= link_to "Bank Detail", bank_details_path%></li>
+                    <li> <%= link_to "Bank Detail", new_bank_detail_path%></li>
                     <li><%= link_to "My Post",posts_path%></li>
                     <li><%= link_to "My Order/Received",order_receives_path%></li>
                     <li><%= link_to "My Booking", bookings_path%></li>
@@ -16,7 +16,9 @@
                  <div class="f1">
 
                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {:class=>"change_password", method: :put }) do |f| %>
-                <%= devise_error_messages! %>
+                 
+
+
                 <fieldset class="textbox">
                      
               <label class="username">

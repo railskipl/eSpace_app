@@ -5,7 +5,7 @@ class BankDetailsController < ApplicationController
  respond_to :html, :xml, :json
 
   def index
-    @bank_details = BankDetail.all
+    @bank_details = current_user.bank_details.all
     
   end
 
@@ -14,27 +14,18 @@ class BankDetailsController < ApplicationController
   end
 
   def new
-    @bank_detail = BankDetail.new
-    
+    @bank_detail = BankDetail.has_bank_detail(current_user.id).first
+    if @bank_detail.present?
+       redirect_to edit_bank_detail_path(@bank_detail.id)
+    else
+      @bank_detail = BankDetail.new
+    end 
   end
 
   def edit
   end
 
   def create
-    
-    # @bank_detail = BankDetail.new(bank_detail_params)
-
-    # respond_to do |format|
-    #   if @bank_detail.save
-    #     format.html { redirect_to bank_details_path, notice: 'Bank info was successfully created.' }
-    #     format.json { render :show, status: :created, location: @post }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @bank_detail.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
         
         @bank_detail = BankDetail.new(bank_detail_params)
 
@@ -49,16 +40,16 @@ class BankDetailsController < ApplicationController
               :card => params[:stripe_card_token]
             )
    
-          rescue Stripe::InvalidRequestError => e
-    "Stripe error while creating Recipient: #{e.message}"
-            redirect_to :back
+            rescue Stripe::InvalidRequestError => e
+    # "Stripe error while creating Recipient: #{e.message}"
             flash[:notice] = "Stripe error while creating Recipient: #{e.message}"
-          
+            redirect_to :back
+            
             return false
           end
            
           stripe_response = JSON.parse("#{recipient}")
-               
+              
           if stripe_response["cards"]["data"][0]["id"].present?
             @bank_detail.stripe_recipient_token = stripe_response["id"]
             @bank_detail.full_name = params[:bank_detail][:full_name]
@@ -70,10 +61,8 @@ class BankDetailsController < ApplicationController
             # https://stripe.com/docs/api/ruby#update_transfer
             redirect_to bank_details_path, :notice => "Bank info was successfully created." 
             return false
-            
           end
-           
-           
+
         else
           render :new
           flash[:notice] = "Something went wrong,please try again. "

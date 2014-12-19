@@ -5,11 +5,10 @@
 <meta name = "viewport" content = "width = device-width">
 
 <title>Dinobo</title>
-<%= stylesheet_link_tag  'style', "components", media: 'all'%>
-<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag  'style', "components", "component","facebox.css", media: 'all'%>
+<%= javascript_include_tag "application", "facebox.js" %>
 <%= csrf_meta_tags %>  
 </head>
-
 
 
 
@@ -25,49 +24,64 @@
                 </p>
               <% else %>
               <p style="margin:40px 0 0px 900px;">
-                <%= link_to 'Login', new_user_session_path %>
+                <%= link_to 'Login', new_user_session_path, :remote=> true %>
               </p>
                
               <% end %>
             </div>
                 
             <div class="menu">
+              <%= link_to image_tag("logo.png", :class=>"logo"),root_path%>
+              <!-- <a href="javascript:void(0);"><img src="/assets/logo.png" class="logo"></a> -->
+            
+              <nav id="cbp-hrmenu" class="cbp-hrmenu">
+                <ul>
+                  <li>
+                    <a href="#"></a>
+                    <div class="cbp-hrsub">
+                      <div class="main-new2">
+                        <ul>
+                            <% if user_signed_in? %>
+                              <li>
+                                  <%= link_to "List your place", posts_overview_path %>
+                              </li>
+                              <li>
+                                  <%= link_to "My Booking", bookings_path %>
+                              </li>
 
-                <a href="javascript:void(0);"><img src="/assets/logo.png" class="logo"></a>
+                              <li>
+                                  <%= link_to "My Order/Received", order_receives_path %>
+                              </li>
 
-                 <div class="dropdown">
-                     <a class="account"></a>
-                     <% if user_signed_in? %>
-                      <div class="submenu" style="display: none; ">
-                        
-                          
-                            <div class="main-new2">
-                                <ul>
-                                    <li>
-                                        <%= link_to "List your place", posts_overview_path %>
-                                    </li>
-                                    <li>
-                                        <%= link_to "Browse Spaces", posts_overview_path %>
-                                    </li>
-                                    <li>
-                                     <%= link_to("Message" + "<span>2</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
-                                    </li>
-                                    <li class="active">
-                                      <%= link_to "My Account", edit_user_path(current_user) %>
-                                    </li>
-                                    <li>
-                                      <%= link_to "About Us", {:controller=>"/about_us", :action=>"about"} %>
-                                    </li>
-                                   <li><a href="javascript:void(0);">Support</a></li>
-                                   <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
-                                </ul>
-                            </div>
+                              <li>
+                            
+                               <%= link_to("Messages <span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
 
+                              </li>
+                            
+                              <li>
+                                <%if controller.controller_name == "users"%>
+                                <%= link_to "My Account", edit_user_path(current_user),:class=>"active" %>
+                                <%else%>
+                                <%= link_to "My Account", edit_user_path(current_user) %>
+                                <%end%>
+                              </li>
+                              <li>
+                                <%= link_to "About Us", {:controller=>"/about_us", :action=>"about"} %>
+                              </li>
+                             <li><%= link_to "Support",frequently_asked_question_path%></li>
+                             <li><%= link_to 'Logout', sign_out_path, :method=>'delete' %></li>
+                            <% else %>
+                             <li><%= link_to 'About Us',{:controller=>"/about_us", :action=>"about"} %></li>
+                             <li><%= link_to "Support",frequently_asked_question_path%></li>     
+                            <% end %>
+                        </ul>
                       </div>
-                     <% end %>
-                  </div>
+                    </div>
+                  </li>
+                </ul>
+              </nav>
             </div>
-
             <div class="clear"> </div>  
 
               <%= yield %>
@@ -78,16 +92,17 @@
             <div class="right" style="width:191px;float:left;"> <!--------9/12/14---------------->
                 <ul>
                 <li><%= link_to 'About Us',{:controller=>"/about_us", :action=>"about"} %></li>
-                <li><%= link_to "FAQ",frequently_asked_question_path%></li>
+                <li><%= link_to "FAQ", frequently_asked_question_path %></li>
                  
-                <li><%= link_to 'Contact us', home_contactus_path %> </li></ul><br>
+                <li><%= link_to 'Contact us', home_contactus_path %> </li>
+              </ul><br>
             </div>
                
               <div class="left" style="width:200px;float:left;">
                 <ul>  <li><a href="javascript:void(0);">Refund policy</a></li>
 
                   <li><a href="javascript:void(0);">Privacy & Terms</a></li>
-                  <li><a href="javascript:void(0);">Support</a></li>
+                  <li><%=link_to "Support",frequently_asked_question_path%></li>
                 </ul>
               </div>
           </div>
@@ -99,20 +114,20 @@
            
    <script>
 
-function swap(one, two) {
-    document.getElementById(one).style.display = 'none';
-    document.getElementById(two).style.display = 'block';
-}
-document.getElementById('bt1').addEventListener('click',function(e){
-  document.getElementById('bt2').className = "new_btn2 select2";
-  document.getElementById('bt1').className = "new_btn1";
-    swap('two','one');
-});
-document.getElementById('bt2').addEventListener('click',function(e){
-  document.getElementById('bt2').className = "new_btn2";
-  document.getElementById('bt1').className = "new_btn1 select1";
-    swap('one','two');
-});
+    function swap(one, two) {
+        document.getElementById(one).style.display = 'none';
+        document.getElementById(two).style.display = 'block';
+    }
+    document.getElementById('bt1').addEventListener('click',function(e){
+      document.getElementById('bt2').className = "new_btn2 select2";
+      document.getElementById('bt1').className = "new_btn1";
+        swap('two','one');
+    });
+    document.getElementById('bt2').addEventListener('click',function(e){
+      document.getElementById('bt2').className = "new_btn2";
+      document.getElementById('bt1').className = "new_btn1 select1";
+        swap('one','two');
+    });
 
 </script>       
                 
@@ -129,59 +144,41 @@ document.getElementById('bt2').addEventListener('click',function(e){
 
 <!-- -------------------------down arrow------------------------------------------------ -->
   
-  
+  <%= javascript_include_tag "animated_message", "cbpHorizontalMenu.min", "horizontalMenu" %>
+
+    <script type="text/javascript">
+
+         jQuery('#myAnchor').click(function(){
+          jQuery('html, body').animate({
+              scrollTop: jQuery( jQuery(this).attr('href') ).offset().top
+          }, 500);
+          return false;
+        });
 
 
-  <script type="text/javascript" >
-  $(document).ready(function()
-  {
-      $(".account").click(function()
-      {
-        var X=$(this).attr('id');
-
-        if(X==1)
-        {
-          $(".submenu").hide();
-          $(this).attr('id', '0');  
-        }
-        else
-        {
-          $(".submenu").show();
-          $(this).attr('id', '1');
-        }
-        
-      });
-
-      //Mouseup textarea false
-      $(".submenu").mouseup(function()
-      {
-        return false
-      });
-
-      $(".account").mouseup(function()
-      {
-        return false
-      });
+    </script>
 
 
-    //Textarea without editing.
-    $(document).mouseup(function()
-    {
-      $(".submenu").hide();
-      $(".account").attr('id', '');
-    });
-      
-  });
 
 
-   jQuery('#myAnchor').click(function(){
-    jQuery('html, body').animate({
-        scrollTop: jQuery( jQuery(this).attr('href') ).offset().top
-    }, 500);
-    return false;
-  });
-  
-  </script>
+            <div id="animated_msg">
+              <section class="animated alert">
+                <span class="close_x_bright">Close</span>
+            
+                  <!-- Error Message -->
+                  <% flash.each do |name, msg| %>
+                  <% if msg.is_a?(String) %>
+                  
+                    <p id="flashMsg" class="fixed-box">  
+                      <%= msg %>
+                  </p>
+                  <% end %>
+                  <% end %>
+                  <!-- End -->
+
+              </section>
+            </div> 
+
 
   
   

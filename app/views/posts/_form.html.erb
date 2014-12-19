@@ -31,7 +31,7 @@
   });
 </script>
 
-<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
+<%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation" %>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -70,11 +70,11 @@ $('.masterTooltip').hover(function(){
             </ul>
             
             <div class="right-side">
-              <%= form_for(@post, :html=>{ id: "new_post"}) do |f| %>
-                <% if @post.errors.any? %>
+              <%= form_for(post, :html=>{ id: "new_post"}) do |f| %>
+                <% if post.errors.any? %>
                   <div id="error_explanation">
                     <ul>
-                    <% @post.errors.full_messages.each do |message| %>
+                    <% post.errors.full_messages.each do |message| %>
                       <li><%= message %></li>
                     <% end %>
                     </ul>
@@ -107,11 +107,11 @@ $('.masterTooltip').hover(function(){
                                 When can they drop off goods at your place ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
                                 <ul class="post-date">
                                   <li><label>From</label>
-                                    <%= f.text_field :drop_off_avaibility_start_date%>
+                                    <%= f.text_field :drop_off_avaibility_start_date,:autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%>
                                   </li>
 
                                   <li><label>To</label>
-                                    <%= f.text_field :drop_off_avaibility_end_date%>
+                                    <%= f.text_field :drop_off_avaibility_end_date,:autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%>
                                   </li>
                                 </ul>
                               </div> 
@@ -149,10 +149,10 @@ $('.masterTooltip').hover(function(){
                                 <div class="post-bg-row-col4">
                                 <ul class="post-date post-price">
 
-                                <li <% if @post.drop_off == true %> <% else %>  <% end %> ><label>Price</label><span>$</span>
+                                <li <% if post.drop_off == true %> <% else %>  <% end %> ><label>Price</label><span>$</span>
                                   <%= f.text_field :price_include_drop_off,:style=>"text-align: right;" %>
                                 </li>
-                                <li <% if @post.pick_up == true %> <% else %>  <% end %>><label>Price</label><span>$</span>
+                                <li <% if post.pick_up == true %> <% else %>  <% end %>><label>Price</label><span>$</span>
                                   <%= f.text_field :price_include_pick_up,:style=>"text-align: right;" %>
                                 </li>
                                 </ul>
@@ -211,8 +211,10 @@ $('.masterTooltip').hover(function(){
                               <div class="post-bg-row-col3">
                                When can they pick up the goods ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
                                 <ul class="post-date">
-                                <li><label>From</label><%= f.text_field :pick_up_avaibilty_start_date%></li>
-                                <li><label>To</label><%= f.text_field :pick_up_avaibility_end_date%></li>
+                                <li><label>From</label><%= f.text_field :pick_up_avaibilty_start_date,
+                                :autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></li>
+                                <li><label>To</label><%= f.text_field :pick_up_avaibility_end_date,
+                                :autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></li>
                                 </ul>
                               </div> 
                             </div>
@@ -223,8 +225,8 @@ $('.masterTooltip').hover(function(){
                               </span>
                                 
                                 <div class="photo">
-                                  <% if @post.photo.exists? %>
-                                    <%= image_tag @post.photo.url(:thumb) %>
+                                  <% if post.photo.exists? %>
+                                    <%= image_tag post.photo.url(:thumb) %>
                                   <% end %>
                                   <!-- <a href="#">Delete</a> -->
                                 </div>
@@ -241,16 +243,19 @@ $('.masterTooltip').hover(function(){
                                 <%= f.submit "Submit",:class=>"submit-btn" %>&nbsp;&nbsp;&nbsp;&nbsp;
                                 
                                 </p>
+
+                                <p style="margin: 39px 0 39px; color: #899199; font-size: 10px; line-height: 11px;">
+                                  <% if post.id %>
+                                  <% if post.status == true %>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Deactive Post', toggle_post_path(post.id), :class=>"post-btn" %>
+                                  <% else %>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Activate Post', toggle_post_path(post.id), :class=>"post-btn" %>
+                                  <% end %>
+                                  &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"post-btn" %> 
+                                <% end %>
+                                </p>
                             
                             </div>
-                               <% if @post.id %>
-                                  <% if @post.status == true %>
-                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Deactive Post', toggle_post_path(@post.id), :class=>"booking-btn" %>
-                                  <% else %>
-                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Activate Post', toggle_post_path(@post.id), :class=>"booking-btn" %>
-                                  <% end %>
-                                  &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"booking-btn" %> 
-                                <% end %>
                             
                         </div>
                  

@@ -10,6 +10,8 @@ gem 'mysql2'
 
 gem 'devise'
 
+gem "bullet", :group => "development"
+
 gem 'ransack'
 #Postgresql for database adapter - Heroku
 gem 'pg'
@@ -28,7 +30,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-
+gem 'rack-mini-profiler'
 # Social network Login
 gem 'omniauth'
 gem "omniauth-facebook"
@@ -64,7 +66,7 @@ gem 'aws-sdk'
 gem 'will_paginate'
 gem 'rest-client'
 
-gem 'chronic'
+gem 'traceroute'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,21 +1,23 @@
 <%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js" %>
 <%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker"%>
+<%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css" %>
 
 <script type="text/javascript">
 
     jQuery(function($){
-      $("#start_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+      $("#start_date").datepicker({dateFormat: 'M d, yy ',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
 
     });
     jQuery(function($){
-      $("#end_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+      $("#end_date").datepicker({dateFormat: 'M d, yy ',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
     });
 </script>
+<%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation", "facebox.js" %>
 <div class="main-new">
   <ul class="verticle-menu">
     <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
     <li><%= link_to "Change Password", edit_user_registration_path %></li>
-    <li><%= link_to "Bank Details",bank_details_path %></li>
+    <li><%= link_to "Bank Details",new_bank_detail_path %></li>
     <li><%= link_to "My Post",posts_path%></li>
     <li class="active"><%= link_to "My Order/Received",order_receives_path%></li>
     <li><%= link_to "My Booking", bookings_path%></li>
@@ -24,15 +26,16 @@
   </ul>
             
   <div class="right-side">
+
     <div class="blue-header">
       <%= form_tag search_order_received_by_date_path,:method => 'get' do %>
       <ul class="date">
       <li>
-      From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off, :class => "date", :style => "padding: 3px;"%></span>
+      From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></span>
       </li>
       
       <li>
-      To <span><%= text_field_tag :end_date, params[:end_date],:class => "date",:style => "padding: 3px;" %></span>
+      To <span><%= text_field_tag :end_date, params[:end_date],:readonly => true,:class => "date",:style => "padding: 3px;" %></span>
       </li>
       
       </ul>
@@ -46,18 +49,22 @@
       <% @bookings.each_with_index do |booking, index|%>
       <div class="order-box">
         <div class="order-col order-col1">
-          <div class="heading">
-            <h4><%= User.find(booking.user_id).name %></h4>
+          <!-- <div class="heading"> -->
+          <div  style="color: #14263a; font-family: brandon4; margin-top: 0;">
+            <h4><%= booking.user.name %></h4>
           </div>
           <p>
-            <%= Post.find(booking.post_id).address %>
+            <%= booking.post.address rescue nil%> <%= booking.post.street_add rescue nil%> <br/> <%= booking.post.apt rescue nil%> <%= booking.post.city rescue nil%> <%= booking.post.state rescue nil%> <br/><%= booking.post.zip_code rescue nil%>
           </p>
           <p>
             Total amount : $<%=booking.price %>
           </p>
           <p>
-            <a href="#" class="round-btn">Message</a>
+            <div id="message_<%= booking.post_id %>">
+            <%= link_to "Message ", compose_message_messages_path(:user_id => booking.user_id,:post_id => booking.post_id ), :remote=>true, :class=>"round-btn" %>
+            </div>
           </p>
+           
         </div>
         <div class="order-col order-col1 order-col1-tmar">
           <span>Booking area</span> : <%= booking.area%> sq. ft
@@ -65,18 +72,21 @@
               <span>Rate</span> : $<%= booking.post.price_sq_ft%>/sq.ft.
             </p>
             <p>
-              <%if booking.status.present?%>
-                <span>Status</span> :<%= booking.status%>
-              <%else%>
-                <span>Status</span> :Awaiting drop-off confirmation
-              <%end%>
+              <% if booking.is_cancel == true %>
+                  <span>Status</span> : Cancelled
+              <% elsif booking.is_confirm == true %>
+                  <span>Status</span> : Confirmed booking
+              <% else %>
+                  <span>Status</span> : Waiting for drop-off confirmation
+              <% end %>
             </p>
             <p>
-              <a href="#">Cancel booking</a>
+              
+              <%= link_to "Cancel Booking", cancel_popup_order_receives_path(:id =>booking.id), :remote=> true %>
             </p>
         </div>
         <div class="order-col order-col1 order-col1-tmar">
-          <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %d, %Y")%>
+          <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %d,%Y")%>
           <p>
             <span>Booked drop-off</span>
             <% if booking.dropoff_price != 0 %>
@@ -84,7 +94,7 @@
                 <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
                 <span class="tasks-list-mark"></span>
               </label>
-                $<%= booking.pickup_price %>
+                $<%= booking.dropoff_price %>
               <%else%>
                 <label class="tasks-list-item">
                 <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
@@ -101,7 +111,7 @@
           </p>
         </div>
         <div class="order-col order-col1 order-col1-tmar">
-          <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %d, %Y")%>
+          <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %d,%Y")%>
 
           <p>
             <span>Booked pick-up</span>
@@ -124,7 +134,7 @@
           </p>
         </div>
       </div>
+      <%end%>
     </div>
-    <%end%>
   </div>
 </div>

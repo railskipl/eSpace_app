@@ -1,8 +1,8 @@
 
   <% @comments.each do |comment| %>
     <div class="new_para1" style="<%= cycle('float:left', 'float:right') %>" >
-      <p class="sed_h"><%= comment.user.name rescue nil %></p>
-      <p class="sed1"><%= comment.comments %></p>
+      <p class="sed_h" style="text-align:justify;"><%= comment.user_name rescue nil %></p>
+      <p class="sed1" style="text-align:justify;"><%= comment.comments %></p>
       <h4 class="bottom1"> <%= comment.created_at.strftime("%B %Y") %></h4>
       <div class="line"></div>
     </div>

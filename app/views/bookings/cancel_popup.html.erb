@@ -18,6 +18,7 @@ background:#FFF;
 	margin-left:171px;
 	margin-top:30px;
 	border:2px #00b4ff solid;
+	cursor:pointer;
 		}
 .booking-btn a{
 text-decoration:none;
@@ -106,16 +107,14 @@ font-family: brandon4;
 
 		<% if @booking.is_cancel == true %>
 		    <div class="alredy-btn">
-			  <%= link_to "Already Booking", "javascript:void(0)" %>
+			  <%= link_to "Already cancelled", "javascript:void(0)" %>
 			</div>
 		<% else %>
 		    <div class="booking-btn">
 		      <%= link_to "Cancel Booking", cancel_booking_bookings_path(:drop_off_date =>params[:drop_off_date],:id =>params[:id])%>
 		    </div>
 		<% end %>
-		<div class="cancel-btn">
-	      <a href="#">Cancel</a>
-	    </div>
+		
 	</div>
 </div>
 

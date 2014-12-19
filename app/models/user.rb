@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
  
   has_many :comments, :dependent => :destroy
   has_many :bookings, :dependent => :destroy
+  has_many :bank_details, :dependent => :destroy
 
   
   def self.json_tokens(query)
@@ -30,12 +31,11 @@ class User < ActiveRecord::Base
     
       user.provider = auth["provider"]
       user.uid = auth["uid"]
-      user.email = auth["info"]["email"]
+      user.email = alt_email
       user.name = auth["info"]["first_name"]
       user.last_name = auth["info"]["last_name"]
       user.oauth_token = auth["credentials"]["token"]
       user.oauth_expires_at = Time.at(auth["credentials"]["expires_at"])
-      user.personal_email = alt_email
       user.password  = Devise.friendly_token[0,20]
       user.skip_confirmation!
     end

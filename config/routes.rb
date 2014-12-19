@@ -5,7 +5,16 @@ Rails.application.routes.draw do
   
   resources :faqs 
   get 'frequently_asked_question' => "faqs#frequently_asked_question", as: "frequently_asked_question"
-  resources :order_receives
+
+  resources :order_receives do
+    collection do
+      get 'cancel_booking'
+      get 'cancel_popup'
+    end
+  end
+  devise_scope :user do
+    get '/sign_out' => 'users/sessions#destroy'
+  end
   get '/search_order_received_by_date' => "order_receives#search_order_received_by_date", as: "search_order_received_by_date"
 
   get 'payement_transfers/index'
@@ -21,7 +30,7 @@ Rails.application.routes.draw do
   resources :bank_details
   
   
-  devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",sessions: 'users/sessions',registrations: 'users/registrations'}
+  devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",sessions: 'users/sessions',registrations: 'users/registrations', passwords: 'users/passwords'}
 
   root :to => 'home#index'
 

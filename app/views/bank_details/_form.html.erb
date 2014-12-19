@@ -1,4 +1,4 @@
-<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min" %>
+<%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min" %>
 
  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
@@ -95,38 +95,29 @@
                              
     <div class="main-new">
             <ul class="verticle-menu">
-            <li><a href="#">Personal Information</a></li>
-            <li><a href="#">Change Password</a></li>
-            <li class="active"><a href="#">Bank Details</a></li>
-            <li><a href="#">My Post</a></li>
-            <li><a href="#">My Order/Received</a></li>
-            <li><a href="#">My Booking</a></li>
-            <li ><a href="#">Payment</a></li>
-            <li><a href="#">Message</a></li>
-            </ul>
+    <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+    <li><%= link_to "Change Password", edit_user_registration_path %></li>
+    <li class="active"><%= link_to "Bank Details",new_bank_detail_path %></li>
+    <li ><%= link_to "My Post",posts_path%></li>
+    <li><%= link_to "My Order/Received",order_receives_path%></li>
+    <li><%= link_to "My Booking", bookings_path%></li>
+    <li><%= link_to "Payment", nil%></li>
+    <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
+  </ul>
 
             <div class="right-side">
               <div class="payment-wrap">
 
     <div class="formwrap">
-   
- <%= form_for(@bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>   
-  <% if @bank_detail.errors.any? %>
-    <div id="error_explanation" >
-      <h2><%= pluralize(@bank_detail.errors.count, "error")%> prohibited this bank_detail from being saved:</h2>
 
-      <ul>
-      <% @bank_detail.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+ <%= form_for(@bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>   
+  
 
       <%= hidden_field_tag :stripe_card_token %>
-       <p>Setup a Card to receive payments <span>?</span></p>
+       <div>Setup a Card to receive payments <span title="This is some information for our tooltip." class="month1 tooltip_new "><img src="/assets/que.png">
+           </span></div>
        <%= f.text_field :full_name, :class=>"form-control",:placeholder=>"Full name"  %>
-      <%= f.hidden_field :user_id,:value =>current_user.id%>
+      <%= f.hidden_field :user_id,:value =>current_user.id %>
        <div class="card">
       <%= text_field_tag :card_number, nil,:autocomplete => "off", name: nil,:class=>"card_number stripe-sensitive required form-control ",:placeholder=>"Card Number" %>
 

@@ -5,7 +5,7 @@ class HomeController < ApplicationController
  layout :custom_layout
 
 	def index
-
+    @access_ids = AccessId.all
 	end
     
    def contactus
@@ -72,7 +72,7 @@ class HomeController < ApplicationController
        flash[:error] = "Start Date Cannot Be Greater"
       # return false
       else
-      @posts = Post.where("date(created_at) >= ? and date(created_at) <= ?",@start_date, @end_date) 
+      @posts = Post.includes(:user).where("date(created_at) >= ? and date(created_at) <= ?",@start_date, @end_date) 
        end
         respond_to do |format|
         format.html

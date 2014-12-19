@@ -66,7 +66,7 @@
       </script>
 
       <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css" %>
-      <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation", "facebox.js" %>
+      <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation", "facebox.js" %>
 
 
 
@@ -78,28 +78,13 @@
               <li><%= link_to "My Post",posts_path%></li>
               <li><%= link_to "My Order/Received",order_receives_path%></li>
               <li class="active"><%= link_to "My Booking", bookings_path%></li>
-              <li><%= link_to "Payment", nil%></li>
+              <li><%= link_to "Payment", payments_path%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>@post.user_id,:method => :post} rescue nil %></li>
             </ul>
             
             <div class="right-side">
               
                     <div class="blue-bg">
-
-                      <!-- Error Message -->
-                      <% flash.each do |name, msg| %>
-                        <% if msg.is_a?(String) %>
-                          <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-                            <a class="close" data-dismiss="alert">&#215;</a>
-                            <%= content_tag :div, msg, :id => "flash_#{name}" %>
-                          </div>
-                        <% end %>
-                      <% end %>
-                      <!-- End -->
-
-
-                      
-
 
                       <div class="blue-bg-div1">
                             <span><%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %>.</span> 
@@ -115,33 +100,46 @@
                             </p>
                             
                                 <div class="address">
-                                <%= @post.address %>
+                                <%= @post.address %> <%= @post.street_add %> <%= @post.apt%> <%= @post.city%> <%= @post.state%> <%= @post.zip_code%>
                                 </div>
                           </div>
                           
                           <div class="blue-bg-div2">
                           <ul>
-                          <li><div>Date of booking</div> <span><%= @booking.created_at.strftime("%B %m,%Y") %></span></li>
+                          <li><div>Date of booking</div> <span><%= @booking.created_at.strftime("%B %d,%Y") %></span></li>
                           <li><div>Booked area</div> <span><%= @booking.area %><p>Sq. Feet</p></span></li>
                           <li><div>Drop-off</div> 
-                              <span><%= @booking.dropoff_date.strftime("%B %m,%Y") %></br>
+                              <span><%= @booking.dropoff_date.strftime("%B %d,%Y") %></br>
                                 Drive : <% if @booking.dropoff_price != 0 %> $<%= @booking.dropoff_price %> <% else %> Unavailable <% end %>
                               </span>
                             </li>
                           <li><div>Pick-up</div> 
-                            <span><%= @booking.pickup_date.strftime("%B %m,%Y") %></br>
+                            <span><%= @booking.pickup_date.strftime("%B %d,%Y") %></br>
                             Drive :  <% if @booking.pickup_price != 0 %> $<%= @booking.pickup_price %> <% else %> Unavailable <% end %>
                             </span>
                           </li>
                           <li><div>Total Amount</div> <span>$<%= @booking.price %></span></li>
-                          <li><div>Status</div> <span>Waiting for drop-off confirmation</span></li>
-                          
-                          <%= link_to "Confirm drop-off ", drop_off_bookings_path(:booking_id => @booking.id ), :remote=>true, :class=>"cdo" %> 
+                          <li><div>Status</div> 
+
+                            <% if @booking.is_cancel == true %>
+                              <span>Cancelled</span>
+                            <% elsif @booking.is_confirm == true %>
+                              <span>Confirmed booking</span>
+                            <% else %>
+                              <span>Waiting for drop-off confirmation</span>
+                            <% end %>
+
+                          </li>
+                          <%unless current_user.admin?%>
+                          <% if @booking.dropoff_date >= Date.today + 1 %>
+                            <%= link_to "Confirm drop-off ", drop_off_bookings_path(:booking_id => @booking.id ), :remote=>true, :class=>"cdo" %> 
+                          <% end %>
                           
                           </ul>
-
+                          <% if @booking.dropoff_date >= Date.today %>
                             <%= link_to "Cancel Booking", cancel_popup_bookings_path(:drop_off_date =>@booking.dropoff_date,:id =>@booking.id), :class=>"cb", :remote=> true %>
-                            
+                          <% end %>
+                          <%end%>
 
                           </div>
                     </div> 
@@ -186,7 +184,7 @@
         </div>
 
 
-         <%= stylesheet_link_tag  'scroll', "jquery.mCustomScrollbar" %>
+    <%= stylesheet_link_tag  'scroll', "jquery.mCustomScrollbar" %>
     <%= javascript_include_tag "bootstrap.min", "jquery.mCustomScrollbar.concat.min" %>
   
   <script>

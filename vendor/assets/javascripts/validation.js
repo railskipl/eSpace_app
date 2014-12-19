@@ -25,11 +25,7 @@ jQuery.validator.addMethod("lessThanDropDate",
 //Less than Booking area
 jQuery.validator.addMethod("lessThan", 
 	function(value, element, params) {
-
-	    if (!/Invalid|NaN/.test(new Date(value))) {
-	        return new Date(value) <= new Date($(params).val());
-	    }
-
+    
 	    return isNaN(value) && isNaN($(params).val()) 
 	        || (Number(value) <= Number($(params).val())); 
 	},'Must be less or equal to remaining area.');
@@ -117,7 +113,7 @@ jQuery("#user").validate({
 			minlength:"do not enter less than 6 characters"
 		},
 		"user[password_confirmation]":{
-			required: "Password Confirmation cannot be blank",
+			required: "Password confirmation cannot be blank",
 			minlength:"do not enter less than 6 characters"
 		},
 		"user[name]":{
@@ -291,7 +287,7 @@ rules: {
   
 	
 	"contactus[subject]":{
-	   // required:true
+	    required:true
 	},
 	"contactus[message]":{
 		required:true
@@ -301,7 +297,7 @@ messages: {
 
 	
 	"contactus[subject]":{
-		// required: "Please enter Subject"
+		 required: "Please enter Subject"
 	},
 	"contactus[message]":{
 		required: "Please enter Message"
@@ -346,8 +342,8 @@ jQuery("#booking").validate({
 
         "area":{
 	        required:true,
-	        number:true
-	       // ,lessThan: "#booking_remaining_area"
+	        number:true ,
+	        lessThan: "#remaining_area"
         },
         "booking[dropoff_date]":{
 	        required:true

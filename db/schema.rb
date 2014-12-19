@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215064457) do
+ActiveRecord::Schema.define(version: 20141216123750) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "about_us", force: true do |t|
     t.string   "name"
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 20141215064457) do
     t.string   "stripe_card_id_token"
     t.string   "stripe_recipient_token"
     t.string   "card_number"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -156,7 +159,7 @@ ActiveRecord::Schema.define(version: 20141215064457) do
   end
 
   create_table "ratings", force: true do |t|
-    t.decimal  "value",      precision: 10, scale: 0
+    t.decimal  "value"
     t.integer  "vote_count"
     t.integer  "item_id"
     t.string   "item_type"
@@ -181,12 +184,12 @@ ActiveRecord::Schema.define(version: 20141215064457) do
   add_index "reviews", ["post_id"], name: "index_reviews_on_post_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                           default: "",    null: false
+    t.string   "encrypted_password",              default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",                   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -196,8 +199,8 @@ ActiveRecord::Schema.define(version: 20141215064457) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.boolean  "admin",                  default: false
-    t.boolean  "status",                 default: true
+    t.boolean  "admin",                           default: false
+    t.boolean  "status",                          default: true
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
@@ -207,6 +210,8 @@ ActiveRecord::Schema.define(version: 20141215064457) do
     t.string   "mobile_number"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.boolean  "notification_for_email"
+    t.boolean  "notification_for_personal_email"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

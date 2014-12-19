@@ -1,27 +1,7 @@
    
 
-  <%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","validation" %>
-<!-- 
-  <%= form_for @user, :url => user_path(@user), html: { method: :put, id: "edit_user" } do |f|%>
-    <div><%= f.label :email %>
-      <%= f.email_field :email, :readonly => true %></div>
+  <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation" %>
 
-    <div><%= f.label :name, "First Name" %>
-      <%= f.text_field :name %> </div>
-   
-    <div><%= f.label :last_name %>
-      <%= f.text_field :last_name %> </div>
-
-    <div><%= f.label :personal_email %>
-      <%= f.text_field :personal_email %> </div>
-
-    <div> <%= f.label :mobile_number %>
-      <%= f.text_field :mobile_number, placeholder:"xxx xxx-xxxx" %> </div>
-    
-    <div><%= f.submit "Update", :class=>"btn btn-primary" %></div>
-  <% end %>
-
- -->
 
 
 <div class="wrapper">
@@ -38,7 +18,7 @@
                     </li>
 
                     <li>
-                    <%= link_to "Bank Details",bank_details_path %>
+                    <%= link_to "Bank Details",new_bank_detail_path %>
                     </li>
 
                     <li>
@@ -84,13 +64,24 @@
 
                      <div class="pickup4">
                
-                        <p style="margin: -25px 0px 0px; font-size: 16px; color: rgb(123, 123, 123); margin-top:155px;">Send notifications to:</p>
-                        <input type="checkbox" checked="checked" value="1" name="checkbox" id="checkbox1"><label for="checkbox1">&nbsp;</label>
-                         <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.email %></p>
-                         
-                         
-                         <input type="checkbox" checked="checked" value="1" name="checkbox" id="checkbox1"><label style="margin-top:10px;" for="checkbox1">&nbsp;</label>
-                         <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.personal_email %></p>
+                        <p style="margin: -25px 0px 0px; font-size: 16px; color: rgb(123, 123, 123); margin-top:155px;">Send notifications to:</p><br/>
+                       <div class="checkbox">
+
+                        <% if current_user.email.present? %>
+                           <%= f.check_box :notification_for_email %>
+                           <label style="margin:10px 0 0 -34px;" for="checkbox1">&nbsp;</label>   
+                           <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.email %></p><br/>
+                        <% else %>
+                        <% end %>   
+
+                        <% if current_user.personal_email.present? %>   
+                           <%= f.check_box :notification_for_personal_email %>
+                           <label style="margin:10px 0 0 -34px;" for="checkbox1">&nbsp;</label>   
+                           <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.personal_email %></p>
+                        <% else %>
+                        <% end %> 
+
+                       </div>
 
                      </div>
 
@@ -113,5 +104,3 @@
   </div>              
   </div>
 </div>
-
-

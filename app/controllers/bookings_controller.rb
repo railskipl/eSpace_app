@@ -3,8 +3,12 @@ class BookingsController < ApplicationController
  skip_before_filter :verify_authenticity_token, :only => [:checkout]
  include BookingsHelper
 
- def index
- 	@bookings = Booking.where("user_id = ?",current_user.id).order("id desc")
+ def index 
+    if params[:cancelled].present?
+      @bookings = Booking.booking_cancelled
+    else
+ 	    @bookings = Booking.includes(:post,:poster).where("user_id = ?",current_user.id).order("id desc")
+    end
  end
 
 	def new
@@ -14,7 +18,7 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     @post = Post.find(@booking.post_id)
-    @comments = Comment.where(:post_id => @post)
+    
   end
 
 	def create
@@ -43,8 +47,8 @@ class BookingsController < ApplicationController
     
    	if params[:totalPrice] != nil
 
-      dropoff_date = Chronic.parse("#{params[:booking][:dropoff_date]}")
-      pickup_date = Chronic.parse("#{params[:booking][:pickup_date]}")    
+      dropoff_date = params[:booking][:dropoff_date].to_date rescue nil
+      pickup_date = params[:booking][:pickup_date].to_date rescue nil
       
       booking = {}
       booking["stripe_customer_token"] = params[:stripeToken]
@@ -109,36 +113,34 @@ class BookingsController < ApplicationController
 
 
   def cancel_popup
-
      @booking = Booking.find(params[:id])
-
   end
 
   #this method cancel's the booking done by finder & does the cancel_booking_deduction
   # according to criteria.
   def cancel_booking
 
-    @booking = Booking.where("id = ?",params[:id])
-    @price = @booking.first.price
+    @booking = Booking.find(params[:id])
+    price = @booking.price
 
 
-    @stripe_charge_id = @booking.first.stripe_charge_id
-    @days_diff =  days_diff(params[:drop_off_date].to_date)
-    @amount = cancel_booking_deduction(@days_diff,@price).to_i 
-    @amount_cents = ((@amount.to_f)*100).to_i
+    stripe_charge_id = @booking.stripe_charge_id
+    days_diff =  days_diff(params[:drop_off_date].to_date)
+    amount = cancel_booking_deduction(days_diff, price).to_i 
+    amount_cents = ((@amount.to_f)*100).to_i
 
     begin
-    ch = Stripe::Charge.retrieve(@stripe_charge_id) 
-    refund = ch.refunds.create(:amount => @amount_cents)
-    cancel_booking = @booking.first.update_columns(is_cancel: true)
+    ch = Stripe::Charge.retrieve(stripe_charge_id) 
+    refund = ch.refunds.create(:amount => amount_cents)
+    cancel_booking = @booking.update_columns(is_cancel: true)
     rescue Stripe::InvalidRequestError => e
             redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
             return false
     end
 
+    flash[:notice] = "Booking is cancel & $#{amount} is refunded. "
+    redirect_to booking_path(@booking.id)
     
-    redirect_to bookings_path
-    flash[:notice] = "Booking is cancel & $#{@amount} is refunded. "
   end
 
 

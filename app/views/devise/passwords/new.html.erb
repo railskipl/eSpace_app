@@ -1,12 +1,21 @@
-<h2>Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="boxpop-up-login">
 
-  <div><%= f.label :email %>
-  <%= f.email_field :email, autofocus: true %></div>
+    <div class="heading-login mrleft75" >Forgot password</div>
 
-  <div><%= f.submit "Send me reset password instructions", :class=>"btn btn-primary" %></div>
-<% end %>
+    <div class="mrtop50"></div>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <div class="login-popup"> 
+      <%= f.email_field :email, autofocus: true, :placeholder=>"Enter your email address" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="mrtop16" id="successForgotMsg"><%= devise_error_messages! %></div>    
+        
+    <div style="text-align:center">
+      <%= f.submit "Submit", :class=>"loginnew-btn", :disable_with=> "Please wait..." %>
+    </div>
+    <% end %>
+
+</div>
+
+

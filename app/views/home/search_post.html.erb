@@ -5,7 +5,7 @@
       $("#end_date").datepicker({dateFormat: 'yy-mm-dd',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif', buttonImageOnly: true}) });
   </script>
 
-<%= javascript_include_tag "jquery-1.4.2.min","jquery.validate.min","admin_validation" %>
+<%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","admin_validation" %>
 
 <%if @start_date > @end_date %>
 
@@ -55,7 +55,7 @@
         <% end %>
         <td><%= index + x+1 %></td>
         <td><%= post.id %></td>
-        <td><%= User.find(post.user_id).name rescue nil%>&nbsp;<%= User.find(post.user_id).last_name rescue nil%></td>
+        <td><%= post.user_name %>&nbsp;<%= post.user_last_name rescue nil%></td>
         <td><%= post.created_at.strftime("%d-%m-%Y") %></td> 
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
          <% if post.status == true %>

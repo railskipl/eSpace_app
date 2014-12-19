@@ -4,11 +4,11 @@
 <script type="text/javascript">
 
     jQuery(function($){
-      $("#start_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+      $("#start_date").datepicker({dateFormat: 'M d, yy ',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
 
     });
     jQuery(function($){
-      $("#end_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+      $("#end_date").datepicker({dateFormat: 'M d, yy ',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
     });
 </script>
 
@@ -32,11 +32,11 @@
             <ul class="verticle-menu">
               <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
               <li><%= link_to "Change Password", edit_user_registration_path %></li>
-              <li><%= link_to "Bank Details",bank_details_path %></li>
+              <li><%= link_to "Bank Details",new_bank_detail_path %></li>
               <li><%= link_to "My Post",posts_path%></li>
               <li><%= link_to "My Order/Received",order_receives_path%></li>
               <li class="active"><%= link_to "My Booking", bookings_path%></li>
-              <li><%= link_to "Payment", nil%></li>
+              <li><%= link_to "Payment", payments_path%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
             </ul>
           
@@ -46,11 +46,11 @@
                     <%= form_tag search_by_date_path,:method => 'get' do %>
                     <ul class="date">
                     <li>
-                    From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off, :class => "date", :style => "padding: 3px;"%></span>
+                    From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></span>
                     </li>
                     
                     <li>
-                    To <span><%= text_field_tag :end_date, params[:end_date],:class => "date",:style => "padding: 3px;" %></span>
+                    To <span><%= text_field_tag :end_date, params[:end_date],:autocomplete => :off,:readonly => true,:class => "date",:style => "padding: 3px;" %></span>
                     </li>
                     
                     </ul>
@@ -62,32 +62,51 @@
               </div>
                 
                 <div class="booking-wrap">
-                <div class="bmar10 font10"><a href="">Show all</a> / Hide cancelled and past bookings</div>
+                <div class="bmar10 font10"><%= link_to "Show all", bookings_path %> / <%= link_to "Hide cancelled and past bookings", bookings_path(:cancelled => true) %></div>
                     <% @bookings.each_with_index do |booking, index|%>
                     <div class="booking-box">
                         
                         <div class="booking-col">
-                            <span class="booking-name"><%= User.find(booking.poster_id).name.capitalize rescue nil%> <%= User.find(booking.poster_id).last_name[0,1] rescue nil%></span><% if booking.post.user.provider.present? && booking.post.user_id != current_user.id %>
-                                (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)<% end %>
+                            <span class="booking-name">
+                              <%= booking.poster.name.capitalize rescue nil%> 
+                              <%= booking.poster.last_name[0,1] rescue nil%>
+                            </span> 
+                            <% if booking.poster.present? %>
+                              <% if booking.poster.provider.present? && booking.post.user_id != current_user.id %>
+                                (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)
+                              <% end %>
+                            <% end %>
                             <p>
-                            <%= Post.find(booking.post_id).address%>
+                            <%= booking.post.address rescue nil %>
+                            <%= booking.post.street_add rescue nil %>
+                            <%= booking.post.apt rescue nil%><br>
+                            <%= booking.post.city rescue nil %>
+                            <%= booking.post.state rescue nil %>
+                            <%= booking.post.zip_code rescue nil %>
                             </p>
                         </div>
                         
                        
                         <div class="booking-col1">
                         <span>Booking area</span> : <%= booking.area %> sq. ft
+                        
                         <p>
-                           <%if booking.status.present? %>      
-                              <span>Status</span> : <%= booking.status rescue nil%>
-                           <%else%>
+                          
+                           <% if booking.is_cancel == true %>
+                              <span>Status</span> : Cancelled
+                            <% elsif booking.is_confirm == true %>
+                              <span>Status</span> : Confirmed booking
+                            <% else %>
                               <span>Status</span> : Waiting for drop-off confirmation
-                           <%end%>
+                            <% end %>
+                            
                         </p>
+
+                        
                         </div>
                         
                         <div class="booking-col1">
-                        <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %m,%Y") %> 
+                        <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %d,%Y") %> 
                         <p>
                         <span>Booked drop-off</span> 
                         <% if booking.dropoff_price != 0 %>
@@ -95,7 +114,7 @@
                             <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
                             <span class="tasks-list-mark"></span>
                           </label>
-                            $<%= booking.pickup_price %>
+                            $<%= booking.dropoff_price %>
                           <%else%>
                             <label class="tasks-list-item">
                             <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
@@ -104,7 +123,7 @@
                         <%end%>
                         </p>
                         <p>
-                        <a href="#" class="booking-btn">Confirm drop-off</a>
+                        <a href="javascript:void(0);" class="booking-btn">Confirm drop-off</a>
                         </p>
 
                         
@@ -112,7 +131,7 @@
                         </div>
                         
                         <div class="booking-col1">
-                        <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %m,%Y") %>
+                        <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %d,%Y") %>
                         <p>
 
                         <span>Booked pick-up</span>
@@ -129,38 +148,20 @@
                           </label>
                         <%end%>
                         <!--<span class="tasks-list-desc">Left Label</span>-->
-                        <p class="vmp"> 
+                        <p style="margin-top: 13px !important;"> 
                           <%= link_to "View Post", booking_path(booking.id) %>
                         </p>
                         </p>
                         </div>
                         
-                  <div class="note"><span>Notes</span> : <%=booking.post.additional_comments rescue nil%>
+                        <div class="note"><span>Notes</span> : <%=booking.post.additional_comments rescue nil %>
                         </div>
                         
                         </div>
-                        <%end%> 
-                        
-                        
-                     
-                        
-                        
-                        
-                    
-                    
+                  <%end%> 
+                      
                 </div>
             </div>
         </div>
  
-  </div><!-------------------main--------------------------->
-</div><!-------------------wrapper--------------------------->
-            
-             
- 
-        
-
-
-
-
-</body>
-</html>
+  

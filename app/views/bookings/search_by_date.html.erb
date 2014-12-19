@@ -4,23 +4,23 @@
 <script type="text/javascript">
 
     jQuery(function($){
-      $("#start_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+      $("#start_date").datepicker({dateFormat: 'M d, yy ',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
 
     });
     jQuery(function($){
-      $("#end_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
+      $("#end_date").datepicker({dateFormat: 'M d, yy ',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
     });
 </script>
 <div class="main-new">
             <ul class="verticle-menu">
-            <li><a href="#">Personal Information</a></li>
-            <li><a href="#">Change Password</a></li>
-            <li><a href="#">Bank Details</a></li>
-            <li><a href="#">My Post</a></li>
-            <li><a href="#">My Order/Received</a></li>
-            <li class="active"><%= link_to "My Booking", bookings_path%></a></li>
-            <li><a href="#">Payment</a></li>
-            <li><a href="#">Message</a></li>
+             <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+              <li><%= link_to "Change Password", edit_user_registration_path %></li>
+              <li><%= link_to "Bank Details",bank_details_path %></li>
+              <li><%= link_to "My Post",posts_path%></li>
+              <li><%= link_to "My Order/Received",order_receives_path%></li>
+              <li class="active"><%= link_to "My Booking", bookings_path%></li>
+              <li><%= link_to "Payment", payments_path%></li>
+              <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
             </ul>
           
 
@@ -49,16 +49,16 @@
                     <% @bookings.each_with_index do |booking, index|%>
                     <div class="booking-box">
                         <div class="booking-col">
-                            <span class="booking-name"><%= User.find(booking.poster_id).name.capitalize rescue nil%> <%= User.find(booking.poster_id).last_name[0,1] rescue nil%></span><% if booking.post.user.provider.present? && booking.post.user_id != current_user.id %>
+                            <span class="booking-name"><%= booking.poster.name.capitalize rescue nil%> <%= booking.poster.last_name[0,1] rescue nil%></span><% if booking.post.user.provider.present? && booking.post.user_id != current_user.id %>
                                 (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)<% end %>
                             <p>
-                            <%= Post.find(booking.post_id).address%>
+                            <%= booking.post.address%>
                             </p>
                         </div>
                         
                        
                         <div class="booking-col1">
-                        <span>Booking area</span> : <%= Post.find(booking.post_id).area %> sq. ft
+                        <span>Booking area</span> : <%= booking.post.area %> sq. ft
                         <p>
                            <%if booking.status.present? %>      
                               <span>Status</span> : <%= booking.status rescue nil%>
@@ -69,14 +69,14 @@
                         </div>
                         
                         <div class="booking-col1">
-                        <span>Drop-off date</span> : <%= Post.find(booking.post_id).drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= Post.find(booking.post_id).drop_off_avaibility_end_date.strftime("%d-%m-%Y")%>
+                        <span>Drop-off date</span> : <%= booking.post.drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= booking.post.drop_off_avaibility_end_date.strftime("%d-%m-%Y")%>
                         <p>
             <span>Booked drop-off</span> 
                         <label class="tasks-list-item">
-                        <%if Post.find(booking.post_id).pick_up == true%>
-                          <%= check_box_tag(Post.find(booking.post_id).drop_off, value = "1", checked = false, disabled: true)%>
+                        <%if booking.post.pick_up == true%>
+                          <%= check_box_tag(booking.post.drop_off, value = "1", checked = false, disabled: true)%>
                         <%else%>
-                          <%= check_box_tag(Post.find(booking.post_id).drop_off, value = "1", checked = true, disabled: true)%>
+                          <%= check_box_tag(booking.post.drop_off, value = "1", checked = true, disabled: true)%>
                         <%end%>
                         <span class="tasks-list-mark"></span>
                         <!--<span class="tasks-list-desc">Left Label</span>-->
@@ -89,14 +89,14 @@
                         </div>
                         
                         <div class="booking-col1">
-                        <span>Pick-up date</span>  : <%= Post.find(booking.post_id).pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= Post.find(booking.post_id).pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
+                        <span>Pick-up date</span>  : <%= booking.post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= booking.post.pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
                         <p>
             <span>Booked pick-up</span>
                         <label class="tasks-list-item">
-                        <%if Post.find(booking.post_id).pick_up == true%>
-                          <%= check_box_tag(Post.find(booking.post_id).pick_up, value = "1", checked = true, disabled: true)%>
+                        <%if booking.post.pick_up == true%>
+                          <%= check_box_tag(booking.post.pick_up, value = "1", checked = true, disabled: true)%>
                         <%else%>
-                          <%= check_box_tag(Post.find(booking.post_id).pick_up, value = "1", checked = false, disabled: true)%>
+                          <%= check_box_tag(booking.post.pick_up, value = "1", checked = false, disabled: true)%>
                         <%end%>
                         <span class="tasks-list-mark"></span>
                         <!--<span class="tasks-list-desc">Left Label</span>-->

@@ -1,9 +1,14 @@
 class PayementTransfersController < ApplicationController
 
+  before_filter :authenticate_user!
+  before_filter :correct_user, :only => [:index, :transfer_money, :search_payments, :check_status]
+
   layout 'admin'
   include PostsHelper
+
+  
   def index
-  	 @bookings = Booking.all
+  	 @bookings = Booking.includes(:poster,:post)
   end
   
   #transfer the payement to poster account. 
@@ -14,6 +19,7 @@ class PayementTransfersController < ApplicationController
 
       @price = @booking.first.price.to_i
       @price = @price - processing_fees(@price)
+      
       begin
       transfer = Stripe::Transfer.create(
   	  :amount => @price * 100, # amount in cents
@@ -29,7 +35,7 @@ class PayementTransfersController < ApplicationController
       transfer_payment = @booking.first.update_columns(stripe_transfer_id: transfer[:id])
       transfer_payment = @booking.first.update_columns(status: transfer[:status])
       redirect_to payement_transfers_path
-      flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. "
+      flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{@price} and commision is $#{processing_fees(@price)}"
     else
       redirect_to payement_transfers_path
       flash[:error]  = "No bank detail added for payment"
@@ -73,6 +79,13 @@ class PayementTransfersController < ApplicationController
           end   
         end
   end
+
+  private
+
+    def correct_user
+      @user = User.find_by_id_and_admin(current_user.id, true)
+      redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
+    end
   
 
 end

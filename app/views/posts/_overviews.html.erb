@@ -1,7 +1,7 @@
 
 
 
-    <% @posts.each_with_index do |post, index| %>
+    <% posts.each_with_index do |post, index| %>
     <% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
       <% x = 0 %>
     <% else %>
@@ -27,9 +27,9 @@
         
             
 
-                 <div class="name-title"> <%= post.user.name.capitalize rescue nil%> <%= post.user.last_name[0,1] rescue nil %>  
+                 <div class="name-title"> <%= post.user_name.capitalize rescue nil%> <%= post.user_last_name[0,1] rescue nil %>  
           <span style="font-size:10px; color:#999;"> 
-            <% if current_user.provider.present? &&  post.user.provider.present? && post.user_id != current_user.id %>(<%= mutual_friend_list(post.user.id) rescue nil%> mutual friends)
+            <% if current_user.provider.present? &&  post.user_provider.present? && post.user_id != current_user.id %>(<%= mutual_friend_list(post.user.id) rescue nil%> mutual friends)
             <% end %>
           </span>
            <div class="month"> <%= post.drop_off_avaibility_start_date.strftime("%B %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%B %e") %> 
@@ -44,7 +44,7 @@
                 <% end %>
             </div>
 
-            <div class="month"  style="margin-top:12px;"> <%= post.pick_up_avaibilty_start_date.strftime("%B %e") %> -  <%= post.pick_up_avaibility_end_date.strftime("%B %e") %> 
+            <div class="month"  style="margin-top:12px;"> <%= post.pick_up_avaibilty_start_date.strftime("%B %e") %> -  <%= post.pick_up_avaibility_end_date.strftime("%B %e") %>
               <% if post.pick_up == true %> 
                   <p title="Pick-up ride availabe ($<%= post.price_include_pick_up.to_i %>)" class="tooltip_new">
                     <span title="More"><img src="/assets/right.png"></span>
@@ -53,11 +53,15 @@
                   <p title="Pick-up ride unavailable" class="tooltip_new">
                     <span title="More"><img src="/assets/close1.png"></span>
                   </p> 
-                <% end %>
+                <% end %><br/><br/>
+                
+                <%=  remaining_area(post) %> <%= post.additional_comments %>              
             </div>
          
             <div class="name-title" style="margin:-20px 0 0 175px;"> <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? "#{post.distance.round(2)} miles" : '' : '' %> </div>
-            <div class="address-new">  <%= post.address %></div>
+            <div class="address-new">  <%= post.address %> <%= post.street_add %> <%= post.apt%>
+            <%= post.city%> <%= post.state%> <%= post.zip_code%>
+            </div>
             <div class="btn_b1" style="margin-left:324px; margin-top:-16px"> 
               <div id="cf">
                   <img class="bottom" src="/assets/b2.png" />
