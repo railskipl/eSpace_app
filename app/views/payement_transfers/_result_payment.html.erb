@@ -2,13 +2,15 @@
 
 <td><%= index + 1 %></td>
 <td><%= booking.created_at.to_date %></td>
-<td><%= booking.post.area %></td>
+<td><%= booking.area %></td>
+<td><%= booking.price %></td>
 <td><%= booking.poster.name %></td>
 <td><%= booking.post.address %></td>
-  
- <td><%= booking.post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= booking.post.pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
-  </td>
- <td><%= booking.post.drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= booking.post.drop_off_avaibility_end_date.strftime("%d-%m-%Y")%></td>
+
+ <td><%= booking.dropoff_date.strftime("%d-%m-%Y")%> </td>
+
+ <td><%= booking.pickup_date.strftime("%d-%m-%Y") %></td>
+
   
 <td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
 <td><%= booking.status.camelize rescue nil %>
