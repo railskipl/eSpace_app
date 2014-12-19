@@ -370,7 +370,7 @@ jQuery(document).ready(function(){
                       <span class= "classic10"> Ride for drop off is $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %> <u>learn_More</u> </span> </a></div>
                  
                   <% if @post.drop_off == true %> 
-                    <div class="pickup3">
+                    <div class="pickup3" style="margin:-20px 0 0 212px">
                       <input type="checkbox" id="checkbox1" />
                       <label for="checkbox1">&nbsp;</label>
                     </div>
@@ -419,7 +419,7 @@ jQuery(document).ready(function(){
                   <% if @post.pick_up == true %> 
                       
                  
-                     <div class="pickup3">
+                     <div class="pickup3" style="margin:-20px 0 0 212px">
                       <input type="checkbox" id="checkbox2" />
                       <label for="checkbox2">&nbsp;</label>
                      </div>
