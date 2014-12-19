@@ -63,7 +63,34 @@
                 
                 <div class="booking-wrap">
                 <div class="bmar10 font10"><%= link_to "Show all", bookings_path %> / <%= link_to "Hide cancelled and past bookings", bookings_path(:cancelled => true) %></div>
-                    
+                    <% @bookings.each_with_index do |booking, index|%>
+                    <div class="booking-box">
+                        
+                        <div class="booking-col">
+                            <span class="booking-name">
+                              <%= booking.poster.name.capitalize rescue nil%> 
+                              <%= booking.poster.last_name[0,1] rescue nil%>
+                            </span> 
+                            <% if booking.post.user.provider.present? && booking.post.user_id != current_user.id %>
+                                (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)<% end %>
+                            <p>
+                            <%= booking.post.address rescue nil %>
+                            <%= booking.post.street_add rescue nil %>
+                            <%= booking.post.apt rescue nil%><br>
+                            <%= booking.post.city rescue nil %>
+                            <%= booking.post.state rescue nil %>
+                            <%= booking.post.zip_code rescue nil %>
+                            </p>
+                        </div>
+                        
+                       
+                       
+                        
+                        <div class="note"><span>Notes</span> : <%=booking.post.additional_comments rescue nil %>
+                        </div>
+                        
+                        </div>
+                  <%end%> 
                       
                 </div>
             </div>
