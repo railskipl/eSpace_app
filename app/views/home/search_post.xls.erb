@@ -36,13 +36,13 @@
         <% end %>
         <td><%= index + x+1 %></td>
         <td><%= post.id %></td>
-        <td><%= User.find(post.user_id).name rescue nil%></td>
-        <td><%= User.find(post.user_id).last_name rescue nil%></td>
+        <td><%= post.user.name rescue nil%></td>
+        <td><%= post.user.last_name rescue nil%></td>
         <td><%= post.additional_comments%></td>
         <td><%= post.area %></td>
         <td></td>
   
-        <td><%= Booking.where(:user_id=>post.user_id).count rescue nil%></td>
+        <td><%= post.user.bookings.count %></td>
         <td><%= post.created_at.strftime("%d-%m-%Y") %></td> 
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
         

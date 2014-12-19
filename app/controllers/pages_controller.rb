@@ -1,7 +1,9 @@
 class PagesController < ApplicationController
-   before_filter :authenticate_user!
+  
+  before_filter :authenticate_user!
   before_action :set_page, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
+  
   def index
     @pages = Page.all
     respond_with(@pages)

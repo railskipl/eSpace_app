@@ -14,31 +14,28 @@
             </ul>
             
             <div class="chat-wrap">
-            
-            	<div id="user_msg"></div>
-            
-            <div class="chatdiv">
-            <div class="content">
-	            <div id="refresh_msg"></div>
-      
+                
+	            <div id="user_msg"></div>
+	            <%unless params[:recv_id].present?%> 
+	            <div class="chatdiv" style="height:460px;">
+		            
+	            </div>
+	            <%else%>
+	              <div class="chatdiv">
+		            <div class="content">
+			            <div id="refresh_msg"></div>
+		            </div>
+		            <div class="enter"><a href="#">Press ENTER to send</a></div>
+	              </div>
+                <%end%>
+                <%if params[:recv_id].present?%>
+		            <div class="inbputbg">
+		            	<%= render 'reply'%>
+		            </div>
+	            <%end%>
+	            
             </div>
             
-            <div class="enter"><a href="#">Press ENTER to send</a></div>
-            
-            
-
-            </div>
-            
-            <div class="inbputbg">
-            	
-
-            	<%= render 'reply'%>
-
-            </div>
-            
-
-            
-            </div>
         </div>
 
 

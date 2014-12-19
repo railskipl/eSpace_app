@@ -1,19 +1,25 @@
 		<% if @check_user.present? %>
 			<div id="user_msg">
-
-				<ul class="chat-menu">
-					<% @user_messages_sender.each do |user_messages|%>
-		            <li <% if user_messages.sender_id = params[:recv_id] %> class="active" <% end %>>
-		            	<% unless user_messages.sender.id == current_user.id%>	
-		            	<a style="margin:0" href="<%= messages_path(:recv_id =>user_messages.sender_id)%>">
-		            		<% if @user_messages_sender_last.sender.id ==  user_messages.sender.id %><span></span><% end %>
-		            		<%= user_messages.sender.name %> <%= user_messages.sender.last_name %>
-		            	</a>
-		            	<% end %>
-		            </li>
-					
-					<% end %>
-     			</ul>     
+                
+                <% if params[:recv_id].present?%>
+					<ul class="chat-menu">
+						<% @user_messages_sender.each do |user_messages|%>
+			            <li <% if user_messages.sender_id = params[:recv_id] %> class="active" <% end %>>
+			            	<% unless user_messages.sender.id == current_user.id%>	
+			            	<a style="margin:0" href="<%= messages_path(:recv_id =>user_messages.sender_id)%>">
+			            		<% if @user_messages_sender_last.sender.id ==  user_messages.sender.id %><span></span><% end %>
+			            		<%= user_messages.sender.name %> <%= user_messages.sender.last_name %>
+			            	</a>
+			            	<% end %>
+			            </li>
+						
+						<% end %>
+	     			</ul>
+     			<%else%>
+	     			<ul class="chat-menu">
+						
+	     			</ul>
+     			<% end %>   
 			</div>	
 		<% else %>
   		

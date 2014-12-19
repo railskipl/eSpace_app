@@ -69,14 +69,14 @@
 
                         <% if current_user.email.present? %>
                            <%= f.check_box :notification_for_email %>
-                           <label style="margin-top:10px;" for="checkbox1">&nbsp;</label>   
+                           <label style="margin:10px 0 0 -34px;" for="checkbox1">&nbsp;</label>   
                            <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.email %></p><br/>
                         <% else %>
                         <% end %>   
 
                         <% if current_user.personal_email.present? %>   
                            <%= f.check_box :notification_for_personal_email %>
-                           <label style="margin-top:10px;" for="checkbox1">&nbsp;</label>   
+                           <label style="margin:10px 0 0 -34px;" for="checkbox1">&nbsp;</label>   
                            <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.personal_email %></p>
                         <% else %>
                         <% end %> 

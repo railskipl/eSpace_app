@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
   include PostsHelper
   include BookingsHelper
+  
   # GET /posts
   # GET /posts.json
   def index
@@ -18,7 +19,7 @@ class PostsController < ApplicationController
        @end_date ="#{params['end_date']}"
       
       
-       @posts = @posts.where("date(created_at) >= ? and date(created_at) <= ? ",@start_date, @end_date) if @start_date.present? && @end_date.present?
+       @posts = @posts.result(@start_date,@end_date) if @start_date.present? && @end_date.present?
        @posts= @posts.page(params[:page]).per_page(50)
 
       respond_to do |format|

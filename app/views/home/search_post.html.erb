@@ -55,7 +55,7 @@
         <% end %>
         <td><%= index + x+1 %></td>
         <td><%= post.id %></td>
-        <td><%= User.find(post.user_id).name rescue nil%>&nbsp;<%= User.find(post.user_id).last_name rescue nil%></td>
+        <td><%= post.user_name %>&nbsp;<%= post.user_last_name rescue nil%></td>
         <td><%= post.created_at.strftime("%d-%m-%Y") %></td> 
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
          <% if post.status == true %>

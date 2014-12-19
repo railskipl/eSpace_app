@@ -23,7 +23,8 @@ class Post < ActiveRecord::Base
 
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-
+  delegate :name, :email,:last_name,:provider ,:to => :user, :prefix => true
+  
   # Check overall ratings an reviews
   def overall_rating
     if comments.size != 0
@@ -31,6 +32,10 @@ class Post < ActiveRecord::Base
     else
       comments.sum(:rating)
     end
+  end
+
+  def self.result(start_date,end_date)
+    where("date(created_at) >= ? and date(created_at) <= ? ",start_date, end_date)
   end
 
   # Search result on browser page

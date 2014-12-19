@@ -71,15 +71,18 @@
                               <%= booking.poster.name.capitalize rescue nil%> 
                               <%= booking.poster.last_name[0,1] rescue nil%>
                             </span> 
-                            <% if booking.post.user.provider.present? && booking.post.user_id != current_user.id %>
-                                (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)<% end %>
+                            <% if booking.poster.present? %>
+                              <% if booking.poster.provider.present? && booking.post.user_id != current_user.id %>
+                                (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)
+                              <% end %>
+                            <% end %>
                             <p>
-                            <%= booking.post.address%>
-                            <%= booking.post.street_add%>
-                            <%= booking.post.apt%><br>
-                            <%= booking.post.city%>
-                            <%= booking.post.state%>
-                            <%= booking.post.zip_code%>
+                            <%= booking.post.address rescue nil %>
+                            <%= booking.post.street_add rescue nil %>
+                            <%= booking.post.apt rescue nil%><br>
+                            <%= booking.post.city rescue nil %>
+                            <%= booking.post.state rescue nil %>
+                            <%= booking.post.zip_code rescue nil %>
                             </p>
                         </div>
                         
@@ -151,19 +154,12 @@
                         </p>
                         </div>
                         
-                  <div class="note"><span>Notes</span> : <%=booking.post.additional_comments rescue nil%>
+                        <div class="note"><span>Notes</span> : <%=booking.post.additional_comments rescue nil %>
                         </div>
                         
                         </div>
-                        <%end%> 
-                        
-                        
-                     
-                        
-                        
-                        
-                    
-                    
+                  <%end%> 
+                      
                 </div>
             </div>
         </div>

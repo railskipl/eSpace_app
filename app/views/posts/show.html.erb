@@ -294,7 +294,7 @@ jQuery(document).ready(function(){
                   
                  <div class="s4">
                   <div class="ami">
-                   <p class="ami1"><%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %> <strong style="font-size:10px;"><% if current_user.provider.present? &&  @post.user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %></strong>
+                   <p class="ami1"><%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %> <strong style="font-size:10px;"><% if current_user.provider.present? &&  @post.user_provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %></strong>
 
                    </p>
                    <div class="street">
@@ -370,7 +370,7 @@ jQuery(document).ready(function(){
                       <span class= "classic10"> Ride for drop off is $<%= @post.price_include_drop_off ? @post.price_include_drop_off.to_i : 0 %> <u>learn_More</u> </span> </a></div>
                  
                   <% if @post.drop_off == true %> 
-                    <div class="pickup3">
+                    <div class="pickup3" style="margin:-20px 0 0 212px">
                       <input type="checkbox" id="checkbox1" />
                       <label for="checkbox1">&nbsp;</label>
                     </div>
@@ -419,7 +419,7 @@ jQuery(document).ready(function(){
                   <% if @post.pick_up == true %> 
                       
                  
-                     <div class="pickup3">
+                     <div class="pickup3" style="margin:-20px 0 0 212px">
                       <input type="checkbox" id="checkbox2" />
                       <label for="checkbox2">&nbsp;</label>
                      </div>
@@ -464,7 +464,7 @@ jQuery(document).ready(function(){
                currency:    'usd',
                image:       '/assets/dinobo_stripe.jpg',
                name:        'Dinobo',
-               description: '<%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %> ( $'+ document.getElementById('totalPrice').value / 100+ ')' ,
+               description: '<%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %> ( $'+ document.getElementById('totalPrice').value / 100+ ')' ,
                panelLabel:  'Checkout',
                token:       token
                });
