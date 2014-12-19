@@ -972,13 +972,13 @@ background-color:#072643;
   border-radius: 0;
   height: 34px;
   -webkit-appearance: none;
-  /*color: #FFF;*/
+  color: #FFF;
   
   }	
 	
-	
-	
-	
+ #search_miles option {color:#000;}
+ #search_price option {color:#000;}
+ #search_area option {color:#000;}
 
 
 .styleSelect {
@@ -1129,15 +1129,15 @@ background-color:#072643;
 	min-width:150px;
 	}
 
-	.miles{ color:#999;	margin:-17px 0 0px 76px; font-size:10px; font-family:brandon4; }
+	.miles{ color:#999;	margin:-17px 0 0px 92px; font-size:10px; font-family:brandon4; }
 	
-	.miles1{ color:#999; z-index:2000000; margin:-12px 0 0px 268px; font-size:10px; font-family:brandon4;}
+	.miles1{ color:#999; z-index:2000000; margin:-12px 0 0px 290px; font-size:10px; font-family:brandon4;}
 
 	.miles2
 	{
 	color:#999;	
 	z-index:2000000;
-	margin:-16px 0 0px 403px;
+	margin:-16px 0 0px 406px;
 	font-size:10px;
 	font-family:brandon4;
 	}
@@ -3150,7 +3150,7 @@ a.post-btn {
 
 .heading-login
 {
-	padding-left:30px;
+	padding-left:20px;
 	color:#14263a;
 	margin:20px 0 20px 65px;
 	font-family:brandon4;

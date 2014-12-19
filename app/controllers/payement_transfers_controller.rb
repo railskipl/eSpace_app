@@ -1,8 +1,11 @@
 class PayementTransfersController < ApplicationController
 
+  before_filter :authenticate_user!
+  before_filter :correct_user, :only => [:index, :transfer_money, :search_payments, :check_status]
+
   layout 'admin'
   include PostsHelper
-  before_filter :correct_user
+
   
   def index
   	 @bookings = Booking.includes(:poster,:post)
@@ -31,7 +34,7 @@ class PayementTransfersController < ApplicationController
       transfer_payment = @booking.first.update_columns(stripe_transfer_id: transfer[:id])
       transfer_payment = @booking.first.update_columns(status: transfer[:status])
       redirect_to payement_transfers_path
-      flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. "
+      flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{@price} and commision : $#{processing_fees(@price)}"
     else
       redirect_to payement_transfers_path
       flash[:error]  = "No bank detail added for payment"

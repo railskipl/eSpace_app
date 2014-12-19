@@ -1,28 +1,34 @@
 <tr>
 
-<td><%= index + 1 %></td>
-<td><%= booking.created_at.to_date %></td>
-<td><%= booking.post.area %></td>
-<td><%= booking.poster.name %></td>
-<td><%= booking.post.address %></td>
-  
- <td><%= booking.post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= booking.post.pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
-  </td>
- <td><%= booking.post.drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= booking.post.drop_off_avaibility_end_date.strftime("%d-%m-%Y")%></td>
+<td><%= index + 1 rescue nil%></td>
+<td><%= booking.created_at.to_date rescue nil%></td>
+<td><%= booking.area rescue nil %></td>
+<td><%= booking.price rescue nil %></td>
+<td><%= booking.poster.name rescue nil%></td>
+<td><%= booking.post.address rescue nil%></td>
+
+ <td><%= booking.dropoff_date.strftime("%d-%m-%Y") rescue nil%> </td>
+
+ <td><%= booking.pickup_date.strftime("%d-%m-%Y") rescue nil%></td>
+
   
 <td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
 <td><%= booking.status.camelize rescue nil %>
   
 <td>
+  <% if booking.is_cancel == true %>
+      <span>Cancelled</span>
+  <% else %>
   <% unless booking.stripe_transfer_id.present? %>  
-  <%= link_to "Money Transfer",transfer_money_payement_transfers_path(:booking_id =>booking.id,:poster_id =>booking.poster_id,:finder_id=>booking.user_id) %>
+  <%= link_to "Money Transfer",transfer_money_payement_transfers_path(:booking_id =>booking.id,:poster_id =>booking.poster_id,:finder_id=>booking.user_id) rescue nil%>
   <% else %>
      -----
+  <% end %>
   <% end %>
 </td>  
 <td>
   <% if booking.status.present? && booking.status == "pending"%>
-    <%= link_to "Check Status",check_status_payement_transfers_path(:booking_id =>booking.id) %>
+    <%= link_to "Check Status",check_status_payement_transfers_path(:booking_id =>booking.id) rescue nil%>
   <% else %>
      -----  
   <% end %>
