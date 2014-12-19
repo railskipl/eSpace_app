@@ -12,7 +12,6 @@
 
 
 
-
 <body style="background-color:#eeeeee;">
 
 <div class="wrapper">
@@ -71,7 +70,7 @@
                                 <%= link_to "About Us", {:controller=>"/about_us", :action=>"about"} %>
                               </li>
                              <li><a href="javascript:void(0);">Support</a></li>
-                             <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+                             <li><%= link_to 'Logout', sign_out_path, :method=>'delete' %></li>
                             <% else %>
                              <li><%= link_to 'About Us',{:controller=>"/about_us", :action=>"about"} %></li>
                              <li><a href="javascript:void(0);">Support</a></li>     
