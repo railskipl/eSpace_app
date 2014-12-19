@@ -62,7 +62,7 @@
               </div>
                 
                 <div class="booking-wrap">
-                <div class="bmar10 font10"><%= link_to "Show all", bookings_path %> / Hide cancelled and past bookings</div>
+                <div class="bmar10 font10"><%= link_to "Show all", bookings_path %> / <%= link_to "Hide cancelled and past bookings", bookings_path(:cancelled => true) %></div>
                     <% @bookings.each_with_index do |booking, index|%>
                     <div class="booking-box">
                         
