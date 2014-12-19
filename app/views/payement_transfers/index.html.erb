@@ -2,17 +2,17 @@
 <table class="table table-striped">
 <tr>
 <th>Sr No.</th>
+<th>Booking ID</th>
 <th>Booking Date</th>
 <th>Booking Area/Sq.Ft</th>
-<th>Price</th>
-<th>Lister's Name</th>
+<th>Payment Done by Finder</th>
+<th>Poster Name</th>
+<th>Finder Name</th>
 <th>Address</th>
-<th>Pick up Date</th>
-<th>Drop off Date</th>
-<th>Order</th>
 <th>Transfer Status</th>
 <th>Money Transfer</th>
 <th>Check Status</th>
+<th>Action</th>
 </tr>
 <% @bookings.each_with_index do |booking, index|%>
   <%= render 'result_payment', :index => index, :booking => booking %>
