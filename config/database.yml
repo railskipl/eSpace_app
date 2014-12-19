@@ -1,18 +1,3 @@
-
-#   adapter: mysql2
-#   database: college_app_test
-#   username: root
-#   password: 
-#   #socket: /var/run/mysqld/mysqld.sock
-
-# production:
-#   adapter: mysql2
-#   database: college_app_production
-#   username: root
-#   password: 
-# #   #socket: /var/run/mysqld/mysqld.sock  
-
-
 development:
   adapter: mysql2
   database: college_app_development
