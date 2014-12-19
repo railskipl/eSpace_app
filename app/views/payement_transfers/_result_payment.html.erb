@@ -1,18 +1,13 @@
 <tr>
 
-<td><%= index + 1 rescue nil%></td>
+<td><%= index + 1 %></td>
+<td><%= booking.id %></td>
 <td><%= booking.created_at.to_date rescue nil%></td>
 <td><%= booking.area rescue nil %></td>
-<td><%= booking.price rescue nil %></td>
+<td>$<%= booking.price.to_i rescue nil %></td>
 <td><%= booking.poster.name rescue nil%></td>
+<td><%= booking.user.name rescue nil %></td>
 <td><%= booking.post.address rescue nil%></td>
-
- <td><%= booking.dropoff_date.strftime("%d-%m-%Y") rescue nil%> </td>
-
- <td><%= booking.pickup_date.strftime("%d-%m-%Y") rescue nil%></td>
-
-  
-<td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
 <td><%= booking.status.camelize rescue nil %>
   
 <td>
@@ -33,4 +28,5 @@
      -----  
   <% end %>
 </td>
+<td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
 </tr>
