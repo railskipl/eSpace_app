@@ -3,8 +3,12 @@ class BookingsController < ApplicationController
  skip_before_filter :verify_authenticity_token, :only => [:checkout]
  include BookingsHelper
 
- def index
- 	@bookings = Booking.includes(:post,:poster).where("user_id = ?",current_user.id).order("id desc")
+ def index 
+    if params[:cancelled].present?
+      @bookings = Booking.booking_cancelled
+    else
+ 	    @bookings = Booking.includes(:post,:poster).where("user_id = ?",current_user.id).order("id desc")
+    end
  end
 
 	def new
