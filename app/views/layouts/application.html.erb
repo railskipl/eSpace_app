@@ -20,6 +20,7 @@
               <% if user_signed_in? %>
                 <p style="margin:40px 0 0px 900px;">
                   <%= current_user.name rescue nil %> <%= current_user.last_name rescue nil %> 
+                  
                 </p>
               <% else %>
               <p style="margin:40px 0 0px 900px;">
