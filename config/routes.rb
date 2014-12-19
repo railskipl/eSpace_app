@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       get 'cancel_popup'
     end
   end
-
+  devise_scope :user do
+    get '/sign_out' => 'users/sessions#destroy'
+  end
   get '/search_order_received_by_date' => "order_receives#search_order_received_by_date", as: "search_order_received_by_date"
 
   get 'payement_transfers/index'

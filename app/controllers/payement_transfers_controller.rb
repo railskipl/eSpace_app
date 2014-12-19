@@ -19,6 +19,7 @@ class PayementTransfersController < ApplicationController
 
       @price = @booking.first.price.to_i
       @price = @price - processing_fees(@price)
+      
       begin
       transfer = Stripe::Transfer.create(
   	  :amount => @price * 100, # amount in cents
@@ -34,7 +35,7 @@ class PayementTransfersController < ApplicationController
       transfer_payment = @booking.first.update_columns(stripe_transfer_id: transfer[:id])
       transfer_payment = @booking.first.update_columns(status: transfer[:status])
       redirect_to payement_transfers_path
-      flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. "
+      flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{@price} and commision is $#{processing_fees(@price)}"
     else
       redirect_to payement_transfers_path
       flash[:error]  = "No bank detail added for payment"
