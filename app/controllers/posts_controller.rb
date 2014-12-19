@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
   include PostsHelper
   include BookingsHelper
+  
   # GET /posts
   # GET /posts.json
   def index

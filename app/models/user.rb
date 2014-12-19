@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
  
   has_many :comments, :dependent => :destroy
   has_many :bookings, :dependent => :destroy
+  has_many :bank_details, :dependent => :destroy
 
   
   def self.json_tokens(query)
