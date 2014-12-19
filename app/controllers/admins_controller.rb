@@ -9,12 +9,12 @@ class AdminsController < ApplicationController
     @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(50)
     
     respond_to do |format|
-        format.html
-        format.xls
-        format.pdf do
-           render :pdf => "users_report"
-        end
+      format.html
+      format.xls
+      format.pdf do
+        render :pdf => "users_report"
       end
+    end
 	end
 
   def show

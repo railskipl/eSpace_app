@@ -1,12 +1,7 @@
-   
-
-  <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation" %>
-
-
-
+<%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation" %>
 <div class="wrapper">
-  <div class="main"> 
-  <div class="main2">
+  <div class="main">
+   <div class="main2">
                 <div class="main-new">
                  <ul class="verticle-menu" style="min-height:600px;">
                     <li class="active">
@@ -39,31 +34,23 @@
                   <%= form_for @user, :url => user_path(@user), html: { :class=>"signin",method: :put, id: "edit_user" } do |f|%>
 
                   <fieldset class="textbox">
-                       
-                        <div input id="password">
-                          <%= f.email_field :email, :readonly => true,:style => "font-family: brandon4;", :placeholder=>"Email" %>
-                        </div>
-
-                        <div input id="password">
-                          <%= f.text_field :name,:style => "font-family: brandon4;", :placeholder=> "First Name" %>
-                        </div>
-                       
-                        <div input id="password">
-                          <%= f.text_field :last_name, :style => "font-family: brandon4;",:placeholder=> "Last Name" %>
-                        </div>
-
-                        <div input id="password">
-                          <%= f.text_field :personal_email, :style => "font-family: brandon4;",:placeholder=> "Personal Email" %>
-                        </div>
-
-                        <div input id="password"> 
-                          <%= f.text_field :mobile_number, :style => "font-family: brandon4;",placeholder:"xxx xxx-xxxx"%>
-                        </div> 
-
+                      <div input id="password">
+                        <%= f.email_field :email, :readonly => true,:style => "font-family: brandon4;", :placeholder=>"Email" %>
+                      </div>
+                      <div input id="password">
+                        <%= f.text_field :name,:style => "font-family: brandon4;", :placeholder=> "First Name" %>
+                      </div>
+                      <div input id="password">
+                        <%= f.text_field :last_name, :style => "font-family: brandon4;",:placeholder=> "Last Name" %>
+                      </div>
+                      <div input id="password">
+                        <%= f.text_field :personal_email, :style => "font-family: brandon4;",:placeholder=> "Personal Email" %>
+                      </div>
+                      <div input id="password"> 
+                        <%= f.text_field :mobile_number, :style => "font-family: brandon4;",placeholder:"xxx xxx-xxxx"%>
+                      </div> 
                   </fieldset>
-
                      <div class="pickup4">
-               
                         <p style="margin: -25px 0px 0px; font-size: 16px; color: rgb(123, 123, 123); margin-top:155px;">Send notifications to:</p><br/>
                        <div class="checkbox">
 

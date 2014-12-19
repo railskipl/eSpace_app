@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def toggle_status
+    self.status = !self.status?
+    self.update_column(:status,self.status)
+  end
+
   def self.find_for_facebook_oauth(auth, alt_email)
 
     User.where(auth.slice("provider", "uid")).first_or_create do |user|
