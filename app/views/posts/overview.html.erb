@@ -431,7 +431,7 @@ window.onload = loadMap;
      
        
         <div id="all_posts" class="description">
-          <%= render(:partial => 'posts/overviews') %>
+          <%= render 'overviews', :posts => @posts %>
         </div>
         <div class="loading"><%= will_paginate @posts %></div>
    

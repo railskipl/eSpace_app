@@ -1,11 +1,11 @@
 <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","admin_validation" %>
 
-<%= form_for(@access_id) do |f| %>
-  <% if @access_id.errors.any? %>
+<%= form_for(access_id) do |f| %>
+  <% if access_id.errors.any? %>
     <div id="error_explanation">
       
       <ul>
-      <% @access_id.errors.full_messages.each do |message| %>
+      <% access_id.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
