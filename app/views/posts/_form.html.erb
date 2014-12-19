@@ -70,11 +70,11 @@ $('.masterTooltip').hover(function(){
             </ul>
             
             <div class="right-side">
-              <%= form_for(@post, :html=>{ id: "new_post"}) do |f| %>
-                <% if @post.errors.any? %>
+              <%= form_for(post, :html=>{ id: "new_post"}) do |f| %>
+                <% if post.errors.any? %>
                   <div id="error_explanation">
                     <ul>
-                    <% @post.errors.full_messages.each do |message| %>
+                    <% post.errors.full_messages.each do |message| %>
                       <li><%= message %></li>
                     <% end %>
                     </ul>
@@ -149,10 +149,10 @@ $('.masterTooltip').hover(function(){
                                 <div class="post-bg-row-col4">
                                 <ul class="post-date post-price">
 
-                                <li <% if @post.drop_off == true %> <% else %>  <% end %> ><label>Price</label><span>$</span>
+                                <li <% if post.drop_off == true %> <% else %>  <% end %> ><label>Price</label><span>$</span>
                                   <%= f.text_field :price_include_drop_off,:style=>"text-align: right;" %>
                                 </li>
-                                <li <% if @post.pick_up == true %> <% else %>  <% end %>><label>Price</label><span>$</span>
+                                <li <% if post.pick_up == true %> <% else %>  <% end %>><label>Price</label><span>$</span>
                                   <%= f.text_field :price_include_pick_up,:style=>"text-align: right;" %>
                                 </li>
                                 </ul>
@@ -225,8 +225,8 @@ $('.masterTooltip').hover(function(){
                               </span>
                                 
                                 <div class="photo">
-                                  <% if @post.photo.exists? %>
-                                    <%= image_tag @post.photo.url(:thumb) %>
+                                  <% if post.photo.exists? %>
+                                    <%= image_tag post.photo.url(:thumb) %>
                                   <% end %>
                                   <!-- <a href="#">Delete</a> -->
                                 </div>
@@ -245,13 +245,13 @@ $('.masterTooltip').hover(function(){
                                 </p>
 
                                 <p style="margin: 39px 0 39px; color: #899199; font-size: 10px; line-height: 11px;">
-                                  <% if @post.id %>
-                                  <% if @post.status == true %>
-                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Deactive Post', toggle_post_path(@post.id), :class=>"post-btn" %>
+                                  <% if post.id %>
+                                  <% if post.status == true %>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Deactive Post', toggle_post_path(post.id), :class=>"post-btn" %>
                                   <% else %>
-                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Activate Post', toggle_post_path(@post.id), :class=>"post-btn" %>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Activate Post', toggle_post_path(post.id), :class=>"post-btn" %>
                                   <% end %>
-                                  &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"post-btn" %> 
+                                  &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"post-btn" %> 
                                 <% end %>
                                 </p>
                             
