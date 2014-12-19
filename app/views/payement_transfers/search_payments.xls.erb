@@ -1,9 +1,12 @@
 
+
+
 <table class="table table-striped">
 <tr>
 <th>Sr No.</th>
 <th>Booking Date</th>
 <th>Booking Area/Sq.Ft</th>
+<th>Price</th>
 <th>Lister's Name</th>
 <th>Address</th>
 <th>Pick up Date</th>
@@ -18,13 +21,15 @@
 
 <td><%= index + 1 %></td>
 <td><%= booking.created_at.to_date %></td>
-<td><%= Post.find(booking.post_id).area %></td>
-<td><%= User.find(booking.poster_id).name %></td>
-<td><%= Post.find(booking.post_id).address %></td>
-  
- <td><%= Post.find(booking.post_id).pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= Post.find(booking.post_id).pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
-  </td>
- <td><%= Post.find(booking.post_id).drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= Post.find(booking.post_id).drop_off_avaibility_end_date.strftime("%d-%m-%Y")%></td>
+<td><%= booking.area %></td>
+<td><%= booking.price %></td>
+<td><%= booking.poster.name %></td>
+<td><%= booking.post.address %></td>
+
+ <td><%= booking.dropoff_date.strftime("%d-%m-%Y")%> </td>
+
+ <td><%= booking.pickup_date.strftime("%d-%m-%Y") %></td>
+
   
 <td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
 <td><%= booking.status.camelize rescue nil %>

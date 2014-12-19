@@ -4,6 +4,7 @@
 <th>Sr No.</th>
 <th>Booking Date</th>
 <th>Booking Area/Sq.Ft</th>
+<th>Price</th>
 <th>Lister's Name</th>
 <th>Address</th>
 <th>Pick up Date</th>
@@ -14,6 +15,6 @@
 <th>Check Status</th>
 </tr>
 <% @bookings.each_with_index do |booking, index|%>
-  <%= render 'result_payment', :index => index, :booking => booking %>
+  <%#= render 'result_payment', :index => index, :booking => booking %>
 <%end%> 
 </table>

@@ -1,8 +1,11 @@
 class PayementTransfersController < ApplicationController
 
+  before_filter :authenticate_user!
+  before_filter :correct_user, :only => [:index, :transfer_money, :search_payments, :check_status]
+
   layout 'admin'
   include PostsHelper
-  before_filter :correct_user
+
   
   def index
   	 @bookings = Booking.includes(:poster,:post)
