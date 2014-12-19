@@ -71,8 +71,11 @@
                               <%= booking.poster.name.capitalize rescue nil%> 
                               <%= booking.poster.last_name[0,1] rescue nil%>
                             </span> 
-                            <% if booking.post.user.provider.present? && booking.post.user_id != current_user.id %>
-                                (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)<% end %>
+                            <% if booking.poster.present? %>
+                              <% if booking.poster.provider.present? && booking.post.user_id != current_user.id %>
+                                (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)
+                              <% end %>
+                            <% end %>
                             <p>
                             <%= booking.post.address rescue nil %>
                             <%= booking.post.street_add rescue nil %>
