@@ -1,12 +1,12 @@
 <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","admin_validation" %>
 <script src="/assets/faqs.js"></script>
-<%= form_for @faq, :html => { :multipart => true } do |f| %>
-  <% if @faq.errors.any? %>
+<%= form_for faq, :html => { :multipart => true } do |f| %>
+  <% if faq.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@faq.errors.count, "error") %> prohibited this faq from being saved:</h2>
+      <h2><%= pluralize(faq.errors.count, "error") %> prohibited this faq from being saved:</h2>
 
       <ul>
-      <% @faq.errors.full_messages.each do |message| %>
+      <% faq.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
