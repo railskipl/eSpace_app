@@ -13,6 +13,8 @@
                    <div class="hd2" >Find summer storage provided by other USC students, <br>
                              or rent out some space to store other students' goods over the summer.<br>
                   </div>
+
+                  	<% unless user_signed_in? %>
                   	<div class="input-group">
                   		<form id="form" onsubmit="return validateForm()">
                   		<%#= form_tag url_for(:controller => 'authenticates', :action => 'create'), :method => 'post', :id=>"userSignup", :remote=> true, :onsubmit => "return validateForm()" do |f| %>
@@ -26,6 +28,9 @@
                         <%# end %>
                     	</form>
                     </div>
+                    <% end %>
+
+
               </div>    
                   
                   
