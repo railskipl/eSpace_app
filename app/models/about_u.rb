@@ -9,6 +9,6 @@ class AboutU < ActiveRecord::Base
                           :thumb => "-compose Copy -gravity center -extent 61x61"   
                       }
 
-  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
 end
