@@ -5,8 +5,7 @@ class AuthenticatesController < ApplicationController
 	
 	respond_to :html, :js, :json
 	
-	def index
-	end
+	
 
 	def create
 

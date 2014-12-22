@@ -7,14 +7,14 @@
     <th>Booking ID</th>
     <th>Booking Date</th>
     <th>Booking Area/Sq.Ft</th>
+    <th>Payment Received by Poster</th>
     <th>Payment Done by Finder</th>
+    <th>Commission</th>
     <th>Poster Name</th>
     <th>Finder Name</th>
     <th>Address</th>
     <th>Transfer Status</th>
     <th>Money Transfer</th>
-    <th>Check Status</th>
-    <th>Action</th>
 </tr>
 <% @payment_transfers.try(:each_with_index) do |booking, index|%>
 <tr>
@@ -23,7 +23,9 @@
   <td><%= booking.id %></td>
   <td><%= booking.created_at.to_date rescue nil%></td>
   <td><%= booking.area rescue nil %></td>
+  <td>$<%= booking.cut_off_price.to_i rescue nil %></td>
   <td>$<%= booking.price.to_i rescue nil %></td>
+  <td>$<%= booking.commission.to_i %></td>
   <td><%= booking.poster.name rescue nil%></td>
   <td><%= booking.user.name rescue nil %></td>
   <td><%= booking.post.address rescue nil%></td>
@@ -40,14 +42,7 @@
     <% end %>
     <% end %>
   </td>  
-  <td>
-    <% if booking.status.present? && booking.status == "pending"%>
-      <%= link_to "Check Status",check_status_payement_transfers_path(:booking_id =>booking.id) rescue nil%>
-    <% else %>
-       -----  
-    <% end %>
-  </td>
-  <td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
+  
 </tr>
 <%end%> 
 </table>

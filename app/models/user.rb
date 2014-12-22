@@ -16,16 +16,27 @@ class User < ActiveRecord::Base
   has_many :bookings, :dependent => :destroy
   has_many :bank_details, :dependent => :destroy
 
-  
-  def self.json_tokens(query)
-    users = where("email like ?", "%#{query}%")
-    if users.empty?
-    else
-     users
-    end
+
+  def toggle_status
+    self.status = !self.status?
+    self.update_column(:status,self.status)
   end
 
-  def self.find_for_facebook_oauth(auth, alt_email)
+  def self.is_present_facebook_oauth(auth)
+    if Rails.env.development?
+      oauth = Koala::Facebook::OAuth.new("382895341863463", "70e00b19e5cf11f56990e9402da7e8f5")
+      
+    else  
+      oauth = Koala::Facebook::OAuth.new("463439180461791", "da2a8a7e85b8c3eda15f129204dd9d23")
+    end 
+
+      new_access_token = oauth.exchange_access_token(auth["credentials"]["token"])
+      user = User.where(auth.slice(:provider, :uid)).first
+      @new_token = user.update_columns(oauth_token: new_access_token) rescue nil
+      User.where(auth.slice(:provider, :uid)).first
+  end
+
+  def self.find_facebook_oauth(auth, alt_email)
 
     User.where(auth.slice("provider", "uid")).first_or_create do |user|
     
@@ -40,19 +51,6 @@ class User < ActiveRecord::Base
       user.skip_confirmation!
     end
     
-  end
-
-  def self.is_present_facebook_oauth(auth)
-    if Rails.env.development?
-      oauth = Koala::Facebook::OAuth.new("382895341863463", "70e00b19e5cf11f56990e9402da7e8f5")
-      
-    else  
-      oauth = Koala::Facebook::OAuth.new("463439180461791", "da2a8a7e85b8c3eda15f129204dd9d23")
-    end  
-      new_access_token = oauth.exchange_access_token(auth["credentials"]["token"])
-      user = User.where(auth.slice(:provider, :uid)).first
-      @new_token = user.update_columns(oauth_token: new_access_token) rescue nil
-      User.where(auth.slice(:provider, :uid)).first
   end
 
   def active_for_authentication?

@@ -8,22 +8,14 @@ class HomeController < ApplicationController
     @access_ids = AccessId.all
 	end
     
-   def contactus
-   end
+  def about_us
+  end
    
-   def about_us
-     
-   end
-   
-    def all_postings
-      @posts = Post.where("user_id != ?",current_user.id).order("id desc").page(params[:page]).per_page(10)
-    end
+  def all_postings
+    @posts = Post.where("user_id != ?",current_user.id).order("id desc").page(params[:page]).per_page(10)
+  end
 
-    def admin_user
-      @adminusers = User.page(params[:page]).per_page(10)
-    end
 
-      
     def searching
 
        q = params[:q].downcase

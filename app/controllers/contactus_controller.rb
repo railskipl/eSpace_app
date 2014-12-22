@@ -56,7 +56,7 @@ class ContactusController < ApplicationController
       @contactus.destroy
 
       redirect_to :back
-     end
+  end
 
 
   private

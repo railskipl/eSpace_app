@@ -7,8 +7,6 @@ class FaqsController < ApplicationController
   
   def index
     @faqs = Faq.all
-
-    # raise @faqs.inspect
     respond_with(@faqs)
   end
 
@@ -73,10 +71,6 @@ class FaqsController < ApplicationController
 
     def faq_params 
       params.require(:faq).permit(:question, :answer,:title, faq_questions_attributes: [:id,:question,:answer,:faq_id,:_destroy])
-    end
-
-    def authenticate
-      deny_access unless signed_in?
     end
 
     def correct_user

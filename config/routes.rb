@@ -86,13 +86,12 @@ Rails.application.routes.draw do
     end
     collection do
         get 'archive'
-        
     end
   end
 
-  resources :bookings do
+  resources :bookings do 
     collection do
-      post :checkout
+      post 'checkout'
       get 'cancel_booking'
       get 'cancel_popup'
       get 'rating'
@@ -101,28 +100,27 @@ Rails.application.routes.draw do
     end
   end
 
-  
   resources :ratings, only: :update
 
   resources :messages do
     collection do
-      get :trash_messages
-      get :sent_messages
-      put :move_all_to_trash_recipient
-      put :delete_all_by_sender
-      get :refresh_part
-      get :refresh_message
-      get :user_message
-      get :compose_message
-      post :sent_to
+      get 'trash_messages'
+      get 'sent_messages'
+      put 'move_all_to_trash_recipient'
+      put 'delete_all_by_sender'
+      get 'refresh_part'
+      get 'refresh_message'
+      get 'user_message'
+      get 'compose_message'
+      post 'sent_to'
     end
     
     member do
-     post :trash
-     post :destroy_recipient
-     post :destroy_sender
-     get :reply
-     get :is_read_all
+     post 'trash'
+     post 'destroy_recipient'
+     post 'destroy_sender'
+     get 'reply'
+     get 'is_read_all'
     end
   end
 
