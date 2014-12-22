@@ -14,8 +14,12 @@ class BankDetailsController < ApplicationController
   end
 
   def new
-    @bank_detail = BankDetail.new
-    
+    @bank_detail = BankDetail.has_bank_detail(current_user.id).first
+    if @bank_detail.present?
+       redirect_to edit_bank_detail_path(@bank_detail.id)
+    else
+      @bank_detail = BankDetail.new
+    end 
   end
 
   def edit
@@ -55,7 +59,7 @@ class BankDetailsController < ApplicationController
             @bank_detail.save
 
             # https://stripe.com/docs/api/ruby#update_transfer
-            redirect_to bank_details_path, :notice => "Bank info was successfully created." 
+            redirect_to edit_bank_detail_path(@bank_detail.id), :notice => "Bank info was successfully created." 
             return false
           end
 
@@ -69,7 +73,7 @@ class BankDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @bank_detail.update(bank_detail_params)
-        format.html { redirect_to bank_details_path, notice: 'Bank info was successfully updated.' }
+        format.html { redirect_to edit_bank_detail_path(@bank_detail.id), notice: 'Bank info was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }

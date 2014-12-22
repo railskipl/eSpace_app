@@ -93,5 +93,6 @@ private
       else
         "application"
       end
-    end
   end
+
+end

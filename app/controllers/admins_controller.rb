@@ -4,7 +4,7 @@ class AdminsController < ApplicationController
   before_filter :correct_user, :only => [:index, :show, :destroy]
   layout :custom_layout
 
-   def index
+  def index
 
     @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(50)
     
@@ -30,10 +30,6 @@ class AdminsController < ApplicationController
 
 
   private
-    def authenticate
-      deny_access unless signed_in?
-    end
-
     def correct_user
       @user = User.find_by_id_and_admin(current_user.id, true)
        redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)

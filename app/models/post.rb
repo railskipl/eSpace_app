@@ -34,9 +34,18 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def self.get_status(q)
+    where("LOWER(status) like ?", "%#{q}%")
+  end
+
   def self.result(start_date,end_date)
     where("date(created_at) >= ? and date(created_at) <= ? ",start_date, end_date)
   end
+
+  def self.get_archive(user)
+    where(archive: true, user_id: user)
+  end
+
 
   # Search result on browser page
   def self.search(search, page, sort)
@@ -95,7 +104,6 @@ class Post < ActiveRecord::Base
   end
 
 
-
   private
 
     def lat_changed?
@@ -107,8 +115,6 @@ class Post < ActiveRecord::Base
       end
       return true
     end
-
-
 
 
 end

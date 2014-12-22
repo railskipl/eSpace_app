@@ -10,25 +10,25 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-       q = params[:q]
-  
-       @posts = Post.search_post(params[:search], current_user.id)
-       @posts = @posts.where("LOWER(status) like ?", "%#{q}%") if q.present?
- 
-       @start_date = "#{params['start_date']}"
-       @end_date ="#{params['end_date']}"
-      
-      
-       @posts = @posts.result(@start_date,@end_date) if @start_date.present? && @end_date.present?
-       @posts= @posts.page(params[:page]).per_page(50)
+    q = params[:q]
+    @posts = Post.search_post(params[:search], current_user.id)
 
-      respond_to do |format|
-        format.html
-      end
+    @posts = @posts.get_status(q) if q.present?
+ 
+    @start_date = "#{params['start_date']}"
+    @end_date ="#{params['end_date']}"
+    
+    @posts = @posts.result(@start_date,@end_date) if @start_date.present? && @end_date.present?
+    @posts= @posts.page(params[:page]).per_page(50)
+
+    respond_to do |format|
+      format.html
+    end
+
   end
 
   def archive
-    @posts = Post.where(archive: true, user_id: current_user.id)
+    @posts = Post.get_archive(current_user.id)
   end
 
   # GET /posts/1
@@ -65,7 +65,6 @@ class PostsController < ApplicationController
   end
 
   def overview
-      
       if params[:search]   
         @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort])
         @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort])

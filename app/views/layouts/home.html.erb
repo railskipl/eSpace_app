@@ -69,11 +69,11 @@
                               <li>
                                 <%= link_to "About Us", {:controller=>"/about_us", :action=>"about"} %>
                               </li>
-                             <li><a href="javascript:void(0);">Support</a></li>
+                             <li><%= link_to "Support",frequently_asked_question_path%></li>
                              <li><%= link_to 'Logout', sign_out_path, :method=>'delete' %></li>
                             <% else %>
                              <li><%= link_to 'About Us',{:controller=>"/about_us", :action=>"about"} %></li>
-                             <li><a href="javascript:void(0);">Support</a></li>     
+                             <li><%= link_to "Support",frequently_asked_question_path%></li>     
                             <% end %>
                         </ul>
                       </div>
@@ -99,10 +99,10 @@
             </div>
                
               <div class="left" style="width:200px;float:left;">
-                <ul>  <li><a href="javascript:void(0);">Refund policy</a></li>
+                <ul>  <li><%= link_to "Refund policy",frequently_asked_question_path%></a></li>
 
-                  <li><a href="javascript:void(0);">Privacy & Terms</a></li>
-                  <li><a href="javascript:void(0);">Support</a></li>
+                  <li><%= link_to "Privacy & Terms",frequently_asked_question_path%></li>
+                  <li><%=link_to "Support",frequently_asked_question_path%></li>
                 </ul>
               </div>
           </div>
