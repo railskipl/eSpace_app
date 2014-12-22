@@ -55,7 +55,7 @@
                   </p> 
                 <% end %><br/><br/>
                 
-                <%=  remaining_area(post) %> <%= post.additional_comments %>              
+                <%=  remaining_area(post) %> <%= post.additional_comments[0..20] %>              
             </div>
          
             <div class="name-title" style="margin:-20px 0 0 175px;"> <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? "#{post.distance.round(2)} miles" : '' : '' %> </div>
