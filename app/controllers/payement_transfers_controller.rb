@@ -34,6 +34,9 @@ class PayementTransfersController < ApplicationController
      end
       transfer_payment = @booking.first.update_columns(stripe_transfer_id: transfer[:id])
       transfer_payment = @booking.first.update_columns(status: transfer[:status])
+      transfer_payment = @booking.first.update_columns(cut_off_price: @price)
+      transfer_payment = @booking.first.update_columns(commission: processing_fees(@price))
+
       redirect_to payement_transfers_path
       flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{@price} and commision is $#{processing_fees(@price)}"
     else

@@ -5,14 +5,14 @@
   <th>Booking ID</th>
   <th>Booking Date</th>
   <th>Booking Area/Sq.Ft</th>
+  <th>Payment Received by Poster</th>
   <th>Payment Done by Finder</th>
+  <th>Commission</th>
   <th>Poster Name</th>
   <th>Finder Name</th>
   <th>Address</th>
   <th>Transfer Status</th>
   <th>Money Transfer</th>
-  <th>Check Status</th>
-  <th>Action</th>
 </tr>
 <% @payment_transfers.try(:each_with_index) do |booking, index|%>
 <tr>
@@ -20,7 +20,9 @@
 <td><%= index + 1 %></td>
 <td><%= booking.created_at.to_date %></td>
 <td><%= booking.area %></td>
-<td><%= booking.price %></td>
+<td>$<%= booking.cut_off_price.to_i rescue nil %></td>
+<td>$<%= booking.price.to_i rescue nil %></td>
+<td>$<%= booking.commission.to_i %></td>
 <td><%= booking.poster.name %></td>
 <td><%= booking.post.address %></td>
 
@@ -32,20 +34,7 @@
 <td><%= link_to "View Details",{:controller => 'bookings', :action => 'show', :id => booking.id} %></td>
 <td><%= booking.status.camelize rescue nil %>
   
-<td>
-  <% unless booking.stripe_transfer_id.present? %>  
-  <%= link_to "Money Transfer",transfer_money_payement_transfers_path(:booking_id =>booking.id,:poster_id =>booking.poster_id,:finder_id=>booking.user_id) %>
-  <% else %>
-     -----
-  <% end %>
-</td>  
-<td>
-  <% if booking.status.present? && booking.status == "pending"%>
-    <%= link_to "Check Status",check_status_payement_transfers_path(:booking_id =>booking.id) %>
-  <% else %>
-     -----  
-  <% end %>
-</td>
+
 </tr>
 <%end%> 
 </table>
