@@ -1455,25 +1455,17 @@ background-color:#072643;
 		}
 		
 		
-		.classic10 { padding: 0.8em 1em; color:#000; }
-		.classic10 { padding: 0.8em 1em; color:#000; }
-		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		.classic10 {background: #FFFFFF; border:1px #CCC solid;}
-	
-	
-	
-	
+.classic10 { padding: 0.8em 1em; color:#000; }
+.classic10 { padding: 0.8em 1em; color:#000; }
+.custom { padding: 0.5em 0.8em 0.8em 2em; }
+.classic10 {background: #FFFFFF; border:1px #CCC solid;}
 	
 		
-		
-		
-		
-		
-		#cf {
+#cf {
   position:relative;
-  height:50px;
-  width:50px;
-  margin:0 -25px;
+  height:30px;
+  width:30px;
+  margin:15px -25px;
 }
 
 #cf img {
@@ -2740,7 +2732,7 @@ fieldset {
 .post-bg-row-col4 {float:left; width:140px; margin:0 0 0 40px}
 
 .field-list{ margin:5px 0; padding:0; list-style-type:none}
-.field-list li{ margin:0; padding:1px 0; display:inline-block}
+.field-list li{ margin:0; padding:1px 0; display:inline-block; width: 100%;}
 .field-list li label{ width:183px; float:left}
 .field-list li input{ width:151px; float:left; background: none repeat scroll 0 0 #072643; border: 2px solid #889098; color: #EEEEEE; font-size: 10px; padding: 0 5px;}
 	
@@ -2867,7 +2859,7 @@ div.submenu
 			font-family:brandon4;
 			margin-top:0px;
 		    color:#999;
-
+		    position:absolute;
 		 }	
 
 		 .booking_content { 
@@ -3229,6 +3221,7 @@ a.post-btn {
     border: 2px solid #051628;
 }
 
+
 .invalidLogin {color:red;position:relative;left:95px;font-size:12px;}
 
 .tasks-list-item1 {
@@ -3273,3 +3266,6 @@ a.post-btn {
     white-space: nowrap;
     width: 211px;
 }
+
+.invalidLogin {color:#fd0000;position:relative;left:95px;font-size:12px;}
+

@@ -1,7 +1,7 @@
 
 
 
-    <% posts.each_with_index do |post, index| %>
+    <% @posts.each_with_index do |post, index| %>
     <% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
       <% x = 0 %>
     <% else %>
@@ -59,10 +59,10 @@
             </div>
          
             <div class="name-title" style="margin:-20px 0 0 175px;"> <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? "#{post.distance.round(2)} miles" : '' : '' %> </div>
-            <div class="address-new">  <%= post.address %> <%= post.street_add %> <%= post.apt%>
+            <div class="address-new">  <%= post.address %> <%= post.apt %>
             <%= post.city%> <%= post.state%> <%= post.zip_code%>
             </div>
-            <div class="btn_b1" style="margin-left:324px; margin-top:-24px"> 
+            <div class="btn_b1" style="margin-left:324px; margin-top:-16px"> 
               <div id="cf">
                   <img class="bottom" src="/assets/b2.png" />
                   <img class="top" src="/assets/b1.png" />

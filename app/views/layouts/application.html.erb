@@ -135,15 +135,13 @@
 
               <section class="animated alert">
                 
-                 
                   <!-- Error Message -->
                   <% flash.each do |name, msg| %>
-                  <% if msg.is_a?(String) %>
-                  
-                    <p id="flashMsg" class="fixed-box">  
-                      <%= msg %>
-                  </p>
-                  <% end %>
+                    <% if msg.is_a?(String) %>
+                      <p id="flashMsg" class="fixed-box">  
+                        <%= msg %>
+                    </p>
+                    <% end %>
                   <% end %>
 
                   <!-- End -->

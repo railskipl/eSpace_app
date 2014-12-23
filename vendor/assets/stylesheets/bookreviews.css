@@ -2,7 +2,7 @@
   color: #28A0E5;
 }
 
-.fa-star-o { color: #11b9ff; }
+.fa-star-o { color: #9198a0; }
 
 
 /*.rating {
@@ -31,10 +31,9 @@
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
-    font-size:90%;
+    font-size:122%;
     line-height:1.2;
     color:#ddd;
-    text-shadow:1px 1px #bbb, 1px 1px #666, .1em .1em .2em rgba(0,0,0,.5);
 }
 
 .rating:not(:checked) > label:before {
@@ -49,7 +48,6 @@
 .rating:not(:checked) > label:hover,
 .rating:not(:checked) > label:hover ~ label {
     color: #28A0E5;
-    text-shadow:1px 1px #28A0E5, 1px 1px #2E46D1, .1em .1em .2em rgba(0,0,0,.5);
 }
 
 .rating > input:checked + label:hover,
