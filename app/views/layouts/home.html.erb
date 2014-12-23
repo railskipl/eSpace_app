@@ -45,16 +45,12 @@
                         <ul>
                             <% if user_signed_in? %>
                               <li>
-                                  <%= link_to "List your place", posts_overview_path %>
+                                  <%= link_to "List your place", new_post_path ,:style => "border:1px solid #d1d1d1;border-radius:20px;" %>
                               </li>
-                              <li>
-                                  <%= link_to "My Booking", bookings_path %>
+                               <li>
+                                  <%= link_to "Browse Spaces", posts_overview_path %>
                               </li>
-
-                              <li>
-                                  <%= link_to "My Order/Received", order_receives_path %>
-                              </li>
-
+                       
                               <li>
                             
                                <%= link_to("Messages <span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 

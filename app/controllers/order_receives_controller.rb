@@ -17,7 +17,8 @@ class OrderReceivesController < ApplicationController
 	end
 
 	def payments
-	   @bookings = Booking.where('poster_id = ? and stripe_charge_id is not null', current_user.id  )
+		@bookings = Booking.includes(:user).where('poster_id = ? or user_id = ?', current_user.id, current_user.id )
+	    
 	end
 
 	
@@ -45,6 +46,14 @@ class OrderReceivesController < ApplicationController
 	            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
 	            return false
 	    end
+
+	      message_params = {}
+	      message_params["sender_id"] = @booking.user_id
+	      message_params["recipient_id"] = @booking.poster_id
+	      message_params["post_id"] = @booking.post_id
+	      message_params["body"] = "Booking is cancel"
+	      message = Message.new(message_params)
+	      message.save
 
 	    flash[:notice] = "Booking is cancel & $#{amount} is refunded. "
 	    redirect_to order_receives_path

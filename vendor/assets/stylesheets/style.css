@@ -3228,3 +3228,5 @@ a.post-btn {
     padding: 20px;
     border: 2px solid #051628;
 }
+
+.invalidLogin {color:red;position:relative;left:95px;font-size:12px;}

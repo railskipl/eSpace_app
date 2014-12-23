@@ -109,6 +109,8 @@ font-family: brandon4;
 		    <div class="alredy-btn">
 			  <%= link_to "Already cancelled", "javascript:void(0)" %>
 			</div>
+		<% elsif @booking.is_confirm == true %>
+		
 		<% else %>
 		    <div class="booking-btn">
 		      <%= link_to "Cancel Booking", cancel_booking_bookings_path(:drop_off_date =>params[:drop_off_date],:id =>params[:id])%>

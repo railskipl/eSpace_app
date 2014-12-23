@@ -30,10 +30,11 @@ module PostsHelper
 
  def processing_fees(fees)
    if fees <= 8
-   	@cut_off = fees * 0.80
+   	@cut_off = fees.to_f * 0.80
    	return @cut_off 
    elsif fees > 8
-     fees * 10/100
+     @cut_off = fees.to_f * 10/100
+     return @cut_off 
    end
  end		
 
