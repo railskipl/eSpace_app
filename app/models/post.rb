@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
 
-	geocoded_by :address
-  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+	geocoded_by :poster_address
+  after_validation :geocode
   after_validation :lat_changed?
 
   has_many :comments
@@ -32,6 +32,11 @@ class Post < ActiveRecord::Base
     else
       comments.sum(:rating)
     end
+  end
+
+
+  def poster_address
+    [city, state, zip_code].compact.join(', ')
   end
 
   def self.get_status(q)
@@ -107,8 +112,8 @@ class Post < ActiveRecord::Base
   private
 
     def lat_changed?
-      if (self.address_changed?)
-          if !(self.latitude_changed?)
+      if (self.address.present?)
+          if !(self.latitude.present?)
               self.errors.add(:address, "is not valid")
               return false
           end

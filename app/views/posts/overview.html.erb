@@ -348,17 +348,16 @@ window.onload = loadMap;
 
 
   <div class="main2">
-                <div class="map_loc">
-                <div id="map"></div>
-               
-              </div>
-              <div class="right_blue">    
-
+        <div class="map_loc">
+          <div id="map"></div>
+        </div>
+              
+        <div class="right_blue"> 
 
           <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get", :id=>"browse_post"} do |f| %>
-          <div class="search-add">Search near this address </div>
+            <div class="search-add">Search near this address </div>
 
-          <%= f.text_field :address, :value=> "#{params[:search][:address] if params[:search]}", :class=>"sign_up_id1", :placeholder=>"Street, Los angeles, CA 10021", :style=>"width:295px; height:18px; background-color:#072743; color:#FFF; border:1px solid #899199; margin:24px 0 5px 13px; padding-left:5px;" %><br/>
+            <%= f.text_field :address, :value=> "#{params[:search][:address] if params[:search]}", :class=>"sign_up_id1", :placeholder=>"Street, Los angeles, CA 10021", :style=>"width:295px; height:18px; background-color:#072743; color:#FFF; border:1px solid #899199; margin:24px 0 5px 13px; padding-left:5px;" %><br/>
    
        
                <!-------------box_1-------------------->
@@ -400,16 +399,21 @@ window.onload = loadMap;
 
               <%= f.select :area, ((1..90).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}" %>
             </div>
+
 <!-------------box_3 end-------------------->
-<p  class="miles" style="margin-top:-18px;">Miles</p> 
-<p  class="miles1" style="margin-top:-12px;">$</p>
-<p  class="miles2" style="margin-top:-15px;">Square feet</p>
-<div class="need">I need a car to transport the stuff for <a class="tooltip1" href="#" style="color:#999; text-decoration:none;"> 
-<div id="cf2" style="margin-left:130px;">
-                  <img class="bottom" src="/assets/queh.png" />
-                  <img class="top" src="/assets/que.png" />
-                    </div>
-                    <span class="classic">This is just an example of what you can do using </span> </a></div>
+    <p  class="miles" style="margin-top:-18px;">Miles</p> 
+    <p  class="miles1" style="margin-top:-12px;">$</p>
+    <p  class="miles2" style="margin-top:-15px;">Square feet</p>
+    
+    <div class="need">I need a car to transport the stuff for <a class="tooltip1" href="#" style="color:#999; text-decoration:none;"> 
+
+      <div id="cf2" style="margin-left:130px;">
+        <img class="bottom" src="/assets/queh.png" />
+        <img class="top" src="/assets/que.png" />
+      </div>
+                    
+      <span class="classic">This is just an example of what you can do using </span> </a>
+    </div>
 <div class="example">
       <div class="pickup">
      Drop-off &nbsp; <%= f.check_box :dropoff, :checked=> params[:search] ? params[:search][:dropoff] == '1' ? true : false : false %><label for="checkbox1">&nbsp;</label>

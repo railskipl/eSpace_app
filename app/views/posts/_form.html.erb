@@ -71,16 +71,13 @@ $('.masterTooltip').hover(function(){
             
             <div class="right-side">
               <%= form_for(post, :html=>{ id: "new_post"}) do |f| %>
-                <% if post.errors.any? %>
-                  <div id="error_explanation">
-                    <ul>
-                    <% post.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                    <% end %>
-                    </ul>
-                  </div>
-                <% end %>
+                
                     <div class="post-bg">
+                      <% if post.errors.any? %>
+                      <% post.errors.full_messages.each do |message| %>
+                        <p style="color: #fd0000;font-size: 12px;"><%= message %></p><br/>
+                      <% end %>
+                      <% end %>
                       <div class="post-bg-left">
                             <div class="post-bg-row">
                               <div class="post-bg-row-col1">
@@ -169,7 +166,7 @@ $('.masterTooltip').hover(function(){
                               <%= f.text_field :address,"maxlength"=>"40", :class => "small" %>
                             </li> -->
                             <li><label>Street address</label> 
-                              <%= f.text_field :street_add,"maxlength"=>"30", :class => "small" %>
+                              <%= f.text_field :address,"maxlength"=>"30", :class => "small" %>
                             </li>
                             <li class="small"><label>Apt # <span style="color:#78838e; font-size:10px">Optional</span></label> 
                               <%= f.text_field :apt,"maxlength"=>"10", :class => "small" %>
