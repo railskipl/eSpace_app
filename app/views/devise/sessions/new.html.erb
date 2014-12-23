@@ -4,7 +4,7 @@
     <div class="heading-login mrleft75">Login</div>
     
     <strong>
-        <span style = "color:red;position:relative;left:95px;"> <%= params[:flash] %></span>
+        <span class="invalidLogin"> <%= params[:flash] %></span>
     </strong>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="login-popup"> 
