@@ -9,7 +9,7 @@ class CustomFailure < Devise::FailureApp
   
   def respond
   	if  http_auth?
-      redirect_to user_session_path
+  	  redirect_to user_session_path(:flash => i18n_message)
 	else
 	  redirect
 	end
