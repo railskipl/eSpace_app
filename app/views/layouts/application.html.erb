@@ -42,36 +42,27 @@
                       <div class="main-new2">
                         <ul>
                             <% if user_signed_in? %>
-                              <% if controller.controller_name == 'posts' %>
+                              <% if controller.controller_name == 'posts' &&  controller.action_name == 'index'   %>
                                 <li class="active">
-                                    <%= link_to "List your place", posts_overview_path %>
+                                    <%= link_to "List your place", new_post_path, :style => "border:1px solid #d1d1d1;border-radius:20px;"  %>
                                 </li>
                               <%else%>
                                 <li>
-                                  <%= link_to "List your place", posts_overview_path %>
+                                  <%= link_to "List your place", new_post_path, :style => "border:1px solid #d1d1d1;border-radius:20px;"  %>
                                 </li>
                               <%end%>
 
-                              <% if controller.controller_name == 'bookings' %>
+                              <% if controller.controller_name == 'posts' &&  controller.action_name == 'overview' %>
                                 <li class="active">
-                                    <%= link_to "My Booking", bookings_path,:class=>"active"  %>
+                                    <%= link_to "Browse Spaces", posts_overview_path,:class=>"active"  %>
                                 </li>
                               <%else%>
                                 <li>
-                                  <%= link_to "My Booking", bookings_path %>
+                                  <%= link_to "Browse Spaces", posts_overview_path %>
                                 </li>
                               <%end%>
 
-                              <% if controller.controller_name == 'order_receives' %>
-                              <li class="active">
-                                  <%= link_to "My Order/Received", order_receives_path %>
-                              </li>
-                              <%else%>
-                                <li>
-                                  <%= link_to "My Order/Received", order_receives_path %>
-                                </li>
-                              <%end%>
-
+         
                               <% if controller.controller_name == 'messages' %>
                               <li class="active">
                                <%= link_to("Messages <span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
