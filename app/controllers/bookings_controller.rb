@@ -127,7 +127,7 @@ class BookingsController < ApplicationController
     stripe_charge_id = @booking.stripe_charge_id
     days_diff =  days_diff(params[:drop_off_date].to_date)
     amount = cancel_booking_deduction(days_diff, price).to_i 
-    amount_cents = ((@amount.to_f)*100).to_i
+    amount_cents = ((amount)*100).to_i
 
     begin
     ch = Stripe::Charge.retrieve(stripe_charge_id) 

@@ -1994,15 +1994,6 @@ body{
     width: 6px;
 	left:-20px; bottom:18px
 }
-
-	.main-new
-	{
-	width:1024px;
-	background:url(/assets/menubg.jpg) repeat-y #fff;
-	margin-top:0px;
-	overflow:hidden;
-	border-top: 1px solid #eeeeee;
-	} 
 	
 	.chat-wrap {
     background: url(/assets/chat-bg.jpg) repeat-y #fff;

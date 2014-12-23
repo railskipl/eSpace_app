@@ -17,7 +17,8 @@ class OrderReceivesController < ApplicationController
 	end
 
 	def payments
-	   @bookings = Booking.where('poster_id = ? and stripe_charge_id is not null', current_user.id  )
+		@bookings = Booking.includes(:user).where('poster_id = ? or user_id = ?', current_user.id, current_user.id )
+	    
 	end
 
 	

@@ -59,7 +59,7 @@ class BankDetailsController < ApplicationController
             @bank_detail.save
 
             # https://stripe.com/docs/api/ruby#update_transfer
-            redirect_to edit_bank_detail_path(@bank_detail.id), :notice => "Bank info was successfully created." 
+            redirect_to bank_details_path, :notice => "Bank info was successfully created." 
             return false
           end
 

@@ -102,15 +102,18 @@ font-family: brandon4;
 	    <div class="link-more">
 	        <a href="#">Learn more</a>
 	    </div>
-	    <% if @booking.is_confirm == false %>
-		    <div class="booking-btn">
-		     <%= link_to "Confirm drop-off ",confirm_bookings_path(:id => @booking.id ) %>
-		    </div>
-		<%else%>    
-		    <div class="alredy-btn">
-		     	
+
+	    <% if @booking.is_cancel == true %>
+		   
+		<% elsif @booking.is_confirm == true %>
+			<div class="alredy-btn"> 	
 		     	<%= link_to "Already confirmed", "javascript:void(0)" %>
 		    </div> 
+		<% else %>    
+			<div class="booking-btn">
+		     <%= link_to "Confirm drop-off ",confirm_bookings_path(:id => @booking.id ) %>
+		    </div>
+		    
 		<% end %>
 		
 	</div>
