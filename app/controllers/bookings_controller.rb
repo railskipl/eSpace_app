@@ -161,6 +161,7 @@ class BookingsController < ApplicationController
           return false
        end
 
+       transfer_payment = @booking.update_columns(cut_off_price: received_by_poster)
        transfer_payment = @booking.update_columns(commission: commission)
 
        # message_params = {}
