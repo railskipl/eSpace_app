@@ -106,9 +106,9 @@
   </ul>
 
             <div class="right-side">
-              <div class="payment-wrap">
+              <div class="payment-wrap"> 
 
-    <div class="formwrap">
+    <div class="formwrap" style="font-size: 15px;">
 
  <%= form_for(@bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>   
   
@@ -116,15 +116,15 @@
       <%= hidden_field_tag :stripe_card_token %>
        <div>Setup a Card to receive payments <span title="This is some information for our tooltip." class="month1 tooltip_new "><img src="/assets/que.png">
            </span></div>
-       <%= f.text_field :full_name, :class=>"form-control",:placeholder=>"Full name"  %>
+       <%= f.text_field :full_name, :class=>"form-control1",:placeholder=>"Full name"  %>
       <%= f.hidden_field :user_id,:value =>current_user.id %>
        <div class="card">
-      <%= text_field_tag :card_number, nil,:autocomplete => "off", name: nil,:class=>"card_number stripe-sensitive required form-control ",:placeholder=>"Card Number" %>
+      <%= text_field_tag :card_number, nil,:autocomplete => "off", name: nil,:class=>"card_number stripe-sensitive required form-control1 ",:placeholder=>"Card Number" %>
 
-       <span><img src="/assets/card.jpg" alt=""></span>
+       <span style="right: 78px;"><img src="/assets/card.jpg" alt=""></span>
        </div>
        <div class="card">
-      <%= text_field_tag :card_code, nil, name: nil, :autocomplete => :off,:class=>" card_code stripe-sensitive required form-control", :placeholder=>"Card Code" %>
+      <%= text_field_tag :card_code, nil, name: nil, :autocomplete => :off,:class=>" card_code stripe-sensitive required form-control1", :placeholder=>"Card Code" %>
       </div>
       
  
@@ -152,7 +152,7 @@
     </div>
 <!-- <button class="blue-btn b-mar" type="button">Save Changes</button> -->
  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-        <%= submit_tag "Save Changes",:class=>"blue-btn b-mar" %>
+        <%= submit_tag "Save Changes",:class=>"blue-btn-bank-detail b-mar",:style=>"font-size: 16px;" %>
         <% end %>
            </div>         
                 </div>

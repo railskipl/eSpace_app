@@ -56,6 +56,20 @@ $('.masterTooltip').hover(function(){
 });
 });
 </script>
+
+<script type='text/javascript'>//<![CDATA[ 
+  $(window).load(function(){
+
+    $("#post_drop_off").click(function() {
+        $("#post_price_include_drop_off").attr("disabled", !this.checked); 
+    });
+
+    $("#post_pick_up").click(function() {
+        $("#post_price_include_pick_up").attr("disabled", !this.checked); 
+    });
+  });//]]>  
+
+</script>
              
     <div class="main-new">
             <ul class="verticle-menu">
@@ -65,7 +79,7 @@ $('.masterTooltip').hover(function(){
               <li class="active"><%= link_to "My Post",posts_path%></li>
               <li><%= link_to "My Order/Received",order_receives_path%></li>
               <li><%= link_to "My Booking", bookings_path%></li>
-              <li><%= link_to "Payment", nil%></li>
+              <li><%= link_to "Payment", payments_path%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
             </ul>
             
@@ -127,7 +141,7 @@ $('.masterTooltip').hover(function(){
                                 <ul class="check-box">
                             <li>
                                 <label class="tasks-list-item">
-                                <input type="checkbox" id="post_drop_off" name="post[drop_off]" value="1" class="tasks-list-cb">
+                                <input type="checkbox" id="post_drop_off" name="post[drop_off]" value="1" class="tasks-list-cb" onclick="enable_text(this.checked)">
                                 <%#= f.check_box :drop_off, :class => "tasks-list-cb" %>
                                 <span class="tasks-list-mark"></span>
                                 <span class="tasks-list-desc">Drop-off</span>
@@ -136,7 +150,7 @@ $('.masterTooltip').hover(function(){
                                 
                             <li>
                                 <label class="tasks-list-item">
-                                <input type="checkbox" id="post_pick_up" name="post[pick_up]" value="1" class="tasks-list-cb">
+                                <input type="checkbox" id="post_pick_up" name="post[pick_up]" value="1" class="tasks-list-cb" onclick="enable_text(this.checked)">
                                 <%#= f.check_box :pick_up, :class => "tasks-list-cb" %>
                                 <span class="tasks-list-mark"></span>
                                 <span class="tasks-list-desc">Pick-up</span>
@@ -150,10 +164,10 @@ $('.masterTooltip').hover(function(){
                                 <ul class="post-date post-price">
 
                                 <li <% if post.drop_off == true %> <% else %>  <% end %> ><label>Price</label><span>$</span>
-                                  <%= f.text_field :price_include_drop_off,:style=>"text-align: right;" %>
+                                  <%= f.text_field :price_include_drop_off,:style=>"text-align: right;" ,:disabled => true%>
                                 </li>
                                 <li <% if post.pick_up == true %> <% else %>  <% end %>><label>Price</label><span>$</span>
-                                  <%= f.text_field :price_include_pick_up,:style=>"text-align: right;" %>
+                                  <%= f.text_field :price_include_pick_up,:style=>"text-align: right;" ,:disabled => true%>
                                 </li>
                                 </ul>
                               </div>
