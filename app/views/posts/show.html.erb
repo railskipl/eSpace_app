@@ -257,9 +257,9 @@ jQuery(document).ready(function(){
            
            <div class="kal">  
             <% if @post.photo.url(:medium) == "/photos/medium/missing.png" %>
-              <%= image_tag "default_post_large.png", :style => "width:512px" %>
+              <%= image_tag "default_post_large.png", :style => "width:511px" %>
             <% else %>
-              <%= image_tag(@post.photo.url(:medium), :style => "width:512px") %>
+              <%= image_tag(@post.photo.url(:medium), :style => "width:511px") %>
             <% end %>
 
            </div>
