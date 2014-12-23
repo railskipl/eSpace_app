@@ -44,11 +44,11 @@
                             <% if user_signed_in? %>
                               <% if controller.controller_name == 'posts' &&  controller.action_name == 'index'   %>
                                 <li class="active">
-                                    <%= link_to "List your place", posts_path, :style => "border:1px solid #d1d1d1;border-radius:20px;"  %>
+                                    <%= link_to "List your place", new_post_path, :style => "border:1px solid #d1d1d1;border-radius:20px;"  %>
                                 </li>
                               <%else%>
                                 <li>
-                                  <%= link_to "List your place", posts_path, :style => "border:1px solid #d1d1d1;border-radius:20px;"  %>
+                                  <%= link_to "List your place", new_post_path, :style => "border:1px solid #d1d1d1;border-radius:20px;"  %>
                                 </li>
                               <%end%>
 

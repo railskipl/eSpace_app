@@ -45,7 +45,7 @@
                         <ul>
                             <% if user_signed_in? %>
                               <li>
-                                  <%= link_to "List your place", posts_path ,:style => "border:1px solid #d1d1d1;border-radius:20px;" %>
+                                  <%= link_to "List your place", new_post_path ,:style => "border:1px solid #d1d1d1;border-radius:20px;" %>
                               </li>
                                <li>
                                   <%= link_to "Browse Spaces", posts_overview_path %>
