@@ -147,11 +147,16 @@
   <%= javascript_include_tag "animated_message", "cbpHorizontalMenu.min", "horizontalMenu" %>
 
     <script type="text/javascript">
-
+           jQuery('#myAnchor2').click(function(){
+          jQuery('html, body').animate({
+              scrollTop: jQuery( jQuery(this).attr('href') ).offset().top
+          }, 1200);
+          return false;
+        });
          jQuery('#myAnchor').click(function(){
           jQuery('html, body').animate({
               scrollTop: jQuery( jQuery(this).attr('href') ).offset().top
-          }, 500);
+          }, 1200);
           return false;
         });
 
