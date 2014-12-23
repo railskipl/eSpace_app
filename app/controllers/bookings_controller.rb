@@ -123,22 +123,67 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     price = @booking.price
 
-
     stripe_charge_id = @booking.stripe_charge_id
     days_diff =  days_diff(params[:drop_off_date].to_date)
-    amount = cancel_booking_deduction(days_diff, price).to_i 
+    amount = cancel_booking_deduction(days_diff, price) 
     amount_cents = ((amount)*100).to_i
 
+    send_money = send_money_to_poster(days_diff, price) 
+    send_money_cents = ((send_money)*100).to_i
+
+    
     begin
-    ch = Stripe::Charge.retrieve(stripe_charge_id) 
-    refund = ch.refunds.create(:amount => amount_cents)
-    cancel_booking = @booking.update_columns(is_cancel: true)
+      ch = Stripe::Charge.retrieve(stripe_charge_id) 
+      refund = ch.refunds.create(:amount => amount_cents)
+      cancel_booking = @booking.update_columns(is_cancel: true)
     rescue Stripe::InvalidRequestError => e
-            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
-            return false
+      redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+      return false
     end
 
-    flash[:notice] = "Booking is cancel & $#{amount} is refunded. "
+    @recipient_details = BankDetail.where("user_id =?",params[:poster_id]).first
+
+    if @recipient_details
+
+      stripe_processing_fees = price.to_i * 0.029 + 0.30
+      commission = send_money_to_admin(days_diff, price) - stripe_processing_fees - 0.25
+
+      begin
+        transfer = Stripe::Transfer.create(
+        :amount => send_money_cents, # amount in cents
+        :currency => "usd",
+        :recipient => @recipient_details.stripe_recipient_token,
+        :card => @recipient_details.stripe_card_id_token,
+        :statement_description => "Money transfer"
+      )
+       rescue Stripe::InvalidRequestError => e
+          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+          return false
+       end
+
+       transfer_payment = @booking.update_columns(commission: commission)
+
+       # message_params = {}
+       # message_params["sender_id"] = @booking.user_id
+       # message_params["recipient_id"] = @booking.poster_id
+       # message_params["post_id"] = @booking.post_id
+       # message_params["body"] = "Booking is cancel and cancelation amount $#{send_money} is transfer to your account."
+       # message = Message.new(message_params)
+       
+    else
+
+    end
+
+      message_params = {}
+      message_params["sender_id"] = @booking.user_id
+      message_params["recipient_id"] = @booking.poster_id
+      message_params["post_id"] = @booking.post_id
+      message_params["body"] = "Booking is cancel"
+      message = Message.new(message_params)
+      message.save
+
+    flash[:notice] = "Booking is cancel & $#{amount} is refunded"
+    
     redirect_to booking_path(@booking.id)
     
   end

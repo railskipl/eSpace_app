@@ -47,6 +47,14 @@ class OrderReceivesController < ApplicationController
 	            return false
 	    end
 
+	      message_params = {}
+	      message_params["sender_id"] = @booking.user_id
+	      message_params["recipient_id"] = @booking.poster_id
+	      message_params["post_id"] = @booking.post_id
+	      message_params["body"] = "Booking is cancel"
+	      message = Message.new(message_params)
+	      message.save
+
 	    flash[:notice] = "Booking is cancel & $#{amount} is refunded. "
 	    redirect_to order_receives_path
 	    

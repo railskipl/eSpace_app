@@ -26,7 +26,7 @@ class PayementTransfersController < ApplicationController
 
       total_amount = ((received_by_poster + 0.25) * 100).to_i
 
-      begin
+    begin
       transfer = Stripe::Transfer.create(
   	  :amount => total_amount, # amount in cents
   	  :currency => "usd",
@@ -35,8 +35,8 @@ class PayementTransfersController < ApplicationController
   	  :statement_description => "Money transfer"
   	)
      rescue Stripe::InvalidRequestError => e
-              redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
-              return false
+        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+        return false
      end
 
       transfer_payment = @booking.first.update_columns(stripe_transfer_id: transfer[:id])
@@ -49,8 +49,9 @@ class PayementTransfersController < ApplicationController
       redirect_to payement_transfers_path
       flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{received_by_poster} and commision is $#{commission}"
     else
-      redirect_to payement_transfers_path
       flash[:error]  = "No bank detail added for payment"
+      redirect_to payement_transfers_path
+      
     end
   end	
   
