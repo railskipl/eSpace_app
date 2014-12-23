@@ -377,7 +377,7 @@ window.onload = loadMap;
             <!-------------box_1 end-------------------->
 
              <!-------------box_2-------------------->
-             <p  class="text_2">Max price/sq. foot</p>
+             <p  class="text_2" style="margin: -20px -5px 3px 75px;">Max price/sq. foot</p>
               <div class="styleSelect" style="margin:-19px 20px 30px 245px;">
                  
                 <%#= select_tag("search[price]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:price] if params[:search]}")) %>
@@ -388,7 +388,7 @@ window.onload = loadMap;
  
  
         <!-------------box_3-------------------->
-        <div class="text_3">Area needed <a class="tooltip1" href="#" style="color:#999; text-decoration:none;">
+        <div class="text_3" style="margin: -49px 0 0 318px;">Area needed <a class="tooltip1" href="#" style="color:#999; text-decoration:none;">
         <div id="cf2" style="margin-left:60px;">
                   <img class="bottom" src="/assets/queh.png" />
                   <img class="top" src="/assets/que.png" />
