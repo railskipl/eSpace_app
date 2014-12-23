@@ -14,7 +14,7 @@ Rails.application.config.assets.precompile += %w( ddaccordion.js jquery.mCustomS
 Rails.application.config.assets.precompile += %w( jquery.min.js jquery.mCustomScrollbar.concat.min.js)
 Rails.application.config.assets.precompile += %w( bootstrap.min.css bootstrap.min.js)
 Rails.application.config.assets.precompile += %w( component.css horizontalMenu.js)
-Rails.application.config.assets.precompile += %w( cbpHorizontalMenu.min.js )
+Rails.application.config.assets.precompile += %w( cbpHorizontalMenu.min.js checkout.js)
 Rails.application.config.assets.precompile += %w( jquery-1.7.0.min.js animated_message.js)
 
 # Precompile additional assets.

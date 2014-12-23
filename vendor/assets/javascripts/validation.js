@@ -262,7 +262,7 @@ messages: {
 		number:"Please enter integer value"
 	},
 	"post[address]":{
-		required: "Please enter Address"
+		required: "Please enter street address"
 	},
 	"post[city]":{
 		required: "Please enter city"
