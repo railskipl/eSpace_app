@@ -1455,25 +1455,17 @@ background-color:#072643;
 		}
 		
 		
-		.classic10 { padding: 0.8em 1em; color:#000; }
-		.classic10 { padding: 0.8em 1em; color:#000; }
-		.custom { padding: 0.5em 0.8em 0.8em 2em; }
-		.classic10 {background: #FFFFFF; border:1px #CCC solid;}
-	
-	
-	
-	
+.classic10 { padding: 0.8em 1em; color:#000; }
+.classic10 { padding: 0.8em 1em; color:#000; }
+.custom { padding: 0.5em 0.8em 0.8em 2em; }
+.classic10 {background: #FFFFFF; border:1px #CCC solid;}
 	
 		
-		
-		
-		
-		
-		#cf {
+#cf {
   position:relative;
-  height:50px;
-  width:50px;
-  margin:0 -25px;
+  height:30px;
+  width:30px;
+  margin:15px -25px;
 }
 
 #cf img {
@@ -2867,7 +2859,7 @@ div.submenu
 			font-family:brandon4;
 			margin-top:0px;
 		    color:#999;
-
+		    position:absolute;
 		 }	
 
 		 .booking_content { 

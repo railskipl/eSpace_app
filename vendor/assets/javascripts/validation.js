@@ -220,7 +220,18 @@ rules: {
 	},
 	"post[address]":{
 		required:true
+	},
+	"post[city]":{
+		required:true
+	},
+	"post[state]":{
+		required:true
+	},
+	"post[zip_code]":{
+		required:true,
+		number:true
 	}
+
 },
 messages: {
 
@@ -232,11 +243,11 @@ messages: {
 		required: "Please enter Price per square feet",
 		number:"Please enter integer value"
 	},
-	"post[price_include_pick_up]":{
-		number:"Please enter integer value"
+	"post[drop_off_avaibility_start_date]":{
+		required: "Please enter Drop off avaibility start date"
 	},
-	"post[price_include_drop_off]":{
-		number:"Please enter integer value"
+	"post[drop_off_avaibility_end_date]":{
+		required: "Please enter Drop off avaibility end date"
 	},
 	"post[pick_up_avaibilty_start_date]":{
 		required: "Please enter Pick up avaibilty start date"
@@ -244,14 +255,24 @@ messages: {
 	"post[pick_up_avaibility_end_date]":{
 		required: "Please enter Pick up avaibility end date"
 	},
-	"post[drop_off_avaibility_start_date]":{
-		required: "Please enter Drop off avaibility start date"
+	"post[price_include_pick_up]":{
+		number:"Please enter integer value"
+	},
+	"post[price_include_drop_off]":{
+		number:"Please enter integer value"
 	},
 	"post[address]":{
 		required: "Please enter Address"
 	},
-	"post[drop_off_avaibility_end_date]":{
-		required: "Please enter Drop off avaibility end date"
+	"post[city]":{
+		required: "Please enter city"
+	},
+	"post[state]":{
+		required: "Please enter state"
+	},
+	"post[zip_code]":{
+		required: "Please enter zip code",
+		number: "Please enter integer value"
 	}
 }
 });
