@@ -1,10 +1,11 @@
 class BankDetailsController < ApplicationController
 
  before_filter :authenticate_user!, :except => []
- before_action :set_bank_detail, only: [:show, :edit, :update, :destroy]
+ before_action :set_bank_detail, only: [:show, :update, :destroy]
  respond_to :html, :xml, :json
 
   def index
+    @bank_detail = BankDetail.has_bank_detail(current_user.id).first
     @bank_details = current_user.bank_details.all
     
   end
@@ -14,15 +15,12 @@ class BankDetailsController < ApplicationController
   end
 
   def new
-    @bank_detail = BankDetail.has_bank_detail(current_user.id).first
-    if @bank_detail.present?
-       redirect_to edit_bank_detail_path(@bank_detail.id)
-    else
-      @bank_detail = BankDetail.new
-    end 
+    #@bank_detail = BankDetail.has_bank_detail(current_user.id).first
+    @bank_detail = BankDetail.new 
   end
 
   def edit
+    redirect_to bank_details_path
   end
 
   def create
@@ -36,7 +34,6 @@ class BankDetailsController < ApplicationController
             recipient = Stripe::Recipient.create(
               :name => params[:bank_detail][:full_name],
               :type => "individual",
-              :email => "payee@example.com",
               :card => params[:stripe_card_token]
             )
    
@@ -84,6 +81,8 @@ class BankDetailsController < ApplicationController
   end
 
   def destroy
+    rp = Stripe::Recipient.retrieve(@bank_detail.stripe_recipient_token) 
+    rp.delete
     @bank_detail.destroy
     respond_to do |format|
       format.html { redirect_to bank_details_path, notice: 'Bank info was successfully destroyed.' }
