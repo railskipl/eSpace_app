@@ -10,6 +10,10 @@ class HomeController < ApplicationController
     
   def about_us
   end
+
+  def contactus
+    
+  end
    
   def all_postings
     @posts = Post.where("user_id != ?",current_user.id).order("id desc").page(params[:page]).per_page(10)
