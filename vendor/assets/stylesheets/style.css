@@ -3229,4 +3229,4 @@ a.post-btn {
     border: 2px solid #051628;
 }
 
-.invalidLogin {color:red;position:relative;left:95px;font-size:12px;}
+.invalidLogin {color:#fd0000;position:relative;left:95px;font-size:12px;}
