@@ -44,23 +44,9 @@ class FaqsController < ApplicationController
   def frequently_asked_question
     if params[:search].present?
       search_condition = "%" + params[:search] + "%"
-      @faqss = Faq.where('title LIKE ? ',search_condition)
-      if @faqss.present?
-         @faqs = @faqss
-      else
-        faq_question = FaqQuestion.where('question LIKE ? OR answer LIKE ?',search_condition, search_condition )
-        @a = []
-        faq_question.each do |fa|
-          @a << fa.faq_id
-        end
-        @faqs = []
-        @a.uniq.each do |fa|
-          @faqs << Faq.find(fa)
-        end
-      end
-      @faqs
+      @faqs = Faq.faq_search(search_condition)
     else
-      @faqs = Faq.all
+      @faqs = Faq.includes(:faq_questions)
     end  
   end
 
