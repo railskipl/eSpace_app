@@ -3,9 +3,9 @@
 <td><%= index + 1 %></td>
 <td><%= booking.id %></td>
 <td><%= booking.area rescue nil %></td>
-<td>$<%= booking.cut_off_price.to_i rescue nil %></td>
-<td>$<%= booking.price.to_i rescue nil %></td>
-<td>$<%= booking.commission.to_i %></td>
+<td>$<%= booking.cut_off_price rescue nil %></td>
+<td>$<%= booking.price rescue nil %></td>
+<td>$<%= booking.commission %></td>
 <td><%= booking.post.address rescue nil%></td>
 <td><%= booking.status.camelize rescue nil %>
   

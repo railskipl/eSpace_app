@@ -5,6 +5,8 @@ class Booking < ActiveRecord::Base
 
 	scope :booking_cancelled, -> {where(is_cancel: true)}
 
+	delegate :name, :last_name ,:to => :user, :prefix => true
+
 	def self.result_area(post)
 		select("area").where("post_id = ? and pickup_date >= ?", post.id, Date.today)
 	end

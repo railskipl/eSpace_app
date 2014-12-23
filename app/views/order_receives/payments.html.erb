@@ -18,7 +18,15 @@
             <div class="order-box">
                 <div class="pay-col pay-col1">
                 	<%if booking.stripe_charge_id.present? %>
-                    <span>Payment type</span> : Received
+                    <span>Payment type</span> :
+
+                            <% if booking.is_cancel == true %>
+                               Cancelled
+                            <% elsif booking.is_confirm == true %>
+                               Confirmed booking
+                            <% else %>
+                               Waiting for drop-off confirmation
+                            <% end %>
                     <%end%>
                    
                     <p>
@@ -27,7 +35,7 @@
                 </div>
                 
                 <div class="pay-col pay-col1">
-                	<span>To/From</span>: <%= booking.user.name.capitalize%> <%= booking.user.last_name[0,1]%>
+                	<span>To/From</span>: <%= booking.user_name.capitalize%> <%= booking.user_last_name[0,1]%>
                 </div>
                 
                 <div class="pay-col pay-col1">
@@ -35,7 +43,7 @@
                 </div>
                 
                 <div class="pay-col pay-col1">
-                	<span>Amount</span>: $<%= booking.price%>
+                	<span>Amount</span>: $<%= booking.price %>
                 </div>
             </div>
             <%end%>
