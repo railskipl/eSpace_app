@@ -8,6 +8,7 @@
   <th>Total amount we paid</th>
   <th>Stripe commission for payout</th>
   <th>Net amount user received</th>
+  <th>Actual amount we paid</th>
   <th>Stripe's addition/subtraction</th>
   <th>Actual amount user received as refund</th>
   <th>Our final income</th>
@@ -23,6 +24,7 @@
   <td><%= booking.cut_off_price + 0.25 rescue nil %></td>
   <td>0.25</td>
   <td><%= booking.cut_off_price rescue nil %></td>
+  <td><%= booking.refund_finder - ((booking.refund_finder * 2.9)/100) rescue nil %></td>
   <td><%= ((booking.refund_finder * 2.9)/100) rescue nil %>
   <td><%= booking.refund_finder rescue nil %>
   <td><%= booking.commission rescue nil %>
