@@ -41,6 +41,7 @@ class OrderReceivesController < ApplicationController
 	    ch = Stripe::Charge.retrieve(stripe_charge_id) 
 	    refund = ch.refunds.create(:amount => amount_cents)
 	    cancel_booking = @booking.update_columns(is_cancel: true)
+	    transfer_payment = @booking.update_columns(refund_finder: amount)
 	    cancel_booking = @booking.update_columns(comment: "Cancel by poster.")
 	    
 	    rescue Stripe::InvalidRequestError => e

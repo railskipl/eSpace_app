@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141224092429) do
+ActiveRecord::Schema.define(version: 20141224120333) do
 
   create_table "about_us", force: true do |t|
     t.string   "name"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20141224092429) do
     t.boolean  "is_confirm",            default: false
     t.float    "commission"
     t.text     "comment"
+    t.float    "refund_finder"
   end
 
   create_table "comments", force: true do |t|

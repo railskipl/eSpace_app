@@ -1,48 +1,32 @@
 
-
-
 <table class="table table-striped">
 <tr>
-    <th>Sr No.</th>
-    <th>Booking ID</th>
-    <th>Booking Date</th>
-    <th>Booking Area/Sq.Ft</th>
-    <th>Payment Received by Poster</th>
-    <th>Payment Done by Finder</th>
-    <th>Commission</th>
-    <th>Poster Name</th>
-    <th>Finder Name</th>
-    <th>Address</th>
-    <th>Transfer Status</th>
-    <th>Money Transfer</th>
-</tr>
-<% @payment_transfers.try(:each_with_index) do |booking, index|%>
-<tr>
-
-  <td><%= index + 1 %></td>
-  <td><%= booking.id %></td>
-  <td><%= booking.created_at.to_date rescue nil%></td>
-  <td><%= booking.area rescue nil %></td>
-  <td>$<%= booking.cut_off_price.to_i rescue nil %></td>
-  <td>$<%= booking.price.to_i rescue nil %></td>
-  <td>$<%= booking.commission.to_i %></td>
-  <td><%= booking.poster.name rescue nil%></td>
-  <td><%= booking.user.name rescue nil %></td>
-  <td><%= booking.post.address rescue nil%></td>
-  <td><%= booking.status.camelize rescue nil %>
-    
-  <td>
-    <% if booking.is_cancel == true %>
-        <span>Cancelled</span>
-    <% else %>
-    <% unless booking.stripe_transfer_id.present? %>  
-    <%= link_to "Money Transfer",transfer_money_payement_transfers_path(:booking_id =>booking.id,:poster_id =>booking.poster_id,:finder_id=>booking.user_id) rescue nil%>
-    <% else %>
-       -----
-    <% end %>
-    <% end %>
-  </td>  
+  <th>Sr No.</th>
+  <th>Amount finder was charged</th>
+  <th>Stripe commission for charge</th>
+  <th>Actual (net) we received</th>
+  <th>Total amount we paid</th>
+  <th>Stripe commission for payout</th>
+  <th>Net amount user received</th>
+  <th>Stripe's addition/subtraction</th>
+  <th>Actual amount user received as refund</th>
+  <th>Our final income</th>
   
 </tr>
-<%end%> 
+<% @payment_transfers.try(:each_with_index) do |booking, index|%>
+   
+<tr>
+  <td><%= index + 1 %></td>
+  <td><%= booking.price.present? ? booking.price : ' --' rescue nil  %></td>
+  <td><%= stripe_charge = booking.price.to_i * 0.029 + 0.30 rescue nil %></td>
+  <td><%= booking.price - stripe_charge  rescue nil %></td>
+  <td><%= booking.cut_off_price + 0.25 rescue nil %></td>
+  <td>0.25</td>
+  <td><%= booking.cut_off_price rescue nil %></td>
+  <td><%= ((booking.refund_finder * 2.9)/100) rescue nil %>
+  <td><%= booking.refund_finder rescue nil %>
+  <td><%= booking.commission rescue nil %>
+
+</tr>
+<% end %>
 </table>
