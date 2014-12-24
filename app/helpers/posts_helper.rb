@@ -27,7 +27,15 @@ module PostsHelper
                     end   
                   } 
   end
-
+  
+  def date_range(post)
+    if post.drop_off_avaibility_start_date >= Date.today
+       post.drop_off_avaibility_start_date
+    else
+       Date.today
+    end
+  end
+ 
  def processing_fees(fees)
    if fees <= 8
    	@cut_off = fees.to_f * 0.80
