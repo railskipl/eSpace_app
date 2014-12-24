@@ -31,8 +31,7 @@ class OrderReceivesController < ApplicationController
 	 def cancel_booking
 
 	    @booking = Booking.find(params[:id])
-	    @booking.area = 0
-	    @booking.save
+	
 	    amount = @booking.price
 	    
 	    stripe_charge_id = @booking.stripe_charge_id
@@ -42,6 +41,8 @@ class OrderReceivesController < ApplicationController
 	    ch = Stripe::Charge.retrieve(stripe_charge_id) 
 	    refund = ch.refunds.create(:amount => amount_cents)
 	    cancel_booking = @booking.update_columns(is_cancel: true)
+	    cancel_booking = @booking.update_columns(comment: "Cancel by poster.")
+	    
 	    rescue Stripe::InvalidRequestError => e
 	            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
 	            return false
