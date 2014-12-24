@@ -124,9 +124,7 @@
     },
 
     close: function() {
-      location.reload();
       $(document).trigger('close.facebox')
-
       return false
     }
   })
@@ -284,6 +282,7 @@
 
     $('#facebox_overlay').fadeOut(200, function(){
       $("#facebox_overlay").removeClass("facebox_overlayBG")
+      $("#facebox").remove()
       $("#facebox_overlay").addClass("facebox_hide")
       $("#facebox_overlay").remove()
     })

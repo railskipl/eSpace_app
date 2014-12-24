@@ -6,7 +6,8 @@
 
 <title>Dinobo</title>
 <%= stylesheet_link_tag  'style', "components", "component","facebox.css", media: 'all'%>
-<%= javascript_include_tag "application", "facebox.js" %>
+<%= javascript_include_tag "application"%>
+
 <%= csrf_meta_tags %>  
 </head>
 
@@ -130,8 +131,10 @@
 </script>       
                 
   
-  
-  <%= javascript_include_tag "typer" %>
+  <script type="text/javascript">
+    // jQuery.noConflict(true);
+  </script>
+  <%= javascript_include_tag "typer","facebox" %>
   
   <script>
   jQuery(function () { 
