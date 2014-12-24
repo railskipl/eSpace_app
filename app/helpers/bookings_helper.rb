@@ -17,13 +17,13 @@ module BookingsHelper
 
   def send_money_to_poster(days,price)
     if days >= 20 
-       @deducted_amount = price.to_f - (price.to_f * 0.9) + 0.25
+       @deducted_amount = price.to_f - (price.to_f * 0.9) 
        return @deducted_amount
     elsif(days > 2 && days <= 20)  
-      @deducted_amount = price.to_f - (price.to_f * 0.5) + 0.25
+      @deducted_amount = price.to_f - (price.to_f * 0.5)
       return @deducted_amount
     elsif(days <=2)  
-      @deducted_amount = price.to_f - (price.to_f * 0.3) + 0.25
+      @deducted_amount = price.to_f - (price.to_f * 0.3)
       return @deducted_amount  
     end   
   end

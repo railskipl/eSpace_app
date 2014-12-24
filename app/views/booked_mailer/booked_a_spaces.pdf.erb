@@ -1,0 +1,11 @@
+
+    <p>Date of booking : <%= @booking.created_at.strftime("%B %d,%Y") %></p>
+    <p>Booked area : <%= @booking.area %> Sq. Feet </p>
+    
+    <p>Drop-off : <%= @booking.dropoff_date.strftime("%B %d,%Y") %></br>
+                  Drive : <% if @booking.dropoff_price != 0 %> $<%= @booking.dropoff_price %> <% else %> Unavailable <% end %> </p>
+                          
+    <p>Pick-up : <%= @booking.pickup_date.strftime("%B %d,%Y") %></br>
+                  Drive :  <% if @booking.pickup_price != 0 %> $<%= @booking.pickup_price %> <% else %> Unavailable <% end %></p>
+                          
+    <p>Total Amount $<%= @booking.price %></p>

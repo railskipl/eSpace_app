@@ -14,8 +14,10 @@ class PayementTransfersController < ApplicationController
   #transfer the payement to poster account. 
   def transfer_money
     @recipient_details = BankDetail.where("user_id =?",params[:poster_id]).first
-    if @recipient_details
+
       @booking = Booking.where("id = ?",params[:booking_id])
+
+    if @recipient_details
 
       @price = @booking.first.price.to_i
       received_by_poster = @price - processing_fees(@price)
@@ -44,11 +46,22 @@ class PayementTransfersController < ApplicationController
       transfer_payment = @booking.first.update_columns(is_confirm: true)
       transfer_payment = @booking.first.update_columns(cut_off_price: received_by_poster)
       transfer_payment = @booking.first.update_columns(commission: commission)
+      
       #transfer_payment = @booking.update_attributes(person_params)
+
+      message_params = {}
+      message_params["sender_id"] = current_user.id
+      message_params["recipient_id"] = @booking.poster_id
+      message_params["post_id"] = @booking.post_id
+      message_params["body"] = "Payment has been transfered to your account."
+      message = Message.new(message_params)
+      message.save
+
 
       redirect_to payement_transfers_path
       flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{received_by_poster} and commision is $#{commission}"
     else
+      transfer_payment = @booking.first.update_columns(comment: "Waiting for poster bank account.")
       flash[:error]  = "No bank detail added for payment"
       redirect_to payement_transfers_path
       

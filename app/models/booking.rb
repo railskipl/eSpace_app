@@ -8,6 +8,6 @@ class Booking < ActiveRecord::Base
 	delegate :name, :last_name ,:to => :user, :prefix => true
 
 	def self.result_area(post)
-		select("area").where("post_id = ? and pickup_date >= ?", post.id, Date.today)
+		select("area").where("post_id = ? and pickup_date >= ? and is_cancel != ?", post.id, Date.today, true)
 	end
 end
