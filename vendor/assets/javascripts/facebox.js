@@ -124,7 +124,9 @@
     },
 
     close: function() {
+      location.reload();
       $(document).trigger('close.facebox')
+
       return false
     }
   })

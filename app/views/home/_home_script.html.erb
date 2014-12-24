@@ -55,14 +55,30 @@
 			var email = document.getElementById("email").value;
 			// Returns successful data submission 
 			var dataString = 'email='+ email;
-
-            $.ajax({
-					type: "POST",
-					url: "authenticates",
+			 $.ajax({
+					type: "GET",
+					url: "<%= check_email_authenticates_path %>?email=" + dataString,
 					data: dataString,
+					 success: function(response){
+   						if (response){
+   						 $('#email').parent().parent().find('.form-error').html("User already exists.");
+	    				err++;
+   						}
+   						else{
+   						  $.ajax({
+							type: "POST",
+							url: "authenticates",
+							data: dataString,
+							cache: false
+						});
+
+   						}
+
+     			 },
 					cache: false
 				});
 
+ 
              return false;      
     }else{
             
