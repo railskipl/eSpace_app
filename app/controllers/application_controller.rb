@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
       u.permit(:name, :last_name, :personal_email, :mobile_number,:email, :password, :password_confirmation,:current_password) }
   end
 
+  def  after_sign_in_path_for(curent_user)
+    posts_overview_path
+  end
+
 end
