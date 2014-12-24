@@ -13,7 +13,11 @@ class ApplicationController < ActionController::Base
   end
 
   def  after_sign_in_path_for(curent_user)
-    posts_overview_path
+     if curent_user.admin?
+       admins_path 
+     else
+      posts_overview_path
+     end
   end
 
 end
