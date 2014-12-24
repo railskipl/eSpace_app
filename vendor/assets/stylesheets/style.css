@@ -2441,18 +2441,6 @@ form.change_password .textbox input {
     width: 1024px;
 }
 
-
-
-.verticle-menu {
-    float: left;
-    font-family: "brandon2";
-    font-size: 13px;
-    list-style-type: none;
-    margin: 0;
-    padding: 27px 43px;
-    width: 270px;
-}
-
 .mark {
     /*background: url("/assets/new_drop-arrow.png") no-repeat scroll 260px center rgba(0, 0, 0, 0);*/
     border: medium none;
