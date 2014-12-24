@@ -130,6 +130,8 @@ class BookingsController < ApplicationController
     amount = cancel_booking_deduction(days_diff, price) 
     amount_cents = ((amount)*100).to_i
 
+    refund_addition = ((amount * 2.9)/100)
+
     send_money = send_money_to_poster(days_diff, price) 
     send_money_cents = ((send_money)*100).to_i
 
@@ -147,8 +149,8 @@ class BookingsController < ApplicationController
 
     if @recipient_details.present?
 
-      stripe_processing_fees = price.to_i * 0.029 + 0.30
-      commission = send_money_to_admin(days_diff, price) - stripe_processing_fees - 0.25
+      stripe_processing_fees = price.to_i * 0.029 + 0.30 - refund_addition
+      commission = send_money_to_admin(days_diff, price) - stripe_processing_fees
 
       begin
         transfer = Stripe::Transfer.create(
@@ -167,6 +169,7 @@ class BookingsController < ApplicationController
        transfer_payment = @booking.update_columns(commission: commission)
        
     else
+       stripe_processing_fees = price.to_i * 0.029 + 0.30 - refund_addition
        commission = send_money + send_money_to_admin(days_diff, price) - stripe_processing_fees - 0.25
        transfer_payment = @booking.update_columns(commission: commission)
        transfer_payment = @booking.update_columns(comment: "Waiting for poster bank account.")
@@ -180,6 +183,8 @@ class BookingsController < ApplicationController
       message = Message.new(message_params)
       message.save
 
+      transfer_payment = @booking.update_columns(refund_finder: amount)
+      
     flash[:notice] = "Booking is cancel & $#{amount} is refunded"
     
     redirect_to booking_path(@booking.id)

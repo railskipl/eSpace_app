@@ -21,5 +21,6 @@
 </tr>
 <% @payment_transfers.try(:each_with_index) do |booking, index|%>
    <%= render 'result_payment', :index => index, :booking => booking %>
-<%end%> 
+<% end%>  
+
 </table>

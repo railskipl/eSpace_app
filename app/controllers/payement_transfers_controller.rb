@@ -46,6 +46,7 @@ class PayementTransfersController < ApplicationController
       transfer_payment = @booking.first.update_columns(is_confirm: true)
       transfer_payment = @booking.first.update_columns(cut_off_price: received_by_poster)
       transfer_payment = @booking.first.update_columns(commission: commission)
+      
       #transfer_payment = @booking.update_attributes(person_params)
 
       message_params = {}
