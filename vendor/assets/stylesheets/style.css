@@ -2491,7 +2491,7 @@ form.change_password .textbox input {
     font-family: brandon4;
     font-size: 12px;
     margin-top: 30px;
-    padding-left: 90px;
+    padding-left: 105px;
 }
 
 .selectParent {
@@ -3221,4 +3221,51 @@ a.post-btn {
     border: 2px solid #051628;
 }
 
+
+.invalidLogin {color:red;position:relative;left:95px;font-size:12px;}
+
+.tasks-list-item1 {
+    -moz-user-select: none;
+    cursor: pointer;
+    float: right;
+    margin-right: 70px;
+}
+
+.form-control1 {
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #eeeeee;
+    border-radius: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #dedede;
+    display: block;
+    font-family: brandon4;
+    font-size: 16px;
+    height: 40px;
+    margin-bottom: 18px;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 211px;
+}
+
+
+.blue-btn-bank-detail {
+    background: none repeat scroll 0 0 #00b4ff;
+    border: 0 none;
+    border-radius: 0;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "brandon4";
+    font-size: 20px;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 211px;
+}
+
 .invalidLogin {color:#fd0000;position:relative;left:95px;font-size:12px;}
+
