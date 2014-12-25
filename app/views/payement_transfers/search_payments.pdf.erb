@@ -1,4 +1,3 @@
-
 <table class="table table-striped">
 <tr>
   <th>Sr No.</th>
@@ -8,6 +7,7 @@
   <th>Total amount we paid</th>
   <th>Stripe commission for payout</th>
   <th>Net amount user received</th>
+   <th>Actual amount we paid</th>
   <th>Stripe's addition/subtraction</th>
   <th>Actual amount user received as refund</th>
   <th>Our final income</th>
@@ -17,15 +17,16 @@
    
 <tr>
   <td><%= index + 1 %></td>
-  <td><%= booking.price.present? ? booking.price : ' --' rescue nil  %></td>
-  <td><%= stripe_charge = booking.price.to_i * 0.029 + 0.30 rescue nil %></td>
-  <td><%= booking.price - stripe_charge  rescue nil %></td>
-  <td><%= booking.cut_off_price + 0.25 rescue nil %></td>
+  <td><%= booking.price.present? ? booking.price.round(3) : ' --' rescue nil  %></td>
+  <td><%= (stripe_charge = booking.price.to_i * 0.029 + 0.30).round(3) rescue nil %></td>
+  <td><%= (booking.price - stripe_charge).round(3)  rescue nil %></td>
+  <td><%= (booking.cut_off_price + 0.25).round(3) rescue nil %></td>
   <td>0.25</td>
-  <td><%= booking.cut_off_price rescue nil %></td>
-  <td><%= ((booking.refund_finder * 2.9)/100) rescue nil %>
-  <td><%= booking.refund_finder rescue nil %>
-  <td><%= booking.commission rescue nil %>
+  <td><%= booking.cut_off_price.round(3) rescue nil %></td>
+  <td><%= booking.refund_finder - ((booking.refund_finder * 2.9)/100).round(3) rescue nil %></td>
+  <td><%= ((booking.refund_finder * 2.9)/100).round(3) rescue nil %>
+  <td><%= booking.refund_finder.round(3) rescue nil %>
+  <td><%= booking.commission.round(3) rescue nil %>
 
 </tr>
 <% end %>
