@@ -70,6 +70,7 @@
 
               <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
 
+              <div id="errorPlacement"></div> 
               <%= f.hidden_field :post_id, :value => @post.id %>
               <%= f.hidden_field :poster_id, :value=> @post.user_id %>
 
