@@ -3253,4 +3253,10 @@ a.post-btn {
 .invalidLogin {color:#fd0000;position:relative;left:95px;font-size:12px;}
 .sort_active { color:#02acf4 !important;}
 .sort_distance a { color:#02acf4 !important;}
+.agreeTC_sign {
+    color: #7b7b7b;
+    font-family: brandon4;
+    margin: -27px 0 0 20px;
+    text-decoration: underline;
+}
 
