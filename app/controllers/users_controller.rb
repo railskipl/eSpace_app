@@ -30,7 +30,7 @@ def update
 end
 
 def new_user
-  @user = User.new
+  
 end
 
 def create_user
