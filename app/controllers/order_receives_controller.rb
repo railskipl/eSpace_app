@@ -1,7 +1,7 @@
 class OrderReceivesController < ApplicationController
 	before_filter :authenticate_user!, :except => []
 	def index
-		@bookings = Booking.includes(:user,:post).where('poster_id = ?', current_user.id).order("id desc")
+		@bookings = Booking.includes(:user,:post).where('poster_id = ?', current_user.id).page(params[:page]).order("id desc").per_page(4)
 	end
 
 	def search_order_received_by_date
