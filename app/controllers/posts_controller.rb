@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     @end_date ="#{params['end_date']}"
     
     @posts = @posts.result(@start_date,@end_date) if @start_date.present? && @end_date.present?
-    @posts= @posts.page(params[:page]).per_page(50)
+    @posts= @posts.page(params[:page]).order("id desc").per_page(4)
 
     respond_to do |format|
       format.html
@@ -112,6 +112,7 @@ class PostsController < ApplicationController
   end
 
   def toggle
+
     @post.status = !@post.status?
     @post.save!
 
@@ -123,6 +124,7 @@ class PostsController < ApplicationController
   end
 
    def toggled_feature
+
     @post = Post.find(params[:id])
     @post.status = !@post.status?
     @post.save!

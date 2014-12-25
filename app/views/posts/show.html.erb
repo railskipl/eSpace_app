@@ -70,7 +70,6 @@
 
               <%= form_for :booking, :url=>{:controller=>'bookings',:action=>'checkout'}, :html=>{ :id=>"booking"} do |f| %>
 
-              <div id="errorPlacement"></div> 
               <%= f.hidden_field :post_id, :value => @post.id %>
               <%= f.hidden_field :poster_id, :value=> @post.user_id %>
 
@@ -94,7 +93,7 @@
                    
                      </div> 
                      <p class="miles3"> <%= @remaining_area.to_i %> sq. feet available</p>
-                   <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft.to_i %><span style="margin:0 0 0 25px; font-size:14px;" id="area_needed"> $0</span></p>
+                   <p class="sed" style="float:right; margin:-36px -4px 0 20px;">x $<%= @post.price_sq_ft %><span style="margin:0 0 0 25px; font-size:14px;" id="area_needed"> $0</span></p>
                 </div>
                 <div class="f1">
                       <div class="f1_tool" style="margin-top:10px; ">Drop-off date <a class="tooltip10" href="#" style="color:#999; ">
