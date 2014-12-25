@@ -62,4 +62,28 @@ module BookingsHelper
     end
   end
 
+
+  def payment_status(booking)
+    if current_user == booking.user
+      "Payment Send"
+    else
+      if booking.is_confirm?
+        "Payment Released"
+      else
+        "-"
+      end
+    end
+  end
+
+  def received_by_poster(booking)
+    if current_user == booking.user
+      if booking.is_confirm?
+        booking.try(:price)
+      elsif booking.is_cancel?
+        booking.try(:refund_finder)
+      end
+    else
+      booking.try(:cut_off_price)
+    end
+  end
 end
