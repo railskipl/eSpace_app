@@ -9,6 +9,15 @@ class PayementTransfersController < ApplicationController
   
   def index
   	 @bookings = Booking.includes(:poster,:post)
+
+     respond_to do |format|
+        format.html
+        format.xls
+          format.pdf do
+          render :pdf => "payments_report"
+          end   
+      end
+
   end
   
   #transfer the payement to poster account. 
