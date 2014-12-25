@@ -57,7 +57,7 @@
       to see more useful Rails Best Practices.
     </p>
     <p>
-        Found 274 warnings.
+        Found 286 warnings.
     </p>
     <table>
           <tr>
@@ -84,8 +84,8 @@
                 />&nbsp;<label for="RemoveUnusedMethodsInHelpersReview">Remove Unused Methods In Helpers</label>
               </td>
               <td>
-                <input type="checkbox" class="error-type" id="UseQueryAttributeReview" value="UseQueryAttributeReview"
-                />&nbsp;<label for="UseQueryAttributeReview">Use Query Attribute</label>
+                <input type="checkbox" class="error-type" id="UseMultipartAlternativeAsContentTypeOfEmailReview" value="UseMultipartAlternativeAsContentTypeOfEmailReview"
+                />&nbsp;<label for="UseMultipartAlternativeAsContentTypeOfEmailReview">Use Multipart Alternative As Content Type Of Email</label>
               </td>
           </tr>
           <tr>
@@ -98,8 +98,8 @@
                 />&nbsp;<label for="RemoveUnusedMethodsInModelsReview">Remove Unused Methods In Models</label>
               </td>
               <td>
-                <input type="checkbox" class="error-type" id="UseScopeAccessReview" value="UseScopeAccessReview"
-                />&nbsp;<label for="UseScopeAccessReview">Use Scope Access</label>
+                <input type="checkbox" class="error-type" id="UseQueryAttributeReview" value="UseQueryAttributeReview"
+                />&nbsp;<label for="UseQueryAttributeReview">Use Query Attribute</label>
               </td>
           </tr>
           <tr>
@@ -112,8 +112,8 @@
                 />&nbsp;<label for="ReplaceComplexCreationWithFactoryMethodReview">Replace Complex Creation With Factory Method</label>
               </td>
               <td>
-                <input type="checkbox" class="error-type" id="RemoveTrailingWhitespaceCheck" value="RemoveTrailingWhitespaceCheck"
-                />&nbsp;<label for="RemoveTrailingWhitespaceCheck">Remove Trailing Whitespace</label>
+                <input type="checkbox" class="error-type" id="UseScopeAccessReview" value="UseScopeAccessReview"
+                />&nbsp;<label for="UseScopeAccessReview">Use Scope Access</label>
               </td>
           </tr>
           <tr>
@@ -124,6 +124,10 @@
               <td>
                 <input type="checkbox" class="error-type" id="ReplaceInstanceVariableWithLocalVariableReview" value="ReplaceInstanceVariableWithLocalVariableReview"
                 />&nbsp;<label for="ReplaceInstanceVariableWithLocalVariableReview">Replace Instance Variable With Local Variable</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveTrailingWhitespaceCheck" value="RemoveTrailingWhitespaceCheck"
+                />&nbsp;<label for="RemoveTrailingWhitespaceCheck">Remove Trailing Whitespace</label>
               </td>
           </tr>
           <tr>
@@ -156,7 +160,7 @@
             <td class='filename'>
                 db/schema.rb
             </td>
-            <td class='line'>36</td>
+            <td class='line'>33</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (bank_details => [user_id])</a>
             </td>
@@ -165,7 +169,7 @@
             <td class='filename'>
                 db/schema.rb
             </td>
-            <td class='line'>46</td>
+            <td class='line'>43</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (bookings => [post_id])</a>
             </td>
@@ -174,7 +178,7 @@
             <td class='filename'>
                 db/schema.rb
             </td>
-            <td class='line'>46</td>
+            <td class='line'>43</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (bookings => [user_id])</a>
             </td>
@@ -183,7 +187,7 @@
             <td class='filename'>
                 db/schema.rb
             </td>
-            <td class='line'>46</td>
+            <td class='line'>43</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (bookings => [poster_id])</a>
             </td>
@@ -258,6 +262,24 @@
             <td class='line'>128</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (posts => [user_id])</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/mailers/booked_mailer.rb
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/mailers/booked_mailer.rb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
             </td>
           </tr>
           <tr class="LawOfDemeterReview">
@@ -355,6 +377,33 @@
                 app/views/bookings/index.html.erb
             </td>
             <td class='line'>157</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/bookings/show.html.erb
+            </td>
+            <td class='line'>90</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/bookings/show.html.erb
+            </td>
+            <td class='line'>90</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/bookings/show.html.erb
+            </td>
+            <td class='line'>91</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
             </td>
@@ -514,60 +563,6 @@
           </tr>
           <tr class="LawOfDemeterReview">
             <td class='filename'>
-                app/views/bookings/show.html.erb
-            </td>
-            <td class='line'>90</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/bookings/show.html.erb
-            </td>
-            <td class='line'>90</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/bookings/show.html.erb
-            </td>
-            <td class='line'>91</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/messages/reply.html.erb
-            </td>
-            <td class='line'>25</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/messages/sent_messages.html.erb
-            </td>
-            <td class='line'>36</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/messages/trash_messages.html.erb
-            </td>
-            <td class='line'>36</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
                 app/views/order_receives/index.html.erb
             </td>
             <td class='line'>54</td>
@@ -640,36 +635,9 @@
           </tr>
           <tr class="LawOfDemeterReview">
             <td class='filename'>
-                app/views/order_receives/payments.html.erb
-            </td>
-            <td class='line'>30</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/order_receives/payments.html.erb
-            </td>
-            <td class='line'>30</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
                 app/views/order_receives/search_order_received_by_date.html.erb
             </td>
             <td class='line'>70</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/payement_transfers/_result_payment.html.erb
-            </td>
-            <td class='line'>8</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
             </td>
@@ -685,65 +653,29 @@
           </tr>
           <tr class="LawOfDemeterReview">
             <td class='filename'>
-                app/views/payement_transfers/_result_payment.html.erb
+                app/views/messages/trash_messages.html.erb
             </td>
-            <td class='line'>10</td>
+            <td class='line'>36</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
             </td>
           </tr>
           <tr class="LawOfDemeterReview">
             <td class='filename'>
-                app/views/payement_transfers/search_payments.pdf.erb
+                app/views/messages/sent_messages.html.erb
             </td>
-            <td class='line'>24</td>
+            <td class='line'>36</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
             </td>
           </tr>
           <tr class="LawOfDemeterReview">
             <td class='filename'>
-                app/views/payement_transfers/search_payments.pdf.erb
+                app/views/messages/reply.html.erb
             </td>
             <td class='line'>25</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/payement_transfers/search_payments.xls.erb
-            </td>
-            <td class='line'>27</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/payement_transfers/search_payments.xls.erb
-            </td>
-            <td class='line'>28</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="LawOfDemeterReview">
-            <td class='filename'>
-                app/views/payement_transfers/search_payments.xls.erb
-            </td>
-            <td class='line'>29</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-            </td>
-          </tr>
-          <tr class="MoveCodeIntoControllerReview">
-            <td class='filename'>
-                app/views/authenticates/index.html.erb
-            </td>
-            <td class='line'>7</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
             </td>
           </tr>
           <tr class="MoveCodeIntoControllerReview">
@@ -764,13 +696,22 @@
               <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
             </td>
           </tr>
+          <tr class="MoveCodeIntoControllerReview">
+            <td class='filename'>
+                app/views/authenticates/index.html.erb
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
+            </td>
+          </tr>
           <tr class="MoveModelLogicIntoModelReview">
             <td class='filename'>
-                app/controllers/bank_details_controller.rb
+                app/controllers/posts_controller.rb
             </td>
-            <td class='line'>24</td>
+            <td class='line'>12</td>
             <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@bank_detail use_count > 4)</a>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@posts use_count > 4)</a>
             </td>
           </tr>
           <tr class="MoveModelLogicIntoModelReview">
@@ -795,18 +736,63 @@
             <td class='filename'>
                 app/controllers/bookings_controller.rb
             </td>
-            <td class='line'>121</td>
+            <td class='line'>123</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@booking use_count > 4)</a>
             </td>
           </tr>
           <tr class="MoveModelLogicIntoModelReview">
             <td class='filename'>
+                app/controllers/bookings_controller.rb
+            </td>
+            <td class='line'>123</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model ( use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/bookings_controller.rb
+            </td>
+            <td class='line'>123</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (transfer_payment use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/bookings_controller.rb
+            </td>
+            <td class='line'>203</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@booking use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/bookings_controller.rb
+            </td>
+            <td class='line'>203</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model ( use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
                 app/controllers/home_controller.rb
             </td>
-            <td class='line'>19</td>
+            <td class='line'>23</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@adminusers use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/bank_details_controller.rb
+            </td>
+            <td class='line'>26</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@bank_detail use_count > 4)</a>
             </td>
           </tr>
           <tr class="MoveModelLogicIntoModelReview">
@@ -874,20 +860,47 @@
           </tr>
           <tr class="MoveModelLogicIntoModelReview">
             <td class='filename'>
-                app/controllers/order_receives_controller.rb
+                app/controllers/payement_transfers_controller.rb
             </td>
-            <td class='line'>30</td>
+            <td class='line'>24</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@booking use_count > 4)</a>
             </td>
           </tr>
           <tr class="MoveModelLogicIntoModelReview">
             <td class='filename'>
-                app/controllers/posts_controller.rb
+                app/controllers/payement_transfers_controller.rb
             </td>
-            <td class='line'>12</td>
+            <td class='line'>24</td>
             <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@posts use_count > 4)</a>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model ( use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/payement_transfers_controller.rb
+            </td>
+            <td class='line'>24</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (transfer_payment use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/order_receives_controller.rb
+            </td>
+            <td class='line'>31</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@booking use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/order_receives_controller.rb
+            </td>
+            <td class='line'>31</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model ( use_count > 4)</a>
             </td>
           </tr>
           <tr class="OveruseRouteCustomizationsReview">
@@ -910,24 +923,6 @@
           </tr>
           <tr class="RemoveEmptyHelpersReview">
             <td class='filename'>
-                app/helpers/about_us_helper.rb
-            </td>
-            <td class='line'>1</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
-            </td>
-          </tr>
-          <tr class="RemoveEmptyHelpersReview">
-            <td class='filename'>
-                app/helpers/access_ids_helper.rb
-            </td>
-            <td class='line'>1</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
-            </td>
-          </tr>
-          <tr class="RemoveEmptyHelpersReview">
-            <td class='filename'>
                 app/helpers/admins_helper.rb
             </td>
             <td class='line'>1</td>
@@ -937,7 +932,25 @@
           </tr>
           <tr class="RemoveEmptyHelpersReview">
             <td class='filename'>
-                app/helpers/authenticates_helper.rb
+                app/helpers/home_helper.rb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+            </td>
+          </tr>
+          <tr class="RemoveEmptyHelpersReview">
+            <td class='filename'>
+                app/helpers/users/passwords_helper.rb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+            </td>
+          </tr>
+          <tr class="RemoveEmptyHelpersReview">
+            <td class='filename'>
+                app/helpers/payement_transfers_helper.rb
             </td>
             <td class='line'>1</td>
             <td class='message'>
@@ -964,7 +977,7 @@
           </tr>
           <tr class="RemoveEmptyHelpersReview">
             <td class='filename'>
-                app/helpers/faqs_helper.rb
+                app/helpers/ratings_helper.rb
             </td>
             <td class='line'>1</td>
             <td class='message'>
@@ -973,7 +986,7 @@
           </tr>
           <tr class="RemoveEmptyHelpersReview">
             <td class='filename'>
-                app/helpers/home_helper.rb
+                app/helpers/access_ids_helper.rb
             </td>
             <td class='line'>1</td>
             <td class='message'>
@@ -982,16 +995,7 @@
           </tr>
           <tr class="RemoveEmptyHelpersReview">
             <td class='filename'>
-                app/helpers/omniauth_callbacks_helper.rb
-            </td>
-            <td class='line'>1</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
-            </td>
-          </tr>
-          <tr class="RemoveEmptyHelpersReview">
-            <td class='filename'>
-                app/helpers/order_receives_helper.rb
+                app/helpers/authenticates_helper.rb
             </td>
             <td class='line'>1</td>
             <td class='message'>
@@ -1009,7 +1013,7 @@
           </tr>
           <tr class="RemoveEmptyHelpersReview">
             <td class='filename'>
-                app/helpers/payement_transfers_helper.rb
+                app/helpers/omniauth_callbacks_helper.rb
             </td>
             <td class='line'>1</td>
             <td class='message'>
@@ -1018,7 +1022,7 @@
           </tr>
           <tr class="RemoveEmptyHelpersReview">
             <td class='filename'>
-                app/helpers/ratings_helper.rb
+                app/helpers/faqs_helper.rb
             </td>
             <td class='line'>1</td>
             <td class='message'>
@@ -1027,7 +1031,16 @@
           </tr>
           <tr class="RemoveEmptyHelpersReview">
             <td class='filename'>
-                app/helpers/users/passwords_helper.rb
+                app/helpers/order_receives_helper.rb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+            </td>
+          </tr>
+          <tr class="RemoveEmptyHelpersReview">
+            <td class='filename'>
+                app/helpers/about_us_helper.rb
             </td>
             <td class='line'>1</td>
             <td class='message'>
@@ -1047,7 +1060,7 @@
             <td class='filename'>
                 app/controllers/bookings_controller.rb
             </td>
-            <td class='line'>171</td>
+            <td class='line'>228</td>
             <td class='message'>
               <a href='' target='_blank'>remove unused methods (BookingsController#page_params)</a>
             </td>
@@ -1117,6 +1130,15 @@
           </tr>
           <tr class="RemoveUnusedMethodsInModelsReview">
             <td class='filename'>
+                app/models/post.rb
+            </td>
+            <td class='line'>38</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Post#poster_address)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
                 app/models/message.rb
             </td>
             <td class='line'>15</td>
@@ -1128,16 +1150,16 @@
             <td class='filename'>
                 app/controllers/bank_details_controller.rb
             </td>
-            <td class='line'>24</td>
+            <td class='line'>26</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/6-replace-complex-creation-with-factory-method' target='_blank'>replace complex creation with factory method (@bank_detail attribute_assignment_count > 2)</a>
             </td>
           </tr>
           <tr class="ReplaceInstanceVariableWithLocalVariableReview">
             <td class='filename'>
-                app/views/bank_details/_form.html.erb
+                app/views/comments/_comments.html.erb
             </td>
-            <td class='line'>113</td>
+            <td class='line'>2</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
             </td>
@@ -1147,15 +1169,6 @@
                 app/views/comments/_book_comment.html.erb
             </td>
             <td class='line'>3</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-            </td>
-          </tr>
-          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-            <td class='filename'>
-                app/views/comments/_comments.html.erb
-            </td>
-            <td class='line'>2</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
             </td>
@@ -1198,69 +1211,6 @@
           </tr>
           <tr class="ReplaceInstanceVariableWithLocalVariableReview">
             <td class='filename'>
-                app/views/home/_home_script.html.erb
-            </td>
-            <td class='line'>9</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-            </td>
-          </tr>
-          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-            <td class='filename'>
-                app/views/home/_home_script.html.erb
-            </td>
-            <td class='line'>21</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-            </td>
-          </tr>
-          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-            <td class='filename'>
-                app/views/messages/_form.html.erb
-            </td>
-            <td class='line'>2</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-            </td>
-          </tr>
-          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-            <td class='filename'>
-                app/views/messages/_form.html.erb
-            </td>
-            <td class='line'>3</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-            </td>
-          </tr>
-          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-            <td class='filename'>
-                app/views/messages/_form.html.erb
-            </td>
-            <td class='line'>5</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-            </td>
-          </tr>
-          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-            <td class='filename'>
-                app/views/messages/_form.html.erb
-            </td>
-            <td class='line'>8</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-            </td>
-          </tr>
-          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-            <td class='filename'>
-                app/views/messages/_reply.html.erb
-            </td>
-            <td class='line'>2</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-            </td>
-          </tr>
-          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-            <td class='filename'>
                 app/views/pages/_form.html.erb
             </td>
             <td class='line'>3</td>
@@ -1297,9 +1247,153 @@
           </tr>
           <tr class="ReplaceInstanceVariableWithLocalVariableReview">
             <td class='filename'>
+                app/views/home/_home_script.html.erb
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/home/_home_script.html.erb
+            </td>
+            <td class='line'>21</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/bank_details/_form.html.erb
+            </td>
+            <td class='line'>113</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
                 app/views/posts/_all_post.html.erb
             </td>
             <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/posts/_booking_script.html.erb
+            </td>
+            <td class='line'>33</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/posts/_booking_script.html.erb
+            </td>
+            <td class='line'>33</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/posts/_booking_script.html.erb
+            </td>
+            <td class='line'>67</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/posts/_booking_script.html.erb
+            </td>
+            <td class='line'>67</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/posts/_booking_script.html.erb
+            </td>
+            <td class='line'>69</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/posts/_booking_script.html.erb
+            </td>
+            <td class='line'>69</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/posts/_booking_script.html.erb
+            </td>
+            <td class='line'>239</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/posts/_overviews.html.erb
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/messages/_reply.html.erb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/messages/_form.html.erb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/messages/_form.html.erb
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/messages/_form.html.erb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/messages/_form.html.erb
+            </td>
+            <td class='line'>8</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
             </td>
@@ -1387,20 +1481,20 @@
           </tr>
           <tr class="UseModelAssociationReview">
             <td class='filename'>
-                app/controllers/bank_details_controller.rb
-            </td>
-            <td class='line'>24</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/2-use-model-association' target='_blank'>use model association (for @bank_detail)</a>
-            </td>
-          </tr>
-          <tr class="UseModelAssociationReview">
-            <td class='filename'>
                 app/controllers/bookings_controller.rb
             </td>
             <td class='line'>46</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/2-use-model-association' target='_blank'>use model association (for @booking)</a>
+            </td>
+          </tr>
+          <tr class="UseModelAssociationReview">
+            <td class='filename'>
+                app/controllers/bank_details_controller.rb
+            </td>
+            <td class='line'>26</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/2-use-model-association' target='_blank'>use model association (for @bank_detail)</a>
             </td>
           </tr>
           <tr class="UseModelAssociationReview">
@@ -1412,11 +1506,29 @@
               <a href='http://rails-bestpractices.com/posts/2-use-model-association' target='_blank'>use model association (for @message)</a>
             </td>
           </tr>
+          <tr class="UseMultipartAlternativeAsContentTypeOfEmailReview">
+            <td class='filename'>
+                app/mailers/booked_mailer.rb
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/41-use-multipart-alternative-as-content_type-of-email' target='_blank'>use multipart/alternative as content_type of email</a>
+            </td>
+          </tr>
           <tr class="UseQueryAttributeReview">
             <td class='filename'>
                 app/views/bookings/search_by_date.html.erb
             </td>
             <td class='line'>63</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.status?)</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/views/order_receives/search_order_received_by_date.html.erb
+            </td>
+            <td class='line'>73</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.status?)</a>
             </td>
@@ -1432,74 +1544,29 @@
           </tr>
           <tr class="UseQueryAttributeReview">
             <td class='filename'>
-                app/views/order_receives/search_order_received_by_date.html.erb
-            </td>
-            <td class='line'>73</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.status?)</a>
-            </td>
-          </tr>
-          <tr class="UseQueryAttributeReview">
-            <td class='filename'>
-                app/views/payement_transfers/_result_payment.html.erb
-            </td>
-            <td class='line'>17</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.stripe_transfer_id?)</a>
-            </td>
-          </tr>
-          <tr class="UseQueryAttributeReview">
-            <td class='filename'>
-                app/views/payement_transfers/_result_payment.html.erb
-            </td>
-            <td class='line'>25</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.status?)</a>
-            </td>
-          </tr>
-          <tr class="UseQueryAttributeReview">
-            <td class='filename'>
-                app/views/payement_transfers/search_payments.pdf.erb
-            </td>
-            <td class='line'>36</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.stripe_transfer_id?)</a>
-            </td>
-          </tr>
-          <tr class="UseQueryAttributeReview">
-            <td class='filename'>
-                app/views/payement_transfers/search_payments.pdf.erb
-            </td>
-            <td class='line'>43</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.status?)</a>
-            </td>
-          </tr>
-          <tr class="UseQueryAttributeReview">
-            <td class='filename'>
-                app/views/payement_transfers/search_payments.xls.erb
-            </td>
-            <td class='line'>36</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.stripe_transfer_id?)</a>
-            </td>
-          </tr>
-          <tr class="UseQueryAttributeReview">
-            <td class='filename'>
-                app/views/payement_transfers/search_payments.xls.erb
-            </td>
-            <td class='line'>44</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.status?)</a>
-            </td>
-          </tr>
-          <tr class="UseQueryAttributeReview">
-            <td class='filename'>
                 app/views/users/show.html.erb
             </td>
             <td class='line'>7</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (user.mobile_number?)</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/views/payement_transfers/_result_payment.html.erb
+            </td>
+            <td class='line'>18</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.stripe_transfer_id?)</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/views/payement_transfers/_result_payment.html.erb
+            </td>
+            <td class='line'>26</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (booking.status?)</a>
             </td>
           </tr>
           <tr class="UseScopeAccessReview">
@@ -1522,24 +1589,6 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/models/comment.rb
-            </td>
-            <td class='line'>6</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/models/message.rb
-            </td>
-            <td class='line'>2</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
                 app/models/post.rb
             </td>
             <td class='line'>14</td>
@@ -1549,9 +1598,27 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
+                app/models/comment.rb
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
                 app/models/user.rb
             </td>
             <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/models/message.rb
+            </td>
+            <td class='line'>2</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
@@ -1594,9 +1661,63 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/controllers/access_ids_controller.rb
+                lib/custom_failure.rb
             </td>
-            <td class='line'>4</td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                config/routes.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                config/environments/production.rb
+            </td>
+            <td class='line'>78</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                config/environments/development.rb
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                config/initializers/devise.rb
+            </td>
+            <td class='line'>235</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                config/initializers/stripe.rb
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                config/initializers/omniauth.rb
+            </td>
+            <td class='line'>8</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
@@ -1612,60 +1733,6 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/controllers/application_controller.rb
-            </td>
-            <td class='line'>11</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/controllers/authenticates_controller.rb
-            </td>
-            <td class='line'>18</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/controllers/bank_details_controller.rb
-            </td>
-            <td class='line'>9</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/controllers/bookings_controller.rb
-            </td>
-            <td class='line'>6</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/controllers/comments_controller.rb
-            </td>
-            <td class='line'>6</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/controllers/contactus_controller.rb
-            </td>
-            <td class='line'>20</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
                 app/controllers/faqs_controller.rb
             </td>
             <td class='line'>7</td>
@@ -1675,36 +1742,9 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/controllers/home_controller.rb
+                app/controllers/access_ids_controller.rb
             </td>
-            <td class='line'>10</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/controllers/messages_controller.rb
-            </td>
-            <td class='line'>5</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/controllers/omniauth_callbacks_controller.rb
-            </td>
-            <td class='line'>3</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/controllers/order_receives_controller.rb
-            </td>
-            <td class='line'>36</td>
+            <td class='line'>4</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
@@ -1720,16 +1760,16 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/controllers/payement_transfers_controller.rb
+                app/controllers/contactus_controller.rb
             </td>
-            <td class='line'>9</td>
+            <td class='line'>20</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/controllers/posts_controller.rb
+                app/controllers/users/sessions_controller.rb
             </td>
             <td class='line'>9</td>
             <td class='message'>
@@ -1747,9 +1787,27 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/controllers/users/sessions_controller.rb
+                app/controllers/posts_controller.rb
             </td>
             <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/controllers/bookings_controller.rb
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/controllers/home_controller.rb
+            </td>
+            <td class='line'>10</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
@@ -1765,214 +1823,7 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                config/environments/development.rb
-            </td>
-            <td class='line'>3</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                config/environments/production.rb
-            </td>
-            <td class='line'>78</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                config/initializers/devise.rb
-            </td>
-            <td class='line'>235</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                config/initializers/omniauth.rb
-            </td>
-            <td class='line'>8</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                config/initializers/stripe.rb
-            </td>
-            <td class='line'>3</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                config/routes.rb
-            </td>
-            <td class='line'>5</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                lib/custom_failure.rb
-            </td>
-            <td class='line'>9</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/about_us/about.html.erb
-            </td>
-            <td class='line'>1</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/about_us/index.html.erb
-            </td>
-            <td class='line'>34</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/access_ids/_form.html.erb
-            </td>
-            <td class='line'>6</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/access_ids/index.html.erb
-            </td>
-            <td class='line'>16</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/admins/index.html.erb
-            </td>
-            <td class='line'>19</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/admins/index.pdf.erb
-            </td>
-            <td class='line'>29</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/admins/index.xls.erb
-            </td>
-            <td class='line'>29</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/authenticates/index.html.erb
-            </td>
-            <td class='line'>47</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/bank_details/_form.html.erb
-            </td>
-            <td class='line'>17</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/bookings/cancel_popup.html.erb
-            </td>
-            <td class='line'>14</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/bookings/drop_off.html.erb
-            </td>
-            <td class='line'>14</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/bookings/index.html.erb
-            </td>
-            <td class='line'>15</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/bookings/new.html.erb
-            </td>
-            <td class='line'>16</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/bookings/rating.html.erb
-            </td>
-            <td class='line'>14</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/bookings/search_by_date.html.erb
-            </td>
-            <td class='line'>25</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/bookings/show.html.erb
-            </td>
-            <td class='line'>6</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/comments/_book_comment.html.erb
+                app/controllers/application_controller.rb
             </td>
             <td class='line'>11</td>
             <td class='message'>
@@ -1981,178 +1832,7 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/comments/books.html.erb
-            </td>
-            <td class='line'>8</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/comments/books.js.erb
-            </td>
-            <td class='line'>3</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/comments/index.html.erb
-            </td>
-            <td class='line'>8</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/comments/index.js.erb
-            </td>
-            <td class='line'>3</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/contactus/_form.html.erb
-            </td>
-            <td class='line'>3</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/contactus/edit.html.erb
-            </td>
-            <td class='line'>5</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/devise/mailer/confirmation_instructions.html.erb
-            </td>
-            <td class='line'>6</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/devise/mailer/reset_password_instructions.html.erb
-            </td>
-            <td class='line'>6</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/devise/mailer/unlock_instructions.html.erb
-            </td>
-            <td class='line'>6</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/devise/passwords/edit.html.erb
-            </td>
-            <td class='line'>9</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/devise/passwords/new.html.erb
-            </td>
-            <td class='line'>8</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/devise/registrations/edit.html.erb
-            </td>
-            <td class='line'>19</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/devise/registrations/new.html.erb
-            </td>
-            <td class='line'>6</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/devise/sessions/new.html.erb
-            </td>
-            <td class='line'>5</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/faqs/_faq_question_fields.html.erb
-            </td>
-            <td class='line'>7</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/faqs/_form.html.erb
-            </td>
-            <td class='line'>22</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/faqs/frequently_asked_question.html.erb
-            </td>
-            <td class='line'>11</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/faqs/index.html.erb
-            </td>
-            <td class='line'>42</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/_home_script.html.erb
-            </td>
-            <td class='line'>47</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/_search_date.html.erb
+                app/controllers/bank_details_controller.rb
             </td>
             <td class='line'>10</td>
             <td class='message'>
@@ -2161,25 +1841,7 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/home/about_us.html.erb
-            </td>
-            <td class='line'>1</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/all_postings.html.erb
-            </td>
-            <td class='line'>1</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/contactus.html.erb
+                app/controllers/messages_controller.rb
             </td>
             <td class='line'>5</td>
             <td class='message'>
@@ -2188,16 +1850,7 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/home/customer_daily_report.html.erb
-            </td>
-            <td class='line'>12</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/customer_monthly_report.html.erb
+                app/controllers/payement_transfers_controller.rb
             </td>
             <td class='line'>9</td>
             <td class='message'>
@@ -2206,43 +1859,25 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/home/customer_weekly_report.html.erb
+                app/controllers/order_receives_controller.rb
             </td>
-            <td class='line'>9</td>
+            <td class='line'>21</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/home/index.html.erb
+                app/controllers/omniauth_callbacks_controller.rb
             </td>
-            <td class='line'>8</td>
+            <td class='line'>3</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/home/index.pdf.erb
-            </td>
-            <td class='line'>23</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/index.xls.erb
-            </td>
-            <td class='line'>22</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/search.html.erb
+                app/controllers/comments_controller.rb
             </td>
             <td class='line'>6</td>
             <td class='message'>
@@ -2251,63 +1886,9 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/home/search_post.html.erb
+                app/controllers/authenticates_controller.rb
             </td>
-            <td class='line'>22</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/search_post.pdf.erb
-            </td>
-            <td class='line'>29</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/search_post.xls.erb
-            </td>
-            <td class='line'>29</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/searching.html.erb
-            </td>
-            <td class='line'>30</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/searching.pdf.erb
-            </td>
-            <td class='line'>30</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/home/searching.xls.erb
-            </td>
-            <td class='line'>30</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/layouts/_navigation.html.erb
-            </td>
-            <td class='line'>5</td>
+            <td class='line'>18</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
@@ -2332,6 +1913,15 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
+                app/views/layouts/_navigation.html.erb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
                 app/views/layouts/home.html.erb
             </td>
             <td class='line'>10</td>
@@ -2341,7 +1931,79 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/messages/_reply.html.erb
+                app/views/comments/index.html.erb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/comments/index.js.erb
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/comments/books.html.erb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/comments/books.js.erb
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/comments/_book_comment.html.erb
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/omniauth_callbacks/new.html.erb
+            </td>
+            <td class='line'>48</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/bookings/index.html.erb
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/bookings/cancel_popup.html.erb
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/bookings/show.html.erb
             </td>
             <td class='line'>6</td>
             <td class='message'>
@@ -2350,9 +2012,630 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/messages/compose_message.html.erb
+                app/views/bookings/search_by_date.html.erb
+            </td>
+            <td class='line'>25</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/bookings/drop_off.html.erb
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/bookings/new.html.erb
             </td>
             <td class='line'>16</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/bookings/rating.html.erb
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/devise/registrations/new.html.erb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/devise/registrations/edit.html.erb
+            </td>
+            <td class='line'>19</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/devise/sessions/new.html.erb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/devise/passwords/new.html.erb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/devise/passwords/edit.html.erb
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/devise/mailer/reset_password_instructions.html.erb
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/devise/mailer/unlock_instructions.html.erb
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/devise/mailer/confirmation_instructions.html.erb
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/faqs/index.html.erb
+            </td>
+            <td class='line'>42</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/faqs/frequently_asked_question.html.erb
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/faqs/_faq_question_fields.html.erb
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/faqs/_form.html.erb
+            </td>
+            <td class='line'>22</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/contactus/edit.html.erb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/contactus/_form.html.erb
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/order_receives/index.html.erb
+            </td>
+            <td class='line'>27</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/order_receives/cancel_popup.html.erb
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/order_receives/search_order_received_by_date.html.erb
+            </td>
+            <td class='line'>27</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/order_receives/payments.html.erb
+            </td>
+            <td class='line'>12</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/index.html.erb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/contactus.html.erb
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/search_post.html.erb
+            </td>
+            <td class='line'>22</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/search_post.pdf.erb
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/_search_date.html.erb
+            </td>
+            <td class='line'>10</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/_home_script.html.erb
+            </td>
+            <td class='line'>47</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/searching.xls.erb
+            </td>
+            <td class='line'>30</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/customer_monthly_report.html.erb
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/all_postings.html.erb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/searching.pdf.erb
+            </td>
+            <td class='line'>30</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/customer_daily_report.html.erb
+            </td>
+            <td class='line'>12</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/customer_weekly_report.html.erb
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/index.xls.erb
+            </td>
+            <td class='line'>22</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/index.pdf.erb
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/about_us.html.erb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/search_post.xls.erb
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/search.html.erb
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/searching.html.erb
+            </td>
+            <td class='line'>30</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/users/order_received.html.erb
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/users/new_user.html.erb
+            </td>
+            <td class='line'>63</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/users/edit.html.erb
+            </td>
+            <td class='line'>49</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/about_us/index.html.erb
+            </td>
+            <td class='line'>34</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/about_us/about.html.erb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/access_ids/index.html.erb
+            </td>
+            <td class='line'>16</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/access_ids/_form.html.erb
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/payement_transfers/index.html.erb
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/payement_transfers/search_payments.xls.erb
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/payement_transfers/_selectdate.html.erb
+            </td>
+            <td class='line'>24</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/payement_transfers/search_payments.pdf.erb
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/payement_transfers/_result_payment.html.erb
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/payement_transfers/index.xls.erb
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/payement_transfers/index.pdf.erb
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/payement_transfers/search_payments.html.erb
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/bank_details/index.html.erb
+            </td>
+            <td class='line'>12</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/bank_details/_form.html.erb
+            </td>
+            <td class='line'>17</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/booked_mailer/booked_a_spaces.pdf.erb
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/posts/index.html.erb
+            </td>
+            <td class='line'>36</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/posts/show.html.erb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/posts/overview.html.erb
+            </td>
+            <td class='line'>119</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/posts/_all_post.html.erb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/posts/_booking_script.html.erb
+            </td>
+            <td class='line'>41</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/posts/archive.html.erb
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/posts/_overviews.html.erb
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/posts/_form.html.erb
+            </td>
+            <td class='line'>19</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/posts/search.html.erb
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/admins/index.html.erb
+            </td>
+            <td class='line'>19</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/admins/index.xls.erb
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/admins/index.pdf.erb
+            </td>
+            <td class='line'>29</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
@@ -2362,33 +2645,6 @@
                 app/views/messages/index.html.erb
             </td>
             <td class='line'>3</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/messages/new.html.erb
-            </td>
-            <td class='line'>2</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/messages/reply.html.erb
-            </td>
-            <td class='line'>12</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/messages/sent_messages.html.erb
-            </td>
-            <td class='line'>2</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
@@ -2413,207 +2669,63 @@
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
+                app/views/messages/compose_message.html.erb
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/messages/sent_messages.html.erb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/messages/reply.html.erb
+            </td>
+            <td class='line'>12</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
                 app/views/messages/user_message.html.erb
             </td>
-            <td class='line'>16</td>
+            <td class='line'>3</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/omniauth_callbacks/new.html.erb
+                app/views/messages/new.html.erb
             </td>
-            <td class='line'>48</td>
+            <td class='line'>2</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/order_receives/cancel_popup.html.erb
+                app/views/messages/_reply.html.erb
             </td>
-            <td class='line'>14</td>
+            <td class='line'>6</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>
           </tr>
           <tr class="RemoveTrailingWhitespaceCheck">
             <td class='filename'>
-                app/views/order_receives/index.html.erb
+                app/views/authenticates/index.html.erb
             </td>
-            <td class='line'>27</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/order_receives/payments.html.erb
-            </td>
-            <td class='line'>12</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/order_receives/search_order_received_by_date.html.erb
-            </td>
-            <td class='line'>27</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/payement_transfers/_result_payment.html.erb
-            </td>
-            <td class='line'>12</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/payement_transfers/_selectdate.html.erb
-            </td>
-            <td class='line'>24</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/payement_transfers/index.html.erb
-            </td>
-            <td class='line'>19</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/payement_transfers/search_payments.html.erb
-            </td>
-            <td class='line'>4</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/payement_transfers/search_payments.pdf.erb
-            </td>
-            <td class='line'>31</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/payement_transfers/search_payments.xls.erb
-            </td>
-            <td class='line'>31</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/posts/_all_post.html.erb
-            </td>
-            <td class='line'>1</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/posts/_form.html.erb
-            </td>
-            <td class='line'>20</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/posts/_overviews.html.erb
-            </td>
-            <td class='line'>15</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/posts/archive.html.erb
-            </td>
-            <td class='line'>29</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/posts/index.html.erb
-            </td>
-            <td class='line'>36</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/posts/overview.html.erb
-            </td>
-            <td class='line'>119</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/posts/search.html.erb
-            </td>
-            <td class='line'>14</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/posts/show.html.erb
-            </td>
-            <td class='line'>41</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/users/edit.html.erb
-            </td>
-            <td class='line'>49</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/users/new_user.html.erb
-            </td>
-            <td class='line'>63</td>
-            <td class='message'>
-              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-            </td>
-          </tr>
-          <tr class="RemoveTrailingWhitespaceCheck">
-            <td class='filename'>
-                app/views/users/order_received.html.erb
-            </td>
-            <td class='line'>15</td>
+            <td class='line'>47</td>
             <td class='message'>
               <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
             </td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141224120333) do
+ActiveRecord::Schema.define(version: 20141225103118) do
 
   create_table "about_us", force: true do |t|
     t.string   "name"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20141224120333) do
     t.datetime "updated_at"
   end
 
+  add_index "bank_details", ["user_id"], name: "index_bank_details_on_user_id", using: :btree
+
   create_table "bookings", force: true do |t|
     t.string   "stripe_customer_token"
     t.string   "stripe_charge_id"
@@ -65,6 +67,10 @@ ActiveRecord::Schema.define(version: 20141224120333) do
     t.float    "refund_finder"
   end
 
+  add_index "bookings", ["post_id"], name: "index_bookings_on_post_id", using: :btree
+  add_index "bookings", ["poster_id"], name: "index_bookings_on_poster_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
+
   create_table "comments", force: true do |t|
     t.string   "name"
     t.text     "comments"
@@ -75,6 +81,9 @@ ActiveRecord::Schema.define(version: 20141224120333) do
     t.integer  "rating"
     t.integer  "user_id"
   end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "contactus", force: true do |t|
     t.string   "email"
@@ -92,6 +101,8 @@ ActiveRecord::Schema.define(version: 20141224120333) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "faq_questions", ["faq_id"], name: "index_faq_questions_on_faq_id", using: :btree
 
   create_table "faqs", force: true do |t|
     t.text     "question"
@@ -115,6 +126,11 @@ ActiveRecord::Schema.define(version: 20141224120333) do
     t.integer  "message_id"
     t.integer  "post_id"
   end
+
+  add_index "messages", ["message_id"], name: "index_messages_on_message_id", using: :btree
+  add_index "messages", ["post_id"], name: "index_messages_on_post_id", using: :btree
+  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "title"
@@ -157,6 +173,8 @@ ActiveRecord::Schema.define(version: 20141224120333) do
     t.string   "state"
     t.string   "zip_code"
   end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "ratings", force: true do |t|
     t.decimal  "value",      precision: 10, scale: 0
