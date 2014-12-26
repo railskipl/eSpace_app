@@ -1839,7 +1839,8 @@ body{
 	background:#072643; 
 	padding:22px 33px 22px 22px;
 	color:#bbbfc2;
-	display:table;}
+	display:table;
+    margin-left: -1px;}
 	
 	.date{ 
 	width: auto;
