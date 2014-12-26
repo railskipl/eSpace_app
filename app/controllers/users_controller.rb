@@ -26,7 +26,7 @@ def update
   params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
   @user.update_attributes(person_params)
   flash[:notice] = "Profile Updated Successfully "
-  redirect_to root_path
+  redirect_to  edit_user_path(@user)
 end
 
 def new_user
