@@ -19,7 +19,7 @@
            
             <div id="login1">
               <% if user_signed_in? %>
-                <p style="margin:40px 0 0px 900px;">
+                <p style="margin:5px; float:right;">
                   <%= current_user.name rescue nil %> <%= current_user.last_name rescue nil %> 
                   <%= link_to("<span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post},:style=>"background: none repeat scroll 0 0 #ff7e00; border-radius: 100%; 
                     color: #fff; display: inline-block; font-size: 10px; margin:0px 0 0px 0px; height: auto; margin-left: 1px; padding: 3px; text-align: center; width: 20px;" )%>

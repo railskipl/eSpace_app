@@ -10,10 +10,11 @@ class Faq < ActiveRecord::Base
       else
         faq_question = FaqQuestion.where('question LIKE ? OR answer LIKE ?',search_condition, search_condition )
         @a = []
-        faq_question.each do |fa|
-          @a << fa.faq_id
+        faq_question.pluck(:faq_id).each do |fa|
+          @a << fa
         end
         @faqs = []
+
         @a.uniq.each do |fa|
           @faqs << Faq.find(fa)
         end
