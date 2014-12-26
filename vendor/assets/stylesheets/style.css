@@ -1839,7 +1839,9 @@ body{
 	background:#072643; 
 	padding:22px 33px 22px 22px;
 	color:#bbbfc2;
-	display:table;}
+	display:table;
+    margin-left: -1px;
+   }
 	
 	.date{ 
 	width: auto;
@@ -1984,7 +1986,7 @@ body{
     background: url(/assets/chat-bg.jpg) repeat-y #fff;
     float: left;
     width: 754px;
-	
+	margin-left:-1px;
 	}
 	
 	.chat-menu{
@@ -3253,4 +3255,12 @@ a.post-btn {
 .invalidLogin {color:#fd0000;position:relative;left:95px;font-size:12px;}
 .sort_active { color:#02acf4 !important;}
 .sort_distance a { color:#02acf4 !important;}
+.agreeTC_sign {
+    color: #7b7b7b;
+    font-family: brandon4;
+    margin: -27px 0 0 20px;
+    text-decoration: underline;
+}
+
+.tc_regi {margin:-25px 0 0 44px; color:#7b7b7b; text-decoration: underline; font-family: brandon4;}
 

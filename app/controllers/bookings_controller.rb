@@ -5,9 +5,9 @@ class BookingsController < ApplicationController
 
  def index 
     if params[:cancelled].present?
-      @bookings = Booking.booking_cancelled
+      @bookings = Booking.includes(:post,:poster).booking_cancelled.page(params[:page]).per_page(4)
     else
- 	    @bookings = Booking.includes(:post,:poster).where("user_id = ?",current_user.id).order("id desc")
+ 	    @bookings = Booking.includes(:post,:poster).page(params[:page]).where("user_id = ?",current_user.id).order("id desc").per_page(4)
     end
  end
 
@@ -187,7 +187,7 @@ class BookingsController < ApplicationController
       
     flash[:notice] = "Booking is cancel & $#{amount} is refunded"
     
-    redirect_to booking_path(@booking.id)
+    redirect_to bank_details_path
     
   end
 

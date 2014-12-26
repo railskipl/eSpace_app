@@ -90,7 +90,7 @@
 
         
      <p class="para sortby active" style="font-size:10px;">Sort by : <%= sortable "price_sq_ft", "Price" %> / 
-       <% if params[:sort] == "" %> <span class="sort_distance"><%= sortable "distance" %> </span>  <% else %> <span class="sort_distance"><%= sortable "distance" %> <% end %>
+       <% if params[:sort] == "distance" %> <span class="sort_distance"><%= sortable "distance" %> </span>  <% else %> <%= sortable "distance" %> <% end %>
       / Mutual Friends</p> 
 
      

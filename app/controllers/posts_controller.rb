@@ -55,7 +55,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
+        format.html { redirect_to bank_details_path, notice: 'Post is now live. Please enter card details to receive the payment.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -66,11 +66,11 @@ class PostsController < ApplicationController
 
   def overview
       if params[:search]   
-        @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today,true)
-        @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ?",Date.today)
+        @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today, true)
+        @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today, true)
       else
-        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ?",Date.today)
-        @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today,true)
+        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today, true)
+        @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today, true)
       end
     respond_to do |format|
       format.html # index.html.erb
