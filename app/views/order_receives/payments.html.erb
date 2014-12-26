@@ -33,7 +33,7 @@
                 </div>
                 
                 <div class="pay-col pay-col1">
-                	<span>To/From</span>: <%= booking.user_name.capitalize%> <%= booking.user_last_name[0,1]%>
+                	<span>To/From</span>: <%= booking.poster_name.capitalize rescue nil %> <%= booking.poster_last_name[0,1] rescue nil%>
                 </div>
                 
                 <div class="pay-col pay-col1">
@@ -41,10 +41,15 @@
                 </div>
                 
                 <div class="pay-col pay-col1">
+                    <% if booking.user_id == current_user.id %>
+                      <span>Amount</span>: $ <%= booking.price %>
+                    <% else %>
                 	<span>Amount</span>: $ <%= received_by_poster(booking) %>
+                    <% end %>
                 </div>
             </div>
             <%end%>
+            <%= will_paginate @bookings %>
         </div>
     </div>
 </div>

@@ -187,7 +187,7 @@ class BookingsController < ApplicationController
       
     flash[:notice] = "Booking is cancel & $#{amount} is refunded"
     
-    redirect_to bank_details_path
+    redirect_to booking_path(@booking.id)
     
   end
 
