@@ -364,7 +364,8 @@ jQuery("#booking").validate({
         "area":{
 	        required:true,
 	        number:true ,
-	        lessThan: "#remaining_area"
+	        lessThan: "#remaining_area",
+	        min: 4
         },
         "booking[dropoff_date]":{
 	        required:true
@@ -373,13 +374,18 @@ jQuery("#booking").validate({
 	messages: {
 
 		"area":{
-        required: "Please enter area"
+        required: "Please enter area",
+        min: "greater than or equal to 4"
         }
-       
-	}, // initialize the plugin
-	errorPlacement: function () {
-        return false; // <- kill default error labels
-    }
+        ,
+        "booking[dropoff_date]":{
+	        required:''
+        }
+       }
+	// }, // initialize the plugin
+	// errorPlacement: function () {
+ //        return false; // <- kill default error labels
+ //    }
 		
 
 });
