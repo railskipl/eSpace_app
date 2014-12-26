@@ -144,8 +144,20 @@ jQuery("#edit_user").validate({
 		"user[last_name]":{
 			required:true
 		},
+		"user[password]":{
+			required:true,
+			minlength:6
+		},
+		"user[password_confirmation]":{
+			required:true,
+			minlength:6
+		},
 		"user[personal_email]":{
 	        email: true
+		},
+
+		"user[current_password]":{
+			required:true
 		},
 		"user[mobile_number]": 'customphone'
 	},
@@ -160,6 +172,19 @@ jQuery("#edit_user").validate({
 		"user[last_name]":{
 			required: "Please enter Last Name"
 		},
+		"user[password]":{
+			required: "Please enter password",
+			minlength:"do not enter less than 6 characters"
+		},
+		"user[password_confirmation]":{
+			required: "Password confirmation cannot be blank",
+			minlength:"do not enter less than 6 characters"
+		},
+
+		"user[current_password]":{
+			required: "Current Password cannot be blank",
+		},
+
 		"user[personal_email]":{
 			
 		}

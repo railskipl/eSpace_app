@@ -1,3 +1,4 @@
+<%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation" %>
 
  <div class="main2">
                 <div class="main-new">
@@ -15,9 +16,17 @@
    <div class="new_login4">
                  <div class="f1">
 
+
                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {:class=>"change_password", method: :put }) do |f| %>
                  
-
+                 
+                 <% if resource.errors.present? %> 
+                    
+                    <% resource.errors.full_messages.each do |message| %>
+                    <p style="color: #fd0000;font-size: 14px; margin-left: 12px;"><%= message %></p>
+                    <% end %>
+                      
+                  <% end %>
 
                 <fieldset class="textbox">
                      
@@ -27,12 +36,12 @@
                 </label>
                 
                 <label class="username">
-               <%= f.password_field :password, autocomplete: "off",:id=>"password1", :placeholder=>"New password" %>
+               <%= f.password_field :password, autocomplete: "off",:id=>"password2", :placeholder=>"New password" %>
 
                 </label>
                 
                 <label class="username">
-             <%= f.password_field :password_confirmation, autocomplete: "off",:id=>"password1", :placeholder=>"Confirm password"  %>
+             <%= f.password_field :password_confirmation, autocomplete: "off",:id=>"password3", :placeholder=>"Confirm password"  %>
          
                 </label>
                 
