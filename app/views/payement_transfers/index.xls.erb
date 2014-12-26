@@ -1,3 +1,4 @@
+
 <table border="1">
 <tr>
   <th>Sr No.</th>
@@ -13,8 +14,8 @@
   <th>Our final income</th>
   
 </tr>
-<% @payment_transfers.try(:each_with_index) do |booking, index|%>
-   
+
+<% @bookings.each_with_index do |booking, index| %>
 <tr>
   <td><%= index + 1 %></td>
   <td><%= booking.price.present? ? booking.price.round(3) : ' --' rescue nil  %></td>
@@ -31,6 +32,7 @@
 </tr>
 <% end %>
 </table>
+
 
 
 

@@ -1,0 +1,310 @@
+<%= stylesheet_link_tag "perfect-scrollbar.css", "overview.css" %>
+<%= javascript_include_tag  "endless_page.js", "perfect-scrollbar.js", "jquery.validate.min_1.8.1", "validation" %>
+ <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+ <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/src/markerclusterer.js"></script>
+
+<script type="text/javascript">
+      $(document).ready(function ($) {
+        $('.description').perfectScrollbar();
+      });
+    
+  //<![CDATA[
+
+    var map, actual, iw;
+    var gmarkers = [];
+    var mcOptions = {gridSize: 20, maxZoom: 17};
+    var mc = new MarkerClusterer(map, [], mcOptions);
+    var icons = {
+        img: "/assets/icons-dot.png",
+        bar: [0, 0],
+        cafe: [128, 32],
+        hotel: [32, 32],
+        disco: [96, 0],
+        white: [192, 0]
+    };
+
+    // Create an array of styles.
+    var styles = [
+      {
+        stylers: [
+          { hue: "#00b4ff" },
+          { saturation: 50 }
+        ]
+      },{
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [
+          { hue: "#28A0E5" },
+          { visibility: "simplified" }
+        ]
+      },{
+        featureType: "road",
+        elementType: "labels",
+        stylers: [
+          { visibility: "off" }
+        ]
+      }
+    ];
+
+    // Create a new StyledMapType object, passing it the array of styles,
+    // as well as the name to be displayed on the map type control.
+    var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
+
+
+function shifter(a) {
+
+    var g = google.maps;
+    var b = {
+        url: icons.img,
+        size: new g.Size(32, 32),
+        origin: new g.Point(a[0], a[1]),
+        anchor: new g.Point(15, 32)
+    };
+    return b
+}
+
+function createMarker(b, c, d, e, f, v, w) {
+    var g = google.maps;
+    // var bounds = new g.LatLngBounds();
+
+    var h = shifter(icons[e]);
+    var i = new g.Marker({
+        position: b,
+        map: map,
+        title: c,
+        clickable: true,
+        draggable: false,
+        icon: h
+    });
+
+    // bounds.extend(i.position);
+
+   
+
+    i.category = e;
+    i.name = c;
+    i.id = f;
+    i.postid = v;
+    i.price = v;
+    gmarkers.push(i);
+
+     ///get array of markers currently in cluster
+    var allMarkers = mc.getMarkers();
+    var text = "<div class='infowindow_div2'><p><a href='/posts/"+v+"'>"+ c +".  $"+ w +"/sq. ft <\/a><\/p> <\/div>";
+
+
+
+    //check to see if any of the existing markers match the latlng of the new marker
+      if (allMarkers.length != 0) {
+        
+        for (j=0; j < allMarkers.length; j++) {
+            
+          var existingMarker = allMarkers[j];
+          var pos = existingMarker.getPosition();
+
+
+          if (b.equals(pos)) {
+            text = text + "<div class='infowindow_div2'><p><a href='/posts/"+allMarkers[j].postid+"'>"+ allMarkers[j].name +".  $"+ allMarkers[j].price +"/sq. ft<\/a><\/p> <\/div>";
+          } 
+
+
+        }
+      }
+
+    
+    g.event.addListener(i, "click", function() {
+        iw.setContent(text);
+        iw.open(map,this);
+    });
+    g.event.addListener(i, "mouseover", function() {
+        i.setIcon(shifter(icons.white));
+        var a = document.getElementById(f);
+        if (a) {
+            a.className = "focus";
+            actual = a
+        }
+    });
+    g.event.addListener(i, "mouseout", function() {
+        i.setIcon(shifter(icons[e]));
+        if (actual) {
+            actual.className = "normal"
+        }
+    })
+
+    mc.addMarker(i);
+    
+
+}
+
+var hover = {
+    over: function(i) {
+        
+        var a = gmarkers[i];
+        var b = document.getElementById(a.id);
+        // b.className = "focus";
+        a.setIcon(shifter(icons.white))
+    },
+    out: function(i) {
+        var a = gmarkers[i];
+        var b = document.getElementById(a.id);
+        // b.className = "normal";
+        a.setIcon(shifter(icons[a.category]))
+    }
+};
+var visible = {
+    show: function(a) {
+        for (var i = 0, m; m = gmarkers[i]; i++) {
+            if (m.category == a) {
+                m.setVisible(true)
+            }
+        }
+
+        //document.getElementById(a).checked = true
+    },
+    hide: function(a) {
+        for (var i = 0, m; m = gmarkers[i]; i++) {
+            if (m.category == a) {
+                m.setVisible(false)
+            }
+        }
+        //document.getElementById(a).checked = false;
+        iw.close()
+    }
+};
+
+function boxclick(a, b) {
+    if (a.checked) {
+        visible.show(b)
+    } else {
+        visible.hide(b)
+    }
+    // makeSidebar()
+}
+
+function triggerClick(i) {
+    google.maps.event.trigger(gmarkers[i], "click")
+}
+
+function loadMap() {
+    var g = google.maps;
+    
+    //Disable map view:   mapTypeControl: false,
+
+        // mapTypeControl: false,
+        // panControl: true,
+        // zoomControl: true
+
+    var a = {
+        center: new g.LatLng(34.0219357, -118.2800845),
+        zoom: 5,
+        panControl: true,
+        zoomControl: true,
+        disableDefaultUI: true
+    };
+
+
+    map = new g.Map(document.getElementById("map"), a);
+
+    map.mapTypes.set('map_style', styledMap);
+    map.setMapTypeId('map_style');
+
+    iw = new g.InfoWindow({Width: 500});
+    
+    
+    g.event.addListener(map, "click", function() {
+        if (iw) iw.close()
+    });
+    readData()
+}
+
+function readData() {
+    var k;
+    try {
+        if (typeof ActiveXObject != "undefined") {
+            k = new ActiveXObject("Microsoft.XMLHTTP")
+        } else if (window["XMLHttpRequest"]) {
+            k = new XMLHttpRequest()
+        }
+    } catch (e) {}
+    <% if params[:search] %>
+    k.open("GET", "<%= posts_overview_path(params.merge(format: "xml")) %>", true);
+    <% else %>
+    k.open("GET", "/posts/overview.xml", true);
+    <% end %>
+    k.onreadystatechange = function() {
+        if (k.readyState == 4) {
+
+            var a = k.responseXML;
+            var b = a.documentElement.getElementsByTagName("marker");
+
+            mc = new MarkerClusterer(map, [], mcOptions);
+
+            
+            for (var i = 0, m; m = b[i]; i++) {
+                var c = parseFloat(m.getAttribute("lat"));
+                var d = parseFloat(m.getAttribute("lng"));
+                var e = new google.maps.LatLng(c, d);
+                var f = m.getAttribute("address");
+                var g = m.getAttribute("nr");
+                var h = m.getAttribute("name");
+                var j = m.getAttribute("category");
+                var v = m.getAttribute("postid");
+                var w = m.getAttribute("price");
+                createMarker(e, h, f, j, g, v, w)
+            }
+            if (gmarkers) {
+                gmarkers
+            }
+
+            if (!(typeof b !== 'undefined' && b.length > 0)) {
+                
+                var geocoder = new google.maps.Geocoder();
+
+                var address = document.getElementById('search_address').value;
+                  geocoder.geocode( { 'address': address}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                      map.setCenter(results[0].geometry.location);
+                      var marker = new google.maps.Marker({
+                          map: map,
+                          position: results[0].geometry.location,
+                          icon: shifter(icons['bar'])
+                      });
+                    } else {
+                      alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                  });
+
+            }
+
+            visible.show("bar");
+            visible.show("cafe");
+            visible.hide("hotel");
+            visible.hide("disco");
+            // makeSidebar()
+
+          function AutoCenter() {
+              //  Create a new viewpoint bound
+              var bounds = new google.maps.LatLngBounds();
+              //  Go through each...
+              $.each(gmarkers, function (index, marker) {
+                bounds.extend(marker.position);
+
+              });
+              //  Fit these bounds to the map
+              map.fitBounds(bounds);
+            }
+
+          
+
+            AutoCenter();
+
+
+        }
+    };
+    k.send(null)
+}
+
+window.onload = loadMap;
+
+//]]>
+</script>

@@ -1069,16 +1069,8 @@ background-color:#072643;
    opacity: 0;
   }
 	
-.units
-{
-	float:left;
-    margin-top:-7px;
-	font-family:brandon4;
-	
-	
-	
-	
-	}
+.units{ float:left; margin-top:-7px; font-family:brandon4;}
+
 	.circle{
 	width:39px;
 	height:39px;
@@ -1090,7 +1082,8 @@ background-color:#072643;
 	color:#072743;
 	position:relative;
 	}
-	.circle p{margin-top:8px; font-family:brandon4;}	
+
+.circle p{margin-top:12px; font-family:brandon4; font-size: 11px;}	
 		
 		
 		
@@ -3207,6 +3200,8 @@ a.post-btn {
     top: 85%;
     padding: 20px;
     border: 2px solid #051628;
+    font-weight:bold;
+    font-size: 18px;
 }
 
 
@@ -3256,4 +3251,12 @@ a.post-btn {
 }
 
 .invalidLogin {color:#fd0000;position:relative;left:95px;font-size:12px;}
+.sort_active { color:#02acf4 !important;}
+.sort_distance a { color:#02acf4 !important;}
+.agreeTC_sign {
+    color: #7b7b7b;
+    font-family: brandon4;
+    margin: -27px 0 0 20px;
+    text-decoration: underline;
+}
 

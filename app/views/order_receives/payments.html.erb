@@ -22,10 +22,8 @@
 
                             <% if booking.is_cancel == true %>
                                Cancelled
-                            <% elsif booking.is_confirm == true %>
-                               Confirmed booking
                             <% else %>
-                               Waiting for drop-off confirmation
+                               <%= payment_status(booking) %>
                             <% end %>
                     <%end%>
                    
@@ -43,7 +41,7 @@
                 </div>
                 
                 <div class="pay-col pay-col1">
-                	<span>Amount</span>: $<%= booking.received_by_poster rescue nil %>
+                	<span>Amount</span>: $ <%= received_by_poster(booking) %>
                 </div>
             </div>
             <%end%>

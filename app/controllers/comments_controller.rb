@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
     def index
        
-      @comments = Comment.where(:post_id => params[:post_id]).paginate(:per_page => 6, :page => params[:page])
+      @comments = Comment.includes(:user).where(:post_id => params[:post_id]).paginate(:per_page => 6, :page => params[:page])
 
       respond_to do |format|
         format.html { render :layout => false}
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     end
 
     def books
-      @comments = Comment.where(:post_id => params[:post_id]).paginate(:per_page => 4, :page => params[:page])
+      @comments = Comment.includes(:user).where(:post_id => params[:post_id]).paginate(:per_page => 4, :page => params[:page])
 
       respond_to do |format|
         format.html { render :layout => false}
@@ -28,8 +28,6 @@ class CommentsController < ApplicationController
      @posts = Post.where("user_id != ?",current_user.id)
      @user = User.find_by_id(current_user)
      redirect_to :back
-
-       
     end
 
     def create
@@ -38,14 +36,14 @@ class CommentsController < ApplicationController
       @comment = @post.comments.new(comment_params) 
       @comment.save! 
       redirect_to :back
-     end
+    end
 
-     def destroy
+    def destroy
       @comment = Comment.find(params[:id])
       @comment.destroy
 
       redirect_to :back
-     end
+    end
 
   private
     def set_comment
