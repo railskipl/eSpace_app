@@ -22,11 +22,16 @@ end
  
 def update
   @user = User.find(params[:id])
-  params[:user].delete(:password) if params[:user][:password].blank?
-  params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
-  @user.update_attributes(person_params)
-  flash[:notice] = "Profile Updated Successfully "
-  redirect_to root_path
+  if params[:user][:notification_for_email] == "1" || params[:user][:notification_for_personal_email] == "1"
+    params[:user].delete(:password) if params[:user][:password].blank?
+    params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
+    @user.update_attributes(person_params)
+    flash[:notice] = "Profile Updated Successfully "
+    redirect_to  edit_user_path(@user)
+  else
+    flash[:notice] = "Please select atleast one email"
+    redirect_to  edit_user_path(@user)
+  end
 end
 
 def new_user
