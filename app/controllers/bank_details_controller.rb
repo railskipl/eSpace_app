@@ -6,8 +6,11 @@ class BankDetailsController < ApplicationController
 
   def index
     @bank_detail = BankDetail.has_bank_detail(current_user.id).first
-    @bank_details = current_user.bank_details.all
-    
+    if @bank_detail.present?
+      @bank_details = current_user.bank_details.all
+    else
+      redirect_to new_bank_detail_path
+    end    
   end
 
   def show

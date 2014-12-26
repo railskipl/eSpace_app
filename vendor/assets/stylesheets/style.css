@@ -2407,12 +2407,26 @@ form.change_password .textbox input {
    
    }
   
-     #password1{
-      font-family:brandon4;
-      font-size:15px;
-      color:#b2b3b5;
-      margin-top: 12px
-       }
+#password1{
+  font-family:brandon4;
+  font-size:15px;
+  color:#b2b3b5;
+  margin-top: 12px
+  }
+
+  #password2{
+  font-family:brandon4;
+  font-size:15px;
+  color:#b2b3b5;
+  margin-top: 12px
+  }
+
+  #password3{
+  font-family:brandon4;
+  font-size:15px;
+  color:#b2b3b5;
+  margin-top: 12px
+  }
 
 
 #flash_notice {color: #FD0000; }
