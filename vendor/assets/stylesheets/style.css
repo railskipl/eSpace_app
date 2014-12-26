@@ -1840,7 +1840,8 @@ body{
 	padding:22px 33px 22px 22px;
 	color:#bbbfc2;
 	display:table;
-    margin-left: -1px;}
+    margin-left: -1px;
+   }
 	
 	.date{ 
 	width: auto;
@@ -1985,7 +1986,7 @@ body{
     background: url(/assets/chat-bg.jpg) repeat-y #fff;
     float: left;
     width: 754px;
-	
+	margin-left:-1px;
 	}
 	
 	.chat-menu{
