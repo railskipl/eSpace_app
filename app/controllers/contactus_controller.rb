@@ -31,28 +31,26 @@ class ContactusController < ApplicationController
   end
   
   def create
-    unless params[:subject].blank?
-      if signed_in? 
-   
-      @contactus = Contactus.new(contact_params)
-      @contactus.save
-      redirect_to contactus_path
+    unless params[:contactus][:subject].blank?
+      if current_user.admin?
+        @contactus = Contactus.new(contact_params)
+        @contactus.save
+        redirect_to contactus_path
       else
-      @contactus = Contactus.new(contactus_params)
-      @contactus.save
-      #ContactusMailer.contactus(@contactus).deliver
-      flash[:notice] = "Thank You for Contacting Us."
-      redirect_to root_path
+        @contactus = Contactus.new(contactus_params)
+        @contactus.save
+        #ContactusMailer.contactus(@contactus).deliver
+        flash[:notice] = "Thank You for Contacting Us."
+        redirect_to root_path
       end
     else
       flash[:notice] = "Please select topic."
       redirect_to :back
     end 
-   
   end
 
   def destroy
-      
+   
       @contactus.destroy
 
       redirect_to :back
