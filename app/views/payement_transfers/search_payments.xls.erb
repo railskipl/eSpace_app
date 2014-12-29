@@ -1,22 +1,39 @@
+
 <table border="1">
 <tr>
   <th>Sr No.</th>
+  <th>Booking date</th>
+  <th>Drop off date</th>
+  <th>Post ID</th>
+  <th>Poster ID</th>
+  <th>Poster full name</th>
+  <th>Booking ID</th>
+  <th>Finder ID</th>
+  <th>Finder full name</th>
   <th>Amount finder was charged</th>
   <th>Stripe commission for charge</th>
   <th>Actual (net) we received</th>
   <th>Total amount we paid</th>
   <th>Stripe commission for payout</th>
   <th>Net amount user received</th>
-   <th>Actual amount we paid</th>
+  <th>Actual amount we paid</th>
   <th>Stripe's addition/subtraction</th>
   <th>Actual amount user received as refund</th>
   <th>Our final income</th>
   
 </tr>
-<% @payment_transfers.try(:each_with_index) do |booking, index|%>
-   
+
+<% @bookings.each_with_index do |booking, index| %>
 <tr>
   <td><%= index + 1 %></td>
+  <td><%= booking.created_at.strftime('%d-%m-%Y')%></td>
+  <td><%= booking.dropoff_date%></td>
+  <td><%= booking.post_id%></td>
+  <td><%= booking.poster_id%></td>
+  <td><%= booking.poster.name.capitalize rescue nil%> <%= booking.poster.last_name rescue nil%></td>
+  <td><%= booking.id%></td>
+  <td><%= booking.user_id%></td>
+  <td><%= booking.user.name rescue nil%> <%= booking.user.last_name rescue nil%></td>
   <td><%= booking.price.present? ? booking.price.round(3) : ' --' rescue nil  %></td>
   <td><%= (stripe_charge = booking.price.to_i * 0.029 + 0.30).round(3) rescue nil %></td>
   <td><%= (booking.price - stripe_charge).round(3)  rescue nil %></td>
@@ -31,6 +48,7 @@
 </tr>
 <% end %>
 </table>
+
 
 
 
