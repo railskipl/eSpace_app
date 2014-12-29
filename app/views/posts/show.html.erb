@@ -89,7 +89,7 @@
                      4 feet x 5 feet = 20 sq. feet</p><div class="clear"></div>
                      <div class="styleSelect1">
 
-                      <%= text_field_tag :area, nil, :class=>"units" %> 
+                      <%= text_field_tag :area, nil, "maxlength"=>"3", :class=>"units" %> 
                    
                      </div> 
                      <p class="miles3"> <%= @remaining_area.to_i %> sq. feet available</p>
