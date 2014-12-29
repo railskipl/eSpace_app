@@ -17,8 +17,7 @@ class OrderReceivesController < ApplicationController
 	end
 
 	def payments
-		@bookings = Booking.includes(:user).where('poster_id = ? or user_id = ?', current_user.id, current_user.id )
-	    
+		@bookings = Booking.includes(:poster, :user).where('poster_id = ? or user_id = ?', current_user.id, current_user.id ).page(params[:page]).order("id desc").per_page(5) 
 	end
 
 	

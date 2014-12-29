@@ -399,7 +399,7 @@ jQuery("#booking").validate({
 	messages: {
 
 		"area":{
-        required: "Please enter area",
+        required: " ",
         min: "greater than or equal to 4"
         }
         ,
