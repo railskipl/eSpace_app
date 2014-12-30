@@ -51,10 +51,10 @@
         <div class="order-col order-col1">
           <!-- <div class="heading"> -->
           <div  style="color: #14263a; font-family: brandon4; margin-top: 0;">
-            <h4><%= booking.user.name %></h4>
+            <h4><%= booking.user_name %></h4>
           </div>
           <p>
-            <%= booking.post.address rescue nil%> <%= booking.post.street_add rescue nil%> <br/> <%= booking.post.apt rescue nil%> <%= booking.post.city rescue nil%> <%= booking.post.state rescue nil%> <br/><%= booking.post.zip_code rescue nil%>
+            <%= booking.post_address rescue nil%> <%= booking.post_street_add rescue nil%> <br/> <%= booking.post_apt rescue nil%> <%= booking.post_city rescue nil%> <%= booking.post_state rescue nil%> <br/><%= booking.post_zip_code rescue nil%>
           </p>
           <p>
             Total amount : $<%=booking.price %>
@@ -69,7 +69,7 @@
         <div class="order-col order-col1 order-col1-tmar">
           <span>Booking area</span> : <%= booking.area%> sq. ft
             <p>
-              <span>Rate</span> : $<%= booking.post.price_sq_ft%>/sq.ft.
+              <span>Rate</span> : $<%= booking.post_price_sq_ft%>/sq.ft.
             </p>
             <p>
               <% if booking.is_cancel == true %>
@@ -137,7 +137,7 @@
 
       </div>
       <%end%>
-         <%= will_paginate @bookings %>
+         <span class="center_align"><%= will_paginate @bookings %></span>
     </div>
   </div>
 </div>

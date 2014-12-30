@@ -22,7 +22,7 @@ Users
 <% @total_messages.each do |messages|%>
 <p>
 
-      <b> <%= messages.sender.name %> </b>:
+      <b> <%= messages.sender_name %> </b>:
           <%= messages.body %><br/> <%= messages.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
 
 </p>

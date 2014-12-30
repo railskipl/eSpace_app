@@ -50,10 +50,10 @@
         <div class="order-col order-col1">
           <!-- <div class="heading"> -->
           <div  style="color: #14263a; font-family: brandon4; margin-top: 0;">
-            <h4><%= User.find(booking.user_id).name %></h4>
+            <h4><%= booking.user_name %></h4>
           </div>
           <p>
-            <%= Post.find(booking.post_id).address %>
+            <%= booking.post_address %>
           </p>
           <p>
             Total amount : $<%=booking.price %>
@@ -67,7 +67,7 @@
         <div class="order-col order-col1 order-col1-tmar">
           <span>Booking area</span> : <%= booking.area%> sq. ft
             <p>
-              <span>Rate</span> : $<%= booking.post.price_sq_ft%>/sq.ft.
+              <span>Rate</span> : $<%= booking.post_price_sq_ft%>/sq.ft.
             </p>
             <p>
               <%if booking.status.present?%>

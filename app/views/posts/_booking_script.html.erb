@@ -30,7 +30,7 @@
         // as well as the name to be displayed on the map type control.
         var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
 
-        var myLatlng = new google.maps.LatLng(<%= @post.latitude %>,<%= @post.longitude %>);
+        var myLatlng = new google.maps.LatLng(<%= post.latitude %>,<%= post.longitude %>);
         var mapOptions = {
           zoom: 12,
           center: myLatlng,
@@ -62,9 +62,9 @@
 
     jQuery(function($){
       
-      $("#booking_dropoff_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= date_range(@post) %>'), maxDate: new Date('<%= @post.drop_off_avaibility_end_date %>')})
+      $("#booking_dropoff_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= date_range(post) %>'), maxDate: new Date('<%= post.drop_off_avaibility_end_date %>')})
 
-      $("#booking_pickup_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= @post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= @post.pick_up_avaibility_end_date %>')})
+      $("#booking_pickup_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= post.pick_up_avaibility_end_date %>')})
 
 
 
@@ -236,7 +236,7 @@
     });
 
 
-    $("#ref_comment").load('<%= comments_path(:post_id => @post.id) %>');
+    $("#ref_comment").load('<%= comments_path(:post_id => post.id) %>');
 
 
 });//]]>  

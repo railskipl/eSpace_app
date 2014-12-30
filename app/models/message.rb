@@ -6,6 +6,10 @@ class Message < ActiveRecord::Base
   belongs_to :message
   belongs_to :post
   has_many :users
+
+  delegate :name,:email, :to => :sender, :prefix => true
+  delegate :name,:email, :to => :recipient, :prefix => true
+  
   attr_reader :user_tokens
 
     def user_tokens=(ids)
