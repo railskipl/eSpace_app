@@ -8,7 +8,7 @@ class PayementTransfersController < ApplicationController
 
   
   def index
-  	 @bookings = Booking.includes(:poster,:post)
+  	 @bookings = Booking.includes(:poster,:post).order("id desc")
 
      respond_to do |format|
         format.html
@@ -104,7 +104,7 @@ class PayementTransfersController < ApplicationController
       flash[:error] = "Start Date Cannot Be Greater"
       # return false
     else
-      @payment_transfers = Booking.where("date(created_at) >= ? and date(created_at) <= ?",@start_date, @end_date).order("desc id") 
+      @payment_transfers = Booking.where("date(created_at) >= ? and date(created_at) <= ?",@start_date, @end_date).order("id desc")
     end
         respond_to do |format|
         format.html
