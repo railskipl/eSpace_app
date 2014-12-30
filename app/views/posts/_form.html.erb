@@ -55,7 +55,24 @@ $('.masterTooltip').hover(function(){
 });
 });
 </script>
-
+<script type="text/javascript">
+$(function() {
+  $('#post_photo').on('change', function(event) {
+    var files = event.target.files;
+    var image = files[0]
+    var reader = new FileReader();
+    reader.onload = function(file) {
+      var img = new Image();
+      img.src = file.target.result;
+      img.width = 91;
+      img.height = 61;
+      $('#target').html(img);
+    }
+    reader.readAsDataURL(image);
+    console.log(files);
+  });
+});
+</script>
 <script type='text/javascript'>//<![CDATA[ 
   $(window).load(function(){
 
@@ -69,6 +86,7 @@ $('.masterTooltip').hover(function(){
   });//]]>  
 
 </script>
+
              
     <div class="main-new">
             <ul class="verticle-menu">
@@ -239,6 +257,9 @@ $('.masterTooltip').hover(function(){
                                 <div class="photo">
                                   <% if post.photo.exists? %>
                                     <%= image_tag post.photo.url(:thumb) %>
+                                  <% elsif params[:action] == "new" %>
+                                  <div id="target">
+                                  </div>
                                   <% end %>
                                   <!-- <a href="#">Delete</a> -->
                                 </div>
