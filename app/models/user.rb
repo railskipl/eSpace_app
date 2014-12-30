@@ -23,10 +23,11 @@ class User < ActiveRecord::Base
   end
 
   def self.is_present_facebook_oauth(auth)
+    config = YAML.load_file("#{Rails.root}/config/facebook.yml")
     if Rails.env.development?
-      oauth = Koala::Facebook::OAuth.new("382895341863463", "70e00b19e5cf11f56990e9402da7e8f5")
+      oauth = Koala::Facebook::OAuth.new(config['development']['app_id'].to_s, config['development']['secret_key'].to_s)
     else  
-      oauth = Koala::Facebook::OAuth.new("463439180461791", "da2a8a7e85b8c3eda15f129204dd9d23")
+      oauth = Koala::Facebook::OAuth.new(config['production']['app_id'].to_s, config['production']['secret_key'].to_s)
     end 
 
       new_access_token = oauth.exchange_access_token(auth["credentials"]["token"])

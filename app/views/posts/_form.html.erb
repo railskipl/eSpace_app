@@ -75,6 +75,14 @@ $(function() {
 </script>
 <script type='text/javascript'>//<![CDATA[ 
   $(window).load(function(){
+    var a = document.getElementById('post_drop_off').checked
+    var b = document.getElementById('post_pick_up').checked
+    if (a == true){
+      $('#post_price_include_drop_off').removeAttr('disabled');
+    }
+    if (b == true){
+      $('#post_price_include_pick_up').removeAttr('disabled');
+    }
 
     $("#post_drop_off").click(function() {
         $("#post_price_include_drop_off").attr("disabled", !this.checked); 
@@ -157,7 +165,8 @@ $(function() {
                                 <ul class="check-box">
                             <li>
                                 <label class="tasks-list-item">
-                                <input type="checkbox" id="post_drop_off" name="post[drop_off]" value="1" class="tasks-list-cb"  onclick="enable_text(this.checked)">
+                                <%= f.check_box :drop_off, :class=>"tasks-list-cb",:onclick=>"enable_text(this.checked)"%>
+                                <!-- <input type="checkbox" id="post_drop_off" name="post[drop_off]" value="1" class="tasks-list-cb"  onclick="enable_text(this.checked)"> -->
                                 <%#= f.check_box :drop_off, :class => "tasks-list-cb" %>
                                 <span class="tasks-list-mark" tabindex="7"></span>
                                 <span class="tasks-list-desc">Drop-off</span>
@@ -166,7 +175,8 @@ $(function() {
                                 
                             <li>
                                 <label class="tasks-list-item">
-                                <input type="checkbox" id="post_pick_up" name="post[pick_up]" value="1" class="tasks-list-cb"  onclick="enable_text(this.checked)">
+                                <%= f.check_box :pick_up, :class=>"tasks-list-cb",:onclick=>"enable_text(this.checked)"%>
+                                <!-- <input type="checkbox" id="post_pick_up" name="post[pick_up]" value="1" class="tasks-list-cb"  onclick="enable_text(this.checked)"> -->
                                 <%#= f.check_box :pick_up, :class => "tasks-list-cb" %>
                                 <span class="tasks-list-mark" tabindex="9"></span>
                                 <span class="tasks-list-desc">Pick-up</span>

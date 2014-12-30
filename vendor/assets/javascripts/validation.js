@@ -49,6 +49,11 @@ jQuery.validator.addMethod('customphone', function (value, element) {
     return this.optional(element) || /^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/.test(value);
 }, "Please enter a valid phone number");
 
+//Custome Validation - Price per sq. foot
+jQuery.validator.addMethod('customarea', function (value, element) {
+    return this.optional(element) || /^\d{0,2}(\.\d{0,2}){0,1}$/.test(value);
+}, "Please enter a valid price");
+
 
 
 // All Jquery Validation
@@ -209,9 +214,10 @@ rules: {
 		min:4,
 		max:100
 	},
+	"post[price_sq_ft]": 'customarea',
 	"post[price_sq_ft]":{
 		required:true,
-		number:true,
+		// number:true,
 		min:0.50,
 		max:100
 	},
