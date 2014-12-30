@@ -97,7 +97,6 @@ class BookingsController < ApplicationController
           @booking.stripe_customer_token = charge[:created]
           @booking.stripe_charge_id = charge[:id]
           @booking.save
-
           BookedMailer.booked_a_spaces(@booking).deliver
             
           redirect_to bookings_path, :notice => "Thank you"
