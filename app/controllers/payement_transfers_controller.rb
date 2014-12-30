@@ -104,7 +104,7 @@ class PayementTransfersController < ApplicationController
       flash[:error] = "Start Date Cannot Be Greater"
       # return false
     else
-      @payment_transfers = Booking.where("date(created_at) >= ? and date(created_at) <= ?",@start_date, @end_date) 
+      @payment_transfers = Booking.where("date(created_at) >= ? and date(created_at) <= ?",@start_date, @end_date).order("desc id") 
     end
         respond_to do |format|
         format.html
