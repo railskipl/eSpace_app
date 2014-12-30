@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
  before_filter :authenticate_user!, :except => []
  skip_before_filter :verify_authenticity_token, :only => [:checkout]
+
  include BookingsHelper
 
  def index 
@@ -127,13 +128,27 @@ class BookingsController < ApplicationController
 
     stripe_charge_id = @booking.stripe_charge_id
     days_diff =  days_diff(params[:drop_off_date].to_date)
-    amount = cancel_booking_deduction(days_diff, price) 
-    amount_cents = ((amount)*100).to_i
 
-    refund_addition = ((amount * 2.9)/100)
+    
 
-    send_money = send_money_to_poster(days_diff, price) 
-    send_money_cents = ((send_money)*100).to_i
+    if price <= 8
+      amount = cancel_booking_by_finder_less8(days_diff, price) 
+      refund_addition = ((amount * 2.9)/100)
+      amount_cents = ((amount)*100).to_i
+    else
+      amount = cancel_booking_deduction(days_diff, price) 
+      amount_cents = ((amount)*100).to_i
+      refund_addition = ((amount * 2.9)/100)
+    end
+
+    
+    if price <= 8
+      send_money = (price.to_f - 0.80) - amount
+      send_money_cents = ((send_money)*100).to_i
+    else
+      send_money = send_money_to_poster(days_diff, price) 
+      send_money_cents = ((send_money)*100).to_i
+    end
 
     
     begin
@@ -149,8 +164,13 @@ class BookingsController < ApplicationController
 
     if @recipient_details.present?
 
-      stripe_processing_fees = price.to_i * 0.029 + 0.30 - refund_addition
-      commission = send_money_to_admin(days_diff, price) - stripe_processing_fees
+      if price <= 8
+        commission = (price.to_i - (price.to_i * 0.029 + 0.30)) - (send_money + 0.25) - (amount - refund_addition)
+      else
+        stripe_processing_fees = price.to_i * 0.029 + 0.30 - refund_addition
+        commission = send_money_to_admin(days_diff, price) - stripe_processing_fees
+        raise commission.inspect
+      end
 
       begin
         transfer = Stripe::Transfer.create(
@@ -169,8 +189,14 @@ class BookingsController < ApplicationController
        transfer_payment = @booking.update_columns(commission: commission)
        
     else
+
+      if price <= 8
+        commission = (price.to_i - (price.to_i * 0.029 + 0.30)) - (send_money + 0.25) - (amount - refund_addition) + send_money
+      else
        stripe_processing_fees = price.to_i * 0.029 + 0.30 - refund_addition
        commission = send_money + send_money_to_admin(days_diff, price) - stripe_processing_fees - 0.25
+      end
+
        transfer_payment = @booking.update_columns(commission: commission)
        transfer_payment = @booking.update_columns(comment: "Waiting for poster bank account.")
     end
