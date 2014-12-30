@@ -26,7 +26,6 @@ class User < ActiveRecord::Base
     config = YAML.load_file("#{Rails.root}/config/facebook.yml")
     if Rails.env.development?
       oauth = Koala::Facebook::OAuth.new(config['development']['app_id'].to_s, config['development']['secret_key'].to_s)
-      
     else  
       oauth = Koala::Facebook::OAuth.new(config['production']['app_id'].to_s, config['production']['secret_key'].to_s)
     end 
@@ -34,7 +33,7 @@ class User < ActiveRecord::Base
       new_access_token = oauth.exchange_access_token(auth["credentials"]["token"])
       user = User.where(auth.slice(:provider, :uid)).first
       @new_token = user.update_columns(oauth_token: new_access_token) rescue nil
-      #User.where(auth.slice(:provider, :uid)).first
+      return user
   end
 
   def self.find_facebook_oauth(auth, alt_email)
