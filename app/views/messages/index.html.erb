@@ -138,8 +138,8 @@
 		      jQuery('input[type="submit"]').addClass('msg_active');
 
 		      if (code == 13) {
-	        	
-	            $("#reply_message").submit();
+	        	$("#reply_message").submit();
+	        	$("#message_body").val('');	
 	            return true;
 	         }
 		   } 
