@@ -6,7 +6,7 @@
 	var userinput = $('#email').val();
 
 	
-	<% @access_ids.each_with_index do |access_id, index| %>
+	<% access_ids.each_with_index do |access_id, index| %>
 	var domain<%= index %> = '<%= access_id.email %>';
 	<% end %>
 	
@@ -18,7 +18,7 @@
 		        err++;
 		    }
 
-	<% @access_ids.each_with_index do |access_id, index| %>
+	<% access_ids.each_with_index do |access_id, index| %>
 		<% if index == 0 %>
 			
 

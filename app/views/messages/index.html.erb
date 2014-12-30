@@ -126,6 +126,13 @@
 	jQuery(document).ready(function() {
 		jQuery("#refresh_msg").load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
 
+		jQuery('#submit_msg').click(function() {
+			var text_title = this.form.message_body.value;
+			if(text_title != ''){
+				$("#reply_message").submit();
+				$("#message_body").val('');
+			}
+		});
 
     	jQuery("#message_body").keyup(function (e) {
 
@@ -138,8 +145,8 @@
 		      jQuery('input[type="submit"]').addClass('msg_active');
 
 		      if (code == 13) {
-	        	
-	            $("#reply_message").submit();
+	        	$("#reply_message").submit();
+	        	$("#message_body").val('');	
 	            return true;
 	         }
 		   } 
@@ -155,12 +162,12 @@
 	var refreshId = setInterval(function()
 	{
 	     $('#responsecontainer').fadeOut("slow").load('<%= refresh_part_messages_path%>').fadeIn("slow");
-	}, 10000);
+	}, 1000);
 
 	var refresmsg_hId = setInterval(function()
 	{
 	     $('#refresh_msg').load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
-	}, 10000);
+	}, 1000);
 	</script>
 
 
@@ -175,5 +182,5 @@
 	var refresmsg_hId = setInterval(function()
 	{
 	     $('#user_msg').load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
-	}, 10000);
+	}, 1000);
 </script>

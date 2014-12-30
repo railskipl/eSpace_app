@@ -3,13 +3,13 @@ module BookingsHelper
   def cancel_booking_deduction(days,price)
     
   	if days >= 20 
-       @deducted_amount = price.to_f - (price.to_f * 0.2)
+       @deducted_amount = price.to_f - (price.to_f * 0.2) 
        return @deducted_amount
     elsif(days > 2 && days <= 20)  
       @deducted_amount = price.to_f - (price.to_f * 0.6)
       return @deducted_amount
     elsif(days <=2)  
-      @deducted_amount = price.to_f - (price.to_f * 0.8)
+      @deducted_amount = price.to_f - (price.to_f * 0.8) 
       return @deducted_amount  
     end		
   end

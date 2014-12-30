@@ -62,27 +62,33 @@
               </div>
                 
                 <div class="booking-wrap">
-                <div class="bmar10 font10"><%= link_to "Show all", bookings_path %> / <%= link_to "Hide cancelled and past bookings", bookings_path(:cancelled => true) %></div>
+                <div class="bmar10 font10">
+                  <% if params[:cancelled].present? %>
+                    <%= link_to "Show all", bookings_path, :style=>"color:#000" %> / <%= link_to "Hide cancelled and past bookings", bookings_path(:cancelled => true) %>
+                  <% else %>
+                    <%= link_to "Show all", bookings_path %> / <%= link_to "Hide cancelled and past bookings", bookings_path(:cancelled => true), :style=>"color:#000" %>
+                  <% end %>
+                </div>
                     <% @bookings.each_with_index do |booking, index|%>
                     <div class="booking-box">
                         
                         <div class="booking-col">
                             <span class="booking-name">
-                              <%= booking.poster.name.capitalize rescue nil%> 
-                              <%= booking.poster.last_name[0,1] rescue nil%>
+                              <%= booking.poster_name.capitalize rescue nil%> 
+                              <%= booking.poster_last_name[0,1] rescue nil%>
                             </span> 
                             <% if booking.poster.present? %>
-                              <% if booking.poster.provider.present? && booking.post.user_id != current_user.id %>
+                              <% if booking.poster_provider.present? && booking.post_user_id != current_user.id %>
                                 (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)
                               <% end %>
                             <% end %>
                             <p>
-                            <%= booking.post.address rescue nil %>
-                            <%= booking.post.street_add rescue nil %>
-                            <%= booking.post.apt rescue nil%><br>
-                            <%= booking.post.city rescue nil %>
-                            <%= booking.post.state rescue nil %>
-                            <%= booking.post.zip_code rescue nil %>
+                            <%= booking.post_address rescue nil %>
+                            <%= booking.post_street_add rescue nil %>
+                            <%= booking.post_apt rescue nil%><br>
+                            <%= booking.post_city rescue nil %>
+                            <%= booking.post_state rescue nil %>
+                            <%= booking.post_zip_code rescue nil %>
                             </p>
                         </div>
                         
@@ -154,13 +160,13 @@
                         </p>
                         </div>
                         
-                        <div class="note"><span>Notes</span> : <%=booking.post.additional_comments rescue nil %>
+                        <div class="note"><span>Notes</span> : <%=booking.post_additional_comments rescue nil %>
                         </div>
                         
                         </div>
                   <%end%> 
                       
-                  <%= will_paginate @bookings %>
+                  <span class="center_align"><%= will_paginate @bookings %></span> 
                 </div>
             </div>
         </div>
