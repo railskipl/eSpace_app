@@ -6,7 +6,7 @@
 <td>$<%= booking.cut_off_price.present? ? booking.cut_off_price : ' --' rescue nil %></td>
 <td>$<%= booking.price.present? ? booking.price : ' --' rescue nil %></td>
 <td>$<%= booking.commission.present?  ? booking.commission : ' --' rescue nil %></td>
-<td><%= booking.post.address rescue nil%></td>
+<td><%= booking.post_address rescue nil%></td>
 <td><%= booking.status.camelize rescue nil %>
   
 <td>

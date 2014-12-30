@@ -1,12 +1,12 @@
 <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","admin_validation" %>
 
-<%= form_for(@page) do |f| %>
-  <% if @page.errors.any? %>
+<%= form_for(page) do |f| %>
+  <% if page.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+      <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
 
       <ul>
-      <% @page.errors.full_messages.each do |message| %>
+      <% page.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

@@ -87,8 +87,8 @@
                     <div class="blue-bg">
 
                       <div class="blue-bg-div1">
-                            <span><%= @post.user.name.capitalize rescue nil%> <%= @post.user.last_name[0,1] rescue nil %>.</span> 
-                            <% if current_user.provider.present? &&  @post.user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %>
+                            <span><%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %>.</span> 
+                            <% if current_user.provider.present? &&  @post.user_provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user.id) rescue nil%> mutual friends)<% end %>
                             <p>
                             <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %> 
 
