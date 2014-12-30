@@ -69,7 +69,7 @@ class PostsController < ApplicationController
         @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ?",Date.today, true,false)
         @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ?",Date.today, true,false)
       else
-        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ? archive = ?",Date.today, true,false)
+        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ?",Date.today, true,false)
         @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ?",Date.today, true,false)
       end
     respond_to do |format|
