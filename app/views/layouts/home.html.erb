@@ -19,7 +19,7 @@
            
             <div id="login1">
               <% if user_signed_in? %>
-                <p style="margin:5px; float:right;">
+                <p style="margin: 10px; float:right;">
                   <%= current_user.name rescue nil %> <%= current_user.last_name rescue nil %> 
                   <%= link_to("<span id='responsecontainer'>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}, :class=>"msg_count" )%>
                 </p>

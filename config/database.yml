@@ -7,9 +7,9 @@ development:
 
 production:
   adapter: mysql2
-  database: college_app_production
+  database: college_app_development
   username: root
-  password: 
+  password: root
 #   #socket: /var/run/mysqld/mysqld.sock  
 
 
