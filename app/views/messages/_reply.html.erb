@@ -4,6 +4,7 @@
       <%= hidden_field_tag :recipient_id, params[:recv_id] %>
       <%= hidden_field_tag :reply,"reply"%>
   
-      <%= f.submit "", :class=>"message_btn"  %>
+     <input type="button" id="submit_msg" class="message_btn" />
+      <%#= f.submit "", :class=>"message_btn" ,:id => "submit_msg" %>
 
   <% end %>
