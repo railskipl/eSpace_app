@@ -9,3 +9,85 @@
                   Drive :  <% if @booking.pickup_price != 0 %> $<%= @booking.pickup_price %> <% else %> Unavailable <% end %></p>
                           
     <p>Total Amount $<%= @booking.price %></p>
+
+
+
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dinobo Invoice</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+  </head>
+  <body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="logo.png">
+      </div>
+      <h1>Invoice</h1>
+      <div id="company" class="clearfix">
+        <div>www.dinobo.com</div>
+        <!--<div>Address line 1<br /> Address line 2</div>
+        <div>phone number</div>-->
+        <div><a href="mailto:help@dinobo.com">help@dinobo.com</a></div>
+      </div>
+      <div id="project">
+        <!--<div><span>PROJECT</span> Website development</div>-->
+        <div><span>CLIENT</span> <%= @booking.user.name %> <%= @booking.user.last_name %></div>
+        <!--<div><span>ADDRESS</span> Client address</div>-->
+        <div><span>EMAIL</span> <a href="mailto:<%= @booking.user.email %>"><%= @booking.user.email %></a></div>
+        <div><span>DATE</span> <%= Date.today %></div>
+        <div><span>PAYMENT</span> Paid</div>
+      </div>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th class="service">SERVICE</th>
+            <th class="desc"></th>
+            <th>PRICE</th>
+            <th>QTY</th>
+            <th>TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="service">Space rental from <%= @booking.dropoff_date.strftime("%B %d,%Y") %> to <%= @booking.pickup_date.strftime("%B %d,%Y") %></td>
+            <td class="desc"></td>
+            <td class="unit">$<%= @booking.post.price_sq_ft %></td>
+            <td class="qty"><%= @booking.area %> sq. ft.</td>
+            <td class="total">$<%= (@booking.post.price_sq_ft * @booking.area) %></td>
+          </tr>
+
+          <% if @booking.dropoff_price != 0 %>
+          <tr>
+            <td class="service">Drop off ride for <%= @booking.dropoff_date.strftime("%B %d,%Y") %></td>
+            <td class="desc"></td>
+            <td class="unit">$<%= @booking.dropoff_price %></td>
+            <td class="qty">1</td>
+            <td class="total">$<%= @booking.dropoff_price %></td>
+          </tr>
+          <% end %>
+
+          <% if @booking.pickup_price != 0 %>
+          <tr>
+            <td class="service">Pick up ride for <%= @booking.pickup_date.strftime("%B %d,%Y") %></td>
+            <td class="desc"></td>
+            <td class="unit">$<%= @booking.pickup_price %></td>
+            <td class="qty">1</td>
+            <td class="total">$<%= @booking.pickup_price %></td>
+          </tr>
+          <% end %>
+          
+          <tr>
+            <td colspan="4" class="grand total">TOTAL</td>
+            <td class="grand total">$<%= @booking.price %></td>
+          </tr>
+        </tbody>
+      </table>
+     
+    </main>
+   
+  </body>
+</html>
