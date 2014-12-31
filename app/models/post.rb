@@ -73,6 +73,8 @@ class Post < ActiveRecord::Base
     posts = posts.where("drop_off = ?", "#{search[:dropoff]}") if search[:dropoff] == '1'
     posts = posts.where("pick_up = ?", "#{search[:pickup]}") if search[:pickup] == '1'
 
+    posts = posts.where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ? and area_available >= ?",Date.today, true,false,4)
+
     posts.page(page).per_page(4)
     
   end
@@ -93,7 +95,7 @@ class Post < ActiveRecord::Base
     posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present? != search[:miles].present?
     posts = posts.where("drop_off = ?", "#{search[:dropoff]}") if search[:dropoff] == '1'
     posts = posts.where("pick_up = ?", "#{search[:pickup]}") if search[:pickup] == '1'
-    posts = posts.where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today, true)
+    posts = posts.where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ?",Date.today, true,false)
     posts = posts.where("area_available >= ?",4)
     posts.page(page)
     
