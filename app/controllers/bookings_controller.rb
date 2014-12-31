@@ -226,19 +226,14 @@ class BookingsController < ApplicationController
   end
 
   def confirm
-    @booking = Booking.find(params[:id])
-    @booking.update_columns(is_confirm: true)
+    booking = Booking.find(params[:id])
+    booking.is_confirm = true
+    booking.save
 
-      message_params = {}
-      message_params["sender_id"] = @booking.user_id
-      message_params["recipient_id"] = @booking.poster_id
-      message_params["post_id"] = @booking.post_id
-      message_params["body"] = "Drop-off has been confirmed."
-      message = Message.new(message_params)
-      message.save
+    Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id, 
+                 :post_id => booking.post_id,:body => "Drop-off has been confirmed.")
 
-
-    redirect_to booking_path(@booking.id)
+    redirect_to booking_path(booking.id)
     flash[:notice] = "Confirm drop off"
 
   end

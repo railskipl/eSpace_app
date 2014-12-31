@@ -117,6 +117,11 @@ class Post < ActiveRecord::Base
     
   end
 
+
+  def self.post_search(current_user)
+    where("user_id != ?",current_user.id).order("id desc")
+  end
+  
   def self.substract_area(booking)
      p = self.find(booking["post_id"].to_i)
      p.area_available = p.area_available - booking.area.to_f
@@ -127,7 +132,7 @@ class Post < ActiveRecord::Base
      p = self.find(booking["post_id"].to_i)
      p.area_available = p.area_available + booking.area.to_f
      p.save
-  end
+   end
 
 
   private

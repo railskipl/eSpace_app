@@ -2,26 +2,42 @@
 
 <table cellpadding="10" cellspacing="0" border="1" class="table table-striped table-bordered">
 <tr>
+<th>User ID</th>
 <th>First Name </th>
 <th>Last Name </th>
-<th>Email ID</th>
-<th>Signed In Through</th>
-<th>Personal Email </th>
-<th>No. of Post</th>
+<th>College email ID</th>
+<th>Personal email ID</th>
 <th>A/C Creation Date</th>
+<th>Number of times user has logged in all time</th>
+<th>Number of posts created</th>
+<th>Number of bookings made (by this user)</th>
+<th>Charging card</th>
+<th>Receiving card</th>
 <th>Last Login Date</th>
 <th>Last Login IP</th>
 <th>User Status</th>
 </tr>
 <% @adminusers.each do |adminuser|%>
 <tr>
+<td><%= adminuser.id%></td>
 <td><%= adminuser.name %></td>
 <td><%= adminuser.last_name %></td>
 <td><%= adminuser.email%></td>
-<td><%= adminuser.provider%></td>
 <td><%= adminuser.personal_email %></td>
-<td><%= Post.where(:user_id=>adminuser.id).count rescue nil%></td>
 <td><%= adminuser.created_at.to_date rescue nil%></td>
+<td><%= adminuser.sign_in_count%></td>
+<td><%= Post.where(:user_id=>adminuser.id).count rescue nil%></td>
+<td><%= adminuser.bookings.count%></td>
+<%if adminuser.bookings.present? %>
+  <td>YES</td>
+<%else%>
+  <td>NO</td>
+<%end%>
+<%if adminuser.bank_details.present? %>
+  <td>YES</td>
+<%else%>
+  <td>NO</td>
+<%end%>
 <td><%= adminuser.last_sign_in_at.to_date rescue nil%></td>
 <td><%= adminuser.last_sign_in_ip%></td>
 <td><% if adminuser.status == true %> Active <% else %> Deactive <% end %></td>

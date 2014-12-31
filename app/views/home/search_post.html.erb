@@ -23,29 +23,22 @@
             <a href="<%= search_post_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
      </div>
 <h4>Listing All Post</h4>
-<table cellpadding="1"  class="table table-striped">
-
-  <thead>
+<table cellpadding="1"  class="table table-striped ">
     <tr>
       <th>Sr No.</th>
       <th>Post ID</th>
-       <th>Poster Name</th>
-       <th>Date</th>
+      <th>Poster Name</th>
+      <th>Date</th>
       <th>Status</th>
-      <th></th>
-      <th>Drop Off Date</th>
-      <th>Pick up Date</th>
-      <th>Drop off Price</th>
-      <th>Pick up price</th>
-      <th>Archived</th>
-      <th>Ratings</th>
+      <th>Price per sq. ft.</th>
+      <th>Total area</th>
+      <th>Area booked</th>
+      <th>Address</th>
+      <th>Deactivate</th>
     </tr>
-  </thead>
-
-  <tbody id="all_posts" >
-
+   
     <% @posts.each_with_index do |post, index| %>
-    
+ 
         <tr>
         <% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
           <% x = 0 %>
@@ -55,42 +48,23 @@
         <% end %>
         <td><%= index + x+1 %></td>
         <td><%= post.id %></td>
-        <td><%= post.user_name %>&nbsp;<%= post.user_last_name rescue nil%></td>
-        <td><%= post.created_at.strftime("%d-%m-%Y") %></td> 
+        <td><%= post.user_name rescue nil%>&nbsp;<%= post.user_last_name rescue nil%></td>
+        <td><%= post.created_at.strftime("%d-%m-%Y") rescue nil%></td> 
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
-         <% if post.status == true %>
-        <td> <%= link_to 'Deactive', toggled_feature_post_path(post.id)%></td>
+        <td><%= post.price_sq_ft rescue nil%></td>
+        <td><%= post.area rescue nil%></td>
+        <td><%= post.bookings.pluck(:area).map(&:to_i).inject{|sum,i| sum + i} rescue nil%></td>
+        <td><%= post.street_add rescue nil%> <%= post.apt rescue nil%> <%= post.city rescue nil%> <%= post.state rescue nil%> <%= post.zip_code rescue nil%></td>
+        <td><% if post.status == true %>
+          <%= link_to 'Deactive', toggled_feature_post_path(post.id)%>
          <% else %>
-         <td><%= link_to 'Activate', toggled_feature_post_path(post.id)%></td>
+          <%= link_to 'Activate', toggled_feature_post_path(post.id)%>
          <% end %>
-        
-        <td><%= post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") %> -  <%= post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") %></td>
-        <td><%= post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %></td>
-        <%if post.price_include_drop_off.blank?%>
-        <td>-</td>
-         <%else%>
-        <td> <%= post.price_include_drop_off %></td>
-         <%end%>
-          <%if post.price_include_pick_up.blank?%>
-        <td>-</td>
-         <%else%>
-        <td><%= post.price_include_pick_up %></td>
-          <%end%>
-        <td><% if post.archive == true %> Yes <% else %> No <% end %></td>
-        <%if post.overall_rating.to_s ==  "NaN"%>
-        <td>No Ratings</td>
-        <%else%>
-      <td><%= post.overall_rating.round(1)%></td>
-        <%end%>
+        </td>
 
       </tr>
     <% end %>
-
-    
-
-  </tbody>
 </table> 
-
 <%#= will_paginate @posts %>
 
 

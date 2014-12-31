@@ -31,13 +31,10 @@ class Booking < ActiveRecord::Base
 	            return false
 	    end
 
-	      message_params = {}
-	      message_params["sender_id"] = booking.user_id
-	      message_params["recipient_id"] = booking.poster_id
-	      message_params["post_id"] = booking.post_id
-	      message_params["body"] = "Booking is cancel"
-	      message = Message.new(message_params)
-	      message.save
+
+	      Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id, 
+	      				 :post_id => booking.post_id,:body => "Booking is cancel")
+	      
 
 	end
 end

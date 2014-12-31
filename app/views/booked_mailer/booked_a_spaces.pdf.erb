@@ -165,7 +165,7 @@ footer {
         
         <div><span>CLIENT</span> <%= @booking.user_name %> <%= @booking.user_last_name %></div>
        
-        <div><span>EMAIL</span> <a href="mailto:<%= @booking.user.email %>"><%= @booking.user_email %></a></div>
+        <div><span>EMAIL</span> <a href="mailto:<%= @booking.user_email %>"><%= @booking.user_email %></a></div>
         <div><span>DATE</span> <%= Date.today %></div>
         <div><span>PAYMENT</span> Paid</div>
       </div>

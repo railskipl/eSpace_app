@@ -17,7 +17,7 @@
             <% @bookings.each do |booking|%>
             <div class="order-box">
                 <div class="pay-col pay-col1">
-                	<%if booking.stripe_charge_id.present? %>
+                	<%if booking.stripe_charge_id? %>
                     <span>Payment type</span> :
 
                         <% if booking.is_cancel == true %>

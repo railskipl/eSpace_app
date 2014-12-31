@@ -92,7 +92,8 @@ jQuery("#user").validate({
 		},
 		"user[password_confirmation]":{
 			required:true,
-			minlength:6
+			minlength:6,
+			equalTo: "#user_password"
 		},
 		"user[name]":{
 			required:true
@@ -118,7 +119,8 @@ jQuery("#user").validate({
 		},
 		"user[password_confirmation]":{
 			required: "Password confirmation cannot be blank",
-			minlength:"do not enter less than 6 characters"
+			minlength:"do not enter less than 6 characters",
+			equalTo:"Password does not match"
 		},
 		"user[name]":{
 			required: "Please enter First Name"
