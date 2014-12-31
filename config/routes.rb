@@ -23,7 +23,6 @@ Rails.application.routes.draw do
 
   get '/payments' => "order_receives#payments" , as: "payments"
 
-  resources :pages
   
   resources :admins
   

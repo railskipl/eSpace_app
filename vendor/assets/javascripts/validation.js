@@ -55,7 +55,6 @@ jQuery.validator.addMethod('customarea', function (value, element) {
 }, "Please enter a valid price");
 
 
-
 // All Jquery Validation
 jQuery(document).ready(function() {
 
@@ -391,10 +390,11 @@ jQuery("#booking").validate({
 	errorElement:'div',
 
 	rules: {
-
+        
         "area":{
 	        required:true,
 	        number:true ,
+	        digits:true,
 	        lessThan: "#remaining_area",
 	        min: 4
         },

@@ -66,11 +66,11 @@ class PostsController < ApplicationController
 
   def overview
       if params[:search]   
-        @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort])
-        @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ? and area_available >= ?",Date.today, true,4)
+        @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ? and area_available >= ?",Date.today, true,false,4)
+        @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ? and area_available >= ?",Date.today, true,false,4)
       else
-        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ? and area_available >= ?",Date.today, true,4)
-        @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ? and area_available >= ?",Date.today, true,4)
+        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ? and area_available >= ?",Date.today, true,false,4)
+        @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ? and area_available >= ?",Date.today, true,false,4)
       end
     respond_to do |format|
       format.html # index.html.erb

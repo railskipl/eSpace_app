@@ -129,8 +129,6 @@ class BookingsController < ApplicationController
     stripe_charge_id = @booking.stripe_charge_id
     days_diff =  days_diff(params[:drop_off_date].to_date)
 
-    
-
     if price <= 8
       amount = cancel_booking_by_finder_less8(days_diff, price) 
       refund_addition = ((amount * 2.9)/100)
