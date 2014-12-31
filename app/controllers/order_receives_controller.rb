@@ -30,31 +30,8 @@ class OrderReceivesController < ApplicationController
 	 def cancel_booking
 
 	    @booking = Booking.find(params[:id])
-	
-	    amount = @booking.price
-	    
-	    stripe_charge_id = @booking.stripe_charge_id
-	    amount_cents = ((amount.to_f)*100).to_i
-
-	    begin
-	    ch = Stripe::Charge.retrieve(stripe_charge_id) 
-	    refund = ch.refunds.create(:amount => amount_cents)
-	    cancel_booking = @booking.update_columns(is_cancel: true)
-	    transfer_payment = @booking.update_columns(refund_finder: amount)
-	    cancel_booking = @booking.update_columns(comment: "Cancel by poster.")
-	    
-	    rescue Stripe::InvalidRequestError => e
-	            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
-	            return false
-	    end
-
-	      message_params = {}
-	      message_params["sender_id"] = @booking.user_id
-	      message_params["recipient_id"] = @booking.poster_id
-	      message_params["post_id"] = @booking.post_id
-	      message_params["body"] = "Booking is cancel"
-	      message = Message.new(message_params)
-	      message.save
+		amount = @booking.price
+		Booking.booking_cancel(@booking)
 
 	    flash[:notice] = "Booking is cancel & $#{amount} is refunded. "
 	    redirect_to order_receives_path

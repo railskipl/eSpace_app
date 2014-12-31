@@ -30,7 +30,7 @@
                 <%end%>
                 <%if params[:recv_id].present?%>
 		            <div class="inbputbg">
-		            	<%= render 'reply'%>
+		            	<%= render 'reply', :message => @message %>
 		            </div>
 	            <%end%>
 	            
