@@ -2,14 +2,14 @@ development:
   adapter: mysql2
   database: college_app_development
   username: root
-  password: root
+  password: 
   #socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql2
   database: college_app_development
   username: root
-  password: root
+  password: 
 #   #socket: /var/run/mysqld/mysqld.sock  
 
 
