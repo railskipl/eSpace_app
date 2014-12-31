@@ -97,6 +97,7 @@ class BookingsController < ApplicationController
           @booking.stripe_customer_token = charge[:created]
           @booking.stripe_charge_id = charge[:id]
           @booking.save
+          Post.substract_area(@booking)
           BookedMailer.booked_a_spaces(@booking).deliver
             
           redirect_to bookings_path, :notice => "Thank you"
@@ -166,7 +167,6 @@ class BookingsController < ApplicationController
       else
         stripe_processing_fees = price.to_i * 0.029 + 0.30 - refund_addition
         commission = send_money_to_admin(days_diff, price) - stripe_processing_fees
-        raise commission.inspect
       end
 
       begin
@@ -207,6 +207,8 @@ class BookingsController < ApplicationController
       message.save
 
       transfer_payment = @booking.update_columns(refund_finder: amount)
+
+      Post.add_area(@booking)
       
     flash[:notice] = "Booking is cancel & $#{amount} is refunded"
     

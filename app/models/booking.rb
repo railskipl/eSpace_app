@@ -11,7 +11,7 @@ class Booking < ActiveRecord::Base
 			 :drop_off_avaibility_end_date, :pick_up, :drop_off, :drop_off_avaibility_start_date,
 			 :pick_up_avaibilty_start_date, :price_sq_ft, :pick_up_avaibility_end_date, :to => :post, :prefix => true
 
-	def self.result_area(post)
-		select("area").where("post_id = ? and pickup_date >= ? and is_cancel != ?", post.id, Date.today, true)
-	end
+	# def self.result_area(post)
+	# 	select("area").where("post_id = ? and pickup_date >= ? and is_cancel != ?", post.id, Date.today, true)
+	# end
 end
