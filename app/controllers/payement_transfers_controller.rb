@@ -29,13 +29,18 @@ class PayementTransfersController < ApplicationController
     if @recipient_details
 
       @price = @booking.first.price.to_i
-      received_by_poster = @price - processing_fees(@price)
 
-      stripe_processing_fees = @booking.first.price.to_i * 0.029 + 0.30
-
-      commission = processing_fees(@price) - stripe_processing_fees - 0.25
-
-      total_amount = ((received_by_poster + 0.25) * 100).to_i
+      if @price <= 8
+        received_by_poster = (@price - 0.80) - 0
+        total_amount = (received_by_poster * 100).to_i
+        stripe_processing_fees = @booking.first.price.to_i * 0.029 + 0.30
+        commission = @price - stripe_processing_fees - (received_by_poster + 0.25)
+      else
+        received_by_poster = @price - processing_fees(@price)
+        stripe_processing_fees = @booking.first.price.to_i * 0.029 + 0.30
+        commission = processing_fees(@price) - stripe_processing_fees - 0.25
+        total_amount = ((received_by_poster) * 100).to_i
+      end
 
     begin
       transfer = Stripe::Transfer.create(
@@ -60,8 +65,8 @@ class PayementTransfersController < ApplicationController
 
       message_params = {}
       message_params["sender_id"] = current_user.id
-      message_params["recipient_id"] = @booking.poster_id
-      message_params["post_id"] = @booking.post_id
+      message_params["recipient_id"] = @booking.first.poster_id
+      message_params["post_id"] = @booking.first.post_id
       message_params["body"] = "Payment has been transfered to your account."
       message = Message.new(message_params)
       message.save

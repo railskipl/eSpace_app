@@ -3,9 +3,9 @@
 <td><%= index + 1 %></td>
 <td><%= booking.id %></td>
 <td><%= booking.area rescue nil %></td>
-<td>$<%= booking.cut_off_price.present? ? booking.cut_off_price.round(5) : ' --' rescue nil %></td>
-<td>$<%= booking.price.present? ? booking.price : ' --' rescue nil %></td>
-<td>$<%= booking.commission.present?  ? booking.commission.round(5) : ' --' rescue nil %></td>
+<td>$<%= booking.cut_off_price.present? ? booking.cut_off_price.round(5) : '0' rescue nil %></td>
+<td>$<%= booking.price.present? ? booking.price : '0' rescue nil %></td>
+<td>$<%= booking.commission.present?  ? booking.commission.round(5) : '0' rescue nil %></td>
 <td><%= booking.post_address rescue nil%></td>
 <td><%= booking.status.camelize rescue nil %>
   
