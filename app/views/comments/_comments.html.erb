@@ -1,5 +1,5 @@
 
-  <% @comments.each do |comment| %>
+  <% comments.each do |comment| %>
     <div class="new_para1" style="<%= cycle('float:left', 'float:right') %>" >
       <p class="sed_h" style="text-align:justify;"><%= comment.user_name rescue nil %></p>
       <p class="sed1" style="text-align:justify;"><%= comment.comments %></p>

@@ -1,6 +1,6 @@
 
             <ul>
-              <% @comments.each do |comment| %>
+              <% comments.each do |comment| %>
                 <li>
                     <p><%= comment.user_name rescue nil %></p>
                       <%= comment.comments %>
