@@ -24,20 +24,20 @@ class PayementTransfersController < ApplicationController
   def transfer_money
     @recipient_details = BankDetail.where("user_id =?",params[:poster_id]).first
 
-      @booking = Booking.where("id = ?",params[:booking_id])
+      @booking = Booking.find(params[:booking_id])
 
     if @recipient_details
 
-      @price = @booking.first.price.to_i
+      @price = @booking.price.to_i
 
       if @price <= 8
         received_by_poster = (@price - 0.80) - 0
         total_amount = (received_by_poster * 100).to_i
-        stripe_processing_fees = @booking.first.price.to_i * 0.029 + 0.30
+        stripe_processing_fees = @booking.price.to_i * 0.029 + 0.30
         commission = @price - stripe_processing_fees - (received_by_poster + 0.25)
       else
         received_by_poster = @price - processing_fees(@price)
-        stripe_processing_fees = @booking.first.price.to_i * 0.029 + 0.30
+        stripe_processing_fees = @booking.price.to_i * 0.029 + 0.30
         commission = processing_fees(@price) - stripe_processing_fees - 0.25
         total_amount = ((received_by_poster) * 100).to_i
       end
@@ -55,18 +55,18 @@ class PayementTransfersController < ApplicationController
         return false
      end
 
-      transfer_payment = @booking.first.update_columns(stripe_transfer_id: transfer[:id])
-      transfer_payment = @booking.first.update_columns(status: transfer[:status])
-      transfer_payment = @booking.first.update_columns(is_confirm: true)
-      transfer_payment = @booking.first.update_columns(cut_off_price: received_by_poster)
-      transfer_payment = @booking.first.update_columns(commission: commission)
+      transfer_payment = @booking.update_attributes(stripe_transfer_id: transfer[:id], 
+      status: transfer[:status],
+      is_confirm: true,
+      cut_off_price: received_by_poster,
+      commission: commission)
       
       #transfer_payment = @booking.update_attributes(person_params)
 
       message_params = {}
       message_params["sender_id"] = current_user.id
-      message_params["recipient_id"] = @booking.first.poster_id
-      message_params["post_id"] = @booking.first.post_id
+      message_params["recipient_id"] = @booking.poster_id
+      message_params["post_id"] = @booking.post_id
       message_params["body"] = "Payment has been transfered to your account."
       message = Message.new(message_params)
       message.save
@@ -75,7 +75,7 @@ class PayementTransfersController < ApplicationController
       redirect_to payement_transfers_path
       flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{received_by_poster} and commision is $#{commission}"
     else
-      transfer_payment = @booking.first.update_columns(comment: "Waiting for poster bank account.")
+      transfer_payment = @booking.update_columns(comment: "Waiting for poster bank account.")
       flash[:error]  = "No bank detail added for payment"
       redirect_to payement_transfers_path
       
@@ -84,11 +84,11 @@ class PayementTransfersController < ApplicationController
   
   #Check's the transfer status from stripe api.
   def check_status
-    @booking = Booking.where("id = ?",params[:booking_id])
-    @transfer_id = @booking.first.stripe_transfer_id
-    tr = Stripe::Transfer.retrieve(@booking.first.stripe_transfer_id)
+    @booking = Booking.find(params[:booking_id])
+    @transfer_id = @booking.stripe_transfer_id
+    tr = Stripe::Transfer.retrieve(@booking.stripe_transfer_id)
        if tr[:status] == "paid"
-          transfer_payment = @booking.first.update_columns(status: tr[:status]) 
+          transfer_payment = @booking.update_columns(status: tr[:status]) 
           redirect_to payement_transfers_path 
           flash[:notice] = "Payment was Transfered."
        else 
