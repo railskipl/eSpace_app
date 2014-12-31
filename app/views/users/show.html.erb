@@ -4,7 +4,7 @@
 	 <div>Email :<%= user.email %></div>
 	 <div>Name :<%= user.name %>&nbsp;<%= user.last_name %></div>
 	 <div>Personal Email :<%= user.personal_email %></div>
-	 <%if user.mobile_number.present?%>
+	 <%if user.mobile_number?%>
 	 <div>Mobile Number :<%= user.mobile_number %></div>
 	 <%else%>
 	 <%end%>
