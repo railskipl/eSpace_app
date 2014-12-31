@@ -41,9 +41,9 @@
   <td>0.25</td>
   <td><%= booking.cut_off_price.round(5) rescue nil %></td>
   <td><%= booking.refund_finder - ((booking.refund_finder * 2.9)/100).round(5) rescue nil %></td>
-  <td><%= ((booking.refund_finder * 2.9)/100).round(5) rescue nil %>
-  <td><%= booking.refund_finder.round(5) rescue nil %>
-  <td><%= booking.commission.round(5) rescue nil %>
+  <td><%= ((booking.refund_finder * 2.9)/100).round(5) rescue nil %></td>
+  <td><%= booking.refund_finder.round(5) rescue nil %></td>
+  <td><%= booking.commission.round(5) rescue nil %></td>
 
 </tr>
 <% end %>
