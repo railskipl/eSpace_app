@@ -4,8 +4,8 @@ class BookedMailer < ActionMailer::Base
   def booked_a_spaces(booking)
   	@booking = booking
   	
-  	email1 = @booking.user.email
-    email2 = @booking.poster.email
+  	email1 = booking.user_email
+    email2 = booking.poster_email
 
     recipients = email1, email2
 
