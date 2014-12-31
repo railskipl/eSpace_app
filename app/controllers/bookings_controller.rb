@@ -98,7 +98,7 @@ class BookingsController < ApplicationController
           @booking.stripe_charge_id = charge[:id]
           @booking.save
           Post.substract_area(@booking)
-          # BookedMailer.booked_a_spaces(@booking).deliver
+          BookedMailer.booked_a_spaces(@booking).deliver
             
           redirect_to bookings_path, :notice => "Thank you"
           
