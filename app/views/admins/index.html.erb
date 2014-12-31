@@ -32,28 +32,44 @@ To Date :
 
   <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %> 
   <%end%>
-
+  <% unless @adminusers.blank? %>
+      <div  style="text-align:right;margin-left:10px;">
+            <a href="<%= admins_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> 
+            <a href="<%= admins_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
+     </div>
+    
+  <%end%>
 <div>
 <%= link_to "Add new User",new_user_users_path%> 
 </div> <br>
 <table class="table table-striped">
 <tr>
+<th>User ID</th>
 <th>First Name </th>
-<th>Last Name </th>
-<th>Email ID </th>
-<th>A/C Creation Date</th>
-<th>Last Login Date</th>
-<th>Last Login IP</th>
+<th>College email ID</th>
+<th>Number of posts created</th>
+<th>Number of bookings made (by this user)</th>
+<th>Charging card</th>
+<th>Receiving card</th>
 <th>User Status</th>
 </tr>
 <% @adminusers.each do |adminuser|%>
 <tr>
+<td><%= adminuser.id %></td>
 <td><%= adminuser.name %></td>
-<td><%= adminuser.last_name %></td>
 <td><%= adminuser.email %></td>
-<td><%= adminuser.created_at.to_date rescue nil%></td>
-<td><%= adminuser.last_sign_in_at.to_date rescue nil%></td>
-<td><%= adminuser.last_sign_in_ip%></td>
+<td><%= adminuser.posts.count %></td>
+<td><%= adminuser.bookings.count%></td>
+<%if adminuser.bookings.present? %>
+  <td>YES</td>
+<%else%>
+  <td>NO</td>
+<%end%>
+<%if adminuser.bank_details.present? %>
+  <td>YES</td>
+<%else%>
+  <td>NO</td>
+<%end%>
 <td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %> | 
 	<%= link_to "Show", admin_path(adminuser.id) %> | <%= link_to "Delete", admin_path(adminuser.id), :method=> :delete, data: { confirm: 'Are you sure?' } %>
 </td>

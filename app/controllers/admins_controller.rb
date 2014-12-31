@@ -5,9 +5,11 @@ class AdminsController < ApplicationController
   layout :custom_layout
 
   def index
-
-    @adminusers = User.where("admin =?",false).order('created_at DESC').page(params[:page]).per_page(50)
-    
+    unless params[:format].present?
+      @adminusers = User.admin_search.page(params[:page]).per_page(50)
+    else
+      @adminusers = User.admin_search
+    end
     respond_to do |format|
       format.html
       format.xls

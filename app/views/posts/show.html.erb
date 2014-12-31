@@ -62,7 +62,7 @@
                     <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"sms_btn" %>
                    </div>
 
-                   <p class="sed2" style="line-height:12px;"><%= @post.additional_comments %></p>
+                   <p class="sed2" style="line-height:12px; width: 375px;"><%= @post.additional_comments %></p>
                   <input type='hidden' name='price' id='price' value='<%= @post.price_sq_ft %>' />
                    <input type='hidden' name='dropoff' id='dropoff' value='<%= @post.price_include_drop_off ? @post.price_include_drop_off : 0 %>' />
                   <input type='hidden' name='pickup' id='pickup' value='<%= @post.price_include_pick_up ? @post.price_include_pick_up : 0  %>' />

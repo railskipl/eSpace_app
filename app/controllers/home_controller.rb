@@ -16,7 +16,11 @@ class HomeController < ApplicationController
   end
    
   def all_postings
-    @posts = Post.where("user_id != ?",current_user.id).order("id desc").page(params[:page]).per_page(10)
+    if params[:format].present?
+      @posts = Post.post_search(current_user)
+    else
+      @posts = Post.post_search(current_user).page(params[:page]).per_page(10)
+    end
   end
 
 
