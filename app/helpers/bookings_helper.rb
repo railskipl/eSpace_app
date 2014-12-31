@@ -81,10 +81,10 @@ module BookingsHelper
 
   def payment_status(booking)
     if current_user == booking.user
-      "Payment Send"
+      "Sent"
     else
       if booking.is_confirm?
-        "Payment Released"
+        "Received"
       else
         "-"
       end
