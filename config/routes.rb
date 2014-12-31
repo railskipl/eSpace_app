@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
   resources :about_us
-  resources :access_ids
+  resources :access_ids , :except => [:show]
   
   resources :faqs 
   get 'frequently_asked_question' => "faqs#frequently_asked_question", as: "frequently_asked_question"
 
-  resources :order_receives do
+  resources :order_receives, :only => [:index] do
     collection do
       get 'cancel_booking'
       get 'cancel_popup'
@@ -23,9 +23,8 @@ Rails.application.routes.draw do
 
   get '/payments' => "order_receives#payments" , as: "payments"
 
-  resources :pages
   
-  resources :admins
+  resources :admins, :only => [:show,:destroy,:index]
   
   resources :bank_details
   
@@ -34,16 +33,16 @@ Rails.application.routes.draw do
 
   root :to => 'home#index'
 
-   resources :omniauth_callbacks 
+   resources :omniauth_callbacks ,:only => [:new, :create]
    get 'auth/failure' => redirect('/')
 
-   resources :authenticates do
+   resources :authenticates, :only => [:create] do
       collection do
         get 'check_email'
       end
    end
 
-   resources :users do 
+   resources :users ,:except => [:create] do 
     collection do
         get 'order_received'
         get 'new_user'
@@ -89,7 +88,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bookings do 
+  resources :bookings, :except => [:edit,:update,:destroy] do 
     collection do
       post 'checkout'
       get 'cancel_booking'
@@ -124,7 +123,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :payement_transfers do 
+  resources :payement_transfers ,:only => [:index] do 
     collection do
       get 'transfer_money'
       get 'check_status'

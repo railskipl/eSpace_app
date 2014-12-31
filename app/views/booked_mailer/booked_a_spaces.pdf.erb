@@ -1,11 +1,223 @@
+<style>
 
-    <p>Date of booking : <%= @booking.created_at.strftime("%B %d,%Y") %></p>
-    <p>Booked area : <%= @booking.area %> Sq. Feet </p>
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+a {
+  color: #5D6975;
+  text-decoration: underline;
+}
+
+body {
+  position: relative;
+  width: 21cm;  
+  height: 27cm; 
+  margin: 0 auto; 
+  color: #001028;
+  background: #FFFFFF; 
+  font-family: Avenir, sans-serif; 
+  font-size: 12px; 
+  /*font-family: Avenir;*/
+}
+
+header {
+  padding: 10px 0;
+  margin-bottom: 30px;
+}
+
+#logo {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#logo img {
+  height: 50px;
+}
+
+h1 {
+  border-top: 1px solid  #5D6975;
+  border-bottom: 1px solid  #5D6975;
+  color: #5D6975;
+  font-size: 2.4em;
+  line-height: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 20px 0;
+  background-color: #D8D8D8;
+/*  background: url(dimension.png);
+*/}
+
+#project {
+  float: left;
+}
+
+#project span {
+  color: #5D6975;
+  text-align: right;
+  width: 52px;
+  margin-right: 10px;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+#company {
+  float: right;
+  text-align: right;
+}
+
+#project div,
+#company div {
+  white-space: nowrap;        
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+
+table tr:nth-child(2n-1) td {
+  background: #F5F5F5;
+}
+
+table th,
+table td {
+  text-align: center;
+}
+
+table th {
+  padding: 5px 20px;
+  color: #5D6975;
+  border-bottom: 1px solid #C1CED9;
+  white-space: nowrap;        
+  font-weight: normal;
+}
+
+table .service,
+table .desc {
+  text-align: left;
+}
+
+table td {
+  padding: 20px;
+  text-align: right;
+}
+
+table td.service,
+table td.desc {
+  vertical-align: top;
+}
+
+table td.unit,
+table td.qty,
+table td.total {
+  font-size: 1.2em;
+}
+
+table td.grand {
+  border-top: 1px solid #5D6975;;
+}
+
+#notices .notice {
+  color: #5D6975;
+  font-size: 1.2em;
+}
+
+footer {
+  color: #5D6975;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #C1CED9;
+  padding: 8px 0;
+  text-align: center;
+}
+
+</style>
+
+
+
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dinobo Invoice</title>
     
-    <p>Drop-off : <%= @booking.dropoff_date.strftime("%B %d,%Y") %></br>
-                  Drive : <% if @booking.dropoff_price != 0 %> $<%= @booking.dropoff_price %> <% else %> Unavailable <% end %> </p>
-                          
-    <p>Pick-up : <%= @booking.pickup_date.strftime("%B %d,%Y") %></br>
-                  Drive :  <% if @booking.pickup_price != 0 %> $<%= @booking.pickup_price %> <% else %> Unavailable <% end %></p>
-                          
-    <p>Total Amount $<%= @booking.price %></p>
+  </head>
+  <body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="http://store-finding-system.herokuapp.com/assets/logo-1cdfedf4f4bcc76ab89b9a1a4099c95a.png" alt="logo">
+      </div>
+      <h1>Invoice</h1>
+      <div id="company" class="clearfix">
+        <div>www.dinobo.com</div>
+      
+        <div><a href="mailto:help@dinobo.com">help@dinobo.com</a></div>
+      </div>
+      <div id="project">
+        
+        <div><span>CLIENT</span> <%= @booking.user_name %> <%= @booking.user_last_name %></div>
+       
+        <div><span>EMAIL</span> <a href="mailto:<%= @booking.user.email %>"><%= @booking.user_email %></a></div>
+        <div><span>DATE</span> <%= Date.today %></div>
+        <div><span>PAYMENT</span> Paid</div>
+      </div>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th class="service">SERVICE</th>
+            <th class="desc"></th>
+            <th>PRICE</th>
+            <th>QTY</th>
+            <th>TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="service">Space rental from <%= @booking.dropoff_date.strftime("%B %d,%Y") %> to <%= @booking.pickup_date.strftime("%B %d,%Y") %></td>
+            <td class="desc"></td>
+            <td class="unit">$<%= @booking.post_price_sq_ft %></td>
+            <td class="qty"><%= @booking.area %> sq. ft.</td>
+            <td class="total">$<%= (@booking.post_price_sq_ft * @booking.area.to_i) %></td>
+          </tr>
+
+          <% if @booking.dropoff_price != 0 %>
+          <tr>
+            <td class="service">Drop off ride for <%= @booking.dropoff_date.strftime("%B %d,%Y") %></td>
+            <td class="desc"></td>
+            <td class="unit">$<%= @booking.dropoff_price %></td>
+            <td class="qty">1</td>
+            <td class="total">$<%= @booking.dropoff_price %></td>
+          </tr>
+          <% end %>
+
+          <% if @booking.pickup_price != 0 %>
+          <tr>
+            <td class="service">Pick up ride for <%= @booking.pickup_date.strftime("%B %d,%Y") %></td>
+            <td class="desc"></td>
+            <td class="unit">$<%= @booking.pickup_price %></td>
+            <td class="qty">1</td>
+            <td class="total">$<%= @booking.pickup_price %></td>
+          </tr>
+          <% end %>
+          
+          <tr>
+            <td colspan="4" class="grand total">TOTAL</td>
+            <td class="grand total">$<%= @booking.price %></td>
+          </tr>
+        </tbody>
+      </table>
+     
+    </main>
+   
+  </body>
+</html>

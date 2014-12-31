@@ -110,7 +110,7 @@
 
     <div class="formwrap" style="font-size: 15px;">
 
- <%= form_for(@bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>   
+ <%= form_for(bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>   
   
 
       <%= hidden_field_tag :stripe_card_token %>

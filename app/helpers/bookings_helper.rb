@@ -65,41 +65,55 @@ module BookingsHelper
     return @days_diff.round
   end	
 
-  def remaining_area(post)
-    result = Booking.result_area(post)
-    @a = []
-    result.each do |ru|
-       @a << ru.area.to_f
-    end
-    if @a.nil? || @a.blank?
-      @remaining_area = post.area
-    else
-      @remaining_area = post.area - @a.inject{|sum, x| sum + x}
-    end
-  end
+  # def remaining_area(post)
+  #   result = Booking.result_area(post)
+  #   @a = []
+  #   result.each do |ru|
+  #      @a << ru.area.to_f
+  #   end
+  #   if @a.nil? || @a.blank?
+  #     @remaining_area = post.area
+  #   else
+  #     @remaining_area = post.area - @a.inject{|sum, x| sum + x}
+  #   end
+  # end
 
 
   def payment_status(booking)
     if current_user == booking.user
-      "Payment Send"
+      "Sent"
     else
       if booking.is_confirm?
-        "Payment Released"
+        "Received"
       else
         "-"
       end
     end
   end
 
+
+  def post_link(booking)
+    if current_user == booking.user
+      link_to "View booking made by me", booking_path(booking.id)
+    else
+      if booking.is_confirm?
+        link_to "View order received", booking_path(booking.id)
+      else
+        "-"
+      end
+    end
+  end
+
+
   def received_by_poster(booking)
     if current_user == booking.user
       if booking.is_confirm?
         booking.try(:price)
       elsif booking.is_cancel?
-        booking.try(:refund_finder)
+        booking.try(:refund_finder).present? ? booking.try(:refund_finder) : 0
       end
     else
-      booking.try(:cut_off_price)
+      booking.try(:cut_off_price).present? ? booking.try(:cut_off_price) : 0
     end
   end
 end

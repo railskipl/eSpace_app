@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
 
   def self.is_present_facebook_oauth(auth)
     config = YAML.load_file("#{Rails.root}/config/facebook.yml")
+    
     if Rails.env.development?
       oauth = Koala::Facebook::OAuth.new(config['development']['app_id'].to_s, config['development']['secret_key'].to_s)
     else  

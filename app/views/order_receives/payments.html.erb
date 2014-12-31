@@ -17,23 +17,29 @@
             <% @bookings.each do |booking|%>
             <div class="order-box">
                 <div class="pay-col pay-col1">
-                	<%if booking.stripe_charge_id.present? %>
+                	<%if booking.stripe_charge_id? %>
                     <span>Payment type</span> :
 
-                            <% if booking.is_cancel == true %>
-                               Cancelled
-                            <% else %>
-                               <%= payment_status(booking) %>
-                            <% end %>
+                        <% if booking.is_cancel == true %>
+                            Cancelled
+                        <% else %>
+                            <%= payment_status(booking) %>
+                        <% end %>
+                        
                     <%end%>
                    
                     <p>
-                    <%= link_to "View order received", booking_path(booking.id) %>
+                        <%= post_link(booking) %>
                     </p>
                 </div>
                 
                 <div class="pay-col pay-col1">
-                	<span>To/From</span>: <%= booking.poster_name.capitalize rescue nil %> <%= booking.poster_last_name[0,1] rescue nil%>
+                    <% if booking.user_id == current_user.id %>
+
+                	   <span>To/From</span>: <%= booking.poster_name.capitalize rescue nil %> <%= booking.poster_last_name[0,1] rescue nil%>
+                    <% else %>
+                        <span>To/From</span>: <%= booking.user_name.capitalize rescue nil %> <%= booking.user_last_name[0,1] rescue nil%>
+                    <% end %>
                 </div>
                 
                 <div class="pay-col pay-col1">

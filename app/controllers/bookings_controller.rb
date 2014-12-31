@@ -97,6 +97,7 @@ class BookingsController < ApplicationController
           @booking.stripe_customer_token = charge[:created]
           @booking.stripe_charge_id = charge[:id]
           @booking.save
+          Post.substract_area(@booking)
           BookedMailer.booked_a_spaces(@booking).deliver
             
           redirect_to bookings_path, :notice => "Thank you"
@@ -127,8 +128,6 @@ class BookingsController < ApplicationController
 
     stripe_charge_id = @booking.stripe_charge_id
     days_diff =  days_diff(params[:drop_off_date].to_date)
-
-    
 
     if price <= 8
       amount = cancel_booking_by_finder_less8(days_diff, price) 
@@ -168,7 +167,6 @@ class BookingsController < ApplicationController
       else
         stripe_processing_fees = price.to_i * 0.029 + 0.30 - refund_addition
         commission = send_money_to_admin(days_diff, price) - stripe_processing_fees
-        raise commission.inspect
       end
 
       begin
@@ -209,6 +207,8 @@ class BookingsController < ApplicationController
       message.save
 
       transfer_payment = @booking.update_columns(refund_finder: amount)
+
+      Post.add_area(@booking)
       
     flash[:notice] = "Booking is cancel & $#{amount} is refunded"
     
@@ -226,19 +226,14 @@ class BookingsController < ApplicationController
   end
 
   def confirm
-    @booking = Booking.find(params[:id])
-    @booking.update_columns(is_confirm: true)
+    booking = Booking.find(params[:id])
+    booking.is_confirm = true
+    booking.save
 
-      message_params = {}
-      message_params["sender_id"] = @booking.user_id
-      message_params["recipient_id"] = @booking.poster_id
-      message_params["post_id"] = @booking.post_id
-      message_params["body"] = "Drop-off has been confirmed."
-      message = Message.new(message_params)
-      message.save
+    Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id, 
+                 :post_id => booking.post_id,:body => "Drop-off has been confirmed.")
 
-
-    redirect_to booking_path(@booking.id)
+    redirect_to booking_path(booking.id)
     flash[:notice] = "Confirm drop off"
 
   end

@@ -3,9 +3,9 @@
 <td><%= index + 1 %></td>
 <td><%= booking.id %></td>
 <td><%= booking.area rescue nil %></td>
-<td>$<%= booking.cut_off_price.present? ? booking.cut_off_price.round(5) : ' --' rescue nil %></td>
-<td>$<%= booking.price.present? ? booking.price : ' --' rescue nil %></td>
-<td>$<%= booking.commission.present?  ? booking.commission.round(5) : ' --' rescue nil %></td>
+<td>$<%= booking.cut_off_price? ? booking.cut_off_price.round(5) : '0' rescue nil %></td>
+<td>$<%= booking.price? ? booking.price : '0' rescue nil %></td>
+<td>$<%= booking.commission?  ? booking.commission.round(5) : '0' rescue nil %></td>
 <td><%= booking.post_address rescue nil%></td>
 <td><%= booking.status.camelize rescue nil %>
   
@@ -15,7 +15,7 @@
       <span style="font-size:8px;"><%= booking.comment %></span>
       
   <% else %>
-  <% unless booking.stripe_transfer_id.present? %>  
+  <% unless booking.stripe_transfer_id? %>  
   <%= link_to "Money Transfer",transfer_money_payement_transfers_path(:booking_id =>booking.id,:poster_id =>booking.poster_id,:finder_id=>booking.user_id) rescue nil%>
   <% else %>
      -----
@@ -23,7 +23,7 @@
   <% end %>
 </td>  
 <td>
-  <% if booking.status.present? && booking.status == "pending"%>
+  <% if booking.status? && booking.status == "pending"%>
     <%= link_to "Check Status",check_status_payement_transfers_path(:booking_id =>booking.id) rescue nil%>
   <% else %>
      -----  

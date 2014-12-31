@@ -70,7 +70,7 @@
               <span>Rate</span> : $<%= booking.post_price_sq_ft%>/sq.ft.
             </p>
             <p>
-              <%if booking.status.present?%>
+              <%if booking.status? %>
                 <span>Status</span> :<%= booking.status%>
               <%else%>
                 <span>Status</span> :Awaiting drop-off confirmation

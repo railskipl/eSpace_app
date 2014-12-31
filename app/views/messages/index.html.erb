@@ -30,7 +30,7 @@
                 <%end%>
                 <%if params[:recv_id].present?%>
 		            <div class="inbputbg">
-		            	<%= render 'reply'%>
+		            	<%= render 'reply', :message => @message %>
 		            </div>
 	            <%end%>
 	            
@@ -142,7 +142,7 @@
 	      
 		   if(text_title != ''){
 
-		      jQuery('input[type="submit"]').addClass('msg_active');
+		      jQuery('input[type="button"]').addClass('msg_active');
 
 		      if (code == 13) {
 	        	$("#reply_message").submit();
@@ -152,7 +152,7 @@
 		   } 
 		   if(text_title == '')
 			{
-				jQuery('input[type="submit"]').removeClass('msg_active');
+				jQuery('input[type="button"]').removeClass('msg_active');
 			}
 
 		});

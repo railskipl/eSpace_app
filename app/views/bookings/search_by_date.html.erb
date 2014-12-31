@@ -60,7 +60,7 @@
                         <div class="booking-col1">
                         <span>Booking area</span> : <%= booking.post_area %> sq. ft
                         <p>
-                           <%if booking.status.present? %>      
+                           <%if booking.status? %>      
                               <span>Status</span> : <%= booking.status rescue nil%>
                            <%else%>
                               <span>Status</span> : Waiting for drop-off confirmation
