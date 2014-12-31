@@ -38,7 +38,7 @@
         <div class="status">
           <%#= f.select :status, options_for_select(%w[Active Inactive]) %>
           <select name="search[status]" id="search_status" class="status-prev">
-            <option value="" style="color:#999;">Status</option>
+            <option value="" style="color:#999;" disabled selected>Status</option>
             <option value="Active" style="color:#999;">Active</option>
             <option value="Inactive" style="color:#999;">Inactive</option>
           </select>
@@ -79,7 +79,7 @@
                 <% else %>
                   <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
                 <% end %>
-                <span class="tasks-list-mark"></span>
+                <span class="tasks-list-mark" style="margin: 0 2px 0 12px;"></span>
               </label>
             </p>
             <p>
@@ -90,7 +90,7 @@
                 <% else %>
                   <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
                 <% end %>
-                <span class="tasks-list-mark"></span>
+                <span class="tasks-list-mark" style="margin: 0 2px 0 12px;"></span>
               </label>
             </p>
           </div>

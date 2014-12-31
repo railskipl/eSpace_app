@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
     super && self.status # i.e. super && self.is_active
   end
 
+  def self.admin_search
+    where("admin =?",false).order('created_at DESC')
+  end
+
   
 
   #Message count

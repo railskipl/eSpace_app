@@ -1,25 +1,26 @@
-
 <table cellpadding="10" cellspacing="0" border="1" class="table table-striped table-bordered">
-<thead>
+
+  <thead>
     <tr>
       <th>Sr No.</th>
       <th>Post ID</th>
-       <th>Poster First Name</th>
-      <th>Poster Last Name</th>
-      <th>Post Description</th>
-      <th>Total Area (Sq ft)</th>
-      <th>Booked Area</th>
-      <th>No of Bookings</th>s
-       <th>Date</th>
+      <th>Poster Name</th>
+      <th>Date post was created</th>
       <th>Status</th>
-      <th>Drop Off Start Date</th>
-      <th>Drop Off End Date</th>
-      <th>Pick up Start Date</th>
-      <th>Pick up End Date</th>
+      <th>Price per sq. ft</th>
+      <th>Total area</th>
+      <th>Area booked</th>
+      <th>Address</th>
+      <th>Drop Off start Date</th>
+      <th>Drop Off end Date</th>
+      <th>Pick up start Date</th>
+      <th>Pick up end Date</th>
+      <th>Drop off ride available</th>
       <th>Drop off Price</th>
+      <th>Pick up ride available</th>
       <th>Pick up price</th>
-      <th>Archived</th>
-      <th>Ratings</th>
+      <th>Photo uploaded</th>
+      <th>Deactivate</th>
     </tr>
   </thead>
 
@@ -36,38 +37,38 @@
         <% end %>
         <td><%= index + x+1 %></td>
         <td><%= post.id %></td>
-        <td><%= post.user_name rescue nil%></td>
-        <td><%= post.user_last_name rescue nil%></td>
-        <td><%= post.additional_comments%></td>
-        <td><%= post.area %></td>
-        <td></td>
-  
-        <td><%= post.user.bookings.count %></td>
-        <td><%= post.created_at.strftime("%d-%m-%Y") %></td> 
+        <td><%= post.user_name rescue nil%>&nbsp;<%= post.user_last_name rescue nil%></td>
+        <td><%= post.created_at.strftime("%d-%m-%Y") rescue nil%></td> 
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
-        
-        
-         <td><%= post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") %></td>
-        <td><%= post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") %></td>
-        <td><%= post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %></td>
-        <td><%= post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") %></td>
+        <td><%= post.price_sq_ft rescue nil%></td>
+        <td><%= post.area rescue nil%></td>
+        <td><%= post.bookings.pluck(:area).map(&:to_i).inject{|sum,i| sum + i} rescue nil%></td>
+        <td><%= post.street_add rescue nil%> <%= post.apt rescue nil%> <%= post.city rescue nil%> <%= post.state rescue nil%> <%= post.zip_code rescue nil%></td>
+        <td><%= post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") rescue nil%></td> 
+        <td><%= post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") rescue nil%></td>
+        <td><%= post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") rescue nil%></td> 
+        <td><%= post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") rescue nil%></td>
+
+        <td><%  if post.drop_off? %> YES <%else%> NO <%end%></td>
         <%if post.price_include_drop_off.blank?%>
         <td>-</td>
          <%else%>
         <td> <%= post.price_include_drop_off %></td>
          <%end%>
-          <%if post.price_include_pick_up.blank?%>
-        <td>-</td>
-         <%else%>
-        <td><%= post.price_include_pick_up %></td>
-          <%end%>
-        <td><% if post.archive == true %> Yes <% else %> No <% end %></td>
-        <%if post.overall_rating.to_s ==  "NaN"%>
-        <td>No Ratings</td>
-        <%else%>
-      <td><%= post.overall_rating.round(1)%></td>
-        <%end%>
 
+        <td><% if post.pick_up? %> YES <%else%> NO <%end%></td></td>
+        <%if post.price_include_pick_up.blank?%>
+        <td>-</td>
+        <%else%>
+        <td><%= post.price_include_pick_up %></td>
+        <%end%>
+        <td><% if post.photo_file_name? %> <%= post.photo_file_name%> <%else%> NA <%end%></td>
+        <td><% if post.status == true %>
+          <%= link_to 'Deactive', toggled_feature_post_path(post.id)%>
+         <% else %>
+          <%= link_to 'Activate', toggled_feature_post_path(post.id)%>
+         <% end %>
+        </td>
       </tr>
     <% end %>
 

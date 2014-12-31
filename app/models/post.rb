@@ -108,6 +108,10 @@ class Post < ActiveRecord::Base
     
   end
 
+  def self.post_search(current_user)
+    where("user_id != ?",current_user.id).order("id desc")
+  end
+
 
   private
 
