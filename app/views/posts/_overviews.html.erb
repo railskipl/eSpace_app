@@ -60,7 +60,7 @@
                   </p> 
                 <% end %><br/><br/>
                 
-                <div class="new-line-add" style="width:300px;"><%= post.area_available.to_i %> sq. ft. available <%= post.additional_comments[0..50] %></div>              
+                <div class="new-line-add" style="width:300px;"><%= post.area_available.to_i %> sq. ft. available - <%= post.additional_comments[0..40] %></div>              
             </div>
          
             <div class="name-title" style="margin:-20px 0 0 175px;"> <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? "#{post.distance.round(2)} miles" : '' : '' %> </div>
