@@ -54,6 +54,16 @@ jQuery.validator.addMethod('customarea', function (value, element) {
     return this.optional(element) || /^\d{0,2}(\.\d{0,2}){0,1}$/.test(value);
 }, "Please enter a valid price");
 
+//Custome Validation - Post price drop_off
+jQuery.validator.addMethod('customprice', function (value, element) {
+    return this.optional(element) || /^\d{0,2}(\.\d{0,2}){0,1}$/.test(value);
+}, "Please enter a valid price");
+
+//Custome Validation - Post price pick_up
+jQuery.validator.addMethod('custompick', function (value, element) {
+    return this.optional(element) || /^\d{0,2}(\.\d{0,2}){0,1}$/.test(value);
+}, "Please enter a valid price");
+
 
 // All Jquery Validation
 jQuery(document).ready(function() {
@@ -92,7 +102,6 @@ jQuery("#user").validate({
 		},
 		"user[password_confirmation]":{
 			required:true,
-			minlength:6,
 			equalTo: "#user_password"
 		},
 		"user[name]":{
@@ -119,7 +128,6 @@ jQuery("#user").validate({
 		},
 		"user[password_confirmation]":{
 			required: "Password confirmation cannot be blank",
-			minlength:"do not enter less than 6 characters",
 			equalTo:"Password does not match"
 		},
 		"user[name]":{
@@ -222,13 +230,15 @@ rules: {
 		min:0.50,
 		max:100
 	},
+	"post[price_include_pick_up]": 'custompick',
 	"post[price_include_pick_up]":{
-		number:true,
+		// number:true,
 		min:0,
 		max:100
 	},
+	"post[price_include_drop_off]": 'customprice',
 	"post[price_include_drop_off]":{
-		number:true,
+		// number:true,
 		min:0,
 		max:100
 	},
@@ -290,9 +300,9 @@ messages: {
 	"post[price_include_pick_up]":{
 		number:"Please enter integer value"
 	},
-	"post[price_include_drop_off]":{
-		number:"Please enter integer value"
-	},
+	// "post[price_include_drop_off]":{
+	// 	number:"Please enter integer value"
+	// },
 	"post[address]":{
 		required: "Please enter street address"
 	},
