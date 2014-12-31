@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141225103118) do
+ActiveRecord::Schema.define(version: 20141230121148) do
 
   create_table "about_us", force: true do |t|
     t.string   "name"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20141225103118) do
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
+    t.float    "area_available",                 default: 0.0
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree

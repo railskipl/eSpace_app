@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    remaining_area(@post)
+    # remaining_area(@post)
   end
 
   # GET /posts/new
@@ -66,11 +66,11 @@ class PostsController < ApplicationController
 
   def overview
       if params[:search]   
-        @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today, true)
-        @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today, true)
+        @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort])
+        @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort]).where(" drop_off_avaibility_end_date >= ? and status = ? and area_available >= ?",Date.today, true,4)
       else
-        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today, true)
-        @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today, true)
+        @overviews = Post.includes(:user).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ? and area_available >= ?",Date.today, true,4)
+        @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_column + " " + sort_direction).where(" drop_off_avaibility_end_date >= ? and status = ? and area_available >= ?",Date.today, true,4)
       end
     respond_to do |format|
       format.html # index.html.erb
@@ -147,7 +147,7 @@ class PostsController < ApplicationController
       params[:post][:drop_off_avaibility_start_date].to_date
       params[:post][:drop_off_avaibility_end_date].to_date
 
-      params.require(:post).permit(:area, :price_sq_ft, :pick_up, :drop_off, :price_include_pick_up, :price_include_drop_off, :pick_up_avaibilty_start_date, :pick_up_avaibility_end_date, :drop_off_avaibility_start_date, :drop_off_avaibility_end_date, :status, :additional_comments, :address, :latitude, :longitude, :user_id,:photo,:featured,:street_add,:apt,:city,:state,:zip_code)
+      params.require(:post).permit(:area, :price_sq_ft, :pick_up, :drop_off, :price_include_pick_up, :price_include_drop_off, :pick_up_avaibilty_start_date, :pick_up_avaibility_end_date, :drop_off_avaibility_start_date, :drop_off_avaibility_end_date, :status, :additional_comments, :address, :latitude, :longitude, :user_id,:photo,:featured,:street_add,:apt,:city,:state,:zip_code,:area_available)
     end
 
 

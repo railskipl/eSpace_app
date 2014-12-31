@@ -24,6 +24,8 @@ class Post < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   delegate :name, :email,:last_name,:provider ,:to => :user, :prefix => true
+
+  before_create :set_area_available
   
   # Check overall ratings an reviews
   def overall_rating
@@ -34,6 +36,9 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def set_area_available
+    self.area_available = self.area
+  end
 
   def poster_address
     [city, state, zip_code].compact.join(', ')
@@ -76,7 +81,7 @@ class Post < ActiveRecord::Base
   def self.search_overview(search, page, sort)
 
     posts = Post
-    posts = posts.where("area <= ?", "#{search[:area]}") if search[:area].present?
+    posts = posts.where("area <= ? ", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
 
     if sort.present?
@@ -88,6 +93,8 @@ class Post < ActiveRecord::Base
     posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present? != search[:miles].present?
     posts = posts.where("drop_off = ?", "#{search[:dropoff]}") if search[:dropoff] == '1'
     posts = posts.where("pick_up = ?", "#{search[:pickup]}") if search[:pickup] == '1'
+    posts = posts.where(" drop_off_avaibility_end_date >= ? and status = ?",Date.today, true)
+    posts = posts.where("area_available >= ?",4)
     posts.page(page)
     
   end
@@ -106,6 +113,18 @@ class Post < ActiveRecord::Base
   def self.remaining_area(total_area)
     total_area - 4
     
+  end
+
+  def self.substract_area(booking)
+     p = self.find(booking["post_id"].to_i)
+     p.area_available = p.area_available - booking.area.to_f
+     p.save
+  end
+
+   def self.add_area(booking)
+     p = self.find(booking["post_id"].to_i)
+     p.area_available = p.area_available + booking.area.to_f
+     p.save
   end
 
 

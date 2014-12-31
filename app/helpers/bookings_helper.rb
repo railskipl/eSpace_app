@@ -65,18 +65,18 @@ module BookingsHelper
     return @days_diff.round
   end	
 
-  def remaining_area(post)
-    result = Booking.result_area(post)
-    @a = []
-    result.each do |ru|
-       @a << ru.area.to_f
-    end
-    if @a.nil? || @a.blank?
-      @remaining_area = post.area
-    else
-      @remaining_area = post.area - @a.inject{|sum, x| sum + x}
-    end
-  end
+  # def remaining_area(post)
+  #   result = Booking.result_area(post)
+  #   @a = []
+  #   result.each do |ru|
+  #      @a << ru.area.to_f
+  #   end
+  #   if @a.nil? || @a.blank?
+  #     @remaining_area = post.area
+  #   else
+  #     @remaining_area = post.area - @a.inject{|sum, x| sum + x}
+  #   end
+  # end
 
 
   def payment_status(booking)
