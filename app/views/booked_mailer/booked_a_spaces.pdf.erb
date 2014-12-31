@@ -158,15 +158,14 @@ footer {
       <h1>Invoice</h1>
       <div id="company" class="clearfix">
         <div>www.dinobo.com</div>
-        <!--<div>Address line 1<br /> Address line 2</div>
-        <div>phone number</div>-->
+      
         <div><a href="mailto:help@dinobo.com">help@dinobo.com</a></div>
       </div>
       <div id="project">
-        <!--<div><span>PROJECT</span> Website development</div>-->
-        <div><span>CLIENT</span> <%= @booking.user.name %> <%= @booking.user.last_name %></div>
-        <!--<div><span>ADDRESS</span> Client address</div>-->
-        <div><span>EMAIL</span> <a href="mailto:<%= @booking.user.email %>"><%= @booking.user.email %></a></div>
+        
+        <div><span>CLIENT</span> <%= @booking.user_name %> <%= @booking.user_last_name %></div>
+       
+        <div><span>EMAIL</span> <a href="mailto:<%= @booking.user.email %>"><%= @booking.user_email %></a></div>
         <div><span>DATE</span> <%= Date.today %></div>
         <div><span>PAYMENT</span> Paid</div>
       </div>
@@ -186,9 +185,9 @@ footer {
           <tr>
             <td class="service">Space rental from <%= @booking.dropoff_date.strftime("%B %d,%Y") %> to <%= @booking.pickup_date.strftime("%B %d,%Y") %></td>
             <td class="desc"></td>
-            <td class="unit">$<%= @booking.post.price_sq_ft %></td>
+            <td class="unit">$<%= @booking.post_price_sq_ft %></td>
             <td class="qty"><%= @booking.area %> sq. ft.</td>
-            <td class="total">$<%= (@booking.post.price_sq_ft * @booking.area.to_i) %></td>
+            <td class="total">$<%= (@booking.post_price_sq_ft * @booking.area.to_i) %></td>
           </tr>
 
           <% if @booking.dropoff_price != 0 %>
