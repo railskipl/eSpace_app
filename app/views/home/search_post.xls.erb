@@ -20,7 +20,6 @@
       <th>Pick up ride available</th>
       <th>Pick up price</th>
       <th>Photo uploaded</th>
-      <th>Deactivate</th>
     </tr>
   </thead>
 
@@ -63,12 +62,6 @@
         <td><%= post.price_include_pick_up %></td>
         <%end%>
         <td><% if post.photo_file_name? %> <%= post.photo_file_name%> <%else%> NA <%end%></td>
-        <td><% if post.status == true %>
-          <%= link_to 'Deactive', toggled_feature_post_path(post.id)%>
-         <% else %>
-          <%= link_to 'Activate', toggled_feature_post_path(post.id)%>
-         <% end %>
-        </td>
       </tr>
     <% end %>
 
