@@ -62,7 +62,7 @@ class PayementTransfersController < ApplicationController
       commission: commission)
       
       #transfer_payment = @booking.update_attributes(person_params)
-
+      PaymentHistory.create(:name => "transfered", :booking_id => @booking.id)
       message_params = {}
       message_params["sender_id"] = current_user.id
       message_params["recipient_id"] = @booking.poster_id

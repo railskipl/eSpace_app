@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230121148) do
+ActiveRecord::Schema.define(version: 20150102071342) do
 
   create_table "about_us", force: true do |t|
     t.string   "name"
@@ -140,6 +140,15 @@ ActiveRecord::Schema.define(version: 20141230121148) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "payment_histories", force: true do |t|
+    t.string   "name"
+    t.integer  "booking_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payment_histories", ["booking_id"], name: "index_payment_histories_on_booking_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.float    "area"

@@ -81,12 +81,18 @@ module BookingsHelper
 
   def payment_status(booking)
     if current_user == booking.user
-      "Sent"
+       if booking.name == "cancel"
+         "Cancel"
+       else
+         "Send"
+       end
     else
-      if booking.is_confirm?
-        "Received"
+      if booking.name == "created"
+        "Waiting for confirmation"
+      elsif booking.name == "cancel"
+        "Cancel"
       else
-        "-"
+        "Received"
       end
     end
   end
@@ -99,21 +105,24 @@ module BookingsHelper
       if booking.is_confirm?
         link_to "View order received", booking_path(booking.id)
       else
-        "-"
+        link_to "View order received", booking_path(booking.id)
       end
     end
   end
 
+  def send_by_user(booking)
+    if booking.name == "cancel"
+      booking.refund_finder
+    else
+      booking.price
+    end
+  end
 
   def received_by_poster(booking)
-    if current_user == booking.user
-      if booking.is_confirm?
-        booking.try(:price)
-      elsif booking.is_cancel?
-        booking.try(:refund_finder).present? ? booking.try(:refund_finder) : 0
-      end
+     if booking.name == "cancel" || booking.name == "transfered"
+      booking.cut_off_price
     else
-      booking.try(:cut_off_price).present? ? booking.try(:cut_off_price) : 0
+      '-'
     end
   end
 end

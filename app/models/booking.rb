@@ -2,7 +2,7 @@ class Booking < ActiveRecord::Base
 	belongs_to :post
 	belongs_to :poster,:class_name => 'User'
 	belongs_to :user
-
+	has_many :payment_histories, :dependent => :destroy
 	scope :booking_cancelled, -> {where(is_cancel: true)}
 
 	delegate :name, :last_name, :email, :to => :user, :prefix => true
@@ -14,7 +14,20 @@ class Booking < ActiveRecord::Base
 	# def self.result_area(post)
 	# 	select("area").where("post_id = ? and pickup_date >= ? and is_cancel != ?", post.id, Date.today, true)
 	# end
+	def self.get_payments(current_user,page_no)
+	  includes(:poster, :user).joins(:payment_histories).select_data.fetch_data(current_user).pagination(page_no)
+	end
 
+	def self.select_data 
+		select("bookings.*,payment_histories.name,payment_histories.created_at as transaction_date")
+	end
+	
+	scope :fetch_data, -> (current_user) { where('poster_id = ? or user_id = ?', current_user.id, current_user.id ) }
+
+	def self.pagination(page_no)
+		page(page_no).order("id desc").per_page(6) 
+	end
+	
 	def self.booking_cancel(booking)
 		amount = booking.price
 	    

@@ -98,6 +98,7 @@ class BookingsController < ApplicationController
           @booking.stripe_charge_id = charge[:id]
           @booking.save
           Post.substract_area(@booking)
+          PaymentHistory.create(:name => "created", :booking_id => @booking.id)
           BookedMailer.booked_a_spaces(@booking).deliver
             
           redirect_to bookings_path, :notice => "Thank you"
@@ -209,7 +210,8 @@ class BookingsController < ApplicationController
       transfer_payment = @booking.update_columns(refund_finder: amount)
 
       Post.add_area(@booking)
-      
+      PaymentHistory.create(:name => "cancel", :booking_id => @booking.id)
+
     flash[:notice] = "Booking is cancel & $#{amount} is refunded"
     
     redirect_to booking_path(@booking.id)
