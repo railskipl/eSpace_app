@@ -11,9 +11,9 @@ class BookedMailer < ActionMailer::Base
 
     subject = "Booked Details - Dinoba"
 
-  	# attachments["Booked_space.pdf"] = WickedPdf.new.pdf_from_string(render_to_string(:pdf => "receipt", :template => 'booked_mailer/booked_a_spaces.pdf.erb'))
+  	attachments["Booked_space.pdf"] = WickedPdf.new.pdf_from_string(render_to_string(:pdf => "receipt", :template => 'booked_mailer/booked_a_spaces.pdf.erb'))
 
-  	mail(:subject => subject, :to => "ankit@kunalinfotech.net" ) do |format|
+  	mail(:subject => subject, :to => "amol@kunalinfotech.net" ) do |format|
       format.html
     end
 
