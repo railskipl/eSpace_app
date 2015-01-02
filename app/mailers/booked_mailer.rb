@@ -7,7 +7,7 @@ class BookedMailer < ActionMailer::Base
   	email1 = booking.user_email
     email2 = booking.poster_email
 
-    recipients = email1
+    recipients = email1, email2
 
     subject = "Booked Details - Dinoba"
 
