@@ -123,7 +123,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :payement_transfers ,:only => [:index] do 
+  resources :payement_transfers ,:path => "payment_transfers" ,:only => [:index] do 
     collection do
       get 'transfer_money'
       get 'check_status'
