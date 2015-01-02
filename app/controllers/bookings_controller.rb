@@ -99,7 +99,7 @@ class BookingsController < ApplicationController
           @booking.save
           Post.substract_area(@booking)
           PaymentHistory.create(:name => "created", :booking_id => @booking.id)
-          # BookedMailer.booked_a_spaces(@booking).deliver
+          BookedMailer.booked_a_spaces(@booking).deliver
             
           redirect_to bookings_path, :notice => "Thank you"
           
