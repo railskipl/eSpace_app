@@ -13,7 +13,7 @@ class BookedMailer < ActionMailer::Base
 
   	attachments["Booked_space.pdf"] = WickedPdf.new.pdf_from_string(render_to_string(:pdf => "receipt", :template => 'booked_mailer/booked_a_spaces.pdf.erb'))
 
-  	mail(:subject => subject, :to => recipients ) do |format|
+  	mail(:subject => subject, :to => "rubyrails9@gmail.com" ) do |format|
       format.html
     end
 
