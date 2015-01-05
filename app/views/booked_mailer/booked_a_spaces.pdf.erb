@@ -4,13 +4,13 @@
   <head>
     <meta charset="utf-8">
     <title>Dinobo Invoice</title>
-    <%= stylesheet_link_tag "#{Rails.application.routes.url_helpers}/assets/pdf_invoice" %>
+    <%= stylesheet_link_tag "#{Rails.application.routes.url_helpers}/assets/pdf_invoice.css" %>
     
   </head>
   <body>
     <header class="clearfix">
       <div id="logo">
-         <%= link_to image_tag("logo.png"),root_path%>
+         <%= link_to image_tag("#{Rails.application.routes.url_helpers}/assets/logo.png"),root_path %>
         
       </div>
       <h1>Invoice</h1>
