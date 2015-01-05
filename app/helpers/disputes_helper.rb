@@ -8,12 +8,12 @@ module DisputesHelper
 			if dispute.status = "refund" && dispute.status = "charge"
 				"Already refunds | Already charged".html_safe
 			elsif dispute.status = "refund"
-				"Already refunds | #{link_to "Charge extra money to Finder", charge_to_finder_dispute_path(booking_id)}".html_safe
+				"Already refunds | #{link_to "Charge extra money", charge_to_finder_dispute_path(booking_id)}".html_safe
 			elsif dispute.status = "charge"
-				"#{link_to "Sending a money to Finder", send_money_to_finder_dispute_path(booking_id)}  | Already Charged".html_safe 
+				"#{link_to "Sending money", send_money_to_finder_dispute_path(booking_id)}  | Already Charged".html_safe 
 			end	
 		else
-				"#{link_to "Sending a money to Finder", send_money_to_finder_dispute_path(booking_id)} |  #{link_to "Charge extra money to Finder", charge_to_finder_dispute_path(booking_id)}".html_safe
+				"#{link_to "Sending money", send_money_to_finder_dispute_path(booking_id)} |  #{link_to "Charge extra money", charge_to_finder_dispute_path(booking_id)}".html_safe
 			
 		end
 	end
