@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230121148) do
+ActiveRecord::Schema.define(version: 20150102121128) do
 
   create_table "about_us", force: true do |t|
     t.string   "name"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20141230121148) do
     t.string   "stripe_card_id_token"
     t.string   "stripe_recipient_token"
     t.string   "card_number"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 20141230121148) do
     t.float    "commission"
     t.text     "comment"
     t.float    "refund_finder"
+    t.string   "stripe_customer_id"
+    t.boolean  "on_hold",               default: false
   end
 
   add_index "bookings", ["post_id"], name: "index_bookings_on_post_id", using: :btree
@@ -90,6 +92,15 @@ ActiveRecord::Schema.define(version: 20141230121148) do
     t.string   "subject"
     t.text     "message"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "disputes", force: true do |t|
+    t.float    "amount"
+    t.string   "status"
+    t.integer  "booking_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

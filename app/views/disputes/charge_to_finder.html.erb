@@ -1,0 +1,13 @@
+<%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","admin_validation" %>
+
+<p><%= @booking.user_name %> <%= @booking.user_last_name %> </p>
+<p> Booking Price:  $<%= @booking.price %>  </p>
+<%= form_tag charged_to_finder_dispute_path(@booking.id), :method => 'put', :id=>"dispute" do %>
+  <p>
+  	<%= hidden_field_tag :user_id, @booking.user_id %>
+    <%= text_field_tag :amount %>
+  </p>
+  <p>
+    <%= submit_tag "send", :name => nil, :class=>"btn btn-primary contact-form" %>
+  </p>
+<% end %>

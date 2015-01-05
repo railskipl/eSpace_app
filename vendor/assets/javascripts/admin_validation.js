@@ -145,16 +145,16 @@ required: "Please enter Content"
 		errorElement:'div',
 		rules: {
 		  
-		"access_id[email]":{
+			"access_id[email]":{
 			required:true
-		},
+			}
 
 		},
 		messages: {
 
-		"access_id[email]":{
+			"access_id[email]":{
 			required: "Please enter valid domain."
-		},
+			}
 		}
 	});
 
@@ -227,4 +227,27 @@ required: "Please enter Content"
 		}
 		}
 	});
+
+
+	jQuery("#dispute").validate({
+		errorElement:'div',
+		rules: {
+		  
+		"amount":{
+			required:true,
+			number:true
+		}
+
+		},
+		messages: {
+
+		"amount":{
+			required: "Please enter amount."
+			}
+		}
+	});
+
+
+
+
 });

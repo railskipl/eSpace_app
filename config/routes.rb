@@ -27,6 +27,23 @@ Rails.application.routes.draw do
   resources :admins, :only => [:show,:destroy,:index]
   
   resources :bank_details
+
+  resources :disputes, :only => [:index, :show] do
+    collection do
+      get 'search'
+    end
+    member do
+      get 'hold_money'
+      get 'send_money_to_finder'
+      get 'send_money_to_poster'
+      get 'charge_to_finder'
+      get 'charge_to_poster'
+      put 'sent_to_finder'
+      put 'sent_to_poster'
+      put 'charged_to_finder'
+      put 'charged_to_poster'
+    end
+  end
   
   
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",sessions: 'users/sessions',registrations: 'users/registrations', passwords: 'users/passwords'}

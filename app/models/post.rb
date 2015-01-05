@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
   has_many :messages
   has_many :ratings
   has_many :bookings
+  has_many :disputes
 
 	has_attached_file :photo, :styles => { :thumb => "91x61", :medium => "512x344" },
   

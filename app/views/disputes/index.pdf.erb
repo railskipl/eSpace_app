@@ -1,0 +1,16 @@
+<table class="table table-striped">
+<tr>
+<th>Sr No.</th>
+<th>Booking ID</th>
+<th>Post ID</th>
+<th>Booking Area/Sq.Ft</th>
+<th>Poster Name</th>
+<th>Finder Name</th>
+<th>Booking Price</th>
+<th>Amount</th>
+<th>Status</th>
+</tr>
+<% @disputes.each_with_index do |dispute, index|%>
+  <%= render 'result.html.erb', :index => index, :dispute => dispute %>
+<%end%> 
+</table>

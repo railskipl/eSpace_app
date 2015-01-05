@@ -1,6 +1,7 @@
 
 
-<%= link_to "Store Finding System", root_path, :class => 'brand' %>
+<%= link_to image_tag("logo.png", :class=>"logo", :style=>"max-width: 100px; margin-top: 10px;"),root_path%>
+
 <ul class="nav">
  
   <% if user_signed_in? && signed_in? && current_user.admin?  %>
@@ -11,6 +12,7 @@
     <li><%= link_to "Manage All Posts", home_all_postings_path %></li>
     <li><%=  link_to "College ID",access_ids_path%></li>
     <li><%=  link_to "FAQs",faqs_path%></li>
+     <li><%= link_to "Dispute", disputes_path %></li>
      <li><%= link_to "Payment", payement_transfers_path %></li>
     <li> <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %> </li>
   <%# end %>

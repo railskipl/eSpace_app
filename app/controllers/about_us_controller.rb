@@ -1,9 +1,10 @@
 class AboutUsController < ApplicationController
   before_filter :authenticate_user!, :except => [:about]
-  before_filter :correct_user, :only => [:index, :show, :edit, :new]
+  before_filter :correct_user, :except => [:about]
   before_action :set_about_u, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
-   layout :custom_layout
+  layout :custom_layout
+
   def index
     @about_us = AboutU.all.order("id asc")
     respond_with(@about_us)
@@ -54,20 +55,13 @@ class AboutUsController < ApplicationController
       @user = User.find_by_id_and_admin(current_user.id, true)
       redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
     end
+    
     def custom_layout
         case action_name
-         when "index"
-          "admin"
-        when "new"
-          "admin"
-       when "edit"
-          "admin"
-       when "new"
-          "admin"
-       when "show"
-          "admin"
-         else
+        when "about"
           "application"
+        else
+          "admin"
        end
       end
 end

@@ -96,6 +96,7 @@ class BookingsController < ApplicationController
             
           @booking.stripe_customer_token = charge[:created]
           @booking.stripe_charge_id = charge[:id]
+          @booking.stripe_customer_id = customer.id
           @booking.save
           Post.substract_area(@booking)
           BookedMailer.booked_a_spaces(@booking).deliver
@@ -154,7 +155,7 @@ class BookingsController < ApplicationController
       refund = ch.refunds.create(:amount => amount_cents)
       cancel_booking = @booking.update_columns(is_cancel: true)
     rescue Stripe::InvalidRequestError => e
-      redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+      redirect_to :back, :notice => "Stripe error: #{e.message}" 
       return false
     end
 

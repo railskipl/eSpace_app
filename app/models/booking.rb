@@ -2,6 +2,7 @@ class Booking < ActiveRecord::Base
 	belongs_to :post
 	belongs_to :poster,:class_name => 'User'
 	belongs_to :user
+	has_one :dispute
 
 	scope :booking_cancelled, -> {where(is_cancel: true)}
 
@@ -37,4 +38,14 @@ class Booking < ActiveRecord::Base
 	      
 
 	end
+
+
+	def self.search_booking(search)
+		if search
+		    includes(:poster,:post).where('id = ?', search).order("id desc")
+		else
+		    []
+		end
+	end
+
 end

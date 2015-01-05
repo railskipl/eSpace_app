@@ -1,0 +1,53 @@
+
+
+<%= link_to "Disputes", disputes_path %> | <%= link_to "Search disputes", search_disputes_path %> <br/>
+
+<p>
+	<strong><div>Booking ID : </div> </strong>  
+	<span><%= @booking.id %></span>
+</p>
+<p>
+	<strong><div>Poster Name : </div> </strong>  
+	<span><%= @booking.poster_name %> <%= @booking.poster_last_name %></span>
+
+	<span style="margin-left:60px"> <%= link_to "Sending a money", send_money_to_poster_dispute_path(@booking.id) %> | <%= link_to "Charge extra money", charge_to_poster_dispute_path(@booking.id) %> <span>
+
+</p>
+<p>
+	<strong><div>Finder Name : </div> </strong>  
+	<span><%= @booking.user_name %> <%= @booking.user_last_name %></span>
+
+	<span style="margin-left:60px"> <%= link_to "Sending a money", send_money_to_finder_dispute_path(@booking.id) %> | <%= link_to "Charge extra money", charge_to_finder_dispute_path(@booking.id) %> <span>
+</p>
+
+<p>
+	<strong><div>Date of booking : </div> </strong>  
+	<span><%= @booking.created_at.strftime("%B %d,%Y") %></span>
+</p>
+<p>
+	<strong><div>Booked area : </div> </strong>  <span><%= @booking.area %>Sq. Feet</span>
+</p>
+
+<p>
+	<strong><div>Drop-off : </div> </strong> <span><%= @booking.dropoff_date.strftime("%B %d,%Y") %></br>
+            Drive : <% if @booking.dropoff_price != 0 %> $<%= @booking.dropoff_price %> <% else %> Unavailable <% end %> </span>
+</p>
+                          
+<p>
+	<strong><div>Pick-up : </div> </strong> <span><%= @booking.pickup_date.strftime("%B %d,%Y") %></br>
+            Drive :  <% if @booking.pickup_price != 0 %> $<%= @booking.pickup_price %> <% else %> Unavailable <% end %></span>
+</p>
+                          
+<p>
+	<strong><div>Total Amount : </div> </strong> 
+	<span>$<%= @booking.price %></span>
+</p>
+<p>
+	<strong><div>Payment Status : </div> </strong> 
+	<span> <%= @booking.on_hold? ? 'Hold' : 'Normal' %> </span>
+</p>
+
+<p><%= link_to "View Details", @booking, :target=>"_blank" %><p>
+
+
+

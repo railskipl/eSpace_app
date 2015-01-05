@@ -1,0 +1,25 @@
+<%= link_to "Disputes", disputes_path %> | <%= link_to "Search disputes", search_disputes_path %> <br/><br/>
+
+<%= form_tag search_disputes_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil, :class=>"btn btn-primary contact-form" %>
+  </p>
+<% end %>
+
+
+<table class="table table-striped">
+<tr>
+<th>Sr No.</th>
+<th>Booking ID</th>
+<th>Post ID</th>
+<th>Booked Area/Sq.Ft</th>
+<th>Poster Name</th>
+<th>Finder Name</th>
+<th>Address</th>
+<th>Action</th>
+</tr>
+<% @bookings.each_with_index do |booking, index|%>
+  <%= render 'search_result', :index => index, :booking => booking %>
+<%end%> 
+</table>
