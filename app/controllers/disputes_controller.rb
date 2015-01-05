@@ -18,8 +18,11 @@ class DisputesController < ApplicationController
   end
 
   def search
-
     @bookings = Booking.search_booking(params[:search])
+  end
+
+  def hold
+    @bookings = Booking.hold_payments(params[:page])
   end
 
 

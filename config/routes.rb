@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :disputes, :only => [:index, :show] do
     collection do
       get 'search'
+      get 'hold'
     end
     member do
       get 'hold_money'

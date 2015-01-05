@@ -20,7 +20,11 @@ class Booking < ActiveRecord::Base
 	end
 
 	def self.admin_payments(page_no)
-	  includes(:poster,:post).order("id desc").where("on_hold= 'false'").page(page_no).per_page(50)
+	  includes(:poster,:post).order("id desc").where("on_hold= false").page(page_no).per_page(50)
+	end
+
+	def self.hold_payments(page_no)
+	  includes(:poster,:post).order("id desc").where("on_hold= true").page(page_no).per_page(50)
 	end
 
 	def self.admin_disputes(page_no)
