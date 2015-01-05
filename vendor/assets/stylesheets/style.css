@@ -1958,7 +1958,7 @@ body{
 	.pay-col1{ width:161px; float:left;}
 	.pay-col span{font-family:'brandon3'}
 	
-	.booking-btn{ border:2px solid #eeeeee; padding:0px 5px; margin:0; color:#899199; font-size:9px; font-family:'brandon3'; line-height:normal}
+	.booking-btn{ border:2px solid #eeeeee; padding:0px 5px; margin:0; color:#899199; font-size:9px; font-family:'brandon3'; line-height:normal; cursor: pointer;}
 	.heading{ margin-bottom:10px;}
 	.font10{font-size:10px}
 	
@@ -2178,7 +2178,7 @@ color:#072643; background:#eee; padding:10px 25px; margin:5px 0
 	
 	/*--------------------------8/12/2014-----------------------*/
 	
-	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:626px; font-size:10px}
+	.blue-bg{ background:#072643; width:486px; float:left; padding:42px 60px; color:#eee; min-height:634px; font-size:10px}
 	.blue-bg p{ margin:11px 0 0 0; color:#cbcaca}
 	
 	.blue-bg-div1 > p{text-align:justify}
