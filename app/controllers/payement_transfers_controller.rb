@@ -8,7 +8,7 @@ class PayementTransfersController < ApplicationController
 
   
   def index
-  	 @bookings = Booking.includes(:poster,:post).order("id desc")
+  	 @bookings = Booking.admin_payments(params[:page])
 
      respond_to do |format|
         format.html

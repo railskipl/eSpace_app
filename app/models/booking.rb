@@ -19,6 +19,14 @@ class Booking < ActiveRecord::Base
 	  includes(:poster, :user).joins(:payment_histories).select_data.fetch_data(current_user).pagination(page_no)
 	end
 
+	def self.admin_payments(page_no)
+	  includes(:poster,:post).order("id desc").where("on_hold= 'false'").page(page_no).per_page(50)
+	end
+
+	def self.admin_disputes(page_no)
+	  includes(:poster, :user).joins(:disputes).select("bookings.*, disputes.amount, disputes.status").page(page_no).per_page(50)
+	end
+
 	def self.select_data 
 		select("bookings.*,payment_histories.name,payment_histories.created_at as transaction_date")
 	end

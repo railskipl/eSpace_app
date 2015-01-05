@@ -22,4 +22,7 @@
 <% @bookings.each_with_index do |booking, index|%>
   <%= render 'result_payment', :index => index, :booking => booking %>
 <%end%> 
+
 </table>
+
+<%= will_paginate @bookings %>
