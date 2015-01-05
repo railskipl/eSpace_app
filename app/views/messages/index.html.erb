@@ -100,8 +100,7 @@
 
 	jQuery(document).ready(function() {
 		jQuery("#user_msg").load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
-		$(".content").mCustomScrollbar("scrollTo", "bottom");
-
+		
 	});
 
 
