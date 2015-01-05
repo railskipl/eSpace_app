@@ -4,14 +4,14 @@
   <head>
     <meta charset="utf-8">
     <title>Dinobo Invoice</title>
-    <%= stylesheet_link_tag 'pdf_invoice' %>
+    <%= stylesheet_link_tag 'http://store-finding-system.herokuapp.com/assets/pdf_invoice' %>
     
   </head>
   <body>
     <header class="clearfix">
       <div id="logo">
+         <%= link_to image_tag("http://store-finding-system.herokuapp.com/assets/logo.png"),root_path%>
         
-       
       </div>
       <h1>Invoice</h1>
       <div id="company" class="clearfix">
