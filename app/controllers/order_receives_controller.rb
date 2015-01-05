@@ -17,7 +17,7 @@ class OrderReceivesController < ApplicationController
 	end
 
 	def payments
-		@bookings = Booking.includes(:poster, :user).where('poster_id = ? or user_id = ?', current_user.id, current_user.id ).page(params[:page]).order("id desc").per_page(5) 
+		@bookings = Booking.get_payments(current_user,params[:page])
 	end
 
 	
@@ -32,7 +32,7 @@ class OrderReceivesController < ApplicationController
 	    @booking = Booking.find(params[:id])
 		amount = @booking.price
 		Booking.booking_cancel(@booking)
-
+		PaymentHistory.create(:name => "cancel", :booking_id => @booking.id)
 	    flash[:notice] = "Booking is cancel & $#{amount} is refunded. "
 	    redirect_to order_receives_path
 	    
