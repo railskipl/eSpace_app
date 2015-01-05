@@ -8,22 +8,22 @@
 	<strong><div>Poster Name : </div> </strong>  
 	<span><%= @booking.poster_name %> <%= @booking.poster_last_name %></span>
 
-	<% if @booking.on_hold == true %>
+	
 	<span style="margin-left:60px">
 		<%= check_disputes(@booking.id, @booking.poster_id) %>
 	 <span>
-	<% end %>
+	
 
 </p>
 <p>
 	<strong><div>Finder Name : </div> </strong>  
 	<span><%= @booking.user_name %> <%= @booking.user_last_name %></span>
 
-	<% if @booking.on_hold == true %>
+	
 	<span style="margin-left:60px">  
 		<%= check_disputes(@booking.id, @booking.user_id) %>
 	<span>
-	<% end %>
+	
 </p>
 
 <p>
