@@ -128,7 +128,11 @@ class DisputesController < ApplicationController
 
 	  respond_to do |format|
 
-	    format.html { redirect_to search_disputes_path(:search => params[:search]), notice: 'Status updated.' }
+      if params[:search]
+	     format.html { redirect_to search_disputes_path(:search => params[:search]), notice: 'Status updated.' }
+      else
+        format.html { redirect_to hold_disputes_path, notice: 'Status updated.' }
+      end
 	    format.json { head :no_content }
 	  end
   end

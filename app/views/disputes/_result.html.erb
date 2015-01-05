@@ -4,11 +4,10 @@
 <td><%= dispute.id %></td>
 <td><%= dispute.post_id %></td>
 <td><%= dispute.area %></td>
-<td><%= link_to "#{dispute.poster_name} #{dispute.poster_last_name}", dispute_path(dispute) %> </td>
-<td><%= link_to "#{dispute.user_name} #{dispute.user_last_name}", dispute_path(dispute) %> </td>
+<td><%= dispute.poster_name %> <%= dispute.poster_last_name %> </td>
+<td><%= dispute.user_name %> <%= dispute.user_last_name %> </td>
 <td><%= dispute.price %></td>
 <td><%= dispute.amount %></td>
 <td><%= dispute.status %></td>
 
-<td></td>
 </tr>
