@@ -2,7 +2,7 @@ class Booking < ActiveRecord::Base
 	belongs_to :post
 	belongs_to :poster,:class_name => 'User'
 	belongs_to :user
-	has_one :dispute
+	has_many :disputes, :dependent => :destroy
 	has_many :payment_histories, :dependent => :destroy
 	scope :booking_cancelled, -> {where(is_cancel: true)}
 

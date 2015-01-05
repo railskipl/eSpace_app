@@ -10,9 +10,10 @@
 <td>
 	<%= link_to "#{booking.user_name} #{booking.user_last_name}", dispute_path(booking) %>
 </td>
+<td><%= booking.on_hold? ? 'Hold' : 'Normal' %></td>
 <td><%= booking.post_address %> </td>
 <td>
-	<%= link_to "Hold", hold_money_dispute_path(booking, :search=> params[:search]) %> | <%= link_to "View Booking", booking_path(booking), :target=>"_blank"  %>
+	<%= link_to "Toggle dispute status", hold_money_dispute_path(booking, :search=> params[:search]) %> | <%= link_to "View Booking", booking_path(booking), :target=>"_blank"  %>
 
 </td>
 </tr>

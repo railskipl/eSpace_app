@@ -6,7 +6,7 @@ class DisputesController < ApplicationController
 	layout "admin"
 
 	def index
-  	 @disputes = Dispute.order("id desc")
+  	 @disputes = Booking.includes(:poster, :user).joins(:disputes).select("bookings.*, disputes.amount, disputes.status")
 
       respond_to do |format|
         format.html

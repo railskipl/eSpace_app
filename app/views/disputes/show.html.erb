@@ -10,14 +10,22 @@
 	<strong><div>Poster Name : </div> </strong>  
 	<span><%= @booking.poster_name %> <%= @booking.poster_last_name %></span>
 
-	<span style="margin-left:60px"> <%= link_to "Sending a money", send_money_to_poster_dispute_path(@booking.id) %> | <%= link_to "Charge extra money", charge_to_poster_dispute_path(@booking.id) %> <span>
+	<% if @booking.on_hold == true %>
+	<span style="margin-left:60px">
+		<%= check_disputes(@booking.id, @booking.poster_id) %>
+	 <span>
+	<% end %>
 
 </p>
 <p>
 	<strong><div>Finder Name : </div> </strong>  
 	<span><%= @booking.user_name %> <%= @booking.user_last_name %></span>
 
-	<span style="margin-left:60px"> <%= link_to "Sending a money", send_money_to_finder_dispute_path(@booking.id) %> | <%= link_to "Charge extra money", charge_to_finder_dispute_path(@booking.id) %> <span>
+	<% if @booking.on_hold == true %>
+	<span style="margin-left:60px">  
+		<%= check_disputes(@booking.id, @booking.user_id) %>
+	<span>
+	<% end %>
 </p>
 
 <p>
