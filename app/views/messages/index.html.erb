@@ -51,11 +51,14 @@
 	jQuery(document).ready(function() {
 		jQuery("#refresh_msg").load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
 
+		jQuery(".content").mCustomScrollbar("scrollTo", "bottom");
+
 		jQuery('#submit_msg').click(function() {
 			var text_title = this.form.message_body.value;
 			if(text_title != ''){
 				$("#reply_message").submit();
 				$("#message_body").val('');
+				$(".content").mCustomScrollbar("scrollTo", "bottom");
 			}
 		});
 
@@ -72,6 +75,7 @@
 		      if (code == 13) {
 	        	$("#reply_message").submit();
 	        	$("#message_body").val('');	
+	        	$(".content").mCustomScrollbar("scrollTo", "bottom");
 	            return true;
 	         }
 		   } 
@@ -81,6 +85,7 @@
 			}
 
 		});
+
 
 	});
 
@@ -93,7 +98,7 @@
 	var refresmsg_hId = setInterval(function()
 	{
 	     $('#refresh_msg').load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
-	     $(".content").mCustomScrollbar("scrollTo", "bottom");
+	     
 	}, 1000);
 	
 	
@@ -107,7 +112,7 @@
 	var refresmsg_hId = setInterval(function()
 	{
 	     $('#user_msg').load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
-	}, 1000);
+	}, 2000);
 
 
 </script>
