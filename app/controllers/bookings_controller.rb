@@ -247,9 +247,4 @@ class BookingsController < ApplicationController
   end
 
 
-private
-	def page_params
-      params.require(:booking).permit(:stripe_customer_token, :price, :user_id, :email, :post_id, :poster_id,:dropoff_date,:dropoff_price,:cut_off_price)
-    end
-
 end
