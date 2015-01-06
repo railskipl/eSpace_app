@@ -68,7 +68,7 @@ class Booking < ActiveRecord::Base
 	# Transfer money to Poster(Cronjob)
 	def self.my_cron
 		bookings = Booking.where("on_hold = false and is_cancel = false and dropoff_date = '#{Date.today}' and stripe_transfer_id is null")
-		
+
 		bookings.each do |booking|
 
 			recipient_details = BankDetail.where("user_id =?", booking.poster_id).first
@@ -105,7 +105,7 @@ class Booking < ActiveRecord::Base
 			     end
 
 			      transfer_payment = booking.update_attributes(stripe_transfer_id: transfer[:id], 
-			      status: transfer[:status],
+			      status: 'Paid',
 			      is_confirm: true,
 			      cut_off_price: received_by_poster,
 			      commission: commission)
