@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 
   get '/payments' => "order_receives#payments" , as: "payments"
 
+  #Test url - dronjob
+  get '/mycron' => "home#mycron"
+
   
   resources :admins, :only => [:show,:destroy,:index]
   

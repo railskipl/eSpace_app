@@ -222,6 +222,7 @@ end
   #method used for autorefresh chat message div &
   #show current updated chat msg.
   def refresh_message
+    
    @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
    @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
    @total_message = @messages_sender + @messages_receiver

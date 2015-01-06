@@ -56,6 +56,11 @@ class HomeController < ApplicationController
     end
 
 
+    def mycron
+      Booking.my_cron
+    end
+
+
 
     def search_post
       q = params[:q]

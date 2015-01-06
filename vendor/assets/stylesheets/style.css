@@ -3280,3 +3280,12 @@ a.post-btn {
 
 .center_align { text-align: center}
 .msg_count {background: none repeat scroll 0 0 #ff7e00 !important; border-radius: 100%; color: #fff !important; display: inline-block; font-size: 10px; margin:0 0 0 1px !important; height: auto !important; padding: 3px; text-align: center; width: 20px !important;}
+
+.new-pickup{
+    background:none;
+    border:none;
+    color:#ffffff;
+    background-color:#072743;
+    font-family:brandon2;
+    width: 90%;
+ }

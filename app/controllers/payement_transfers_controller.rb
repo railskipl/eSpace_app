@@ -22,7 +22,8 @@ class PayementTransfersController < ApplicationController
   
   #transfer the payement to poster account. 
   def transfer_money
-    @recipient_details = BankDetail.where("user_id =?",params[:poster_id]).first
+    
+    @recipient_details = BankDetail.where("user_id =?", params[:poster_id]).first
 
       @booking = Booking.find(params[:booking_id])
 

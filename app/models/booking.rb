@@ -65,6 +65,72 @@ class Booking < ActiveRecord::Base
 	end
 
 
+	# Transfer money to Poster(Cronjob)
+	def self.my_cron
+		bookings = Booking.where("on_hold = false and is_cancel = false and dropoff_date = '#{Date.today}' and stripe_transfer_id is null")
+		
+		bookings.each do |booking|
+
+			recipient_details = BankDetail.where("user_id =?", booking.poster_id).first
+
+		    if recipient_details
+
+		      price = booking.price.to_i
+
+			      if price <= 8
+			        received_by_poster = (price - 0.80) - 0
+			        total_amount = (received_by_poster * 100).to_i
+			        stripe_processing_fees = booking.price.to_i * 0.029 + 0.30
+			        commission = price - stripe_processing_fees - (received_by_poster + 0.25)
+			      else
+			      	
+			      	processing_fees = price.to_f * 10/100
+			        received_by_poster = price - processing_fees
+			        stripe_processing_fees = booking.price.to_i * 0.029 + 0.30
+			        commission = processing_fees - stripe_processing_fees - 0.25
+			        total_amount = ((received_by_poster) * 100).to_i
+			      end
+
+			    begin
+			      transfer = Stripe::Transfer.create(
+			  	  :amount => total_amount, # amount in cents
+			  	  :currency => "usd",
+			  	  :recipient => recipient_details.stripe_recipient_token,
+			  	  :card => recipient_details.stripe_card_id_token,
+			  	  :statement_description => "Money transfer"
+			  	)
+			     rescue Stripe::InvalidRequestError => e
+			        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+			        return false
+			     end
+
+			      transfer_payment = booking.update_attributes(stripe_transfer_id: transfer[:id], 
+			      status: transfer[:status],
+			      is_confirm: true,
+			      cut_off_price: received_by_poster,
+			      commission: commission)
+		      
+		      
+			      PaymentHistory.create(:name => "transfered", :booking_id => booking.id)
+			      message_params = {}
+			      message_params["sender_id"] = 1
+			      message_params["recipient_id"] = booking.poster_id
+			      message_params["post_id"] = booking.post_id
+			      message_params["body"] = "Payment has been transfered to your account."
+			      message = Message.new(message_params)
+			      message.save
+
+		    else
+		      transfer_payment = booking.update_columns(comment: "Waiting for poster bank account.")
+		    end
+		end
+
+
+	end
+
+	
+
+
 	def self.search_booking(search)
 		if search
 		    includes(:poster,:post).where('id = ?', search).order("id desc")
