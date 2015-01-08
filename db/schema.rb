@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150106053536) do
     t.string   "stripe_card_id_token"
     t.string   "stripe_recipient_token"
     t.string   "card_number"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,6 +95,19 @@ ActiveRecord::Schema.define(version: 20150106053536) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+
+  create_table "credit_cards", force: true do |t|
+    t.string   "email"
+    t.string   "stripe_customer_id"
+    t.integer  "user_id"
+    t.string   "last_digit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
+
 
   create_table "disputes", force: true do |t|
     t.float    "amount"
