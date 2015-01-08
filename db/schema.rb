@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106053536) do
+ActiveRecord::Schema.define(version: 20150108110207) do
 
   create_table "about_us", force: true do |t|
     t.string   "name"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150106053536) do
     t.string   "stripe_card_id_token"
     t.string   "stripe_recipient_token"
     t.string   "card_number"
-    t.integer  "user_id"
+    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -96,7 +96,6 @@ ActiveRecord::Schema.define(version: 20150106053536) do
     t.datetime "updated_at"
   end
 
-
   create_table "credit_cards", force: true do |t|
     t.string   "email"
     t.string   "stripe_customer_id"
@@ -107,7 +106,6 @@ ActiveRecord::Schema.define(version: 20150106053536) do
   end
 
   add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
-
 
   create_table "disputes", force: true do |t|
     t.float    "amount"

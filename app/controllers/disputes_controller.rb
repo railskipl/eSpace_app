@@ -1,7 +1,7 @@
 class DisputesController < ApplicationController
 	before_filter :authenticate_user!, :except => []
 	before_filter :correct_user, :except => []
-	before_action :set_booking, only: [:hold_money, :show, :send_money_to_finder, :refund_finder, :charge_to_poster, :charged_to_poster]
+	before_action :set_booking, only: [:hold_money, :show, :refund_money_to_finder, :refund_finder, :charge_to_poster, :charged_to_poster]
 
 	layout "admin"
 
@@ -32,7 +32,7 @@ class DisputesController < ApplicationController
   def show
   end
 
-  def send_money_to_finder
+  def refund_money_to_finder
   end
 
   def send_money
