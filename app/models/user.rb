@@ -67,8 +67,9 @@ class User < ActiveRecord::Base
 
   #Message count
   def check_message
+    
     reminders =[]
-    reminders = Message.select(:sender_id,:is_read).where("recipient_id = ? AND is_read =?",self.id,false).uniq!
+    reminders = Message.select(:sender_id,:is_read).where("recipient_id = ? AND is_read =?",self.id,false)
     count = 0
     reminders.each do |r|
       unless r.is_read

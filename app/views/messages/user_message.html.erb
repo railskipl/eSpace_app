@@ -10,7 +10,7 @@
 			            	<% end %>
 			            	<% unless user_messages.sender.id == current_user.id%>	
 			            	<a style="margin:0" href="<%= messages_path(:recv_id =>user_messages.sender_id)%>">
-			            		<%# if @user_messages_sender_last.sender.id ==  user_messages.sender.id %><!-- <span></span> --><%# end %>
+			            		
 			            		<%= user_messages.sender.name %> <%= user_messages.sender.last_name %>
 			            	</a>
 			            	<% end %>
@@ -31,7 +31,7 @@
 		            <li <% if user_messages.recipient_id == params[:recv_id].to_i %> class="active" <% end %>>
 		            	<% unless user_messages.recipient.id == current_user.id %>
 		            	<a style="margin:0" href="<%= messages_path(:recv_id =>user_messages.recipient_id)%>">
-		            	<!-- 	<%# if @user_messages_receiver_last.recipient.id ==  user_messages.recipient.id %><span></span><%# end %> -->
+		            	
 		            		<%= user_messages.recipient.name %><%= user_messages.recipient.last_name %>
 		            	</a>
 		            	<% end %>

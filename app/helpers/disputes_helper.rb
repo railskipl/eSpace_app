@@ -2,6 +2,7 @@ module DisputesHelper
 
 	def check_disputes(booking_id, user_id) 
 
+
 		dispute = Dispute.select("status").find_by_booking_id_and_user_id(booking_id, user_id)
 
 	    if dispute.present?
