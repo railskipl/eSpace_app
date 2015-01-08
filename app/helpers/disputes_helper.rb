@@ -3,7 +3,7 @@ module DisputesHelper
 
 	def charge_user(user)
 		if user.bookings.last.try(:stripe_customer_id)
-			link_to "Charge" ,charge_to_finder_dispute_path(user) 
+			link_to "Charge" ,charge_money_dispute_path(user) 
 		else
 			"No Bank Detail Provided"  
 		end

@@ -44,11 +44,11 @@ Rails.application.routes.draw do
       get 'refund_money_to_finder'
       get 'send_money'
       put 'send_money'
-      get 'charge_to_finder'
+      get 'charge_money'
       get 'charge_to_poster'
       put 'refund_finder'
       put 'sent_to_poster'
-      put 'charged_to_finder'
+      put 'charged_money'
       put 'charged_to_poster'
     end
   end

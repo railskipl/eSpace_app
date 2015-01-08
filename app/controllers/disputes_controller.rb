@@ -93,10 +93,10 @@ class DisputesController < ApplicationController
   end
 
 
-  def charge_to_finder
+  def charge_money
   end
   	
-  def charged_to_finder
+  def charged_money
 
   	price = params[:amount].to_i
     user = User.find(params[:id])
