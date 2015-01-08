@@ -6,7 +6,7 @@ class DisputesController < ApplicationController
 	layout "admin"
 
 	def index
-  	 @disputes = Booking.admin_disputes(params[:page])
+  	 @disputes = Booking.hold_payments(params[:page])
 
       respond_to do |format|
         format.html
