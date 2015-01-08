@@ -99,7 +99,7 @@
         	}); 
         }, 1000);
     
-    <% else %>
+    <% end %>
 
 	var refreshId = setInterval(function()
 	{
@@ -108,12 +108,12 @@
                   success: function(html) { }
         }); 
 	     
-	}, 1000);
+	}, 2000);
 
 	jQuery(document).ready(function() {
 
 		jQuery("#refresh_msg").load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
-
+		
 	});
 
 	var refresmsg_hId = setInterval(function()
@@ -123,7 +123,7 @@
                   success: function(html) { }
         });
 	     
-	}, 2000);
+	}, 1000);
 
 	
 	jQuery(document).ready(function() {
@@ -136,5 +136,5 @@
 	     jQuery('#user_msg').load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
 	}, 2000);
 
-	<% end %>
+	
 </script>
