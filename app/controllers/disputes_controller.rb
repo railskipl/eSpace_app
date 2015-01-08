@@ -77,8 +77,8 @@ class DisputesController < ApplicationController
 
 	  Dispute.create(:amount => price, :booking_id => @booking.id, :user_id => params[:user_id], :status => "refund")
 
-	  flash[:notice] = "sending a money"
-	  redirect_to dispute_path(@booking.id)
+	  flash[:notice] = "Amount refunded"
+	  redirect_to search_disputes_path(@booking.id)
   end
 
 

@@ -21,7 +21,7 @@ module DisputesHelper
 	def check_disputes(booking_id, user_id, user) 
 	 
     if user == 'finder'
-	   	dispute = Dispute.select("status").find_by_booking_id_and_user_id(booking_id, user_id)
+	   	dispute = Dispute.select("status").find_by_booking_id_and_user_id_and_status(booking_id, user_id,"refund")
 
    	    if dispute.present? && dispute.status == "refund"
    		   "Already refunded"
