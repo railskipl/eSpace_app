@@ -1,12 +1,12 @@
 class DisputesController < ApplicationController
 	before_filter :authenticate_user!, :except => []
 	before_filter :correct_user, :except => []
-	before_action :set_booking, only: [:hold_money, :show, :send_money_to_finder, :refund_finder, :charge_to_poster, :charged_to_poster]
+	before_action :set_booking, only: [:hold_money, :show, :refund_money_to_finder, :refund_finder, :charge_to_poster, :charged_to_poster]
 
 	layout "admin"
 
 	def index
-  	 @disputes = Booking.admin_disputes(params[:page])
+  	 @disputes = Booking.hold_payments(params[:page])
 
       respond_to do |format|
         format.html
@@ -32,7 +32,7 @@ class DisputesController < ApplicationController
   def show
   end
 
-  def send_money_to_finder
+  def refund_money_to_finder
   end
 
   def send_money
@@ -77,8 +77,8 @@ class DisputesController < ApplicationController
 
 	  Dispute.create(:amount => price, :booking_id => @booking.id, :user_id => params[:user_id], :status => "refund")
 
-	  flash[:notice] = "sending a money"
-	  redirect_to dispute_path(@booking.id)
+	  flash[:notice] = "Amount refunded"
+	  redirect_to search_disputes_path(@booking.id)
   end
 
 
@@ -86,7 +86,7 @@ class DisputesController < ApplicationController
   end
 
   def search_user
-    @users = User.joins(:disputes).select("users.*,disputes.amount as amt,disputes.status as transaction_status").where("disputes.status != ?","refund")
+    @users = User.joins(:disputes).select("users.*,disputes.amount as amt,disputes.status as transaction_status").where("disputes.status != ?","refund").page(params[:page]).order("id desc").per_page(4)
     if params[:search]
       @search_user = User.find_by_email(params[:search])
     end

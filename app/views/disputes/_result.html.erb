@@ -7,7 +7,7 @@
 <td><%= dispute.poster_name %> <%= dispute.poster_last_name %> </td>
 <td><%= dispute.user_name %> <%= dispute.user_last_name %> </td>
 <td><%= dispute.price %></td>
-<td><%= dispute.amount %></td>
-<td><%= dispute.status %></td>
+<td><%= dispute.disputes.where("status = ?","refund").first.amount rescue nil %></td>
+<td><%= dispute.disputes.where("status = ?","refund").first.status rescue nil %></td>
 
 </tr>
