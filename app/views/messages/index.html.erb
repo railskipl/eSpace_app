@@ -45,13 +45,11 @@
     <%= javascript_include_tag "bootstrap.min", "jquery.mCustomScrollbar.concat.min", "scrollbar.js" %>
 	
 	
-
 	<script>
 
 	jQuery(document).ready(function() {
 		jQuery("#refresh_msg").load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
 
-		jQuery(".content").mCustomScrollbar("scrollTo", "bottom");
 
 		jQuery('#submit_msg').click(function() {
 			var text_title = this.form.message_body.value;
@@ -91,23 +89,27 @@
 
 	var refreshId = setInterval(function()
 	{
-	     $('#responsecontainer').fadeOut("slow").load('<%= refresh_part_messages_path%>').fadeIn("slow");
+		jQuery.ajax({
+            url: '<%= refresh_part_messages_path(:restream=>"yes") %>', cache: false,
+                  success: function(html) { }
+        }); 
 	     
 	}, 1000);
 
 	var refresmsg_hId = setInterval(function()
 	{
-	     $('#refresh_msg').load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
+	    jQuery.ajax({
+            url: '<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}", :restream=>"yes") %>', cache: false,
+                  success: function(html) { }
+        });
 	     
 	}, 1000);
-	
-	
 
+	
 	jQuery(document).ready(function() {
 		jQuery("#user_msg").load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
 		
 	});
-
 
 	var refresmsg_hId = setInterval(function()
 	{

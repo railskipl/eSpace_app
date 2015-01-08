@@ -1,0 +1,9 @@
+<% unless @total_messages.empty? %>
+	
+  jQuery('<%= escape_javascript(render "refresh_message", :total_messages => @total_messages) %>')
+  .appendTo('#refresh_msg')
+  .hide()
+  .fadeIn()	
+
+  jQuery(".content").mCustomScrollbar("scrollTo", "bottom");
+<% end %>

@@ -30,9 +30,9 @@ module PostsHelper
   
   def date_range(post)
     if post.drop_off_avaibility_start_date >= Date.today
-       post.drop_off_avaibility_start_date
+       post.drop_off_avaibility_start_date.strftime("%B %d, %Y")
     else
-       Date.today
+       Date.today.strftime("%B %d, %Y")
     end
   end
  

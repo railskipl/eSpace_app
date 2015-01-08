@@ -1,5 +1,6 @@
 module DisputesHelper
 
+
 	def charge_user(user)
 		if user.bookings.last.try(:stripe_customer_id)
 			link_to "Send" ,charge_to_finder_dispute_path(user) 
@@ -8,10 +9,11 @@ module DisputesHelper
 		end
 	end
 
+
 	def check_disputes(booking_id, user_id, user) 
 	 
     if user == 'poster'
-      
+
 		dispute = Dispute.select("status").find_by_booking_id_and_user_id(booking_id, user_id)
 
 	    if dispute.present?

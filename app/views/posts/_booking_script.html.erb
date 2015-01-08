@@ -59,14 +59,14 @@
       google.maps.event.addDomListener(window, 'load', initialize);
 
      
-
+      
     jQuery(function($){
       
-      $("#booking_dropoff_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= date_range(post) %>'), maxDate: new Date('<%= post.drop_off_avaibility_end_date %>')})
+      $("#booking_dropoff_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= date_range(post) %>'), maxDate: new Date('<%= post.drop_off_avaibility_end_date.strftime("%B %d, %Y") %>')})
 
-      $("#booking_pickup_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= post.pick_up_avaibilty_start_date %>'), maxDate: new Date('<%= post.pick_up_avaibility_end_date %>')})
+      $("#booking_pickup_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= post.pick_up_avaibilty_start_date.strftime("%B %d, %Y") %>'), maxDate: new Date('<%= post.pick_up_avaibility_end_date.strftime("%B %d, %Y") %>')})
 
-
+      
 
       jQuery('input').live('blur', function() {
         

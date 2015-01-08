@@ -1,0 +1,4 @@
+<% if @msg != 0 %>
+
+   $('#').html('<%= escape_javascript(render 'message_count', :msg => @msg) %>')
+<% end %>

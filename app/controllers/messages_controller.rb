@@ -213,37 +213,76 @@ end
   
   def refresh_part
 
-   @msg = current_user.check_message
-   respond_to do |format|
-      format.js
+    if params[:restream].nil?
+      @msg = current_user.check_message
+      render layout: false
+    else
+       @msg = current_user.check_message
+       
+       respond_to do |format|
+        format.js
+       end
     end
+
   end
 
   #method used for autorefresh chat message div &
   #show current updated chat msg.
   def refresh_message
     
-   @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
-   @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
-   @total_message = @messages_sender + @messages_receiver
-   @total_messages =  @total_message.sort_by { |k| k["id"] }
+    if params[:restream].nil?
+     @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
+     @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
+     @total_message = @messages_sender + @messages_receiver
+     @total_messages =  @total_message.sort_by { |k| k["id"] }
 
-  
-   respond_to do |format|
-      format.js
+     unless @messages_sender.empty?
+      @@ms = @messages_sender.last.id
+     end
+
+     unless @messages_receiver.empty?
+      @@mr = @messages_receiver.last.id
+     end
+
+     render layout: false
+
+    else
+
+      @messages_sender = Message.where("sender_id = ? AND recipient_id = ? AND id >?",current_user.id,params[:recv_id], @@ms)
+      @messages_receiver = Message.where("sender_id = ? AND recipient_id = ? AND id >?",params[:recv_id],current_user.id, @@mr)
+      @total_message = @messages_sender + @messages_receiver
+      @total_messages =  @total_message.sort_by { |k| k["id"] }
+
+      unless @messages_sender.empty?
+        @@ms = @messages_sender.last.id
+      end
+
+      unless @messages_receiver.empty?
+        @@mr = @messages_receiver.last.id
+      end
+
+      # unless @total_messages.empty?
+      #   @messages_sender.update_all(:is_read => true)
+      #   @messages_receiver.update_all(:is_read => true)
+      # end
+
+      respond_to do |format|
+        format.js
+      end
+
     end
   end
 
   def user_message
-   @check_user = current_user.recipient_messages.select(:sender_id).uniq
-   @user_messages_sender = current_user.recipient_messages.select(:sender_id).uniq
-   @user_messages_receiver = current_user.sent_messages.select(:recipient_id).uniq
-   @user_messages_sender_last = current_user.recipient_messages.last
-   @user_messages_receiver_last = current_user.sent_messages.last
-   
-   respond_to do |format|
-      format.js
-    end
+    
+     @check_user = current_user.recipient_messages.select(:sender_id).uniq
+     @user_messages_sender = current_user.recipient_messages.select(:sender_id).uniq
+     @user_messages_receiver = current_user.sent_messages.select(:recipient_id).uniq
+     
+
+     respond_to do |format|
+        format.js
+      end
   end
 
   private
