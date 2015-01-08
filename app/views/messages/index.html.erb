@@ -87,14 +87,14 @@
 
 	});
 
-	// var refreshId = setInterval(function()
-	// {
-	// 	jQuery.ajax({
- //            url: '<%= refresh_part_messages_path(:restream=>"yes") %>', cache: false,
- //                  success: function(html) { }
- //        }); 
+	var refreshId = setInterval(function()
+	{
+		jQuery.ajax({
+            url: '<%= refresh_part_messages_path(:restream=>"yes") %>', cache: false,
+                  success: function(html) { }
+        }); 
 	     
-	// }, 1000);
+	}, 1000);
 
 	var refresmsg_hId = setInterval(function()
 	{
@@ -111,10 +111,10 @@
 		
 	});
 
-	// var refresmsg_hId = setInterval(function()
-	// {
-	//      $('#user_msg').load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
-	// }, 2000);
+	var refresmsg_hId = setInterval(function()
+	{
+	     $('#user_msg').load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
+	}, 2000);
 
 
 </script>
