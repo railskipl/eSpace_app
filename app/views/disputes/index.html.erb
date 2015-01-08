@@ -1,4 +1,4 @@
-<%= link_to "Disputes result", disputes_path %> | <%= link_to "Search Booking ID", search_disputes_path %> | <%= link_to "Payment hold", hold_disputes_path %> <br/><br/>
+<%= render 'common_links' %>
 
 	<div  style="text-align:right;margin-left:10px;">
        <a href="<%= disputes_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a><a href="<%= disputes_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
