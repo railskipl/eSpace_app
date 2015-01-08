@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108110207) do
+ActiveRecord::Schema.define(version: 20150106053536) do
 
   create_table "about_us", force: true do |t|
     t.string   "name"
@@ -92,15 +92,6 @@ ActiveRecord::Schema.define(version: 20150108110207) do
     t.string   "subject"
     t.text     "message"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "credit_cards", force: true do |t|
-    t.string   "email"
-    t.string   "stripe_customer_id"
-    t.integer  "user_id"
-    t.string   "last_digit"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
