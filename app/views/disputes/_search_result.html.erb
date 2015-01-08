@@ -13,7 +13,7 @@
 <td><%= booking.on_hold? ? 'Hold' : 'Normal' %></td>
 <td><%= booking.post_address %> </td>
 <td>
-	<%= link_to "Toggle dispute status", hold_money_dispute_path(booking, :search=> params[:search]) %> | <%= link_to "Transfer/Charge Payment", dispute_path(booking)  %>  | <%= link_to "View Booking", booking_path(booking), :target=>"_blank"  %>
+	<%= link_to "Toggle dispute status", hold_money_dispute_path(booking, :search=> params[:search]) %> | <%= check_disputes(booking.id, booking.user_id, 'finder')  %>  | <%= link_to "View Booking", booking_path(booking), :target=>"_blank"  %>
 
 </td>
 </tr>

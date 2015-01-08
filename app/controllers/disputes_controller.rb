@@ -1,7 +1,7 @@
 class DisputesController < ApplicationController
 	before_filter :authenticate_user!, :except => []
 	before_filter :correct_user, :except => []
-	before_action :set_booking, only: [:hold_money, :show, :send_money_to_finder, :charge_to_finder, :charged_to_finder, :sent_to_finder, :send_money_to_poster, :charge_to_poster, :charged_to_poster]
+	before_action :set_booking, only: [:hold_money, :show, :send_money_to_finder, :sent_to_finder, :send_money_to_poster, :charge_to_poster, :charged_to_poster]
 
 	layout "admin"
 
@@ -18,7 +18,10 @@ class DisputesController < ApplicationController
   end
 
   def search
-    @bookings = Booking.search_booking(params[:search])
+    @bookings = Booking.hold_payments(params[:page])
+    if params[:search]
+      @bookings = Booking.search_booking(params[:search])
+    end
   end
 
   def hold
@@ -59,6 +62,13 @@ class DisputesController < ApplicationController
   def send_money_to_poster
   end
 
+  def search_user
+    @users = User.joins(:disputes).select("users.*,disputes.amount as amt,disputes.status as transaction_status").where("disputes.status != ?","refund")
+    if params[:search]
+      @users = User.where("email like ?",params[:search])
+    end
+  end
+
 
   def charge_to_finder
   end
@@ -66,8 +76,8 @@ class DisputesController < ApplicationController
   def charged_to_finder
 
   	price = params[:amount].to_i
-    
-    stripe_customer_id = @booking.stripe_customer_id
+    user = User.find(params[:id])
+    stripe_customer_id =  user.bookings.last.stripe_customer_id
 
     amount_cents = ((price)*100).to_i
 
@@ -76,7 +86,7 @@ class DisputesController < ApplicationController
 	    charge = Stripe::Charge.create(
         :customer    => stripe_customer_id,
         :amount      => amount_cents,
-        :description => "Booking of price #{price}.",
+        :description => "Charging #{price}.",
         :currency    => 'usd'
       )
 	  rescue Stripe::InvalidRequestError => e
@@ -84,10 +94,10 @@ class DisputesController < ApplicationController
 	    return false
 	  end
 
-	  Dispute.create(:amount => price, :booking_id => @booking.id, :user_id => params[:user_id], :status => "charge")
+	  Dispute.create(:amount => price,  :user_id => params[:id], :status => "charge")
 
 	  flash[:notice] = "Charged a money"
-	  redirect_to dispute_path(@booking.id)
+	  redirect_to disputes_path
   end
 
   def charge_to_poster
@@ -129,9 +139,9 @@ class DisputesController < ApplicationController
 	  respond_to do |format|
 
       if params[:search]
-	     format.html { redirect_to search_disputes_path(:search => params[:search]), notice: 'Status updated.' }
+	     format.html { redirect_to search_disputes_path, notice: 'Status updated.' }
       else
-        format.html { redirect_to hold_disputes_path, notice: 'Status updated.' }
+        format.html { redirect_to search_disputes_path, notice: 'Status updated.' }
       end
 	    format.json { head :no_content }
 	  end
