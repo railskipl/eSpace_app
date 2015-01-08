@@ -401,6 +401,14 @@ jQuery("#booking").validate({
 	ignore:'',
 	errorElement:'div',
 
+	 //by default the error elements is a <label>
+     errorElement: "div",
+    //place all errors in a <div id="errors"> element
+     
+     errorPlacement: function(error, element) {
+        error.appendTo("div#postdetailsErr");
+    }, 
+
 	rules: {
         
         "area":{
@@ -413,12 +421,13 @@ jQuery("#booking").validate({
         "booking[dropoff_date]":{
 	        required:true
         }
+
 	},
 	messages: {
 
 		"area":{
-        required: " ",
-        min: "greater than or equal to 4"
+	        required: "Please enter area",
+	        min: "Please enter area greater than or equal to 4 sq. ft"
         }
         ,
         "booking[dropoff_date]":{

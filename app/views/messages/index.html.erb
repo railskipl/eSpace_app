@@ -18,6 +18,9 @@
 	            <div id="user_msg"></div>
 	            <%unless params[:recv_id].present?%> 
 	              <div class="chatdiv" style="height:460px;">
+	              	<div class="content">
+			            <div id="refresh_msg"></div>
+		            </div>
 		            
 	              </div>
 	            <%else%>
@@ -48,7 +51,7 @@
 	<script>
 
 	jQuery(document).ready(function() {
-		jQuery("#refresh_msg").load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
+		
 
 
 		jQuery('#submit_msg').click(function() {
@@ -84,8 +87,19 @@
 
 		});
 
-
+    	
 	});
+
+	<% if @messages_receiver.empty? %>
+    	var refreshId = setInterval(function()
+		{
+    	 	jQuery.ajax({
+            url: '<%= check_message_messages_path %>', cache: false,
+                  success: function(html) { }
+        	}); 
+        }, 1000);
+    
+    <% else %>
 
 	var refreshId = setInterval(function()
 	{
@@ -96,6 +110,12 @@
 	     
 	}, 1000);
 
+	jQuery(document).ready(function() {
+
+		jQuery("#refresh_msg").load('<%= refresh_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
+
+	});
+
 	var refresmsg_hId = setInterval(function()
 	{
 	    jQuery.ajax({
@@ -103,7 +123,7 @@
                   success: function(html) { }
         });
 	     
-	}, 1000);
+	}, 2000);
 
 	
 	jQuery(document).ready(function() {
@@ -113,8 +133,8 @@
 
 	var refresmsg_hId = setInterval(function()
 	{
-	     $('#user_msg').load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
+	     jQuery('#user_msg').load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}")%>');
 	}, 2000);
 
-
+	<% end %>
 </script>

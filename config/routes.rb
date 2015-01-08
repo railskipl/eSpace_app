@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :credit_cards
+
   resources :about_us
   resources :access_ids , :except => [:show]
   
@@ -124,21 +126,16 @@ Rails.application.routes.draw do
 
   resources :messages do
     collection do
-      get 'trash_messages'
       get 'sent_messages'
-      put 'move_all_to_trash_recipient'
-      put 'delete_all_by_sender'
       get 'refresh_part'
       get 'refresh_message'
+      get 'check_message'
       get 'user_message'
       get 'compose_message'
       post 'sent_to'
     end
     
     member do
-     post 'trash'
-     post 'destroy_recipient'
-     post 'destroy_sender'
      get 'reply'
      get 'is_read_all'
     end

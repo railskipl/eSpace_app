@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  stripe_customer_id: MyString
+  user_id: 1
+  last_digit: MyString
+
+two:
+  email: MyString
+  stripe_customer_id: MyString
+  user_id: 1
+  last_digit: MyString

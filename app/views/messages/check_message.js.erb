@@ -1,0 +1,3 @@
+<% unless @messages_receiver.nil? %>
+	window.location.href = '<%= messages_path(:recv_id=>"#{@messages_receiver}") %>';
+<% end %>

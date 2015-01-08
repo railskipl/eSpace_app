@@ -1,3 +1,7 @@
+
+
+
+
 <div class="main-new">
     <ul class="verticle-menu">
     <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
@@ -14,35 +18,31 @@
       
         
         <div class="payment-wrap">
-        <%unless @bank_detail.present?%>
-          <div class="new-add-post"><%= link_to '+Add Bank Details', new_bank_detail_path %> </div>
+        <%unless @credit_card.present?%>
+          <div class="new-add-post"><%= link_to '+Add Credit card Details', new_credit_card_path %> </div>
         <%end%>
-            
+           
             <div class="order-box">
                 <div class="pay-col pay-col1">
 
-                    
-
                 </div>
                 
                 <div class="pay-col pay-col1">
-                  <span>Full name</span>: <%= @bank_detail.full_name %>
+                  <span>Email</span>: <%= @credit_card.email %>
                 </div>
                 
+                              
                 <div class="pay-col pay-col1">
-                  <span>Card number</span>: ******<%= @bank_detail.card_number[-4..-1] %>
-                </div>
-                
-                <div class="pay-col pay-col1">
-                    <%if @bank_detail.present?%>
-                      <%= link_to 'Destroy', @bank_detail, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%if @credit_card.present?%>
+                      <%= link_to 'Destroy', @credit_card, method: :delete, data: { confirm: 'Are you sure?' } %>
                     <%else%>
-                      <%= link_to 'New Bank detail', new_bank_detail_path %>
+                      <%= link_to 'New Bank detail', new_credit_card_path %>
                     <%end%>
                 </div>
             </div>
-            
+           
         </div>
     </div>
 </div>
+
 

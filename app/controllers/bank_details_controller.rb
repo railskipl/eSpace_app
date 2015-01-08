@@ -5,9 +5,9 @@ class BankDetailsController < ApplicationController
  respond_to :html, :xml, :json
 
   def index
-    @bank_detail = BankDetail.has_bank_detail(current_user.id).first
-    if @bank_detail.present?
-      @bank_details = current_user.bank_details.all
+    bank_detail = current_user.bank_detail
+    if bank_detail.present?
+      @bank_detail = bank_detail
     else
       redirect_to new_bank_detail_path
     end    
