@@ -10,7 +10,7 @@
 
 	
 	<span style="margin-left:60px">
-		<%= check_disputes(@booking.id, @booking.poster_id) %>
+		<%= check_disputes(@booking.id, @booking.poster_id, 'poster') %>
 	 <span>
 	
 
@@ -21,7 +21,7 @@
 
 	
 	<span style="margin-left:60px">  
-		<%= check_disputes(@booking.id, @booking.user_id) %>
+		<%= check_disputes(@booking.id, @booking.user_id, 'finder') %>
 	<span>
 	
 </p>
