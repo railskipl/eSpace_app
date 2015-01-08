@@ -3,9 +3,17 @@ module DisputesHelper
 
 	def charge_user(user)
 		if user.bookings.last.try(:stripe_customer_id)
-			link_to "Send" ,charge_to_finder_dispute_path(user) 
+			link_to "Charge" ,charge_to_finder_dispute_path(user) 
 		else
 			"No Bank Detail Provided"  
+		end
+	end
+
+	def send_user(user)
+		if user.bank_detail
+			link_to "Send" ,send_money_dispute_path(user) 
+		else
+			"No Bank Detail Provided"
 		end
 	end
 
@@ -34,7 +42,7 @@ module DisputesHelper
    	    if dispute.present? && dispute.status == "refund"
    		   "Already refunded"
    		else
-   	   	   "#{link_to "Refund ", send_money_to_finder_dispute_path(booking_id)} |  #{link_to "Charge extra money", charge_to_finder_dispute_path(booking_id)}".html_safe
+   	   	   "#{link_to "Refund ", refund_money_to_finder_dispute_path(booking_id)} |  #{link_to "Charge extra money", charge_to_finder_dispute_path(booking_id)}".html_safe
    		end
    		
    end

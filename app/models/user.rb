@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
  
   has_many :comments, :dependent => :destroy
   has_many :bookings, :dependent => :destroy
-  has_many :bank_details, :dependent => :destroy
+  has_one :bank_detail, :dependent => :destroy
   has_many :disputes, :dependent => :destroy
 
 

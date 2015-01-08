@@ -1,7 +1,7 @@
 class DisputesController < ApplicationController
 	before_filter :authenticate_user!, :except => []
 	before_filter :correct_user, :except => []
-	before_action :set_booking, only: [:hold_money, :show, :send_money_to_finder, :sent_to_finder, :send_money_to_poster, :charge_to_poster, :charged_to_poster]
+	before_action :set_booking, only: [:hold_money, :show, :send_money_to_finder, :refund_finder, :charge_to_poster, :charged_to_poster]
 
 	layout "admin"
 
@@ -35,7 +35,30 @@ class DisputesController < ApplicationController
   def send_money_to_finder
   end
 
-  def sent_to_finder
+  def send_money
+    if params["_method"]
+       price = params[:amount].to_i
+       user = User.find(params[:id])
+       stripe_recipient_token = user.bank_detail.stripe_recipient_token
+      begin
+      transfer = Stripe::Transfer.create(
+      :amount => price, # amount in cents
+      :currency => "usd",
+      :recipient => stripe_recipient_token,
+      :statement_description => "Money transfer"
+      )
+       rescue Stripe::InvalidRequestError => e
+          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+          return false
+       end
+
+      Dispute.create(:amount => price, :user_id => params[:id], :status => "send")
+      flash[:notice] = "Money send"
+      redirect_to search_user_disputes_path
+    end
+  end
+
+  def refund_finder
 
     price = params[:amount].to_i
 
@@ -65,7 +88,7 @@ class DisputesController < ApplicationController
   def search_user
     @users = User.joins(:disputes).select("users.*,disputes.amount as amt,disputes.status as transaction_status").where("disputes.status != ?","refund")
     if params[:search]
-      @users = User.where("email like ?",params[:search])
+      @search_user = User.find_by_email(params[:search])
     end
   end
 
@@ -97,7 +120,7 @@ class DisputesController < ApplicationController
 	  Dispute.create(:amount => price,  :user_id => params[:id], :status => "charge")
 
 	  flash[:notice] = "Charged a money"
-	  redirect_to disputes_path
+	  redirect_to search_user_disputes_path
   end
 
   def charge_to_poster
