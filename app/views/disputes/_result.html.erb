@@ -8,6 +8,6 @@
 <td><%= dispute.user_name %> <%= dispute.user_last_name %> </td>
 <td><%= dispute.price %></td>
 <td><%= dispute.disputes.where("status = ?","refund").first.amount rescue nil %></td>
-<td><%= dispute.disputes.where("status = ?","refund").first.status rescue nil %></td>
+<td>Refund</td>
 
 </tr>
