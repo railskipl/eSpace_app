@@ -15,7 +15,8 @@
         
         <div class="payment-wrap">
             <% @bookings.each do |booking|%>
-            <% if booking.refund_finder.nil? && booking.name == "transfered" && current_user == booking.user %>
+            <% if booking.refund_finder.nil? && (booking.name == "transfered") && (current_user == booking.user) %>
+            <% elsif (current_user == booking.poster)  && (booking.name == "created") %>
             <% else %>
             <div class="order-box">
                 <div class="pay-col pay-col1">
@@ -23,7 +24,6 @@
                     <span>Payment type</span> :
                         <%= payment_status(booking) %>
                     <%end%>
-                   
                     <p>
                         <%= post_link(booking) %>
                     </p>
