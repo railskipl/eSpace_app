@@ -57,7 +57,7 @@ class PayementTransfersController < ApplicationController
          end
 
         transfer_payment = @booking.update_attributes(stripe_transfer_id: transfer[:id], 
-        status: transfer[:status],
+        status: 'Paid',
         is_confirm: true,
         cut_off_price: received_by_poster,
         commission: commission)
@@ -67,7 +67,6 @@ class PayementTransfersController < ApplicationController
         message_params = {}
         message_params["sender_id"] = current_user.id
         message_params["recipient_id"] = @booking.poster_id
-        message_params["post_id"] = @booking.post_id
         message_params["body"] = "Payment has been transfered to your account."
         message = Message.new(message_params)
         message.save
