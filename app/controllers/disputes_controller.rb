@@ -91,6 +91,13 @@ class DisputesController < ApplicationController
     if params[:search]
       @search_user = User.find_by_email(params[:search])
     end
+    respond_to do |format|
+        format.html
+        format.xls
+        format.pdf do
+           render :pdf => "Send/Charge"
+        end
+    end
   end
 
 
