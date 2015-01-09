@@ -6,8 +6,14 @@
 <td><%= dispute.area %></td>
 <td><%= dispute.poster_name %> <%= dispute.poster_last_name %> </td>
 <td><%= dispute.user_name %> <%= dispute.user_last_name %> </td>
+<td><%= dispute.user.id %> </td>
 <td><%= dispute.price %></td>
-<td><%= dispute.disputes.where("status = ?","refund").first.amount rescue nil %></td>
-<td>Refund</td>
+<td><%= amount = get_refund_data(dispute).try(:amount)  %></td>
+<td><%= net_charge(dispute,amount) %></td>
+<td><%= stripe_commission(dispute,amount) %></td>
+<td><%= balance(dispute,amount) %></td>
+<td><%= get_refund_data(dispute).try(:amount) ? "Refund" : "Not Refunded Yet"  %></td>
+
+
 
 </tr>

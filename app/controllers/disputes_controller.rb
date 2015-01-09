@@ -40,9 +40,10 @@ class DisputesController < ApplicationController
        price = params[:amount].to_i
        user = User.find(params[:id])
        stripe_recipient_token = user.bank_detail.stripe_recipient_token
+        amount_cents = ((price)*100).to_i
       begin
       transfer = Stripe::Transfer.create(
-      :amount => price, # amount in cents
+      :amount => amount_cents, # amount in cents
       :currency => "usd",
       :recipient => stripe_recipient_token,
       :statement_description => "Money transfer"
@@ -86,7 +87,7 @@ class DisputesController < ApplicationController
   end
 
   def search_user
-    @users = User.joins(:disputes).select("users.*,disputes.amount as amt,disputes.status as transaction_status").where("disputes.status != ?","refund").page(params[:page]).order("id desc").per_page(4)
+    @users = User.joins(:disputes).select("users.*,disputes.amount as amt,disputes.status as transaction_status").where("disputes.status != ?","refund").page(params[:page]).order("id desc").per_page(10)
     if params[:search]
       @search_user = User.find_by_email(params[:search])
     end
@@ -100,8 +101,7 @@ class DisputesController < ApplicationController
 
   	price = params[:amount].to_i
     user = User.find(params[:id])
-    stripe_customer_id =  user.bookings.last.stripe_customer_id
-
+    stripe_customer_id =  user.bookings.last.try(:stripe_customer_id) || user.credit_card.try(:stripe_customer_id)
     amount_cents = ((price)*100).to_i
 
   	begin

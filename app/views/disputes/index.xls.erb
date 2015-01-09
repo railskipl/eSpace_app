@@ -6,9 +6,12 @@
 <th>Booking Area/Sq.Ft</th>
 <th>Poster Name</th>
 <th>Finder Name</th>
+<th>Finder Id</th>
 <th>Booking Price</th>
-<th>Amount</th>
-<th>Status</th>
+<th>Amount Refunded</th>
+<th>Net Charge To Finder</th>
+<th>Stripe Commission</th>
+<th>Balance Amount</th>
 </tr>
 <% @disputes.each_with_index do |dispute, index|%>
   <%= render 'result.html.erb', :index => index, :dispute => dispute %>

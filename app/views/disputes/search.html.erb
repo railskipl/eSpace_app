@@ -5,10 +5,11 @@
     <%= submit_tag "Search", :name => nil, :class=>"btn btn-primary contact-form" %>
   </p>
 <% end %>
+<% unless params[:search] %>
 	<div  style="text-align:right;margin-left:10px;">
        <a href="<%= disputes_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a><a href="<%= disputes_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
      </div>
-
+<% end %>
 <table class="table table-striped">
 <tr>
 <th>Sr No.</th>
