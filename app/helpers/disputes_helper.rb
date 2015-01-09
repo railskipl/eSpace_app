@@ -22,6 +22,8 @@ module DisputesHelper
 
 	  if dispute.present? && dispute.status == "refund"
 	  	"UnHold"
+	  elsif !booking.stripe_transfer_id.nil?
+	  	"-"
 	  else
 		link_to (booking.on_hold? ? 'UnHold' : 'Hold'), hold_money_dispute_path(booking, :search=> params[:search])
 	  end
