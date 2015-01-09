@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     self.update_column(:status,self.status)
   end
 
+  def self.get_disputes
+    joins(:disputes).select("users.*,disputes.amount as amt,disputes.status as transaction_status").where("disputes.status != ?","refund")
+  end
+
   def self.is_present_facebook_oauth(auth)
     config = YAML.load_file("#{Rails.root}/config/facebook.yml")
     
