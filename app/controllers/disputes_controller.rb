@@ -40,9 +40,10 @@ class DisputesController < ApplicationController
        price = params[:amount].to_i
        user = User.find(params[:id])
        stripe_recipient_token = user.bank_detail.stripe_recipient_token
+        amount_cents = ((price)*100).to_i
       begin
       transfer = Stripe::Transfer.create(
-      :amount => price, # amount in cents
+      :amount => amount_cents, # amount in cents
       :currency => "usd",
       :recipient => stripe_recipient_token,
       :statement_description => "Money transfer"
@@ -102,7 +103,7 @@ class DisputesController < ApplicationController
     user = User.find(params[:id])
     stripe_customer_id =  user.bookings.last.try(:stripe_customer_id) || user.credit_card.try(:stripe_customer_id)
     amount_cents = ((price)*100).to_i
-    
+
   	begin
 
 	    charge = Stripe::Charge.create(
