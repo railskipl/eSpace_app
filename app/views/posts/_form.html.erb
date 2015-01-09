@@ -1,99 +1,14 @@
-<%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js" %>
+<%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js", "datepicker_post.js" %>
 <%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker"%>
 
+<style>
+.error {color: #fd0000 !important;float: left;}
+.field-list li.small input { width: 128px; }
+</style>
 
-<script type="text/javascript">
 
-  jQuery(function($){
-    $("#post_pick_up_avaibilty_start_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true, buttontabindex: true})
-  });
-  jQuery(function($){
-    $("#post_pick_up_avaibility_end_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
-  });
-  jQuery(function($){
-    $("#post_drop_off_avaibility_start_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true, buttontabindex: true})
-  });
-  jQuery(function($){
-    $("#post_drop_off_avaibility_end_date").datepicker({dateFormat: 'M d,yy',changeMonth: false,changeYear: false, minDate: 0, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
-  });
-    
-  $(document).ready(function(){
-      $('input[type="checkbox"]').click(function(){
-          if($(this).attr("id")=="post_pick_up"){
-              $(".post_pick_up").toggle();
-          }
-          if($(this).attr("id")=="post_drop_off"){
-              $(".post_drop_off").toggle();
-          }
-          
-      });
-  });
-</script>
+<%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation", "create_post.js" %>
 
-<%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation" %>
-
-<script type="text/javascript">
-$(document).ready(function() {
-// Tooltip only Text
-$('.masterTooltip').hover(function(){
-        // Hover over code
-        var title = $(this).attr('title');
-        $(this).data('tipText', title).removeAttr('title');
-        $('<p class="tooltip"></p>')
-        .text(title)
-        .appendTo('body')
-        .fadeIn('slow');
-}, function() {
-        // Hover out code
-        $(this).attr('title', $(this).data('tipText'));
-        $('.tooltip').remove();
-}).mousemove(function(e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
-        $('.tooltip')
-        .css({ top: mousey, left: mousex })
-});
-});
-</script>
-<script type="text/javascript">
-$(function() {
-  $('#post_photo').on('change', function(event) {
-    var files = event.target.files;
-    var image = files[0]
-    var reader = new FileReader();
-    reader.onload = function(file) {
-      var img = new Image();
-      img.src = file.target.result;
-      img.width = 91;
-      img.height = 61;
-      $('#target').html(img);
-    }
-    reader.readAsDataURL(image);
-    console.log(files);
-  });
-});
-</script>
-<script type='text/javascript'>//<![CDATA[ 
-  $(window).load(function(){
-    var a = document.getElementById('post_drop_off').checked
-    var b = document.getElementById('post_pick_up').checked
-    if (a == true){
-      $('#post_price_include_drop_off').removeAttr('disabled');
-    }
-    if (b == true){
-      $('#post_price_include_pick_up').removeAttr('disabled');
-    }
-
-    $("#post_drop_off").click(function() {
-        $("#post_price_include_drop_off").attr("disabled", !this.checked); 
-    });
-
-    $("#post_pick_up").click(function() {
-        $("#post_price_include_pick_up").attr("disabled", !this.checked); 
-    });
-  });//]]>  
-
-</script>
 
              
     <div class="main-new">
@@ -235,7 +150,8 @@ $(function() {
                                 <p>
                                 This is the price the renters will see.
                                 A small commission will be deducted 
-                                before the money is sent to you. <a href="#" style="color:#b0b9c0">Learn more</a>
+                                before the money is sent to you. 
+                                <%= link_to "Learn more", frequently_asked_question_path, :style=>"color:#b0b9c0", :target=>"_blank" %>
                                 </p>
                               </div>
                                 

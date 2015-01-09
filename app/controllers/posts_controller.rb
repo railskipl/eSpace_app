@@ -11,10 +11,9 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    q = params[:q]
-    @posts = Post.search_post(q, current_user.id)
+    q = params[:search]
 
-    @posts = @posts.get_status(q) if q.present?
+    @posts = Post.search_post(q, current_user.id)
  
     @start_date = "#{params['start_date']}"
     @end_date ="#{params['end_date']}"
