@@ -31,6 +31,7 @@ class BankDetailsController < ApplicationController
         @bank_detail = BankDetail.new(bank_detail_params)
 
         if params[:stripe_card_token]
+          
 
           begin
 

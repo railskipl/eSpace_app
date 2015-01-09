@@ -29,10 +29,11 @@ class CreditCardsController < ApplicationController
       email = params[:credit_card][:email]
       user_id = params[:credit_card][:user_id]
       
+      
       begin
         customer = Stripe::Customer.create(
           :email => email,
-          :card  => params[:stripeToken],
+          :card  => params[:stripe_card_token],
           :description => "Customer #{email}"
         )
       rescue Stripe::InvalidRequestError => e
@@ -40,9 +41,7 @@ class CreditCardsController < ApplicationController
         return false
       end
 
-      stripe_response = JSON.parse("#{customer}")
-
-      CreditCard.create(:email => email, :stripe_customer_id => stripe_response["id"], :user_id => user_id)
+      CreditCard.create(:email => email, :stripe_customer_id => customer.id, :user_id => user_id)
 
       redirect_to credit_cards_path
 
