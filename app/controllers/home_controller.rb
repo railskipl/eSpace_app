@@ -21,6 +21,15 @@ class HomeController < ApplicationController
     else
       @posts = Post.post_search(current_user).page(params[:page]).per_page(10)
     end
+
+    respond_to do |format|
+      format.html
+      format.xls
+      format.pdf do
+        render :pdf => "all_postings"
+      end
+    end
+
   end
 
 
