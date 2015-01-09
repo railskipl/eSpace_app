@@ -57,7 +57,7 @@ class PayementTransfersController < ApplicationController
          end
 
         transfer_payment = @booking.update_attributes(stripe_transfer_id: transfer[:id], 
-        status: transfer[:status],
+        status: 'Paid',
         is_confirm: true,
         cut_off_price: received_by_poster,
         commission: commission)

@@ -2440,6 +2440,7 @@ form.change_password .textbox input {
     padding: 0 0 0 10px;
     text-align: justify;
     z-index: -2147483648;
+    word-wrap: break-word;
 }
 
 
