@@ -1,0 +1,17 @@
+.booking-btn{
+    background: #00b4ff;
+	padding:10px 10px 8px;
+	font-size:15px; 
+	text-align:center;	
+	font-family:brandon4;
+	width:50%;
+	margin-left:171px;
+	margin-top:30px;
+	border:2px #00b4ff solid;
+	cursor:pointer;
+	color: #fff;
+		}
+.booking-btn a{
+text-decoration:none;
+ color:#ffffff;
+	}

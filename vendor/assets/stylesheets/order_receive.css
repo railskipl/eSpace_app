@@ -1,0 +1,87 @@
+.boxpop-up
+{
+width:380px;
+
+background:#FFF;
+/*border:1px #eeeeee solid;*/	
+
+}
+.booking-btn{
+    background: #00b4ff;
+	padding:10px 10px 8px;
+	font-size:15px; 
+	text-align:center;	
+	font-family:brandon4;
+	width:50%;
+	margin-left:171px;
+	margin-top:30px;
+	border:2px #00b4ff solid;
+	cursor:pointer;
+		}
+.booking-btn a{
+text-decoration:none;
+ color:#ffffff;
+	}
+.alredy-btn{
+    background: #ffffff;
+	padding:10px 10px 8px;
+	font-size:15px; 
+	text-align:center;	
+	font-family:brandon4;
+	width:50%;
+    margin-left:140px;
+	margin-top:30px;
+	border:2px #ccc solid;
+		}
+.alredy-btn a{
+text-decoration:none;
+ color:#00b4ff;
+	}	
+	
+	
+.link-more a
+{
+text-decoration:none;
+color:#00b4ff;
+font-size:12px;	
+padding-left:20px;
+font-family: brandon4;	
+	}
+	
+.paragraph-new
+{
+width:86%;	
+font-size:11px;
+color:#b0b4b8;
+margin-top:50px;
+padding-left:20px;
+font-family: brandon4;	
+	}
+.heading
+{
+padding-left:20px;
+color:#14263a;
+padding-top:30px;
+font-family: brandon4;
+		
+	}
+.cancel-btn{margin-top:20px}
+.cancel-btn a
+{
+
+text-decoration:none;
+padding-top:13px;
+color:#ccc;	
+font-size:12px;
+margin-left:329px;
+font-family: brandon4;
+}
+
+#facebox .content {
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 4px;
+    display: table;
+    height: 342px;
+    padding: 10px;
+    width: 100%;
+}
