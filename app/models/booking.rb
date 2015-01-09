@@ -67,7 +67,7 @@ class Booking < ActiveRecord::Base
 
 	# Transfer money to Poster(Cronjob)
 	def self.my_cron
-		bookings = Booking.where("on_hold = false and is_cancel = false and dropoff_date = '#{Date.today}' and stripe_transfer_id is null")
+		bookings = Booking.where("on_hold = false and is_cancel = false and dropoff_date = '#{Date.today - 5.day}' and stripe_transfer_id is null")
 
 		bookings.each do |booking|
 

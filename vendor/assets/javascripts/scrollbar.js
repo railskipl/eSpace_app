@@ -64,8 +64,7 @@
 					live:false,
 					liveSelector:null
 				});
-
-
+	
 				
 			});
 		})(jQuery);
