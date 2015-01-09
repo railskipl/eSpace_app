@@ -4,7 +4,7 @@
 
 	var err = 0;
 
-	var userinput = $('#email').val();
+	var userinput = $('#personal_email').val();
 
 	
 	<% @access_ids.each_with_index do |access_id, index| %>
@@ -14,8 +14,8 @@
 
 	var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
 
-	if($('#email').val() == ''){
-		        $('#email').parent().parent().find('.form-error').html("Please enter email address.");
+	if($('#personal_email').val() == ''){
+		        $('#personal_email').parent().parent().find('.form-error').html("Please enter email address.");
 		        err++;
 		    }
 
@@ -28,7 +28,7 @@
 
 				if(!pattern.test(userinput) || userinput.split('@').pop() != domain<%= index %>)
 				{
-				 	$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+				 	$('#personal_email').parent().parent().find('.form-error').html("Please enter valid email address.");
 			        err++;
 				}
 			}
@@ -39,7 +39,7 @@
 
 				if(!pattern.test(userinput) || userinput.split('@').pop() != domain<%= index %>)
 				{
-				 	$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+				 	$('#personal_email').parent().parent().find('.form-error').html("Please enter valid email address.");
 			        err++;
 				}
 			}
@@ -47,7 +47,7 @@
 	<% end %>
 	else 
 	{ 
-		$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
+		$('#personal_email').parent().parent().find('.form-error').html("Please enter valid email address.");
 	    err++;
 	}
 
@@ -74,6 +74,7 @@
 
     <div class="login-popup"> 
       <%= text_field_tag :personal_email %>
+      <div class="form-error"></div>
     </div>
    
         
