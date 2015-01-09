@@ -38,9 +38,14 @@
         <div class="status">
           <%#= f.select :status, options_for_select(%w[Active Inactive]) %>
           <select name="search[status]" id="search_status" class="status-prev">
-            <option value="" style="color:#999;" disabled selected>Status</option>
-            <option value="Active" style="color:#999;">Active</option>
-            <option value="Inactive" style="color:#999;">Inactive</option>
+            <option value="" style="color:#999;" disabled>Status</option>
+            <% if params[:search] %>
+            <option value="Active" style="color:#999;"  <% if params[:search][:status] == true %> selected <% end %>>Active</option>
+            <option value="Inactive" style="color:#999;" <% if params[:search][:status] == false %> selected <% end %>>Inactive</option>
+            <% else %>
+              <option value="Active" style="color:#999;" >Active</option>
+              <option value="Inactive" style="color:#999;">Inactive</option>
+            <% end %>
           </select>
         </div>
         <div class="search">

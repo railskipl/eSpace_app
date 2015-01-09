@@ -304,7 +304,7 @@ messages: {
 	// 	number:"Please enter integer value"
 	// },
 	"post[address]":{
-		required: "Please enter street address"
+		required: "Please enter address"
 	},
 	"post[city]":{
 		required: "Please enter city"

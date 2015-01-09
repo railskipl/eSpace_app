@@ -31,50 +31,50 @@ class PayementTransfersController < ApplicationController
 
       @price = @booking.price.to_i
 
-      if @price <= 8
-        received_by_poster = (@price - 0.80) - 0
-        total_amount = (received_by_poster * 100).to_i
-        stripe_processing_fees = @booking.price.to_i * 0.029 + 0.30
-        commission = @price - stripe_processing_fees - (received_by_poster + 0.25)
-      else
-        received_by_poster = @price - processing_fees(@price)
-        stripe_processing_fees = @booking.price.to_i * 0.029 + 0.30
-        commission = processing_fees(@price) - stripe_processing_fees - 0.25
-        total_amount = ((received_by_poster) * 100).to_i
-      end
+        if @price <= 8
+          received_by_poster = (@price - 0.80) - 0
+          total_amount = (received_by_poster * 100).to_i
+          stripe_processing_fees = @booking.price.to_i * 0.029 + 0.30
+          commission = @price - stripe_processing_fees - (received_by_poster + 0.25)
+        else
+          received_by_poster = @price - processing_fees(@price)
+          stripe_processing_fees = @booking.price.to_i * 0.029 + 0.30
+          commission = processing_fees(@price) - stripe_processing_fees - 0.25
+          total_amount = ((received_by_poster) * 100).to_i
+        end
 
-    begin
-      transfer = Stripe::Transfer.create(
-  	  :amount => total_amount, # amount in cents
-  	  :currency => "usd",
-  	  :recipient => @recipient_details.stripe_recipient_token,
-  	  :card => @recipient_details.stripe_card_id_token,
-  	  :statement_description => "Money transfer"
-  	)
-     rescue Stripe::InvalidRequestError => e
-        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
-        return false
-     end
+        begin
+          transfer = Stripe::Transfer.create(
+      	  :amount => total_amount, # amount in cents
+      	  :currency => "usd",
+      	  :recipient => @recipient_details.stripe_recipient_token,
+      	  :card => @recipient_details.stripe_card_id_token,
+      	  :statement_description => "Money transfer"
+      	)
+         rescue Stripe::InvalidRequestError => e
+            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+            return false
+         end
 
-      transfer_payment = @booking.update_attributes(stripe_transfer_id: transfer[:id], 
-      status: transfer[:status],
-      is_confirm: true,
-      cut_off_price: received_by_poster,
-      commission: commission)
-      
-      #transfer_payment = @booking.update_attributes(person_params)
-      PaymentHistory.create(:name => "transfered", :booking_id => @booking.id)
-      message_params = {}
-      message_params["sender_id"] = current_user.id
-      message_params["recipient_id"] = @booking.poster_id
-      message_params["post_id"] = @booking.post_id
-      message_params["body"] = "Payment has been transfered to your account."
-      message = Message.new(message_params)
-      message.save
+        transfer_payment = @booking.update_attributes(stripe_transfer_id: transfer[:id], 
+        status: transfer[:status],
+        is_confirm: true,
+        cut_off_price: received_by_poster,
+        commission: commission)
+        
+        #transfer_payment = @booking.update_attributes(person_params)
+        PaymentHistory.create(:name => "transfered", :booking_id => @booking.id)
+        message_params = {}
+        message_params["sender_id"] = current_user.id
+        message_params["recipient_id"] = @booking.poster_id
+        message_params["post_id"] = @booking.post_id
+        message_params["body"] = "Payment has been transfered to your account."
+        message = Message.new(message_params)
+        message.save
 
 
-      redirect_to payement_transfers_path
-      flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{received_by_poster} and commision is $#{commission}"
+        redirect_to payement_transfers_path
+        flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{received_by_poster} and commision is $#{commission}"
     else
       transfer_payment = @booking.update_columns(comment: "Waiting for poster bank account.")
       flash[:error]  = "No bank detail added for payment"
