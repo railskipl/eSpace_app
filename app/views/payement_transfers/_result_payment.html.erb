@@ -22,12 +22,6 @@
   <% end %>
   <% end %>
 </td>  
-<td>
-  <% if booking.status? && booking.status == "pending"%>
-    <%= link_to "Check Status",check_status_payement_transfers_path(:booking_id =>booking.id) rescue nil%>
-  <% else %>
-     -----  
-  <% end %>
-</td>
+
 <td><%= link_to "View Details", booking, :target=>"_blank" %></td>
 </tr>
