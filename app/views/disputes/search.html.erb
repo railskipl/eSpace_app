@@ -26,4 +26,6 @@
   <%= render 'search_result', :index => index, :booking => booking %>
 <%end%> 
 </table>
+<% unless params[:search] %>
 <%= will_paginate @bookings %>
+<% end %>
