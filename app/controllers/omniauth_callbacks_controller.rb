@@ -13,6 +13,8 @@ class OmniauthCallbacksController < ApplicationController
 
      	if @user.present?   
 	      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
+
+	      session["omniauth.auth"] = nil
 	      flash.notice = "Signed in!" if is_navigational_format?
 	    else
 	      session["omniauth.auth"] = request.env["omniauth.auth"]

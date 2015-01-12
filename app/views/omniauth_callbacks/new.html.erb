@@ -102,6 +102,7 @@
 
 
 <div class="boxpop-up-login">
+	<% unless user_signed_in? %>
 
     <div class="heading-login mrleft75" >Enter college ID</div>
 
@@ -119,5 +120,5 @@
       
     </div>
     <% end %>
-
+   <% end %>
 </div>
