@@ -79,7 +79,7 @@
                             </span> 
                             <% if booking.poster.present? %>
                               <% if booking.poster_provider.present? && booking.post_user_id != current_user.id %>
-                                (<%= mutual_friend_list(booking.post.user.id) rescue nil%> mutual friends)
+                                (<%= mutual_friend_list(booking.post_user_id) rescue nil%> mutual friends)
                               <% end %>
                             <% end %>
                             <p>

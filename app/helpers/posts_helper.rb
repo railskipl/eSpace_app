@@ -1,5 +1,7 @@
 module PostsHelper
 
+require 'open-uri'
+
  def current_user_token(user)
     @user_fb_token = current_user.oauth_token
     @users = User.find_by_id(user)
@@ -9,18 +11,18 @@ module PostsHelper
   # This method send the request to facebookGraph Api & gives the mutual friend count.  
   def mutual_friend_list(user_id)
 
-      @users = User.find_by_id(user_id)
-      @user_token = @users.oauth_token 
+      users = User.find_by_id(user_id)
       
-      file_location = "https://graph.facebook.com/v2.2/#{current_user.uid}?fields=context.fields%28mutual_friends%29&access_token=#{@user_token}"
+      file_location = "https://graph.facebook.com/v2.2/#{users.uid}?fields=context.fields%28mutual_friends%29&access_token=#{current_user.oauth_token}"
 
       @response = RestClient.get(file_location){ |response, request, result, &block|
                     case response.code
                     when 200
                        @mutual_friend_list = response 
                        @mutual = ActiveSupport::JSON.decode(@mutual_friend_list)
-                       @count = @mutual["context"]["mutual_friends"]["summary"]["total_count"]
-                       return @count
+                       @count = @mutual["context"]["mutual_friends"]["data"]
+                       
+                       return @count.count
                     else
                        response 
                     end   
