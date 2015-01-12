@@ -1,3 +1,6 @@
+
+
+
 <script>
 
 	function validateForm() {
@@ -52,8 +55,41 @@
 	}
 
 	if(err == 0){
-            
-             return true;      
+
+        var email = document.getElementById("personal_email").value;
+
+			// Returns successful data submission 
+			var dataString = 'email='+ email;
+
+			 $.ajax({
+					type: "GET",
+					url: "<%= check_email_authenticates_path %>",
+					data: dataString,
+					 success: function(response){
+
+   					 if (response){
+   					 	
+   						 $('#personal_email').parent().parent().find('.form-error').html("User already exists.");
+	    				err++;
+   					}
+   					else{
+   						  $.ajax({
+							type: "POST",
+							url: "/omniauth_callbacks",
+							data: dataString,
+							success: function(response){
+								window.location.href = "<%= posts_overview_path %>"
+							},
+							cache: false
+						});
+
+
+   						}
+   				
+     			 },
+					
+				});    
+      	return false;      
     }else{
             
             return false;

@@ -57,7 +57,7 @@
 			var dataString = 'email='+ email;
 			 $.ajax({
 					type: "GET",
-					url: "<%= check_email_authenticates_path %>?email=" + dataString,
+					url: "<%= check_email_authenticates_path %>",
 					data: dataString,
 					 success: function(response){
    						if (response){

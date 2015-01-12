@@ -9,7 +9,7 @@ class OmniauthCallbacksController < ApplicationController
 
      def create
      	
-     	@user = User.find_facebook_oauth(session["omniauth.auth"],params[:personal_email])
+     	@user = User.find_facebook_oauth(session["omniauth.auth"], params[:email])
 
      	if @user.present?   
 	      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
