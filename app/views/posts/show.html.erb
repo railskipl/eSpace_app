@@ -48,7 +48,7 @@
                   
                  <div class="s4">
                   <div class="ami">
-                   <p class="ami1"><%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %> <strong style="font-size:10px;"><% if current_user.provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user_id) rescue nil%> mutual friends)<% end %></strong>
+                   <p class="ami1"><%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %> <strong style="font-size:10px;"><% if current_user.provider.present? &&  @post.user_provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user_id) rescue nil%> mutual friends)<% end %></strong>
 
                    </p>
                    <div class="street">

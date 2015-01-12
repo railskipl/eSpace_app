@@ -18,11 +18,12 @@ require 'open-uri'
       @response = RestClient.get(file_location){ |response, request, result, &block|
                     case response.code
                     when 200
-                       @mutual_friend_list = response 
-                       @mutual = ActiveSupport::JSON.decode(@mutual_friend_list)
-                       @count = @mutual["context"]["mutual_friends"]["data"]
+                       mutual_friend_list = response 
+                       mutual = ActiveSupport::JSON.decode(mutual_friend_list)
+                       mcount = mutual["context"]["mutual_friends"]["data"]
                        
-                       return @count.count
+                       mutual_count = mcount.count 
+                       return mutual_count
                     else
                        response 
                     end   
