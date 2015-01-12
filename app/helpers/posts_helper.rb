@@ -18,7 +18,6 @@ module PostsHelper
                     case response.code
                     when 200
                        @mutual_friend_list = response 
-                       @mutual_friend_list = response 
                        @mutual = ActiveSupport::JSON.decode(@mutual_friend_list)
                        @count = @mutual["context"]["mutual_friends"]["summary"]["total_count"]
                        return @count

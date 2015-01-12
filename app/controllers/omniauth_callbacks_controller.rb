@@ -17,12 +17,9 @@ class OmniauthCallbacksController < ApplicationController
 	      session["omniauth.auth"] = nil
 	      flash.notice = "Signed in!" if is_navigational_format?
 	    else
-	      session["omniauth.auth"] = request.env["omniauth.auth"]
+	      #session["omniauth.auth"] = request.env["omniauth.auth"]
 	      redirect_to new_omniauth_callback_path
-	           respond_to do |format|
-			      # format.html { redirect_to home_all_postings_path, notice: 'Post status updated.' }
-			      format.json {  render :json => !@user }
-			    end
+	          
 	    end
 
      end
@@ -38,9 +35,7 @@ class OmniauthCallbacksController < ApplicationController
 	      session["omniauth.auth"] = request.env["omniauth.auth"]
 	      redirect_to new_omniauth_callback_path
 	    end
-	 #    respond_to do |format|
-		# format.json { render :json => !@user }
-		# end
+	
   	end
 
    def failure
