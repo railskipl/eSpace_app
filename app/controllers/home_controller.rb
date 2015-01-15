@@ -64,7 +64,6 @@ class HomeController < ApplicationController
 
     end
 
-
     def search_post
       q = params[:q]
        @posts = Post.where("user_id != ?",current_user.id).order("id desc")

@@ -24,7 +24,7 @@ class Post < ActiveRecord::Base
 
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-  delegate :name, :email,:last_name,:provider ,:to => :user, :prefix => true
+  delegate :id, :name, :email,:last_name,:provider ,:to => :user, :prefix => true
 
   before_create :set_area_available
   
@@ -96,7 +96,7 @@ class Post < ActiveRecord::Base
     posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present? != search[:miles].present?
     posts = posts.where("drop_off = ?", "#{search[:dropoff]}") if search[:dropoff] == '1'
     posts = posts.where("pick_up = ?", "#{search[:pickup]}") if search[:pickup] == '1'
-    posts = posts.where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ?",Date.today, true,false)
+    posts = posts.where("drop_off_avaibility_end_date >= ? and status = ? and archive = ?",Date.today, true,false)
     posts = posts.where("area_available >= ?",4)
     posts.page(page)
     
@@ -129,11 +129,17 @@ class Post < ActiveRecord::Base
      p.save
   end
 
-   def self.add_area(booking)
-     p = self.find(booking["post_id"].to_i)
-     p.area_available = p.area_available + booking.area.to_f
-     p.save
-   end
+  def self.add_area(booking)
+    p = self.find(booking["post_id"].to_i)
+    p.area_available = p.area_available + booking.area.to_f
+    p.save
+  end
+
+  def self.sorted_by(column, direction)
+    direction = direction.downcase == 'asc' ? 'asc' : 'desc'
+    column = sanitize_sql(column)
+    order("#{column} #{direction}")
+  end
 
 
   private

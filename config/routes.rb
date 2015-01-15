@@ -1,22 +1,22 @@
 Rails.application.routes.draw do
 
-  resources :credit_cards
-
+  resources :credit_cards, :only => [:new,:create,:index, :destroy]
   resources :about_us
   resources :access_ids , :except => [:show]
-  
   resources :faqs 
   get 'frequently_asked_question' => "faqs#frequently_asked_question", as: "frequently_asked_question"
-
+  
   resources :order_receives, :only => [:index] do
     collection do
       get 'cancel_booking'
       get 'cancel_popup'
     end
   end
+
   devise_scope :user do
     get '/sign_out' => 'users/sessions#destroy'
   end
+  
   get '/search_order_received_by_date' => "order_receives#search_order_received_by_date", as: "search_order_received_by_date"
 
   get 'payement_transfers/index'
@@ -24,10 +24,8 @@ Rails.application.routes.draw do
   get 'ratings/update'
 
   get '/payments' => "order_receives#payments" , as: "payments"
-
-  
   resources :admins, :only => [:show,:destroy,:index]
-  
+
   resources :bank_details
 
   resources :disputes, :only => [:index, :show] do
@@ -49,13 +47,10 @@ Rails.application.routes.draw do
       put 'charged_to_poster'
     end
   end
-  
-  
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",sessions: 'users/sessions',registrations: 'users/registrations', passwords: 'users/passwords'}
-
   root :to => 'home#index'
 
-   resources :omniauth_callbacks ,:only => [:new, :create]
+  resources :omniauth_callbacks ,:only => [:new, :create]
    get 'auth/failure' => redirect('/')
 
    resources :authenticates, :only => [:create] do
@@ -93,7 +88,7 @@ Rails.application.routes.draw do
    get  'search'  => "posts#search"
    match 'posts/overview' => "posts#overview", via: [:get, :post]
 
-  resources :comments do
+  resources :comments, :only => [:show, :create, :index] do
     collection do
         get 'books'
     end
@@ -123,7 +118,7 @@ Rails.application.routes.draw do
 
   resources :ratings, only: :update
 
-  resources :messages do
+  resources :messages, :only => [:new, :create, :index] do
     collection do
       get 'sent_messages'
       get 'refresh_part'

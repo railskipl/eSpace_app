@@ -52,13 +52,7 @@ class BankDetailsController < ApplicationController
           stripe_response = JSON.parse("#{recipient}")
               
           if stripe_response["cards"]["data"][0]["id"].present?
-            @bank_detail.stripe_recipient_token = stripe_response["id"]
-            @bank_detail.full_name = params[:bank_detail][:full_name]
-            @bank_detail.stripe_card_id_token = stripe_response["cards"]["data"][0]["id"]
-            @bank_detail.card_number = stripe_response["cards"]["data"][0]["last4"]
-            @bank_detail.user_id = params[:bank_detail][:user_id]
-            @bank_detail.save
-
+            BankDetail.create(:stripe_recipient_token => stripe_response["id"], :full_name => params[:bank_detail][:full_name], :stripe_card_id_token => stripe_response["cards"]["data"][0]["id"], :card_number => stripe_response["cards"]["data"][0]["last4"], :user_id => params[:bank_detail][:user_id])
             # https://stripe.com/docs/api/ruby#update_transfer
             redirect_to bank_details_path, :notice => "Bank info was successfully created." 
             return false

@@ -8,7 +8,7 @@ class Booking < ActiveRecord::Base
 
 	delegate :name, :last_name, :email, :to => :user, :prefix => true
 	delegate :name, :last_name, :email, :provider,:user_id ,:to => :poster, :prefix => true
-	delegate :address, :street_add, :apt, :city, :state, :zip_code, :area,:additional_comments, 
+	delegate :address, :street_add, :apt, :city, :state, :zip_code, :area,:additional_comments, :user_id,
 			 :drop_off_avaibility_end_date, :pick_up, :drop_off, :drop_off_avaibility_start_date,
 			 :pick_up_avaibilty_start_date, :price_sq_ft, :pick_up_avaibility_end_date, :to => :post, :prefix => true
 
@@ -67,7 +67,7 @@ class Booking < ActiveRecord::Base
 
 	# Transfer money to Poster(Cronjob)
 	def self.my_cron
-		bookings = Booking.where("on_hold = false and is_cancel = false and dropoff_date = '#{Date.today - 5.day}' and stripe_transfer_id is null")
+		bookings = Booking.where("on_hold = ? and is_cancel = ? and dropoff_date = ? and stripe_transfer_id is ?", false, false, Date.today - 5.day, nil)
 
 		bookings.each do |booking|
 

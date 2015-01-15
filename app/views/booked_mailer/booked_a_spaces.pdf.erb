@@ -4,26 +4,20 @@
   <head>
     <meta charset="utf-8">
     <title>Dinobo Invoice</title>
-   
     <%= wicked_pdf_stylesheet_link_tag "pdf_invoice.css" %>
-    
   </head>
   <body>
     <header class="clearfix">
       <div id="logo">
          <%= wicked_pdf_image_tag "logo.png" %>
-        
       </div>
       <h1>Invoice</h1>
       <div id="company" class="clearfix">
         <div>www.dinobo.com</div>
-      
         <div><a href="mailto:help@dinobo.com">help@dinobo.com</a></div>
       </div>
       <div id="project">
-        
         <div><span>CLIENT</span> <%= @booking.user_name %> <%= @booking.user_last_name %></div>
-       
         <div><span>EMAIL</span> <a href="mailto:<%= @booking.user_email %>"><%= @booking.user_email %></a></div>
         <div><span>DATE</span> <%= Date.today %></div>
         <div><span>PAYMENT</span> Paid</div>
@@ -48,7 +42,6 @@
             <td class="qty"><%= @booking.area %> sq. ft.</td>
             <td class="total">$<%= (@booking.post_price_sq_ft * @booking.area.to_i) %></td>
           </tr>
-
           <% if @booking.dropoff_price != 0 %>
           <tr>
             <td class="service">Drop off ride for <%= @booking.dropoff_date.strftime("%B %d,%Y") %></td>
@@ -58,7 +51,6 @@
             <td class="total">$<%= @booking.dropoff_price %></td>
           </tr>
           <% end %>
-
           <% if @booking.pickup_price != 0 %>
           <tr>
             <td class="service">Pick up ride for <%= @booking.pickup_date.strftime("%B %d,%Y") %></td>
@@ -68,15 +60,12 @@
             <td class="total">$<%= @booking.pickup_price %></td>
           </tr>
           <% end %>
-          
           <tr>
             <td colspan="4" class="grand total">TOTAL</td>
             <td class="grand total">$<%= @booking.price %></td>
           </tr>
         </tbody>
       </table>
-     
     </main>
-   
   </body>
 </html>

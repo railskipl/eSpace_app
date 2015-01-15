@@ -38,30 +38,6 @@ class MessagesController < ApplicationController
         end   
   end 
 
-  def show
-
-    # @message = Message.new
-    @message = Message.find(params[:id])
- 
-    @original_msg =  @message.message
-    @message2 = Message.maximum(:id)
-    if @original_msg.nil?
-      @msgs = Message.where("post_id = ?",@message.post_id)
-    else
-      @msgs = Message.where("post_id = ? OR id = ? and message_id = ?",@original_msg.id,@message2,@message.id)
-    end
-
-    if @message.sender == current_user
-      respond_with(@message)
-    else
-      if @message.is_deleted_by_recipient == true 
-         redirect_to messages_url
-      else
-        Message.update(@message.id, :is_read => true)  
-        respond_with(@message)
-      end
-    end
-end
 
   def new
     @message = Message.new
@@ -121,44 +97,8 @@ end
 
   end
 
-  def move_all_to_trash_recipient
-   message =  Message.where(:id => params[:message_ids])
-   message.each do |r|
-    if r.is_trashed_by_recipient == true
-      r.is_trashed_by_recipient = false
-      r.save
-    else
-      r.is_trashed_by_recipient = true
-      r.save
-    end
-   end
-   redirect_to(:back)
-   end
-
-
-  def delete_all_by_sender
-   message =  Message.where(:id => params[:message_ids])
-   message.each do |r|
-      r.is_deleted_by_sender = true
-      r.save
-    end
-   redirect_to sent_messages_messages_url
-  end 
-
-  #method user for reply message
-  def reply
-     @messagee = Message.find(params[:id])
-     @message = Message.new
-     @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
-     @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
-     @total_message = @messages_sender + @messages_receiver
-     @total_messages =  @total_message.sort_by { |k| k["id"] }
-     @user_messages = current_user.recipient_messages.select(:sender_id).uniq
-  end
-  
   #method used for autorefresh message count div &
   #show current updated msg count for curr user.
-  
   def refresh_part
 
     if params[:restream].nil?

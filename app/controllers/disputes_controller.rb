@@ -39,7 +39,8 @@ class DisputesController < ApplicationController
     if params["_method"]
        price = params[:amount].to_i
        user = User.find(params[:id])
-       stripe_recipient_token = user.bank_detail.stripe_recipient_token
+       stripe_recipient_token = user.bank_detail_stripe_recipient_token
+     
         amount_cents = ((price)*100).to_i
       begin
       transfer = Stripe::Transfer.create(

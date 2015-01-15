@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_one :credit_card, :dependent => :destroy
   has_many :disputes, :dependent => :destroy
 
+  
+  delegate :stripe_recipient_token, :to => :bank_detail, :prefix => true
 
   def toggle_status
     self.status = !self.status?
