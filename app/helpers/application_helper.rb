@@ -17,11 +17,6 @@ module ApplicationHelper
        link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
     end
 
-
-	def yes_no(featured)
-	  featured ? "Active" : "Inactive"
-	end
-
 	def icon_tick(alt_text='Tick')
 		build_image_tag("deactivate.png", alt_text)
 	end

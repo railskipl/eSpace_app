@@ -18,7 +18,6 @@ class CreditCardsController < ApplicationController
 
   def new
     @credit_card = CreditCard.new
-    respond_with(@credit_card)
   end
 
  
