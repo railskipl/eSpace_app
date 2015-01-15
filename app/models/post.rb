@@ -135,13 +135,6 @@ class Post < ActiveRecord::Base
     p.save
   end
 
-  def self.sorted_by(column, direction)
-    direction = direction.downcase == 'asc' ? 'asc' : 'desc'
-    column = sanitize_sql(column)
-    order("#{column} #{direction}")
-  end
-
-
   private
 
     def lat_changed?

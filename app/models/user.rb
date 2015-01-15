@@ -40,14 +40,15 @@ class User < ActiveRecord::Base
     end 
 
       new_access_token = oauth.exchange_access_token(auth["credentials"]["token"])
-      user = User.where(auth.slice(:provider, :uid)).first
+      user = User.where(provider: auth.provider, uid: auth.uid).first
+
       @new_token = user.update_columns(oauth_token: new_access_token) rescue nil
       return user
   end
 
   def self.find_facebook_oauth(auth, alt_email)
 
-    User.where(auth.slice("provider", "uid")).first_or_create do |user|
+    User.where(provider: auth["provider"], uid: auth["uid"]).first_or_create do |user|
     
       user.provider = auth["provider"]
       user.uid = auth["uid"]

@@ -18,7 +18,6 @@ class BankDetailsController < ApplicationController
   end
 
   def new
-    #@bank_detail = BankDetail.has_bank_detail(current_user.id).first
     @bank_detail = BankDetail.new 
   end
 
