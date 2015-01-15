@@ -112,11 +112,11 @@ class Post < ActiveRecord::Base
     end 
   end
 
-  #Calculate remaining area
-  def self.remaining_area(total_area)
-    total_area - 4
+  # #Calculate remaining area
+  # def self.remaining_area(total_area)
+  #   total_area - 4
     
-  end
+  # end
 
 
   def self.post_search(current_user)

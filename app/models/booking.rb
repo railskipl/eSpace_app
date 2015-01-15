@@ -19,6 +19,14 @@ class Booking < ActiveRecord::Base
 	  includes(:poster, :user).joins(:payment_histories).select_data.fetch_data(current_user).pagination(page_no)
 	end
 
+	def self.get_bookings(user,value)
+		includes(:post,:poster).where("user_id = ? AND is_cancel = ?",user.id,value)
+	end
+
+	def self.start_and_end_date(start_date,end_date)
+		where("created_at >= :start_date and date(created_at) <= :end_date", {:start_date => start_date, :end_date => end_date})
+	end
+
 	def self.admin_payments(page_no)
 	  includes(:poster,:post).order("id desc").where("on_hold= false").page(page_no).per_page(50)
 	end
@@ -27,9 +35,9 @@ class Booking < ActiveRecord::Base
 	  includes(:poster,:post).order("id desc").where("on_hold= true").page(page_no).per_page(50)
 	end
 
-	def self.admin_disputes(page_no)
-	  includes(:poster, :user).joins(:disputes).select("bookings.*, disputes.amount, disputes.status").page(page_no).per_page(50)
-	end
+	# def self.admin_disputes(page_no)
+	#   includes(:poster, :user).joins(:disputes).select("bookings.*, disputes.amount, disputes.status").page(page_no).per_page(50)
+	# end
 
 	def self.select_data 
 		select("bookings.*,payment_histories.name,payment_histories.created_at as transaction_date")

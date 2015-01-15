@@ -28,16 +28,15 @@ class BookingsController < ApplicationController
 	end
 
   def search_by_date
-    @bookings = Booking.where("user_id = ? AND is_cancel = ?",current_user.id,false)
+    @bookings = Booking.get_bookings(current_user,false)
     if params[:start_date].blank? || params[:end_date].blank?
       redirect_to bookings_path, alert: "Please Select Date"
     elsif  params[:start_date] > params[:end_date]
       redirect_to  bookings_path, alert: "Start Date Cannot Be Greater"
     elsif params[:start_date] == params[:end_date]
-      @bookings = @bookings.where("created_at >= :start_date and date(created_at) <= :end_date", {:start_date => params[:start_date].to_date, :end_date => params[:end_date].to_date})
+      @bookings = @bookings.start_and_end_date(params[:start_date].to_date,params[:end_date].to_date)
     else
-
-    @bookings = @bookings.where("date(created_at) >= :start_date AND date(created_at) <= :end_date", {:start_date => params[:start_date].to_date, :end_date => params[:end_date].to_date})
+        @bookings = @bookings.start_and_end_date(params[:start_date].to_date,params[:end_date].to_date)
     end
 
   end
