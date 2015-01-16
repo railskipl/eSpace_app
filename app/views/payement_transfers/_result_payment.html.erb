@@ -8,20 +8,17 @@
 <td>$<%= booking.commission?  ? booking.commission.round(5) : '0' rescue nil %></td>
 <td><%= booking.post_address rescue nil%></td>
 <td><%= booking.status.camelize rescue nil %>
-  
 <td>
   <% if booking.is_cancel == true %>
       Cancelled
       <span style="font-size:8px;"><%= booking.comment %></span>
-      
   <% else %>
-  <% unless booking.stripe_transfer_id? %>  
+  <% unless booking.stripe_transfer_id? %>
   <%= link_to "Money Transfer",transfer_money_payement_transfers_path(:booking_id =>booking.id,:poster_id =>booking.poster_id,:finder_id=>booking.user_id) rescue nil%>
   <% else %>
      -----
   <% end %>
   <% end %>
-</td>  
-
+</td>
 <td><%= link_to "View Details", booking, :target=>"_blank" %></td>
 </tr>

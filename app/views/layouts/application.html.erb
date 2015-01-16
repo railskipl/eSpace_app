@@ -8,31 +8,27 @@
 <%= stylesheet_link_tag  'style', "components", "component","facebox.css", "stylesheet-image-based", media: 'all'%>
 <%= javascript_include_tag "application", "facebox.js" %>
 
- <%= csrf_meta_tags %> 
+ <%= csrf_meta_tags %>
 </head>
 
 <body style="background-color:#eeeeee;">
 
 <div class="wrapper">
-   <div class="main">        
-           
+   <div class="main">
             <div id="login1">
               <% if user_signed_in? %>
                 <p style="margin: 10px; float:right;">
-                  <%= current_user.name rescue nil %> <%= current_user.last_name rescue nil %> 
+                  <%= current_user.name rescue nil %> <%= current_user.last_name rescue nil %>
                   <%= link_to("<span id='responsecontainer'>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}, :class=>"msg_count" )%>
                 </p>
               <% else %>
               <p style="margin:40px 0 0px 900px;">
-                <%= link_to 'Login', new_user_session_path, :remote=> true %> 
+                <%= link_to 'Login', new_user_session_path, :remote=> true %>
               </p>
-               
-              <% end %>
+            <% end %>
             </div>
-
             <div class="menu">
               <%= link_to image_tag("logo.png", :class=>"logo"),root_path%>
-            
               <nav id="cbp-hrmenu" class="cbp-hrmenu">
                 <ul>
                   <li>
@@ -60,18 +56,15 @@
                                   <%= link_to "Browse Spaces", posts_overview_path %>
                                 </li>
                               <%end%>
-
-         
                               <% if controller.controller_name == 'messages' %>
                               <li class="active">
-                               <%= link_to("Messages <span id='responsecontainer'>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
+                               <%= link_to("Messages <span id='responsecontainer'>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %>
                               </li>
                               <%else%>
                                 <li>
-                                  <%= link_to("Messages <span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %> 
+                                  <%= link_to("Messages <span>#{current_user.check_message rescue nil}</span>".html_safe, {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post}) %>
                                 </li>
                               <%end%>
-                              
                               <% if controller.controller_name == 'users' %>
                               <li class="active">
                                 <%= link_to "My Account", edit_user_path(current_user),:class=>"active" %>
@@ -81,7 +74,6 @@
                                   <%= link_to "My Account", edit_user_path(current_user) %>
                                 </li>
                               <%end%>
-
                               <% if controller.controller_name == 'about_us' %>
                               <li class="active">
                                 <%= link_to "About Us", {:controller=>"/about_us", :action=>"about"} %>
@@ -109,7 +101,7 @@
                                   <%= link_to "About Us", {:controller=>"/about_us", :action=>"about"} %>
                                 </li>
                               <%end%>
-                             <li><%= link_to "Support",frequently_asked_question_path%></li>     
+                             <li><%= link_to "Support",frequently_asked_question_path%></li>
                             <% end %>
                         </ul>
                       </div>
@@ -118,42 +110,23 @@
                 </ul>
               </nav>
             </div>
-           
-
-              <%= yield %>
-              
-
-              
-
-          
+            <%= yield %>
             <%= javascript_include_tag "animated_message", "cbpHorizontalMenu.min", "horizontalMenu" %>
-
             <%= javascript_include_tag "animated_message" %>
-
             <div id="animated_msg">
-
               <section class="animated alert">
-                
                   <!-- Error Message -->
                   <% flash.each do |name, msg| %>
                     <% if msg.is_a?(String) %>
-                      <p id="flashMsg" class="fixed-box">  
+                      <p id="flashMsg" class="fixed-box">
                         <%= msg %>
                     </p>
                     <% end %>
                   <% end %>
-
                   <!-- End -->
-
               </section>
-            </div> 
-
-
+            </div>
             </div><!-------------------main------------------------- -->
         </div> <!-------------------wrapper------------------------- -->
-            
-            
 </body>
 </html>
-
-            
