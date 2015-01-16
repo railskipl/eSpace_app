@@ -7,7 +7,7 @@
       $(document).ready(function ($) {
         $('.description').perfectScrollbar();
       });
-    
+
   //<![CDATA[
 
     var map, actual, iw;
@@ -79,7 +79,7 @@ function createMarker(b, c, d, e, f, v, w) {
 
     // bounds.extend(i.position);
 
-   
+
 
     i.category = e;
     i.name = c;
@@ -96,22 +96,21 @@ function createMarker(b, c, d, e, f, v, w) {
 
     //check to see if any of the existing markers match the latlng of the new marker
       if (allMarkers.length != 0) {
-        
+
         for (j=0; j < allMarkers.length; j++) {
-            
+
           var existingMarker = allMarkers[j];
           var pos = existingMarker.getPosition();
 
 
           if (b.equals(pos)) {
             text = text + "<div class='infowindow_div2'><p><a href='/posts/"+allMarkers[j].postid+"'>"+ allMarkers[j].name +".  $"+ allMarkers[j].price +"/sq. ft<\/a><\/p> <\/div>";
-          } 
+          }
 
 
         }
       }
 
-    
     g.event.addListener(i, "click", function() {
         iw.setContent(text);
         iw.open(map,this);
@@ -132,13 +131,12 @@ function createMarker(b, c, d, e, f, v, w) {
     })
 
     mc.addMarker(i);
-    
 
 }
 
 var hover = {
     over: function(i) {
-        
+
         var a = gmarkers[i];
         var b = document.getElementById(a.id);
         // b.className = "focus";
@@ -187,7 +185,7 @@ function triggerClick(i) {
 
 function loadMap() {
     var g = google.maps;
-    
+
     //Disable map view:   mapTypeControl: false,
 
         // mapTypeControl: false,
@@ -209,8 +207,8 @@ function loadMap() {
     map.setMapTypeId('map_style');
 
     iw = new g.InfoWindow({Width: 500});
-    
-    
+
+
     g.event.addListener(map, "click", function() {
         if (iw) iw.close()
     });
@@ -239,7 +237,7 @@ function readData() {
 
             mc = new MarkerClusterer(map, [], mcOptions);
 
-            
+
             for (var i = 0, m; m = b[i]; i++) {
                 var c = parseFloat(m.getAttribute("lat"));
                 var d = parseFloat(m.getAttribute("lng"));
@@ -257,7 +255,7 @@ function readData() {
             }
 
             if (!(typeof b !== 'undefined' && b.length > 0)) {
-                
+
                 var geocoder = new google.maps.Geocoder();
 
                 var address = document.getElementById('search_address').value;
@@ -294,7 +292,7 @@ function readData() {
               map.fitBounds(bounds);
             }
 
-          
+
 
             AutoCenter();
 

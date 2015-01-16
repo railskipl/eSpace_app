@@ -6,24 +6,24 @@
   <div class="main2">
         <div class="map_loc">
           <div id="map"></div>
-        </div>    
-        <div class="right_blue"> 
+        </div>
+        <div class="right_blue">
           <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get", :id=>"browse_post"} do |f| %>
             <div class="search-add">Search near this address </div>
 
             <%= f.text_field :address, :value=> "#{params[:search][:address] if params[:search]}", :class=>"sign_up_id1", :placeholder=>"Street, Los angeles, CA 10021", :style=>"width:295px; height:18px; background-color:#072743; color:#FFF; border:1px solid #899199; margin:24px 0 5px 13px; padding-left:5px;" %><br/>
-   
-       
+
+
                <!-------------box_1-------------------->
 
                <p  class="text_1" style="margin-top: 14px;">Within</p>
-                
+
                 <div class="styleSelect" style="margin-top:12px;">
 
                 <%#= select_tag("search[miles]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:miles] if params[:search]}")) %>
 
                 <%= f.select :miles, ((1..20).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:miles] if params[:search]}" %>
-                 
+
               </div>
 
 
@@ -32,15 +32,15 @@
              <!-------------box_2-------------------->
              <p  class="text_2" style="margin: -18px -5px 3px 75px;">Max price/sq. foot</p>
               <div class="styleSelect" style="margin:-19px 20px 30px 245px;">
-                 
+
                 <%#= select_tag("search[price]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:price] if params[:search]}")) %>
               <%= f.select :price, ((1..90).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:price] if params[:search]}" %>
               <%#raise "hi"%>
             </div>
 
       <!-------------box_2 end-------------------->
- 
- 
+
+
         <!-------------box_3-------------------->
         <div class="text_3" style="margin: -48px 0 0 318px;">Area needed <a class="tooltip1" href="#" style="color:#999; text-decoration:none;">
         <div id="cf2" style="margin-left:60px;">
@@ -49,24 +49,24 @@
                     </div>
                 <span class="classic1">This is just an</span> </a></div>
               <div class="styleSelect" style="margin:-50px 30px 20px 400px;">
-          
+
                <%#= select_tag("search[area]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:area] if params[:search]}")) %>
 
               <%= f.select :area, ((1..90).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}" %>
             </div>
 
 <!-------------box_3 end-------------------->
-    <p  class="miles" style="margin-top:-18px;">Miles</p> 
+    <p  class="miles" style="margin-top:-18px;">Miles</p>
     <p  class="miles1" style="margin-top:-12px;">$</p>
     <p  class="miles2" style="margin-top:-15px;">Square feet</p>
-    
-    <div class="need">I need a car to transport the stuff for <a class="tooltip1" href="#" style="color:#999; text-decoration:none;"> 
+
+    <div class="need">I need a car to transport the stuff for <a class="tooltip1" href="#" style="color:#999; text-decoration:none;">
 
       <div id="cf2" style="margin-left:130px;">
         <img class="bottom" src="/assets/queh.png" />
         <img class="top" src="/assets/que.png" />
       </div>
-                    
+
       <span class="classic">This is just an example of what you can do using </span> </a>
     </div>
 <div class="example">
@@ -76,29 +76,26 @@
        <div class="pickup1">
      Pick-up &nbsp; <%= f.check_box :pickup, :checked=> params[:search] ? params[:search][:pickup] == '1' ? true : false : false %> <label for="checkbox1">&nbsp;</label>
       </div>
-   
+
     <div class="search1"> <%= f.submit "" %> </div>
 
-   </div>  
+   </div>
 
   <% end %>
 
 
-        
-     <p class="para sortby active" style="font-size:10px;">Sort by : <%= sortable "price_sq_ft", "Price" %> / 
-       <% if params[:sort] == "distance" %> <span class="sort_distance"><%= sortable "distance" %> </span>  <% else %> <%= sortable "distance" %> <% end %>
-      / Mutual Friends</p> 
 
-     
-       
+     <p class="para sortby active" style="font-size:10px;">Sort by : <%= sortable "price_sq_ft", "Price" %> /
+       <% if params[:sort] == "distance" %> <span class="sort_distance"><%= sortable "distance" %> </span>  <% else %> <%= sortable "distance" %> <% end %>
+      / Mutual Friends</p>
+
+
         <div id="all_posts" class="description">
           <%= render 'overviews', :posts => @posts %>
         </div>
         <div class="loading"><%= will_paginate @posts %></div>
-   
-      
-       
-            
+
+
 </div>
 </div>
 

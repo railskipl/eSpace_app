@@ -1,5 +1,4 @@
-
-   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
       function initialize() {
 
@@ -38,78 +37,44 @@
           zoomControl: true,
           disableDefaultUI: true
         }
-        
-          var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-          var marker = new google.maps.Marker({
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        var marker = new google.maps.Marker({
               position: myLatlng,
               map: map,
               icon: "/assets/marker.png"
-              
           });
-
           //Associate the styled map with the MapTypeId and set it to display.
           map.mapTypes.set('map_style', styledMap);
           map.setMapTypeId('map_style');
-
       }
-
-
-
       google.maps.event.addDomListener(window, 'load', initialize);
-
-     
-      
     jQuery(function($){
-      
       $("#booking_dropoff_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= date_range(post) %>'), maxDate: new Date('<%= post.drop_off_avaibility_end_date.strftime("%B %d, %Y") %>')})
-
       $("#booking_pickup_date").datepicker({dateFormat: 'd M yy', showOn: 'button', buttonImage: '/assets/calendar_post.jpg', buttonImageOnly: true, minDate: new Date('<%= post.pick_up_avaibilty_start_date.strftime("%B %d, %Y") %>'), maxDate: new Date('<%= post.pick_up_avaibility_end_date.strftime("%B %d, %Y") %>')})
-
-      
-
       jQuery('input').live('blur', function() {
-        
             if (jQuery("#booking").valid()) {
-              
-                jQuery('#customButton').removeAttr('disabled'); 
+              jQuery('#customButton').removeAttr('disabled');
             } else {
                 jQuery('#customButton').attr('disabled', 'disabled');
             }
         });
-
-
-
     });
-
-  </script> 
-
-
+  </script>
 <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css", "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker" %>
 <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation", "facebox.js", "jquery.ui.core", "jquery.ui.datepicker.js" %>
-
 <script src="https://checkout.stripe.com/checkout.js"></script>
-
-
-
-<script type='text/javascript'>//<![CDATA[ 
-
+<script type='text/javascript'>//<![CDATA[
     jQuery(document).ready(function(){
-
     $('#area').live('input',function() {
         update_amounts();
     });
-
-
     function update_amounts()
     {
-        // update the total to sum    
+        // update the total to sum
         var qty = parseInt($('#area').val());
         var price = parseFloat($('#price').val());
-
         var drop_off = 0;
         var pickup = 0;
-
         if($('#checkbox1').is(":checked"))
         {
           var drop_off = parseFloat($('#dropoff').val());
@@ -118,7 +83,6 @@
         {
           var pickup = parseFloat($('#pickup').val());
         }
-
           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
           $('#check_drop').html("$"+(drop_off)+"");
           $('#check_pickup').html("$"+(pickup)+"");
@@ -127,19 +91,13 @@
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
-         
     }
-
-
     //Pickup and drop off calculation.
-    
     $('#checkbox1').change(function() {
-
        var qty = parseInt($('#area').val());
        var price = parseFloat($('#price').val());
        var drop_off = 0;
        var pickup = 0;
-       
         if($('#checkbox1').is(":checked"))
         {
           var drop_off = parseFloat($('#dropoff').val());
@@ -148,11 +106,8 @@
         {
           var pickup = parseFloat($('#pickup').val());
         }
-
         var total = parseFloat((qty * price ? qty * price : 0).toFixed(2));
-
         if($(this).is(":checked")) {
-         
           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
           $('#check_drop').html("$"+(drop_off)+"");
           $('#check_pickup').html("$"+(pickup)+"");
@@ -161,23 +116,18 @@
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
-
-           var fees = (total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2);        
+           var fees = (total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2);
             if (fees <= 8)
             {
-              //alert("Raje");
                var cut_off = fees * 0.80;
-               $('#cut_off').html("+ Our Commission&nbsp;" + cut_off.toFixed(2)); 
+               $('#cut_off').html("+ Our Commission&nbsp;" + cut_off.toFixed(2));
             }
              else if (price > 8)
              {
-               //alert("Amol");
                 var cut_off =  fees * (10/100);
-                $('#cut_off').html("+ Our Cut&nbsp;" + cut_off.toFixed(2)); 
+                $('#cut_off').html("+ Our Cut&nbsp;" + cut_off.toFixed(2));
              }
-               
           }
-        
         else
         {
           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
@@ -189,17 +139,13 @@
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
         }
-
     });
-
     $('#checkbox2').change(function() {
-
        var qty = parseInt($('#area').val());
        var price = parseFloat($('#price').val());
        var drop_off = 0;
        var pickup = 0;
-      
-        if($('#checkbox1').is(":checked"))
+       if($('#checkbox1').is(":checked"))
         {
           var drop_off = parseFloat($('#dropoff').val());
         }
@@ -207,11 +153,8 @@
         {
           var pickup = parseFloat($('#pickup').val());
         }
-
         var total = parseFloat((qty * price ? qty * price : 0).toFixed(2));
-
         if($(this).is(":checked")) {
-         
           $('#area_needed').html("$"+(qty * price ? qty * price : 0)+"");
           $('#check_drop').html("$"+(drop_off)+"");
           $('#check_pickup').html("$"+(pickup)+"");
@@ -220,7 +163,6 @@
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
-         
         }
         else
         {
@@ -232,14 +174,8 @@
           $('#total').html("$"+(qty * price + drop_off + pickup ? qty * price + drop_off + pickup : 0).toFixed(2)+"");
           $('#booking_price').val((total + drop_off + pickup ? total + drop_off + pickup : 0).toFixed(2));
           $('#totalPrice').val(((qty * price + drop_off + pickup) * 100 ? (qty * price + drop_off + pickup) * 100 : 0));
-        }       
+        }
     });
-
-
     $("#ref_comment").load('<%= comments_path(:post_id => post.id) %>');
-
-
-});//]]>  
-
+});//]]>
 </script>
-          

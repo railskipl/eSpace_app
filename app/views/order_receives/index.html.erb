@@ -25,26 +25,21 @@
     <li><%= link_to "Payment", payments_path%></li>
     <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
   </ul>
-            
   <div class="right-side">
-
     <div class="blue-header">
       <%= form_tag search_order_received_by_date_path,:method => 'get' do %>
       <ul class="date">
       <li>
       From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></span>
       </li>
-      
       <li>
       To <span><%= text_field_tag :end_date, params[:end_date],:readonly => true,:class => "date",:style => "padding: 3px;" %></span>
       </li>
-      
       </ul>
       <div class="search">
         <%= image_submit_tag("search_new.png")%>
-      
       </div>
-      <%end%> 
+      <%end%>
     </div>
     <div class="order-wrap">
       <% @bookings.each_with_index do |booking, index|%>
@@ -65,7 +60,6 @@
             <%= link_to "Message ", compose_message_messages_path(:user_id => booking.user_id,:post_id => booking.post_id ), :remote=>true, :class=>"round-btn" %>
             </div>
           </p>
-           
         </div>
         <div class="order-col order-col1 order-col1-tmar">
           <span>Booking area</span> : <%= booking.area%> sq. ft
@@ -82,8 +76,7 @@
               <% end %>
             </p>
             <p>
-              
-              <%= link_to "Cancel Booking", cancel_popup_order_receives_path(:id =>booking.id), :remote=> true %>
+            <%= link_to "Cancel Booking", cancel_popup_order_receives_path(:id =>booking.id), :remote=> true %>
             </p>
         </div>
         <div class="order-col order-col1 order-col1-tmar">
@@ -102,10 +95,7 @@
                 <span class="tasks-list-mark"></span>
                 </label>
               <%end%>
-              
               <!--<span class="tasks-list-desc">Left Label</span>-->
-            
-            
           </p>
           <p class="vmp">
             <%= link_to "View My Post", post_path(booking.post_id) %>
@@ -113,10 +103,8 @@
         </div>
         <div class="order-col order-col1 order-col1-tmar">
           <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %d,%Y")%>
-
           <p>
             <span>Booked pick-up</span>
-            
               <% if booking.pickup_price != 0 %>
               <label class="tasks-list-item">
                 <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
@@ -129,13 +117,9 @@
                 <span class="tasks-list-mark"></span>
               </label>
               <%end%>
-              
               <!--<span class="tasks-list-desc">Left Label</span>-->
-            
-          </p>
+            </p>
         </div>
-
-
       </div>
       <%end%>
          <span class="center_align"><%= will_paginate @bookings %></span>
