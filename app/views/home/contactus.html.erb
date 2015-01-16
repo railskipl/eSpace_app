@@ -1,36 +1,32 @@
 
 <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation","facebox.js" %>
 <div class="wrapper">
-<div class="main">   
+<div class="main">
 <div class="main4">
 <div class="main-new">
     <div style="border-top: 1px solid #eeeeee;margin-left:270px;">
    </div>
             <ul class="verticle-menu" style="min-height:500px;" >
-      
             <li class="active"><%= link_to 'Contact-Us', home_contactus_path %></li>
             <li><%=  link_to "FAQs",frequently_asked_question_path%></li>
-            
             </ul>
-                   
       <div class="sizenew" style="width:320px; height:400px; margin-left:450px;">
               <%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'create'},:html => {:id => "contactus"} do |f| %>
 
-        
+
                <div class="topics">
                     <div style="overflow: hidden; border: 1px solid rgb(238, 238, 238); margin-left: -354px; width: 291px; " > <%= f.collection_select :subject, Contactus.where("message IS NULL"), :subject, :subject, {:include_blank => "Topic"}%></div><br/><br/>
 
-               </div> 
-                
+               </div>
+
                 <div class="massage"><%= f.text_area :message,:cols => "40", :rows => "40",placeholder: "Message", :style=>"width:290px; height:80px;", :id=>"topic1" %></div>
-                <%= f.submit "Submit", :class => "submit button"%><br>   
-                <% end %>          
-                
-         
+                <%= f.submit "Submit", :class => "submit button"%><br>
+                <% end %>
+
             <div class="help" style="margin-width: 268px;">help@dinobo.com </div>
              </div>
 
-               </div>     
+               </div>
 
 </div>
 </div>

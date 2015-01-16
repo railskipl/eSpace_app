@@ -6,7 +6,7 @@
    <select  onchange="location = this.options[this.selectedIndex].value;">
                             <option value="<%= root_path %>">All</option>
                             <option value="<%= home_customer_monthly_report_path %>">Month</option>
-                            <option value="<%= home_customer_weekly_report_path %>" selected="selected"> 
+                            <option value="<%= home_customer_weekly_report_path %>" selected="selected">
                             Weekly
                             </option>
                             <option value="<%= home_customer_daily_report_path%>">Daily
@@ -16,10 +16,10 @@
   <%= submit_tag "Search", :class => "btn btn-primary contact-form"%> 
   <%end%>
                   <div  style="text-align:right;margin-left:10px;">
-          <a href="<%=  home_customer_weekly_report_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> 
+          <a href="<%=  home_customer_weekly_report_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a>
           <a href="<%= home_customer_weekly_report_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
           </div>
-           
+
   <table class="table table-bordered">
 
 	 <tr>
@@ -35,7 +35,7 @@
 	 <td><%= link_to "Destroy",{:controller => 'users', :action => 'destroy', :id => adminuser.id}%></td>
 	 <td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %></td>
 	 </tr>
-	<%end%>	
+	<%end%>
 
 	</table>
 <%= %>

@@ -36,12 +36,11 @@
 	<strong><div>Drop-off : </div> </strong> <span><%= @booking.dropoff_date.strftime("%B %d,%Y") %></br>
             Drive : <% if @booking.dropoff_price != 0 %> $<%= @booking.dropoff_price %> <% else %> Unavailable <% end %> </span>
 </p>
-                     
+
 <p>
 	<strong><div>Pick-up : </div> </strong> <span><%= @booking.pickup_date.strftime("%B %d,%Y") %></br>
             Drive :  <% if @booking.pickup_price != 0 %> $<%= @booking.pickup_price %> <% else %> Unavailable <% end %></span>
 </p>
-                          
 <p>
 	<strong><div>Total Amount : </div> </strong>
 	<span>$<%= @booking.price %></span>
@@ -52,4 +51,3 @@
 </p>
 
 <p><%= link_to "View Details", @booking, :target=>"_blank" %><p>
-
