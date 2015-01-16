@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
    before_filter :authenticate_user!, :except => []
   before_action :set_message, only: [:show]
   respond_to :html, :xml, :json, :js
-  
+
   def index
 
      @message = Message.new
@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
      @check_user = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
      @user_messages_sender = current_user.recipient_messages.order("id Desc").select(:sender_id).uniq
      @user_messages_receiver = current_user.sent_messages.order("id Desc").select(:recipient_id).uniq
-     
+
   end
 
 
@@ -22,21 +22,21 @@ class MessagesController < ApplicationController
 
      message = Message.select(:id,:sender_id,:is_read).where("recipient_id = ? AND is_read =?",current_user.id,false).uniq!
      messages_receiver = Message.select(:id,:sender_id,:is_read).where("recipient_id = ?",current_user.id).uniq!.last.sender_id rescue nil
-    
+
      messages_sender = Message.select(:id,:sender_id,:recipient_id,:is_read).where("sender_id = ?",current_user.id).uniq!.last.recipient_id rescue nil
-    
+
      message.each do |r|
        if r.is_read == false
-          r.update_column('is_read',true) 
-       end 
+          r.update_column('is_read',true)
+       end
      end
 
         unless messages_receiver.nil?
            redirect_to :controller =>'messages',:action=>"index",:recv_id =>messages_receiver
         else
            redirect_to :controller =>'messages',:action=>"index",:recv_id =>messages_sender
-        end   
-  end 
+        end
+  end
 
 
   def new
@@ -44,10 +44,10 @@ class MessagesController < ApplicationController
     respond_with(@message)
   end
 
-  
+
 
   def create
-    
+
     @post = Post.find_by_id(params[:message][:post_id])
 
 
@@ -66,13 +66,13 @@ class MessagesController < ApplicationController
              redirect_to messages_path
            end
           end
-        end  
+        end
   end
 
 
 
-  
- 
+
+
   def sent_messages
     @sent_messages = current_user.sent_messages.order("created_at desc") rescue nil
     # if @sent_messages == nil
@@ -88,9 +88,9 @@ class MessagesController < ApplicationController
   end
 
   def sent_to
-      
+
       @message = Message.new(message_params)
-      
+
       if @message.save
         respond_with(@message, location: compose_message_messages_path)
       end
@@ -106,7 +106,7 @@ class MessagesController < ApplicationController
       render layout: false
     else
        @msg = current_user.check_message
-       
+
        respond_to do |format|
         format.js
        end
@@ -117,7 +117,7 @@ class MessagesController < ApplicationController
   #method used for autorefresh chat message div &
   #show current updated chat msg.
   def refresh_message
-    
+
     if params[:restream].nil?
      @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
      @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
@@ -163,18 +163,18 @@ class MessagesController < ApplicationController
 
   def check_message
     @messages_receiver = Message.select(:id,:sender_id,:is_read).where("recipient_id = ?",current_user.id).uniq!.last.sender_id rescue nil
-    
+
     respond_to do |format|
         format.js
     end
   end
 
   def user_message
-    
+
      @check_user = current_user.recipient_messages.select(:sender_id).uniq
      @user_messages_sender = current_user.recipient_messages.select(:sender_id).uniq
      @user_messages_receiver = current_user.sent_messages.select(:recipient_id).uniq
-     
+
 
      respond_to do |format|
         format.js

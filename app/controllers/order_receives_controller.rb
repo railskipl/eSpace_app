@@ -20,7 +20,7 @@ class OrderReceivesController < ApplicationController
 		@bookings = Booking.get_payments(current_user,params[:page])
 	end
 
-	
+
 
 	def cancel_popup
      @booking = Booking.find(params[:id])
@@ -35,7 +35,7 @@ class OrderReceivesController < ApplicationController
 		PaymentHistory.create(:name => "cancel", :booking_id => @booking.id)
 	    flash[:notice] = "Booking is cancel & $#{amount} is refunded. "
 	    redirect_to order_receives_path
-	    
+
 	end
 
 

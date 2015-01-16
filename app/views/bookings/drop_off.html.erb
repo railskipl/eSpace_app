@@ -10,22 +10,20 @@
 	    </div>
 
 	    <div class="link-more">
-	       
+
 	        <%= link_to "Learn more", frequently_asked_question_path, :target=>"_blank" %>
 	    </div>
 
 	    <% if @booking.is_cancel == true %>
-		   
+
 		<% elsif @booking.is_confirm == true %>
 			<div class="alredy-btn"> 	
 		     	<%= link_to "Already confirmed", "javascript:void(0)" %>
-		    </div> 
-		<% else %>    
+		    </div>
+		<% else %>
 			<div class="booking-btn">
 		     <%= link_to "Confirm drop-off ",confirm_bookings_path(:id => @booking.id ) %>
-		    </div>
-		    
+		  </div>
 		<% end %>
-		
 	</div>
 </div>

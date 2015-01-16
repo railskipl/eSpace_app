@@ -55,7 +55,7 @@ class AboutUsController < ApplicationController
       @user = User.find_by_id_and_admin(current_user.id, true)
       redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
     end
-    
+
     def custom_layout
         case action_name
         when "about"

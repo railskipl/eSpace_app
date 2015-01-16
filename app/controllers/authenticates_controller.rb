@@ -2,10 +2,10 @@ class AuthenticatesController < ApplicationController
 
 	#http://stackoverflow.com/questions/20875591/actioncontrollerinvalidauthenticitytoken-in-registrationscontrollercreate
 	skip_before_filter :verify_authenticity_token, :only => :create
-	
+
 	respond_to :html, :js, :json
-	
-	
+
+
 
 	def create
 
@@ -14,8 +14,8 @@ class AuthenticatesController < ApplicationController
       	respond_to do |format|
 			format.js
 		end
-      	
-    
+
+
 	end
 
 	def check_email

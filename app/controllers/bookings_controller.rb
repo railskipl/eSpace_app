@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
 
  include BookingsHelper
 
- def index 
+ def index
     if params[:cancelled].present?
       @bookings = Booking.includes(:post,:poster).booking_cancelled.page(params[:page]).per_page(4)
     else
@@ -19,11 +19,11 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     @post = Post.find(@booking.post_id)
-    
+
   end
 
 	def create
-    
+
 
 	end
 
@@ -44,12 +44,12 @@ class BookingsController < ApplicationController
 
   #Checkout Stripe payment
 	def checkout
-    
+
    	if params[:totalPrice] != nil
 
       dropoff_date = params[:booking][:dropoff_date].to_date rescue nil
       pickup_date = params[:booking][:pickup_date].to_date rescue nil
-      
+
       booking = {}
       booking["stripe_customer_token"] = params[:stripeToken]
       booking["price"] = (params[:totalPrice].to_i)/100
@@ -63,10 +63,10 @@ class BookingsController < ApplicationController
       booking["pickup_date"] = pickup_date
       booking["pickup_price"] = params[:pickup_price]
 
-      
+
       @booking = Booking.new(booking)
       @amount = (params[:totalPrice]).to_f
-      
+
         begin
           customer = Stripe::Customer.create(
             :email => params[:stripeEmail],
@@ -74,10 +74,10 @@ class BookingsController < ApplicationController
             :description => "Customer #{params[:stripeEmail]}"
           )
         rescue Stripe::InvalidRequestError => e
-          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
           return false
         end
-          
+
         if is_number?(@amount.to_f)
             @amount = ((@amount.to_f)).to_i
 
@@ -90,9 +90,9 @@ class BookingsController < ApplicationController
 
         end
 
-          
+
         if charge[:id] && charge[:captured] == true
-            
+
           @booking.stripe_customer_token = charge[:created]
           @booking.stripe_charge_id = charge[:id]
           @booking.stripe_customer_id = customer.id
@@ -100,9 +100,9 @@ class BookingsController < ApplicationController
           Post.substract_area(@booking)
           PaymentHistory.create(:name => "created", :booking_id => @booking.id)
           BookedMailer.booked_a_spaces(@booking).deliver
-            
+
           redirect_to bookings_path, :notice => "Thank you"
-          
+
         else
           render :new
           flash[:notice] = "Something went wrong,please try again. "
@@ -112,7 +112,7 @@ class BookingsController < ApplicationController
         redirect_to :back
     end
 
-    
+
 	end
 
 
@@ -131,31 +131,31 @@ class BookingsController < ApplicationController
     days_diff =  days_diff(params[:drop_off_date].to_date)
 
     if price <= 8
-      amount = cancel_booking_by_finder_less8(days_diff, price) 
+      amount = cancel_booking_by_finder_less8(days_diff, price)
       refund_addition = ((amount * 2.9)/100)
       amount_cents = ((amount)*100).to_i
     else
-      amount = cancel_booking_deduction(days_diff, price) 
+      amount = cancel_booking_deduction(days_diff, price)
       amount_cents = ((amount)*100).to_i
       refund_addition = ((amount * 2.9)/100)
     end
 
-    
+
     if price <= 8
       send_money = (price.to_f - 0.80) - amount
       send_money_cents = ((send_money)*100).to_i
     else
-      send_money = send_money_to_poster(days_diff, price) 
+      send_money = send_money_to_poster(days_diff, price)
       send_money_cents = ((send_money)*100).to_i
     end
 
-    
+
     begin
-      ch = Stripe::Charge.retrieve(stripe_charge_id) 
+      ch = Stripe::Charge.retrieve(stripe_charge_id)
       refund = ch.refunds.create(:amount => amount_cents)
       cancel_booking = @booking.update_columns(is_cancel: true)
     rescue Stripe::InvalidRequestError => e
-      redirect_to :back, :notice => "Stripe error: #{e.message}" 
+      redirect_to :back, :notice => "Stripe error: #{e.message}"
       return false
     end
 
@@ -179,13 +179,13 @@ class BookingsController < ApplicationController
         :statement_description => "Money transfer"
       )
        rescue Stripe::InvalidRequestError => e
-          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
           return false
        end
 
        transfer_payment = @booking.update_columns(cut_off_price: send_money)
        transfer_payment = @booking.update_columns(commission: commission)
-       
+
     else
 
       if price <= 8
@@ -212,9 +212,9 @@ class BookingsController < ApplicationController
       PaymentHistory.create(:name => "cancel", :booking_id => @booking.id)
 
     flash[:notice] = "Booking is cancel & $#{amount} is refunded"
-    
+
     redirect_to booking_path(@booking.id)
-    
+
   end
 
 
@@ -231,7 +231,7 @@ class BookingsController < ApplicationController
     booking.is_confirm = true
     booking.save
 
-    Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id, 
+    Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id,
                  :post_id => booking.post_id,:body => "Drop-off has been confirmed.")
 
     redirect_to booking_path(booking.id)

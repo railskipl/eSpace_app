@@ -1,9 +1,6 @@
 <%= javascript_include_tag "jquery.fancybox.pack.js" %>
 
-
 <%= stylesheet_link_tag "jquery.fancybox.css"%>
-
-
 
   <script type="text/javascript">
 
@@ -16,7 +13,7 @@
     });
 
 
-  </script>  
+  </script>
 
 <% if signed_in? && current_user.admin? %>
 
@@ -28,19 +25,19 @@ From Date :
 
 To Date :
 <%= text_field_tag :end_date, params[:end_date], :readonly => true %>&nbsp;
-<%#= select_tag(:created, options_for_select(['All', 'Monthly', 'Weekly', 'Daily'])) %>
 
-  <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %> 
+
+  <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %>
   <%end%>
   <% unless @adminusers.blank? %>
       <div  style="text-align:right;margin-left:10px;">
-            <a href="<%= admins_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> 
+            <a href="<%= admins_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a>
             <a href="<%= admins_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
      </div>
-    
+
   <%end%>
 <div>
-<%= link_to "Add new User",new_user_users_path%> 
+<%= link_to "Add new User",new_user_users_path%>
 </div> <br>
 <table class="table table-striped">
 <tr>
@@ -70,11 +67,11 @@ To Date :
 <%else%>
   <td>NO</td>
 <%end%>
-<td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %> | 
+<td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %> |
 	<%= link_to "Show", admin_path(adminuser.id) %> | <%= link_to "Delete", admin_path(adminuser.id), :method=> :delete, data: { confirm: 'Are you sure?' } %>
 </td>
 </tr>
-<%end%> 
+<%end%>
 </table>
 <%= will_paginate @adminusers %>
 <% else %>

@@ -4,22 +4,22 @@ class PostsController < ApplicationController
 
   before_filter :authenticate_user!
   before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
-  
+
   include PostsHelper
   include BookingsHelper
-  
+
   # GET /posts
   # GET /posts.json
   def index
     q = params[:search]
 
     posts = Post.search_post(q, current_user.id)
- 
+
     @start_date = "#{params['start_date']}"
     @end_date ="#{params['end_date']}"
-    
+
     posts = posts.result(@start_date,@end_date) if @start_date.present? && @end_date.present?
-    @posts = posts.get_post(params[:page]) 
+    @posts = posts.get_post(params[:page])
 
     respond_to do |format|
       format.html
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-   
+
     respond_to do |format|
       if @post.save
         format.html { redirect_to bank_details_path, notice: 'Post is now live. Please enter card details to receive the payment.' }
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
   end
 
   def overview
-      if params[:search]   
+      if params[:search]
         @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort])
         @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort])
       else
@@ -75,7 +75,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.js # index.html.erb
-      format.xml 
+      format.xml
     end
   end
 
@@ -120,7 +120,7 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_path, notice: 'Post status updated.' }
       format.json { head :no_content }
     end
-    
+
   end
 
    def toggled_feature
@@ -155,11 +155,11 @@ class PostsController < ApplicationController
       sort_column + " " + sort_direction
     end
 
-    #Sort PostColumn 
+    #Sort PostColumn
     def sort_column
       Post.column_names.include?(params[:sort]) ? params[:sort] : "id"
     end
-    
+
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end

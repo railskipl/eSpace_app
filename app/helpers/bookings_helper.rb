@@ -1,60 +1,60 @@
 module BookingsHelper
-  
+
   def cancel_booking_deduction(days,price)
-    
-  	if days >= 20 
-       @deducted_amount = price.to_f - (price.to_f * 0.2) 
+
+  	if days >= 20
+       @deducted_amount = price.to_f - (price.to_f * 0.2)
        return @deducted_amount
-    elsif(days > 2 && days <= 20)  
+    elsif(days > 2 && days <= 20)
       @deducted_amount = price.to_f - (price.to_f * 0.6)
       return @deducted_amount
-    elsif(days <=2)  
-      @deducted_amount = price.to_f - (price.to_f * 0.8) 
-      return @deducted_amount  
-    end		
+    elsif(days <=2)
+      @deducted_amount = price.to_f - (price.to_f * 0.8)
+      return @deducted_amount
+    end
   end
 
   def cancel_booking_by_finder_less8(days,price)
-    
-    if days >= 20 
+
+    if days >= 20
        @deducted_amount = (price.to_f - 0.80) * 0.8
        return @deducted_amount
-    elsif(days > 2 && days <= 20)  
+    elsif(days > 2 && days <= 20)
       @deducted_amount = (price.to_f - 0.80) * 0.4
       return @deducted_amount
-    elsif(days <=2)  
+    elsif(days <=2)
       @deducted_amount = (price.to_f - 0.80) * 0.2
-      return @deducted_amount  
-    end   
+      return @deducted_amount
+    end
   end
 
 
   def send_money_to_poster(days,price)
-    if days >= 20 
-       @deducted_amount = price.to_f - (price.to_f * 0.9) 
+    if days >= 20
+       @deducted_amount = price.to_f - (price.to_f * 0.9)
        return @deducted_amount
-    elsif(days > 2 && days <= 20)  
+    elsif(days > 2 && days <= 20)
       @deducted_amount = price.to_f - (price.to_f * 0.5)
       return @deducted_amount
-    elsif(days <=2)  
+    elsif(days <=2)
       @deducted_amount = price.to_f - (price.to_f * 0.3)
-      return @deducted_amount  
-    end   
+      return @deducted_amount
+    end
   end
 
- 
+
 
   def send_money_to_admin(days,price)
-    if days >= 20 
+    if days >= 20
        @deducted_amount = price.to_f - (price.to_f * 0.9) - 0.25
        return @deducted_amount
-    elsif(days > 2 && days <= 20)  
+    elsif(days > 2 && days <= 20)
       @deducted_amount = price.to_f - (price.to_f * 0.9) - 0.25
       return @deducted_amount
-    elsif(days <=2)  
+    elsif(days <=2)
       @deducted_amount = price.to_f - (price.to_f * 0.9) - 0.25
-      return @deducted_amount  
-    end   
+      return @deducted_amount
+    end
   end
 
 
@@ -63,7 +63,7 @@ module BookingsHelper
     @drop_off_date = drop_off_date
     @days_diff = @drop_off_date - @current_date
     return @days_diff.round
-  end	
+  end
 
   # def remaining_area(post)
   #   result = Booking.result_area(post)

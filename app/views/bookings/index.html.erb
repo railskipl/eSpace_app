@@ -12,7 +12,6 @@
     });
 </script>
 
- 
 <script>
 
  function checkAndSubmit()
@@ -23,7 +22,7 @@
       var start_date = $('#start_date').val();
       var end_date = $('#end_date').val();
       window.location.href = '/search_by_date?start_date=' + start_date +"&end_date="+end_date;
-     } 
+     }
 }
 </script>
 
@@ -39,7 +38,7 @@
               <li><%= link_to "Payment", payments_path%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
             </ul>
-          
+
 
             <div class="right-side">
               <div class="blue-header">

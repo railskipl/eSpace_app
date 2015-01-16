@@ -4,7 +4,7 @@ class FaqsController < ApplicationController
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   layout :custom_layout
-  
+
   def index
     @faqs = Faq.all
     respond_with(@faqs)
@@ -47,7 +47,7 @@ class FaqsController < ApplicationController
       @faqs = Faq.faq_search(search_condition)
     else
       @faqs = Faq.includes(:faq_questions)
-    end  
+    end
   end
 
   private
@@ -55,7 +55,7 @@ class FaqsController < ApplicationController
       @faq = Faq.find(params[:id])
     end
 
-    def faq_params 
+    def faq_params
       params.require(:faq).permit(:question, :answer,:title, faq_questions_attributes: [:id,:question,:answer,:faq_id,:_destroy])
     end
 
