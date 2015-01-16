@@ -5,31 +5,31 @@
   <div class="boxpop-up-login">
 
     <div class="heading-login mrleft75">Sign up</div>
-    
+
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name),:html => {:id => "user"}) do |f| %>
-    <div class="login-popup"> 
+    <div class="login-popup">
       <%= f.text_field :name, :placeholder=>"Name" %>
     </div>
 
-    <div class="password-new-up"> 
+    <div class="password-new-up">
       <%= f.text_field :last_name, :placeholder=>"Last name" %>
       <%= f.hidden_field :email, :value=>session[:email], :readonly => true %>
     </div>
 
-    <div class="password-new-up"> 
+    <div class="password-new-up">
       <%= f.text_field :personal_email, :placeholder=>"Secondary email" %>
     </div>
 
-    <div class="password-new-up"> 
+    <div class="password-new-up">
       <%= f.password_field :password, autocomplete: "off", :placeholder=>"Create password" %>
     </div>
-    
-    <div class="password-new-up"> 
+
+    <div class="password-new-up">
       <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder=>"Password" %>
     </div>
 
     <div class="new-checkbox">
-      
+
       <label class="tasks-list-item">
       <input type="checkbox" id="termsConditions" name="termsConditions" class="tasks-list-cb"/>
 
@@ -37,8 +37,8 @@
     </label>
          <p class="tc_regi"><%= link_to "I agree term & condition", frequently_asked_question_path, :style=>"color:#7b7b7b" %> </p>
     </div>
-        
-     
+
+
 
     <div style="text-align:center">
       <%= f.submit "Submit", :class=>"loginnew-btn" %>
@@ -52,5 +52,5 @@
     <div class="bottom-div">
       <div class="regErr"> <% unless resource.errors.empty? %> Error <% end %></div> <!-- <div style="float:left;margin: 0px 0 18px 132px"> Cancel</div> -->
     </div>
-   
+
   </div>

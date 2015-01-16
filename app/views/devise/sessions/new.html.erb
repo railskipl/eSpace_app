@@ -1,17 +1,16 @@
-
-    <div class="boxpop-up-login">
+<div class="boxpop-up-login">
 
     <div class="heading-login mrleft75">Login</div>
-    
+
     <strong>
         <span class="invalidLogin"> <%= params[:flash] %></span>
     </strong>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="login-popup"> 
+    <div class="login-popup">
    		<%= f.email_field :email, autofocus: true, :placeholder=>"College ID" %>
     </div>
-    
-   	<div class="password-new-up"> 
+
+   	<div class="password-new-up">
    		<%= f.password_field :password, autocomplete: "off", :placeholder=>"Password" %>
    	</div>
 
@@ -21,12 +20,11 @@
 			<input class="tasks-list-cb" type="checkbox" checked="checked" name="task_3" >
 			<span class="tasks-list-mark"></span>
 		</label>
-        
+
          <p class="agreeTC_sign"><%= link_to "I agree term & condition", frequently_asked_question_path, :class=>"agreeTC_sign"%></p>
 
     </div>
-        
-        
+
     <div style="text-align:center">
      	<%= f.submit "Login", :class=>"loginnew-btn", :disable_with=> "Please wait..." %>
     </div>
@@ -36,8 +34,6 @@
      	<a href="/users/auth/facebook">Sign up with Facebook</a>
 
     </div>
-     
-    
 
     <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
     	<div class="forgot">
@@ -46,8 +42,3 @@
     <% end -%>
 
 </div>
-
-
-
-
-

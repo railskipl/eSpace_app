@@ -1,16 +1,15 @@
-
 <div class="boxpop-up-login">
 
     <div class="heading-login mrleft75" >Forgot password</div>
 
     <div class="mrtop50"></div>
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <div class="login-popup"> 
+    <div class="login-popup">
       <%= f.email_field :email, autofocus: true, :placeholder=>"Enter your email address" %>
     </div>
 
-    <div class="mrtop16" id="successForgotMsg"><%= devise_error_messages! %></div>    
-        
+    <div class="mrtop16" id="successForgotMsg"><%= devise_error_messages! %></div>
+
     <div style="text-align:center">
       <%= f.submit "Submit", :class=>"loginnew-btn", :disable_with=> "Please wait..." %>
     </div>

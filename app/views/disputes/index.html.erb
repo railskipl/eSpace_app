@@ -18,8 +18,6 @@
 </tr>
 <% @disputes.each_with_index do |dispute, index|%>
   <%= render 'result', :index => index, :dispute => dispute %>
-<%end%> 
+<%end%>
 </table>
-
 <%= will_paginate @disputes %>
-

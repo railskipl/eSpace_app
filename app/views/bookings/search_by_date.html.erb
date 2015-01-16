@@ -22,7 +22,7 @@
               <li><%= link_to "Payment", payments_path%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
             </ul>
-          
+
 
             <div class="right-side">
               <div class="blue-header">
@@ -31,19 +31,18 @@
                     <li>
                     From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off, :class => "date", :style => "padding: 3px;"%></span>
                     </li>
-                    
+
                     <li>
                     To <span><%= text_field_tag :end_date, params[:end_date],:class => "date",:style => "padding: 3px;" %></span>
                     </li>
-                    
+
                     </ul>
                     <div class="search">
                       <%= image_submit_tag("search_new.png")%>
-                    <!-- <a href=""><img src="/assets/search_new.png"></a> -->
                     </div>
-                    <%end%> 
+                    <%end%>
               </div>
-                
+
                 <div class="booking-wrap">
                 <div class="bmar10 font10"><%= link_to "Show all",bookings_path %></a> / Hide cancelled and past bookings</div>
                     <% @bookings.each_with_index do |booking, index|%>
@@ -55,23 +54,22 @@
                             <%= booking.post_address%>
                             </p>
                         </div>
-                        
-                       
+
                         <div class="booking-col1">
                         <span>Booking area</span> : <%= booking.post_area %> sq. ft
                         <p>
-                           <%if booking.status? %>      
+                           <%if booking.status? %>
                               <span>Status</span> : <%= booking.status rescue nil%>
                            <%else%>
                               <span>Status</span> : Waiting for drop-off confirmation
                            <%end%>
                         </p>
                         </div>
-                        
+
                         <div class="booking-col1">
                         <span>Drop-off date</span> : <%= booking.post_drop_off_avaibility_start_date.strftime("%d-%m-%Y")%> - <%= booking.post_drop_off_avaibility_end_date.strftime("%d-%m-%Y")%>
                         <p>
-            <span>Booked drop-off</span> 
+            <span>Booked drop-off</span>
                         <label class="tasks-list-item">
                         <%if booking.post_pick_up == true%>
                           <%= check_box_tag(booking.post_drop_off, value = "1", checked = false, disabled: true)%>
@@ -87,7 +85,7 @@
                         </p>
 
                         </div>
-                        
+
                         <div class="booking-col1">
                         <span>Pick-up date</span>  : <%= booking.post_pick_up_avaibilty_start_date.strftime("%d-%m-%Y") %> - <%= booking.post_pick_up_avaibility_end_date.strftime("%d-%m-%Y")%>
                         <p>
@@ -99,36 +97,17 @@
                           <%= check_box_tag(booking.post_pick_up, value = "1", checked = false, disabled: true)%>
                         <%end%>
                         <span class="tasks-list-mark"></span>
-                        <!--<span class="tasks-list-desc">Left Label</span>-->
                         </label>
                         </p>
                         </div>
-                        
+
                   <div class="note"><span>Notes</span> : <%=booking.post_additional_comments rescue nil%>
                         </div>
                         </div>
-                        <%end%> 
-                        
-                        
-                     
-                        
-                        
-                        
-                    
-                    
+                        <%end%>
+
                 </div>
             </div>
         </div>
- 
   </div><!-------------------main--------------------------->
 </div><!-------------------wrapper--------------------------->
-            
-             
- 
-        
-
-
-
-
-</body>
-</html>

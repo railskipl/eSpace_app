@@ -4,7 +4,7 @@
 <td><%= booking.id %></td>
 <td><%= booking.post_id %></td>
 <td><%= booking.area %></td>
-<td> 
+<td>
 	<%= booking.poster_name %> <%= booking.poster_last_name %>
 </td>
 <td>
@@ -13,8 +13,8 @@
 <td><%= booking.on_hold? ? 'Hold' : 'Normal' %></td>
 <td><%= booking.post_address %> </td>
 <td>
-	 <%= link_to "View Booking", booking_path(booking), :target=>"_blank"  %> | 
-	 <%= link_to "Transfer/Charge Payment", dispute_path(booking)  %> | 
+	 <%= link_to "View Booking", booking_path(booking), :target=>"_blank"  %> |
+	 <%= link_to "Transfer/Charge Payment", dispute_path(booking)  %> |
 	 <%= link_to "Toggle dispute status", hold_money_dispute_path(booking) %>
 
 </td>
