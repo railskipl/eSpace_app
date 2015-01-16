@@ -19,7 +19,7 @@
 
   <%= render "home/search_date"%>
       <div  style="text-align:right;margin-left:10px;margin-bottom: -42px;">
-            <a href="<%= search_post_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> 
+            <a href="<%= search_post_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a>
             <a href="<%= search_post_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
      </div>
 <h4>Listing All Post</h4>
@@ -36,9 +36,9 @@
       <th>Address</th>
       <th>Deactivate</th>
     </tr>
-   
+
     <% @posts.each_with_index do |post, index| %>
- 
+
         <tr>
         <% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
           <% x = 0 %>
@@ -49,7 +49,7 @@
         <td><%= index + x+1 %></td>
         <td><%= post.id %></td>
         <td><%= post.user_name rescue nil%>&nbsp;<%= post.user_last_name rescue nil%></td>
-        <td><%= post.created_at.strftime("%d-%m-%Y") rescue nil%></td> 
+        <td><%= post.created_at.strftime("%d-%m-%Y") rescue nil%></td>
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
         <td><%= post.price_sq_ft rescue nil%></td>
         <td><%= post.area rescue nil%></td>
@@ -64,9 +64,8 @@
 
       </tr>
     <% end %>
-</table> 
+</table>
 <%#= will_paginate @posts %>
-
 
 
 <%end%>

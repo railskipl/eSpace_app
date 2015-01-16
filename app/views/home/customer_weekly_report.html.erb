@@ -11,9 +11,9 @@
                             </option>
                             <option value="<%= home_customer_daily_report_path%>">Daily
                             </option>
-                     
+
                           </select>
-  <%= submit_tag "Search", :class => "btn btn-primary contact-form"%> 
+  <%= submit_tag "Search", :class => "btn btn-primary contact-form"%>
   <%end%>
                   <div  style="text-align:right;margin-left:10px;">
           <a href="<%=  home_customer_weekly_report_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a>
