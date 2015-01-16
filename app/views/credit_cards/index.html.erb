@@ -1,7 +1,3 @@
-
-
-
-
 <div class="main-new">
     <ul class="verticle-menu">
     <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
@@ -13,27 +9,25 @@
     <li><%= link_to "Payment", payments_path%></li>
     <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
     </ul>
-    
+
     <div class="right-side">
-      
-          
-        <div class="payment-wrap">
+      <div class="payment-wrap">
             <%= link_to "Bank Details", bank_details_path %> | <%= link_to "Credit Card Details", credit_cards_path %><br/>
 
         <%unless @credit_card.present?%>
           <div class="new-add-post"><%= link_to '+Add Credit card Details', new_credit_card_path %> </div>
         <%end%>
-           
+
             <div class="order-box">
                 <div class="pay-col pay-col1">
 
                 </div>
-                
+
                 <div class="pay-col pay-col1">
                   <span>Email</span>: <%= @credit_card.email %>
                 </div>
-                
-                              
+
+
                 <div class="pay-col pay-col1">
                     <%if @credit_card.present?%>
                       <%= link_to 'Destroy', @credit_card, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -42,9 +36,7 @@
                     <%end%>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>
-
-

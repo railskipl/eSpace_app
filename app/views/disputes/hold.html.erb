@@ -1,5 +1,4 @@
 <%= render 'common_links' %>
-
 <table class="table table-striped">
 <tr>
 <th>Sr No.</th>
@@ -14,5 +13,5 @@
 </tr>
 <% @bookings.each_with_index do |booking, index|%>
   <%= render 'hold_result', :index => index, :booking => booking %>
-<%end%> 
+<%end%>
 </table>

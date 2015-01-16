@@ -13,21 +13,21 @@
       $(".card_code").attr("name", "card_code")
       $(".card_year").attr("name", "card_year")
     }
- 
+
     function removeInputNames() {
       $(".card_number").removeAttr("name")
       $(".card_code").removeAttr("name")
       $(".card_year").removeAttr("name")
       }
- 
+
       function submit(form) {
       // remove the input field names for security
       // we do this *before* anything else which might throw an exception
       removeInputNames(); // THIS IS IMPORTANT!
-     
+
       // given a valid form, submit the payment details to stripe
       $(form['submit-button']).attr("disabled", "disabled")
-     
+
         Stripe.createToken({
         number: $('.card_number').val(),
         cvc: $('.card_code').val(),
@@ -44,11 +44,11 @@
         } else {
         // token contains id, last4, and card type
         var token = response['id'];
-     
+
         // insert the stripe token
         var input = $("<input name='stripe_card_token' value='" + token + "' style='display:none;' />");
         form.appendChild(input[0])
-     
+
           // and submit
       form.submit();
         }
@@ -62,7 +62,7 @@
       return Stripe.validateExpiry($(".card-expiry-month").val(),
       $(".card-expiry-year").val())
       }, "Please enter a valid expiration");
- 
+
       // We use the jQuery validate plugin to validate required params on submit
       $("#new_booking").validate({
         submitHandler: submit,
@@ -78,7 +78,7 @@
         "card-expiry-year" : "cardExpiry" // we don't validate month separately
         }
         });
- 
+
         // adding the input field names is the last step, in case an earlier step errors
        addInputNames();
   });
@@ -140,16 +140,15 @@
       <script type="text/javascript">
         var select = $(".card-expiry-year"),
         year = new Date().getFullYear();
- 
+
         for (var i = 0; i < 33; i++) {
           select.append($("<option value='"+(i + year)+"' "+(i === 0 ? "selected" : "")+">"+(i + year)+"</option>"))
         }
       </script>
     </div>
   </div>
-  
-       <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 
+       <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 
   <div class="actions">
     <%= f.submit "Checkout", :class => "btn btn-primary contact-form" %>

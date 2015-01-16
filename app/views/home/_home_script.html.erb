@@ -44,8 +44,8 @@
 			}
 		<% end %>
 	<% end %>
-	else 
-	{ 
+	else
+	{
 		$('#email').parent().parent().find('.form-error').html("Please enter valid email address.");
 	    err++;
 	}
@@ -53,7 +53,7 @@
 	if(err == 0){
 
 			var email = document.getElementById("email").value;
-			// Returns successful data submission 
+			// Returns successful data submission
 			var dataString = 'email='+ email;
 			 $.ajax({
 					type: "GET",
@@ -78,10 +78,10 @@
 					cache: false
 				});
 
- 
-             return false;      
+
+             return false;
     }else{
-            
+
             return false;
     }
 

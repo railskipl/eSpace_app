@@ -47,19 +47,19 @@
                     <li>
                     From <span><%= text_field_tag :start_date, params[:start_date],:autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></span>
                     </li>
-                    
+
                     <li>
                     To <span><%= text_field_tag :end_date, params[:end_date],:autocomplete => :off,:readonly => true,:class => "date",:style => "padding: 3px;" %></span>
                     </li>
-                    
+
                     </ul>
                     <div class="search">
                     <%= image_submit_tag("search_new.png")%>
                     <!-- <a href=""><img src="/assets/search_new.png"></a> -->
                     </div>
-                    <%end%> 
+                    <%end%>
               </div>
-                
+
                 <div class="booking-wrap">
                 <div class="bmar10 font10">
                   <% if params[:cancelled].present? %>
@@ -70,12 +70,12 @@
                 </div>
                     <% @bookings.each_with_index do |booking, index|%>
                     <div class="booking-box">
-                        
+
                         <div class="booking-col">
                             <span class="booking-name">
-                              <%= booking.poster_name.capitalize rescue nil%> 
+                              <%= booking.poster_name.capitalize rescue nil%>
                               <%= booking.poster_last_name[0,1] rescue nil%>
-                            </span> 
+                            </span>
                             <% if booking.poster.present? %>
                               <% if current_user.provider.present? && booking.poster_provider.present? && booking.post_user_id != current_user.id %>
                                 (<%= mutual_friend_list(booking.post_user_id) rescue nil%> mutual friends)
@@ -90,13 +90,13 @@
                             <%= booking.post_zip_code rescue nil %>
                             </p>
                         </div>
-                        
-                       
+
+
                         <div class="booking-col1">
                         <span>Booking area</span> : <%= booking.area %> sq. ft
-                        
+
                         <p>
-                          
+
                            <% if booking.is_cancel == true %>
                               <span>Status</span> : Cancelled
                             <% elsif booking.is_confirm == true %>
@@ -104,16 +104,15 @@
                             <% else %>
                               <span>Status</span> : Waiting for drop-off confirmation
                             <% end %>
-                            
+
                         </p>
 
-                        
                         </div>
-                        
+
                         <div class="booking-col1">
-                        <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %d,%Y") %> 
+                        <span>Drop-off date</span> : <%= booking.dropoff_date.strftime("%B %d,%Y") %>
                         <p>
-                        <span>Booked drop-off</span> 
+                        <span>Booked drop-off</span>
                         <% if booking.dropoff_price != 0 %>
                           <label class="tasks-list-item">
                             <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
@@ -131,10 +130,8 @@
                         <a href="javascript:void(0);" class="booking-btn">Confirm drop-off</a>
                         </p>
 
-                        
+                    </div>
 
-                        </div>
-                        
                         <div class="booking-col1">
                         <span>Pick-up date</span>  : <%= booking.pickup_date.strftime("%B %d,%Y") %>
                         <p>
@@ -153,21 +150,19 @@
                           </label>
                         <%end%>
                         <!--<span class="tasks-list-desc">Left Label</span>-->
-                        <p style="margin-top: 13px !important;"> 
+                        <p style="margin-top: 13px !important;">
                           <%= link_to "View Post", booking_path(booking.id) %>
                         </p>
                         </p>
                         </div>
-                        
+
                         <div class="note"><span>Notes</span> : <%=booking.post_additional_comments rescue nil %>
                         </div>
-                        
+
                         </div>
-                  <%end%> 
-                      
-                  <span class="center_align"><%= will_paginate @bookings %></span> 
+                  <%end%>
+
+                  <span class="center_align"><%= will_paginate @bookings %></span>
                 </div>
             </div>
         </div>
- 
-  

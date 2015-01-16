@@ -1,9 +1,7 @@
-
-
-   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script>
       function initialize() {
-        
+
         // Create an array of styles.
         var styles = [
           {
@@ -39,14 +37,14 @@
           zoomControl: true,
           disableDefaultUI: true
         }
-        
+
           var map = new google.maps.Map(document.getElementById('small-map-canvas'), mapOptions);
 
           var marker = new google.maps.Marker({
               position: myLatlng,
               map: map,
               icon: "/assets/marker.png"
-              
+
           });
 
           //Associate the styled map with the MapTypeId and set it to display.
@@ -61,16 +59,13 @@
 
       jQuery(document).ready(function(){
         $("#ref_comment").load('<%= books_comments_path(:post_id => @post.id) %>');
-      });//]]>  
+      });//]]>
 
       </script>
 
       <%= stylesheet_link_tag 'bookreviews.css','font-awesome.css', "facebox.css", "bookings.css" %>
       <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation", "facebox.js" %>
-
-
-
-        <div class="main-new">
+<div class="main-new">
             <ul class="verticle-menu">
              <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
               <li><%= link_to "Change Password", edit_user_registration_path %></li>
@@ -81,46 +76,46 @@
               <li><%= link_to "Payment", payments_path%></li>
               <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>@post.user_id,:method => :post} rescue nil %></li>
             </ul>
-            
+
             <div class="right-side">
-              
+
                     <div class="blue-bg">
 
                       <div class="blue-bg-div1">
-                            <span><%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %>.</span> 
+                            <span><%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %>.</span>
                             <% if current_user.provider.present? &&  @post.user_provider.present? && @post.user_id != current_user.id %>(<%= mutual_friend_list(@post.user_id) rescue nil%> mutual friends)<% end %>
                             <p>
-                            <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %> 
+                            <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %>
 
-                            <%= link_to "Rate ", rating_bookings_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %> 
-                             
+                            <%= link_to "Rate ", rating_bookings_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %>
+
                             </p>
                             <p>
-                              
+
                               <%= @post.additional_comments %>
                             </p>
-                            
+
                                 <div class="address">
                                 <%= @post.address %> <%= @post.street_add %> <%= @post.apt%> <%= @post.city%> <%= @post.state%> <%= @post.zip_code%>
                                 </div>
                           </div>
-                          
+
                           <div class="blue-bg-div2">
                           <ul>
                           <li><div>Date of booking</div> <span><%= @booking.created_at.strftime("%B %d,%Y") %></span></li>
                           <li><div>Booked area</div> <span><%= @booking.area %><p>Sq. Feet</p></span></li>
-                          <li><div>Drop-off</div> 
+                          <li><div>Drop-off</div>
                               <span><%= @booking.dropoff_date.strftime("%B %d,%Y") %></br>
                                 Drive : <% if @booking.dropoff_price != 0 %> $<%= @booking.dropoff_price %> <% else %> Unavailable <% end %>
                               </span>
                             </li>
-                          <li><div>Pick-up</div> 
+                          <li><div>Pick-up</div>
                             <span><%= @booking.pickup_date.strftime("%B %d,%Y") %></br>
                             Drive :  <% if @booking.pickup_price != 0 %> $<%= @booking.pickup_price %> <% else %> Unavailable <% end %>
                             </span>
                           </li>
                           <li><div>Total Amount</div> <span>$<%= @booking.price %></span></li>
-                          <li><div>Status</div> 
+                          <li><div>Status</div>
 
                             <% if @booking.is_cancel == true %>
                               <span>Cancelled</span>
@@ -133,9 +128,9 @@
                           </li>
                           <%unless current_user.admin?%>
                           <% if @booking.dropoff_date + 1 >= Date.today %>
-                            <%= link_to "Confirm drop-off ", drop_off_bookings_path(:booking_id => @booking.id ), :remote=>true, :class=>"cdo" %> 
+                            <%= link_to "Confirm drop-off ", drop_off_bookings_path(:booking_id => @booking.id ), :remote=>true, :class=>"cdo" %>
                           <% end %>
-                          
+
                           </ul>
                           <% if @booking.dropoff_date >= Date.today %>
                             <%= link_to "Cancel Booking", cancel_popup_bookings_path(:drop_off_date =>@booking.dropoff_date,:id =>@booking.id), :class=>"cb", :remote=> true %>
@@ -143,19 +138,17 @@
                           <%end%>
 
                           </div>
-                    </div> 
-                    
+                    </div>
+
                     <div class="mapdiv">
                     <div>
 
                       <div id="small-map-canvas"></div>
                     </div>
-                    
                     <div class="review-div">
-                    
+
                     <span>Reviews</span>
-                    
-                    
+
                     <div class="star" style="font-size: 14px;">
                         <%= "(" + pluralize(@post.comments.count.to_s, "")+")" %>
                         <% num_stars(@post.overall_rating)[:full].times do %>
@@ -168,24 +161,20 @@
                           <i class="fa fa-star-o"></i>
                         <% end %>
                     </div>
-                    
+
                    <div style="width:230px">
                      <div class="content">
                       <div id="ref_comment" > </div>
                      </div>
                    </div>
-                    
-                    
-                    
-                    
+
                     </div>
-                    
+
                     </div>
            </div>
         </div>
 
-
     <%= stylesheet_link_tag  'scroll', "jquery.mCustomScrollbar" %>
     <%= javascript_include_tag "bootstrap.min", "jquery.mCustomScrollbar.concat.min", "scrollbar.js" %>
-  
+
   

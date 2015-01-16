@@ -1,8 +1,7 @@
-
 <h4>Editing Subject</h4>
 
 <%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'update', :id=> @contactus.id}, :html => {:id => "contactus", :method=>"put"} do |f| %>
-        
+
 <div>
 <%= f.label :Subject %><br />	
 <%= f.text_field :subject%>

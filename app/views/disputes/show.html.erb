@@ -1,33 +1,31 @@
 <%= link_to "Disputes result", disputes_path %> | <%= link_to "Search Booking ID", search_disputes_path %> | <%= link_to "Payment hold", hold_disputes_path %> <br/><br/>
 
 <p>
-	<strong><div>Booking ID : </div> </strong>  
+	<strong><div>Booking ID : </div> </strong>
 	<span><%= @booking.id %></span>
 </p>
 <p>
-	<strong><div>Poster Name : </div> </strong>  
+	<strong><div>Poster Name : </div> </strong>
 	<span><%= @booking.poster_name %> <%= @booking.poster_last_name %></span>
 
 	
 	<span style="margin-left:60px">
 		<%= check_disputes(@booking.id, @booking.poster_id, 'poster') %>
 	 <span>
-	
 
 </p>
 <p>
-	<strong><div>Finder Name : </div> </strong>  
+	<strong><div>Finder Name : </div> </strong>
 	<span><%= @booking.user_name %> <%= @booking.user_last_name %></span>
 
 	
-	<span style="margin-left:60px">  
+	<span style="margin-left:60px">
 		<%= check_disputes(@booking.id, @booking.user_id, 'finder') %>
 	<span>
-	
 </p>
 
 <p>
-	<strong><div>Date of booking : </div> </strong>  
+	<strong><div>Date of booking : </div> </strong>
 	<span><%= @booking.created_at.strftime("%B %d,%Y") %></span>
 </p>
 <p>
@@ -38,22 +36,18 @@
 	<strong><div>Drop-off : </div> </strong> <span><%= @booking.dropoff_date.strftime("%B %d,%Y") %></br>
             Drive : <% if @booking.dropoff_price != 0 %> $<%= @booking.dropoff_price %> <% else %> Unavailable <% end %> </span>
 </p>
-                          
+
 <p>
 	<strong><div>Pick-up : </div> </strong> <span><%= @booking.pickup_date.strftime("%B %d,%Y") %></br>
             Drive :  <% if @booking.pickup_price != 0 %> $<%= @booking.pickup_price %> <% else %> Unavailable <% end %></span>
 </p>
-                          
 <p>
-	<strong><div>Total Amount : </div> </strong> 
+	<strong><div>Total Amount : </div> </strong>
 	<span>$<%= @booking.price %></span>
 </p>
 <p>
-	<strong><div>Payment Status : </div> </strong> 
+	<strong><div>Payment Status : </div> </strong>
 	<span> <%= @booking.on_hold? ? 'Hold' : 'Normal' %> </span>
 </p>
 
 <p><%= link_to "View Details", @booking, :target=>"_blank" %><p>
-
-
-

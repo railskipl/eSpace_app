@@ -26,7 +26,7 @@
   <tbody id="all_posts" >
 
     <% @posts.each_with_index do |post, index| %>
-    
+
         <tr>
         <% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
           <% x = 0 %>
@@ -37,15 +37,15 @@
         <td><%= index + x+1 %></td>
         <td><%= post.id %></td>
         <td><%= post.user_name rescue nil%>&nbsp;<%= post.user_last_name rescue nil%></td>
-        <td><%= post.created_at.strftime("%d-%m-%Y") rescue nil%></td> 
+        <td><%= post.created_at.strftime("%d-%m-%Y") rescue nil%></td>
         <td><% if post.status == true %> Active <% else %> Deactive <% end %></td>
         <td><%= post.price_sq_ft rescue nil%></td>
         <td><%= post.area rescue nil%></td>
         <td><%= post.bookings.pluck(:area).map(&:to_i).inject{|sum,i| sum + i} rescue nil%></td>
         <td><%= post.street_add rescue nil%> <%= post.apt rescue nil%> <%= post.city rescue nil%> <%= post.state rescue nil%> <%= post.zip_code rescue nil%></td>
-        <td><%= post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") rescue nil%></td> 
+        <td><%= post.drop_off_avaibility_start_date.strftime("%d-%m-%Y") rescue nil%></td>
         <td><%= post.drop_off_avaibility_end_date.strftime("%d-%m-%Y") rescue nil%></td>
-        <td><%= post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") rescue nil%></td> 
+        <td><%= post.pick_up_avaibilty_start_date.strftime("%d-%m-%Y") rescue nil%></td>
         <td><%= post.pick_up_avaibility_end_date.strftime("%d-%m-%Y") rescue nil%></td>
 
         <td><%  if post.drop_off? %> YES <%else%> NO <%end%></td>
@@ -64,8 +64,6 @@
         <td><% if post.photo_file_name? %> <%= post.photo_file_name%> <%else%> NA <%end%></td>
       </tr>
     <% end %>
-
-    
 
   </tbody>
 </table> 
