@@ -1,0 +1,1034 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Output of rails_best_practices</title>
+    <style type="text/css">
+      body {
+        color: #333;
+        background: #eee;
+        padding: 0 20px;
+      }
+      h1 {
+        color: ##4E4E4E;
+      }
+      p {
+        margin: 5px 0;
+      }
+      table {
+        background: white;
+        border: 1px solid #666;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 14px;
+      }
+      table.result th, table.result td {
+        padding: 4px;
+        border: 1px solid #D0D0D0;
+      }
+      table.result th {
+        background-color: #DFC;
+        color: #337022;
+      }
+      table.result td.filename {
+        color: #ED1556;
+      }
+      table.result tr:hover {
+        background-color: #FFFFC0;
+      }
+      ul {
+        clear: both;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+      }
+      ul li {
+       list-style: none;
+       display: none;
+       float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>rails_best_practices output</h1>
+    <p>
+      Please go to
+      <a href='http://rails-bestpractices.com' target='_blank'>http://rails-bestpractices.com</a>
+      to see more useful Rails Best Practices.
+    </p>
+    <p>
+        Found 99 warnings.
+    </p>
+    <table>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="MoveCodeIntoModelReview" value="MoveCodeIntoModelReview"
+                />&nbsp;<label for="MoveCodeIntoModelReview">Move Code Into Model</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveUnusedMethodsInControllersReview" value="RemoveUnusedMethodsInControllersReview"
+                />&nbsp;<label for="RemoveUnusedMethodsInControllersReview">Remove Unused Methods In Controllers</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="ReplaceInstanceVariableWithLocalVariableReview" value="ReplaceInstanceVariableWithLocalVariableReview"
+                />&nbsp;<label for="ReplaceInstanceVariableWithLocalVariableReview">Replace Instance Variable With Local Variable</label>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="MoveModelLogicIntoModelReview" value="MoveModelLogicIntoModelReview"
+                />&nbsp;<label for="MoveModelLogicIntoModelReview">Move Model Logic Into Model</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveUnusedMethodsInHelpersReview" value="RemoveUnusedMethodsInHelpersReview"
+                />&nbsp;<label for="RemoveUnusedMethodsInHelpersReview">Remove Unused Methods In Helpers</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveTrailingWhitespaceCheck" value="RemoveTrailingWhitespaceCheck"
+                />&nbsp;<label for="RemoveTrailingWhitespaceCheck">Remove Trailing Whitespace</label>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="OveruseRouteCustomizationsReview" value="OveruseRouteCustomizationsReview"
+                />&nbsp;<label for="OveruseRouteCustomizationsReview">Overuse Route Customizations</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveUnusedMethodsInModelsReview" value="RemoveUnusedMethodsInModelsReview"
+                />&nbsp;<label for="RemoveUnusedMethodsInModelsReview">Remove Unused Methods In Models</label>
+              </td>
+          </tr>
+        <tr>
+          <td colspan="3">
+            <button id="show-all">Check all</button>
+            <button id="show-none">Uncheck all</button>
+          </td>
+        </tr>
+    </table>
+    <table class="result">
+      <thead>
+        <tr>
+          <th>Filename</th>
+          <th>Line Number</th>
+          <th>Warning Message</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="MoveCodeIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/order_receives/payments.html.erb&amp;line=18'>app/views/order_receives/payments.html.erb</a>
+            </td>
+            <td class='line'>18</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/25-move-code-into-model' target='_blank'>move code into model (booking use_count > 2)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/bookings_controller.rb&amp;line=30'>app/controllers/bookings_controller.rb</a>
+            </td>
+            <td class='line'>30</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@bookings use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/bookings_controller.rb&amp;line=110'>app/controllers/bookings_controller.rb</a>
+            </td>
+            <td class='line'>110</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@booking use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/bookings_controller.rb&amp;line=110'>app/controllers/bookings_controller.rb</a>
+            </td>
+            <td class='line'>110</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (price use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/bookings_controller.rb&amp;line=110'>app/controllers/bookings_controller.rb</a>
+            </td>
+            <td class='line'>110</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model ( use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/bookings_controller.rb&amp;line=110'>app/controllers/bookings_controller.rb</a>
+            </td>
+            <td class='line'>110</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (transfer_payment use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/bookings_controller.rb&amp;line=214'>app/controllers/bookings_controller.rb</a>
+            </td>
+            <td class='line'>214</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (booking use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/home_controller.rb&amp;line=36'>app/controllers/home_controller.rb</a>
+            </td>
+            <td class='line'>36</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@adminusers use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/messages_controller.rb&amp;line=95'>app/controllers/messages_controller.rb</a>
+            </td>
+            <td class='line'>95</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@messages_sender use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/messages_controller.rb&amp;line=95'>app/controllers/messages_controller.rb</a>
+            </td>
+            <td class='line'>95</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@messages_receiver use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/payement_transfers_controller.rb&amp;line=23'>app/controllers/payement_transfers_controller.rb</a>
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@booking use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/payement_transfers_controller.rb&amp;line=23'>app/controllers/payement_transfers_controller.rb</a>
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model ( use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="OveruseRouteCustomizationsReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/config/routes.rb&amp;line=31'>config/routes.rb</a>
+            </td>
+            <td class='line'>31</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/10-overuse-route-customizations' target='_blank'>overuse route customizations (customize_count > 3)</a>
+            </td>
+          </tr>
+          <tr class="OveruseRouteCustomizationsReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/config/routes.rb&amp;line=108'>config/routes.rb</a>
+            </td>
+            <td class='line'>108</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/10-overuse-route-customizations' target='_blank'>overuse route customizations (customize_count > 3)</a>
+            </td>
+          </tr>
+          <tr class="OveruseRouteCustomizationsReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/config/routes.rb&amp;line=121'>config/routes.rb</a>
+            </td>
+            <td class='line'>121</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/10-overuse-route-customizations' target='_blank'>overuse route customizations (customize_count > 3)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInControllersReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/omniauth_callbacks_controller.rb&amp;line=28'>app/controllers/omniauth_callbacks_controller.rb</a>
+            </td>
+            <td class='line'>28</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (OmniauthCallbacksController#facebook)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInControllersReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/controllers/omniauth_callbacks_controller.rb&amp;line=41'>app/controllers/omniauth_callbacks_controller.rb</a>
+            </td>
+            <td class='line'>41</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (OmniauthCallbacksController#failure)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInHelpersReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/helpers/posts_helper.rb&amp;line=5'>app/helpers/posts_helper.rb</a>
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (PostsHelper#current_user_token)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/models/bank_detail.rb&amp;line=5'>app/models/bank_detail.rb</a>
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (BankDetail#has_bank_detail)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/models/post.rb&amp;line=44'>app/models/post.rb</a>
+            </td>
+            <td class='line'>44</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Post#poster_address)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/models/post.rb&amp;line=48'>app/models/post.rb</a>
+            </td>
+            <td class='line'>48</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Post#get_status)</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/posts/_all_post.html.erb&amp;line=2'>app/views/posts/_all_post.html.erb</a>
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/bookings/index.html.erb&amp;line=50'>app/views/bookings/index.html.erb</a>
+            </td>
+            <td class='line'>50</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/bookings/new.html.erb&amp;line=16'>app/views/bookings/new.html.erb</a>
+            </td>
+            <td class='line'>16</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/bookings/rating.html.erb&amp;line=9'>app/views/bookings/rating.html.erb</a>
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/bookings/search_by_date.html.erb&amp;line=25'>app/views/bookings/search_by_date.html.erb</a>
+            </td>
+            <td class='line'>25</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/bookings/show.html.erb&amp;line=6'>app/views/bookings/show.html.erb</a>
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/comments/_book_comment.html.erb&amp;line=11'>app/views/comments/_book_comment.html.erb</a>
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/comments/books.html.erb&amp;line=8'>app/views/comments/books.html.erb</a>
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/comments/books.js.erb&amp;line=3'>app/views/comments/books.js.erb</a>
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/comments/index.html.erb&amp;line=8'>app/views/comments/index.html.erb</a>
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/comments/index.js.erb&amp;line=3'>app/views/comments/index.js.erb</a>
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/contactus/_form.html.erb&amp;line=3'>app/views/contactus/_form.html.erb</a>
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/contactus/edit.html.erb&amp;line=5'>app/views/contactus/edit.html.erb</a>
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/credit_cards/_form.html.erb&amp;line=1'>app/views/credit_cards/_form.html.erb</a>
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/credit_cards/index.html.erb&amp;line=16'>app/views/credit_cards/index.html.erb</a>
+            </td>
+            <td class='line'>16</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/devise/mailer/confirmation_instructions.html.erb&amp;line=6'>app/views/devise/mailer/confirmation_instructions.html.erb</a>
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/devise/mailer/reset_password_instructions.html.erb&amp;line=6'>app/views/devise/mailer/reset_password_instructions.html.erb</a>
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/devise/mailer/unlock_instructions.html.erb&amp;line=6'>app/views/devise/mailer/unlock_instructions.html.erb</a>
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/devise/passwords/edit.html.erb&amp;line=9'>app/views/devise/passwords/edit.html.erb</a>
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/devise/passwords/new.html.erb&amp;line=8'>app/views/devise/passwords/new.html.erb</a>
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/devise/registrations/edit.html.erb&amp;line=21'>app/views/devise/registrations/edit.html.erb</a>
+            </td>
+            <td class='line'>21</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/devise/registrations/new.html.erb&amp;line=8'>app/views/devise/registrations/new.html.erb</a>
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/devise/sessions/new.html.erb&amp;line=5'>app/views/devise/sessions/new.html.erb</a>
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/disputes/_hold_result.html.erb&amp;line=7'>app/views/disputes/_hold_result.html.erb</a>
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/disputes/_search_result.html.erb&amp;line=7'>app/views/disputes/_search_result.html.erb</a>
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/disputes/charge_to_poster.html.erb&amp;line=13'>app/views/disputes/charge_to_poster.html.erb</a>
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/disputes/hold.html.erb&amp;line=17'>app/views/disputes/hold.html.erb</a>
+            </td>
+            <td class='line'>17</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/disputes/index.html.erb&amp;line=21'>app/views/disputes/index.html.erb</a>
+            </td>
+            <td class='line'>21</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/disputes/index.pdf.erb&amp;line=19'>app/views/disputes/index.pdf.erb</a>
+            </td>
+            <td class='line'>19</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/disputes/index.xls.erb&amp;line=18'>app/views/disputes/index.xls.erb</a>
+            </td>
+            <td class='line'>18</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/disputes/search.html.erb&amp;line=27'>app/views/disputes/search.html.erb</a>
+            </td>
+            <td class='line'>27</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/disputes/show.html.erb&amp;line=4'>app/views/disputes/show.html.erb</a>
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/faqs/_faq_question_fields.html.erb&amp;line=7'>app/views/faqs/_faq_question_fields.html.erb</a>
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/faqs/_form.html.erb&amp;line=22'>app/views/faqs/_form.html.erb</a>
+            </td>
+            <td class='line'>22</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/faqs/frequently_asked_question.html.erb&amp;line=11'>app/views/faqs/frequently_asked_question.html.erb</a>
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/faqs/index.html.erb&amp;line=42'>app/views/faqs/index.html.erb</a>
+            </td>
+            <td class='line'>42</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/_home_script.html.erb&amp;line=47'>app/views/home/_home_script.html.erb</a>
+            </td>
+            <td class='line'>47</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/_search_date.html.erb&amp;line=10'>app/views/home/_search_date.html.erb</a>
+            </td>
+            <td class='line'>10</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/about_us.html.erb&amp;line=1'>app/views/home/about_us.html.erb</a>
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/all_postings.html.erb&amp;line=1'>app/views/home/all_postings.html.erb</a>
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/all_postings.pdf.erb&amp;line=29'>app/views/home/all_postings.pdf.erb</a>
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/all_postings.xls.erb&amp;line=29'>app/views/home/all_postings.xls.erb</a>
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/contactus.html.erb&amp;line=4'>app/views/home/contactus.html.erb</a>
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/customer_daily_report.html.erb&amp;line=12'>app/views/home/customer_daily_report.html.erb</a>
+            </td>
+            <td class='line'>12</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/customer_monthly_report.html.erb&amp;line=9'>app/views/home/customer_monthly_report.html.erb</a>
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/customer_weekly_report.html.erb&amp;line=9'>app/views/home/customer_weekly_report.html.erb</a>
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/index.html.erb&amp;line=8'>app/views/home/index.html.erb</a>
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/index.pdf.erb&amp;line=23'>app/views/home/index.pdf.erb</a>
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/index.xls.erb&amp;line=22'>app/views/home/index.xls.erb</a>
+            </td>
+            <td class='line'>22</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/search.html.erb&amp;line=6'>app/views/home/search.html.erb</a>
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/search_post.html.erb&amp;line=22'>app/views/home/search_post.html.erb</a>
+            </td>
+            <td class='line'>22</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/search_post.pdf.erb&amp;line=29'>app/views/home/search_post.pdf.erb</a>
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/search_post.xls.erb&amp;line=29'>app/views/home/search_post.xls.erb</a>
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/searching.html.erb&amp;line=30'>app/views/home/searching.html.erb</a>
+            </td>
+            <td class='line'>30</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/searching.pdf.erb&amp;line=45'>app/views/home/searching.pdf.erb</a>
+            </td>
+            <td class='line'>45</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/home/searching.xls.erb&amp;line=45'>app/views/home/searching.xls.erb</a>
+            </td>
+            <td class='line'>45</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/layouts/_navigation.html.erb&amp;line=6'>app/views/layouts/_navigation.html.erb</a>
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/layouts/admin.html.erb&amp;line=10'>app/views/layouts/admin.html.erb</a>
+            </td>
+            <td class='line'>10</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/layouts/application.html.erb&amp;line=11'>app/views/layouts/application.html.erb</a>
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/layouts/home.html.erb&amp;line=10'>app/views/layouts/home.html.erb</a>
+            </td>
+            <td class='line'>10</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/omniauth_callbacks/new.html.erb&amp;line=51'>app/views/omniauth_callbacks/new.html.erb</a>
+            </td>
+            <td class='line'>51</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/order_receives/index.html.erb&amp;line=28'>app/views/order_receives/index.html.erb</a>
+            </td>
+            <td class='line'>28</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/order_receives/payments.html.erb&amp;line=12'>app/views/order_receives/payments.html.erb</a>
+            </td>
+            <td class='line'>12</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/order_receives/search_order_received_by_date.html.erb&amp;line=27'>app/views/order_receives/search_order_received_by_date.html.erb</a>
+            </td>
+            <td class='line'>27</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/payement_transfers/_report.html.erb&amp;line=23'>app/views/payement_transfers/_report.html.erb</a>
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/payement_transfers/_reports_data.html.erb&amp;line=23'>app/views/payement_transfers/_reports_data.html.erb</a>
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/payement_transfers/_result_payment.html.erb&amp;line=11'>app/views/payement_transfers/_result_payment.html.erb</a>
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/payement_transfers/_selectdate.html.erb&amp;line=24'>app/views/payement_transfers/_selectdate.html.erb</a>
+            </td>
+            <td class='line'>24</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/payement_transfers/index.html.erb&amp;line=4'>app/views/payement_transfers/index.html.erb</a>
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/payement_transfers/search_payments.html.erb&amp;line=4'>app/views/payement_transfers/search_payments.html.erb</a>
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/posts/_all_post.html.erb&amp;line=1'>app/views/posts/_all_post.html.erb</a>
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/posts/_booking_script.html.erb&amp;line=41'>app/views/posts/_booking_script.html.erb</a>
+            </td>
+            <td class='line'>41</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/posts/_form.html.erb&amp;line=13'>app/views/posts/_form.html.erb</a>
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/posts/_overview_script.html.erb&amp;line=10'>app/views/posts/_overview_script.html.erb</a>
+            </td>
+            <td class='line'>10</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/posts/_overviews.html.erb&amp;line=15'>app/views/posts/_overviews.html.erb</a>
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/posts/archive.html.erb&amp;line=29'>app/views/posts/archive.html.erb</a>
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/posts/index.html.erb&amp;line=64'>app/views/posts/index.html.erb</a>
+            </td>
+            <td class='line'>64</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                <a href='subl://open?url=file:///Users/amolchaukade/src/eSpace_app/app/views/posts/overview.html.erb&amp;line=9'>app/views/posts/overview.html.erb</a>
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $('ul li').show();
+        $('input.error-type[type=checkbox]').prop('checked', true).click(function() {
+          if ($(this).attr('checked')) {
+            $(this).prop('checked', true);
+            $('.'+$(this).val()).show();
+          } else {
+            $(this).prop('checked', false);
+            $('.'+$(this).val()).hide();
+          }
+        });
+        $('#show-all').click(function() {
+          $('input.error-type[type=checkbox]').prop('checked', true);
+          $('table.result tbody tr').show();
+        });
+        $('#show-none').click(function() {
+          $('input.error-type[type=checkbox]').prop('checked', false);
+          $('table.result tbody tr').hide();
+        });
+      });
+    </script>
+  </body>
+</html>

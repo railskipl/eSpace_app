@@ -12,12 +12,17 @@ class Message < ActiveRecord::Base
 
   attr_reader :user_tokens
 
-    def user_tokens=(ids)
-        self.user_ids = ids.split(",")
-    end
+  def user_tokens=(ids)
+    self.user_ids = ids.split(",")
+  end
 
-    def msg(id)
-      message_id = id
-    end
+  def msg(id)
+    message_id = id
+  end
+
+  def self.get_message(sender, receiver)
+    where("sender_id = ? AND recipient_id = ?",sender, receiver)
+  end
+
 
 end

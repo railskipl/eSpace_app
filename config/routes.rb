@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'ratings/update'
 
   get '/payments' => "order_receives#payments" , as: "payments"
+
   resources :admins, :only => [:show,:destroy,:index]
 
   resources :bank_details
@@ -69,6 +70,7 @@ Rails.application.routes.draw do
 
 
    delete '/users/:id/delete', :to => "users#destroy" , :as => 'delete_user'
+   
    get '/users/:id/status', :to => "users#toggled_status"
    get '/about-us', :to => "about_us#about"
 
