@@ -70,7 +70,6 @@ Rails.application.routes.draw do
 
 
    delete '/users/:id/delete', :to => "users#destroy" , :as => 'delete_user'
-   
    get '/users/:id/status', :to => "users#toggled_status"
    get '/about-us', :to => "about_us#about"
 
@@ -144,7 +143,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   # Example resource route with options:
   #   resources :products do
   #     member do
@@ -156,6 +154,4 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
-
-
 end

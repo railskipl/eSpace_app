@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-   before_filter :authenticate_user!, :except => []
+  before_filter :authenticate_user!, :except => []
   before_action :set_message, only: [:show]
   respond_to :html, :xml, :json, :js
 
@@ -122,11 +122,6 @@ class MessagesController < ApplicationController
       unless @messages_receiver.empty?
         @@mr = @messages_receiver.last.id
       end
-
-      # unless @total_messages.empty?
-      #   @messages_sender.update_all(:is_read => true)
-      #   @messages_receiver.update_all(:is_read => true)
-      # end
 
       respond_to do |format|
         format.js
