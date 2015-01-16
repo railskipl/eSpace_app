@@ -1,8 +1,7 @@
-
 <%= render 'selectdate' %>
 <div  style="text-align:right;margin-left:10px;">
-      <a href="<%= search_payments_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> 
-      <a href="<%= search_payments_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
+  <a href="<%= search_payments_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a>
+  <a href="<%= search_payments_path(params.merge(format: "pdf")) %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
 </div>
 
 <table class="table table-striped">
@@ -20,6 +19,5 @@
 </tr>
 <% @payment_transfers.try(:each_with_index) do |booking, index|%>
    <%= render 'result_payment', :index => index, :booking => booking %>
-<% end%>  
-
+<% end%>
 </table>
