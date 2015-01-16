@@ -61,8 +61,7 @@ class Booking < ActiveRecord::Base
 	    booking.update_attributes(is_cancel: true, refund_finder: amount, comment: "Cancel by poster.")
 	    Post.add_area(booking)
 	    rescue Stripe::InvalidRequestError => e
-	            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
-	            return false
+	      return e
 	    end
 
 

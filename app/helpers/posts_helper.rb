@@ -39,10 +39,10 @@ require 'open-uri'
   end
 
  def processing_fees(fees)
-   if fees <= 8
-   	@cut_off = fees.to_f * 0.80
+   if fees <= GlobalConstants::BOOKING_AMOUNT
+   	@cut_off = fees.to_f * GlobalConstants::ADMIN_COMISSION
    	return @cut_off
-   elsif fees > 8
+   elsif fees > GlobalConstants::BOOKING_AMOUNT
      @cut_off = fees.to_f * 10/100
      return @cut_off
    end
