@@ -1,7 +1,7 @@
 class AccessIdsController < ApplicationController
   before_filter :authenticate_user!, except: []
   before_filter :correct_user, :except => []
-  
+
   before_action :set_access, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
 

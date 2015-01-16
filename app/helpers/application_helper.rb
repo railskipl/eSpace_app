@@ -38,8 +38,8 @@ module ApplicationHelper
 
 	# Custome dropdown
 	# def options_with_colors(values, sel_val)
-	
-	#   values.collect do |sel| 
+
+	#   values.collect do |sel|
 	#   	if sel_val.to_i == sel
 	#     	"<option value='#{sel}' style='color:#999;' selected='selected ' >#{sel}</option> ".html_safe
 	#     else

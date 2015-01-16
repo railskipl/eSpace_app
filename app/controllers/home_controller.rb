@@ -7,14 +7,14 @@ class HomeController < ApplicationController
 	def index
     @access_ids = AccessId.all
 	end
-    
+
   def about_us
   end
 
   def contactus
-    
+
   end
-   
+
   def all_postings
     if params[:format].present?
       @posts = Post.post_search(current_user)
@@ -39,11 +39,11 @@ class HomeController < ApplicationController
 
       @adminusers = User.where("admin =?",false).order('created_at DESC')
       @adminusers = @adminusers.where("LOWER(name) like ? or LOWER(last_name) like ? or LOWER(email) like ?", "%#{q}%", "%#{q}%", "%#{q}%") if q.present?
- 
+
       @start_date = "#{params['start_date']}"
       @end_date ="#{params['end_date']}"
 
-      if @start_date > @end_date 
+      if @start_date > @end_date
         flash[:error] = "Start Date Cannot Be Greater"
         @adminusers = []
         return false
@@ -68,7 +68,7 @@ class HomeController < ApplicationController
       q = params[:q]
        @posts = Post.where("user_id != ?",current_user.id).order("id desc")
        @posts = @posts.where("(created_at) like ? or (created_at) like ?", "%#{q}%", "%#{q}%") if q.present?
-       
+
        @start_date = "#{params['start_date']}"
        @end_date ="#{params['end_date']}"
 
@@ -79,14 +79,14 @@ class HomeController < ApplicationController
        flash[:error] = "Start Date Cannot Be Greater"
       # return false
       else
-      @posts = Post.includes(:user).where("date(created_at) >= ? and date(created_at) <= ?",@start_date, @end_date) 
+      @posts = Post.includes(:user).where("date(created_at) >= ? and date(created_at) <= ?",@start_date, @end_date)
        end
         respond_to do |format|
         format.html
         format.xls
           format.pdf do
           render :pdf => "posts_report"
-          end   
+          end
         end
     end
 
@@ -111,6 +111,6 @@ class HomeController < ApplicationController
           "application"
        end
       end
-    
+
 
 end

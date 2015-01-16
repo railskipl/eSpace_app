@@ -2,7 +2,6 @@
 
 <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min", "stripe_validation.js" %>
 
-                             
 <div class="main-new">
   <ul class="verticle-menu">
     <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
@@ -16,14 +15,14 @@
   </ul>
 
             <div class="right-side">
-              <div class="payment-wrap"> 
+              <div class="payment-wrap">
 
          <%= link_to "Bank Details", bank_details_path %> | <%= link_to "Credit Card Details", credit_cards_path %><br/>
 
     <div class="formwrap" style="font-size: 15px;">
 
- <%= form_for(bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>   
-  
+ <%= form_for(bank_detail, :html=>{ id: "new_bank_detail" }) do |f| %>
+
       <%= hidden_field_tag :stripe_card_token %>
        <div>Setup a Card to receive payments <span title="This is some information for our tooltip." class="month1 tooltip_new "><img src="/assets/que.png">
            </span></div>
@@ -37,8 +36,8 @@
        <div class="card">
       <%= text_field_tag :card_code, nil, name: nil, :autocomplete => :off,:class=>" card_code stripe-sensitive required form-control1", :placeholder=>"Card Code" %>
       </div>
-      
- 
+
+
     <label for="card_month">Card Expiration</label>
     <div class="expiry-wrapper">
      <select class="card-expiry-month stripe-sensitive required">
@@ -52,28 +51,20 @@
        for (var i = 1; i <= 12; i++) {
          select.append($("<option value='"+i+"' "+(month === i ? "selected" : "")+">"+i+"</option>"))
         }
-   
+
         var select = $(".card-expiry-year"),
         year = new Date().getFullYear();
- 
+
         for (var i = 0; i < 33; i++) {
           select.append($("<option value='"+(i + year)+"' "+(i === 0 ? "selected" : "")+">"+(i + year)+"</option>"))
         }
       </script>
-
-
-    </div>
+</div>
 <!-- <button class="blue-btn b-mar" type="button">Save Changes</button> -->
  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
         <%= submit_tag "Save Changes",:class=>"blue-btn-bank-detail b-mar",:style=>"font-size: 16px;" %>
         <% end %>
-           </div>         
+           </div>
                 </div>
             </div>
         </div>
-
-
-
-
-
-

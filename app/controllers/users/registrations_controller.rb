@@ -28,7 +28,7 @@ respond_to :html, :js
       end
     else
       clean_up_passwords resource
-      
+
       respond_with resource
     end
 

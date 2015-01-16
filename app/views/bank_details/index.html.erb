@@ -9,7 +9,7 @@
     <li><%= link_to "Payment", payments_path%></li>
     <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
     </ul>
-    
+
     <div class="right-side">
 
         <div class="payment-wrap">
@@ -19,22 +19,20 @@
         <%unless @bank_detail.present?%>
           <div class="new-add-post"><%= link_to '+Add Bank Details', new_bank_detail_path %> </div>
         <%end%>
-            
+
             <div class="order-box">
                 <div class="pay-col pay-col1">
 
-                    
-
                 </div>
-                
+
                 <div class="pay-col pay-col1">
                   <span>Full name</span>: <%= @bank_detail.full_name %>
                 </div>
-                
+
                 <div class="pay-col pay-col1">
                   <span>Card number</span>: ******<%= @bank_detail.card_number[-4..-1] %>
                 </div>
-                
+
                 <div class="pay-col pay-col1">
                     <%if @bank_detail.present?%>
                       <%= link_to 'Destroy', @bank_detail, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -43,8 +41,6 @@
                     <%end%>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
-

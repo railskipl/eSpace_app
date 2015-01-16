@@ -17,19 +17,19 @@ class ContactusController < ApplicationController
 
   def new
     @contactus = Contactus.new
-    
+
   end
 
   def edit
-    
+
   end
 
   def update
-   
+
     @contactus.update(contact_params)
     redirect_to contactus_path
   end
-  
+
   def create
     unless params[:contactus][:subject].blank?
       if current_user.admin?
@@ -46,11 +46,11 @@ class ContactusController < ApplicationController
     else
       flash[:notice] = "Please select topic."
       redirect_to :back
-    end 
+    end
   end
 
   def destroy
-   
+
       @contactus.destroy
 
       redirect_to :back
@@ -87,5 +87,5 @@ class ContactusController < ApplicationController
           "application"
        end
       end
-    
+
 end

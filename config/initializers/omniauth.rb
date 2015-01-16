@@ -5,11 +5,11 @@ if Rails.env.development?
 	OmniAuth.config.logger = Rails.logger
 
 	Rails.application.config.middleware.use OmniAuth::Builder do
-	  
+
 	  provider :facebook, '382895341863463', '70e00b19e5cf11f56990e9402da7e8f5',scope: "user_friends, read_friendlists"
-	  
+
 	end
-else	
+else
 
 # For heroku server keys
 	OmniAuth.config.logger = Rails.logger

@@ -39,36 +39,36 @@ class Booking < ActiveRecord::Base
 	#   includes(:poster, :user).joins(:disputes).select("bookings.*, disputes.amount, disputes.status").page(page_no).per_page(50)
 	# end
 
-	def self.select_data 
+	def self.select_data
 		select("bookings.*,payment_histories.name,payment_histories.created_at as transaction_date")
 	end
-	
+
 	scope :fetch_data, -> (current_user) { where('poster_id = ? or user_id = ?', current_user.id, current_user.id ) }
 
 	def self.pagination(page_no)
-		page(page_no).order("id desc").per_page(6) 
+		page(page_no).order("id desc").per_page(6)
 	end
-	
+
 	def self.booking_cancel(booking)
 		amount = booking.price
-	    
+
 	    stripe_charge_id = booking.stripe_charge_id
 	    amount_cents = ((amount.to_f)*100).to_i
 
 	    begin
-	    ch = Stripe::Charge.retrieve(stripe_charge_id) 
+	    ch = Stripe::Charge.retrieve(stripe_charge_id)
 	    refund = ch.refunds.create(:amount => amount_cents)
 	    booking.update_attributes(is_cancel: true, refund_finder: amount, comment: "Cancel by poster.")
 	    Post.add_area(booking)
 	    rescue Stripe::InvalidRequestError => e
-	            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+	            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
 	            return false
 	    end
 
 
-	      Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id, 
+	      Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id,
 	      				 :post_id => booking.post_id,:body => "Booking is cancel")
-	      
+
 
 	end
 
@@ -91,7 +91,7 @@ class Booking < ActiveRecord::Base
 			        stripe_processing_fees = booking.price.to_i * 0.029 + 0.30
 			        commission = price - stripe_processing_fees - (received_by_poster + 0.25)
 			      else
-			      	
+
 			      	processing_fees = price.to_f * 10/100
 			        received_by_poster = price - processing_fees
 			        stripe_processing_fees = booking.price.to_i * 0.029 + 0.30
@@ -108,17 +108,17 @@ class Booking < ActiveRecord::Base
 			  	  :statement_description => "Money transfer"
 			  	)
 			     rescue Stripe::InvalidRequestError => e
-			        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+			        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
 			        return false
 			     end
 
-			      transfer_payment = booking.update_attributes(stripe_transfer_id: transfer[:id], 
+			      transfer_payment = booking.update_attributes(stripe_transfer_id: transfer[:id],
 			      status: 'Paid',
 			      is_confirm: true,
 			      cut_off_price: received_by_poster,
 			      commission: commission)
-		      
-		      
+
+
 			      PaymentHistory.create(:name => "transfered", :booking_id => booking.id)
 			      message_params = {}
 			      message_params["sender_id"] = 1
@@ -136,7 +136,7 @@ class Booking < ActiveRecord::Base
 
 	end
 
-	
+
 
 
 	def self.search_booking(search)

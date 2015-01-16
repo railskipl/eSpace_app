@@ -3,15 +3,15 @@ module DisputesHelper
 
 	def charge_user(user)
 		if user.bookings.last.try(:stripe_customer_id) || user.credit_card
-			link_to "Charge" ,charge_money_dispute_path(user) 
+			link_to "Charge" ,charge_money_dispute_path(user)
 		else
-			"No Bank Detail Provided"  
+			"No Bank Detail Provided"
 		end
 	end
 
 	def send_user(user)
 		if user.bank_detail
-			link_to "Send" ,send_money_dispute_path(user) 
+			link_to "Send" ,send_money_dispute_path(user)
 		else
 			"No Bank Detail Provided"
 		end
@@ -30,7 +30,7 @@ module DisputesHelper
 	end
 
 
-	def check_disputes(booking, user) 
+	def check_disputes(booking, user)
 	    if user == 'finder'
 		   	dispute = get_refund_data(booking)
 
@@ -57,7 +57,7 @@ module DisputesHelper
 			end
 		end
 	end
-	
+
 	def stripe_commission(booking,amount)
 		if !amount.nil?
 			if booking.price == amount
@@ -68,7 +68,7 @@ module DisputesHelper
 			end
 		end
 	end
-	
+
 	def balance(booking,amount)
 		if !amount.nil?
 			if booking.price == amount

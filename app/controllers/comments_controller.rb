@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
    before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
     def index
-       
+
       @comments = Comment.includes(:user).where(:post_id => params[:post_id]).paginate(:per_page => 6, :page => params[:page])
 
       respond_to do |format|
@@ -20,10 +20,10 @@ class CommentsController < ApplicationController
         format.html { render :layout => false}
         format.js
       end
-      
+
     end
 
-    
+
     def show
      @posts = Post.where("user_id != ?",current_user.id)
      @user = User.find_by_id(current_user)
@@ -31,10 +31,10 @@ class CommentsController < ApplicationController
     end
 
     def create
-      
+
       @post = Post.find(params[:post_id])
-      @comment = @post.comments.new(comment_params) 
-      @comment.save! 
+      @comment = @post.comments.new(comment_params)
+      @comment.save!
       redirect_to :back
     end
 

@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   resources :credit_cards, :only => [:new,:create,:index, :destroy]
   resources :about_us
   resources :access_ids , :except => [:show]
-  resources :faqs 
+  resources :faqs
   get 'frequently_asked_question' => "faqs#frequently_asked_question", as: "frequently_asked_question"
-  
+
   resources :order_receives, :only => [:index] do
     collection do
       get 'cancel_booking'
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/sign_out' => 'users/sessions#destroy'
   end
-  
+
   get '/search_order_received_by_date' => "order_receives#search_order_received_by_date", as: "search_order_received_by_date"
 
   get 'payement_transfers/index'
@@ -59,7 +59,7 @@ Rails.application.routes.draw do
       end
    end
 
-   resources :users ,:except => [:create] do 
+   resources :users ,:except => [:create] do
     collection do
         get 'order_received'
         get 'new_user'
@@ -68,7 +68,7 @@ Rails.application.routes.draw do
   end
 
 
-   delete '/users/:id/delete', :to => "users#destroy" , :as => 'delete_user'    
+   delete '/users/:id/delete', :to => "users#destroy" , :as => 'delete_user'
    get '/users/:id/status', :to => "users#toggled_status"
    get '/about-us', :to => "about_us#about"
 
@@ -105,7 +105,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bookings, :except => [:edit,:update,:destroy] do 
+  resources :bookings, :except => [:edit,:update,:destroy] do
     collection do
       post 'checkout'
       get 'cancel_booking'
@@ -128,20 +128,20 @@ Rails.application.routes.draw do
       get 'compose_message'
       post 'sent_to'
     end
-    
+
     member do
      get 'reply'
      get 'is_read_all'
     end
   end
 
-  resources :payement_transfers ,:path => "payment_transfers" ,:only => [:index] do 
+  resources :payement_transfers ,:path => "payment_transfers" ,:only => [:index] do
     collection do
       get 'transfer_money'
       get 'check_status'
     end
-  end  
- 
+  end
+
 
   # Example resource route with options:
   #   resources :products do

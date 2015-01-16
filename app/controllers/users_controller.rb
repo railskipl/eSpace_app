@@ -15,11 +15,11 @@ def edit
  @user = User.find(params[:id])
  @users = User.all
 end
- 
+
 def new
-  @user = User.new	
+  @user = User.new
 end
- 
+
 def update
   @user = User.find(params[:id])
   if params[:user][:notification_for_email] == "1" || params[:user][:notification_for_personal_email] == "1"
@@ -35,7 +35,7 @@ def update
 end
 
 def new_user
-  
+
 end
 
 def create_user

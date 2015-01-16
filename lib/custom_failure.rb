@@ -6,7 +6,7 @@ class CustomFailure < Devise::FailureApp
 	  super
 	end
   end
-  
+
   def respond
   	if  http_auth?
   	  redirect_to user_session_path(:flash => i18n_message)
@@ -15,4 +15,4 @@ class CustomFailure < Devise::FailureApp
 	end
   end
 
-end 
+end

@@ -20,15 +20,15 @@ class CreditCardsController < ApplicationController
     @credit_card = CreditCard.new
   end
 
- 
+
   def create
 
     if params[:stripe_card_token] != nil
 
       email = params[:credit_card][:email]
       user_id = params[:credit_card][:user_id]
-      
-      
+
+
       begin
         customer = Stripe::Customer.create(
           :email => email,
@@ -36,11 +36,11 @@ class CreditCardsController < ApplicationController
           :description => "Customer #{email}"
         )
       rescue Stripe::InvalidRequestError => e
-        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
         return false
       end
 
-      CreditCard.create(:email => email, :stripe_customer_id => customer.id, :user_id => user_id)
+CreditCard.create(:email => email, :stripe_customer_id => customer.id, :user_id => user_id)
 
       redirect_to credit_cards_path
 
@@ -49,10 +49,10 @@ class CreditCardsController < ApplicationController
       flash[:notice] = "Please re-enter all data."
     end
 
-   
+
   end
 
- 
+
 
   def destroy
 

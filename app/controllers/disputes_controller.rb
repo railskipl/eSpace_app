@@ -40,7 +40,7 @@ class DisputesController < ApplicationController
        price = params[:amount].to_i
        user = User.find(params[:id])
        stripe_recipient_token = user.bank_detail_stripe_recipient_token
-     
+
         amount_cents = ((price)*100).to_i
       begin
       transfer = Stripe::Transfer.create(
@@ -50,7 +50,7 @@ class DisputesController < ApplicationController
       :statement_description => "Money transfer"
       )
        rescue Stripe::InvalidRequestError => e
-          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
           return false
        end
 
@@ -70,10 +70,10 @@ class DisputesController < ApplicationController
 
   	begin
 
-	    ch = Stripe::Charge.retrieve(stripe_charge_id) 
+	    ch = Stripe::Charge.retrieve(stripe_charge_id)
 	    refund = ch.refunds.create(:amount => amount_cents)
 	  rescue Stripe::InvalidRequestError => e
-	    redirect_to :back, :notice => "Stripe error: #{e.message}" 
+	    redirect_to :back, :notice => "Stripe error: #{e.message}"
 	    return false
 	  end
 
@@ -104,7 +104,7 @@ class DisputesController < ApplicationController
 
   def charge_money
   end
-  	
+
   def charged_money
 
   	price = params[:amount].to_i
@@ -121,7 +121,7 @@ class DisputesController < ApplicationController
         :currency    => 'usd'
       )
 	  rescue Stripe::InvalidRequestError => e
-	    redirect_to :back, :notice => "Stripe error: #{e.message}" 
+	    redirect_to :back, :notice => "Stripe error: #{e.message}"
 	    return false
 	  end
 
@@ -136,7 +136,7 @@ class DisputesController < ApplicationController
 
   def charged_to_poster
     price = params[:amount].to_i
-    
+
     stripe_customer_id = @booking.stripe_customer_id
 
     amount_cents = ((price)*100).to_i
@@ -150,7 +150,7 @@ class DisputesController < ApplicationController
         :currency    => 'usd'
       )
     rescue Stripe::InvalidRequestError => e
-      redirect_to :back, :notice => "Stripe error: #{e.message}" 
+      redirect_to :back, :notice => "Stripe error: #{e.message}"
       return false
     end
 
@@ -160,7 +160,7 @@ class DisputesController < ApplicationController
     redirect_to dispute_path(@booking.id)
   end
 
-  
+
 
   def hold_money
 

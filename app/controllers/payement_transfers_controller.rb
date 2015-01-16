@@ -6,7 +6,6 @@ class PayementTransfersController < ApplicationController
   layout 'admin'
   include PostsHelper
 
-  
   def index
   	 @bookings = Booking.admin_payments(params[:page])
 
@@ -15,14 +14,14 @@ class PayementTransfersController < ApplicationController
         format.xls
           format.pdf do
           render :pdf => "payments_report"
-          end   
+          end
       end
 
   end
-  
-  #transfer the payement to poster account. 
+
+  #transfer the payement to poster account.
   def transfer_money
-    
+
     @recipient_details = BankDetail.where("user_id =?", params[:poster_id]).first
 
       @booking = Booking.find(params[:booking_id])
@@ -52,16 +51,16 @@ class PayementTransfersController < ApplicationController
       	  :statement_description => "Money transfer"
       	)
          rescue Stripe::InvalidRequestError => e
-            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}" 
+            redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
             return false
          end
 
-        transfer_payment = @booking.update_attributes(stripe_transfer_id: transfer[:id], 
+        transfer_payment = @booking.update_attributes(stripe_transfer_id: transfer[:id],
         status: 'Paid',
         is_confirm: true,
         cut_off_price: received_by_poster,
         commission: commission)
-        
+
         #transfer_payment = @booking.update_attributes(person_params)
         PaymentHistory.create(:name => "transfered", :booking_id => @booking.id)
         message_params = {}
@@ -78,25 +77,25 @@ class PayementTransfersController < ApplicationController
       transfer_payment = @booking.update_columns(comment: "Waiting for poster bank account.")
       flash[:error]  = "No bank detail added for payment"
       redirect_to payement_transfers_path
-      
+
     end
-  end	
-  
+  end
+
   #Check's the transfer status from stripe api.
   def check_status
     @booking = Booking.find(params[:booking_id])
     @transfer_id = @booking.stripe_transfer_id
     tr = Stripe::Transfer.retrieve(@booking.stripe_transfer_id)
        if tr[:status] == "paid"
-          transfer_payment = @booking.update_columns(status: tr[:status]) 
-          redirect_to payement_transfers_path 
+          transfer_payment = @booking.update_columns(status: tr[:status])
+          redirect_to payement_transfers_path
           flash[:notice] = "Payment was Transfered."
-       else 
+       else
          flash[:notice] = "Payment Transfer is Pending."
-         redirect_to payement_transfers_path  
-       end  
+         redirect_to payement_transfers_path
+       end
 
-  end  
+  end
 
   def search_payments
     @start_date = "#{params['start_date']}"
@@ -116,7 +115,7 @@ class PayementTransfersController < ApplicationController
         format.xls
           format.pdf do
           render :pdf => "payments_report"
-          end   
+          end
         end
   end
 
@@ -126,6 +125,6 @@ class PayementTransfersController < ApplicationController
       @user = User.find_by_id_and_admin(current_user.id, true)
       redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
     end
-  
+
 
 end
