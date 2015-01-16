@@ -1,16 +1,6 @@
-<%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js" %>
-<%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker"%>
+<%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js", "select_date" %>
+<%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker" %>
 
-<script type="text/javascript">
-
-    jQuery(function($){
-      $("#start_date").datepicker({dateFormat: 'M d, yy ',changeMonth: false,changeYear: false,showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
-
-    });
-    jQuery(function($){
-      $("#end_date").datepicker({dateFormat: 'M d, yy ',changeMonth: false,changeYear: false, showOn: 'button', buttonImage: '/assets/cal_icon2.png', buttonImageOnly: true})
-    });
-</script>
 <div class="main-new">
             <ul class="verticle-menu">
              <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>

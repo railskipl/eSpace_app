@@ -8,14 +8,14 @@ Rails.application.config.assets.precompile += %w( jquery.validate.min.js validat
 Rails.application.config.assets.precompile += %w( bookreviews.css perfect-scrollbar.css jquery.ui.core.js jquery.ui.datepicker.js)
 Rails.application.config.assets.precompile += %w( font-awesome.css jquery.validate.min_1.8.1.js stylesheet-image-based.css)
 Rails.application.config.assets.precompile += %w( jquery.fancybox.pack.js perfect-scrollbar.js overview.css)
-Rails.application.config.assets.precompile += %w( jquery.fancybox.css style.css components.css typer.js )
-Rails.application.config.assets.precompile += %w( admin_validation.js scroll.css datepicker_post.js)
+Rails.application.config.assets.precompile += %w( jquery.fancybox.css style.css components.css typer.js select_date.js)
+Rails.application.config.assets.precompile += %w( admin_validation.js scroll.css datepicker_post.js area_needed.js post_on_map.js)
 Rails.application.config.assets.precompile += %w( ddaccordion.js jquery.mCustomScrollbar.css create_post.js)
 Rails.application.config.assets.precompile += %w( jquery.min.js jquery.mCustomScrollbar.concat.min.js stripe_validation.js)
 Rails.application.config.assets.precompile += %w( bootstrap.min.css bootstrap.min.js refresh_count.js order_receive.css)
 Rails.application.config.assets.precompile += %w( component.css horizontalMenu.js pdf_invoice.css bookings.css booking_popup.css)
 Rails.application.config.assets.precompile += %w( cbpHorizontalMenu.min.js checkout.js scrollbar.js compose_message.css)
-Rails.application.config.assets.precompile += %w( jquery-1.7.0.min.js animated_message.js active_textarea.js)
+Rails.application.config.assets.precompile += %w( jquery-1.7.0.min.js animated_message.js active_textarea.js dropoff_and_pickup_date.js)
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
