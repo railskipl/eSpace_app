@@ -9,25 +9,17 @@ Users
 <img src="assets/thumb_profile.jpg" alt="">	
  <a style="margin:0" href="<%= reply_message_path(@messagee,:recv_id =>user_messages.sender_id)%>"><%= user_messages.sender.name %><%= user_messages.sender.last_name %></a><p>
 <% end %>
-  
 </ul>
 </div>
-
-
 </td><td valign='top'>
  <div style="width:40%;text-align:center"><h4>Message</h4></div>
-
  <p id="notice"><%= notice %></p>
 <br>
 <% @total_messages.each do |messages|%>
 <p>
-
-      <b> <%= messages.sender_name %> </b>:
-          <%= messages.body %><br/> <%= messages.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
-
+    <b> <%= messages.sender_name %> </b>:
+    <%= messages.body %><br/> <%= messages.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
 </p>
 <% end %>
 <%= render 'reply'%>
-
-   
  </td></tr></table>
