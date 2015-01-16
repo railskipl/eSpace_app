@@ -115,18 +115,18 @@ class BookingsController < ApplicationController
     stripe_charge_id = @booking.stripe_charge_id
     days_diff =  days_diff(params[:drop_off_date].to_date)
 
-    if price <= 8
+    if price <= GlobalConstants::BOOKING_AMOUNT
       amount = cancel_booking_by_finder_less8(days_diff, price)
-      refund_addition = ((amount * 2.9)/100)
-      amount_cents = ((amount)*100).to_i
-      send_money = (price.to_f - 0.80) - amount
-      send_money_cents = ((send_money)*100).to_i
+      refund_addition = amount * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1
+      amount_cents = ((amount)*GlobalConstants::CENTS).to_i
+      send_money = (price.to_f - GlobalConstants::ADMIN_COMISSION) - amount
+      send_money_cents = ((send_money)*GlobalConstants::CENTS).to_i
     else
       amount = cancel_booking_deduction(days_diff, price)
-      amount_cents = ((amount)*100).to_i
-      refund_addition = ((amount * 2.9)/100)
+      amount_cents = ((amount)*GlobalConstants::CENTS).to_i
+      refund_addition = amount * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1
       send_money = send_money_to_poster(days_diff, price)
-      send_money_cents = ((send_money)*100).to_i
+      send_money_cents = ((send_money)*GlobalConstants::CENTS).to_i
     end
 
     begin
@@ -142,10 +142,10 @@ class BookingsController < ApplicationController
 
     if @recipient_details.present?
 
-      if price <= 8
-        commission = (price.to_i - (price.to_i * 0.029 + 0.30)) - (send_money + 0.25) - (amount - refund_addition)
+      if price <= GlobalConstants::BOOKING_AMOUNT
+        commission = (price.to_i - (price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2)) - (send_money + GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT) - (amount - refund_addition)
       else
-        stripe_processing_fees = price.to_i * 0.029 + 0.30 - refund_addition
+        stripe_processing_fees = price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2 - refund_addition
         commission = send_money_to_admin(days_diff, price) - stripe_processing_fees
       end
 
@@ -167,11 +167,11 @@ class BookingsController < ApplicationController
 
     else
 
-      if price <= 8
-        commission = (price.to_i - (price.to_i * 0.029 + 0.30)) - (send_money + 0.25) - (amount - refund_addition) + send_money
+      if price <= GlobalConstants::BOOKING_AMOUNT
+        commission = (price.to_i - (price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2)) - (send_money + GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT) - (amount - refund_addition) + send_money
       else
-       stripe_processing_fees = price.to_i * 0.029 + 0.30 - refund_addition
-       commission = send_money + send_money_to_admin(days_diff, price) - stripe_processing_fees - 0.25
+       stripe_processing_fees = price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2 - refund_addition
+       commission = send_money + send_money_to_admin(days_diff, price) - stripe_processing_fees - GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT
       end
 
        transfer_payment = @booking.update_columns(commission: commission)

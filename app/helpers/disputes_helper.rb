@@ -64,7 +64,7 @@ module DisputesHelper
 				0
 			elsif booking.price > amount
 				net_amt = booking.price - amount
-				net_amt = net_amt*0.029 + 0.30
+				net_amt = net_amt*GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2
 			end
 		end
 	end
@@ -75,7 +75,7 @@ module DisputesHelper
 				0
 			elsif booking.price > amount
 				net_amt = booking.price - amount
-				net_amt = net_amt - (net_amt*0.029 + 0.30)
+				net_amt = net_amt - (net_amt*GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2)
 			end
 		end
 	end
