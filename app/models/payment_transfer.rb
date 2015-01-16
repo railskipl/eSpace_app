@@ -1,5 +1,5 @@
 class PaymentTransfer
-  include ActiveModel::Validations
+
 	# Transfer money to Poster(Cronjob)
 	def self.my_cron
 		bookings = Booking.where("on_hold = ? and is_cancel = ? and dropoff_date = ? and stripe_transfer_id is ?", false, false, Date.today - 5.day, nil)
