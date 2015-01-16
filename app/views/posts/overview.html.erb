@@ -2,16 +2,12 @@
   <%= render 'overview_script' %>
 
   <% if params[:sort] == "price_sq_ft" %>
-    
   <% end %>
-
   <div class="main2">
         <div class="map_loc">
           <div id="map"></div>
-        </div>
-              
+        </div>    
         <div class="right_blue"> 
-
           <%= form_for :search, :url=>{:controller=>'posts', :action=>'overview'},:html => {:method => "get", :id=>"browse_post"} do |f| %>
             <div class="search-add">Search near this address </div>
 

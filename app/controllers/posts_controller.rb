@@ -13,13 +13,13 @@ class PostsController < ApplicationController
   def index
     q = params[:search]
 
-    @posts = Post.search_post(q, current_user.id)
+    posts = Post.search_post(q, current_user.id)
  
     @start_date = "#{params['start_date']}"
     @end_date ="#{params['end_date']}"
     
-    @posts = @posts.result(@start_date,@end_date) if @start_date.present? && @end_date.present?
-    @posts= @posts.page(params[:page]).order("id desc").per_page(4)
+    posts = posts.result(@start_date,@end_date) if @start_date.present? && @end_date.present?
+    @posts = posts.get_post(params[:page]) 
 
     respond_to do |format|
       format.html

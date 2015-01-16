@@ -37,17 +37,17 @@ module ApplicationHelper
 	end
 
 	# Custome dropdown
-	def options_with_colors(values, sel_val)
+	# def options_with_colors(values, sel_val)
 	
-	  values.collect do |sel| 
-	  	if sel_val.to_i == sel
-	    	"<option value='#{sel}' style='color:#999;' selected='selected ' >#{sel}</option> ".html_safe
-	    else
-	    	"<option value='#{sel}' style='color:#999;' >#{sel}</option> ".html_safe
-	    end
-	  end.join
+	#   values.collect do |sel| 
+	#   	if sel_val.to_i == sel
+	#     	"<option value='#{sel}' style='color:#999;' selected='selected ' >#{sel}</option> ".html_safe
+	#     else
+	#     	"<option value='#{sel}' style='color:#999;' >#{sel}</option> ".html_safe
+	#     end
+	#   end.join
 
-	end
+	# end
 
 	  def resource_name
 	    :user

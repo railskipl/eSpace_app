@@ -11,10 +11,8 @@ No Results found!!
       <th>Area (Sq ft)</th>
       <th>Booking Area (Sq ft)</th>
       <th>Address</th>
-    
     </tr>
   </thead>
-
   <tbody>
     <% @posts.each_with_index do |post, index| %>
       <tr>
@@ -24,11 +22,9 @@ No Results found!!
         <td><%= post.area %></td>
         <td></td>
         <td><%= post.address %></td>
-       
       </tr>
     <% end %>
   </tbody>
 </table>
 <%end%>
-
 <%= will_paginate @posts %>

@@ -33,7 +33,7 @@
           </li>
           <li>
             To <span><%= text_field_tag :end_date, params[:end_date],:class => "date", :readonly => true %></span>
-          </li>  
+          </li>
         </ul>
         <div class="status">
           <%#= f.select :status, options_for_select(%w[Active Inactive]) %>
@@ -57,7 +57,7 @@
       <div class="new-add-post"><%= link_to '+Add Post', new_post_path %> </div>
       <% @posts.each_with_index do |post, index| %>
         <div class="booking-box-add">
-          <div class="booking-col">       
+          <div class="booking-col">
             <p style="width:70px;"><%= post.address rescue nil%> <%= post.street_add rescue nil%> <%= post.apt rescue nil%> <%= post.city rescue nil%> <%= post.state rescue nil%> <%= post.zip_code rescue nil%></p>
             <p><span> Bookings received </span>: <%= post.bookings.pluck(:id).count%> </p>
           </div>

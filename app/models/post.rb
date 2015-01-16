@@ -49,6 +49,10 @@ class Post < ActiveRecord::Base
     where("LOWER(status) like ?", "%#{q}%")
   end
 
+  def self.get_post(p)
+    page(p).order("id desc").per_page(4)
+  end
+
   def self.result(start_date,end_date)
     where("date(created_at) >= ? and date(created_at) <= ? ",start_date, end_date)
   end

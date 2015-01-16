@@ -16,14 +16,6 @@ class Message < ActiveRecord::Base
         self.user_ids = ids.split(",")
     end
 
-      def subject_name(sub)
-      if sub["Re"]
-      	return sub
-      else
-      	return "Re:" + sub
-      end
-    end
-
     def msg(id)
       message_id = id
     end
