@@ -9,11 +9,8 @@
     <li class="active"><%= link_to "Payment", payments_path%></li>
     <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
     </ul>
-    
     <div class="right-side">
-    	
-        
-        <div class="payment-wrap">
+    	<div class="payment-wrap">
             <% @bookings.each do |booking|%>
             <% if booking.refund_finder.nil? && (booking.name == "transfered") && (current_user == booking.user) %>
             <% elsif (current_user == booking.poster)  && (booking.name == "created") %>
@@ -28,20 +25,16 @@
                         <%= post_link(booking) %>
                     </p>
                 </div>
-                
                 <div class="pay-col pay-col1">
                     <% if booking.user_id == current_user.id %>
-
                 	   <span>To/From</span>: <%= booking.poster_name.capitalize rescue nil %> <%= booking.poster_last_name[0,1] rescue nil%>
                     <% else %>
                         <span>To/From</span>: <%= booking.user_name.capitalize rescue nil %> <%= booking.user_last_name[0,1] rescue nil%>
                     <% end %>
                 </div>
-                
                 <div class="pay-col pay-col1">
                 	<span>Date of transaction</span>: <%= booking.transaction_date.strftime("%m/%d/%Y")%>
                 </div>
-                
                 <div class="pay-col pay-col1">
                     <% if booking.user_id == current_user.id %>
                       <span>Amount</span>: $ <%= send_by_user(booking) %>
