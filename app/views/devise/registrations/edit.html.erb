@@ -16,57 +16,39 @@
    <div class="new_login4">
                  <div class="f1">
 
+       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {:class=>"change_password", method: :put }) do |f| %>
+          <% if resource.errors.present? %>
 
-                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {:class=>"change_password", method: :put }) do |f| %>
-                 
-                 
-                 <% if resource.errors.present? %> 
-                    
                     <% resource.errors.full_messages.each do |message| %>
                     <p style="color: #fd0000;font-size: 14px; margin-left: 12px;"><%= message %></p>
                     <% end %>
-                      
+
                   <% end %>
 
                 <fieldset class="textbox">
-                     
+
               <label class="username">
                <%= f.password_field :current_password, autocomplete: "off",:id=>"password1", :placeholder=>"Old password" %>
 
                 </label>
-                
+
                 <label class="username">
                <%= f.password_field :password, autocomplete: "off",:id=>"password2", :placeholder=>"New password" %>
 
                 </label>
-                
+
                 <label class="username">
              <%= f.password_field :password_confirmation, autocomplete: "off",:id=>"password3", :placeholder=>"Confirm password"  %>
-         
+
                 </label>
-                
+
                 </fieldset>
                 <%= f.submit "Change password",:class=>"button-new5"%>
                   <% end %>
-     
-             </div> 
+
+             </div>
           </div>
-        </div> 
+        </div>
     </div>
 
 
-
-
-           
-
-
-
-<!-- <h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p> -->
-
-<%#= link_to "Back", :back %>
-
-<%#if request.path == '/personal_information'%>
-
-<%#end%>
