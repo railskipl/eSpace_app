@@ -61,13 +61,13 @@
             <p style="width:70px;"><%= post.address rescue nil%> <%= post.street_add rescue nil%> <%= post.apt rescue nil%> <%= post.city rescue nil%> <%= post.state rescue nil%> <%= post.zip_code rescue nil%></p>
             <p><span> Bookings received </span>: <%= post.bookings.pluck(:id).count%> </p>
           </div>
-          <div class="booking-col1"> 
+          <div class="booking-col1">
             <span>Total area</span> : <%= post.area.to_i %> sq. ft
             <% @a =[] %>
             <% post.bookings.pluck(:area).each do |area|%>
               <% @a << area%>
             <%end%>
-          
+
             <p>
               <span>Booking area</span> : <%= @a.present? ? @a.inject{|sum,x| sum + x } : 0 %>sq. ft
             </p>
@@ -75,11 +75,11 @@
               <span>Price/sq. ft</span> : $<%= post.price_sq_ft %>
             </p>
           </div>
-          <div class="booking-col1"> 
+          <div class="booking-col1">
             <p>
-              <span>Booked drop-off</span> 
+              <span>Booked drop-off</span>
               <label class="tasks-list-item1">
-                <% if post.drop_off == true %> 
+                <% if post.drop_off == true %>
                   <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
                 <% else %>
                   <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled">
@@ -88,7 +88,7 @@
               </label>
             </p>
             <p>
-              <span>Booked Pick-up</span> 
+              <span>Booked Pick-up</span>
               <label class="tasks-list-item1">
                 <% if post.pick_up == true %>
                   <input type="checkbox" class="tasks-list-cb" value="1" name="task_3" disabled="disabled" checked="checked">
@@ -102,12 +102,12 @@
           <div class="booking-col1">
             <span>Status</span>  : <% if post.status == true %> Active <% else %> Deactive <% end %>
             <br>
-            <span>Post date</span>  : <%= post.created_at.strftime("%d-%m-%Y") %> 
+            <span>Post date</span>  : <%= post.created_at.strftime("%d-%m-%Y") %>
             <p>
             <span><%= link_to "Edit Post", edit_post_path(post) %> </span>
             </p>
 
-          </div>        
+          </div>
         </div>
       <% end %>
       <span class="center_align"> <%= will_paginate @posts %> </span>

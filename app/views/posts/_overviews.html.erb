@@ -12,91 +12,69 @@
     <div class="new_box">
           <a onmouseout="hover.out(<%= index+x %>)" onmouseover="hover.over(<%= index+x %>)" href="<%= post_path(post) %>" id="m<%= post.id %>">
                   <div class="img1">
-              
-                    <div class="1" style="float:left; margin-right:10px;"> 
+
+                    <div class="1" style="float:left; margin-right:10px;">
                         <% if post.photo.url(:thumb) == "/photos/thumb/missing.png" %>
                             <%= image_tag "default_post_small.png", :style=>"margin-top:4px;" %>
                         <% else %>
                             <%= image_tag(post.photo.url(:thumb), :style=>"margin-top:4px;") %>
                        <% end %>
-                     
+
                     </div>
                     <div class="circle"><p>$<%= post.price_sq_ft %></p></div>
                   </div>
-        
-        
-            
 
-                 <div class="name-title"> 
+
+                 <div class="name-title">
                   <% if current_user.id != post.user_id %>
-                    <%= post.user_name.capitalize rescue nil %> <%= post.user_last_name[0,1] rescue nil %> 
+                    <%= post.user_name.capitalize rescue nil %> <%= post.user_last_name[0,1] rescue nil %>
                   <% else %>
                     <span>&nbsp;</span>
                   <% end %>
-          <span style="font-size:10px; color:#999;"> 
+          <span style="font-size:10px; color:#999;">
             <% if current_user.provider.present? &&  post.user_provider.present? && post.user_id != current_user.id %>(<%= mutual_friend_list(post.user_id) rescue nil%> mutual friends)
             <% end %>
           </span>
-           <div class="month"> <%= post.drop_off_avaibility_start_date.strftime("%B %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%B %e") %> 
-                <% if post.drop_off == true %> 
+           <div class="month"> <%= post.drop_off_avaibility_start_date.strftime("%B %e") %> -  <%= post.drop_off_avaibility_end_date.strftime("%B %e") %>
+                <% if post.drop_off == true %>
                   <p title="Drop off ride availabe ($<%= post.price_include_drop_off.to_i %>)" class="tooltip_new">
                     <span title="More"><img src="/assets/right.png"></span>
-                  </p> 
-                <% else %>  
+                  </p>
+                <% else %>
                   <p title="Drop off ride unavailable" class="tooltip_new">
                     <span title="More"><img src="/assets/close1.png"></span>
-                  </p> 
+                  </p>
                 <% end %>
             </div>
 
             <div class="month"  style="margin-top:12px;"> <%= post.pick_up_avaibilty_start_date.strftime("%B %e") %> -  <%= post.pick_up_avaibility_end_date.strftime("%B %e") %>
-              <% if post.pick_up == true %> 
+              <% if post.pick_up == true %>
                   <p title="Pick-up ride availabe ($<%= post.price_include_pick_up.to_i %>)" class="tooltip_new">
                     <span title="More"><img src="/assets/right.png"></span>
-                  </p> 
-                <% else %>  
+                  </p>
+                <% else %>
                   <p title="Pick-up ride unavailable" class="tooltip_new">
                     <span title="More"><img src="/assets/close1.png"></span>
-                  </p> 
+                  </p>
                 <% end %><br/><br/>
-                
-                <div class="new-line-add" style="width:300px;"><%= post.area_available.to_i %> sq. ft. available - <%= post.additional_comments[0..40] %></div>              
+
+                <div class="new-line-add" style="width:300px;"><%= post.area_available.to_i %> sq. ft. available - <%= post.additional_comments[0..40] %></div>
             </div>
-         
+
             <div class="name-title" style="margin:-20px 0 0 175px;"> <%= params[:search] ?  params[:search][:miles].present? && params[:search][:address].present? ? "#{post.distance.round(2)} miles" : '' : '' %> </div>
             <div class="address-new">  <%= post.address %> <%= post.apt %>
             <%= post.city%> <%= post.state%> <%= post.zip_code%>
             </div>
-            <div class="btn_b1" style="margin-left:324px; margin-top:-16px"> 
+            <div class="btn_b1" style="margin-left:324px; margin-top:-16px">
               <div id="cf">
                   <img class="bottom" src="/assets/b2.png" />
                   <img class="top" src="/assets/b1.png" />
               </div>
             </div>
-             
+
          </div>
 
         </a>
       </div>
 
     <% end %>
-
-
-
-
-
-
-
-
-  
-            
-        
-
-                  
-
-
-
-                
-
-         
-
