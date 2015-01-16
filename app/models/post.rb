@@ -45,9 +45,9 @@ class Post < ActiveRecord::Base
     [city, state, zip_code].compact.join(', ')
   end
 
-  def self.get_status(q)
-    where("LOWER(status) like ?", "%#{q}%")
-  end
+  # def self.get_status(q)
+  #   where("LOWER(status) like ?", "%#{q}%")
+  # end
 
   def self.get_post(p)
     page(p).order("id desc").per_page(4)

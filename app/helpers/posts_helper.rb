@@ -2,11 +2,11 @@ module PostsHelper
 
 require 'open-uri'
 
- def current_user_token(user)
-    @user_fb_token = current_user.oauth_token
-    @users = User.find_by_id(user)
-    @users.oauth_token
- end
+ # def current_user_token(user)
+ #    @user_fb_token = current_user.oauth_token
+ #    @users = User.find_by_id(user)
+ #    @users.oauth_token
+ # end
 
   # This method send the request to facebookGraph Api & gives the mutual friend count.
   def mutual_friend_list(user_id)
