@@ -49,22 +49,8 @@ class BookingsController < ApplicationController
 
       dropoff_date = params[:booking][:dropoff_date].to_date rescue nil
       pickup_date = params[:booking][:pickup_date].to_date rescue nil
+      price = (params[:totalPrice].to_i)/100
 
-      booking = {}
-      booking["stripe_customer_token"] = params[:stripeToken]
-      booking["price"] = (params[:totalPrice].to_i)/100
-      booking["post_id"] = params[:booking][:post_id]
-      booking["user_id"] = current_user.id
-      booking["poster_id"] = params[:booking][:poster_id]
-      booking["email"] = params[:stripeEmail]
-      booking["area"] = params[:area]
-      booking["dropoff_date"] = dropoff_date
-      booking["dropoff_price"] = params[:dropoff_price]
-      booking["pickup_date"] = pickup_date
-      booking["pickup_price"] = params[:pickup_price]
-
-
-      @booking = Booking.new(booking)
       @amount = (params[:totalPrice]).to_f
 
         begin
@@ -84,7 +70,7 @@ class BookingsController < ApplicationController
           charge = Stripe::Charge.create(
             :customer    => customer.id,
             :amount      => @amount,
-            :description => "Charge for #{params[:stripeEmail]}, Booking of price #{booking["price"]}.",
+            :description => "Charge for #{params[:stripeEmail]}, Booking of price #{price}.",
             :currency    => 'usd'
           )
 
@@ -93,13 +79,12 @@ class BookingsController < ApplicationController
 
         if charge[:id] && charge[:captured] == true
 
-          @booking.stripe_customer_token = charge[:created]
-          @booking.stripe_charge_id = charge[:id]
-          @booking.stripe_customer_id = customer.id
-          @booking.save
-          Post.substract_area(@booking)
-          PaymentHistory.create(:name => "created", :booking_id => @booking.id)
-          BookedMailer.booked_a_spaces(@booking).deliver
+
+          booking = Booking.create(:stripe_customer_token => charge[:created], :price => price, :post_id => params[:booking][:post_id], :user_id => current_user.id, :poster_id => params[:booking][:poster_id], :email => params[:stripeEmail], :area => params[:area], :dropoff_date => dropoff_date, :dropoff_price => params[:dropoff_price], :pickup_date => pickup_date, :pickup_price => params[:pickup_price], :stripe_charge_id => charge[:id], :stripe_customer_id => customer.id)
+
+          Post.substract_area(booking)
+          PaymentHistory.create(:name => "created", :booking_id => booking.id)
+          BookedMailer.booked_a_spaces(booking).deliver
 
           redirect_to bookings_path, :notice => "Thank you"
 
