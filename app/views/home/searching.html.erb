@@ -27,20 +27,19 @@ To Date :
   <%#= select_tag(:created, options_for_select(['All', 'Monthly', 'Weekly', 'Daily'], :selected=>params[:created])) %>
 
   						
-  <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %> 
+  <%= submit_tag "Search", :class => "btn btn-primary contact-form"  %>
   <%end%>
 
   	<% unless @adminusers.blank? %>
 	  	<div  style="text-align:right;margin-left:10px;">
-	          <a href="<%= search_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a> 
+	          <a href="<%= search_path(params.merge(format: "xls")) %>" class="btn btn-secondary"><img src="/assets/excel.png" alt=""> Excel</a>
 	          <a href="<%= search_path(params.merge(format: "pdf"))  %>" class="btn btn-secondary" target="_blank"><i class="icon"><img src="/assets/pdf.png" alt=""></i> PDF</a><br><br>
 	   </div>
   	
  	<%end%>
 
-   
     <div>
-		<%= link_to "Add new User",new_user_users_path%> 
+		<%= link_to "Add new User",new_user_users_path%>
 	</div> </br>
 
 
@@ -72,11 +71,11 @@ To Date :
 <%else%>
   <td>NO</td>
 <%end%>
-<td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %> | 
+<td><%= link_to format_boolean(adminuser.status?), {:controller => 'users', :action => 'toggled_status', :id => adminuser.id} %> |
   <%= link_to "Show", admin_path(adminuser.id) %> | <%= link_to "Delete", admin_path(adminuser.id), :method=> :delete, data: { confirm: 'Are you sure?' } %>
 </td>
 </tr>
-<%end%> 
+<%end%>
 </table>
 
 <%= will_paginate @adminusers rescue nil %>
