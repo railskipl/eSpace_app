@@ -37,21 +37,21 @@ class HomeController < ApplicationController
 
       q = params[:q].downcase
 
-      @adminusers = User.where("admin =?",false).order('created_at DESC')
-      @adminusers = @adminusers.where("LOWER(name) like ? or LOWER(last_name) like ? or LOWER(email) like ?", "%#{q}%", "%#{q}%", "%#{q}%") if q.present?
+      adminusers = User.get_users(q)
+      # adminusers = adminusers.where("", "%#{q}%", "%#{q}%", "%#{q}%") if q.present?
 
-      @start_date = "#{params['start_date']}"
-      @end_date ="#{params['end_date']}"
+      start_date = "#{params['start_date']}"
+      end_date ="#{params['end_date']}"
 
-      if @start_date > @end_date
+      if start_date > end_date
         flash[:error] = "Start Date Cannot Be Greater"
         @adminusers = []
         return false
       else
-        @adminusers = @adminusers.where("date(created_at) >= ? and date(created_at) <= ? ",@start_date, @end_date) if @start_date.present? && @end_date.present?
+        adminusers = adminusers.where("date(created_at) >= ? and date(created_at) <= ? ",start_date, end_date) if start_date.present? && end_date.present?
       end
 
-        @adminusers= @adminusers.page(params[:page]).per_page(50)
+        @adminusers= adminusers.page(params[:page]).per_page(50)
 
 
         respond_to do |format|

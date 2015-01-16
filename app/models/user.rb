@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     self.update_column(:status,self.status)
   end
 
+  def self.get_users(q)
+    where("(LOWER(name) like ? or LOWER(last_name) like ? or LOWER(email) like ?) and admin =?","%#{q}%", "%#{q}%", "%#{q}%",false).order('created_at DESC')
+  end
+
   def self.get_disputes
     joins(:disputes).select("users.*,disputes.amount as amt,disputes.status as transaction_status").where("disputes.status != ?","refund")
   end
