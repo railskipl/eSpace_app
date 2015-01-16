@@ -119,9 +119,7 @@
                             <div class="post-bg-row">
                               <div class="post-bg-row-col1">
                                 <span class="font13">Price per sq. foot<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
-                                <p>
-                                This is the price the renters will see.A small commission will be deducted 
-                                before the money is sent to you. <%= link_to "Learn more", frequently_asked_question_path, :style=>"color:#b0b9c0", :target=>"_blank" %>
+                                <p>This is the price the renters will see.A small commission will be deducted before the money is sent to you.<%= link_to "Learn more", frequently_asked_question_path, :style=>"color:#b0b9c0", :target=>"_blank" %>
                                 </p>
                               </div>
                                 <div class="post-bg-row-col2 right-align">
@@ -172,7 +170,7 @@
                                   <% else %>
                                    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Activate Post', toggle_post_path(post.id), :class=>"post-btn",:style=>"padding: 10px 25px;" %>
                                   <% end %>
-                                  &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"post-btn",:style=>"padding: 10px 25px;" %> 
+                                  &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"post-btn",:style=>"padding: 10px 25px;" %>
                                 <% end %>
                                 </p>
                             </div>

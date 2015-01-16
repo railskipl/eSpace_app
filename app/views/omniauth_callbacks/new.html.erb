@@ -1,6 +1,3 @@
-
-
-
 <script>
 
 	function validateForm() {
@@ -8,9 +5,7 @@
 	var err = 0;
 
 	var userinput = $('#personal_email').val();
-
-	
-	<% @access_ids.each_with_index do |access_id, index| %>
+    <% @access_ids.each_with_index do |access_id, index| %>
 	var domain<%= index %> = '<%= access_id.email %>';
 	<% end %>
 	
@@ -48,17 +43,14 @@
 			}
 		<% end %>
 	<% end %>
-	else 
-	{ 
+	else
+	{
 		$('#personal_email').parent().parent().find('.form-error').html("Please enter valid email address.");
 	    err++;
 	}
-
 	if(err == 0){
-
         var email = document.getElementById("personal_email").value;
-
-			// Returns successful data submission 
+			// Returns successful data submission
 			var dataString = 'email='+ email;
 
 			 $.ajax({
@@ -88,36 +80,24 @@
    				
      			 },
 					
-				});    
-      	return false;      
+				});	
+      	return false;
     }else{
-            
             return false;
     }
-
 }
 </script>
-
-
-
-
 <div class="boxpop-up-login">
 	<% unless user_signed_in? %>
-
-    <div class="heading-login mrleft75" >Enter college ID</div>
-
-    <div class="mrtop50"></div>
-    <%= form_tag url_for(:controller => 'omniauth_callbacks', :action => 'create'), :method => 'post', :id=>"checkEmail", :onsubmit => "return validateForm()" do |f| %>
-
-    <div class="login-popup"> 
-      <%= text_field_tag :personal_email %>
-      <div class="form-error"></div>
-    </div>
-   
-        
-    <div style="text-align:center">
-    	<%= submit_tag "Submit", :class=>"loginnew-btn" %>
-      
+	    <div class="heading-login mrleft75" >Enter college ID</div>
+	    <div class="mrtop50"></div>
+	    <%= form_tag url_for(:controller => 'omniauth_callbacks', :action => 'create'), :method => 'post', :id=>"checkEmail", :onsubmit => "return validateForm()" do |f| %>
+	    <div class="login-popup">
+	      <%= text_field_tag :personal_email %>
+	      <div class="form-error"></div>
+	    </div>
+	    <div style="text-align:center">
+	    	<%= submit_tag "Submit", :class=>"loginnew-btn" %>
     </div>
     <% end %>
    <% end %>
