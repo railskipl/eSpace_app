@@ -70,7 +70,6 @@ Rails.application.routes.draw do
 
 
    delete '/users/:id/delete', :to => "users#destroy" , :as => 'delete_user'
-   
    get '/users/:id/status', :to => "users#toggled_status"
    get '/about-us', :to => "about_us#about"
 
