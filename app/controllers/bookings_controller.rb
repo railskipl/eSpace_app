@@ -53,51 +53,47 @@ class BookingsController < ApplicationController
 
       @amount = (params[:totalPrice]).to_f
 
-        begin
-          customer = Stripe::Customer.create(
-            :email => params[:stripeEmail],
-            :card  => params[:stripeToken],
-            :description => "Customer #{params[:stripeEmail]}"
-          )
-        rescue Stripe::InvalidRequestError => e
-          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
-          return false
-        end
+      begin
+        customer = Stripe::Customer.create(
+          :email => params[:stripeEmail],
+          :card  => params[:stripeToken],
+          :description => "Customer #{params[:stripeEmail]}"
+        )
+      rescue Stripe::InvalidRequestError => e
+        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
+        return false
+      end
 
-        if is_number?(@amount.to_f)
-            @amount = ((@amount.to_f)).to_i
-
-          charge = Stripe::Charge.create(
+      if is_number?(@amount.to_f)
+        @amount = ((@amount.to_f)).to_i
+        charge = Stripe::Charge.create(
             :customer    => customer.id,
             :amount      => @amount,
             :description => "Charge for #{params[:stripeEmail]}, Booking of price #{price}.",
             :currency    => 'usd'
           )
+      end
 
-        end
-
-
-        if charge[:id] && charge[:captured] == true
-
-
-          booking = Booking.create(:stripe_customer_token => charge[:created], :price => price, :post_id => params[:booking][:post_id], :user_id => current_user.id, :poster_id => params[:booking][:poster_id], :email => params[:stripeEmail], :area => params[:area], :dropoff_date => dropoff_date, :dropoff_price => params[:dropoff_price], :pickup_date => pickup_date, :pickup_price => params[:pickup_price], :stripe_charge_id => charge[:id], :stripe_customer_id => customer.id)
-
-          Post.substract_area(booking)
-          PaymentHistory.create(:name => "created", :booking_id => booking.id)
-          BookedMailer.booked_a_spaces(booking).deliver
-
-          redirect_to bookings_path, :notice => "Thank you"
-
-        else
-          render :new
-          flash[:notice] = "Something went wrong,please try again. "
-        end
+      if charge[:id] && charge[:captured] == true
+        booking = Booking.create(:stripe_customer_token => charge[:created], :price => price,
+                                 :post_id => params[:booking][:post_id],:user_id => current_user.id,
+                                 :poster_id => params[:booking][:poster_id], :email => params[:stripeEmail],
+                                 :area => params[:area], :dropoff_date => dropoff_date,
+                                 :dropoff_price => params[:dropoff_price], :pickup_date => pickup_date,
+                                 :pickup_price => params[:pickup_price], :stripe_charge_id => charge[:id],
+                                 :stripe_customer_id => customer.id)
+        Post.substract_area(booking)
+        PaymentHistory.create(:name => "created", :booking_id => booking.id)
+        BookedMailer.booked_a_spaces(booking).deliver
+        redirect_to bookings_path, :notice => "Thank you"
+      else
+        render :new
+        flash[:notice] = "Something went wrong,please try again. "
+      end
     else
         flash[:notice] = "Session expired."
         redirect_to :back
     end
-
-
 	end
 
 
@@ -108,92 +104,19 @@ class BookingsController < ApplicationController
   #this method cancel's the booking done by finder & does the cancel_booking_deduction
   # according to criteria.
   def cancel_booking
-
     @booking = Booking.find(params[:id])
-    price = @booking.price
-
-    stripe_charge_id = @booking.stripe_charge_id
-    days_diff =  days_diff(params[:drop_off_date].to_date)
-
-    if price <= GlobalConstants::BOOKING_AMOUNT
-      amount = cancel_booking_by_finder_less8(days_diff, price)
-      refund_addition = amount * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1
-      amount_cents = ((amount)*GlobalConstants::CENTS).to_i
-      send_money = (price.to_f - GlobalConstants::ADMIN_COMISSION) - amount
-      send_money_cents = ((send_money)*GlobalConstants::CENTS).to_i
+    data = Booking.booking_cancel_finder(@booking,params[:drop_off_date].to_date)
+    if data.class == Stripe::InvalidRequestError
+      redirect_to :back, :notice => "Stripe error: #{data.message}"
     else
-      amount = cancel_booking_deduction(days_diff, price)
-      amount_cents = ((amount)*GlobalConstants::CENTS).to_i
-      refund_addition = amount * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1
-      send_money = send_money_to_poster(days_diff, price)
-      send_money_cents = ((send_money)*GlobalConstants::CENTS).to_i
-    end
-
-    begin
-      ch = Stripe::Charge.retrieve(stripe_charge_id)
-      refund = ch.refunds.create(:amount => amount_cents)
-      cancel_booking = @booking.update_columns(is_cancel: true)
-    rescue Stripe::InvalidRequestError => e
-      redirect_to :back, :notice => "Stripe error: #{e.message}"
-      return false
-    end
-
-    @recipient_details = BankDetail.where("user_id =?", @booking.poster_id).first
-
-    if @recipient_details.present?
-
-      if price <= GlobalConstants::BOOKING_AMOUNT
-        commission = (price.to_i - (price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2)) - (send_money + GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT) - (amount - refund_addition)
-      else
-        stripe_processing_fees = price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2 - refund_addition
-        commission = send_money_to_admin(days_diff, price) - stripe_processing_fees
-      end
-
-      begin
-        transfer = Stripe::Transfer.create(
-        :amount => send_money_cents, # amount in cents
-        :currency => "usd",
-        :recipient => @recipient_details.stripe_recipient_token,
-        :card => @recipient_details.stripe_card_id_token,
-        :statement_description => "Money transfer"
-      )
-       rescue Stripe::InvalidRequestError => e
-          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
-          return false
-       end
-
-       transfer_payment = @booking.update_columns(cut_off_price: send_money)
-       transfer_payment = @booking.update_columns(commission: commission)
-
-    else
-
-      if price <= GlobalConstants::BOOKING_AMOUNT
-        commission = (price.to_i - (price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2)) - (send_money + GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT) - (amount - refund_addition) + send_money
-      else
-       stripe_processing_fees = price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2 - refund_addition
-       commission = send_money + send_money_to_admin(days_diff, price) - stripe_processing_fees - GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT
-      end
-
-       transfer_payment = @booking.update_columns(commission: commission)
-       transfer_payment = @booking.update_columns(comment: "Waiting for poster bank account.")
-    end
-
-      message_params = {}
-      message_params["sender_id"] = @booking.user_id
-      message_params["recipient_id"] = @booking.poster_id
-      message_params["body"] = "Booking is cancel"
-      message = Message.new(message_params)
-      message.save
-
-      transfer_payment = @booking.update_columns(refund_finder: amount)
-
+      Message.create(:sender_id =>  @booking.user_id, :recipient_id => @booking.poster_id,
+                     :post_id => @booking.post_id,:body => "Booking is cancel")
+      transfer_payment = @booking.update_columns(refund_finder: data)
       Post.add_area(@booking)
       PaymentHistory.create(:name => "cancel", :booking_id => @booking.id)
-
-    flash[:notice] = "Booking is cancel & $#{amount} is refunded"
-
-    redirect_to booking_path(@booking.id)
-
+      flash[:notice] = "Booking is cancel & $#{data} is refunded"
+      redirect_to booking_path(@booking.id)
+    end
   end
 
 

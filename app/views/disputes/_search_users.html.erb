@@ -23,9 +23,9 @@
 		<td><%= user.last_name %></td>
 		<td><%= user.amt if user.transaction_status == "send" %></td>
 		<td><%= user.amt if user.transaction_status == "charge" %></td>
-		<td><%= user.transaction_status == "charge" ? (user.amt*0.029+0.30).round(4) : 0.25 %></td>
-		<td><%= user.amt + 0.25 if user.transaction_status == "send" %></td>
-		<td><%= user.amt - (user.amt*0.029+0.30).round(4) if user.transaction_status == "charge"  %></td>
+		<td><%= user.transaction_status == "charge" ? (user.amt*GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1+ GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2).round(4) : GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT %></td>
+		<td><%= user.amt + GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT if user.transaction_status == "send" %></td>
+		<td><%= user.amt - (user.amt*GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1+ GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2).round(4) if user.transaction_status == "charge"  %></td>
 	</tr>
 
 	<% end %>
