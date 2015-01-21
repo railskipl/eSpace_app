@@ -68,7 +68,6 @@ class Booking < ActiveRecord::Base
 	      Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id,
 	      				 :post_id => booking.post_id,:body => "Booking is cancel")
 
-
 	end
 
 	def self.search_booking(search)
