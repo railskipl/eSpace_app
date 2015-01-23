@@ -8,7 +8,7 @@ class Faq < ActiveRecord::Base
       if @faqss.present?
          @faqs = @faqss
       else
-        faq_question = FaqQuestion.where('question LIKE ? OR answer LIKE ?',search_condition, search_condition )
+        faq_question = FaqQuestion.where('LOWER(question) LIKE ? OR LOWER(answer) LIKE ?',search_condition, search_condition )
         @a = []
         faq_question.pluck(:faq_id).each do |fa|
           @a << fa
