@@ -5,7 +5,7 @@
 	  :domain => "imap.gmail.com",
 	  :authentication => :login,
 	  :user_name => "rubyrails9@gmail.com",
-	  :password => "utmeter!@#"
+	  :password => "1234567890"
   }
 
 
