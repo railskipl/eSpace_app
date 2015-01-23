@@ -12,7 +12,16 @@ class HomeController < ApplicationController
   end
 
   def contactus
+    if request.post? and params[:contactus]
 
+      subject = params[:contactus][:subject]
+      message = params[:contactus][:message]
+      contact = [subject, message]
+      ContactusMailer.contactus(contact).deliver
+      
+      flash[:notice] = "Thank You for contacting us."
+      redirect_to root_path
+    end
   end
 
   def all_postings

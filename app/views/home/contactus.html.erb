@@ -11,7 +11,7 @@
             <li><%=  link_to "FAQs",frequently_asked_question_path%></li>
             </ul>
       <div class="sizenew" style="width:320px; height:400px; margin-left:450px;">
-              <%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'create'},:html => {:id => "contactus"} do |f| %>
+              <%= form_for :contactus, :url=>{:controller=>'home',:action=>'contactus'},:html => {:id => "contactus"} do |f| %>
 
 
                <div class="topics">

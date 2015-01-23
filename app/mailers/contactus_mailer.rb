@@ -7,8 +7,8 @@ class ContactusMailer < ActionMailer::Base
   #   en.contactus_mailer.contactus.subject
   #
 
-def contactus(contactus)
-@contactus = contactus
+def contactus(contact)
+@contactus = contact
 subject = "Contactus"
 	mail(:subject => 'Contactus', :to => "help@dinobo.com")
 end

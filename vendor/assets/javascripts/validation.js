@@ -144,6 +144,36 @@ jQuery("#user").validate({
 });
 
 
+jQuery("#session").validate({
+	errorElement:'div',
+	rules: {
+		"user[email]":{
+			required:true,
+	        email: true
+			
+		},
+		"user[password]":{
+			required:true
+		},
+		"task_3":{
+			required:true
+		}
+	},
+	messages: {
+
+		"user[email]":{
+			required: "Please enter email address"
+		},
+		"user[password]":{
+			required: "Please enter password"
+		},
+		"task_3":{ 
+			required:"Please accept term and condition" 
+		}
+	}
+});
+
+
 jQuery("#edit_user").validate({
 	errorElement:'div',
 	rules: {

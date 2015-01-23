@@ -2393,7 +2393,6 @@ form.change_password .textbox input {
   width:215px;
   margin-left: 12px;
   font-family:brandon4;
-  /*position:absolute;*/
   
 }
  .new_login4
@@ -2482,6 +2481,7 @@ form.change_password .textbox input {
     margin-top: 26px;
     padding: 10px 10px 8px;
     width: 292px;
+    cursor: pointer;
 }
 
 .help {

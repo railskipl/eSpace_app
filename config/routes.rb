@@ -80,7 +80,7 @@ Rails.application.routes.draw do
    match 'search_by_date' => "bookings#search_by_date", via: [:get, :post]
    resources :contactus
    # resources :home
-   get 'home/contactus',:to => "home#contactus"
+   match 'home/contactus',:to => "home#contactus", via: [:get, :post]
    get 'home/about_us',:to => "home#about_us"
    get '/home/all_postings', :to => "home#all_postings"
    get  'search'  => "home#searching"
