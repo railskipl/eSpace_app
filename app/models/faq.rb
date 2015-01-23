@@ -4,7 +4,7 @@ class Faq < ActiveRecord::Base
 	accepts_nested_attributes_for :faq_questions, allow_destroy: true
 
 	def self.faq_search(search_condition)
-	  @faqss = Faq.where('title LIKE ? ',search_condition)
+	  @faqss = Faq.where('LOWER(title) LIKE ? ',search_condition)
       if @faqss.present?
          @faqs = @faqss
       else

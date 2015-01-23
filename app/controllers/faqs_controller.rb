@@ -43,7 +43,7 @@ class FaqsController < ApplicationController
 
   def frequently_asked_question
     if params[:search].present?
-      search_condition = "%" + params[:search] + "%"
+      search_condition = "%" + params[:search].downcase + "%"
       @faqs = Faq.faq_search(search_condition)
     else
       @faqs = Faq.includes(:faq_questions)
