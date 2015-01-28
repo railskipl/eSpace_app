@@ -2,7 +2,7 @@
 <%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'create'}, :html => {:id => "contactus"} do |f| %>
 <div>
 <%= f.label :Subject %><br />	
-<%= f.text_field :subject%>
+<%= f.text_field :subject, :maxlength => 100 %>
 </div>
 <%= f.submit "Add", :class => "btn btn-primary contact-form"%>
 <% end %>
