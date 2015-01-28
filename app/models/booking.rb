@@ -5,8 +5,6 @@ class Booking < ActiveRecord::Base
 	include CancelBooking
 	has_many :disputes, :dependent => :destroy
 	has_many :payment_histories, :dependent => :destroy
-	scope :booking_cancelled, -> {where(is_cancel: true)}
-
 	delegate :name, :last_name, :email, :to => :user, :prefix => true
 	delegate :name, :last_name, :email, :provider,:user_id ,:to => :poster, :prefix => true
 	delegate :address, :street_add, :apt, :city, :state, :zip_code, :area,:additional_comments, :user_id,
@@ -18,6 +16,10 @@ class Booking < ActiveRecord::Base
 	# end
 	def self.get_payments(current_user,page_no)
 	  includes(:poster, :user).joins(:payment_histories).select_data.fetch_data(current_user).pagination(page_no)
+	end
+
+	def self.hide_cancelled(user_id)
+	  where("user_id = ? AND is_cancel = ?", user_id, false)
 	end
 
 	def self.get_bookings(user,value)

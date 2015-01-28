@@ -42,7 +42,7 @@ class Post < ActiveRecord::Base
   end
 
   def poster_address
-    [city, state, zip_code].compact.join(', ')
+    [address, city, state].compact.join(', ')
   end
 
   # def self.get_status(q)
