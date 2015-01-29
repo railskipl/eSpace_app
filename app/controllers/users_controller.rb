@@ -82,7 +82,12 @@ end
 
 private
   def person_params
-    params.require(:user).permit(:name,:last_name,:personal_email,:mobile_number,:email,:password,:password_confirmation,:admin,:status,:provider,:uid,:mobile_number,:mobile_no,:admin_user_id,:notification,:notification_for_email,:notification_for_personal_email)
+    if current_user.admin?
+      params.require(:user).permit(:name,:last_name,:personal_email,:mobile_number,:email,:password,:password_confirmation,:admin,:status,:provider,:uid,:mobile_number,:mobile_no,:admin_user_id,:notification,:notification_for_email,:notification_for_personal_email)
+    else
+      params.require(:user).permit(:name,:last_name,:personal_email,:mobile_number,:email,:password,:password_confirmation, :status,:provider,:uid,:mobile_number,:mobile_no,:admin_user_id,:notification,:notification_for_email,:notification_for_personal_email)
+    end
+    
   end
 
   def correct_user
