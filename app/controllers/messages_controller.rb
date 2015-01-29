@@ -103,7 +103,7 @@ class MessagesController < ApplicationController
        end
 
        unless @messages_receiver.empty?
-        @@mr = @messages_receiver.last.id
+        @@mr ||= @messages_receiver.last.id
        end
 
        render layout: false
