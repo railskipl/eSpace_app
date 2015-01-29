@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150108110207) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "about_us", force: true do |t|
     t.string   "name"
     t.text     "content"
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 20150108110207) do
     t.string   "stripe_card_id_token"
     t.string   "stripe_recipient_token"
     t.string   "card_number"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,26 +50,26 @@ ActiveRecord::Schema.define(version: 20150108110207) do
     t.string   "stripe_charge_id"
     t.string   "stripe_transfer_id"
     t.string   "status"
-    t.float    "price",                 limit: 24
+    t.float    "price"
     t.integer  "post_id"
     t.integer  "user_id"
     t.integer  "poster_id"
     t.string   "email"
     t.date     "dropoff_date"
-    t.float    "dropoff_price",         limit: 24
+    t.float    "dropoff_price"
     t.date     "pickup_date"
-    t.float    "pickup_price",          limit: 24
-    t.float    "cut_off_price",         limit: 24
-    t.boolean  "is_cancel",                        default: false
+    t.float    "pickup_price"
+    t.float    "cut_off_price"
+    t.boolean  "is_cancel",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "area"
-    t.boolean  "is_confirm",                       default: false
-    t.float    "commission",            limit: 24
+    t.boolean  "is_confirm",            default: false
+    t.float    "commission"
     t.text     "comment"
-    t.float    "refund_finder",         limit: 24
+    t.float    "refund_finder"
     t.string   "stripe_customer_id"
-    t.boolean  "on_hold",                          default: false
+    t.boolean  "on_hold",               default: false
   end
 
   add_index "bookings", ["post_id"], name: "index_bookings_on_post_id", using: :btree
@@ -108,7 +111,7 @@ ActiveRecord::Schema.define(version: 20150108110207) do
   add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
 
   create_table "disputes", force: true do |t|
-    t.float    "amount",     limit: 24
+    t.float    "amount"
     t.string   "status"
     t.integer  "booking_id"
     t.integer  "user_id"
@@ -157,15 +160,6 @@ ActiveRecord::Schema.define(version: 20150108110207) do
   add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
-  create_table "pages", force: true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.string   "meta_title"
-    t.text     "meta_description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "payment_histories", force: true do |t|
     t.string   "name"
     t.integer  "booking_id"
@@ -176,21 +170,21 @@ ActiveRecord::Schema.define(version: 20150108110207) do
   add_index "payment_histories", ["booking_id"], name: "index_payment_histories_on_booking_id", using: :btree
 
   create_table "posts", force: true do |t|
-    t.float    "area",                           limit: 24
-    t.float    "price_sq_ft",                    limit: 24
-    t.boolean  "pick_up",                                   default: false
-    t.boolean  "drop_off",                                  default: false
-    t.float    "price_include_pick_up",          limit: 24
-    t.float    "price_include_drop_off",         limit: 24
+    t.float    "area"
+    t.float    "price_sq_ft"
+    t.boolean  "pick_up",                        default: false
+    t.boolean  "drop_off",                       default: false
+    t.float    "price_include_pick_up"
+    t.float    "price_include_drop_off"
     t.date     "pick_up_avaibilty_start_date"
     t.date     "pick_up_avaibility_end_date"
     t.date     "drop_off_avaibility_start_date"
     t.date     "drop_off_avaibility_end_date"
-    t.boolean  "status",                                    default: true
+    t.boolean  "status",                         default: true
     t.text     "additional_comments"
     t.text     "address"
-    t.float    "latitude",                       limit: 24
-    t.float    "longitude",                      limit: 24
+    t.float    "latitude"
+    t.float    "longitude"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -198,21 +192,21 @@ ActiveRecord::Schema.define(version: 20150108110207) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.boolean  "archive",                                   default: false
-    t.boolean  "featured",                                  default: false
+    t.boolean  "archive",                        default: false
+    t.boolean  "featured",                       default: false
     t.string   "miles"
     t.text     "street_add"
     t.string   "apt"
     t.string   "city"
     t.string   "state"
     t.string   "zip_code"
-    t.float    "area_available",                 limit: 24, default: 0.0
+    t.float    "area_available",                 default: 0.0
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "ratings", force: true do |t|
-    t.decimal  "value",      precision: 10, scale: 0
+    t.decimal  "value"
     t.integer  "vote_count"
     t.integer  "item_id"
     t.string   "item_type"

@@ -24,7 +24,7 @@ class Post < ActiveRecord::Base
 
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-  delegate :id, :name, :email,:last_name,:provider ,:to => :user, :prefix => true
+  delegate  :name, :email,:last_name,:provider ,:to => :user, :prefix => true
 
   before_create :set_area_available
 
