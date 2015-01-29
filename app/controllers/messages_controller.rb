@@ -98,13 +98,28 @@ class MessagesController < ApplicationController
        @total_message = @messages_sender + @messages_receiver
        @total_messages =  @total_message.sort_by { |k| k["id"] }
 
+
        unless @messages_sender.empty?
-        @@ms ||= @messages_sender.last.id
+        @@ms = @messages_sender.last.id
        end
 
        unless @messages_receiver.empty?
-        @@mr ||= @messages_receiver.last.id
+        @@mr = @messages_receiver.last.id
        end
+
+       if !@messages_sender.empty? and !@messages_receiver.empty?
+          @@ms = @messages_sender.last.id
+          @@mr = @messages_receiver.last.id
+
+          if @@ms > @@mr
+            @@mr = @@ms
+          else
+            @@ms = @@mr
+          end
+
+       end
+
+       
 
        render layout: false
 
