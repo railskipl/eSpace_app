@@ -1,7 +1,7 @@
 	jQuery(document).ready(function() {
 		
 		jQuery('#submit_msg').click(function() {
-			
+
 			var text_title = this.form.message_body.value;
 			if(text_title.trim() != ''){
 				$("#reply_message").submit();
@@ -24,6 +24,7 @@
 	        	$("#reply_message").submit();
 	        	$("#message_body").val('');	
 	        	$(".content").mCustomScrollbar("scrollTo", "bottom");
+	        	jQuery('input[type="button"]').removeClass('msg_active');
 	            return true;
 	         }
 		   } 
