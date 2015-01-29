@@ -13,8 +13,8 @@ $('.masterTooltip').hover(function(){
         $(this).attr('title', $(this).data('tipText'));
         $('.tooltip').remove();
 }).mousemove(function(e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
+        var mousex = e.pageX + 15; //Get X coordinates
+        var mousey = e.pageY + -18; //Get Y coordinates
         $('.tooltip')
         .css({ top: mousey, left: mousex })
 });
