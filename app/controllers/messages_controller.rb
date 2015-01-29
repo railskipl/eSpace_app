@@ -106,21 +106,7 @@ class MessagesController < ApplicationController
        unless @messages_receiver.empty?
         @@mr = @messages_receiver.last.id
        end
-
-       if !@messages_sender.empty? and !@messages_receiver.empty?
-          @@ms = @messages_sender.last.id
-          @@mr = @messages_receiver.last.id
-
-          if @@ms > @@mr
-            @@mr = @@ms
-          else
-            @@ms = @@mr
-          end
-
-       end
-
        
-
        render layout: false
 
     else
