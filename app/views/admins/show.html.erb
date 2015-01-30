@@ -12,6 +12,9 @@
 	<th>Personal Email</th> <td><%= @user.personal_email %></td>
 </tr>
 <tr>
+	<th>Mobile Number</th> <td><%= @user.mobile_no %></td>
+</tr>
+<tr>
 	<th>A/C Creation Date</th> <td><%= @user.created_at.to_date rescue nil%></td>
 </tr>
 <tr>
@@ -20,5 +23,7 @@
 <tr>
 	<th>Last Login IP</th> <td><%= @user.last_sign_in_ip%></td>
 </tr>
+>
+
 
 </table>
