@@ -14,7 +14,7 @@
 
   <div class="field">
       <%= f.label :email, "Domain" %>
-      xyz@<%= f.text_field :email, placeholder:"usc.edu" %>
+      xyz@<%= f.text_field :email, placeholder:"usc.edu", :maxlength => 100 %>
   </div>
 
   <div class="actions">
