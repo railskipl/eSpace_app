@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts 'SETTING UP DEFAULT USER LOGIN'
+User.reset_column_information
 admin = User.new(:email => 'admin@admin.com', :password => 'admin123', :password_confirmation => 'admin123', :admin => 'true')
 admin.skip_confirmation!
 admin.save!
