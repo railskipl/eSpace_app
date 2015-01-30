@@ -64,3 +64,8 @@ gem 'rest-client'
 gem 'traceroute'
 
 gem 'brakeman', :require => false,  group: :development
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+end
