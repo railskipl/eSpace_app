@@ -35,34 +35,25 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   config.after_initialize do
-  Bullet.enable = true
-  Bullet.alert = true
-  Bullet.bullet_logger = true
-  Bullet.console = true
-  # Bullet.growl = true
-  # Bullet.xmpp = { :account  => 'bullets_account@jabber.org',
-  #                 :password => 'bullets_password_for_jabber',
-  #                 :receiver => 'your_account@jabber.org',
-  #                 :show_online_status => true }
-  Bullet.rails_logger = true
-  # Bullet.bugsnag = true
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    # Bullet.growl = true
+    # Bullet.xmpp = { :account  => 'bullets_account@jabber.org',
+    #                 :password => 'bullets_password_for_jabber',
+    #                 :receiver => 'your_account@jabber.org',
+    #                 :show_online_status => true }
+    Bullet.rails_logger = true
+    # Bullet.bugsnag = true
 
-  Bullet.add_footer = true
+    Bullet.add_footer = true
 
-end
+  end
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-config.action_mailer.default_url_options = {:host => 'localhost:3000' }
- config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-:enable_starttls_auto => true,
-:address => "smtp.gmail.com",
-:port => 587,
-:domain => "imap.gmail.com",
-:authentication => :login,
-:user_name => "rubyrails9@gmail.com",
-:password => "kunalinfotechkipl"
-}
+  config.action_mailer.default_url_options = {:host => 'lvh.me:3000' }
+  config.action_mailer.delivery_method = :letter_opener
 end

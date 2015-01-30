@@ -18,7 +18,7 @@ class HomeController < ApplicationController
       message = params[:contactus][:message]
       contact = [subject, message]
       ContactusMailer.contactus(contact).deliver
-      
+
       flash[:notice] = "Thank You for contacting us."
       redirect_to root_path
     end

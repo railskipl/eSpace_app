@@ -63,7 +63,11 @@ gem 'rest-client'
 
 gem 'traceroute'
 
-gem 'brakeman', :require => false,  group: :development
+group :development do
+  gem 'brakeman', :require => false
+  gem 'letter_opener'
+end
+
 
 group :development, :test do
   gem 'rspec-rails'
@@ -72,5 +76,8 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-email'
+  gem 'database_cleaner'
   gem 'poltergeist'
+  gem 'selenium-webdriver'
 end
