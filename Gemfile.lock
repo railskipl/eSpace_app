@@ -72,6 +72,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-email (2.4.0)
+      capybara (~> 2.4)
+      mail
+    childprocess (0.5.5)
+      ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cliver (0.3.2)
@@ -84,6 +89,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    database_cleaner (1.3.0)
     devise (3.4.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -97,6 +103,7 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
+    ffi (1.9.6)
     geocoder (1.2.5)
     haml (4.0.6)
       tilt
@@ -116,6 +123,10 @@ GEM
       addressable
       faraday
       multi_json
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.3.0)
+      launchy (~> 2.2)
     libv8 (3.16.14.7)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -215,6 +226,7 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
+    rubyzip (1.1.6)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -224,6 +236,11 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    selenium-webdriver (2.44.0)
+      childprocess (~> 0.5)
+      multi_json (~> 1.0)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     sexp_processor (4.4.4)
     slim (2.1.0)
       temple (~> 0.6.9)
@@ -267,6 +284,7 @@ GEM
     uniform_notifier (1.6.2)
     warden (1.2.3)
       rack (>= 1.0)
+    websocket (1.2.1)
     websocket-driver (0.4.0)
     wicked_pdf (0.11.0)
       rails
@@ -287,13 +305,16 @@ DEPENDENCIES
   brakeman
   bullet
   capybara
+  capybara-email
   coffee-rails (~> 4.0.0)
+  database_cleaner
   devise
   execjs
   geocoder
   jbuilder (~> 2.0)
   jquery-rails
   koala (~> 1.10.0rc)
+  letter_opener
   oauth2
   omniauth
   omniauth-facebook
@@ -307,6 +328,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  selenium-webdriver
   spring
   spring-commands-rspec
   stripe
