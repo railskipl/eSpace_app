@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
  before_filter :authenticate_user!, :only => [ :edit, :update, :destroy, :show , :order_received, :new_user, :toggled_status]
- before_filter :correct_user, :only => [:new_user, :toggled_status]
+ before_filter :correct_user, :only => [:toggled_status]
 
  # helper_method :resource, :resource_name, :devise_mapping
 
