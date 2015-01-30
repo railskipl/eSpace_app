@@ -1541,63 +1541,57 @@ background-color:#072643;
 	 
 	   
 	   }
+
 	.ami{
-	width:370px;
-	height:120px;
-	margin:auto;
-	margin-top:25px;
+		width:370px;
+		height:120px;
+		margin:auto;
+		margin-top:25px;
 	}
 	.ami1 {
-	color:#FFF;
-	font-size:14px;
-	font-family:brandon4;
-	margin-left:20px;	
-		
-		}
+		color:#FFF;
+		font-size:14px;
+		font-family:brandon4;
+		margin-left:20px;	
+	}
+
 	.sed
 	{
-	color:#cbcaca;
-	font-size:10px;
-	font-family:brandon2;
-	
-	padding:0 18px 0 12px;
+		color:#cbcaca;
+		font-size:10px;
+		font-family:brandon2;
+		padding:0 18px 0 12px;
+		z-index:-22222222222;	
+	}
 
-	z-index:-22222222222;	
-		
-		}
 	.sed2
 	{
-	color:#cbcaca;
-	font-size:10px;
-	font-family:brandon4;
-	text-align:justify;
-	padding:0 18px 0 18px;
-
-	z-index:-22222222222;	
-		
-		}
+		color:#cbcaca;
+		font-size:10px;
+		font-family:brandon4;
+		text-align:justify;
+		padding:0 18px 0 18px;
+		word-wrap: break-word;
+		z-index:-22222222222;	
+	}
 
 	.line{width:220px; height:2px; background-color:#efefef; margin-left:10px;}
+
 	.sed_h{
-	color:#11b9ff;
-	font-size:11px;
-	font-family:brandon4;
-	
-	padding: 0 0 0 10px;
-	
-		
-		
-		
-		}
-.grey_img{
-	width:256px;
-	height:45px;
-	margin-top:505px;
-	z-index:546546546554654;
-	
+		color:#11b9ff;
+		font-size:11px;
+		font-family:brandon4;
+		padding: 0 0 0 10px;
 	}
+
+.grey_img{
+		width:256px;
+		height:45px;
+		margin-top:505px;
+		z-index:546546546554654;
+	}
+
 .sms_btn:hover{
-	
 	font-size:9px;
 	color:#ffffff;
 	background-color:#00b4ff;
