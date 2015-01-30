@@ -69,3 +69,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
 end
+
+group :test do
+  gem 'capybara'
+end
