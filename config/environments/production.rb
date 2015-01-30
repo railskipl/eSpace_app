@@ -93,9 +93,9 @@ Rails.application.configure do
     domain: "imap.gmail.com",
     authentication: :login,
     user_name: "rubyrails9@gmail.com",
-    # both passwords don't seem to work
+    password: "1234567890"
+    # password doesn't seem to work as well as the below one
     # password: "kunalinfotechkipl"
-    # password: "1234567890"
   }
 
 end
