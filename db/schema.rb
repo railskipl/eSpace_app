@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150108110207) do
     t.string   "stripe_card_id_token"
     t.string   "stripe_recipient_token"
     t.string   "card_number"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -156,15 +156,6 @@ ActiveRecord::Schema.define(version: 20150108110207) do
   add_index "messages", ["post_id"], name: "index_messages_on_post_id", using: :btree
   add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
-
-  create_table "pages", force: true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.string   "meta_title"
-    t.text     "meta_description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "payment_histories", force: true do |t|
     t.string   "name"
