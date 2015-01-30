@@ -56,7 +56,7 @@ var ddaccordion={
 
 		function handlecontent(content){ //nested function
 			if (content){ //if ajax content has loaded
-				ajaxinfo.cacheddata=content //remember ajax content 
+				ajaxinfo.cacheddata=content //remember ajax content
 				ajaxinfo.status="cached" //set ajax status to cached
 				if ($targetContent.queue("fx").length==0){ //if this content isn't currently expanding or collapsing
 					$targetContent.hide().html(content) //hide loading message, then set sub content's HTML to ajax content
@@ -144,7 +144,7 @@ var ddaccordion={
 		return result //returns null, [index], or [index1,index2,etc], where index are the desired selected header indices
 	},
 
-	getCookie:function(Name){ 
+	getCookie:function(Name){
 		var re=new RegExp(Name+"=[^;]+", "i") //construct RE to search for target name/value pair
 		if (document.cookie.match(re)) //if cookie found
 			return document.cookie.match(re)[0].split("=")[1] //return its value

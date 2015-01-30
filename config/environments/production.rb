@@ -85,4 +85,17 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = {:host => 'http://store-finding-system.herokuapp.com' }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    enable_starttls_auto: true,
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "imap.gmail.com",
+    authentication: :login,
+    user_name: "rubyrails9@gmail.com",
+    password: "1234567890"
+    # password doesn't seem to work as well as the below one
+    # password: "kunalinfotechkipl"
+  }
+
 end
