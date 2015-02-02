@@ -24,8 +24,7 @@ jQuery("#admin_create_user").validate({
 		minlength:6
 	},
 	"user[password_confirmation]":{
-		required:true,
-		equalTo: "#user_password"
+		required:true
 	}
 },
 messages: {
@@ -37,7 +36,8 @@ messages: {
 		required: "Please enter Last Name"
 	},
 	"user[email]":{
-		required: "Please enter Email"
+		required: "Please enter Email",
+		remote: "Email already exists"
 	},
 	"user[password]":{
 		required: "Please enter Password"

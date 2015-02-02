@@ -56,8 +56,8 @@ CreditCard.create(:email => email, :stripe_customer_id => customer.id, :user_id 
 
   def destroy
 
-    # cu = Stripe::Customer.retrieve(@credit_card.stripe_customer_id)
-    # cu.delete
+    cu = Stripe::Customer.retrieve(@credit_card.stripe_customer_id)
+    cu.delete
 
     @credit_card.destroy
 

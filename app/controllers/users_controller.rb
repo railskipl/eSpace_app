@@ -100,6 +100,8 @@ private
     case action_name
       when "new_user"
         "admin"
+      when "create_user"
+        "admin"
       else
         "application"
       end
