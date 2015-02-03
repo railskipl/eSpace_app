@@ -37,7 +37,7 @@ messages: {
 	},
 	"user[email]":{
 		required: "Please enter Email",
-		remote: "Email already exists"
+		email: "Please enter valid email id"
 	},
 	"user[password]":{
 		required: "Please enter Password"
