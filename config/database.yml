@@ -7,11 +7,11 @@ default: &default
 
 development:
   <<: *default
-  database: ezyrent_development
+  database: college_app_development
 
 test:
   <<: *default
-  database: ezyrent_test
+  database: college_app_test
 
 production:
   url: <%= ENV['DATABASE_URL'] %>
