@@ -144,7 +144,7 @@
                 </div>
            </div>
             <div class="square_btn">
-              <%= f.submit "Book", :class => "book", :id=>"customButton", :disabled=> true %>
+              <%= f.submit "Book", :class => "book", :id=>"customButton" %>
               <div class="total"> Total <strong style="margin-left:10px;" id="total"> </strong></div>
             </div>
                <input type="hidden" name="dropoff_price" id="dropoff_price" value=""/>
@@ -153,25 +153,29 @@
 
                <script>
                jQuery('#customButton').click(function(){
-                 var token = function(res){
-                 var $input = $('<input type=hidden name=stripeToken />').val(res.id);
-                 var $input2 = $('<input type=hidden name=stripeEmail />').val(res.email);
-                 $('form').append($input, $input2).submit();
-               };
 
-               StripeCheckout.open({
-               key:         'pk_test_17xmTuMVQ5oVgcT0AWY6XcNo',
-               address:     false,
-               amount:      document.getElementById('totalPrice').value,
-               currency:    'usd',
-               image:       '/assets/dinobo_stripe.jpg',
-               name:        'Dinobo',
-               description: '<%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %> ( $'+ document.getElementById('totalPrice').value / 100+ ')' ,
-               panelLabel:  'Checkout',
-               token:       token
-               });
+                  if (jQuery("#booking").valid()) {
+                    var token = function(res){
+                       var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+                       var $input2 = $('<input type=hidden name=stripeEmail />').val(res.email);
+                       $('form').append($input, $input2).submit();
+                    };
 
-               return false;
+                     StripeCheckout.open({
+                     key:         'pk_test_17xmTuMVQ5oVgcT0AWY6XcNo',
+                     address:     false,
+                     amount:      document.getElementById('totalPrice').value,
+                     currency:    'usd',
+                     image:       '/assets/dinobo_stripe.jpg',
+                     name:        'Dinobo',
+                     description: '<%= @post.user_name.capitalize rescue nil%> <%= @post.user_last_name[0,1] rescue nil %> ( $'+ document.getElementById('totalPrice').value / 100+ ')' ,
+                     panelLabel:  'Checkout',
+                     token:       token
+                     });
+
+                     return false;
+                  }
+
                });
                </script>
 

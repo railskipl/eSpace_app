@@ -450,6 +450,9 @@ jQuery("#booking").validate({
         },
         "booking[dropoff_date]":{
 	        required:true
+        },
+        "booking[pickup_date]":{
+	        required:true
         }
 
 	},
@@ -458,11 +461,14 @@ jQuery("#booking").validate({
 		"area":{
 	        required: "Please enter area",
 	        min: "Please enter area greater than or equal to 4 sq. ft"
-        }
-        ,
+        },
         "booking[dropoff_date]":{
 	        required:''
+        },
+        "booking[pickup_date]":{
+	        required:''
         }
+
        }
 	// }, // initialize the plugin
 	// errorPlacement: function () {
