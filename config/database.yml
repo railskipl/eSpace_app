@@ -7,7 +7,7 @@ default: &default
 
 development:
   <<: *default
-  database: ezyrent_development
+  database: college_app_development
 
 
 # Warning: The database defined as "test" will be erased and
@@ -15,7 +15,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ezyrent_test
+  database: college_app_test
 
 production:
   url: <%= ENV['DATABASE_URL'] %>
