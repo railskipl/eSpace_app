@@ -6,177 +6,175 @@
 .field-list li.small input { width: 128px; }
 </style>
 <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation", "create_post.js" %>
-    <div class="main-new">
-            <ul class="verticle-menu">
-              <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
-              <li><%= link_to "Change Password", edit_user_registration_path %></li>
-              <li><%= link_to "Bank Details",bank_details_path %></li>
-              <li class="active"><%= link_to "My Post",posts_path%></li>
-              <li><%= link_to "My Order/Received",order_receives_path%></li>
-              <li><%= link_to "My Booking", bookings_path%></li>
-              <li><%= link_to "Payment", payments_path%></li>
-              <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
-            </ul>
-            <div class="right-side">
-              <%= form_for(post, :html=>{ id: "new_post"}) do |f| %>
-                <div class="post-bg" style="margin-left: -1px;">
-                      <% if post.errors.any? %>
-                      <% post.errors.full_messages.each do |message| %>
-                        <p style="color: #fd0000;font-size: 12px;"><%= message %></p><br/>
-                      <% end %>
-                      <% end %>
-                      <div class="post-bg-left">
-                            <div class="post-bg-row">
-                              <div class="post-bg-row-col1">
-                                <span class="font13">Area available
-                                <span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
-                                </span>
-                                <p>
-                                How to estimate :</br>
-                                4 feet x 5 feet = 20 sq. feet
-                                </p>
-                              </div>
-                            <div class="post-bg-row-col2 right-align">
-                                <%= f.text_field :area , :class=>"post-bg-input",:tabindex => 1%>
-                                <p>
-                                sq. ft.
-                                </p>
-                              </div>
-                            </div>
-                            <div class="post-bg-row">
-                              <div class="post-bg-row-col3" >
-                                When can they drop off goods at your place ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
-                                <ul class="post-date">
-                                  <li><label tabindex=3>From</label>
-                                    <%= f.text_field :drop_off_avaibility_start_date, :autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%>
-                                  </li>
-                                  <li><label tabindex=4>To</label>
-                                    <%= f.text_field :drop_off_avaibility_end_date,
-                                    :autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="post-bg-row">
-                              <div class="post-bg-row-col3">
-                                Can you help transport the stuff in your car ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
-                                <ul class="check-box">
-                            <li>
-                                <label class="tasks-list-item">
-                                <%= f.check_box :drop_off, :class=>"tasks-list-cb",:onclick=>"enable_text(this.checked)"%>
-                                <!-- <input type="checkbox" id="post_drop_off" name="post[drop_off]" value="1" class="tasks-list-cb"  onclick="enable_text(this.checked)"> -->
-                                <%#= f.check_box :drop_off, :class => "tasks-list-cb" %>
-                                <span class="tasks-list-mark" tabindex="7"></span>
-                                <span class="tasks-list-desc">Drop-off</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="tasks-list-item">
-                                <%= f.check_box :pick_up, :class=>"tasks-list-cb",:onclick=>"enable_text(this.checked)"%>
-                                <!-- <input type="checkbox" id="post_pick_up" name="post[pick_up]" value="1" class="tasks-list-cb"  onclick="enable_text(this.checked)"> -->
-                                <%#= f.check_box :pick_up, :class => "tasks-list-cb" %>
-                                <span class="tasks-list-mark" tabindex="9"></span>
-                                <span class="tasks-list-desc">Pick-up</span>
-                                </label>
-                            </li>
-                                </ul>
-                              </div>
-                                <div class="post-bg-row-col4">
-                                <ul class="post-date post-price">
-                                <li <% if post.drop_off == true %> <% else %>  <% end %> ><label>Price</label><span>$</span>
-                                  <%= f.text_field :price_include_drop_off,:style=>"text-align: right;" ,:disabled => true,:tabindex => 8%>
-                                </li>
-                                <li <% if post.pick_up == true %> <% else %>  <% end %>><label>Price</label><span>$</span>
-                                  <%= f.text_field :price_include_pick_up,:style=>"text-align: right;" ,:disabled => true,:tabindex => 10 %>
-                                </li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="post-bg-row">
-                            <ul class="field-list">
-                            <li><label>Address
-                             <span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
-                            </label></li>
-                            <li><label>Street address</label>
-                              <%= f.text_field :address,"maxlength"=>"30", :class => "small",:tabindex => 12 %>
-                            </li>
-                            <li class="small"><label>Apt # <span style="color:#78838e; font-size:10px">Optional</span></label>
-                              <%= f.text_field :apt,"maxlength"=>"10", :class => "small",:tabindex => 13 %>
-                            </li>
-                            <li><label>City</label>
-                              <%= f.text_field :city, "maxlength"=>"20",:class => "small",:tabindex => 14 %>
-                            </li>
-                            <li class="small"><label>State</label>
-                              <%= f.text_field :state, "maxlength"=>"2",:class => "small",:tabindex => 15 %>
-                            </li>
-                            <li class="small"><label>Zip code</label>
-                              <%= f.text_field :zip_code, "maxlength"=>"5",:class => "small",:tabindex => 16 %>
-                            </li>
-                            </ul>
-                            </div>
-                        </div>
-                      <div class="post-bg-right">
-                            <div class="post-bg-row">
-                              <div class="post-bg-row-col1">
-                                <span class="font13">Price per sq. foot<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
-                                <p>This is the price the renters will see.A small commission will be deducted before the money is sent to you.<%= link_to "Learn more", frequently_asked_question_path, :style=>"color:#b0b9c0", :target=>"_blank" %>
-                                </p>
-                              </div>
-                                <div class="post-bg-row-col2 right-align">
-                                <%= f.text_field :price_sq_ft,:class=>"post-bg-input",:tabindex => 2 %>
-                                <p>
-                                sq. ft.
-                                </p>
-                              </div>
-                            </div>
-                            <div class="post-bg-row" style="margin-bottom:18px; margin-top: -10px;">
-                              <div class="post-bg-row-col3">
-                               When can they pick up the goods ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
-                                <ul class="post-date">
-                                <li><label tabindex=5>From</label><%= f.text_field :pick_up_avaibilty_start_date,
-                                :autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></li>
-                                <li><label tabindex=6>To</label><%= f.text_field :pick_up_avaibility_end_date,
-                                :autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="post-bg-row rel" style="margin-bottom:30px">
-                              <span class="file-input btn-file">
-                                Upload Photo <%= f.file_field :photo,{:tabindex => 11} %>
-                              </span>
-                                <div class="photo">
-                                  <% if post.photo.exists? %>
-                                    <%= image_tag post.photo.url(:thumb) %>
-                                  <% elsif params[:action] == "new" %>
-                                  <div id="target">
-                                  </div>
-                                  <% end %>
-                                  <!-- <a href="#">Delete</a> -->
-                                </div>
-                            </div>
-                            <%= f.hidden_field :user_id, :value=> current_user.id %>
-                            <div class="post-bg-row">
-                              Comments<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
-                                <p>
-                                <%= f.text_area :additional_comments,:rows => "5", :class => "comment-area" , "maxlength"=>"300",:placeholder => "Apartment will be accessible all summer",:tabindex => 17%>
-                                </p>
-                                <p>
-                                <%= f.submit "Submit",:class=>"submit-btn",:style=>"margin: 37px 0 0; padding: 8px 30px;",:tabindex => 18 %>&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                                <p style="margin: 39px 0 0 -26px; color: #899199; font-size: 10px; line-height: 11px;">
-                                  <% if post.id %>
-                                  <% if post.status == true %>
-                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Deactive Post', toggle_post_path(post.id), :class=>"post-btn",:style=>"padding: 10px 25px;"%>
-                                  <% else %>
-                                   &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Activate Post', toggle_post_path(post.id), :class=>"post-btn",:style=>"padding: 10px 25px;" %>
-                                  <% end %>
-                                  &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"post-btn",:style=>"padding: 10px 25px;" %>
-                                <% end %>
-                                </p>
-                            </div>
-                        </div>
-                      <%end%>
+  <div class="main-new">
+    <ul class="verticle-menu">
+      <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
+      <li><%= link_to "Change Password", edit_user_registration_path %></li>
+      <li><%= link_to "Bank Details",bank_details_path %></li>
+      <li class="active"><%= link_to "My Post",posts_path%></li>
+      <li><%= link_to "My Order/Received",order_receives_path%></li>
+      <li><%= link_to "My Booking", bookings_path%></li>
+      <li><%= link_to "Payment", payments_path%></li>
+      <li><%= link_to "Message", {:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil %></li>
+    </ul>
+    <div class="right-side">
+      <%= form_for(post, :html=>{ id: "new_post"}) do |f| %>
+        <div class="post-bg" style="margin-left: -1px;">
+              <% if post.errors.any? %>
+              <% post.errors.full_messages.each do |message| %>
+                <p style="color: #fd0000;font-size: 12px;"><%= message %></p><br/>
+              <% end %>
+              <% end %>
+              <div class="post-bg-left">
+                    <div class="post-bg-row">
+                      <div class="post-bg-row-col1">
+                        <span class="font13">Area available
+                        <span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
+                        </span>
+                        <p>
+                        How to estimate :</br>
+                        4 feet x 5 feet = 20 sq. feet
+                        </p>
+                      </div>
+                    <div class="post-bg-row-col2 right-align">
+                        <%= f.text_field :area , :class=>"post-bg-input",:tabindex => 1%>
+                        <p>
+                        sq. ft.
+                        </p>
+                      </div>
                     </div>
-           </div>
-        </div>
- 
+                    <div class="post-bg-row">
+                      <div class="post-bg-row-col3" >
+                        When can they drop off goods at your place ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
+                        <ul class="post-date">
+                          <li><label tabindex=3>From</label>
+                            <%= f.text_field :drop_off_avaibility_start_date, :autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%>
+                          </li>
+                          <li><label tabindex=4>To</label>
+                            <%= f.text_field :drop_off_avaibility_end_date,
+                            :autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="post-bg-row">
+                      <div class="post-bg-row-col3">
+                        Can you help transport the stuff in your car ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
+                        <ul class="check-box">
+                    <li>
+                        <label class="tasks-list-item">
+                        <%= f.check_box :drop_off, :class=>"tasks-list-cb",:onclick=>"enable_text(this.checked)"%>
+                        <!-- <input type="checkbox" id="post_drop_off" name="post[drop_off]" value="1" class="tasks-list-cb"  onclick="enable_text(this.checked)"> -->
+                        <%#= f.check_box :drop_off, :class => "tasks-list-cb" %>
+                        <span class="tasks-list-mark" tabindex="7"></span>
+                        <span class="tasks-list-desc">Drop-off</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="tasks-list-item">
+                        <%= f.check_box :pick_up, :class=>"tasks-list-cb",:onclick=>"enable_text(this.checked)"%>
+                        <!-- <input type="checkbox" id="post_pick_up" name="post[pick_up]" value="1" class="tasks-list-cb"  onclick="enable_text(this.checked)"> -->
+                        <%#= f.check_box :pick_up, :class => "tasks-list-cb" %>
+                        <span class="tasks-list-mark" tabindex="9"></span>
+                        <span class="tasks-list-desc">Pick-up</span>
+                        </label>
+                    </li>
+                        </ul>
+                      </div>
+                        <div class="post-bg-row-col4">
+                        <ul class="post-date post-price">
+                        <li <% if post.drop_off == true %> <% else %>  <% end %> ><label>Price</label><span>$</span>
+                          <%= f.text_field :price_include_drop_off,:style=>"text-align: right;" ,:disabled => true,:tabindex => 8%>
+                        </li>
+                        <li <% if post.pick_up == true %> <% else %>  <% end %>><label>Price</label><span>$</span>
+                          <%= f.text_field :price_include_pick_up,:style=>"text-align: right;" ,:disabled => true,:tabindex => 10 %>
+                        </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="post-bg-row">
+                    <ul class="field-list">
+                    <li><label>Address
+                     <span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
+                    </label></li>
+                    <li><label>Street address</label>
+                      <%= f.text_field :address,"maxlength"=>"30", :class => "small",:tabindex => 12 %>
+                    </li>
+                    <li class="small"><label>Apt # <span style="color:#78838e; font-size:10px">Optional</span></label>
+                      <%= f.text_field :apt,"maxlength"=>"10", :class => "small",:tabindex => 13 %>
+                    </li>
+                    <li><label>City</label>
+                      <%= f.text_field :city, "maxlength"=>"20",:class => "small",:tabindex => 14 %>
+                    </li>
+                    <li class="small"><label>State</label>
+                      <%= f.text_field :state, "maxlength"=>"2",:class => "small",:tabindex => 15 %>
+                    </li>
+                    <li class="small"><label>Zip code</label>
+                      <%= f.text_field :zip_code, "maxlength"=>"5",:class => "small",:tabindex => 16 %>
+                    </li>
+                    </ul>
+                    </div>
+                </div>
+              <div class="post-bg-right">
+                    <div class="post-bg-row">
+                      <div class="post-bg-row-col1">
+                        <span class="font13">Price per sq. foot<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
+                        <p>This is the price the renters will see.A small commission will be deducted before the money is sent to you.<%= link_to "Learn more", frequently_asked_question_path, :style=>"color:#b0b9c0", :target=>"_blank" %>
+                        </p>
+                      </div>
+                        <div class="post-bg-row-col2 right-align">
+                        <%= f.text_field :price_sq_ft,:class=>"post-bg-input",:tabindex => 2 %>
+                        <p>
+                        sq. ft.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="post-bg-row" style="margin-bottom:18px; margin-top: -10px;">
+                      <div class="post-bg-row-col3">
+                       When can they pick up the goods ?<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
+                        <ul class="post-date">
+                        <li><label tabindex=5>From</label><%= f.text_field :pick_up_avaibilty_start_date,
+                        :autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></li>
+                        <li><label tabindex=6>To</label><%= f.text_field :pick_up_avaibility_end_date,
+                        :autocomplete => :off,:readonly => true, :class => "date", :style => "padding: 3px;"%></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="post-bg-row rel" style="margin-bottom:30px">
+                      <span class="file-input btn-file">
+                        Upload Photo <%= f.file_field :photo,{:tabindex => 11} %>
+                      </span>
+                        <div class="photo">
+                          <% if post.photo.exists? %>
+                            <%= image_tag post.photo.url(:thumb) %>
+                          <% elsif params[:action] == "new" %>
+                          <div id="target">
+                          </div>
+                          <% end %>
+                          <!-- <a href="#">Delete</a> -->
+                        </div>
+                    </div>
+                    <div class="post-bg-row">
+                      Comments<span class="question"><a href="#" title="Lorem ipsum dolor si amet consecte" class="masterTooltip">?</a></span>
+                        <p>
+                        <%= f.text_area :additional_comments,:rows => "5", :class => "comment-area" , "maxlength"=>"300",:placeholder => "Apartment will be accessible all summer",:tabindex => 17%>
+                        </p>
+                        <p>
+                        <%= f.submit "Submit",:class=>"submit-btn",:style=>"margin: 37px 0 0; padding: 8px 30px;",:tabindex => 18 %>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </p>
+                        <p style="margin: 39px 0 0 -26px; color: #899199; font-size: 10px; line-height: 11px;">
+                          <% if post.id %>
+                          <% if post.status == true %>
+                           &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Deactive Post', toggle_post_path(post.id), :class=>"post-btn",:style=>"padding: 10px 25px;"%>
+                          <% else %>
+                           &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Activate Post', toggle_post_path(post.id), :class=>"post-btn",:style=>"padding: 10px 25px;" %>
+                          <% end %>
+                          &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'Delete Post', post_path(post.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"post-btn",:style=>"padding: 10px 25px;" %>
+                        <% end %>
+                        </p>
+                    </div>
+                </div>
+              <%end%>
+            </div>
+         </div>
+      </div>
