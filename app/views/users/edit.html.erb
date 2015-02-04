@@ -1,3 +1,4 @@
+<% if current_user.id == @user.id %>
 <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation" %>
 <div class="wrapper">
   <div class="main">
@@ -76,6 +77,10 @@
                 </div>
                 </div>
                 </div>
-  </div>
-  </div>
-</div>
+          </div>
+          </div>
+        </div>
+
+  <%else%>
+    <div class="auth_page">You are not authorized to this page </div>
+  <%end%>

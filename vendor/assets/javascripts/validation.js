@@ -463,10 +463,10 @@ jQuery("#booking").validate({
 	        min: "Please enter area greater than or equal to 4 sq. ft"
         },
         "booking[dropoff_date]":{
-	        required:''
+	        required:'Please select a drop-off date'
         },
         "booking[pickup_date]":{
-	        required:''
+	        required:'Please select a pick-up date'
         }
 
        }

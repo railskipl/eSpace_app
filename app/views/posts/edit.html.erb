@@ -1,5 +1,5 @@
 <% if current_user.id == @post.user_id%>
 <%= render 'form' ,:post => @post %>
 <%else%>
-"You are not authorized to edit this page"
+	<div class="auth_page">You are not authorized to edit this page </div>
 <%end%>
