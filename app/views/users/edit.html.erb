@@ -54,16 +54,16 @@
           <p style="margin: -25px 0px 0px; font-size: 16px; color: rgb(123, 123, 123); margin-top:155px;">Send notifications to:</p><br/>
          <div class="checkbox">
 
-          <% if current_user.email.present? %>
+          <% if @user.email.present? %>
              <%= f.check_box :notification_for_email %>
              <label style="margin:10px 0 0 -34px;" for="checkbox1">&nbsp;</label>
-             <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.email %></p><br/>
+             <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= @user.email %></p><br/>
           <% else %>
           <% end %>
-          <% if current_user.personal_email.present? %>
+          <% if @user.personal_email.present? %>
              <%= f.check_box :notification_for_personal_email %>
              <label style="margin:10px 0 0 -34px;" for="checkbox1">&nbsp;</label>
-             <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.personal_email %></p>
+             <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= @user.personal_email %></p>
           <% else %>
           <% end %>
          </div>
