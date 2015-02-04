@@ -7,10 +7,6 @@ class UsersController < ApplicationController
 layout :custom_layout
 respond_to :html, :xml, :json
 
-def index
- @users = User.all
-end
-
 def edit
  @user = User.find(params[:id])
  @users = User.all
@@ -35,7 +31,6 @@ def update
 end
 
 def new_user
-
 end
 
 def create_user
@@ -49,8 +44,6 @@ def create_user
     render :new_user
   end
 end
-
-
 
 def confirm
   @user = User.find_for_facebook_oauth(request.env["omniauth.auth"])
