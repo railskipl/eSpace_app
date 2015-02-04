@@ -1,4 +1,4 @@
-<%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js", "datepicker_post.js" %>
+
 <%= stylesheet_link_tag   "jquery.ui.core", "jquery.ui.theme", "jquery.ui.datepicker"%>
 
 <style>
@@ -6,6 +6,7 @@
 .field-list li.small input { width: 128px; }
 </style>
 <%= javascript_include_tag "jquery-1.7.0.min","jquery.validate.min","validation", "create_post.js" %>
+<%= javascript_include_tag "jquery.ui.core", "jquery.ui.datepicker.js", "datepicker_post.js","datepickervalidation"  %>
     <div class="main-new">
             <ul class="verticle-menu">
               <li><%= link_to "Personal Information", edit_user_path(current_user) %></li>
