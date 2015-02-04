@@ -72,6 +72,7 @@ class PayementTransfersController < ApplicationController
       # return false
     else
       @payment_transfers = Booking.where("date(created_at) >= ? and date(created_at) <= ? and on_hold = ?",@start_date, @end_date, false).order("id desc")
+      flash[:error] = nil
     end
         respond_to do |format|
         format.html
