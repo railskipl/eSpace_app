@@ -21,7 +21,7 @@
                 <div class="styleSelect" style="margin-top:12px;">
 
                 <%#= select_tag("search[miles]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:miles] if params[:search]}")) %>
-
+                <span style="background-color:#ffffff; color:#999;">
                 <%= f.select :miles, ((1..20).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:miles] if params[:search]}" %>
 
               </div>
@@ -34,8 +34,10 @@
               <div class="styleSelect" style="margin:-19px 20px 30px 245px;">
 
                 <%#= select_tag("search[price]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:price] if params[:search]}")) %>
+              <span style="background-color:#ffffff; color:#999;">
               <%= f.select :price, ((1..90).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:price] if params[:search]}" %>
-              <%#raise "hi"%>
+              </span>
+              
             </div>
 
       <!-------------box_2 end-------------------->
@@ -51,8 +53,9 @@
               <div class="styleSelect" style="margin:-50px 30px 20px 400px;">
 
                <%#= select_tag("search[area]", options_with_colors((1..200).map {|i| i }, "#{params[:search][:area] if params[:search]}")) %>
-
+            <span style="background-color:#ffffff; color:#999;">
               <%= f.select :area, ((1..90).map {|i| [i,i] }), :prompt => "", :selected => "#{params[:search][:area] if params[:search]}" %>
+            </span>
             </div>
 
 <!-------------box_3 end-------------------->

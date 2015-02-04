@@ -24,7 +24,7 @@ class Post < ActiveRecord::Base
 
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-  delegate :id, :name, :email,:last_name,:provider ,:to => :user, :prefix => true
+  delegate  :name, :email,:last_name,:provider ,:to => :user, :prefix => true
 
   before_create :set_area_available
 
@@ -42,7 +42,7 @@ class Post < ActiveRecord::Base
   end
 
   def poster_address
-    [city, state, zip_code].compact.join(', ')
+    [address, city, state].compact.join(', ')
   end
 
   # def self.get_status(q)
@@ -65,7 +65,7 @@ class Post < ActiveRecord::Base
   # Search result on browser page
   def self.search(search, page, sort)
     posts = Post
-    posts = posts.where("area <= ?", "#{search[:area]}") if search[:area].present?
+    posts = posts.where("area_available <= ?", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
 
     if sort.present?
@@ -88,7 +88,7 @@ class Post < ActiveRecord::Base
   def self.search_overview(search, page, sort)
 
     posts = Post
-    posts = posts.where("area <= ? ", "#{search[:area]}") if search[:area].present?
+    posts = posts.where("area_available <= ? ", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
 
     if sort.present?

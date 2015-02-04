@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
  before_filter :authenticate_user!, :only => [ :edit, :update, :destroy, :show , :order_received, :new_user, :toggled_status]
- before_filter :correct_user, :only => [:new_user, :toggled_status]
+ before_filter :correct_user, :only => [:toggled_status]
 
  # helper_method :resource, :resource_name, :devise_mapping
 
@@ -82,7 +82,12 @@ end
 
 private
   def person_params
-    params.require(:user).permit(:name,:last_name,:personal_email,:mobile_number,:email,:password,:password_confirmation,:admin,:status,:provider,:uid,:mobile_number,:mobile_no,:admin_user_id,:notification,:notification_for_email,:notification_for_personal_email)
+    if current_user.admin?
+      params.require(:user).permit(:name,:last_name,:personal_email,:mobile_number,:email,:password,:password_confirmation,:admin,:status,:provider,:uid,:mobile_number,:mobile_no,:admin_user_id,:notification,:notification_for_email,:notification_for_personal_email)
+    else
+      params.require(:user).permit(:name,:last_name,:personal_email,:mobile_number,:email,:password,:password_confirmation, :status,:provider,:uid,:mobile_number,:mobile_no,:admin_user_id,:notification,:notification_for_email,:notification_for_personal_email)
+    end
+    
   end
 
   def correct_user
@@ -94,6 +99,8 @@ private
   def custom_layout
     case action_name
       when "new_user"
+        "admin"
+      when "create_user"
         "admin"
       else
         "application"

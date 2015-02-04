@@ -1,8 +1,9 @@
-jQuery(document).ready(function() {
+	jQuery(document).ready(function() {
 		
 		jQuery('#submit_msg').click(function() {
+
 			var text_title = this.form.message_body.value;
-			if(text_title != ''){
+			if(text_title.trim() != ''){
 				$("#reply_message").submit();
 				$("#message_body").val('');
 				$(".content").mCustomScrollbar("scrollTo", "bottom");
@@ -15,7 +16,7 @@ jQuery(document).ready(function() {
         
         var text_title = this.form.message_body.value;
 	      
-		   if(text_title != ''){
+		   if(text_title.trim() != ''){
 
 		      jQuery('input[type="button"]').addClass('msg_active');
 
@@ -23,6 +24,7 @@ jQuery(document).ready(function() {
 	        	$("#reply_message").submit();
 	        	$("#message_body").val('');	
 	        	$(".content").mCustomScrollbar("scrollTo", "bottom");
+	        	jQuery('input[type="button"]').removeClass('msg_active');
 	            return true;
 	         }
 		   } 

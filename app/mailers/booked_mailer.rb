@@ -6,7 +6,7 @@ class BookedMailer < ActionMailer::Base
   	email1 = booking.user_email
     email2 = booking.poster_email
     recipients = email1, email2
-    subject = "Booked Details - Dinoba"
+    subject = "Booked Details - Dinobo"
   	attachments["Booked_space.pdf"] = WickedPdf.new.pdf_from_string(render_to_string(:pdf => "receipt", :template => 'booked_mailer/booked_a_spaces.pdf.erb'))
   	mail(:subject => subject, :to => recipients.join(',') ) do |format|
       format.html

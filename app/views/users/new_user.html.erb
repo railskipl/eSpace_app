@@ -11,7 +11,7 @@
 <div class="form-group">
 <label for="username" class="control-label">First name</label>
 <div class="controls">
-<%= f.text_field :name,:class=> "form-control",:style=>"height:auto" rescue nil%>
+<%= f.text_field :name,:class=> "form-control",:style=>"height:auto" , :maxlength => 50 %>
 </div> <!-- /controls -->
 </div>
 </div>
@@ -20,7 +20,7 @@
 <div class="form-group">
 <label for="username" class="control-label">Last name</label>
 <div class="controls">
-<%= f.text_field :last_name,:class=> "form-control",:style=>"height:auto" rescue nil%>
+<%= f.text_field :last_name,:class=> "form-control",:style=>"height:auto" , :maxlength => 50 %>
 <%= f.hidden_field :status, :value=> true %>
 </div> <!-- /controls -->
 </div>
@@ -31,21 +31,21 @@
 <div class="form-group">
 <label for="username" class="control-label">Email address</label>
 <div class="controls">
-<%= f.text_field :email, :class=> "form-control",:style=>"height:auto" rescue nil%>
+<%= f.text_field :email, :class=> "form-control",:style=>"height:auto" , :maxlength => 100 %>
 </div> <!-- /controls -->
 </div>
 </div>
 <div class="form-group">
 <label for="username" class="control-label">Password</label>
 <div class="controls">
-<%= f.password_field :password, :class=> "form-control",:style=>"height:auto" rescue nil%>
+<%= f.password_field :password, :class=> "form-control",:style=>"height:auto" , :maxlength => 50 %>
 </div> <!-- /controls -->
 </div>
 </div>
 <div class="form-group">
 <label for="username" class="control-label">Password Confirmation</label>
 <div class="controls">
-<%= f.password_field :password_confirmation, :class=> "form-control",:style=>"height:auto" rescue nil%>
+<%= f.password_field :password_confirmation, :class=> "form-control",:style=>"height:auto" , :maxlength => 50 %>
 </div> <!-- /controls -->
 </div>
 <div class="form-group">

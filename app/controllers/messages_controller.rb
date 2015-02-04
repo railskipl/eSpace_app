@@ -93,20 +93,31 @@ class MessagesController < ApplicationController
   def refresh_message
 
     if params[:restream].nil?
-     @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
-     @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
-     @total_message = @messages_sender + @messages_receiver
-     @total_messages =  @total_message.sort_by { |k| k["id"] }
+       @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
+       @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
+       @total_message = @messages_sender + @messages_receiver
+       @total_messages =  @total_message.sort_by { |k| k["id"] }
 
-     unless @messages_sender.empty?
-      @@ms = @messages_sender.last.id
-     end
 
-     unless @messages_receiver.empty?
-      @@mr = @messages_receiver.last.id
-     end
+       unless @messages_sender.empty?
+        @@ms = @messages_sender.last.id
+       end
 
-     render layout: false
+       unless @messages_receiver.empty?
+        @@mr = @messages_receiver.last.id
+       end
+
+       if !@messages_sender.empty? and !@messages_receiver.empty?
+          @@ms = @messages_sender.last.id
+          @@mr = @messages_receiver.last.id
+          if @@ms > @@mr
+            @@mr = @@ms
+          else
+            @@ms = @@mr
+          end
+       end
+       
+       render layout: false
 
     else
 

@@ -5,7 +5,8 @@ class AccessIdsController < ApplicationController
   before_action :set_access, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
 
- layout :custom_layout
+ layout "admin"
+ 
 	def index
 	   @access_ids = AccessId.all
 	   respond_with(@access_ids)
@@ -21,13 +22,28 @@ class AccessIdsController < ApplicationController
 
 	def create
 	  @access_id = AccessId.new(access_id_params)
-	  @access_id.save
-	  redirect_to access_ids_path
+	  
+	    respond_to do |format|
+	      if @access_id.save
+	        format.html { redirect_to access_ids_path, notice: 'College ID was successfully added.' }
+	        format.json { render :show, status: :created, location: @access_id }
+	      else
+	        format.html { render :new }
+	        format.json { render json: @access_id.errors, status: :unprocessable_entity  }
+	      end
+	    end
 	end
 
 	def update
-	  @access_id.update(access_id_params)
-	  redirect_to access_ids_path
+	  	respond_to do |format|
+		  if @access_id.update(access_id_params)
+	        format.html { redirect_to access_ids_path, notice: 'College ID was successfully updated.' }
+	        format.json { render :show, status: :ok, location: @access_id }
+	      else
+	        format.html { render :edit }
+	        format.json { render json: @access_id.errors, status: :unprocessable_entity }
+	      end
+	    end
 	end
 
 	def destroy
@@ -49,19 +65,6 @@ class AccessIdsController < ApplicationController
       		redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
     	end
 
-    	def custom_layout
-        case action_name
-         when "index"
-          "admin"
-         when "show"
-          "admin"
-         when "new"
-          "admin"
-         when "edit"
-          "admin"
-         else
-          "application"
-       end
-      end
+    	
 
 end
