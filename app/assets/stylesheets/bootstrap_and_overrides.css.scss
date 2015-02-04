@@ -4979,7 +4979,6 @@ input[type="submit"].btn.btn-mini {
 /* line 173, /Users/amolchaukade/.rvm/gems/ruby-2.1.1/gems/bootstrap-sass-2.3.2.1/vendor/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-fixed-top,
 .navbar-fixed-bottom {
-  position: fixed;
   right: 0;
   left: 0;
   z-index: 1030;
@@ -6801,10 +6800,6 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
   box-sizing: border-box;
 }
 
-/* line 2, /Users/amolchaukade/src/htmlgen/app/assets/stylesheets/bootstrap_and_overrides.css.scss */
-body {
-  padding-top: 90px;
-}
 
 /*----------------------------
 	The Navigation Menu
