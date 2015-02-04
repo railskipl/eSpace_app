@@ -79,7 +79,7 @@
                     </div>
                     <span class= "classic10"> Ride for drop off is $5 <u>learn_More</u> </span> </a></div>
                       <div class="drop_off_date dates" style="margin-top:-10px;">
-                        <%= f.text_field :dropoff_date, :style=>"width: 29px;" %>
+                        <%= f.text_field :dropoff_date, :readonly=>true, :style=>"width: 29px;" %>
                       </div>
                       <p class="miles3" style="padding-left:7px;"> <%= @post.drop_off_avaibility_start_date.strftime("%b %e") %> -  <%= @post.drop_off_avaibility_end_date.strftime("%b %e") %></p>
                    <p class="sed" style="float:right; margin:-32px -2px 0 0px;">-</p>
