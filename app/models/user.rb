@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :comments, :dependent => :destroy
   has_many :bookings, :dependent => :destroy
+  has_many :orders, :dependent => :destroy, class_name: 'Booking', foreign_key: 'poster_id'
   has_one :bank_detail, :dependent => :destroy
   has_one :credit_card, :dependent => :destroy
   has_many :disputes, :dependent => :destroy

@@ -11,11 +11,13 @@ class Booking < ActiveRecord::Base
 			 :drop_off_avaibility_end_date, :pick_up, :drop_off, :drop_off_avaibility_start_date,
 			 :pick_up_avaibilty_start_date, :price_sq_ft, :pick_up_avaibility_end_date, :to => :post, :prefix => true
 
+  scope :for_user, -> (user) { where('poster_id = :user_id or user_id = :user_id', user_id: user.id ) }
+
 	# def self.result_area(post)
 	# 	select("area").where("post_id = ? and pickup_date >= ? and is_cancel != ?", post.id, Date.today, true)
 	# end
 	def self.get_payments(current_user,page_no)
-	  includes(:poster, :user).joins(:payment_histories).select_data.fetch_data(current_user).pagination(page_no)
+	  includes(:poster, :user).joins(:payment_histories).select_data.for_user(current_user).pagination(page_no)
 	end
 
 	def self.hide_cancelled(user_id)
@@ -46,7 +48,6 @@ class Booking < ActiveRecord::Base
 		select("bookings.*,payment_histories.name,payment_histories.created_at as transaction_date")
 	end
 
-	scope :fetch_data, -> (current_user) { where('poster_id = ? or user_id = ?', current_user.id, current_user.id ) }
 
 	def self.pagination(page_no)
 		page(page_no).order("id desc").per_page(6)
