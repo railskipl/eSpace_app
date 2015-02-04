@@ -74,7 +74,7 @@ class Post < ActiveRecord::Base
       posts = posts.near(search[:address], search[:miles]) if search[:address].present? && search[:miles].present?
     end
 
-    posts = posts.where("LOWER(address) like ?", "%#{search[:address].downcase}%") if search[:address].present? != search[:miles].present?
+    posts = posts.where("LOWER(address) like ? or LOWER(city) like ? ", "%#{search[:address].downcase}%","%#{search[:address].downcase}%") if search[:address].present? != search[:miles].present?
     posts = posts.where("drop_off = ?", "#{search[:dropoff]}") if search[:dropoff] == '1'
     posts = posts.where("pick_up = ?", "#{search[:pickup]}") if search[:pickup] == '1'
 
