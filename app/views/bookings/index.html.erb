@@ -116,7 +116,8 @@
                         <%end%>
                         </p>
                         <p>
-                        <a href="javascript:void(0);" class="booking-btn">Confirm drop-off</a>
+                        
+                          <%= link_to "Confirm drop-off ", drop_off_bookings_path(:booking_id => booking.id,:index => "index" ), :remote=>true, :class=>"booking-button" %>
                         </p>
 
                     </div>

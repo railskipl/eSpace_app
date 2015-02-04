@@ -22,7 +22,7 @@
 		    </div>
 		<% else %>
 			<div class="booking-btn">
-		     <%= link_to "Confirm drop-off ",confirm_bookings_path(:id => @booking.id ) %>
+		     <%= link_to "Confirm drop-off ",confirm_bookings_path(:id => @booking.id ,:index => params[:index]) %>
 		  </div>
 		<% end %>
 	</div>

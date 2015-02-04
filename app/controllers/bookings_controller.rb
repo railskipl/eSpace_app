@@ -134,7 +134,11 @@ class BookingsController < ApplicationController
     booking.save
     Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id,
                  :post_id => booking.post_id,:body => "Drop-off has been confirmed.")
-    redirect_to booking_path(booking.id)
+    if params["index"]
+      redirect_to bookings_path
+    else
+      redirect_to booking_path(booking.id)
+    end
     flash[:notice] = "Confirm drop off"
 
   end
