@@ -27,7 +27,6 @@
        <div>Setup a Card to receive payments <span title="This is some information for our tooltip." class="month1 tooltip_new "><img src="/assets/que.png">
            </span></div>
        <%= f.text_field :full_name, :class=>"form-control1",:placeholder=>"Full name"  %>
-      <%= f.hidden_field :user_id,:value =>current_user.id %>
        <div class="card">
       <%= text_field_tag :card_number, nil,:autocomplete => "off", name: nil,:class=>"card_number stripe-sensitive required form-control1 ",:placeholder=>"Card Number" %>
 

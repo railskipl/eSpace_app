@@ -27,7 +27,8 @@ Rails.application.routes.draw do
 
   resources :admins, :only => [:show,:destroy,:index]
 
-  resources :bank_details
+  get '/bank_details', to: 'bank_details#show', as: 'bank_details'
+  resource :bank_detail
 
   resources :disputes, :only => [:index, :show] do
     collection do
