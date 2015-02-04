@@ -25,7 +25,7 @@ class OrderReceivesController < ApplicationController
     @booking = current_user.orders.find(params[:id])
   end
 
-     #Cancel booking from Poster side and all amount refund to Finder without deduction.
+  # Cancel booking from Poster side and all amount refund to Finder without deduction.
   def cancel_booking
     @booking = current_user.orders.find(params[:id])
     amount = @booking.price
