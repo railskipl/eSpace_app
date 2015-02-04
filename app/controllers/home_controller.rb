@@ -58,6 +58,7 @@ class HomeController < ApplicationController
         return false
       else
         adminusers = adminusers.where("date(created_at) >= ? and date(created_at) <= ? ",start_date, end_date) if start_date.present? && end_date.present?
+        flash[:error] = nil
       end
 
         @adminusers= adminusers.page(params[:page]).per_page(50)
@@ -88,7 +89,8 @@ class HomeController < ApplicationController
        flash[:error] = "Start Date Cannot Be Greater"
       # return false
       else
-      @posts = Post.includes(:user).where("date(created_at) >= ? and date(created_at) <= ?",@start_date, @end_date)
+        @posts = Post.includes(:user).where("date(created_at) >= ? and date(created_at) <= ?",@start_date, @end_date)
+        flash[:error] = nil
        end
         respond_to do |format|
         format.html
