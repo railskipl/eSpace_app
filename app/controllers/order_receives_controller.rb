@@ -1,5 +1,5 @@
 class OrderReceivesController < ApplicationController
-  before_filter :authenticate_user!, :except => []
+  before_filter :authenticate_user!
 
   def index
     @bookings = scope.page(params[:page]).order("id desc").per_page(4)

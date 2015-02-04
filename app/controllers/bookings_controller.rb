@@ -1,34 +1,31 @@
 class BookingsController < ApplicationController
- before_filter :authenticate_user!, :except => []
- skip_before_filter :verify_authenticity_token, :only => [:checkout]
+  before_filter :authenticate_user!
+  skip_before_filter :verify_authenticity_token, :only => [:checkout]
 
- include BookingsHelper
+  include BookingsHelper
 
- def index
+  def index
     if params[:cancelled].present?
-      @bookings = Booking.includes(:post,:poster).hide_cancelled(current_user.id).page(params[:page]).per_page(4)
+      @bookings = scope.not_canceled.page(params[:page]).per_page(4)
     else
- 	    @bookings = Booking.includes(:post,:poster).page(params[:page]).where("user_id = ?",current_user.id).order("id desc").per_page(4)
+      @bookings = scope.page(params[:page]).order("id desc").per_page(4)
     end
- end
-
-	def new
-		@booking = Booking.new
-	end
-
-  def show
-    @booking = Booking.find(params[:id])
-    @post = Post.find(@booking.post_id)
-
   end
 
-	def create
+  def new
+    @booking = current_user.bookings.build
+  end
 
+  def show
+    @booking = current_user.bookings.find(params[:id])
+    @post = Post.find(@booking.post_id)
+  end
 
-	end
+  def create
+  end
 
   def search_by_date
-    bookings = Booking.get_bookings(current_user,false)
+    bookings = Booking.get_bookings(current_user, false)
     if params[:start_date].blank? || params[:end_date].blank?
       redirect_to bookings_path, alert: "Please Select Date"
     elsif  params[:start_date].to_date > params[:end_date].to_date
@@ -38,14 +35,12 @@ class BookingsController < ApplicationController
     else
       @bookings = bookings.start_and_end_date(params[:start_date].to_date,params[:end_date].to_date)
     end
-
   end
 
 
   #Checkout Stripe payment
-	def checkout
-
-   	if params[:totalPrice] != nil
+  def checkout
+    if params[:totalPrice] != nil
 
       dropoff_date = params[:booking][:dropoff_date].to_date rescue nil
       pickup_date = params[:booking][:pickup_date].to_date rescue nil
@@ -94,17 +89,17 @@ class BookingsController < ApplicationController
         flash[:notice] = "Session expired."
         redirect_to :back
     end
-	end
+  end
 
 
   def cancel_popup
-     @booking = Booking.find(params[:id])
+    @booking = current_user.bookings.find(params[:id])
   end
 
   #this method cancel's the booking done by finder & does the cancel_booking_deduction
   # according to criteria.
   def cancel_booking
-    @booking = Booking.find(params[:id])
+    @booking = current_user.bookings.find(params[:id])
     data = Booking.booking_cancel_finder(@booking,params[:drop_off_date].to_date)
     if data.class == Stripe::InvalidRequestError
       redirect_to :back, :notice => "Stripe error: #{data.message}"
@@ -133,15 +128,21 @@ class BookingsController < ApplicationController
     booking.is_confirm = true
     booking.save
     Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id,
-                 :post_id => booking.post_id,:body => "Drop-off has been confirmed.")
+                   :post_id => booking.post_id,:body => "Drop-off has been confirmed.")
     redirect_to booking_path(booking.id)
     flash[:notice] = "Confirm drop off"
 
   end
 
 
-	def is_number?(i)
-    	true if Float(i) rescue false
+  def is_number?(i)
+    true if Float(i) rescue false
+  end
+
+  private
+
+  def scope
+    current_user.bookings.includes(:poster, :post)
   end
 
 
