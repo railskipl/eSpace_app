@@ -26,10 +26,10 @@ def update
     params[:user].delete(:password) if params[:user][:password].blank?
     params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
     @user.update_attributes(person_params)
-    flash[:notice] = "Profile Updated Successfully "
+    flash[:notice] = "Profile updated successfully."
     redirect_to  edit_user_path(@user)
   else
-    flash[:notice] = "Please select atleast one email"
+    flash[:notice] = "Please select at least one email."
     redirect_to  edit_user_path(@user)
   end
 end
@@ -45,7 +45,7 @@ def create_user
   if @user.save
     redirect_to root_path,:flash => {:notice => "User successfully created."}
   else
-    flash[:notice] = "Email has already been taken "
+    flash[:notice] = "Email has already been taken."
     render :new_user
   end
 end
@@ -87,7 +87,7 @@ private
     else
       params.require(:user).permit(:name,:last_name,:personal_email,:mobile_number,:email,:password,:password_confirmation, :status,:provider,:uid,:mobile_number,:mobile_no,:admin_user_id,:notification,:notification_for_email,:notification_for_personal_email)
     end
-    
+
   end
 
   def correct_user

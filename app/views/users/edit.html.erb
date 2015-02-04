@@ -2,80 +2,80 @@
 <div class="wrapper">
   <div class="main">
    <div class="main2">
-                <div class="main-new">
-                 <ul class="verticle-menu" style="min-height:600px;">
-                    <li class="active">
-                    <%= link_to "Personal Information", edit_user_path(current_user)%>
-                    </li>
+  <div class="main-new">
+   <ul class="verticle-menu" style="min-height:600px;">
+      <li class="active">
+      <%= link_to "Personal Information", edit_user_path(current_user)%>
+      </li>
 
-                    <li>
-                    <%= link_to "Change Password", edit_user_registration_path%>
-                    </li>
+      <li>
+      <%= link_to "Change Password", edit_user_registration_path%>
+      </li>
 
-                    <li>
-                    <%= link_to "Bank Details",bank_details_path %>
-                    </li>
+      <li>
+      <%= link_to "Bank Details",bank_details_path %>
+      </li>
 
-                    <li>
-                    <%= link_to 'My Post', posts_path %>
-                    </li>
+      <li>
+      <%= link_to 'My Post', posts_path %>
+      </li>
 
-                    <li><%= link_to "My Order/Received",order_receives_path%></li>
-                    <li><%= link_to "My Booking", bookings_path%></li>
-                    <li><%= link_to "Payment", payments_path%></li>
+      <li><%= link_to "My Order/Received",order_receives_path%></li>
+      <li><%= link_to "My Booking", bookings_path%></li>
+      <li><%= link_to "Payment", payments_path%></li>
 
-                    <li>
-                    <%= link_to "Messages",{:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil%></li>
-                 </ul>
+      <li>
+      <%= link_to "Messages",{:controller => '/messages',:action => 'is_read_all', :id =>current_user.id,:method => :post} rescue nil%></li>
+   </ul>
 
-                <div class="new_login3">
-                <div class="f1">
-                  <!-- <form method="post" class="signin" action="#"> -->
-                  <%= form_for @user, :url => user_path(@user), html: { :class=>"signin",method: :put, id: "edit_user" } do |f|%>
+  <div class="new_login3">
+  <div class="f1">
+    <!-- <form method="post" class="signin" action="#"> -->
+    <%= form_for @user, :url => user_path(@user), html: { :class=>"signin",method: :put, id: "edit_user" } do |f|%>
 
-                  <fieldset class="textbox">
-                      <div input id="password">
-                        <%= f.email_field :email, :disabled => true,:style => "font-family: brandon4;", :placeholder=>"Email" %>
-                      </div>
-                      <div input id="password">
-                        <%= f.text_field :name,:style => "font-family: brandon4;", :placeholder=> "First Name",:maxlength => 50 %>
-                      </div>
-                      <div input id="password">
-                        <%= f.text_field :last_name, :style => "font-family: brandon4;",:placeholder=> "Last Name" ,:maxlength => 50 %>
-                      </div>
-                      <div input id="password">
-                        <%= f.text_field :personal_email, :style => "font-family: brandon4;",:placeholder=> "Personal Email",:maxlength => 100 %>
-                      </div>
-                      <div input id="password">
-                        <%= f.text_field :mobile_number, :style => "font-family: brandon4;",placeholder:"xxx xxx-xxxx", :maxlength => 10 %>
-                      </div>
-                  </fieldset>
-                     <div class="pickup4">
-                        <p style="margin: -25px 0px 0px; font-size: 16px; color: rgb(123, 123, 123); margin-top:155px;">Send notifications to:</p><br/>
-                       <div class="checkbox">
+    <fieldset class="textbox">
+        <div input id="password">
+          <%= f.email_field :email, :disabled => true,:style => "font-family: brandon4;", :placeholder=>"Email" %>
+        </div>
+        <div input id="password">
+          <%= f.text_field :name,:style => "font-family: brandon4;", :placeholder=> "First Name",:maxlength => 50 %>
+        </div>
+        <div input id="password">
+          <%= f.text_field :last_name, :style => "font-family: brandon4;",:placeholder=> "Last Name" ,:maxlength => 50 %>
+        </div>
+        <div input id="password">
+          <%= f.text_field :personal_email, :style => "font-family: brandon4;",:placeholder=> "Personal Email",:maxlength => 100 %>
+        </div>
+        <div input id="password">
+          <%= f.text_field :mobile_number, :style => "font-family: brandon4;",placeholder:"xxx xxx-xxxx", :maxlength => 10 %>
+        </div>
+    </fieldset>
+       <div class="pickup4">
+          <p style="margin: -25px 0px 0px; font-size: 16px; color: rgb(123, 123, 123); margin-top:155px;">Send notifications to:</p><br/>
+         <div class="checkbox">
 
-                        <% if current_user.email.present? %>
-                           <%= f.check_box :notification_for_email %>
-                           <label style="margin:10px 0 0 -34px;" for="checkbox1">&nbsp;</label>
-                           <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.email %></p><br/>
-                        <% else %>
-                        <% end %>
-                        <% if current_user.personal_email.present? %>
-                           <%= f.check_box :notification_for_personal_email %>
-                           <label style="margin:10px 0 0 -34px;" for="checkbox1">&nbsp;</label>
-                           <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.personal_email %></p>
-                        <% else %>
-                        <% end %>
-                       </div>
-                     </div>
-                        <div>
-                              <%= f.submit "Save changes", :class=>"button-new4" %>
-                        </div>
-                  <% end %>
-                <!-- </form> -->
-                </div>
-                </div>
-                </div>
+          <% if current_user.email.present? %>
+             <%= f.check_box :notification_for_email %>
+             <label style="margin:10px 0 0 -34px;" for="checkbox1">&nbsp;</label>
+             <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.email %></p><br/>
+          <% else %>
+          <% end %>
+          <% if current_user.personal_email.present? %>
+             <%= f.check_box :notification_for_personal_email %>
+             <label style="margin:10px 0 0 -34px;" for="checkbox1">&nbsp;</label>
+             <p style="margin:-25px  0 0 30px; color:#7b7b7b"><%= current_user.personal_email %></p>
+          <% else %>
+          <% end %>
+         </div>
+       </div>
+          <div>
+                <%= f.submit "Save changes", :class=>"button-new4" %>
+          </div>
+    <% end %>
+  <!-- </form> -->
+  </div>
+  </div>
+  </div>
   </div>
   </div>
 </div>
