@@ -24,12 +24,13 @@ Now database:
 
 ```console
 $ bin/rake db:create db:migrate db:seed
+$ bin/rake db:create db:migrate RAILS_ENV=test
 ```
 
 Now run tests, they should pass.
 
 ```
-$ bin/rake test
+$ bin/rake spec
 ```
 
 You're done!
