@@ -65,7 +65,7 @@ class Post < ActiveRecord::Base
   # Search result on browser page
   def self.search(search, page, sort)
     posts = Post
-    posts = posts.where("area_available <= ?", "#{search[:area]}") if search[:area].present?
+    posts = posts.where("area_available >= ?", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
 
     if sort.present?
@@ -88,7 +88,7 @@ class Post < ActiveRecord::Base
   def self.search_overview(search, page, sort)
 
     posts = Post
-    posts = posts.where("area_available <= ? ", "#{search[:area]}") if search[:area].present?
+    posts = posts.where("area_available >= ? ", "#{search[:area]}") if search[:area].present?
     posts = posts.where("price_sq_ft <= ?", "#{search[:price]}") if search[:price].present?
 
     if sort.present?
