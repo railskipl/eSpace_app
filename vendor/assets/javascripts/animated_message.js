@@ -2,7 +2,7 @@
               var showToaster = function(animated, text) {
                 var replaceText = function (text) {
                   var graf = animated.find('p');
-                  
+
                   graf.text(text);
                 };
 
@@ -47,5 +47,5 @@
                 if ($('.animated p').text().length > 0) {
                   setToaster($('.animated'));
                 }
-                
+
               });
