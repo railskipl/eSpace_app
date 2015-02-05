@@ -91,53 +91,17 @@ class MessagesController < ApplicationController
   #method used for autorefresh chat message div &
   #show current updated chat msg.
   def refresh_message
+    @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id]).includes(:post)
+    @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id).includes(:post)
+    @total_message = @messages_sender + @messages_receiver
+    @total_messages = @total_message.sort_by { |k| k["id"] }
 
     if params[:restream].nil?
-       @messages_sender = Message.where("sender_id = ? AND recipient_id = ?",current_user.id,params[:recv_id])
-       @messages_receiver = Message.where("sender_id = ? AND recipient_id = ?",params[:recv_id],current_user.id)
-       @total_message = @messages_sender + @messages_receiver
-       @total_messages =  @total_message.sort_by { |k| k["id"] }
-
-
-       unless @messages_sender.empty?
-        @@ms = @messages_sender.last.id
-       end
-
-       unless @messages_receiver.empty?
-        @@mr = @messages_receiver.last.id
-       end
-
-       if !@messages_sender.empty? and !@messages_receiver.empty?
-          @@ms = @messages_sender.last.id
-          @@mr = @messages_receiver.last.id
-          if @@ms > @@mr
-            @@mr = @@ms
-          else
-            @@ms = @@mr
-          end
-       end
-       
-       render layout: false
-
+      render layout: false
     else
-
-      @messages_sender = Message.where("sender_id = ? AND recipient_id = ? AND id >?",current_user.id,params[:recv_id], @@ms)
-      @messages_receiver = Message.where("sender_id = ? AND recipient_id = ? AND id >?",params[:recv_id],current_user.id, @@mr)
-      @total_message = @messages_sender + @messages_receiver
-      @total_messages =  @total_message.sort_by { |k| k["id"] }
-
-      unless @messages_sender.empty?
-        @@ms = @messages_sender.last.id
-      end
-
-      unless @messages_receiver.empty?
-        @@mr = @messages_receiver.last.id
-      end
-
       respond_to do |format|
         format.js
       end
-
     end
   end
 
