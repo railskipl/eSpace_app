@@ -23,7 +23,7 @@
 
               var setToaster = function(animated, text) {
                 if ($('.animated.fadeInUp').length) {
-                  if (Modernizr.csstransitions) {
+                  if (Modernizr && Modernizr.csstransitions) {
                     $('.animated').one(
                       'transitionend oTransitionEnd webkitTransitionEnd',
                       function() { showToaster(animated, text) }

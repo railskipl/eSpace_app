@@ -1,5 +1,7 @@
 # Unreleased
 
+* Remove js error in `animated_message.js` about undefined `Modernizr`.
+_akd_
 
 * Make `bank_details` a singular resource: remove `show`, change `index` to
 `show`, remove primary keys from routes.
