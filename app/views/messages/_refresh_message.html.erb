@@ -3,7 +3,7 @@
     <div class="<%= message.sender_id == current_user.id ? 'right' : 'left' %>">
       <p>
         <%= message.body %>
-        <%= link_to "Click to view Post", post_path(message.post_id) %>
+        <%= link_to "Click to view Post", post_path(message.post.id) if message.post %>
       </p>
       <span><%= message.created_at.strftime("%e %b %Y %H:%M:%S%p") %></span>
     </div>
