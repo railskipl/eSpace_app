@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :admins, :only => [:show,:destroy,:index]
 
   get '/bank_details', to: 'bank_details#show', as: 'bank_details'
+  post '/bank_details', to: 'bank_details#create'
   resource :bank_detail
 
   resources :disputes, :only => [:index, :show] do
