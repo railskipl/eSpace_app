@@ -14,11 +14,11 @@
       <div class="message">
       <div class="tf"></div>
       <div class="mail_content">
-        <div><%= message.recipient_email  rescue nil%></div>
+        <div><%= message.recipient_email %></div>
         <div style="margin:0 0 5px 0">Subject:
           <%= link_to message.subject, message, :class => "bluelink" %>
         </div>
-        <div><%= message.body.html_safe rescue nil%></div>
+        <div><%= message.body %></div>
       </div>
       <ul class="action">
         <li><%= link_to image_tag("delete.png"), destroy_sender_message_path(message),method: :post, data: { confirm: 'Are you sure?' } %></li>

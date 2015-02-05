@@ -5,8 +5,8 @@
 				<div class="chat">
 	            	<div <% if messages.sender_id == current_user.id %> class="right" <% else %> class="left" <% end %>>
 
-	            		
-	            		<p><%= messages.body.html_safe %>  <%= link_to "Click to view Post" ,post_path(messages.post.id) rescue nil%></p>
+
+	            		<p><%= messages.body %>  <%= link_to "Click to view Post", post_path(messages.post_id) %></p>
 	            		<span><%= messages.created_at.strftime("%e %b %Y %H:%M:%S%p") %></span>
 	            	</div>
 	            </div>
