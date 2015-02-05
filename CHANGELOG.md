@@ -1,5 +1,8 @@
 # Unreleased
 
+* Removed "I agree term and condition" checkbox from login.
+_akd 05.02.2015_
+
 * Fixed multithreaded error in chat.
 Even two different chats interfered with each other, resulting in duplicating
 messages or non-delivered messages. This was fixed.
