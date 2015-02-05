@@ -35,7 +35,7 @@
         <!-- custom scrollbar plugin -->
     <%= stylesheet_link_tag  'scroll', "jquery.mCustomScrollbar" %>
     <%= javascript_include_tag "bootstrap.min", "jquery.mCustomScrollbar.concat.min", "scrollbar.js", "active_textarea" %>
-	
+
 	<script>
 	<% if @messages_receiver.empty? %>
     	var refreshId = setInterval(function()
@@ -67,7 +67,7 @@
         });
 	}, 1000);
 
-	
+
 	jQuery(document).ready(function() {
 		jQuery("#user_msg").load('<%= user_message_messages_path(:recv_id=>"#{params[:recv_id]}") %>');
 	});

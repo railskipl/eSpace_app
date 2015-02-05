@@ -16,7 +16,7 @@
       <div class="mail_content">
         <div><%= message.recipient_email  rescue nil%></div>
         <div style="margin:0 0 5px 0">Subject:
-          <%= link_to message.subject , message , :class => "bluelink" %>
+          <%= link_to message.subject, message, :class => "bluelink" %>
         </div>
         <div><%= message.body.html_safe rescue nil%></div>
       </div>

@@ -1,6 +1,6 @@
 
 
-		
+
 			<% total_messages.each do |messages|%>
 				<div class="chat">
 	            	<div <% if messages.sender_id == current_user.id %> class="right" <% else %> class="left" <% end %>>
@@ -12,5 +12,5 @@
 	            </div>
 	        <% end %>
 
-	        
-	    
+
+

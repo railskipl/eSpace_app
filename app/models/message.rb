@@ -21,7 +21,7 @@ class Message < ActiveRecord::Base
   end
 
   def self.get_message(sender, receiver)
-    where("sender_id = ? AND recipient_id = ?",sender, receiver)
+    where("sender_id = ? AND recipient_id = ?", sender, receiver)
   end
 
 
