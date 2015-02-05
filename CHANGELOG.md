@@ -1,29 +1,32 @@
 # Unreleased
 
+* Removed javascript injection in posts message.
+_akd 05.02.2015_
+
 * Remove js error in `animated_message.js` about undefined `Modernizr`.
-_akd_
+_akd 05.02.2015_
 
 * Make `bank_details` a singular resource: remove `show`, change `index` to
 `show`, remove primary keys from routes.
 A user can only have one `bank_details` record and no one should see or access
 it except that user. So no need to have primary key in route to these
 endpoints.
-_akd_
+_akd 04.02.2015_
 
 * Removed `bank_details#edit`, `bank_details#update`.
 `bank_details` can't be edited - this results in Stripe changing the
 subscription and it's much better to remove old bank details and create new.
-_akd_
+_akd 04.02.2015_
 
 * Resolved mass assignment issues in posts, bookings.
 So that users can no more create posts or bookings on behalf of other users.
-_akd_
+_akd 04.02.2015_
 
 * Resolved privilege escalation issues in profile, posts, bookings, orders,
 bank details.
 So that users can no more gain unexpected read or write access to other users'
 items.
-_akd_
+_akd 04.02.2015_
 
 # v1.0.0
 
