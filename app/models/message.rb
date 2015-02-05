@@ -7,8 +7,8 @@ class Message < ActiveRecord::Base
   belongs_to :post
   has_many :users
 
-  delegate :name,:email, :to => :sender, :prefix => true
-  delegate :name,:email, :to => :recipient, :prefix => true
+  delegate :name,:email, :to => :sender, :prefix => true, :allow_nil => true
+  delegate :name,:email, :to => :recipient, :prefix => true, :allow_nil => true
 
   attr_reader :user_tokens
 
