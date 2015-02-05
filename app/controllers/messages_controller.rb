@@ -116,7 +116,7 @@ class MessagesController < ApplicationController
             @@ms = @@mr
           end
        end
-       
+
        render layout: false
 
     else
