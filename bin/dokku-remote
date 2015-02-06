@@ -1,0 +1,6 @@
+#!/bin/bash
+# This is a dokku-remote helping script.
+
+set -x
+
+exec ssh -t $(cat .dokkurc) $@

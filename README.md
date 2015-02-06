@@ -39,3 +39,14 @@ You're done!
 
 Start server with `bin/rails s`. Run tests with `bin/rake test`.
 Write tests. Write clean code. Primium nil nocere.
+
+## Deployment
+
+To production:
+
+```console
+$ git remote add production dokku@dinobo.com:production
+$ git push production master
+```
+
+More in
