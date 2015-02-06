@@ -1,5 +1,9 @@
 # Unreleased
 
+* Attach application to new Stripe account.
+
+_akd 06.02.2015_
+
 * Apply 12-factor rules to application: logs and port binding.
 
 _akd 06.02.2015_
