@@ -1,5 +1,9 @@
 # Unreleased
 
+* Attach application to new Facebook account.
+
+_akd 06.02.2015_
+
 * Move S3 configuration to environment variables.
 
 _akd 06.02.2015_
