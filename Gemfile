@@ -11,6 +11,9 @@ gem 'bullet', group: :development
 
 gem 'ransack'
 
+gem 'puma'
+gem 'foreman', require: false
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
