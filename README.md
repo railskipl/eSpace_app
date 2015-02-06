@@ -20,6 +20,8 @@ Now gems:
 $ bundle install
 ```
 
+Create `config/application.yml` [with secret data](https://tracker.anahoret.com/projects/171).
+
 Now database:
 
 ```console
