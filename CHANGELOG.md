@@ -1,5 +1,9 @@
 # Unreleased
 
+* Move S3 configuration to environment variables.
+
+_akd 06.02.2015_
+
 * Remove registering Mime::PDF - it's already registered in Rails.
 
 _akd 06.02.2015_
