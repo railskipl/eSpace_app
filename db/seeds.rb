@@ -14,3 +14,7 @@ admin.save!
 puts 'SETTING UP DEFAULT EMAIL DOMAIN ALLOWED FOR SIGNUP'
 AccessId.reset_column_information
 AccessId.create! email: 'usc.edu'
+
+puts 'SETTING UP DEFAULT CONTACT US SUBJECT'
+Contactus.reset_column_information
+Contactus.create! subject: 'General questions'
