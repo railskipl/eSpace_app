@@ -1,5 +1,13 @@
 # Unreleased
 
+* Remove registering Mime::PDF - it's already registered in Rails.
+
+_akd 06.02.2015_
+
+* Add figaro gem to maintain application configuration.
+
+_akd 06.02.2015_
+
 * Attach application to new Stripe account.
 
 _akd 06.02.2015_
