@@ -49,4 +49,4 @@ $ git remote add production dokku@dinobo.com:production
 $ git push production master
 ```
 
-More in
+More in `docs/Deployment.md`.
