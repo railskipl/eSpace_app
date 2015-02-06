@@ -1,5 +1,9 @@
 # Unreleased
 
+* Remove unused eager loading on posts#overview and search.
+
+_akd 06.02.2015_
+
 * Attach application to new Facebook account.
 
 _akd 06.02.2015_

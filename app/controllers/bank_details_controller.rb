@@ -1,6 +1,7 @@
 class BankDetailsController < ApplicationController
 
   before_filter :authenticate_user!
+  before_action :check_if_exists, only: [:new, :create]
   before_action :set_bank_detail, only: [:show, :destroy]
   respond_to :html, :xml, :json
 
@@ -56,6 +57,11 @@ class BankDetailsController < ApplicationController
   end
 
   private
+
+    def check_if_exists
+      redirect_to bank_details_path if current_user.bank_detail
+    end
+
     def set_bank_detail
       @bank_detail = current_user.bank_detail
     end
