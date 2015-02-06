@@ -10,6 +10,6 @@ class ContactusMailer < ActionMailer::Base
 def contactus(contact)
 @contactus = contact
 subject = "Contactus"
-	mail(:subject => 'Contactus', :to => "help@dinobo.com")
+	mail(:subject => 'Contactus', :to => "support@dinobo.com")
 end
 end
