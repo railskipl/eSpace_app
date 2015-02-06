@@ -64,11 +64,11 @@ class PostsController < ApplicationController
 
   def overview
     if params[:search]
-      @overviews = Post.includes(:user).search_overview(params[:search], params[:page], params[:sort])
-      @posts = Post.includes(:user).search(params[:search], params[:page], params[:sort])
+      @overviews = Post.search_overview(params[:search], params[:page], params[:sort])
+      @posts = Post.search(params[:search], params[:page], params[:sort])
     else
-      @overviews = Post.includes(:user).order(sort_order).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ? and area_available >= ?",Date.today, true,false,4)
-      @posts = Post.includes(:user).page(params[:page]).per_page(4).order(sort_order).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ? and area_available >= ?",Date.today, true,false,4)
+      @overviews = Post.order(sort_order).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ? and area_available >= ?",Date.today, true,false,4)
+      @posts = Post.page(params[:page]).per_page(4).order(sort_order).where(" drop_off_avaibility_end_date >= ? and status = ? and archive = ? and area_available >= ?",Date.today, true,false,4)
     end
     respond_to do |format|
       format.html # index.html.erb
