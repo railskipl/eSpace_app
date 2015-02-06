@@ -13,6 +13,7 @@ gem 'ransack'
 
 gem 'puma'
 gem 'foreman', require: false
+gem 'figaro'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

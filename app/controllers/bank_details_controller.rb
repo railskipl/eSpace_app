@@ -26,6 +26,8 @@ class BankDetailsController < ApplicationController
       stripe_response = JSON.parse("#{recipient}")
 
       if stripe_response["cards"]["data"][0]["id"].present?
+
+
         current_user.create_bank_detail(
           :stripe_recipient_token => stripe_response["id"],
           :full_name => params[:bank_detail][:full_name],

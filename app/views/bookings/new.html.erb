@@ -3,8 +3,8 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
  <script type="text/javascript">
-    Stripe.setPublishableKey('pk_test_17xmTuMVQ5oVgcT0AWY6XcNo');
    $(document).ready(function() {
+    Stripe.setPublishableKey("<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>");
     function addInputNames() {
     // Not ideal, but jQuery's validate plugin requires fields to have names
     // so we add them at the last possible minute, in case any javascript
