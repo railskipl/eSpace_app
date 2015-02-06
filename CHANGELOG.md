@@ -1,5 +1,10 @@
 # Unreleased
 
+* Change 'from' email address to 'support@dinobo.com'.
+
+_akd 06.02.2015_
+
+
 * Removed "I agree term and condition" checkbox from login.
 
 _akd 05.02.2015_
