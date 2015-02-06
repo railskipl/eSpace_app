@@ -160,7 +160,7 @@
                };
 
                StripeCheckout.open({
-               key:         'pk_test_17xmTuMVQ5oVgcT0AWY6XcNo',
+               key:         "<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>",
                address:     false,
                amount:      document.getElementById('totalPrice').value,
                currency:    'usd',

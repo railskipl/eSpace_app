@@ -20,6 +20,8 @@ Now gems:
 $ bundle install
 ```
 
+Create `config/application.yml` [with secret data](https://tracker.anahoret.com/projects/171).
+
 Now database:
 
 ```console
@@ -50,3 +52,16 @@ $ git push production master
 ```
 
 More in `docs/Deployment.md`.
+
+## Other
+
+Good test cards:
+
+```
+4242424242424242  Visa
+4012888888881881  Visa
+4000056655665556  Visa (debit)
+5555555555554444  MasterCard
+5200828282828210  MasterCard (debit)
+5105105105105100  MasterCard (prepaid)
+```
