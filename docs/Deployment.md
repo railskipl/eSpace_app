@@ -57,7 +57,7 @@ $ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/dokku-alt/dokku-a
 * Add your key to deploy:
 
 ```console
-$ cat ~/.ssh/id_rsa.pub | ssh root@yourdomain.com "sudo sshcommand acl-add dokku yourname"
+$ cat ~/.ssh/id_rsa.pub | ssh root@yourdomain.com sudo dokku access:add"
 ```
 
 * Deploy a root instance.
