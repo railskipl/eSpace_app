@@ -1,5 +1,9 @@
 # Unreleased
 
+* Added mobile numder and login count to user info for admin.
+
+_akd 09.02.2015_
+
 * Remove unused eager loading on posts#overview and search.
 
 _akd 06.02.2015_
