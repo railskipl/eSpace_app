@@ -114,8 +114,6 @@ Rails.application.routes.draw do
       get 'cancel_booking'
       get 'cancel_popup'
       get 'rating'
-      get 'drop_off'
-      get 'confirm'
     end
   end
 
