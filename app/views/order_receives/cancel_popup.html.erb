@@ -1,30 +1,31 @@
-
-
-
 <div class="content">
-	<div class="boxpop-up">
-		<div class="heading">Cancel booking</div>
+  <div class="boxpop-up">
+    <div class="heading">Cancel booking</div>
 
-		<div class="paragraph-new">
-			<p>
-			  Integer posuere erat a ante venenatisInteger posuere erat a ante venenatis dapibus posuere velit aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-			</p>
-	    </div>
+      <% if @booking.is_cancel == true %>
+        <div class="paragraph-new">
+          <p>
+            This booking has already canceled.
+          </p>
+        </div>
+        <div class="alredy-btn">
+          <%= link_to "Already cancelled", "javascript:void(0)" %>
+        </div>
+      <% else %>
+        <div class="paragraph-new">
+          <p>
+            You are going to cancel this booking. It will be impossible to undo.
+          </p>
+        </div>
+        <div class="booking-btn">
+          <%= link_to "Cancel Booking", cancel_booking_order_receives_path(:id =>params[:id])%>
+        </div>
+      <% end %>
 
-		<div class="link-more">
-		  <%= link_to "Learn more", frequently_asked_question_path, :target=>"_blank" %>
-		</div>
-
-		<% if @booking.is_cancel == true %>
-		    <div class="alredy-btn">
-			  <%= link_to "Already cancelled", "javascript:void(0)" %>
-			</div>
-		<% else %>
-		    <div class="booking-btn">
-		      <%= link_to "Cancel Booking", cancel_booking_order_receives_path(:id =>params[:id])%>
-		    </div>
-		<% end %>
-
-	</div>
+      <div class="link-more">
+        <%= link_to "Learn more", frequently_asked_question_path, :target=>"_blank" %>
+      </div>
+    </div>
+  </div>
 </div>
 
