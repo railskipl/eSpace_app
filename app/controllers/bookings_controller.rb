@@ -119,22 +119,6 @@ class BookingsController < ApplicationController
     @post = Post.find(params[:post_id])
   end
 
-  def drop_off
-    @booking = Booking.find(params[:booking_id])
-  end
-
-  def confirm
-    booking = Booking.find(params[:id])
-    booking.is_confirm = true
-    booking.save
-    Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id,
-                   :post_id => booking.post_id,:body => "Drop-off has been confirmed.")
-    redirect_to booking_path(booking.id)
-    flash[:notice] = "Confirm drop off"
-
-  end
-
-
   def is_number?(i)
     true if Float(i) rescue false
   end

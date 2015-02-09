@@ -57,10 +57,6 @@
             <p>
               <% if booking.is_cancel == true %>
                   <span>Status</span> : Cancelled
-              <% elsif booking.is_confirm == true %>
-                  <span>Status</span> : Confirmed booking
-              <% else %>
-                  <span>Status</span> : Waiting for drop-off confirmation
               <% end %>
             </p>
             <p>

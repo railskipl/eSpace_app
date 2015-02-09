@@ -96,17 +96,9 @@ module BookingsHelper
     end
   end
 
-
   def post_link(booking)
-    if current_user == booking.user
-      link_to "View booking made by me", booking_path(booking.id)
-    else
-      if booking.is_confirm?
-        link_to "View order received", booking_path(booking.id)
-      else
-        link_to "View order received", booking_path(booking.id)
-      end
-    end
+    text = current_user == booking.user ? "View booking made by me" : "View order received"
+    link_to text, booking_path(booking.id)
   end
 
   def send_by_user(booking)
