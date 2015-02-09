@@ -19,14 +19,12 @@
 		    <div class="alredy-btn">
 			  <%= link_to "Already cancelled", "javascript:void(0)" %>
 			</div>
-		<% elsif @booking.is_confirm == true %>
-		
 		<% else %>
 		    <div class="booking-btn">
 		      <%= link_to "Cancel Booking", cancel_booking_order_receives_path(:id =>params[:id])%>
 		    </div>
 		<% end %>
-		
+
 	</div>
 </div>
 

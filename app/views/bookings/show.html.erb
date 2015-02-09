@@ -61,21 +61,8 @@
                             </span>
                           </li>
                           <li><div>Total Amount</div> <span>$<%= @booking.price %></span></li>
-                          <li><div>Status</div>
 
-                            <% if @booking.is_cancel == true %>
-                              <span>Cancelled</span>
-                            <% elsif @booking.is_confirm == true %>
-                              <span>Confirmed booking</span>
-                            <% else %>
-                              <span>Waiting for drop-off confirmation</span>
-                            <% end %>
-
-                          </li>
                           <%unless current_user.admin?%>
-                          <% if @booking.dropoff_date + 1 >= Date.today %>
-                            <%= link_to "Confirm drop-off ", drop_off_bookings_path(:booking_id => @booking.id ), :remote=>true, :class=>"cdo" %>
-                          <% end %>
 
                           </ul>
                           <% if @booking.dropoff_date >= Date.today %>
@@ -123,4 +110,4 @@
     <%= stylesheet_link_tag  'scroll', "jquery.mCustomScrollbar" %>
     <%= javascript_include_tag "bootstrap.min", "jquery.mCustomScrollbar.concat.min", "scrollbar.js" %>
 
-  
+
