@@ -2,6 +2,7 @@ class BankDetailsController < ApplicationController
 
  before_filter :authenticate_user!, :except => []
  before_action :set_bank_detail, only: [:show, :update, :destroy]
+ before_action :check_user_privilege, only: [:show]
  respond_to :html, :xml, :json
 
   def index
@@ -14,7 +15,6 @@ class BankDetailsController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -95,5 +95,9 @@ class BankDetailsController < ApplicationController
 
     def bank_detail_params
       params.require(:bank_detail).permit(:full_name, :card_number,:user_id)
+    end
+
+    def check_user_privilege
+      redirect_to bank_details_path, notice: 'Sorry, you are not allowed to access that page.' unless @bank_detail.user_id == current_user.id
     end
 end

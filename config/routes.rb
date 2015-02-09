@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :admins, :only => [:show,:destroy,:index]
 
-  resources :bank_details, :only => [:index,:new,:create, :destroy]
+  resources :bank_details, :only => [:index,:new,:create, :destroy, :show]
 
   resources :disputes, :only => [:index, :show] do
     collection do
