@@ -1,30 +1,28 @@
 class BookingsController < ApplicationController
  before_filter :authenticate_user!, :except => []
+ before_action :set_booking, only: [:show, :cancel_popup, :cancel_booking, :confirm, :rating]
  skip_before_filter :verify_authenticity_token, :only => [:checkout]
+ before_action :check_user_privilege, only: [:show, :cancel_popup, :cancel_booking, :confirm, :rating]
 
  include BookingsHelper
 
- def index
+  def index
     if params[:cancelled].present?
       @bookings = Booking.includes(:post,:poster).hide_cancelled(current_user.id).page(params[:page]).per_page(4)
     else
  	    @bookings = Booking.includes(:post,:poster).page(params[:page]).where("user_id = ?",current_user.id).order("id desc").per_page(4)
     end
- end
+  end
 
 	def new
 		@booking = Booking.new
 	end
 
   def show
-    @booking = Booking.find(params[:id])
     @post = Post.find(@booking.post_id)
-
   end
 
 	def create
-
-
 	end
 
   def search_by_date
@@ -98,13 +96,11 @@ class BookingsController < ApplicationController
 
 
   def cancel_popup
-     @booking = Booking.find(params[:id])
   end
 
   #this method cancel's the booking done by finder & does the cancel_booking_deduction
   # according to criteria.
   def cancel_booking
-    @booking = Booking.find(params[:id])
     data = Booking.booking_cancel_finder(@booking,params[:drop_off_date].to_date)
     if data.class == Stripe::InvalidRequestError
       redirect_to :back, :notice => "Stripe error: #{data.message}"
@@ -129,7 +125,7 @@ class BookingsController < ApplicationController
   end
 
   def confirm
-    booking = Booking.find(params[:id])
+    booking = @booking
     booking.is_confirm = true
     booking.save
     Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id,
@@ -143,9 +139,17 @@ class BookingsController < ApplicationController
 
   end
 
+  def is_number?(i)
+    true if Float(i) rescue false
+  end
 
-	def is_number?(i)
-    	true if Float(i) rescue false
+  private
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  def check_user_privilege
+    redirect_to bookings_path, notice: 'Sorry, you are not allowed to access that page.' unless @booking.user_id == current_user.id
   end
 
 

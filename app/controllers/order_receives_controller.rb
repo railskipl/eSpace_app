@@ -1,7 +1,11 @@
 class OrderReceivesController < ApplicationController
 	before_filter :authenticate_user!, :except => []
+	before_action :set_order, only: [:cancel_popup, :cancel_booking]
+	before_action :check_user_privilege, only: [:cancel_popup, :cancel_booking]
+
+
 	def index
-		@bookings = Booking.includes(:user,:post).where('poster_id = ?', current_user.id).page(params[:page]).order("id desc").per_page(4)
+	  	@bookings = Booking.includes(:user,:post).where('poster_id = ?', current_user.id).page(params[:page]).order("id desc").per_page(4)
 	end
 
 	def search_order_received_by_date
@@ -23,13 +27,11 @@ class OrderReceivesController < ApplicationController
 
 
 	def cancel_popup
-     @booking = Booking.find(params[:id])
   	end
 
   	 #Cancel booking from Poster side and all amount refund to Finder without deduction.
 	 def cancel_booking
 
-	    @booking = Booking.find(params[:id])
 		amount = @booking.price
 		data = Booking.booking_cancel(@booking)
 		if data.class == Stripe::InvalidRequestError
@@ -40,6 +42,17 @@ class OrderReceivesController < ApplicationController
 	      redirect_to order_receives_path
 		end
 	end
+
+
+	private
+
+	def set_order
+      @booking = Booking.find(params[:id])
+    end
+
+	def check_user_privilege
+      redirect_to order_receives_path, notice: 'Sorry, you are not allowed to access that page.' unless @booking.poster_id == current_user.id
+    end
 
 
 end

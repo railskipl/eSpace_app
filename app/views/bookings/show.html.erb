@@ -33,7 +33,7 @@
                             <p>
                             <%= link_to "Message ", compose_message_messages_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %>
 
-                            <%= link_to "Rate ", rating_bookings_path(:user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %>
+                            <%= link_to "Rate ", rating_bookings_path(:id=> @booking.id, :user_id => @post.user_id,:post_id => @post.id ), :remote=>true, :class=>"g-round-btn" %>
 
                             </p>
                             <p>

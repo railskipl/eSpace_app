@@ -2,8 +2,10 @@ class PostsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle, :toggled_feature]
   before_filter :authenticate_user!
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :toggle]
+  before_filter :correct_user, :only => [:toggled_feature]
+  before_action :check_user_privilege, only: [:toggle, :edit, :update]
 
   include PostsHelper
   include BookingsHelper
@@ -125,7 +127,6 @@ class PostsController < ApplicationController
 
    def toggled_feature
 
-    @post = Post.find(params[:id])
     @post.status = !@post.status?
     @post.save!
      respond_to do |format|
@@ -148,6 +149,15 @@ class PostsController < ApplicationController
       params[:post][:drop_off_avaibility_end_date].to_date
 
       params.require(:post).permit(:area, :price_sq_ft, :pick_up, :drop_off, :price_include_pick_up, :price_include_drop_off, :pick_up_avaibilty_start_date, :pick_up_avaibility_end_date, :drop_off_avaibility_start_date, :drop_off_avaibility_end_date, :status, :additional_comments, :address, :latitude, :longitude, :user_id,:photo,:featured,:street_add,:apt,:city,:state,:zip_code,:area_available)
+    end
+
+    def correct_user
+      @user = User.find_by_id_and_admin(current_user.id, true)
+      redirect_to(root_path, :notice => "Sorry, you are not allowed to access that page.") unless current_user=(@user)
+    end
+
+    def check_user_privilege
+      redirect_to posts_path, notice: 'Sorry, you are not allowed to access that page.' unless @post.user_id == current_user.id
     end
 
 

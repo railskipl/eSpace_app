@@ -102,9 +102,9 @@ module BookingsHelper
       link_to "View booking made by me", booking_path(booking.id)
     else
       if booking.is_confirm?
-        link_to "View order received", booking_path(booking.id)
+        link_to "View order received", post_path(booking.post_id)
       else
-        link_to "View order received", booking_path(booking.id)
+        link_to "View order received", post_path(booking.post_id)
       end
     end
   end
