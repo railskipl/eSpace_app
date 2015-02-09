@@ -61,7 +61,13 @@
                             </span>
                           </li>
                           <li><div>Total Amount</div> <span>$<%= @booking.price %></span></li>
+                          <li><div>Status</div>
 
+                            <% if @booking.is_cancel == true %>
+                              <span>Cancelled</span>
+                            <% end %>
+
+                          </li>
                           <%unless current_user.admin?%>
 
                           </ul>

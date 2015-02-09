@@ -83,6 +83,15 @@
 
                         <div class="booking-col1">
                         <span>Booking area</span> : <%= booking.area %> sq. ft
+
+                        <p>
+
+                           <% if booking.is_cancel == true %>
+                            <span>Status</span> : Cancelled
+                           <% end %>
+
+                        </p>
+
                         </div>
 
                         <div class="booking-col1">
@@ -102,7 +111,6 @@
                             </label>
                         <%end%>
                         </p>
-
 
                     </div>
 
