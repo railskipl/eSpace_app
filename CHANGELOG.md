@@ -1,5 +1,13 @@
 # Unreleased
 
+* Change nonsensical text in cancel-popup windows.
+
+_akd 09.02.2015_
+
+* Remove confirm drop off feature.
+
+_akd 09.02.2015_
+
 * Remove unused eager loading on posts#overview and search.
 
 _akd 06.02.2015_
