@@ -60,9 +60,7 @@ gem 'wkhtmltopdf-heroku'
 
 # Paperclip gem for managing file uploads
 gem 'paperclip', github: 'thoughtbot/paperclip'
-
-gem 'aws-s3'
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 1.61'
 
 gem 'will_paginate'
 gem 'rest-client'

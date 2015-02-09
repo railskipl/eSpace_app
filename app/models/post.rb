@@ -1,26 +1,22 @@
 class Post < ActiveRecord::Base
 
-	geocoded_by :poster_address
+  geocoded_by :poster_address
   after_validation :geocode
   after_validation :lat_changed?
 
   has_many :comments
-	belongs_to :user
+  belongs_to :user
   has_many :messages
   has_many :ratings
   has_many :bookings
   has_many :disputes
 
-	has_attached_file :photo, :styles => { :thumb => "91x61", :medium => "512x344" },
-
-    :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml",
-                    :path => "/estore_management/posts/:id/:style/:basename.:extension",
-
-                    :convert_options => {
-                          :thumb => "-background '#fff' -compose Copy -gravity center -extent 91x61",
-                          :medium => "-background '#fff' -compose Copy -gravity center -extent 512x344",
-
-                      }
+  has_attached_file :photo, :styles => { :thumb => "91x61", :medium => "512x344" },
+    :path => "estore_management/posts/:id/:style/:basename.:extension",
+    :convert_options => {
+      :thumb => "-background '#fff' -compose Copy -gravity center -extent 91x61",
+      :medium => "-background '#fff' -compose Copy -gravity center -extent 512x344",
+    }
 
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
