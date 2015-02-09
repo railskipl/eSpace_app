@@ -1,17 +1,27 @@
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: 5
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   # For details on connection pooling, see rails configuration guide
+#   # http://guides.rubyonrails.org/configuring.html#database-pooling
+#   pool: 5
+# 
+# development:
+#   <<: *default
+#   database: college_app_development
+# 
+# test:
+#   <<: *default
+#   database: college_app_test
+# 
+# production:
+#   url: <%= ENV['DATABASE_URL'] %>
+
+
 
 development:
-  <<: *default
+  adapter: mysql2
   database: college_app_development
+  username: root
+  password: 
+  #socket: /var/run/mysqld/mysqld.sock
 
-test:
-  <<: *default
-  database: college_app_test
-
-production:
-  url: <%= ENV['DATABASE_URL'] %>

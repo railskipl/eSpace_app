@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
+
+gem 'mysql2', group: :development
 gem 'pg'
 
 gem 'devise'
@@ -13,7 +15,7 @@ gem 'ransack'
 
 gem 'puma'
 gem 'foreman', require: false
-gem 'figaro'
+# gem 'figaro'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
