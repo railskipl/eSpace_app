@@ -6,6 +6,10 @@ _akd 09.02.2015_
 
 * Remove confirm drop off feature.
 
+akd 09.02.2015_
+
+* Added mobile numder and login count to user info for admin.
+
 _akd 09.02.2015_
 
 * Remove unused eager loading on posts#overview and search.
