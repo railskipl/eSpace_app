@@ -1,5 +1,13 @@
 # Unreleased
 
+* Change 'from' address in contact us notifications.
+
+_dak 09.02.2015_
+
+* Use Mandrill for production email delivery.
+
+_dak 09.02.2015_
+
 * Change nonsensical text in cancel-popup windows.
 
 _akd 09.02.2015_
