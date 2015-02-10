@@ -65,3 +65,14 @@ Good test cards:
 5200828282828210  MasterCard (debit)
 5105105105105100  MasterCard (prepaid)
 ```
+
+## Facebook
+
+Facebook login is not very useful for us because the user has to verify email address in any case.
+Hide the feature but leave the code there, so if we want it in the future, it will be easy to implement.
+To restore this feature, you need to register environment variables (FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY) in figaro.rb and application.yml
+And also to generate environment variables on production:
+
+```console
+$ bin/dokku-remote config:set production FACEBOOK_APP_ID = **** FACEBOOK_SECRET_KEY = ***
+```
