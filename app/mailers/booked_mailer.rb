@@ -12,4 +12,14 @@ class BookedMailer < ActionMailer::Base
       format.html
     end
   end
+
+  def booking_status(booking)
+    @booking = booking
+    @armoring = booking.user.full_name
+    subject = "Changed the status of your booking"
+    mail(
+      :subject => subject,
+      :to => booking.user.email
+      )
+  end
 end
