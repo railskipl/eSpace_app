@@ -15,11 +15,12 @@ class BookedMailer < ActionMailer::Base
 
   def booking_status(booking)
     @booking = booking
-    @armoring = booking.user.full_name
-    subject = "Changed the status of your booking"
+    @area = booking.post.area
+    @poster = booking.poster.full_name
+    subject = "Cancellation booking"
     mail(
       :subject => subject,
-      :to => booking.user.email
+      :to => booking.poster.email
       )
   end
 end
