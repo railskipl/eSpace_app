@@ -4,6 +4,10 @@
 
 _akd 10.02.2015_
 
+* Rename input 'College ID' in the 'Email' in login window.
+
+_akd 10.02.2015_
+
 * Change 'from' address in contact us notifications.
 
 _dak 09.02.2015_

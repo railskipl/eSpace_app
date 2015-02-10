@@ -101,6 +101,7 @@ class BookingsController < ApplicationController
   def cancel_booking
     @booking = current_user.bookings.find(params[:id])
     data = Booking.booking_cancel_finder(@booking,params[:drop_off_date].to_date)
+    BookedMailer.booking_status(@booking).deliver
     if data.class == Stripe::InvalidRequestError
       redirect_to :back, :notice => "Stripe error: #{data.message}"
     else

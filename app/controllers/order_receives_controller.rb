@@ -28,8 +28,10 @@ class OrderReceivesController < ApplicationController
   # Cancel booking from Poster side and all amount refund to Finder without deduction.
   def cancel_booking
     @booking = current_user.orders.find(params[:id])
+    post = current_user.orders.find(params[:id]).post
     amount = @booking.price
     data = Booking.booking_cancel(@booking)
+    OrderMailer.order_status(@booking, post).deliver
     if data.class == Stripe::InvalidRequestError
       redirect_to :back, :notice => "Stripe error while creating customer: #{data.message}"
     else
