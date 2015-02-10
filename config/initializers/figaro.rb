@@ -6,6 +6,4 @@ Figaro.require_keys %w[
   AWS_SECRET_ACCESS_KEY
   S3_BUCKET_NAME
 
-  FACEBOOK_APP_ID
-  FACEBOOK_SECRET_KEY
 ]
