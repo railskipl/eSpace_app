@@ -1,5 +1,9 @@
 # Unreleased
 
+* Add new delivers(create bookings, canceled bookings, canceled posts)
+
+_akd 10.02.2015_
+
 * Hide Facebook login.
 
 _akd 10.02.2015_
