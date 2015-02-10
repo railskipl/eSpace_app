@@ -1,5 +1,25 @@
 # Unreleased
 
+* Change 'from' address in contact us notifications.
+
+_dak 09.02.2015_
+
+* Use Mandrill for production email delivery.
+
+_dak 09.02.2015_
+
+* Change nonsensical text in cancel-popup windows.
+
+_akd 09.02.2015_
+
+* Remove confirm drop off feature.
+
+akd 09.02.2015_
+
+* Added mobile numder and login count to user info for admin.
+
+_akd 09.02.2015_
+
 * Remove unused eager loading on posts#overview and search.
 
 _akd 06.02.2015_
