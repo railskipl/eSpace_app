@@ -44,10 +44,12 @@
       <%= f.submit "Submit", :class=>"loginnew-btn" %>
     </div>
     <% end %>
-    <div style="text-align:center;"> OR </div>
-    <div class="facebook-up-btn">
-      <a href="/users/auth/facebook">Sign up with Facebook</a>
-    </div>
+    <% if ENV['FACEBOOK_APP_ID'] && ENV['FACEBOOK_SECRET_KEY'] %>
+      <div style="text-align:center;"> OR </div>
+      <div class="facebook-up-btn">
+        <a href="/users/auth/facebook">Sign up with Facebook</a>
+      </div>
+    <% end %>
 
     <div class="bottom-div">
       <div class="regErr"> <% unless resource.errors.empty? %> Error <% end %></div> <!-- <div style="float:left;margin: 0px 0 18px 132px"> Cancel</div> -->
