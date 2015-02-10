@@ -118,8 +118,10 @@ class PostsController < ApplicationController
   end
 
   def toggled_feature
+    @post = Post.find(params[:id])
     @post.status = !@post.status?
     @post.save!
+    PostMailer.post_status(@post).deliver
     respond_to do |format|
       format.html { redirect_to home_all_postings_path, notice: 'Post status updated.' }
       format.json { head :no_content }
