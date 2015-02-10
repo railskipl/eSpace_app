@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   before_filter :authenticate_user!
-  before_action :set_product, only: [:edit, :update, :destroy, :toggle, :toggled_feature]
+  before_action :set_product, only: [:edit, :update, :destroy, :toggle]
 
   include PostsHelper
   include BookingsHelper
