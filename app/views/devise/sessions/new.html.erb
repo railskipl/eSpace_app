@@ -1,35 +1,31 @@
 <%= javascript_include_tag  "jquery.validate.min","validation" %>
 
 <div class="boxpop-up-login">
-
-    <div class="heading-login mrleft75">Login</div>
-
-    <strong>
-        <span class="invalidLogin"> <%= params[:flash] %></span>
-    </strong>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:id => "session"}) do |f| %>
+  <div class="heading-login mrleft75">Login</div>
+  <strong><span class="invalidLogin"> <%= params[:flash] %></span></strong>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:id => "session"}) do |f| %>
     <div class="login-popup">
-   		<%= f.email_field :email, autofocus: true, :placeholder=>"College ID" %>
+      <%= f.email_field :email, autofocus: true, :placeholder=>"College ID" %>
     </div>
 
-   	<div class="password-new-up">
-   		<%= f.password_field :password, autocomplete: "off", :placeholder=>"Password" %>
-   	</div>
+    <div class="password-new-up">
+      <%= f.password_field :password, autocomplete: "off", :placeholder=>"Password" %>
+    </div>
 
     <div style="text-align:center">
-     	<%= f.submit "Login", :class=>"loginnew-btn", :disable_with=> "Please wait..." %>
+      <%= f.submit "Login", :class=>"loginnew-btn", :disable_with=> "Please wait..." %>
     </div>
-    <% end %>
-   	<div style="text-align:center; font-size: 11px;"> OR </div>
+  <% end %>
+  <% if ENV['FACEBOOK_APP_ID'] && ENV['FACEBOOK_SECRET_KEY'] %>
+    <div style="text-align:center; font-size: 11px;"> OR </div>
     <div class="facebook-up-btn">
-     	<a href="/users/auth/facebook">Sign up with Facebook</a>
-
+      <a href="/users/auth/facebook">Sign up with Facebook</a>
     </div>
+  <% end %>
 
-    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-    	<div class="forgot">
-    	<%= link_to "Forgot password?", new_password_path(resource_name), :remote=> true %>
-    	</div>
-    <% end -%>
-
+  <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <div class="forgot">
+    <%= link_to "Forgot password?", new_password_path(resource_name), :remote=> true %>
+    </div>
+  <% end %>
 </div>
