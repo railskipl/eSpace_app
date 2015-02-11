@@ -49,25 +49,6 @@ class Booking < ActiveRecord::Base
 		page(page_no).order("id desc").per_page(6)
 	end
 
-	#booking cancel by poster
-	def self.booking_cancel(booking)
-		amount = booking.price
-
-	    stripe_charge_id = booking.stripe_charge_id
-	    amount_cents = ((amount.to_f)*100).to_i
-
-	    begin
-	    ch = Stripe::Charge.retrieve(stripe_charge_id)
-	    refund = ch.refunds.create(:amount => amount_cents)
-	    booking.update_attributes(is_cancel: true, refund_finder: amount, comment: "Cancel by poster.")
-	    Post.add_area(booking)
-	    rescue Stripe::InvalidRequestError => e
-	      return e
-	    end
-        Message.create(:sender_id => booking.user_id, :recipient_id => booking.poster_id,
-	      				 :post_id => booking.post_id,:body => "Booking is cancel")
-	end
-
 	def self.search_booking(search)
 		if search
 		    includes(:poster,:post).where('id = ?', search).order("id desc")
