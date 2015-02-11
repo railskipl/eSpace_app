@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts 'SETTING UP DEFAULT USER LOGIN'
 User.reset_column_information
-admin = User.new(:email => 'admin@admin.com', :password => 'admin123', :password_confirmation => 'admin123', :admin => 'true')
+admin = User.new(:email => 'support@dinobo.com', :password => 'sxP7WsW3CdjRd3PV4CnX', :password_confirmation => 'sxP7WsW3CdjRd3PV4CnX', :admin => 'true')
 admin.skip_confirmation!
 admin.save!
 
