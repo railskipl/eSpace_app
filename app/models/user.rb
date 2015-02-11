@@ -70,7 +70,9 @@ class User < ActiveRecord::Base
     where("admin =?",false).order('created_at DESC')
   end
 
-
+  def full_name
+    self.name + self.last_name
+  end
 
   #Message count
   def check_message

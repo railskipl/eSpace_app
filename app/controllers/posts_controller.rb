@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   before_filter :authenticate_user!
-  before_action :set_product, only: [:edit, :update, :destroy, :toggle, :toggled_feature]
+  before_action :set_product, only: [:edit, :update, :destroy, :toggle]
 
   include PostsHelper
   include BookingsHelper
@@ -118,8 +118,10 @@ class PostsController < ApplicationController
   end
 
   def toggled_feature
+    @post = Post.find(params[:id])
     @post.status = !@post.status?
     @post.save!
+    PostMailer.post_status(@post).deliver
     respond_to do |format|
       format.html { redirect_to home_all_postings_path, notice: 'Post status updated.' }
       format.json { head :no_content }
