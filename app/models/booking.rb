@@ -121,7 +121,7 @@ class Booking < ActiveRecord::Base
 	        :currency => "usd",
 	        :recipient => recipient_details.stripe_recipient_token,
 	        :card => recipient_details.stripe_card_id_token,
-	        :statement_description => "Money transfer"
+	        :statement_descriptor => "Money transfer"
 	      )
 	       rescue Stripe::InvalidRequestError => e
 	          return e
