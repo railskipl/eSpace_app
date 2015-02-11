@@ -130,7 +130,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.add_area(booking)
-    p = self.find(booking.post_id.to_i)
+    p = self.find(booking["post_id"].to_i)
     p.area_available = p.area_available + booking.area.to_f
     p.save
   end

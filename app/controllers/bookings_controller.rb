@@ -101,7 +101,6 @@ class BookingsController < ApplicationController
   def cancel_booking
     @booking = current_user.bookings.find(params[:id])
     data = Booking.booking_cancel_finder(@booking,params[:drop_off_date].to_date)
-    BookedMailer.booking_status(@booking).deliver
     if data.class == Stripe::InvalidRequestError
       redirect_to :back, :notice => "Stripe error: #{data.message}"
     else
@@ -111,6 +110,7 @@ class BookingsController < ApplicationController
       Post.add_area(@booking)
       PaymentHistory.create(:name => "cancel", :booking_id => @booking.id)
       flash[:notice] = "Booking is cancel & $#{data} is refunded"
+      BookedMailer.booking_status(@booking).deliver
       redirect_to booking_path(@booking.id)
     end
   end
