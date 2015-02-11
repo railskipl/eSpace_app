@@ -71,7 +71,12 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    self.name + self.last_name
+    name = "#{self.name}" + "#{self.last_name}"
+    unless name.blank?
+      return name
+    else
+      return self.email.to_s.split('@').first
+    end
   end
 
   #Message count

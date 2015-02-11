@@ -15,7 +15,7 @@ class BookedMailer < ActionMailer::Base
 
   def booking_status(booking)
     @booking = booking
-    @area = booking.post.area
+    @area = booking.post.area_available
     @poster = booking.poster.full_name
     subject = "Cancellation booking"
     mail(
