@@ -23,4 +23,14 @@ class BookedMailer < ActionMailer::Base
       :to => booking.poster.email
       )
   end
+
+  def booking_payment(booking)
+    @booking = booking
+    @poster = booking.poster.full_name
+    subject = "Transfer of funds"
+    mail(
+      :subject => subject,
+      :to => booking.poster.email
+      )
+  end
 end

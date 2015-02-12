@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    name = "#{self.name}" + "#{self.last_name}"
+    name = "#{self.name}" + " " + "#{self.last_name}"
     unless name.blank?
       return name
     else
