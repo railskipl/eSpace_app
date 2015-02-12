@@ -4,11 +4,11 @@ ruby '2.1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
 gem 'pg'
+gem 'sidetiq'
 
 gem 'devise'
 
 gem 'bullet', group: :development
-
 gem 'ransack'
 
 gem 'puma'
