@@ -1,5 +1,9 @@
 # Unreleased
 
+* Use sidetiq for periodical tasks.
+
+_akd 12.02.2015_
+
 * Сorrected cancellation booking.
 
 _akd 11.02.2015_
