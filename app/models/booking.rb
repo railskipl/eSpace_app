@@ -13,7 +13,10 @@ class Booking < ActiveRecord::Base
            :pick_up_avaibilty_start_date, :price_sq_ft, :pick_up_avaibility_end_date, :to => :post, :prefix => true
 
   scope :for_user, -> (user) { where('poster_id = :user_id or user_id = :user_id', user_id: user.id ) }
-  scope :not_canceled, -> {where(is_cancel: false)}
+  scope :not_cancelled, -> {where(is_cancel: false)}
+  scope :cancelled_as, ->(param){
+    param.nil? ? all : where(is_cancel: param)
+  }
 
   def self.get_payments(current_user,page_no)
     includes(:poster, :user).joins(:payment_histories).select_data.for_user(current_user).pagination(page_no)

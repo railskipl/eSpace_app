@@ -5,19 +5,15 @@ class BookingsController < ApplicationController
   include BookingsHelper
 
   def index
-    if params[:cancelled].present?
-      @bookings = scope.not_canceled.page(params[:page]).per_page(4)
-    else
-      @bookings = scope.page(params[:page]).order("id desc").per_page(4)
-    end
+    @bookings = scope.cancelled_as(params[:cancelled]).includes(:poster, :post).page(params[:page]).per_page(4).order("id desc")
   end
 
   def new
-    @booking = current_user.bookings.build
+    @booking = scope.build
   end
 
   def show
-    @booking = current_user.bookings.find(params[:id])
+    @booking = scope.find(params[:id])
     @post = Post.find(@booking.post_id)
   end
 
@@ -93,13 +89,13 @@ class BookingsController < ApplicationController
 
 
   def cancel_popup
-    @booking = current_user.bookings.find(params[:id])
+    @booking = scope.find(params[:id])
   end
 
   #this method cancel's the booking done by finder & does the cancel_booking_deduction
   # according to criteria.
   def cancel_booking
-    @booking = current_user.bookings.find(params[:id])
+    @booking = scope.find(params[:id])
     data = Booking.booking_cancel_finder(@booking,params[:drop_off_date].to_date)
     if data.class == Stripe::InvalidRequestError
       redirect_to :back, :notice => "Stripe error: #{data.message}"
@@ -127,7 +123,7 @@ class BookingsController < ApplicationController
   private
 
   def scope
-    current_user.bookings.includes(:poster, :post)
+    current_user.admin? ? Booking.all : current_user.bookings
   end
 
 
