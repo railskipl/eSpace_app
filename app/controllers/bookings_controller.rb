@@ -51,7 +51,7 @@ class BookingsController < ApplicationController
           :description => "Customer #{params[:stripeEmail]}"
         )
       rescue Stripe::InvalidRequestError => e
-        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
+        redirect_to :back, :notice => "Stripe error: #{e.message}"
         return false
       end
 

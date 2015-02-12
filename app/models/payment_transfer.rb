@@ -35,7 +35,6 @@ class PaymentTransfer
       	  :statement_description => "Money transfer"
       	)
          rescue Stripe::InvalidRequestError => e
-            # redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
             return e
          end
 

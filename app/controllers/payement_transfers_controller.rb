@@ -31,7 +31,7 @@ class PayementTransfersController < ApplicationController
       @price = @booking.price.to_i
         data = PaymentTransfer.transfer_money_to_poster(@booking,@recipient_details)
         if data.class == Stripe::InvalidRequestError
-         redirect_to :back, :notice => "Stripe error while creating customer: #{data.message}"
+         redirect_to :back, :notice => "Stripe error: #{data.message}"
         else
           redirect_to payement_transfers_path
           flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{data[0]} and commision is $#{data[1]}"

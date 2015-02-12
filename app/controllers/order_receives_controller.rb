@@ -32,7 +32,7 @@ class OrderReceivesController < ApplicationController
     amount = @booking.price
     data = Booking.booking_cancel(@booking)
     if data.class == Stripe::InvalidRequestError
-      redirect_to :back, :notice => "Stripe error while creating customer: #{data.message}"
+      redirect_to :back, :notice => "Stripe error: #{data.message}"
     else
       OrderMailer.order_status(@booking, post).deliver
       PaymentHistory.create(:name => "cancel", :booking_id => @booking.id)
