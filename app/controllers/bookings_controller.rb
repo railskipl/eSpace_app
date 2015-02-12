@@ -60,7 +60,7 @@ class BookingsController < ApplicationController
       end
 
       if is_number?(@amount.to_f)
-        @amount = ((@amount.to_f)).to_i
+        @amount = @amount.to_f.to_i
         charge = Stripe::Charge.create(
             :customer    => customer.id,
             :amount      => @amount,
@@ -106,7 +106,7 @@ class BookingsController < ApplicationController
     else
       Message.create(:sender_id =>  @booking.user_id, :recipient_id => @booking.poster_id,
                      :post_id => @booking.post_id,:body => "Booking is cancel")
-      transfer_payment = @booking.update_columns(refund_finder: data)
+      transfer_payment = @booking.update_columns(is_cancel: true, refund_finder: data)
       Post.add_area(@booking)
       PaymentHistory.create(:name => "cancel", :booking_id => @booking.id)
       flash[:notice] = "Booking is cancel & $#{data} is refunded"
