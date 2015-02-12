@@ -50,7 +50,7 @@ class DisputesController < ApplicationController
       :statement_description => "Money transfer"
       )
        rescue Stripe::InvalidRequestError => e
-          redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
+          redirect_to :back, :notice => "Stripe error: #{e.message}"
           return false
        end
 

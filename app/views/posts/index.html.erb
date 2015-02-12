@@ -58,18 +58,14 @@
       <% @posts.each_with_index do |post, index| %>
         <div class="booking-box-add">
           <div class="booking-col">
-            <p style="width:70px;"><%= post.address rescue nil%> <%= post.street_add rescue nil%> <%= post.apt rescue nil%> <%= post.city rescue nil%> <%= post.state rescue nil%> <%= post.zip_code rescue nil%></p>
-            <p><span> Bookings received </span>: <%= post.bookings.pluck(:id).count%> </p>
+            <p style="width:70px;"><%= post.address rescue nil %> <%= post.street_add rescue nil %> <%= post.apt rescue nil %> <%= post.city rescue nil %> <%= post.state rescue nil %> <%= post.zip_code rescue nil %></p>
+            <p><span> Bookings received </span>: <%= post.bookings.where(is_cancel: false).count %> </p>
           </div>
           <div class="booking-col1">
             <span>Total area</span> : <%= post.area.to_i %> sq. ft
-            <% @a =[] %>
-            <% post.bookings.pluck(:area).each do |area|%>
-              <% @a << area%>
-            <%end%>
 
             <p>
-              <span>Booking area</span> : <%= @a.present? ? @a.inject{|sum,x| sum + x } : 0 %>sq. ft
+              <span>Booking area</span> : <%= (post.area - post.area_available).to_i %> sq. ft
             </p>
             <p>
               <span>Price/sq. ft</span> : $<%= post.price_sq_ft %>

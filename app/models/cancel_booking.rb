@@ -13,17 +13,15 @@ module CancelBooking
       end
     end
 
-    def cancel_booking_by_finder_less8(days,price)
-
+    def cancel_booking_by_finder_less8(days, price)
+      money_without_comission = price.to_f - GlobalConstants::ADMIN_COMISSION
       if days >= GlobalConstants::CANCEL_DAYS
-         @deducted_amount = (price.to_f - GlobalConstants::ADMIN_COMISSION) * GlobalConstants::BEFORE_CANCEL_20_DAYS
-         return @deducted_amount
-      elsif(days > GlobalConstants::MIN_CANCEL_DAYS && days <= GlobalConstants::CANCEL_DAYS)
-        @deducted_amount = (price.to_f - GlobalConstants::ADMIN_COMISSION) * GlobalConstants::BEFORE_CANCEL_WITHIN_20_DAYS_LESS8
-        return @deducted_amount
-      elsif(days <=GlobalConstants::MIN_CANCEL_DAYS)
-        @deducted_amount = (price.to_f - GlobalConstants::ADMIN_COMISSION) * GlobalConstants::CANCEL_LAST_2_DAYS
-        return @deducted_amount
+        money_without_comission * GlobalConstants::BEFORE_CANCEL_20_DAYS
+      elsif (days > GlobalConstants::MIN_CANCEL_DAYS &&
+            days <= GlobalConstants::CANCEL_DAYS)
+        money_without_comission * GlobalConstants::BEFORE_CANCEL_WITHIN_20_DAYS_LESS8
+      elsif days <= GlobalConstants::MIN_CANCEL_DAYS
+        money_without_comission * GlobalConstants::CANCEL_LAST_2_DAYS
       end
     end
 
@@ -57,10 +55,7 @@ module CancelBooking
     end
 
     def days_diff(drop_off_date)
-      @current_date = Date.today
-      @drop_off_date = drop_off_date
-      @days_diff = @drop_off_date - @current_date
-      return @days_diff.round
+      days_diff = drop_off_date - Date.today
     end
   end
 

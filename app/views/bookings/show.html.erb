@@ -71,7 +71,9 @@
                           <%unless current_user.admin?%>
 
                           </ul>
-                          <% if @booking.dropoff_date >= Date.today %>
+                          <% if @booking.dropoff_date >= Date.today &&
+                                @booking.is_cancel == false &&
+                                @booking.status == nil %>
                             <%= link_to "Cancel Booking", cancel_popup_bookings_path(:drop_off_date =>@booking.dropoff_date,:id =>@booking.id), :class=>"cb", :remote=> true %>
                           <% end %>
                           <%end%>
