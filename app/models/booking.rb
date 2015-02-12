@@ -77,69 +77,89 @@ class Booking < ActiveRecord::Base
 	end
 
 	#Booking cancel by finder
-	def self.booking_cancel_finder(booking,dt)
-		price = booking.price
-	    stripe_charge_id = booking.stripe_charge_id
-	    days_diff =  days_diff(dt)
+  def self.booking_cancel_finder(booking,dt)
+    price = booking.price
+    stripe_charge_id = booking.stripe_charge_id
+    days_diff =  days_diff(dt)
 
-	    if price <= GlobalConstants::BOOKING_AMOUNT
-	      amount = cancel_booking_by_finder_less8(days_diff, price)
-	      refund_addition = amount * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1
-	      amount_cents = ((amount)*GlobalConstants::CENTS).to_i
-	      send_money = (price.to_f - GlobalConstants::ADMIN_COMISSION) - amount
-	      send_money_cents = ((send_money)*GlobalConstants::CENTS).to_i
-	    else
-	      amount = cancel_booking_deduction(days_diff, price)
-	      amount_cents = ((amount)*GlobalConstants::CENTS).to_i
-	      refund_addition = amount * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1
-	      send_money = send_money_to_poster(days_diff, price)
-	      send_money_cents = ((send_money)*GlobalConstants::CENTS).to_i
-	    end
+    if price <= GlobalConstants::BOOKING_AMOUNT
+      amount = cancel_booking_by_finder_less8(days_diff, price)
+      refund_addition = amount * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1
+      amount_cents = ((amount)*GlobalConstants::CENTS).to_i
+      send_money = (price.to_f - GlobalConstants::ADMIN_COMISSION) - amount
+      send_money_cents = ((send_money)*GlobalConstants::CENTS).to_i
+    else
+      amount = cancel_booking_deduction(days_diff, price)
+      amount_cents = ((amount)*GlobalConstants::CENTS).to_i
+      refund_addition = amount * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1
+      send_money = send_money_to_poster(days_diff, price)
+      send_money_cents = ((send_money)*GlobalConstants::CENTS).to_i
+    end
 
-	    begin
-	      ch = Stripe::Charge.retrieve(stripe_charge_id)
-	      refund = ch.refunds.create(:amount => amount_cents)
-	      cancel_booking = booking.update_columns(is_cancel: true)
-	    rescue Stripe::InvalidRequestError => e
-	      return e
-	    end
+    begin
+      ch = Stripe::Charge.retrieve(stripe_charge_id)
+      refund = ch.refunds.create(:amount => amount_cents)
+      cancel_booking = booking.update_columns(is_cancel: true)
+    rescue Stripe::InvalidRequestError => e
+      return e
+    end
 
-	    recipient_details = BankDetail.where("user_id =?", booking.poster_id).first
+    recipient_details = BankDetail.where("user_id =?", booking.poster_id).first
 
-	    if recipient_details.present?
+    if recipient_details.present?
 
-	      if price <= GlobalConstants::BOOKING_AMOUNT
-	        commission = (price.to_i - (price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2)) - (send_money + GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT) - (amount - refund_addition)
-	      else
-	        stripe_processing_fees = price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2 - refund_addition
-	        commission = send_money_to_admin(days_diff, price) - stripe_processing_fees
-	      end
+      if price <= GlobalConstants::BOOKING_AMOUNT
+        commission = (price.to_i - (price.to_i *
+                                    GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 +
+                                    GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2)
+                     ) -
+                     (send_money + GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT) -
+                     (amount - refund_addition)
+      else
+        stripe_processing_fees = price.to_i *
+                                 GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 +
+                                 GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2 -
+                                 refund_addition
+        commission = send_money_to_admin(days_diff, price) - stripe_processing_fees
+      end
 
-	      begin
-	        transfer = Stripe::Transfer.create(
-	        :amount => send_money_cents, # amount in cents
-	        :currency => "usd",
-	        :recipient => recipient_details.stripe_recipient_token,
-	        :card => recipient_details.stripe_card_id_token,
-	        :statement_descriptor => "Money transfer"
-	      )
-	       rescue Stripe::InvalidRequestError => e
-	          return e
-	       end
+      begin
+        transfer = Stripe::Transfer.create(
+        :amount => send_money_cents, # amount in cents
+        :currency => "usd",
+        :recipient => recipient_details.stripe_recipient_token,
+        :card => recipient_details.stripe_card_id_token,
+        :statement_descriptor => "Money transfer"
+        )
+        rescue Stripe::InvalidRequestError => e
+        return e
+      end
 
-	       transfer_payment = booking.update_attributes(cut_off_price: send_money,commission: commission)
-	       return amount
-	    else
+      transfer_payment = booking.update_attributes(cut_off_price: send_money,commission: commission)
+      return amount
 
-	      if price <= GlobalConstants::BOOKING_AMOUNT
-	        commission = (price.to_i - (price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2)) - (send_money + GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT) - (amount - refund_addition) + send_money
-	      else
-	       stripe_processing_fees = price.to_i * GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 + GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2 - refund_addition
-	       commission = send_money + send_money_to_admin(days_diff, price) - stripe_processing_fees - GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT
-	      end
-	       transfer_payment = booking.update_attributes(commission: commission,comment: "Waiting for poster bank account.")
-	       return amount
-	    end
-	end
+    else
+
+      if price <= GlobalConstants::BOOKING_AMOUNT
+        commission = (price.to_i - (
+                                    price.to_i *
+                                    GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 +
+                                    GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2)
+                     ) -
+                     (send_money + GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT) -
+                     (amount - refund_addition) + send_money
+      else
+        stripe_processing_fees = price.to_i *
+                                 GlobalConstants::STRIPE_COMISSION_FOR_CHARGE1 +
+                                 GlobalConstants::STRIPE_COMISSION_FOR_CHARGE2 -
+                                 refund_addition
+        commission = send_money + send_money_to_admin(days_diff, price) -
+                     stripe_processing_fees - GlobalConstants::STRIPE_COMISSION_FOR_PAYOUT
+      end
+        transfer_payment = booking.update_attributes(commission: commission,
+                                                     comment: "Waiting for poster bank account.")
+        return amount
+    end
+  end
 
 end
