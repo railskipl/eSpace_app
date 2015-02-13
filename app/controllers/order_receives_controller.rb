@@ -31,10 +31,10 @@ class OrderReceivesController < ApplicationController
     post = current_user.orders.find(params[:id]).post
     amount = @booking.price
     data = Booking.booking_cancel(@booking)
-    OrderMailer.order_status(@booking, post).deliver
     if data.class == Stripe::InvalidRequestError
-      redirect_to :back, :notice => "Stripe error while creating customer: #{data.message}"
+      redirect_to :back, :notice => "Stripe error: #{data.message}"
     else
+      OrderMailer.order_status(@booking, post).deliver
       PaymentHistory.create(:name => "cancel", :booking_id => @booking.id)
       flash[:notice] = "Booking is cancel & $#{amount} is refunded. "
       redirect_to order_receives_path

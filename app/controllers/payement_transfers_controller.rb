@@ -21,26 +21,21 @@ class PayementTransfersController < ApplicationController
 
   #transfer the payement to poster account.
   def transfer_money
-
     @recipient_details = BankDetail.where("user_id =?", params[:poster_id]).first
-
-      @booking = Booking.find(params[:booking_id])
-
+    @booking = Booking.find(params[:booking_id])
     if @recipient_details
-
       @price = @booking.price.to_i
-        data = PaymentTransfer.transfer_money_to_poster(@booking,@recipient_details)
-        if data.class == Stripe::InvalidRequestError
-         redirect_to :back, :notice => "Stripe error while creating customer: #{data.message}"
-        else
-          redirect_to payement_transfers_path
-          flash[:notice] = "Payement was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{data[0]} and commision is $#{data[1]}"
-       end
+      data = PaymentTransfer.transfer_money_to_poster(@booking, @recipient_details)
+      if data.class == Stripe::InvalidRequestError
+        redirect_to :back, :notice => "Stripe error: #{data.message}"
+      else
+        redirect_to payement_transfers_path
+        flash[:notice] = "Payment was successfully transfered to #{@recipient_details.stripe_card_id_token}. Amount transfer to poster $#{data[0]} and commision is $#{data[1]}"
+      end
     else
       transfer_payment = @booking.update_columns(comment: "Waiting for poster bank account.")
       flash[:error]  = "No bank detail added for payment"
       redirect_to payement_transfers_path
-
     end
   end
 

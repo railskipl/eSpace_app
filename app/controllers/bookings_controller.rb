@@ -5,19 +5,15 @@ class BookingsController < ApplicationController
   include BookingsHelper
 
   def index
-    if params[:cancelled].present?
-      @bookings = scope.not_canceled.page(params[:page]).per_page(4)
-    else
-      @bookings = scope.page(params[:page]).order("id desc").per_page(4)
-    end
+    @bookings = scope.cancelled_as(params[:cancelled]).includes(:poster, :post).page(params[:page]).per_page(4).order("id desc")
   end
 
   def new
-    @booking = current_user.bookings.build
+    @booking = scope.build
   end
 
   def show
-    @booking = current_user.bookings.find(params[:id])
+    @booking = scope.find(params[:id])
     @post = Post.find(@booking.post_id)
   end
 
@@ -55,12 +51,12 @@ class BookingsController < ApplicationController
           :description => "Customer #{params[:stripeEmail]}"
         )
       rescue Stripe::InvalidRequestError => e
-        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
+        redirect_to :back, :notice => "Stripe error: #{e.message}"
         return false
       end
 
       if is_number?(@amount.to_f)
-        @amount = ((@amount.to_f)).to_i
+        @amount = @amount.to_f.to_i
         charge = Stripe::Charge.create(
             :customer    => customer.id,
             :amount      => @amount,
@@ -93,24 +89,24 @@ class BookingsController < ApplicationController
 
 
   def cancel_popup
-    @booking = current_user.bookings.find(params[:id])
+    @booking = scope.find(params[:id])
   end
 
   #this method cancel's the booking done by finder & does the cancel_booking_deduction
   # according to criteria.
   def cancel_booking
-    @booking = current_user.bookings.find(params[:id])
+    @booking = scope.find(params[:id])
     data = Booking.booking_cancel_finder(@booking,params[:drop_off_date].to_date)
-    BookedMailer.booking_status(@booking).deliver
     if data.class == Stripe::InvalidRequestError
       redirect_to :back, :notice => "Stripe error: #{data.message}"
     else
       Message.create(:sender_id =>  @booking.user_id, :recipient_id => @booking.poster_id,
                      :post_id => @booking.post_id,:body => "Booking is cancel")
-      transfer_payment = @booking.update_columns(refund_finder: data)
+      transfer_payment = @booking.update_columns(is_cancel: true, refund_finder: data)
       Post.add_area(@booking)
       PaymentHistory.create(:name => "cancel", :booking_id => @booking.id)
       flash[:notice] = "Booking is cancel & $#{data} is refunded"
+      BookedMailer.booking_status(@booking).deliver
       redirect_to booking_path(@booking.id)
     end
   end
@@ -127,7 +123,7 @@ class BookingsController < ApplicationController
   private
 
   def scope
-    current_user.bookings.includes(:poster, :post)
+    current_user.admin? ? Booking.all : current_user.bookings
   end
 
 

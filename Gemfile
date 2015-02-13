@@ -6,11 +6,11 @@ gem 'rails', '4.1.5'
 
 gem 'mysql2', group: :development
 gem 'pg'
+gem 'sidetiq'
 
 gem 'devise'
 
 gem 'bullet', group: :development
-
 gem 'ransack'
 
 gem 'puma'

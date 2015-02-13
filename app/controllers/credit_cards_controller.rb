@@ -36,7 +36,7 @@ class CreditCardsController < ApplicationController
           :description => "Customer #{email}"
         )
       rescue Stripe::InvalidRequestError => e
-        redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
+        redirect_to :back, :notice => "Stripe error: #{e.message}"
         return false
       end
 

@@ -63,10 +63,11 @@ $ cat ~/.ssh/id_rsa.pub | ssh root@yourdomain.com sudo dokku access:add"
 * Deploy a root instance.
 
 ```console
-$ ssh -t dokku@yourdomain.com postgresql:create staging_db.
+$ ssh -t dokku@yourdomain.com postgresql:create staging_db
 $ git remote add staging dokku@yourdomain.com:staging
 $ git push staging master
 $ ssh -t dokku@yourdomain.com postgresql:link staging staging_db
+$ ssh -t dokku@yourdomain.com redis:create staging
 $ ssh -t dokku@yourdomain.com domains:set staging yourdomain.com
 ```
 

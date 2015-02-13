@@ -32,17 +32,16 @@ class PaymentTransfer
       	  :currency => "usd",
       	  :recipient => recipient_details.stripe_recipient_token,
       	  :card => recipient_details.stripe_card_id_token,
-      	  :statement_description => "Money transfer"
+          :statement_descriptor => "Money transfer"
       	)
          rescue Stripe::InvalidRequestError => e
-            # redirect_to :back, :notice => "Stripe error while creating customer: #{e.message}"
             return e
          end
 
         transfer_payment = booking.update_attributes(stripe_transfer_id: transfer[:id],
-        status: 'Paid',
-        cut_off_price: received_by_poster,
-        commission: commission)
+                                                    status: 'Paid',
+                                                    cut_off_price: received_by_poster,
+                                                    commission: commission)
 
         #transfer_payment = booking.update_attributes(person_params)
         PaymentHistory.create(:name => "transfered", :booking_id => booking.id)
@@ -52,6 +51,7 @@ class PaymentTransfer
         message_params["body"] = "Payment has been transfered to your account."
         message = Message.new(message_params)
         message.save
+        BookedMailer.booking_payment(booking).deliver
         return received_by_poster,commission
 	end
 

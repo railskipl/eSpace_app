@@ -1,5 +1,33 @@
 # Unreleased
 
+* Use sidetiq for periodical tasks.
+
+_akd 12.02.2015_
+
+* Fix minor bugs in post index view.
+
+_akd 12.02.2015_
+
+* Added more ability to admin.
+
+_akd 12.02.2015_
+
+* Remote 'while creating customer' in stripe error messages.
+
+_akd 12.02.2015_
+
+* Added sending letters of credit transfer.
+
+_akd 12.02.2015_
+
+* Added additional check for cancellation.
+
+_akd 12.02.2015_
+
+* Сorrected cancellation booking.
+
+_akd 11.02.2015_
+
 * Add new delivers(create bookings, canceled bookings, canceled posts)
 
 _akd 10.02.2015_

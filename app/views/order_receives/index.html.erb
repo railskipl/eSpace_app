@@ -56,11 +56,13 @@
             </p>
             <p>
               <% if booking.is_cancel == true %>
-                  <span>Status</span> : Cancelled
+                <span>Status</span> : Cancelled
               <% end %>
             </p>
             <p>
-            <%= link_to "Cancel Booking", cancel_popup_order_receives_path(:id =>booking.id), :remote=> true %>
+              <% if booking.is_cancel == false && booking.status == nil %>
+                <%= link_to "Cancel Booking", cancel_popup_order_receives_path(:id =>booking.id), :remote=> true %>
+              <% end %>
             </p>
         </div>
         <div class="order-col order-col1 order-col1-tmar">
